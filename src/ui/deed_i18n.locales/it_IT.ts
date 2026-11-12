@@ -289,10 +289,6 @@ export const table: DeedLocaleTable = {
     name: 'Scrollati la Polvere di Dosso',
     desc: 'Muori per la prima volta; capita anche ai migliori.',
   },
-  dgn_hollow_crypt: {
-    name: 'Spaccacripte',
-    desc: 'Sconfiggi Morthen il Gravecaller nella Cripta Vuota.',
-  },
   dgn_sunken_bastion: {
     name: 'Il Fogbinder Slegato',
     desc: 'Sconfiggi Vael il Fogbinder nel Bastione Sommerso.',
@@ -304,10 +300,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Il Wyrm nel Profondo',
     desc: 'Sconfiggi Korzul il Gravewyrm nel Santuario del Gravewyrm.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Eroico: La Cripta Vuota',
-    desc: 'Sconfiggi Morthen il Gravecaller nella Cripta Vuota in difficoltà Eroica.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Eroico: Il Bastione Sommerso',
@@ -344,14 +336,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Cinquanta Porte Dopo',
     desc: 'Sconfiggi 50 boss finali dei dungeon.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Nemmeno un Osso Rotto',
-    desc: 'Sconfiggi Morthen il Gravecaller in difficoltà Eroica senza che alcun membro del gruppo muoia.',
-  },
-  dgn_morthen_trio: {
-    name: 'Tre Contro la Tomba',
-    desc: 'Sconfiggi Morthen il Gravecaller con tre giocatori o meno.',
   },
   dgn_olen_arc: {
     name: 'Schivare il Mietitore',
@@ -1345,10 +1329,6 @@ export const table: DeedLocaleTable = {
     name: 'Tutte le teste a terra',
     desc: "Uccidi tutte e tre le teste dell'Idra dello Stagno entro 10 secondi l'una dall'altra.",
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Neanche un capello bruciato',
-    desc: 'Sconfiggi il Drago del Rintocco Funebre senza che nessuno venga bruciato dal suo Passaggio della Pira.',
-  },
   dgn_turnkey_cage: {
     name: 'Nessuna gabbia può trattenerci',
     desc: 'Sconfiggi il Secondino della Prigione senza che nessuno venga schiacciato in una Gabbia di Ferro.',
@@ -1393,22 +1373,6 @@ export const table: DeedLocaleTable = {
     name: "L'ultima strofa",
     desc: "Sconfiggi Ysolei, Avatar della Luna Annegata, con l'Ultimo Cantore del Coro Pallido al tuo fianco.",
     title: 'Testimone del Coro',
-  },
-  dgn_marrow_tidy: {
-    name: 'Un cimitero ordinato',
-    desc: 'Sconfiggi il Sagrestano Marrow collocando ogni Tomba Aperta al bordo del Cortile della Campana.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Nessuno lasciato sospeso',
-    desc: "Sconfiggi la Dama del Gelo d'Ossa senza che lasci mai cadere qualcuno dal suo Abbraccio Gelido.",
-  },
-  dgn_ilvane_hush: {
-    name: 'Silenzio, ora',
-    desc: 'Sconfiggi la Cantora Ilvane senza che il suo Lamento del Vuoto colpisca mai qualcuno.',
-  },
-  dgn_morthen_candlelight: {
-    name: 'Ogni candela accesa',
-    desc: "Sconfiggi Morthen l'Evocatombe dopo aver riacceso tutte e quattro le Candele della Rimembranza entro 20 secondi dalla comparsa della sua Protezione Inquieta.",
   },
   dgn_guild_first_contract: {
     name: 'Mandato firmato',

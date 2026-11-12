@@ -820,54 +820,6 @@ const BLUE_COPY_SHARE = 0.04;
 // uncommon pieces drop on Normal, never on a Heroic kill, so each boss's one
 // Heroic item is an epic, a raid piece or a Heroic copy.
 export const HEROIC_BOSS_LOOT: Record<string, LootEntry[]> = {
-  // The Hollow Crypt rework (hollow_crypt.md 8.2): one equipment item per boss
-  // kill; four shipped epics moved off Morthen onto the new wing and choir bosses.
-  sexton_marrow: [
-    ...weightedLootGroup('sexton_marrow_heroic', [
-      ['heroic_bonewrought_greatsword', THORNPEAK_SHARE],
-      ['heroic_spadeworn_gauntlets', BLUE_COPY_SHARE],
-      ['heroic_gravedirt_grips', BLUE_COPY_SHARE],
-      ['heroic_bellrope_mitts', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 3 * BLUE_COPY_SHARE, [
-        ['sextons_burial_spade', 0.3],
-        ['cryptplate_helm', 0.3],
-        ['heroic_sextons_spadehaft', 0.1],
-      ]),
-    ]).map(preserveBaseLootSource),
-  ],
-  rimeweb: [
-    ...weightedLootGroup('rimeweb_heroic', [
-      ['heroic_courtiers_bonefang', THORNPEAK_SHARE],
-      ['heroic_rimewreath_coif', BLUE_COPY_SHARE],
-      ['heroic_rime_laced_hood', BLUE_COPY_SHARE],
-      ['heroic_lamenting_veil', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 3 * BLUE_COPY_SHARE, [
-        ['rimesilk_hood', 0.35],
-        ['bonechill_striders', 0.25],
-        ['bonechill_cord', 0.25],
-        ['heroic_rimeweb_fang', 0.15],
-      ]),
-    ]).map(preserveBaseLootSource),
-  ],
-  // The design's Vigil Taper trinket (a new trinket effect) is deferred to the
-  // encounter pass; its share is spread over the other pieces meanwhile. The
-  // base rare chase rows are normalOnly, so each boss's Heroic partition carries
-  // the rare's Heroic variant (Spadehaft, Fang, Hymnal) inside its one slot.
-  // The Shadowpulse Slippers moved here off Morthen to join their Handwraps, so
-  // the choir boss carries two heroic epics like his neighbours.
-  cantor_ilvane: [
-    ...weightedLootGroup('cantor_ilvane_heroic', [
-      ['heroic_votive_ward_of_the_deathless_court', THORNPEAK_SHARE],
-      ['heroic_choirward_pauldrons', BLUE_COPY_SHARE],
-      ['heroic_choristers_spaulders', BLUE_COPY_SHARE],
-      ['heroic_cantors_stole', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 3 * BLUE_COPY_SHARE, [
-        ['shadowpulse_handwraps', 0.35],
-        ['shadowpulse_slippers', 0.3],
-        ['heroic_cantors_hymnal', 0.15],
-      ]),
-    ]).map(preserveBaseLootSource),
-  ],
   // The Sunken Bastion rework (sunken_bastion.md 8.2): one equipment item per
   // boss kill; three shipped epics moved off Vael onto Olen and Ossick.
   knight_commander_olen: [
@@ -1019,23 +971,6 @@ export const HEROIC_BOSS_LOOT: Record<string, LootEntry[]> = {
       ]),
     ]).map(preserveBaseLootSource),
     { itemId: 'necromancers_reagent_satchel', chance: 0.2, preserveSourceTier: true },
-  ],
-  morthen: [
-    ...weightedLootGroup('morthen_heroic', [
-      ['heroic_thornpeak_wardblade', THORNPEAK_SHARE],
-      ['heroic_knellbound_hauberk', BLUE_COPY_SHARE],
-      ['heroic_candlewatch_jerkin', BLUE_COPY_SHARE],
-      ['heroic_robe_of_the_unquiet_rite', BLUE_COPY_SHARE],
-      ['heroic_gravecallers_rod', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 4 * BLUE_COPY_SHARE, [
-        ['morthens_cryptforged_hauberk', 0.18],
-        ['lunarward_cinch', 0.18],
-        ['bastion_sigil', 0.18],
-      ]),
-    ]).map(preserveBaseLootSource),
-    { itemId: 'gravewoven_bag', chance: 0.2, preserveSourceTier: true },
-    { itemId: 'reins_stormfeather_griffin', chance: HEROIC_GREEN_MOUNT_CHANCE },
-    ...heroicFarmPatternRows(),
   ],
   vael_the_mistcaller: [
     ...weightedLootGroup('vael_heroic', [

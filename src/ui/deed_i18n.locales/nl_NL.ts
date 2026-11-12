@@ -218,10 +218,6 @@ export const table: DeedLocaleTable = {
     name: 'Klop Het Stof Eraf',
     desc: 'Sterf voor het eerst; het overkomt de besten onder ons.',
   },
-  dgn_hollow_crypt: {
-    name: 'Cryptebreker',
-    desc: 'Versla Morthen de Grafroeper in de Holle Crypte.',
-  },
   dgn_sunken_bastion: {
     name: 'De Fogbinder Ontbonden',
     desc: 'Versla Vael de Fogbinder in het Verzonken Bastion.',
@@ -233,10 +229,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'De Wurm Beneden',
     desc: 'Versla Korzul de Grafwurm in het Grafwurm-Heiligdom.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroïsch: De Holle Crypte',
-    desc: 'Versla Morthen de Grafroeper in de Holle Crypte op Heroïsche moeilijkheidsgraad.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroïsch: Het Verzonken Bastion',
@@ -271,14 +263,6 @@ export const table: DeedLocaleTable = {
     desc: 'Verdien op één dag Heroïsche Merken uit alle vier de Heroïsche kerkers.',
   },
   dgn_boss_clears_50: { name: 'Vijftig Deuren Verder', desc: 'Versla 50 eindbazen van kerkers.' },
-  dgn_morthen_flawless: {
-    name: 'Geen Botje Gebroken',
-    desc: 'Versla Morthen de Grafroeper op Heroïsche moeilijkheidsgraad zonder dat een groepslid sterft.',
-  },
-  dgn_morthen_trio: {
-    name: 'Drie Tegen het Graf',
-    desc: 'Versla Morthen de Grafroeper met drie of minder spelers.',
-  },
   dgn_olen_arc: {
     name: 'De Maaier Ontweken',
     desc: 'Versla Ridder-Commandant Olen zonder dat zijn Maaiboog iemand anders raakt dan zijn huidige doelwit.',
@@ -1290,22 +1274,6 @@ export const table: DeedLocaleTable = {
     name: 'Opdracht ondertekend',
     desc: 'Voltooi één van de wekelijkse kerkercontracten van Lantaarnhal.',
   },
-  dgn_morthen_candlelight: {
-    name: 'Elke kaars brandt',
-    desc: 'Versla Morthen de Grafroeper nadat je alle vier Herdenkingskaarsen opnieuw hebt aangestoken binnen 20 seconden na het verschijnen van zijn Rusteloze bescherming.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Nu stil',
-    desc: 'Versla Voorzanger Ilvane zonder dat haar Klaagzang van de holte ooit iemand raakt.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Niemand laten hangen',
-    desc: 'Versla de Vrouwe van de Bottenkou zonder dat ze ooit iemand uit haar Bevroren omhelzing laat vallen.',
-  },
-  dgn_marrow_tidy: {
-    name: 'Een keurig kerkhof',
-    desc: 'Versla Koster Marrow met elk Open graf aan de rand van het Klokkerf.',
-  },
   dgn_drowned_temple_cantor: {
     name: 'Het laatste vers',
     desc: 'Versla Ysolei, Avatar van de Verdronken Maan, met de Laatste Voorzanger van het Bleke Koor naast je.',
@@ -1350,10 +1318,6 @@ export const table: DeedLocaleTable = {
   dgn_turnkey_cage: {
     name: 'Geen kooi houdt ons vast',
     desc: 'Versla de Gevangenisbewaarder zonder dat iemand in een IJzeren kooi wordt verpletterd.',
-  },
-  dgn_crypt_knellwyrm: {
-    name: 'Geen haar verschroeid',
-    desc: 'Versla de Doodsklokdraak zonder dat iemand door zijn Brandstapelbeschieting wordt verbrand.',
   },
   dgn_mere_hydra: {
     name: 'Alle koppen neer',

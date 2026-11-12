@@ -222,7 +222,6 @@ export const table: DeedLocaleTable = {
   cmb_critical_eye: { name: '会心の眼', desc: 'クリティカルヒットを500回命中させる。' },
   cmb_giantslayer: { name: '巨人殺し', desc: '自分より5レベル以上高い敵にとどめの一撃を放つ。' },
   cmb_first_fall: { name: '埃を払って立て', desc: '初めて死ぬ。誰にでもあることだ。' },
-  dgn_hollow_crypt: { name: '墓所破り', desc: '虚ろの墓所で墓呼びのモーセンを倒す。' },
   dgn_sunken_bastion: {
     name: '解けた霧の縛め',
     desc: '沈んだ砦でフォグバインダーのヴァエルを倒す。',
@@ -231,10 +230,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: '地の底のワーム',
     desc: '墓ワームの聖所で墓ワームのコルズルを倒す。',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: '英雄: 虚ろの墓所',
-    desc: '英雄難易度の虚ろの墓所で墓呼びのモーセンを倒す。',
   },
   dgn_sunken_bastion_heroic: {
     name: '英雄: 沈んだ砦',
@@ -269,11 +264,6 @@ export const table: DeedLocaleTable = {
     desc: '1日のうちに、4つの英雄ダンジョンすべてで英雄の証を手に入れる。',
   },
   dgn_boss_clears_50: { name: '五十の扉の先', desc: 'ダンジョン最奥のボスを50体倒す。' },
-  dgn_morthen_flawless: {
-    name: '骨折り知らず',
-    desc: 'パーティメンバーを1人も死なせずに、英雄難易度で墓呼びのモーセンを倒す。',
-  },
-  dgn_morthen_trio: { name: '墓に挑む三人', desc: '3人以下のプレイヤーで墓呼びのモーセンを倒す。' },
   dgn_olen_arc: {
     name: '死神かわし',
     desc: '刈り取りの弧を現在の標的以外の誰にも当てさせずに、騎士司令官オレンを倒す。',
@@ -1213,10 +1203,6 @@ export const table: DeedLocaleTable = {
     name: 'すべての首を落とせ',
     desc: '湖のヒュドラの3本の首を、互いに10秒以内の間隔で倒す。',
   },
-  dgn_crypt_knellwyrm: {
-    name: '髪の毛一本焦がさずに',
-    desc: '誰も焼き払い飛行の炎を受けずに、弔鐘竜を倒す。',
-  },
   dgn_turnkey_cage: {
     name: '我らを縛る檻はない',
     desc: '誰も鉄の檻で押し潰されずに、牢の鍵番を倒す。',
@@ -1261,22 +1247,6 @@ export const table: DeedLocaleTable = {
     name: '最後の一節',
     desc: '蒼白の聖歌隊の最後の聖歌隊長を傍らに連れ、溺月の化身イソレイを倒す。',
     title: '聖歌隊の証人',
-  },
-  dgn_marrow_tidy: {
-    name: '整った教会墓地',
-    desc: 'すべての開いた墓穴を鐘の中庭の端に配置して、墓守マロウを倒す。',
-  },
-  dgn_lady_nobody_hanging: {
-    name: '誰も宙吊りにしない',
-    desc: '凍てつく抱擁から誰も落とさせずに、骨冷えの貴婦人を倒す。',
-  },
-  dgn_ilvane_hush: {
-    name: 'さあ、お静かに',
-    desc: '虚ろの葬送歌を誰にも当てずに、聖歌隊長イルヴェインを倒す。',
-  },
-  dgn_morthen_candlelight: {
-    name: 'すべての蝋燭に火を',
-    desc: '鎮まらぬ結界が現れてから20秒以内に4本すべての追悼の蝋燭を灯し直し、墓呼びのモーセンを倒す。',
   },
   feat_gourdlight_doorsteps: {
     name: 'すべての戸口で',

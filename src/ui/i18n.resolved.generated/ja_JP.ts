@@ -26590,9 +26590,6 @@ export const ja_JP: EnTranslations = {
       "restless_bones": {
         "name": "安らがぬ骨"
       },
-      "marrow_restless_bones": {
-        "name": "安らがぬ骨"
-      },
       "gorrak": {
         "name": "無慈悲なるゴラック"
       },
@@ -26694,90 +26691,6 @@ export const ja_JP: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "骨まといの亡霊"
-      },
-      "crypt_shambler": {
-        "name": "墓所のよろめき手"
-      },
-      "hollow_acolyte": {
-        "name": "虚ろの侍祭"
-      },
-      "bonechill_widow": {
-        "name": "骨冷えのウィドウ"
-      },
-      "sexton_marrow": {
-        "name": "墓守マロウ"
-      },
-      "morthen": {
-        "name": "墓呼びのモーセン"
-      },
-      "ossuary_sentinel": {
-        "name": "納骨堂の番兵"
-      },
-      "hollow_gravedigger": {
-        "name": "虚ろの墓掘り"
-      },
-      "rime_egg_sac": {
-        "name": "霜の卵嚢"
-      },
-      "rimeweb_hatchling": {
-        "name": "霜網の子蜘蛛"
-      },
-      "rimeweb_spinner": {
-        "name": "霜網の紡ぎ手"
-      },
-      "candlewright_acolyte": {
-        "name": "蝋燭職人の侍祭"
-      },
-      "hollow_chorister": {
-        "name": "虚ろの聖歌隊員"
-      },
-      "bound_soul": {
-        "name": "縛られし魂"
-      },
-      "rimeweb": {
-        "name": "骨冷えの貴婦人"
-      },
-      "cantor_ilvane": {
-        "name": "聖歌隊長イルヴェイン"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "納骨堂の戦士"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "墓呼びの徒弟"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "納骨堂の喉裂き"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "墓呼びの死霊術師"
-      },
-      "crypt_bone_minion": {
-        "name": "骨の下僕"
-      },
-      "crypt_bone_brute": {
-        "name": "骨の巨兵"
-      },
-      "crypt_bone_pile": {
-        "name": "蠢く骨"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "礼拝堂のガーゴイル"
-      },
-      "crypt_crow_caller": {
-        "name": "鴉呼び"
-      },
-      "crypt_carrion_crow": {
-        "name": "腐肉喰らいの鴉"
-      },
-      "crypt_ossuary_drake": {
-        "name": "納骨堂の骨竜"
-      },
-      "crypt_knellwyrm": {
-        "name": "弔鐘竜"
-      },
-      "crypt_remembrance_candle": {
-        "name": "追憶のろうそく"
       },
       "bastion_revenant": {
         "name": "砦の亡霊"
@@ -28727,16 +28640,6 @@ export const ja_JP: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "安らがぬ死者",
-        "text": "古い礼拝堂は眠りの場でしたが、何かが死者を起こしました。安らがぬ骨を8体、土へ返してください、{playerName}。",
-        "completion": "彼らが今こそ眠れますように。そして起こしたものを光が赦しますように。",
-        "objectives": {
-          "0": {
-            "label": "安らがぬ骨を安息させる"
-          }
-        }
-      },
       "q_supplies": {
         "title": "盗まれた物資",
         "text": "盗賊が最後の荷車を奪いました。道具、塩、上等なイーストブルックの麻です。北西の野営地から箱を4つ取り戻してください。",
@@ -28747,26 +28650,6 @@ export const ja_JP: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "地下の囁き",
-        "text": "死者は何かに呼び戻されています。礼拝堂を調べ、呼び声の主の印か封を見つけたら無傷で持ってきてください。",
-        "completion": "この印はグレイブコーラーのものです。滅んだと思いたかった一派でした、{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "グレイブコーラーの印章"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "死者の名",
-        "text": "グレイブコーラーが墓を暴いたなら、誰の眠りが奪われたのか知る必要があります。埋葬記録のページを3枚集めてください、{playerName}。",
-        "completion": "哀れな魂たち...ここに墓守マロウの名があります。モーセンはイーストブルックの死者を埋めた男から始めたのです。",
-        "objectives": {
-          "0": {
-            "label": "風化した帳簿のページ"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "呼び声を沈めよ",
         "text": "記録の名はすべて、モーセンが土から引き出そうとする魂です。{playerName}、囁きが合唱になる前に、安らがぬ骨を12体沈めてください。",
@@ -28774,49 +28657,6 @@ export const ja_JP: EnTranslations = {
         "objectives": {
           "0": {
             "label": "安らがぬ骨を沈黙させる"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "束縛の儀式",
-        "text": "グレイブコーラーを止めるには、礼拝堂の下の墓所を開かねばなりません。しかし、生者が通れるのは束縛の儀式によってのみ。祝福された獣脂を4塊、鉱山の穴掘りどもは獣脂を木箱ごと溜め込んでいます、そして安らげぬ死者から幽霊のエッセンスを6つ必要です。",
-        "completion": "終わりました。下への道が開きます...最も強い仲間を集めてください、{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "祝福された獣脂"
-          },
-          "1": {
-            "label": "幽霊のエッセンス"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "虚ろへ",
-        "text": "モーセンは虚ろの墓所の底で、起こした精鋭の死者に囲まれています。四人の仲間と共に彼を終わらせてください。",
-        "completion": "囁きは止みました。死者は眠り、イーストブルックはあなたにすべてを負っています、{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "墓呼びのモーセンを討伐"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "墓守の鐘",
-        "text": "記録には墓守マロウの名があります。モーセンが最初に起こした門番です。{playerName}、四人の仲間と下り、奪われた眠りを返してください。",
-        "completion": "マロウはようやく自由です。鐘は鳴らさないでください。生前に十分聞きました。",
-        "objectives": {
-          "0": {
-            "label": "墓守マロウを安息させる"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "墓呼びの足跡",
-        "text": "モーセンは死にましたが、一世紀潜んだ一派が一つの礼拝堂だけで終わるはずがありません。{playerName}、廃墟で彼の魔導書を探してください。",
-        "completion": "モーセンは北の湿地の『フォグバインダー』に書き送っていました。{playerName}、一派は死んでいません。ただ辛抱強く待っていたのです。",
-        "objectives": {
-          "0": {
-            "label": "モーセンの魔導書"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const ja_JP: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "虚ろの墓所",
-        "enterText": "虚ろの墓所へ降りていきます...",
-        "leaveText": "日の光の下へ戻ります。"
-      },
       "sunken_bastion": {
         "name": "沈んだ砦",
         "enterText": "沈んだ砦の深みへ水をかき分けて進みます...",

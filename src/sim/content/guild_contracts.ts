@@ -97,10 +97,6 @@ const boss = (dungeonId: string, mobId: string): GuildContractDef => ({
 /** The named bosses of the five dungeons (src/sim/content/dungeon_finder.ts encounter order).
  *  The Mere Hydra is left out: its heads die one by one and only the last fells it. */
 export const GUILD_BOSS_CONTRACTS: readonly GuildContractDef[] = [
-  boss('hollow_crypt', 'sexton_marrow'),
-  boss('hollow_crypt', 'rimeweb'),
-  boss('hollow_crypt', 'cantor_ilvane'),
-  boss('hollow_crypt', 'morthen'),
   boss('sunken_bastion', 'knight_commander_olen'),
   boss('sunken_bastion', 'gaol_turnkey'),
   boss('sunken_bastion', 'gaoler_ossick'),
@@ -126,7 +122,6 @@ const heroic = (dungeonId: string, mobId: string): GuildContractDef => ({
 
 /** One Heroic clear per dungeon, credited on its final boss (deeds.ts FINAL_BOSS_DUNGEONS). */
 export const GUILD_HEROIC_CONTRACTS: readonly GuildContractDef[] = [
-  heroic('hollow_crypt', 'morthen'),
   heroic('sunken_bastion', 'vael_the_mistcaller'),
   heroic('drowned_temple', 'ysolei'),
   heroic('gravewyrm_sanctum', 'korzul_the_gravewyrm'),
@@ -145,7 +140,6 @@ const task = (dungeonId: string, mobId: string, taskDeedId: string): GuildContra
 /** The five dungeons' encounter skill tasks the deeds evaluator already judges at the boss's
  *  death (deeds.ts FLAWLESS_TASKS, ADD_TASKS, SPLASH_TASKS). */
 export const GUILD_TASK_CONTRACTS: readonly GuildContractDef[] = [
-  task('hollow_crypt', 'morthen', 'dgn_morthen_flawless'),
   task('sunken_bastion', 'knight_commander_olen', 'dgn_olen_arc'),
   task('sunken_bastion', 'vael_the_mistcaller', 'dgn_vael_thralls'),
   task('drowned_temple', 'ysolei', 'dgn_ysolei_moonspawn'),

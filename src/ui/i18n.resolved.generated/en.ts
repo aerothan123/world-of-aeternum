@@ -26590,9 +26590,6 @@ export const en: EnTranslations = {
       "restless_bones": {
         "name": "Restless Bones"
       },
-      "marrow_restless_bones": {
-        "name": "Restless Bones"
-      },
       "gorrak": {
         "name": "Gorrak the Ruthless"
       },
@@ -26694,90 +26691,6 @@ export const en: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Boneclad Revenant"
-      },
-      "crypt_shambler": {
-        "name": "Crypt Shambler"
-      },
-      "hollow_acolyte": {
-        "name": "Hollow Acolyte"
-      },
-      "bonechill_widow": {
-        "name": "Bonechill Widow"
-      },
-      "sexton_marrow": {
-        "name": "Sexton Marrow"
-      },
-      "morthen": {
-        "name": "Morthen the Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Ossuary Sentinel"
-      },
-      "hollow_gravedigger": {
-        "name": "Hollow Gravedigger"
-      },
-      "rime_egg_sac": {
-        "name": "Rime Egg Sac"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rimeweb Hatchling"
-      },
-      "rimeweb_spinner": {
-        "name": "Rimeweb Spinner"
-      },
-      "candlewright_acolyte": {
-        "name": "Candlewright Acolyte"
-      },
-      "hollow_chorister": {
-        "name": "Hollow Chorister"
-      },
-      "bound_soul": {
-        "name": "Bound Soul"
-      },
-      "rimeweb": {
-        "name": "Lady of the Bonechill"
-      },
-      "cantor_ilvane": {
-        "name": "Cantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Ossuary Warrior"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravecaller Adept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Ossuary Cutthroat"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravecaller Necromancer"
-      },
-      "crypt_bone_minion": {
-        "name": "Bone Minion"
-      },
-      "crypt_bone_brute": {
-        "name": "Bone Brute"
-      },
-      "crypt_bone_pile": {
-        "name": "Stirring Bones"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Chapel Gargoyle"
-      },
-      "crypt_crow_caller": {
-        "name": "Crow Caller"
-      },
-      "crypt_carrion_crow": {
-        "name": "Carrion Crow"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Ossuary Drake"
-      },
-      "crypt_knellwyrm": {
-        "name": "Knellwyrm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Remembrance Candle"
       },
       "bastion_revenant": {
         "name": "Bastion Revenant"
@@ -28727,16 +28640,6 @@ export const en: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "The Restless Dead",
-        "text": "The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, {playerName}, eight in all, so I may speak the rites over them and grant the peace they were denied.",
-        "completion": "May they rest now, and may the Light forgive whatever woke them.",
-        "objectives": {
-          "0": {
-            "label": "Restless Skulls recovered"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Stolen Supplies",
         "text": "Those bandits hit my last wagon and made off with four crates of goods: tools, salt, good Eastbrook linen. The crates are stacked around their camp in the northwest hills. Steal them back for me, would you?",
@@ -28747,26 +28650,6 @@ export const en: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Whispers Below",
-        "text": "You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.",
-        "completion": "This sigil... it bears the mark of the Gravecallers, a cell of the Pale Accord, the order that still keeps faith with Vauldren Sere, whom the old verses name the Oathless King. I had prayed they were gone. This is worse than I feared, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravecaller's Sigil"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "The Names of the Dead",
-        "text": "If the Gravecallers raised our dead, I must know whose graves they robbed. The chapel sexton kept a burial ledger, and the wind has scattered its pages across the chapel yard. Gather 3 of them for me, {playerName}. The dead deserve to be called by their names.",
-        "completion": "These poor souls... and look here. Sexton Marrow, the chapel's own living caretaker, his grave the first disturbed. Morthen began with the very man who buried Eastbrook's dead.",
-        "objectives": {
-          "0": {
-            "label": "Weathered Ledger Page"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Silence the Call",
         "text": "Every name in that ledger is a soul Morthen means to drag from the earth, and the chapel yard already crawls with those he has called. Return 12 Restless Bones to their graves, {playerName}, before the Gravecaller's whisper swells into a chorus.",
@@ -28774,49 +28657,6 @@ export const en: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Restless Bones silenced"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "The Binding Rite",
-        "text": "The crypt beneath the chapel must be unsealed if we are to stop the Gravecaller, but only a binding rite will let the living pass. I need 4 lumps of Blessed Tallow (the mine's burrowers hoard tallow by the crate) and 6 Ghostly Essences from the restless dead.",
-        "completion": "It is done. The way below stands open... and may the Light forgive me for opening it. Gather your strongest companions before you descend, {playerName}. No one should face the Hollow alone.",
-        "objectives": {
-          "0": {
-            "label": "Blessed Tallow"
-          },
-          "1": {
-            "label": "Ghostly Essence"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Into the Hollow",
-        "text": "The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.",
-        "completion": "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, {playerName}, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
-        "objectives": {
-          "0": {
-            "label": "Morthen the Gravecaller slain"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "The Sexton's Bell",
-        "text": "The ledger named him and the crypt holds him: Sexton Marrow, the chapel's caretaker, the first man Morthen raised, guarding his master's door in death as faithfully as he kept the chapel in life. Take four companions into the Hollow Crypt and grant the old sexton the rest he was robbed of, {playerName}.",
-        "completion": "So Marrow is free at last. Ring no bell for him: he heard enough of them in life.",
-        "objectives": {
-          "0": {
-            "label": "Sexton Marrow laid to rest"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "The Gravecaller's Trail",
-        "text": "Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, {playerName}.",
-        "completion": "Morthen wrote to a 'Fogbinder' in the northern fen. The Pale Accord is not dead, {playerName}. It has merely been patient.",
-        "objectives": {
-          "0": {
-            "label": "Morthen's Grimoire"
           }
         }
       },
@@ -29108,7 +28948,7 @@ export const en: EnTranslations = {
       "q_bastion_door": {
         "title": "The Sunken Bastion",
         "text": "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal.",
-        "completion": "The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.",
+        "completion": "The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.",
         "objectives": {
           "0": {
             "label": "Bastion Ward Stone"
@@ -29308,7 +29148,7 @@ export const en: EnTranslations = {
       "q_cult_orders": {
         "title": "Orders from Below",
         "text": "The zealots move with purpose now, watches set and supplies counted, like soldiers before a siege. Cultists who organize are cultists taking orders, {playerName}. One of them is carrying written orders from below. Find the zealot who has them and bring the orders to me: I would know the hand that commands them.",
-        "completion": "This script... I last saw its like in Morthen's grimoire, in Eastbrook. The same hand has guided every grave we have fought over, {playerName}.",
+        "completion": "This script... I last saw its like in Eastbrook. The same hand has guided every grave we have fought over, {playerName}.",
         "objectives": {
           "0": {
             "label": "Orders from Below"
@@ -32783,11 +32623,6 @@ export const en: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "The Hollow Crypt",
-        "enterText": "You descend into the Hollow Crypt...",
-        "leaveText": "You climb back into daylight."
-      },
       "sunken_bastion": {
         "name": "The Sunken Bastion",
         "enterText": "You wade down into the Sunken Bastion...",

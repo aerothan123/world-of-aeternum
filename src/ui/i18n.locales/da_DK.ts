@@ -8199,9 +8199,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Luften bliver kold. Noget vældigt ånder nedenunder...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Du vakler tilbage ud i bjergvinden.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Gravormens Helligdom',
-  'entities.dungeons.hollow_crypt.enterText': 'Du stiger ned i Den Hule Krypt...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Du klatrer tilbage op i dagslyset.',
-  'entities.dungeons.hollow_crypt.name': 'Den Hule Krypt',
   'entities.dungeons.nythraxis_boss_arena.enterText':
     'Du passerer gennem den forseglede kongelige dør.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Du vender tilbage til Tornetops kolde luft.',
@@ -8657,14 +8654,12 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolyt Tessa',
   'entities.mobs.bastion_revenant.name': 'Bastionens Genganger',
   'entities.mobs.bog_bloat.name': 'Sumpopsvulmer',
-  'entities.mobs.bonechill_widow.name': 'Benkulde-Enke',
   'entities.mobs.boneclad_revenant.name': 'Benklædt Genganger',
   'entities.mobs.bound_guardian.name': 'Den Bundne Vogter',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Kranieknuser',
   'entities.mobs.captain_verlan.name': 'Kaptajn Verlan',
   'entities.mobs.choirmother_selthe.name': 'Kormoder Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Fordærvet Præst Malric',
-  'entities.mobs.crypt_shambler.name': 'Kryptslæber',
   'entities.mobs.deacon_varric.name': 'Diakon Vandric',
   'entities.mobs.deacon_voss.name': 'Diakon Voss',
   'entities.mobs.deathstalker_voss.name': 'Dødssniger Voss',
@@ -8686,7 +8681,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Gravkalder-Tilkalder',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Tunnelkongen',
   'entities.mobs.grubjaw.name': 'Larvekæft den Frådser',
-  'entities.mobs.hollow_acolyte.name': 'Hul Akolyt',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Pyre Colossus',
   'entities.mobs.ironvein_foreman.name': 'Jernåre-Formand',
@@ -8703,7 +8697,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Mogger-Lakaj',
   'entities.mobs.moonspawn.name': 'Måneyngel',
-  'entities.mobs.morthen.name': 'Morthen Gravkalderen',
   'entities.mobs.mudfin_murloc.name': 'Mudfinne-Sniger',
   'entities.mobs.nhalia_mourner.name': 'Nhalia Sørgende',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Den Udødelige Hierofant',
@@ -8727,7 +8720,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Helligdoms-Benvogter',
   'entities.mobs.sanctum_drakonid.name': 'Helligdoms-Skælvogter',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Blegslyngen',
-  'entities.mobs.sexton_marrow.name': 'Kirkegraver Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Skårherre Kazzix',
   'entities.mobs.sister_nhalia.name': 'Søster Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtand den Druknede',
@@ -8869,12 +8861,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Vildsvineskind giver de fineste rejsetasker, og engene nordvest for byen vrimler med bæsterne. Bring mig 5 Børstede Vildsvineskind, så skal jeg gøre det umagen værd.',
   'entities.quests.q_boars.title': 'Børstede Vildsvineskind',
-  'entities.quests.q_bones.completion':
-    'Måtte de hvile nu, og måtte Lyset tilgive, hvad der end vækkede dem.',
-  'entities.quests.q_bones.objectives.0.label': 'Rastløse Knogler lagt til hvile',
-  'entities.quests.q_bones.text':
-    'Den gamle ruin på den nordvestlige bakke var engang et kapel, og dens gård et hvilested. Noget har vækket de døde af deres søvn. Skænk dem fred, {playerName} - giv 8 Rastløse Knogler tilbage til jorden.',
-  'entities.quests.q_bones.title': 'De Rastløse Døde',
   'entities.quests.q_breaking_the_seal.completion':
     'De brænder blåt og rent - bjerget husker sin gamle ed. Med disse kan jeg løse porten op for os alene.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Velsignede Gløder',
@@ -8983,12 +8969,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis viste mig en klump voks taget af en af de tunnelgravere - den gløder, {playerName}, og den er varm som et hjerteslag. Han vil have mere til studie, og jeg vil have det af min rekvisitionsliste. Bring seks klumper af den glødende voks tilbage.',
   'entities.quests.q_glowing_wax.title': 'Sælsom Voks',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen skrev til en 'Fogbinder' i den nordlige mose. Sekten er ikke død, {playerName} - den har blot været tålmodig.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthens Grimoire',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen er død, men et spørgsmål nager mig: en sekt, der gemte sig i et århundrede, ødsler ikke sig selv på ét landsbykapel. Han holdt en grimoire - sine riter, sin korrespondance. Hvis noget af den overlever, ligger det i sakristiet i det forfaldne kapel over krypten. Søg ruinen igennem og bring mig, hvad der er tilbage af hans skrifter, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Gravkalderens Spor',
   'entities.quests.q_gravewyrm.completion':
     'Det er forbi. De dødes af tre lande kan hvile, bjerget sover uhjemsøgt - og det er dit navn, {playerName}, som hver klokke herfra til Østbæk ringer i nat.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Gravormen dræbt',
@@ -9013,12 +8993,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Vaels sidste ord har ikke forladt mig, {playerName}: Ormen rører sig under tinderne. Kaptajn Thessaly fører an på muren ved Højvagten, ved hovedet af bjergvejen mod nord. En indkaldelse står opslået ved hendes port - tag den op, og fortæl hende, at Broder Aldric bestiger bjerget bag dig.',
   'entities.quests.q_highwatch_summons.title': 'Vagten på Tinderne',
-  'entities.quests.q_hollow.completion':
-    'Hviskenen er hørt op. Du har gjort, hvad hele Dalen ikke kunne, {playerName} - de døde sover, og Østbæk skylder dig alt, hvad den ejer.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Gravkalderen dræbt',
-  'entities.quests.q_hollow.text':
-    'Morthen Gravkalderen venter på bunden af Den Hule Krypt, omringet af de elitedøde, han har rejst. Han er langt hinsides nogen enkelt helt - tag fire følgesvende, ikke færre. Gør ende på ham, og Dalens døde vil endelig sove.',
-  'entities.quests.q_hollow.title': 'Ned i Det Hule',
   'entities.quests.q_idols.completion':
     'Gravkalder-værk - ældre end Morthen, ældre end mig. Sekten begyndte ikke i Østbæk, {playerName}. Den begyndte her, og søen har vogtet sine hemmeligheder.',
   'entities.quests.q_idols.objectives.0.label': 'Vandfyldt Afgud',
@@ -9067,12 +9041,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'I tyve år har jeg fisket i Spejlsøen, og aldrig mistet et net, før de gurglende fiskemænd kravlede op af lavvandet. Driv Mudfin tilbage - dræb 8 af dem. Og pas på dig selv: hvor der er én mudfin, er der fem.',
   'entities.quests.q_murlocs.title': 'Ballade ved Søen',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Disse stakkels sjæle... og se her. Graver Marrow - kapellets egen levende vogter - hans grav den første, der blev forstyrret. Morthen begyndte med netop den mand, der begravede Østbæks døde.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Forvitret Regnskabsside',
-  'entities.quests.q_names_of_the_dead.text':
-    'Hvis Gravkalderne rejste vores døde, må jeg vide, hvis grave de plyndrede. Kapellets graver førte en begravelsesprotokol, og vinden har spredt dens sider ud over kapellets gård. Saml 3 af dem til mig, {playerName} - de døde fortjener at blive kaldt ved deres navne.',
-  'entities.quests.q_names_of_the_dead.title': 'De Dødes Navne',
   'entities.quests.q_necromancers.completion':
     'Lyset tilgive os. Disse rummer de døde fra Dalen og sumpen - hvert lig Gravkalderne nogensinde rejste, høstet. De byggede aldrig en hær, {playerName}. De indsamlede en tiende.',
   'entities.quests.q_necromancers.objectives.0.label': 'Ormekult-Nekromantiker dræbt',
@@ -9178,25 +9146,12 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Banditterne svarer til én mand: Gorrak den Hensynsløse. Hug hovedet af, så spredes kroppen. Han lusker i hjertet af deres lejr. Gør det af med ham, {playerName}.',
   'entities.quests.q_ringleader.title': 'Bagmanden',
-  'entities.quests.q_rite.completion':
-    'Det er gjort. Vejen nedenunder står åben... og må Lyset tilgive mig for at åbne den. Saml dine stærkeste ledsagere, før du stiger ned, {playerName}. Ingen bør møde Den Hule alene.',
-  'entities.quests.q_rite.objectives.0.label': 'Velsignet Tælle',
-  'entities.quests.q_rite.objectives.1.label': 'Spøgelsesagtig Essens',
-  'entities.quests.q_rite.text':
-    'Krypten under kapellet må åbnes, hvis vi skal standse Gravecalleren - men kun en bindende rite vil lade de levende passere. Jeg har brug for 4 klumper Velsignet Tælle - minens gravere hamstrer tælle i kassevis - og 6 Spøgelsesagtige Essenser fra de hvileløse døde.',
-  'entities.quests.q_rite.title': 'Den Bindende Rite',
   'entities.quests.q_sanctum_gate.completion':
     'Skårene sidder rigtigt... og porten kender sin nøgle. Vejen nedenunder står åben, {playerName}. Saml de stærkeste ledsagere, du kan finde - hvad der kommer nu, bør ingen møde alene.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Helligdomsnøgleskår',
   'entities.quests.q_sanctum_gate.text':
     'Dette er den sidste tærskel, {playerName}. Porten til Gravormens Helligdom blev låst med en nøglesten, og kulten knuste den til skår frem for at se den vendt imod dem. Skårene ligger spredt på portpladsen, under de benklædte dødes øjne. Bring mig tre, så åbner jeg vejen, som Lyset havde til hensigt - i stilhed.',
   'entities.quests.q_sanctum_gate.title': 'Helligdomsporten',
-  'entities.quests.q_sexton.completion':
-    'Så er Marrow endelig fri. Ring ingen klokke for ham - han hørte nok af dem i livet.',
-  'entities.quests.q_sexton.objectives.0.label': 'Graver Marrow stedt til hvile',
-  'entities.quests.q_sexton.text':
-    'Protokollen navngav ham, og krypten holder ham: Graver Marrow, kapellets vogter, den første mand Morthen rejste - der vogter sin mesters dør i døden lige så trofast, som han passede kapellet i livet. Tag fire ledsagere med ind i Den Hule Krypt og skænk den gamle graver den hvile, han blev frarøvet, {playerName}.',
-  'entities.quests.q_sexton.title': 'Graverens Klokke',
   'entities.quests.q_shard_cores.completion':
     'Hver kerne hælder samme vej, som jernspåner mod en magnetsten. De peger mod syd, {playerName}. Mod Helligdommen.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Stormkerne',
@@ -9279,12 +9234,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'I nat knælede hele kultlejren på én gang, {playerName}, hver zelot, hver nekromantiker, alle vendt mod Helligdommen. Korzul taler til dem i deres søvn nu; Vael hørte den samme stemme i mosen, og Morthen før ham. Hug menigheden ned, ti zeloter, seks nekromantikere, før den stemme har hænder nok til selv at trække porten op.',
   'entities.quests.q_voice_below.title': 'Stemmen Nedenunder',
-  'entities.quests.q_whispers.completion':
-    'Denne sigille... den bærer Gravkaldernes mærke, en sekt jeg havde bedt til var uddød. Dette er værre end jeg frygtede, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Gravkalderens Sigille',
-  'entities.quests.q_whispers.text':
-    'Du har stedt de døde til hvile, men de vil ikke forblive i hvile, noget kalder dem tilbage. Gennemsøg kapelruinen for ethvert spor af den, der kalder. Hvis du finder en sigille eller et segl, så bring det uberørt til mig.',
-  'entities.quests.q_whispers.title': 'Hvisken Nedenunder',
   'entities.quests.q_widows.completion':
     'Hele sække, hver eneste. Du har roligere hænder end halvdelen af kirurgerne i syden, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Mosekær-Enke dræbt',
@@ -20959,7 +20908,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Druknet anker',
   'entities.mobs.bastion_gaol_cage.name': 'Jernbur',
   'entities.mobs.bastion_warhound.name': 'Bastionens krigshund',
-  'entities.mobs.bound_soul.name': 'Bundet sjæl',
   'entities.mobs.broodsworn_goadsmith.name': 'Kuldsvoren sporesmed',
   'entities.mobs.broodsworn_pyre_tender.name': 'Kuldsvoren bålpasser',
   'entities.mobs.broodsworn_thawcaller.name': 'Kuldsvoren tøkalder',
@@ -20993,21 +20941,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Trippel-T',
   'entities.mobs.buddy_trollface.name': 'Troldeansigtet',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Stødhornsvin',
-  'entities.mobs.candlewright_acolyte.name': 'Lysmagerakolyt',
-  'entities.mobs.cantor_ilvane.name': 'Kantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Knoglebæst',
-  'entities.mobs.crypt_bone_minion.name': 'Knogletjener',
-  'entities.mobs.crypt_bone_pile.name': 'Rørende knogler',
-  'entities.mobs.crypt_carrion_crow.name': 'Ådselskrage',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Kapelgargoyle',
-  'entities.mobs.crypt_crow_caller.name': 'Kragekalder',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Gravkalderadept',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Gravkaldernekromantiker',
-  'entities.mobs.crypt_knellwyrm.name': 'Dødsklangslindorm',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Benhusets strubeskærer',
-  'entities.mobs.crypt_ossuary_drake.name': 'Benhusdrage',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Benhuskriger',
-  'entities.mobs.crypt_remembrance_candle.name': 'Mindelys',
   'entities.mobs.drowned_pilgrim.name': 'Druknet pilgrim',
   'entities.mobs.drowned_sergeant.name': 'Druknet sergent',
   'entities.mobs.drowned_watchman.name': 'Druknet vagtmand',
@@ -21017,12 +20950,9 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Fangevogter Ossick',
   'entities.mobs.glacier_splinter.name': 'Gletsjersplint',
   'entities.mobs.great_saurian.name': 'Storøgle',
-  'entities.mobs.hollow_chorister.name': 'Hul korsanger',
-  'entities.mobs.hollow_gravedigger.name': 'Hul graver',
   'entities.mobs.howdah_hexcaller.name': 'Bærestolens forbandelsesmaner',
   'entities.mobs.ice_wraith.name': 'Isgenfærd',
   'entities.mobs.lagoon_snapper.name': 'Lagunesnapper',
-  'entities.mobs.marrow_restless_bones.name': 'Hvileløse knogler',
   'entities.mobs.mere_hydra_head_center.name': 'Søhydra',
   'entities.mobs.mere_hydra_head_left.name': 'Søhydra',
   'entities.mobs.mere_hydra_head_right.name': 'Søhydra',
@@ -21034,12 +20964,7 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Opbuddets fodsoldat',
   'entities.mobs.muster_sergeant.name': 'Opbuddets sergent',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogreslædetrækker',
-  'entities.mobs.ossuary_sentinel.name': 'Benhusvogter',
-  'entities.mobs.rime_egg_sac.name': 'Rimfrostægsæk',
   'entities.mobs.rime_whelp.name': 'Rimfrostunge',
-  'entities.mobs.rimeweb.name': 'Knoglekuldens frue',
-  'entities.mobs.rimeweb_hatchling.name': 'Rimvævsunge',
-  'entities.mobs.rimeweb_spinner.name': 'Rimvævsspinder',
   'entities.mobs.sanctum_shackle_anvil.name': 'Amboltlænke',
   'entities.mobs.sanctum_shackle_bellows.name': 'Blæsebælglænke',
   'entities.mobs.sanctum_shackle_hammer.name': 'Hammerlænke',

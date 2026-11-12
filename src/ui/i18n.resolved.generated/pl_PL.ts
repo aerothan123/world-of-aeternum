@@ -26590,9 +26590,6 @@ export const pl_PL: EnTranslations = {
       "restless_bones": {
         "name": "Niespokojne Kości"
       },
-      "marrow_restless_bones": {
-        "name": "Niespokojne Kości"
-      },
       "gorrak": {
         "name": "Gorrak Bezwzględny"
       },
@@ -26694,90 +26691,6 @@ export const pl_PL: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Kościopancerny Powracający"
-      },
-      "crypt_shambler": {
-        "name": "Kryptowy Wlokący"
-      },
-      "hollow_acolyte": {
-        "name": "Wydrążony Akolita"
-      },
-      "bonechill_widow": {
-        "name": "Kościomroźna Wdowa"
-      },
-      "sexton_marrow": {
-        "name": "Grabarz Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Grobowy Wołacz"
-      },
-      "ossuary_sentinel": {
-        "name": "Strażnik Ossuarium"
-      },
-      "hollow_gravedigger": {
-        "name": "Pusty Grabarz"
-      },
-      "rime_egg_sac": {
-        "name": "Szronny Worek Jaj"
-      },
-      "rimeweb_hatchling": {
-        "name": "Pisklę Szronnej Sieci"
-      },
-      "rimeweb_spinner": {
-        "name": "Prządka Szronnej Sieci"
-      },
-      "candlewright_acolyte": {
-        "name": "Akolita Świecarza"
-      },
-      "hollow_chorister": {
-        "name": "Pusty Chórzysta"
-      },
-      "bound_soul": {
-        "name": "Spętana dusza"
-      },
-      "rimeweb": {
-        "name": "Pani Przeszywającego Chłodu"
-      },
-      "cantor_ilvane": {
-        "name": "Kantorka Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Wojownik z Ossuarium"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adept Grobowego Wołacza"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Podrzynacz Gardła z Ossuarium"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Nekromanta Grobowego Wołacza"
-      },
-      "crypt_bone_minion": {
-        "name": "Kościany Sługa"
-      },
-      "crypt_bone_brute": {
-        "name": "Kościany Brutal"
-      },
-      "crypt_bone_pile": {
-        "name": "Poruszające się Kości"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gargulec Kaplicy"
-      },
-      "crypt_crow_caller": {
-        "name": "Przyzywacz Wron"
-      },
-      "crypt_carrion_crow": {
-        "name": "Padlinożerna Wrona"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Smok z Ossuarium"
-      },
-      "crypt_knellwyrm": {
-        "name": "Dzwonny Żmij"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Świeca pamięci"
       },
       "bastion_revenant": {
         "name": "Upiór bastionu"
@@ -28727,16 +28640,6 @@ export const pl_PL: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Niespokojni zmarli",
-        "text": "Stara ruina na północno-zachodnim wzgórzu była niegdyś kaplicą, a jej dziedziniec miejscem spoczynku. Coś wyrwało zmarłych ze snu. Daj im spokój, {playerName}, zwróć ziemi 8 niespokojnych kości.",
-        "completion": "Niech teraz spoczywają, a Światłość niech wybaczy temu, co je przebudziło.",
-        "objectives": {
-          "0": {
-            "label": "Ułożone do snu niespokojne kości"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Skradzione zaopatrzenie",
         "text": "Ci bandyci napadli na mój ostatni wóz i zwiali z czterema skrzyniami towarów - narzędziami, solą, dobrym płótnem z Eastbrook. Skrzynie są ułożone wokół ich obozu na północno-zachodnich wzgórzach. Ukradnij mi je z powrotem, dobrze?",
@@ -28747,26 +28650,6 @@ export const pl_PL: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Szepty z głębi",
-        "text": "Złożyłeś zmarłych na spoczynek, lecz oni nie zostaną w spokoju, coś wzywa ich z powrotem. Przeszukaj ruiny kaplicy w poszukiwaniu jakiegokolwiek śladu tego, kto ich wzywa. Jeśli znajdziesz sygil lub pieczęć, przynieś mi je nietknięte.",
-        "completion": "Ten sygil... nosi znak Grobowych Przyzywaczy, sekty, o której modliłem się, że wymarła. To gorzej, niż się obawiałem, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sygil Grobowego Przyzywacza"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Imiona zmarłych",
-        "text": "Jeśli Grobozwańcy podnieśli naszych zmarłych, muszę wiedzieć, czyje groby splądrowali. Grabarz kaplicy prowadził księgę pochówków, a wiatr rozrzucił jej karty po cmentarzu przy kaplicy. Zbierz mi 3 z nich, {playerName} - zmarli zasługują, by zwać ich po imieniu.",
-        "completion": "Niech Światło wybaczy. A spójrz tutaj. Grabarz Marrow - żywy opiekun kaplicy - jego grób splądrowano jako pierwszy. Morthen zaczął od człowieka, który grzebał zmarłych Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Zwietrzała karta księgi"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Ucisz zew",
         "text": "Każde imię w tej księdze to dusza, którą Morthen zamierza wywlec z ziemi, a cmentarz przy kaplicy już roi się od tych, których powołał. Złóż 12 Niespokojnych Kości z powrotem do grobów, {playerName}, nim szept Grobozwańcy spotężnieje w chór.",
@@ -28774,49 +28657,6 @@ export const pl_PL: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Niespokojne Kości uciszone"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Obrzęd wiążący",
-        "text": "Krypta pod kaplicą musi zostać odpieczętowana, jeśli mamy powstrzymać Gravecallera - lecz tylko obrzęd wiążący pozwoli żywym przejść. Potrzebuję 4 bryłek Poświęconego łoju - drążyciele z kopalni gromadzą łój skrzyniami - oraz 6 Upiornych esencji od niespokojnych zmarłych.",
-        "completion": "Stało się. Droga w dół stoi otworem... i niech Światło wybaczy mi, że ją otworzyłem. Zbierz swych najsilniejszych towarzyszy, nim zejdziesz, {playerName}. Nikt nie powinien mierzyć się z Wydrążoną w pojedynkę.",
-        "objectives": {
-          "0": {
-            "label": "Poświęcony łój"
-          },
-          "1": {
-            "label": "Upiorna esencja"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "W głąb Krypty",
-        "text": "Morthen Grobowołacz czeka na dnie Wydrążonej Krypty, otoczony elitarnymi zmarłymi, których wskrzesił. Jest zbyt potężny dla pojedynczego bohatera, weź czterech towarzyszy, nie mniej. Zgładź go, a zmarli z Doliny wreszcie spoczną.",
-        "completion": "Szepty ustały. Dokonałeś tego, czego nie zdołała cała Dolina, {playerName}, zmarli śpią, a Eastbrook jest ci winne wszystko, co posiada.",
-        "objectives": {
-          "0": {
-            "label": "Zabity Morthen Grobowołacz"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Dzwon grabarza",
-        "text": "Księga go nazwała, a krypta go trzyma: Grabarz Marrow, opiekun kaplicy, pierwszy człowiek, którego Morthen podniósł - strzegący wrót swego mistrza po śmierci równie wiernie, jak za życia doglądał kaplicy. Weź czterech towarzyszy do Wydrążonej Krypty i obdarz starego grabarza spoczynkiem, którego go pozbawiono, {playerName}.",
-        "completion": "Więc Marrow jest wreszcie wolny. Nie bij dla niego w dzwon - dość się ich nasłuchał za życia.",
-        "objectives": {
-          "0": {
-            "label": "Grabarz Marrow ułożony do spoczynku"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Trop Grobowołacza",
-        "text": "Morthen nie żyje, a jednak dręczy mnie pytanie: sekta, która ukrywała się przez stulecie, nie trwoni się na jedną wiejską kaplicę. Trzymał grymuar, swoje obrzędy, swoją korespondencję. Jeśli cokolwiek z niego przetrwało, leży w zakrystii zrujnowanej kaplicy nad kryptą. Przeszukaj ruinę i przynieś mi wszystko, co zostało z jego pism, {playerName}.",
-        "completion": "Morthen pisał do 'Fogbindera' w północnym trzęsawisku. Sekta nie jest martwa, {playerName}, była jedynie cierpliwa.",
-        "objectives": {
-          "0": {
-            "label": "Grymuar Morthena"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const pl_PL: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Wydrążona Krypta",
-        "enterText": "Schodzisz do Wydrążonej Krypty...",
-        "leaveText": "Wspinasz się z powrotem ku światłu dnia."
-      },
       "sunken_bastion": {
         "name": "Zatopiony Bastion",
         "enterText": "Brodzisz w dół, do Zatopionego Bastionu...",

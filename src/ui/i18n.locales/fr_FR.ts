@@ -10708,11 +10708,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.stormcrag_elemental.name': 'Élémentaire de Stormcrag',
   'entities.mobs.shardlord_kazzix.name': 'Seigneur des éclats Kazzix',
   'entities.mobs.boneclad_revenant.name': "Revenant caparaçonné d'os",
-  'entities.mobs.crypt_shambler.name': 'Traînard de la crypte',
-  'entities.mobs.hollow_acolyte.name': 'Acolyte du Creux',
-  'entities.mobs.bonechill_widow.name': 'Veuve Frissos',
-  'entities.mobs.sexton_marrow.name': 'Sacristain Marrow',
-  'entities.mobs.morthen.name': 'Morthen le Gravecaller',
   'entities.mobs.bastion_revenant.name': 'Revenant du Bastion',
   'entities.mobs.tidebound_acolyte.name': 'Acolyte lié aux marées',
   'entities.mobs.drowned_thrall.name': 'Serviteur noyé',
@@ -10879,61 +10874,18 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_mine.completion':
     'Ha! Au travail, les gars! Vous avez mes remerciements et ma paie.',
   'entities.quests.q_mine.objectives.0.label': 'Terrassier de Deeprock tué',
-  'entities.quests.q_bones.title': 'Les morts sans repos',
-  'entities.quests.q_bones.text':
-    'La vieille chapelle était un lieu de repos avant que quelque chose réveille ses morts. Rendez 8 ossements agités à la terre, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Puissent-ils reposer, et puisse la Lumière pardonner à ce qui les a réveillés.',
-  'entities.quests.q_bones.objectives.0.label': 'Ossements agités rendu au repos',
   'entities.quests.q_supplies.title': 'Fournitures volées',
   'entities.quests.q_supplies.text':
     "Les bandits ont pris mon dernier chariot: outils, sel et bon lin d'Eastbrook. Reprenez 4 caisses dans leur camp du nord-ouest.",
   'entities.quests.q_supplies.completion':
     'Mes caisses! À peine une égratignure. Vous êtes prodigieux.',
   'entities.quests.q_supplies.objectives.0.label': 'Caisse de fournitures volée',
-  'entities.quests.q_whispers.title': 'Murmures sous terre',
-  'entities.quests.q_whispers.text':
-    'Les morts se relèvent parce que quelque chose les rappelle. Fouillez la chapelle et rapportez-moi tout sceau trouvé intact.',
-  'entities.quests.q_whispers.completion':
-    'Ce sceau porte la marque des Gravecallers. Je priais pour que cette secte soit éteinte, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sceau de Gravecaller',
-  'entities.quests.q_names_of_the_dead.title': 'Les noms des morts',
-  'entities.quests.q_names_of_the_dead.text':
-    'Si les Gravecallers ont pillé nos tombes, je dois savoir qui ils ont volé. Rassemblez 3 pages du registre funéraire, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Pauvres âmes... et voici le sacristain Marrow, le premier dérangé. Morthen a commencé par celui qui enterrait Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Page de registre usée',
   'entities.quests.q_silence_the_call.title': "Faire taire l'appel",
   'entities.quests.q_silence_the_call.text':
     'Chaque nom du registre est une âme que Morthen veut tirer de terre. Faites taire 12 ossements, {playerName}, avant que le murmure devienne chœur.',
   'entities.quests.q_silence_the_call.completion':
     "Le cimetière se calme, mais l'appel monte maintenant de la crypte, {playerName}.",
   'entities.quests.q_silence_the_call.objectives.0.label': 'Ossements agités réduit au silence',
-  'entities.quests.q_rite.title': 'Le rite de lien',
-  'entities.quests.q_rite.text':
-    'La crypte sous la chapelle doit être descellée si nous voulons arrêter le Gravecaller, mais seul un rite de lien laissera passer les vivants. Il me faut 4 morceaux de Suif béni, les fouisseurs de la mine amassent le suif par caisses entières, et 6 Essences spectrales prélevées sur les morts sans repos.',
-  'entities.quests.q_rite.completion':
-    "C'est fait. Le passage s'ouvre... rassemblez vos compagnons les plus solides, {playerName}.",
-  'entities.quests.q_rite.objectives.0.label': 'Suif béni',
-  'entities.quests.q_rite.objectives.1.label': 'Essence spectrale',
-  'entities.quests.q_hollow.title': 'Dans le Creux',
-  'entities.quests.q_hollow.text':
-    "Morthen attend au fond de la Crypte creuse, entouré des morts d'élite qu'il a relevés. Prenez quatre compagnons et mettez fin à tout cela.",
-  'entities.quests.q_hollow.completion':
-    'Les murmures ont cessé. Les morts dorment, {playerName}, et Eastbrook vous doit tout.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen le Gravecaller tué',
-  'entities.quests.q_sexton.title': 'La cloche du sacristain',
-  'entities.quests.q_sexton.text':
-    'Le registre nomme le sacristain Marrow, premier serviteur relevé par Morthen. Descendez avec quatre compagnons et rendez-lui son repos, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Marrow est enfin libre. Ne sonnez pas pour lui; il a assez entendu de cloches.',
-  'entities.quests.q_sexton.objectives.0.label': 'Sacristain Marrow rendu au repos',
-  'entities.quests.q_gravecallers_trail.title': 'La piste du Gravecaller',
-  'entities.quests.q_gravecallers_trail.text':
-    "Morthen est mort, mais sa secte n'aurait pas attendu un siècle pour une seule chapelle. Cherchez son grimoire dans les ruines, {playerName}.",
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen écrivait à un « Fogbinder » dans la fagne du nord. La secte n'est pas morte, {playerName}, elle a simplement patienté.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimoire de Morthen',
   'entities.quests.q_bandits.title': 'Bandits du Val',
   'entities.quests.q_bandits.text':
     "Une bande d'égorgeurs campe dans les collines du nord-ouest. Trois chariots ont été pillés cette semaine. Tuez 10 bandits du Val.",
@@ -11409,9 +11361,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.zones.wraithwood.pois.3.label': 'La Clairière Pendue',
   'entities.zones.wraithwood.pois.4.label': 'La Chapelle de Mournstone',
   'entities.zones.wraithwood.pois.5.label': 'La Clairière du Chasseur',
-  'entities.dungeons.hollow_crypt.name': 'La Crypte creuse',
-  'entities.dungeons.hollow_crypt.enterText': 'Vous descendez dans la Crypte creuse...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Vous remontez à la lumière du jour.',
   'entities.dungeons.sunken_bastion.name': 'Le Bastion englouti',
   'entities.dungeons.sunken_bastion.enterText':
     'Vous pataugez dans les profondeurs du Bastion englouti...',
@@ -20730,7 +20679,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'editor.weather.clear': 'Effacer',
   'entities.items.hoarfrost_mantle.name': 'Manteau de givre',
   'entities.mobs.buddy_spider.name': 'Araignée',
-  'entities.mobs.marrow_restless_bones.name': 'Ossements agités',
   'entities.mobs.vael_fog_shade.name': 'Vael le Fogbinder',
   'entities.npcs.patron_hester_quillby.title': 'Cartographe',
   'referralCards.milestones.fogbinder': 'Le Fogbinder',
@@ -22206,7 +22154,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.abilities.courier.name': 'Messager',
   'entities.mobs.bastion_drowned_anchor.name': 'Ancre noyée',
   'entities.mobs.bastion_gaol_cage.name': 'Cage de fer',
-  'entities.mobs.bound_soul.name': 'Âme liée',
   'entities.npcs.innkeeper_maudie.title': 'Aubergiste',
   'referralCards.awarded': 'Décerné',
   'referralCards.firstPage': 'Première page',
@@ -25708,21 +25655,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Sanglier Corne-défense',
-  'entities.mobs.candlewright_acolyte.name': 'Acolyte cirier',
-  'entities.mobs.cantor_ilvane.name': 'Chantre Ilvane',
-  'entities.mobs.crypt_bone_brute.name': "Brute d'os",
-  'entities.mobs.crypt_bone_minion.name': "Serviteur d'os",
-  'entities.mobs.crypt_bone_pile.name': 'Ossements agités',
-  'entities.mobs.crypt_carrion_crow.name': 'Corbeau charognard',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gargouille de la chapelle',
-  'entities.mobs.crypt_crow_caller.name': 'Appelant des corbeaux',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adepte Gravecaller',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nécromancien Gravecaller',
-  'entities.mobs.crypt_knellwyrm.name': 'Knellwyrm',
-  'entities.mobs.crypt_ossuary_cutthroat.name': "Coupe-gorge de l'ossuaire",
-  'entities.mobs.crypt_ossuary_drake.name': "Drake de l'ossuaire",
-  'entities.mobs.crypt_ossuary_warrior.name': "Guerrier de l'ossuaire",
-  'entities.mobs.crypt_remembrance_candle.name': 'Bougie du souvenir',
   'entities.mobs.drowned_pilgrim.name': 'Pèlerin noyé',
   'entities.mobs.drowned_sergeant.name': 'Sergent noyé',
   'entities.mobs.drowned_watchman.name': 'Guetteur noyé',
@@ -25732,8 +25664,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Geôlier Ossick',
   'entities.mobs.glacier_splinter.name': 'Éclat de glacier',
   'entities.mobs.great_saurian.name': 'Grand Saurien',
-  'entities.mobs.hollow_chorister.name': 'Choriste creux',
-  'entities.mobs.hollow_gravedigger.name': 'Fossoyeur creux',
   'entities.mobs.howdah_hexcaller.name': 'Lanceur de maléfices du howdah',
   'entities.mobs.ice_wraith.name': 'Spectre de glace',
   'entities.mobs.lagoon_snapper.name': 'Tortue hargneuse de la lagune',
@@ -25748,12 +25678,7 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Fantassin du rassemblement',
   'entities.mobs.muster_sergeant.name': 'Sergent du rassemblement',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogre tire-traîneau',
-  'entities.mobs.ossuary_sentinel.name': "Sentinelle de l'ossuaire",
-  'entities.mobs.rime_egg_sac.name': "Sac d'œufs de givre",
   'entities.mobs.rime_whelp.name': 'Dragonnet de givre',
-  'entities.mobs.rimeweb.name': "Dame du Froid d'Os",
-  'entities.mobs.rimeweb_hatchling.name': 'Jeune araignée de toile givrée',
-  'entities.mobs.rimeweb_spinner.name': 'Tisseuse de toile givrée',
   'entities.mobs.sanctum_shackle_anvil.name': "Entrave de l'Enclume",
   'entities.mobs.sanctum_shackle_bellows.name': 'Entrave du Soufflet',
   'entities.mobs.sanctum_shackle_hammer.name': 'Entrave du Marteau',

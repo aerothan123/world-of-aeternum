@@ -107,9 +107,6 @@ const LEGACY_MILESTONE_TO_DEED: Record<string, string> = Object.fromEntries(
 // content-integrity test re-derives this exact set from the live tables.
 export const GROUND_PICKUP_PROVING_QUESTS: readonly string[] = [
   'q_supplies',
-  'q_whispers',
-  'q_names_of_the_dead',
-  'q_gravecallers_trail',
   'q_fenbridge_muster',
   'q_fen_supplies',
   'q_drowned_censers',
@@ -168,7 +165,6 @@ export const DEEDS_RECENT_CAP = 8;
 // counter. PINNED as of v1: a future dungeon's boss gets a new deed; this
 // list never grows an earned requirement.
 export const FINAL_BOSS_DUNGEONS: Record<string, string> = {
-  morthen: 'hollow_crypt',
   vael_the_mistcaller: 'sunken_bastion',
   ysolei: 'drowned_temple',
   korzul_the_gravewyrm: 'gravewyrm_sanctum',
@@ -189,7 +185,6 @@ export const FINAL_BOSS_DUNGEONS: Record<string, string> = {
 // while the boss is engaged. Tainted by onPlayerDeathForDeeds; the window
 // re-arms on evade/reset/respawn (resetDeedEncounter).
 export const FLAWLESS_TASKS: Record<string, string> = {
-  morthen: 'dgn_morthen_flawless',
   ysolei: 'dgn_ysolei_flawless',
   korzul_the_gravewyrm: 'dgn_korzul_flawless',
   nythraxis_scourge_of_thornpeak: 'dgn_nythraxis_deathless',
@@ -221,9 +216,8 @@ const BELL_TASKS: Record<string, string> = {
 // as the union of the boss's damager set (pet damage credits the owner) and
 // the recipient envelope at the kill, so a present healer or taunt-only tank
 // counts against the cap too.
-const TRIO_TASKS: Record<string, string> = {
-  morthen: 'dgn_morthen_trio',
-};
+// Empty since the Hollow Crypt (Morthen's trio deed) was retired (2026-11-11).
+const TRIO_TASKS: Record<string, string> = {};
 
 // Templates whose encounters need per-attempt tracking at the damage site.
 const PARTICIPANT_TRACKED = new Set(Object.keys(TRIO_TASKS));
@@ -1129,14 +1123,10 @@ const METERS: Record<DeedMeterId, (meta: PlayerMeta) => number> = {
   },
 };
 
-// The heroic-mark daily circuit reads the four launch heroics, PINNED (the
-// Nythraxis arena also pays marks but is deliberately not required).
-const MARK_CIRCUIT_DUNGEONS = [
-  'hollow_crypt',
-  'sunken_bastion',
-  'drowned_temple',
-  'gravewyrm_sanctum',
-];
+// The heroic-mark daily circuit reads the launch heroics still in the game,
+// PINNED (the Nythraxis arena also pays marks but is deliberately not
+// required; the Hollow Crypt left the circuit when it was retired).
+const MARK_CIRCUIT_DUNGEONS = ['sunken_bastion', 'drowned_temple', 'gravewyrm_sanctum'];
 
 const FLAGS: Record<DeedFlagId, (meta: PlayerMeta, e: Entity) => boolean> = {
   talentSpecChosen: (m) => m.talents.spec !== null,

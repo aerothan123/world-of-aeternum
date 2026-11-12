@@ -10062,11 +10062,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.stormcrag_elemental.name': 'Elemental de Stormcrag',
   'entities.mobs.shardlord_kazzix.name': 'Senhor dos fragmentos Kazzix',
   'entities.mobs.boneclad_revenant.name': 'Revenante encouraçado de ossos',
-  'entities.mobs.crypt_shambler.name': 'Cambaleante da cripta',
-  'entities.mobs.hollow_acolyte.name': 'Acólito do Vazio',
-  'entities.mobs.bonechill_widow.name': 'Viúva Frio-osso',
-  'entities.mobs.sexton_marrow.name': 'Sacristão Marrow',
-  'entities.mobs.morthen.name': 'Morthen o Gravecaller',
   'entities.mobs.bastion_revenant.name': 'Revenante do Bastião',
   'entities.mobs.tidebound_acolyte.name': 'Acólito preso à maré',
   'entities.mobs.drowned_thrall.name': 'Servo afogado',
@@ -10229,61 +10224,18 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_mine.completion':
     'Ha! De volta ao trabalho, rapazes! Você tem meu agradecimento e meu pagamento.',
   'entities.quests.q_mine.objectives.0.label': 'Escavador de Deeprock abatido',
-  'entities.quests.q_bones.title': 'Os mortos inquietos',
-  'entities.quests.q_bones.text':
-    'A velha capela era lugar de descanso até algo acordar seus mortos. Devolva 8 ossos inquietos à terra, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Que descansem agora, e que a Luz perdoe quem os despertou.',
-  'entities.quests.q_bones.objectives.0.label': 'Ossos inquietos devolvido ao descanso',
   'entities.quests.q_supplies.title': 'Suprimentos roubados',
   'entities.quests.q_supplies.text':
     'Os bandidos levaram minha última carroça: ferramentas, sal e bom linho de Eastbrook. Recupere 4 caixas no acampamento noroeste.',
   'entities.quests.q_supplies.completion':
     'Minhas caixas! Quase sem arranhões. Você é uma maravilha.',
   'entities.quests.q_supplies.objectives.0.label': 'Caixa de suprimentos roubada',
-  'entities.quests.q_whispers.title': 'Sussurros no subsolo',
-  'entities.quests.q_whispers.text':
-    'Os mortos se levantam porque algo os chama. Procure na capela um selo ou sinal do chamador e traga intacto.',
-  'entities.quests.q_whispers.completion':
-    'Este sigilo traz a marca dos Gravecallers. Eu rezava para que essa seita estivesse extinta, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sigilo Gravecaller',
-  'entities.quests.q_names_of_the_dead.title': 'Os nomes dos mortos',
-  'entities.quests.q_names_of_the_dead.text':
-    'Se os Gravecallers roubaram nossos túmulos, preciso saber quem foi tomado. Reúna 3 páginas do registro funerário, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Pobres almas... e veja: o sacristão Marrow foi o primeiro. Morthen começou pelo homem que enterrava Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Página de registro gasta',
   'entities.quests.q_silence_the_call.title': 'Silenciar o chamado',
   'entities.quests.q_silence_the_call.text':
     'Cada nome do registro é uma alma que Morthen quer arrancar da terra. Silencie 12 ossos inquietos, {playerName}, antes que o sussurro vire coro.',
   'entities.quests.q_silence_the_call.completion':
     'O pátio está mais quieto, mas o chamado agora sobe da cripta, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label': 'Ossos inquietos silenciado',
-  'entities.quests.q_rite.title': 'O rito de vínculo',
-  'entities.quests.q_rite.text':
-    'A cripta sob a capela precisa ser aberta se quisermos deter o Gravecaller, mas apenas um rito de vínculo deixará os vivos passarem. Preciso de 4 pedaços de Sebo Abençoado (os escavadores da mina acumulam sebo aos caixotes) e 6 Essências Espectrais dos mortos inquietos.',
-  'entities.quests.q_rite.completion':
-    'Está feito. O caminho abaixo se abre... reúna seus companheiros mais fortes, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': 'Sebo abençoado',
-  'entities.quests.q_rite.objectives.1.label': 'Essência espectral',
-  'entities.quests.q_hollow.title': 'Para o Vazio',
-  'entities.quests.q_hollow.text':
-    'Morthen espera no fundo da Cripta Vazia, cercado pelos mortos de elite que ergueu. Leve quatro companheiros e acabe com ele.',
-  'entities.quests.q_hollow.completion':
-    'Os sussurros pararam. Os mortos dormem, {playerName}, e Eastbrook lhe deve tudo.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen o Gravecaller abatido',
-  'entities.quests.q_sexton.title': 'O sino do sacristão',
-  'entities.quests.q_sexton.text':
-    'O registro nomeia o sacristão Marrow, primeiro guardião erguido por Morthen. Desça com quatro companheiros e devolva o repouso roubado, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Marrow enfim está livre. Não toquem sinos por ele; ouviu sinos demais em vida.',
-  'entities.quests.q_sexton.objectives.0.label': 'Sacristão Marrow devolvido ao descanso',
-  'entities.quests.q_gravecallers_trail.title': 'A trilha do Gravecaller',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen está morto, mas sua seita não gastaria um século de silêncio por uma só capela. Procure o grimório nas ruínas, {playerName}.',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen escrevia a um 'Fogbinder' no brejo ao norte. A seita não morreu, {playerName}; apenas foi paciente.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimório de Morthen',
   'entities.quests.q_bandits.title': 'Bandidos do Vale',
   'entities.quests.q_bandits.text':
     'Um bando de degoladores acampou nas colinas noroeste. Três carroças foram roubadas esta semana. Mate 10 bandidos do Vale.',
@@ -10650,9 +10602,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.zones.thornpeak_heights.pois.6.label': 'O Glimmermere',
   'entities.zones.thornpeak_heights.pois.8.label': 'Campos de revenantes',
   'entities.zones.thornpeak_heights.pois.9.label': 'Santuário do Gravewyrm',
-  'entities.dungeons.hollow_crypt.name': 'A Cripta Vazia',
-  'entities.dungeons.hollow_crypt.enterText': 'Você desce para a Cripta Vazia...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Você volta à luz do dia.',
   'entities.dungeons.sunken_bastion.name': 'O Bastião Submerso',
   'entities.dungeons.sunken_bastion.enterText':
     'Você avança pela água até as profundezas do Bastião Submerso...',
@@ -20583,8 +20532,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'bossJournal.wildheart.bloom.spitName': 'Cuspe floral',
   'entities.mobs.bastion_drowned_anchor.name': 'Âncora afogada',
   'entities.mobs.bastion_gaol_cage.name': 'Jaula de ferro',
-  'entities.mobs.bound_soul.name': 'Alma presa',
-  'entities.mobs.crypt_remembrance_candle.name': 'Vela da lembrança',
   'entities.mobs.muster_footman.name': 'Infante da convocação',
   'entities.mobs.muster_sergeant.name': 'Sargento da convocação',
   'abilityUi.cast.bastion_brine_mend': 'Restauração de salmoura',
@@ -22603,20 +22550,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Javali Presa Cornuda',
-  'entities.mobs.candlewright_acolyte.name': 'Acólito Fabricante de Velas',
-  'entities.mobs.cantor_ilvane.name': 'Cantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Bruto de Ossos',
-  'entities.mobs.crypt_bone_minion.name': 'Lacaio de Ossos',
-  'entities.mobs.crypt_bone_pile.name': 'Ossos Agitados',
-  'entities.mobs.crypt_carrion_crow.name': 'Corvo Carniceiro',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gárgula da Capela',
-  'entities.mobs.crypt_crow_caller.name': 'Invocador de Corvos',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adepto Gravecaller',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Necromante Gravecaller',
-  'entities.mobs.crypt_knellwyrm.name': 'Serpe do Dobre',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Degolador do Ossuário',
-  'entities.mobs.crypt_ossuary_drake.name': 'Draco do Ossuário',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Guerreiro do Ossuário',
   'entities.mobs.drowned_pilgrim.name': 'Peregrino Afogado',
   'entities.mobs.drowned_sergeant.name': 'Sargento Afogado',
   'entities.mobs.drowned_watchman.name': 'Vigia Afogado',
@@ -22626,12 +22559,9 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Carcereiro Ossick',
   'entities.mobs.glacier_splinter.name': 'Estilhaço de Geleira',
   'entities.mobs.great_saurian.name': 'Grande Sauriano',
-  'entities.mobs.hollow_chorister.name': 'Corista Vazio',
-  'entities.mobs.hollow_gravedigger.name': 'Coveiro Vazio',
   'entities.mobs.howdah_hexcaller.name': 'Invocador de Feitiços da Plataforma',
   'entities.mobs.ice_wraith.name': 'Espectro de Gelo',
   'entities.mobs.lagoon_snapper.name': 'Tartaruga Mordedora da Lagoa',
-  'entities.mobs.marrow_restless_bones.name': 'Ossos Inquietos',
   'entities.mobs.mere_hydra_head_center.name': 'Hidra da Lagoa',
   'entities.mobs.mere_hydra_head_left.name': 'Hidra da Lagoa',
   'entities.mobs.mere_hydra_head_right.name': 'Hidra da Lagoa',
@@ -22641,12 +22571,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_drillmaster.name': 'Instrutor da Convocação',
   'entities.mobs.muster_effigy.name': 'Capataz de Palha',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogro Puxador de Trenó',
-  'entities.mobs.ossuary_sentinel.name': 'Sentinela do Ossuário',
-  'entities.mobs.rime_egg_sac.name': 'Saco de Ovos de Geada',
   'entities.mobs.rime_whelp.name': 'Filhote de Geada',
-  'entities.mobs.rimeweb.name': 'Dama do Frio nos Ossos',
-  'entities.mobs.rimeweb_hatchling.name': 'Filhote de Teia de Geada',
-  'entities.mobs.rimeweb_spinner.name': 'Tecelã de Teia de Geada',
   'entities.mobs.sanctum_shackle_anvil.name': 'Grilhão da Bigorna',
   'entities.mobs.sanctum_shackle_bellows.name': 'Grilhão do Fole',
   'entities.mobs.sanctum_shackle_hammer.name': 'Grilhão do Martelo',

@@ -1,6 +1,5 @@
 import { THATCHGRIN_KIT } from '../content/gourdlight_eve_scarecrow';
 import { TEMPLE_BOSS_CAST_SCHOOLS } from '../encounters/drowned_temple/ids';
-import { ILVANE_CAST_SCHOOLS } from '../encounters/hollow_crypt/ilvane_ids';
 import {
   HOARD_ADD_CAST_SCHOOLS,
   HOARD_CONTROL_CAST_SCHOOLS,
@@ -47,9 +46,6 @@ export const SCRIPTED_INTERRUPTIBLE_CHANNELS: Record<string, { school: Aura['sch
   // Choirmother Selthe's Drowning Aria
   // (encounters/drowned_temple/ids.ts TEMPLE_BOSS_CAST_SCHOOLS).
   ...TEMPLE_BOSS_CAST_SCHOOLS,
-  // Cantor Ilvane's Dirge of the Hollow (encounters/hollow_crypt/ilvane_ids.ts);
-  // her heroic Unbroken Verse runs under an id registered nowhere.
-  ...ILVANE_CAST_SCHOOLS,
   // The Wildheart Basin's Ancestral Sap (mob/trash_kit/wildheart_cast_ids.ts).
   ...WILDHEART_KIT_CAST_SCHOOLS,
   // The Gravewyrm Sanctum's Warming Rite and Goad (mob/trash_kit/sanctum_cast_ids.ts).

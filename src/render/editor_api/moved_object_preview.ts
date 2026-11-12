@@ -14,7 +14,6 @@
 
 import * as THREE from 'three';
 import { DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID } from '../../sim/drowned_temple_entrance';
-import { HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID } from '../../sim/hollow_crypt_entrance';
 import { SANCTUM_SEAL_GATE_DUNGEON_ID } from '../../sim/sanctum_seal_gate';
 import { SUNKEN_BASTION_ENTRANCE_DUNGEON_ID } from '../../sim/sunken_bastion_entrance';
 import { WILDHEART_BASIN_ENTRANCE_DUNGEON_ID } from '../../sim/wildheart_basin_entrance';
@@ -49,7 +48,6 @@ export interface PreviewPose {
 const DOOR_SET_PIECE_GROUPS: Readonly<Record<string, string>> = {
   [SANCTUM_SEAL_GATE_DUNGEON_ID]: 'sanctumSealGate',
   [SUNKEN_BASTION_ENTRANCE_DUNGEON_ID]: 'sunkenBastionEntrance',
-  [HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID]: 'hollowCryptEntrance',
   [DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID]: 'drownedTempleEntrance',
   [WILDHEART_BASIN_ENTRANCE_DUNGEON_ID]: 'wildheartBasinEntrance',
 };

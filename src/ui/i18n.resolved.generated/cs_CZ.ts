@@ -26590,9 +26590,6 @@ export const cs_CZ: EnTranslations = {
       "restless_bones": {
         "name": "Neklidné kosti"
       },
-      "marrow_restless_bones": {
-        "name": "Neklidné kosti"
-      },
       "gorrak": {
         "name": "Gorrak Nemilosrdný"
       },
@@ -26694,90 +26691,6 @@ export const cs_CZ: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Kostmi obrněný revenant"
-      },
-      "crypt_shambler": {
-        "name": "Belhavec z krypty"
-      },
-      "hollow_acolyte": {
-        "name": "Akolyta Dutiny"
-      },
-      "bonechill_widow": {
-        "name": "Kostimrazá vdova"
-      },
-      "sexton_marrow": {
-        "name": "Kostelník Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Hrobovolající"
-      },
-      "ossuary_sentinel": {
-        "name": "Strážce Kostnice"
-      },
-      "hollow_gravedigger": {
-        "name": "Prázdný hrobník"
-      },
-      "rime_egg_sac": {
-        "name": "Jinovatný vak vajec"
-      },
-      "rimeweb_hatchling": {
-        "name": "Mládě Jinovatné sítě"
-      },
-      "rimeweb_spinner": {
-        "name": "Přadlena Jinovatné sítě"
-      },
-      "candlewright_acolyte": {
-        "name": "Akolyta Svíčkaře"
-      },
-      "hollow_chorister": {
-        "name": "Prázdný sborista"
-      },
-      "bound_soul": {
-        "name": "Spoutaná duše"
-      },
-      "rimeweb": {
-        "name": "Paní kostního chladu"
-      },
-      "cantor_ilvane": {
-        "name": "Kantorka Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Válečník z Kostnice"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adept Hrobovolajícího"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Hrdlořez z Kostnice"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Nekromant Hrobovolajícího"
-      },
-      "crypt_bone_minion": {
-        "name": "Kostěný služebník"
-      },
-      "crypt_bone_brute": {
-        "name": "Kostěný rváč"
-      },
-      "crypt_bone_pile": {
-        "name": "Hýbající se kosti"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Chrlič Kaple"
-      },
-      "crypt_crow_caller": {
-        "name": "Vyvolávač vran"
-      },
-      "crypt_carrion_crow": {
-        "name": "Mrchožravá vrána"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Dráček z Kostnice"
-      },
-      "crypt_knellwyrm": {
-        "name": "Drak umíráčku"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Vzpomínková svíčka"
       },
       "bastion_revenant": {
         "name": "Revenant bašty"
@@ -28727,16 +28640,6 @@ export const cs_CZ: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Neklidní mrtví",
-        "text": "Stará ruina na severozápadním kopci bývala kaplí a její dvůr místem odpočinku. Něco vytrhlo mrtvé ze spánku. Dopřej jim pokoj, {playerName}, vrať 8 neklidných kostí do země.",
-        "completion": "Ať teď odpočívají a ať Světlo odpustí tomu, co je probudilo.",
-        "objectives": {
-          "0": {
-            "label": "Neklidné kosti uloženy ke klidu"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Ukradené zásoby",
         "text": "Ti bandité přepadli můj poslední vůz a odnesli čtyři bedny zboží: nástroje, sůl, dobré eastbrookské plátno. Bedny jsou naskládané kolem jejich tábora v severozápadních kopcích. Ukradneš je pro mě zpátky?",
@@ -28747,26 +28650,6 @@ export const cs_CZ: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Šepoty zdola",
-        "text": "Uložil jsi mrtvé ke klidu, ale oni v klidu nezůstávají, něco je volá zpátky. Prohledej ruinu kaple a najdi jakoukoli stopu toho, kdo volá. Pokud najdeš jakoukoli pečeť nebo značku, přines mi ji nedotčenou.",
-        "completion": "Tahle pečeť... nese značku Hrobovolajících, sekty, o které jsem se modlil, aby vyhynula. Je to horší, než jsem se bál, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Pečeť Hrobovolajícího"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Jména mrtvých",
-        "text": "Pokud Hrobovolající vztyčili naše mrtvé, musím vědět, čí hroby vyloupili. Kostelník kaple vedl pohřební knihu a vítr její stránky rozházel po hřbitově. Sesbírej mi 3, {playerName}, mrtví si zaslouží být voláni svými jmény.",
-        "completion": "Ubohé duše... a podívej sem. Kostelník Marrow, vlastní živý správce kaple, jeho hrob byl narušen jako první. Morthen začal s mužem, který pohřbíval mrtvé Eastbrooku.",
-        "objectives": {
-          "0": {
-            "label": "Ošlehaná stránka účetní knihy"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Umlč volání",
         "text": "Každé jméno v té knize je duše, kterou chce Morthen vyrvat ze země, a dvůr kaple se už hemží těmi, které povolal. Vrať 12 neklidných kostí do hrobů, {playerName}, než šepot Hrobovolajícího zesílí v sbor.",
@@ -28774,49 +28657,6 @@ export const cs_CZ: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Neklidné kosti umlčeny"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Poutací rituál",
-        "text": "Krypta pod kaplí musí být odpečetěna, máme-li zastavit Hrobovolajícího, ale jen poutací rituál dovolí živým projít. Potřebuji 4 kusy požehnaného loje, norníci v dole hromadí lůj po bednách, a 6 přízračných esencí z neklidných mrtvých.",
-        "completion": "Je hotovo. Cesta dolů stojí otevřená... a ať mi Světlo odpustí, že jsem ji otevřel. Než sestoupíš, shromáždi své nejsilnější společníky, {playerName}. Nikdo by neměl čelit Dutině sám.",
-        "objectives": {
-          "0": {
-            "label": "Požehnaný lůj"
-          },
-          "1": {
-            "label": "Přízračná esence"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Do Dutiny",
-        "text": "Morthen Hrobovolající čeká na dně Duté krypty, obklopen elitními mrtvými, které vztyčil. Je daleko nad síly jednoho hrdiny, vezmi čtyři společníky, ne méně. Skoncuj s ním a mrtví údolí konečně usnou.",
-        "completion": "Šepot utichl. Dokázal jsi, co celé údolí nedokázalo, {playerName}: mrtví spí a Eastbrook ti dluží všechno, co má.",
-        "objectives": {
-          "0": {
-            "label": "Morthen Hrobovolající zabit"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Kostelníkův zvon",
-        "text": "Kniha ho jmenovala a krypta ho drží: kostelník Marrow, správce kaple, první muž, kterého Morthen vztyčil. Ve smrti střežil dveře svého pána tak věrně, jako za života střežil kapli. Vezmi čtyři společníky do Duté krypty a dopřej starému kostelníkovi odpočinek, o který byl oloupen, {playerName}.",
-        "completion": "Tak je Marrow konečně svobodný. Nezvoňte mu, za života jich slyšel dost.",
-        "objectives": {
-          "0": {
-            "label": "Kostelník Marrow uložen ke klidu"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Stopa Hrobovolajícího",
-        "text": "Morthen je mrtvý, ale hryže mě otázka: sekta, která se skrývala celé století, se nevyčerpá na jedné vesnické kapli. Měl grimoár, své rituály a korespondenci. Pokud z toho něco přežilo, leží to v sakristii zničené kaple nad kryptou. Prohledej ruinu a přines mi, co z jeho spisů zůstalo, {playerName}.",
-        "completion": "Morthen psal Mlhovazači v severním močálu. Sekta není mrtvá, {playerName}, jen byla trpělivá.",
-        "objectives": {
-          "0": {
-            "label": "Morthenův grimoár"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const cs_CZ: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Dutá krypta",
-        "enterText": "Sestupuješ do Duté krypty...",
-        "leaveText": "Šplháš zpět na denní světlo."
-      },
       "sunken_bastion": {
         "name": "Potopená bašta",
         "enterText": "Brodíš se dolů do Potopené bašty...",

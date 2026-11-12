@@ -34,7 +34,6 @@ export const ACHIEVEMENT_MAP: Record<string, string> = {
   cmb_first_blood: 'ACH_FIRST_BLOOD',
   cmb_slayer: 'ACH_SLAYER',
   cmb_first_fall: 'ACH_FIRST_FALL',
-  dgn_hollow_crypt: 'ACH_HOLLOW_CRYPT',
   dgn_sunken_bastion: 'ACH_SUNKEN_BASTION',
   dgn_drowned_temple: 'ACH_DROWNED_TEMPLE',
   dgn_gravewyrm_sanctum: 'ACH_GRAVEWYRM_SANCTUM',

@@ -8217,9 +8217,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Luften blir kall. Något väldigt andas där nere ...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Du raglar tillbaka ut i bergsvinden.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Gravlindormens helgedom',
-  'entities.dungeons.hollow_crypt.enterText': 'Du stiger ner i Den ihåliga kryptan ...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Du klättrar tillbaka upp i dagsljuset.',
-  'entities.dungeons.hollow_crypt.name': 'Den ihåliga kryptan',
   'entities.dungeons.nythraxis_boss_arena.enterText':
     'Du passerar genom den förseglade kungliga dörren.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Du återvänder till Törntopps kalla luft.',
@@ -8683,14 +8680,12 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolyten Tessa',
   'entities.mobs.bastion_revenant.name': 'Bastionens gengångare',
   'entities.mobs.bog_bloat.name': 'Kärrpösare',
-  'entities.mobs.bonechill_widow.name': 'Benkylsänka',
   'entities.mobs.boneclad_revenant.name': 'Benklädd gengångare',
   'entities.mobs.bound_guardian.name': 'Den bundne väktaren',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Skallkrossare',
   'entities.mobs.captain_verlan.name': 'Kapten Verlan',
   'entities.mobs.choirmother_selthe.name': 'Körmoder Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Fördärvad präst Malric',
-  'entities.mobs.crypt_shambler.name': 'Kryptvandrare',
   'entities.mobs.deacon_varric.name': 'Diakon Vandric',
   'entities.mobs.deacon_voss.name': 'Diakon Voss',
   'entities.mobs.deathstalker_voss.name': 'Dödssmygare Voss',
@@ -8712,7 +8707,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Gravkallarframmanare',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Tunnelkungen',
   'entities.mobs.grubjaw.name': 'Grubjaw den glupske',
-  'entities.mobs.hollow_acolyte.name': 'Ihålig akolyt',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Pyre Colossus',
   'entities.mobs.ironvein_foreman.name': 'Järnådersförman',
@@ -8729,7 +8723,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Moggerlakej',
   'entities.mobs.moonspawn.name': 'Månyngel',
-  'entities.mobs.morthen.name': 'Morthen Gravkallaren',
   'entities.mobs.mudfin_murloc.name': 'Dyfenesmygare',
   'entities.mobs.nhalia_mourner.name': 'Sörjaren Nhalia',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, den odödlige hierofanten',
@@ -8753,7 +8746,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Helgedomsbenvakt',
   'entities.mobs.sanctum_drakonid.name': 'Helgedomens fjällväktare',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Blekringel',
-  'entities.mobs.sexton_marrow.name': 'Klockare Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Skärvherre Kazzix',
   'entities.mobs.sister_nhalia.name': 'Syster Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtooth den drunknade',
@@ -8897,12 +8889,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Vildsvinsskinn ger de bästa färdväskorna, och ängarna nordväster om staden kryllar av bestarna. Hämta mig 5 Borstiga vildsvinsskinn så ska jag göra det värt din tid.',
   'entities.quests.q_boars.title': 'Borstiga vildsvinsskinn',
-  'entities.quests.q_bones.completion':
-    'Må de vila nu, och må Ljuset förlåta vad som än väckte dem.',
-  'entities.quests.q_bones.objectives.0.label': 'Rastlösa ben lagda till ro',
-  'entities.quests.q_bones.text':
-    'Den gamla ruinen på den nordvästra kullen var en gång ett kapell, och dess gård en viloplats. Något har stört de döda ur deras sömn. Skänk dem frid, {playerName} - återlämna 8 Rastlösa ben till jorden.',
-  'entities.quests.q_bones.title': 'De rastlösa döda',
   'entities.quests.q_breaking_the_seal.completion':
     'De brinner blått och rent - berget minns sin gamla ed. Med dessa kan jag lösa porten åt oss ensamma.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Välsignade glöd',
@@ -9011,12 +8997,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis visade mig en vaxklump tagen från en av de där tunnelgrävarna - den glöder, {playerName}, och den är varm som ett hjärtslag. Han vill ha mer för studier, och jag vill ha det av min rekvisitionslista. Hämta tillbaka sex klumpar av det glödande vaxet.',
   'entities.quests.q_glowing_wax.title': 'Sällsamt vax',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen skrev till en 'Fogbinder' i det norra kärret. Sekten är inte död, {playerName} - den har bara varit tålmodig.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthens grimoar',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen är död, men en fråga gnager i mig: en sekt som gömt sig i ett sekel slösar inte bort sig själv på ett enda bykapell. Han höll en grimoar - sina riter, sin korrespondens. Om något av den överlever, ligger den i sakristian i det ödelagda kapellet ovanför kryptan. Genomsök ruinen och hämta mig vad som än återstår av hans skrifter, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Gravkallarens spår',
   'entities.quests.q_gravewyrm.completion':
     'Det är över. De dödas av tre länder må vila, berget sover ohemsökt - och det är ditt namn, {playerName}, som varje klocka härifrån till Östbäck ringer i natt.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Gravlindormen dräpt',
@@ -9041,12 +9021,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Vaels sista ord har inte lämnat mig, {playerName}: Lindormen rör sig under topparna. Kapten Thessaly befaller muren vid Högvakt, vid huvudet av bergsvägen norrut. En kallelse står uppsatt vid hennes port - ta upp den, och säg henne att Broder Aldric klättrar uppför berget bakom dig.',
   'entities.quests.q_highwatch_summons.title': 'Vakten på topparna',
-  'entities.quests.q_hollow.completion':
-    'Viskningarna har upphört. Du har gjort vad hela Dalen inte kunde, {playerName} - de döda sover, och Östbäck är dig skyldig allt det har.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Gravkallaren dräpt',
-  'entities.quests.q_hollow.text':
-    'Morthen Gravkallaren väntar på botten av Den ihåliga kryptan, omringad av de elitdöda han har rest. Han är långt bortom någon enskild hjälte - ta fyra följeslagare, inte färre. Gör slut på honom, och Dalens döda kommer äntligen att sova.',
-  'entities.quests.q_hollow.title': 'In i det ihåliga',
   'entities.quests.q_idols.completion':
     'Gravkallararbete - äldre än Morthen, äldre än mig. Sekten började inte i Östbäck, {playerName}. Den började här, och sjön har bevarat sina hemligheter.',
   'entities.quests.q_idols.objectives.0.label': 'Vattendränkt avgud',
@@ -9094,12 +9068,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'I tjugo år har jag fiskat i Spegelsjön, och aldrig förlorat ett nät förrän de där bubblande fiskmännen kröp upp ur grundvattnet. Driv tillbaka Mudfinerna - dräp 8 av dem. Och se dig för: där det finns en Mudfin, finns det fem.',
   'entities.quests.q_murlocs.title': 'Bekymmer vid sjön',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Dessa arma själar... och se här. Klockare Marrow - kapellets egen levande vårdare - hans grav den första som stördes. Morthen började med just den man som begravde Östbäcks döda.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Väderbiten liggarsida',
-  'entities.quests.q_names_of_the_dead.text':
-    'Om Gravkallarna reste våra döda måste jag veta vilkas gravar de plundrade. Kapellets klockare förde en begravningsliggare, och vinden har spridit dess sidor över kapellgården. Samla 3 av dem åt mig, {playerName} - de döda förtjänar att kallas vid sina namn.',
-  'entities.quests.q_names_of_the_dead.title': 'De dödas namn',
   'entities.quests.q_necromancers.completion':
     'Ljuset förlåte oss. Dessa rymmer dalens och kärrets döda - varje lik Gravkallarna någonsin reste, skördat. De byggde aldrig en armé, {playerName}. De samlade in en tionde.',
   'entities.quests.q_necromancers.objectives.0.label': 'Lindormssektens nekromant dräpt',
@@ -9205,25 +9173,12 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Banditerna lyder under en enda man: Gorrak den Skoningslöse. Hugg av huvudet så skingras kroppen. Han lurar i hjärtat av deras läger. Gör slut på honom, {playerName}.',
   'entities.quests.q_ringleader.title': 'Anföraren',
-  'entities.quests.q_rite.completion':
-    'Det är gjort. Vägen nedåt står öppen... och må Ljuset förlåta mig för att jag öppnade den. Samla dina starkaste följeslagare innan du stiger ner, {playerName}. Ingen bör möta den Ihåliga ensam.',
-  'entities.quests.q_rite.objectives.0.label': 'Välsignad talg',
-  'entities.quests.q_rite.objectives.1.label': 'Spöklik essens',
-  'entities.quests.q_rite.text':
-    'Kryptan under kapellet måste öppnas om vi ska stoppa Gravecallern - men endast en bindande rit låter de levande passera. Jag behöver 4 klumpar välsignad talg - gruvans grävare hamstrar talg lådvis - och 6 spöklika essenser från de rastlösa döda.',
-  'entities.quests.q_rite.title': 'Den bindande riten',
   'entities.quests.q_sanctum_gate.completion':
     'Skärvorna sitter rätt... och porten känner igen sin nyckel. Vägen nedåt står öppen, {playerName}. Samla de starkaste följeslagare du kan finna - det som väntar härnäst bör ingen möta ensam.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Helgedomens nyckelskärva',
   'entities.quests.q_sanctum_gate.text':
     'Detta är den sista tröskeln, {playerName}. Porten till Gravlindormens helgedom låstes med en slutsten, och sekten krossade den till skärvor hellre än att se den vändas mot dem. Skärvorna ligger spridda på portplatsen, under de benklädda dödas blickar. Hämta tre åt mig, så öppnar jag vägen som Ljuset avsåg - i tysthet.',
   'entities.quests.q_sanctum_gate.title': 'Helgedomens port',
-  'entities.quests.q_sexton.completion':
-    'Så Marrow är äntligen fri. Ring ingen klocka för honom - han hörde tillräckligt av dem i livet.',
-  'entities.quests.q_sexton.objectives.0.label': 'Klockare Marrow lagd till ro',
-  'entities.quests.q_sexton.text':
-    'Liggaren namngav honom och kryptan rymmer honom: klockare Marrow, kapellets vårdare, den förste man Morthen reste - vaktande sin mästares dörr i döden lika troget som han skötte kapellet i livet. Ta med fyra följeslagare in i Den ihåliga kryptan och skänk den gamle klockaren den ro han berövades, {playerName}.',
-  'entities.quests.q_sexton.title': 'Klockarens klocka',
   'entities.quests.q_shard_cores.completion':
     'Varje kärna lutar åt samma håll, som järnfilspån mot en magnetsten. De pekar söderut, {playerName}. Mot helgedomen.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Stormkärna',
@@ -9306,12 +9261,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'I natt knäföll hela kultlägret på en gång, {playerName} - varje fanatiker, varje nekromantiker, alla vända mot Helgedomen. Korzul talar till dem i sömnen nu; Vael hörde samma röst i kärret, och Morthen före honom. Hugg ner församlingen - tio fanatiker, sex nekromantiker - innan den rösten har händer nog att själv slita upp porten.',
   'entities.quests.q_voice_below.title': 'Rösten där nere',
-  'entities.quests.q_whispers.completion':
-    'Det här sigillet... det bär Gravkallarnas märke, en sekt jag hade bett att vore utdöd. Det här är värre än jag fruktade, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Gravkallarens sigill',
-  'entities.quests.q_whispers.text':
-    'Du har lagt de döda till ro, men de förblir inte vilande - något kallar tillbaka dem. Genomsök kapellruinen efter varje spår av den som kallar. Om du hittar ett sigill eller insegel, ta det till mig orört.',
-  'entities.quests.q_whispers.title': 'Viskningar där nere',
   'entities.quests.q_widows.completion':
     'Hela säckar, varenda en. Du har stadigare händer än hälften av kirurgerna i söder, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Dykärrsänka dödad',
@@ -24381,7 +24330,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Dränkt ankare',
   'entities.mobs.bastion_gaol_cage.name': 'Järnbur',
   'entities.mobs.bastion_warhound.name': 'Bastionens krigshund',
-  'entities.mobs.bound_soul.name': 'Bunden själ',
   'entities.mobs.broodsworn_goadsmith.name': 'Kullsvuren sporsmed',
   'entities.mobs.broodsworn_pyre_tender.name': 'Kullsvuren bålvårdare',
   'entities.mobs.broodsworn_thawcaller.name': 'Kullsvuren tökallare',
@@ -24415,21 +24363,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Trippel-T',
   'entities.mobs.buddy_trollface.name': 'Trollansiktet',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Beteshornsgalt',
-  'entities.mobs.candlewright_acolyte.name': 'Ljusmakarakolyt',
-  'entities.mobs.cantor_ilvane.name': 'Kantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Benbest',
-  'entities.mobs.crypt_bone_minion.name': 'Bentjänare',
-  'entities.mobs.crypt_bone_pile.name': 'Rörliga ben',
-  'entities.mobs.crypt_carrion_crow.name': 'Askråka',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Kapellgargoyl',
-  'entities.mobs.crypt_crow_caller.name': 'Kråkkallare',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Gravkallaradept',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Gravkallarnekromantiker',
-  'entities.mobs.crypt_knellwyrm.name': 'Dödsklangslindorm',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Benhusets strupskärare',
-  'entities.mobs.crypt_ossuary_drake.name': 'Benhusdrake',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Benhuskrigare',
-  'entities.mobs.crypt_remembrance_candle.name': 'Minnesljus',
   'entities.mobs.drowned_pilgrim.name': 'Dränkt pilgrim',
   'entities.mobs.drowned_sergeant.name': 'Dränkt sergeant',
   'entities.mobs.drowned_watchman.name': 'Dränkt väktare',
@@ -24439,12 +24372,9 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Fångvaktare Ossick',
   'entities.mobs.glacier_splinter.name': 'Glaciärskärva',
   'entities.mobs.great_saurian.name': 'Storödla',
-  'entities.mobs.hollow_chorister.name': 'Ihålig korist',
-  'entities.mobs.hollow_gravedigger.name': 'Ihålig dödgrävare',
   'entities.mobs.howdah_hexcaller.name': 'Bärstolens förbannelsekallare',
   'entities.mobs.ice_wraith.name': 'Isvålnad',
   'entities.mobs.lagoon_snapper.name': 'Lagunsnappare',
-  'entities.mobs.marrow_restless_bones.name': 'Rastlöst skelett',
   'entities.mobs.mere_hydra_head_center.name': 'Sjöhydra',
   'entities.mobs.mere_hydra_head_left.name': 'Sjöhydra',
   'entities.mobs.mere_hydra_head_right.name': 'Sjöhydra',
@@ -24456,12 +24386,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Uppbådets fotsoldat',
   'entities.mobs.muster_sergeant.name': 'Uppbådets sergeant',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogrisk släddragare',
-  'entities.mobs.ossuary_sentinel.name': 'Benhusväktare',
-  'entities.mobs.rime_egg_sac.name': 'Rimfrostsäggsäck',
   'entities.mobs.rime_whelp.name': 'Rimfrostsunge',
-  'entities.mobs.rimeweb.name': 'Benkylans dam',
-  'entities.mobs.rimeweb_hatchling.name': 'Rimnätsunge',
-  'entities.mobs.rimeweb_spinner.name': 'Rimnätsspinnare',
   'entities.mobs.sanctum_shackle_anvil.name': 'Städboja',
   'entities.mobs.sanctum_shackle_bellows.name': 'Bälgboja',
   'entities.mobs.sanctum_shackle_hammer.name': 'Hammarboja',

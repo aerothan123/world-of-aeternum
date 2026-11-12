@@ -10166,11 +10166,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.stormcrag_elemental.name': 'Stormcrag-Elementar',
   'entities.mobs.shardlord_kazzix.name': 'Splitterlord Kazzix',
   'entities.mobs.boneclad_revenant.name': 'Knochengepanzerter Wiedergänger',
-  'entities.mobs.crypt_shambler.name': 'Gruftschlurfer',
-  'entities.mobs.hollow_acolyte.name': 'Akolyth der Höhlung',
-  'entities.mobs.bonechill_widow.name': 'Knochenkälte-Witwe',
-  'entities.mobs.sexton_marrow.name': 'Küster Marrow',
-  'entities.mobs.morthen.name': 'Morthen der Gravecaller',
   'entities.mobs.bastion_revenant.name': 'Bastion-Wiedergänger',
   'entities.mobs.tidebound_acolyte.name': 'Gezeitengebundener Akolyth',
   'entities.mobs.drowned_thrall.name': 'Ertrunkener Knecht',
@@ -10337,29 +10332,11 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_mine.completion':
     'Ha! Zurück an die Arbeit, Jungs! Du hast meinen Dank und mein Geld.',
   'entities.quests.q_mine.objectives.0.label': 'Deeprock-Gräber getötet',
-  'entities.quests.q_bones.title': 'Die ruhelosen Toten',
-  'entities.quests.q_bones.text':
-    'Die alte Kapelle war einst ein Ruheort, bis etwas die Toten weckte. Lege 8 ruhelose Knochen wieder in die Erde, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Mögen sie nun ruhen, und möge das Licht vergeben, was sie geweckt hat.',
-  'entities.quests.q_bones.objectives.0.label': 'Ruhelose Knochen zur Ruhe gelegt',
   'entities.quests.q_supplies.title': 'Gestohlene Vorräte',
   'entities.quests.q_supplies.text':
     'Die Banditen raubten meinen letzten Wagen: Werkzeug, Salz und gutes Eastbrook-Leinen. Hol 4 Kisten aus ihrem Lager im Nordwesten zurück.',
   'entities.quests.q_supplies.completion': 'Meine Kisten! Kaum ein Kratzer. Du bist ein Wunder.',
   'entities.quests.q_supplies.objectives.0.label': 'Gestohlene Vorratskiste',
-  'entities.quests.q_whispers.title': 'Flüstern darunter',
-  'entities.quests.q_whispers.text':
-    'Die Toten stehen wieder auf, weil etwas sie ruft. Durchsuche die Kapelle nach dem Rufer und bring jedes Siegel unversehrt her.',
-  'entities.quests.q_whispers.completion':
-    'Dieses Siegel trägt das Zeichen der Gravecaller. Ich hatte gebetet, diese Sekte sei erloschen, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Gravecaller-Siegel',
-  'entities.quests.q_names_of_the_dead.title': 'Die Namen der Toten',
-  'entities.quests.q_names_of_the_dead.text':
-    'Wenn die Gravecaller unsere Gräber raubten, muss ich wissen, wessen Ruhe sie stahlen. Sammle 3 Seiten des Begräbnisbuchs, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Arme Seelen... und sieh hier: Küster Marrow war der erste. Morthen begann mit dem Mann, der Eastbrooks Tote begrub.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Verwitterte Buchseite',
   'entities.quests.q_silence_the_call.title': 'Den Ruf verstummen lassen',
   'entities.quests.q_silence_the_call.text':
     'Jeder Name im Buch ist eine Seele, die Morthen aus der Erde ziehen will. Bringe 12 ruhelose Knochen zum Schweigen, {playerName}, bevor der Flüsterton zum Chor wird.',
@@ -10367,31 +10344,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
     'Der Hof wird stiller, doch der Ruf steigt jetzt aus der Gruft, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label':
     'Ruhelose Knochen zum Schweigen gebracht',
-  'entities.quests.q_rite.title': 'Der Bindungsritus',
-  'entities.quests.q_rite.text':
-    'Die Gruft unter der Kapelle muss entsiegelt werden, wenn wir den Gravecaller aufhalten wollen, doch nur ein Bindungsritus lässt die Lebenden passieren. Ich brauche 4 Klumpen gesegneten Talg, die Wühler der Mine horten Talg kistenweise, und 6 geisterhafte Essenzen von den ruhelosen Toten.',
-  'entities.quests.q_rite.completion':
-    'Es ist getan. Der Weg hinab steht offen... sammle deine stärksten Gefährten, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': 'Gesegneter Talg',
-  'entities.quests.q_rite.objectives.1.label': 'Geisterhafte Essenz',
-  'entities.quests.q_hollow.title': 'In die Höhlung',
-  'entities.quests.q_hollow.text':
-    'Morthen wartet am Grund der Hohlen Gruft, umringt von den elitären Toten. Nimm vier Gefährten mit und beende ihn.',
-  'entities.quests.q_hollow.completion':
-    'Das Flüstern ist verstummt. Die Toten schlafen, {playerName}, und Eastbrook schuldet dir alles.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen der Gravecaller getötet',
-  'entities.quests.q_sexton.title': 'Die Glocke des Küsters',
-  'entities.quests.q_sexton.text':
-    'Das Buch nennt Küster Marrow, Morthens ersten erhobenen Wächter. Steig mit vier Gefährten hinab und gib ihm die geraubte Ruhe zurück, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Marrow ist endlich frei. Läutet keine Glocke für ihn; er hörte im Leben genug.',
-  'entities.quests.q_sexton.objectives.0.label': 'Küster Marrow zur Ruhe gelegt',
-  'entities.quests.q_gravecallers_trail.title': 'Die Spur des Gravecallers',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen ist tot, doch seine Sekte verschwendet kein Jahrhundert des Schweigens an eine einzige Kapelle. Suche sein Grimoire in den Ruinen, {playerName}.',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen schrieb an einen 'Fogbinder' im nördlichen Moor. Die Sekte ist nicht tot, {playerName}, sie war nur geduldig.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthens Grimoire',
   'entities.quests.q_bandits.title': 'Banditen des Tals',
   'entities.quests.q_bandits.text':
     'Eine Rotte Halsabschneider lagert in den nordwestlichen Hügeln. Drei Wagen wurden diese Woche beraubt. Töte 10 Talbanditen.',
@@ -10759,9 +10711,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.zones.thornpeak_heights.pois.6.label': 'Der Glimmermere',
   'entities.zones.thornpeak_heights.pois.8.label': 'Wiedergängerfelder',
   'entities.zones.thornpeak_heights.pois.9.label': 'Gravewyrm-Heiligtum',
-  'entities.dungeons.hollow_crypt.name': 'Die Hohle Gruft',
-  'entities.dungeons.hollow_crypt.enterText': 'Du steigst in die Hohle Gruft hinab...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Du kletterst zurück ins Tageslicht.',
   'entities.dungeons.sunken_bastion.name': 'Die versunkene Bastion',
   'entities.dungeons.sunken_bastion.enterText': 'Du watest in die versunkene Bastion hinab...',
   'entities.dungeons.sunken_bastion.leaveText': 'Du kletterst aus der ertrinkenden Dunkelheit.',
@@ -20672,7 +20621,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'editor.weather.blizzard': 'Schneesturm',
   'entities.items.hoarfrost_mantle.name': 'Raureifmantel',
   'entities.mobs.buddy_spider.name': 'Spinnen',
-  'entities.mobs.marrow_restless_bones.name': 'Ruhelose Knochen',
   'entities.mobs.vael_fog_shade.name': 'Vael der Fogbinder',
   'entities.npcs.patron_hester_quillby.title': 'Kartenbauer',
   'referralCards.milestones.fogbinder': 'Der Fogbinder',
@@ -25580,7 +25528,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Ertrunkener Anker',
   'entities.mobs.bastion_gaol_cage.name': 'Eisenkäfig',
   'entities.mobs.bastion_warhound.name': 'Kriegshund der Bastion',
-  'entities.mobs.bound_soul.name': 'Gebundene Seele',
   'entities.mobs.broodsworn_goadsmith.name': 'Brutgeschworener Treibschmied',
   'entities.mobs.broodsworn_pyre_tender.name': 'Brutgeschworener Scheiterhüter',
   'entities.mobs.broodsworn_thawcaller.name': 'Brutgeschworener Taurufer',
@@ -25617,21 +25564,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Hauerhornkeiler',
-  'entities.mobs.candlewright_acolyte.name': 'Kerzenmacherakolyth',
-  'entities.mobs.cantor_ilvane.name': 'Kantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Knochenkoloss',
-  'entities.mobs.crypt_bone_minion.name': 'Knochendiener',
-  'entities.mobs.crypt_bone_pile.name': 'Sich regendes Gebein',
-  'entities.mobs.crypt_carrion_crow.name': 'Aaskrähe',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Kapellengargoyle',
-  'entities.mobs.crypt_crow_caller.name': 'Krähenrufer',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Gravecaller-Adept',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Gravecaller-Nekromant',
-  'entities.mobs.crypt_knellwyrm.name': 'Totengeläutwyrm',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Beinhausmeuchler',
-  'entities.mobs.crypt_ossuary_drake.name': 'Beinhausdrache',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Beinhauskrieger',
-  'entities.mobs.crypt_remembrance_candle.name': 'Gedenkkerze',
   'entities.mobs.drowned_pilgrim.name': 'Ertrunkener Pilger',
   'entities.mobs.drowned_sergeant.name': 'Ertrunkener Feldwebel',
   'entities.mobs.drowned_watchman.name': 'Ertrunkener Wachmann',
@@ -25641,8 +25573,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Kerkermeister Ossick',
   'entities.mobs.glacier_splinter.name': 'Gletschersplitter',
   'entities.mobs.great_saurian.name': 'Großsaurier',
-  'entities.mobs.hollow_chorister.name': 'Hohler Chorsänger',
-  'entities.mobs.hollow_gravedigger.name': 'Hohler Totengräber',
   'entities.mobs.howdah_hexcaller.name': 'Sänftenfluchrufer',
   'entities.mobs.ice_wraith.name': 'Eisgespenst',
   'entities.mobs.lagoon_snapper.name': 'Lagunenschnapper',
@@ -25657,12 +25587,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Fußsoldat des Aufgebots',
   'entities.mobs.muster_sergeant.name': 'Feldwebel des Aufgebots',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogerschlittenzieher',
-  'entities.mobs.ossuary_sentinel.name': 'Beinhauswächter',
-  'entities.mobs.rime_egg_sac.name': 'Raureifeiersack',
   'entities.mobs.rime_whelp.name': 'Raureifwelpe',
-  'entities.mobs.rimeweb.name': 'Lady des Knochenfrosts',
-  'entities.mobs.rimeweb_hatchling.name': 'Raureifnetzjunges',
-  'entities.mobs.rimeweb_spinner.name': 'Raureifnetzspinner',
   'entities.mobs.sanctum_shackle_anvil.name': 'Ambossfessel',
   'entities.mobs.sanctum_shackle_bellows.name': 'Blasebalgfessel',
   'entities.mobs.sanctum_shackle_hammer.name': 'Hammerfessel',

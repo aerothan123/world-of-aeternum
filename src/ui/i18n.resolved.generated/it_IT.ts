@@ -26590,9 +26590,6 @@ export const it_IT: EnTranslations = {
       "restless_bones": {
         "name": "Ossa irrequiete"
       },
-      "marrow_restless_bones": {
-        "name": "Ossa inquiete"
-      },
       "gorrak": {
         "name": "Gorrak lo Spietato"
       },
@@ -26694,90 +26691,6 @@ export const it_IT: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Revenant corazzato di ossa"
-      },
-      "crypt_shambler": {
-        "name": "Barcollante della cripta"
-      },
-      "hollow_acolyte": {
-        "name": "Accolito del Vuoto"
-      },
-      "bonechill_widow": {
-        "name": "Vedova Freddosso"
-      },
-      "sexton_marrow": {
-        "name": "Sagrestano Marrow"
-      },
-      "morthen": {
-        "name": "Morthen il Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Sentinella dell'ossario"
-      },
-      "hollow_gravedigger": {
-        "name": "Becchino del vuoto"
-      },
-      "rime_egg_sac": {
-        "name": "Sacca di uova brinate"
-      },
-      "rimeweb_hatchling": {
-        "name": "Piccolo di Telabrina"
-      },
-      "rimeweb_spinner": {
-        "name": "Filatore di Telabrina"
-      },
-      "candlewright_acolyte": {
-        "name": "Accolito delle candele"
-      },
-      "hollow_chorister": {
-        "name": "Corista vuoto"
-      },
-      "bound_soul": {
-        "name": "Anima vincolata"
-      },
-      "rimeweb": {
-        "name": "Dama del Gelo d'Ossa"
-      },
-      "cantor_ilvane": {
-        "name": "Cantore Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Guerriero dell'ossario"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adepto dell'Evocatombe"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Tagliagole dell'ossario"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Negromante dell'Evocatombe"
-      },
-      "crypt_bone_minion": {
-        "name": "Servitore d'ossa"
-      },
-      "crypt_bone_brute": {
-        "name": "Bruto d'ossa"
-      },
-      "crypt_bone_pile": {
-        "name": "Ossa in movimento"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gargoyle della cappella"
-      },
-      "crypt_crow_caller": {
-        "name": "Evocatore di corvi"
-      },
-      "crypt_carrion_crow": {
-        "name": "Corvo delle carogne"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Draco dell'ossario"
-      },
-      "crypt_knellwyrm": {
-        "name": "Drago del rintocco funebre"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Candela della rimembranza"
       },
       "bastion_revenant": {
         "name": "Revenant del Bastione"
@@ -28727,16 +28640,6 @@ export const it_IT: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "I morti inquieti",
-        "text": "La vecchia cappella era un luogo di riposo, finché qualcosa ha svegliato i morti. Riporta alla terra 8 ossa irrequiete, {playerName}.",
-        "completion": "Che riposino, e che la Luce perdoni chi li ha svegliati.",
-        "objectives": {
-          "0": {
-            "label": "Ossa irrequiete restituite al riposo"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Scorte rubate",
         "text": "I banditi hanno colpito il mio ultimo carro e sono fuggiti con quattro casse di merce: attrezzi, sale, buon lino di Eastbrook. Le casse sono ammucchiate intorno al loro campo sulle colline a nord-ovest. Riprendile per me, vuoi?",
@@ -28747,26 +28650,6 @@ export const it_IT: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Sussurri nel sottosuolo",
-        "text": "I morti si rialzano perché qualcosa li richiama. Cerca nella cappella un sigillo o una traccia del richiamo e portala intatta.",
-        "completion": "Questo sigillo porta il marchio dei Gravecaller. Pregavo che la setta fosse estinta, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sigillo Gravecaller"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "I nomi dei morti",
-        "text": "Se i Gravecaller hanno profanato le tombe, devo sapere chi hanno rubato. Raccogli 3 pagine del registro funebre, {playerName}.",
-        "completion": "Povere anime... e guarda: il sagrestano Marrow fu il primo. Morthen cominciò dall'uomo che seppelliva Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Pagina di registro consunta"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Zittire il richiamo",
         "text": "Ogni nome nel registro è un'anima che Morthen vuole strappare dalla terra. Zittisci 12 ossa irrequiete, {playerName}, prima che il sussurro diventi coro.",
@@ -28774,49 +28657,6 @@ export const it_IT: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Ossa irrequiete messe a tacere"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Il rito del vincolo",
-        "text": "La cripta sotto la cappella deve essere dissigillata se vogliamo fermare il Gravecaller, ma solo un rito del vincolo lascerà passare i vivi. Mi servono 4 grumi di Sego Benedetto, gli scavatori della miniera accumulano sego a casse intere, e 6 Essenze Spettrali dai morti inquieti.",
-        "completion": "È fatto. La via sotto è aperta... raduna i compagni più forti, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sego benedetto"
-          },
-          "1": {
-            "label": "Essenza spettrale"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Nel Vuoto",
-        "text": "Morthen attende in fondo alla Cripta Vuota, circondato dai morti d'élite che ha rialzato. Porta quattro compagni e fermalo.",
-        "completion": "I sussurri sono cessati. I morti dormono, {playerName}, ed Eastbrook ti deve tutto.",
-        "objectives": {
-          "0": {
-            "label": "Morthen il Gravecaller ucciso"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "La campana del sagrestano",
-        "text": "Il registro nomina il sagrestano Marrow, primo guardiano rialzato da Morthen. Scendi con quattro compagni e ridagli il riposo rubato, {playerName}.",
-        "completion": "Marrow è libero finalmente. Non suonate campane per lui; ne udì abbastanza in vita.",
-        "objectives": {
-          "0": {
-            "label": "Sagrestano Marrow restituito al riposo"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "La traccia del Gravecaller",
-        "text": "Morthen è morto, ma la sua setta non sprecò un secolo di silenzio per una sola cappella. Cerca il suo grimorio tra le rovine, {playerName}.",
-        "completion": "Morthen scriveva a un 'Fogbinder' nell'acquitrino del nord. La setta non è morta, {playerName}, ha solo avuto pazienza.",
-        "objectives": {
-          "0": {
-            "label": "Grimorio di Morthen"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const it_IT: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "La Cripta Vuota",
-        "enterText": "Scendi nella Cripta Vuota...",
-        "leaveText": "Risali alla luce del giorno."
-      },
       "sunken_bastion": {
         "name": "Il Bastione Sommerso",
         "enterText": "Guadi nelle profondità del Bastione Sommerso...",

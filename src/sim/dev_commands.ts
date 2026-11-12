@@ -27,7 +27,6 @@ import { handleDrownedTempleDevChat } from './dev/drowned_temple_dev';
 import { handleFerryDevChat } from './dev/ferry_dev';
 import { handleGravewyrmSanctumDevChat } from './dev/gravewyrm_sanctum_dev';
 import { handleDevHoardTravel } from './dev/hoard_travel';
-import { handleHollowCryptDevChat } from './dev/hollow_crypt_dev';
 import { spawnDevPvpBot } from './dev/pvp_bot';
 import { handleSunkenBastionDevChat } from './dev/sunken_bastion_dev';
 import { devTownLanding, devTownList, resolveDevTown } from './dev/town_teleport';
@@ -209,7 +208,6 @@ export function handleDevChat(
   if (handleFerryDevChat(ctx, raw, pid)) return null; // /dev ferry (dev/ferry_dev.ts)
   if (handleSeasonalDevChat(ctx, raw, pid)) return null; // /dev season (seasonal/seasonal_dev.ts)
   if (handleScarecrowDevChat(ctx, raw, pid)) return null; // /dev scarecrow (seasonal/scarecrow_dev.ts)
-  if (handleHollowCryptDevChat(ctx, raw, pid)) return null; // /dev crypt (dev/hollow_crypt_dev.ts)
   if (handleSunkenBastionDevChat(ctx, raw, pid)) return null; // /dev bastion (dev/sunken_bastion_dev.ts)
   if (handleDrownedTempleDevChat(ctx, raw, pid)) return null; // /dev temple (dev/drowned_temple_dev.ts)
   if (handleWildheartBasinDevChat(ctx, raw, pid)) return null; // /dev wildheart (dev/wildheart_basin_dev.ts)

@@ -39,13 +39,6 @@
 import { BASTION_ALERT_KINDS, buildBastionAlertView } from './bastion_alert_view';
 import { type CageEscapeDeps, CageEscapePrompt } from './cage_escape_painter';
 import { buildCageEscapeView } from './cage_escape_view';
-import { CryptAlertSceneScan, type CryptSceneEntity } from './crypt_alert_scene_core';
-import {
-  buildCryptAlertView,
-  CRYPT_ALERT_KINDS,
-  CRYPT_SOFT_ALERT_KINDS,
-  type CryptAlertView,
-} from './crypt_alert_view';
 import {
   type DungeonPromptSlotState,
   dungeonPromptEnabled,
@@ -103,12 +96,7 @@ export interface DungeonPromptsFrame {
   world: {
     entities: ReadonlyMap<
       number,
-      GaolChainEntity &
-        SanctumSceneEntity &
-        CryptSceneEntity &
-        WildheartSceneEntity &
-        TempleSceneEntity &
-        KitUseBody
+      GaolChainEntity & SanctumSceneEntity & WildheartSceneEntity & TempleSceneEntity & KitUseBody
     >;
     entityRosterVersion: number;
     /** Select a body (the use prompt's press targets the body, then interacts). */
@@ -131,8 +119,6 @@ export class DungeonPrompts {
   private readonly wildheartScene = new WildheartAlertSceneScan();
   private readonly sanctum: EncounterAlert;
   private readonly sanctumScene = new SanctumAlertSceneScan();
-  private readonly crypt: EncounterAlert;
-  private readonly cryptScene = new CryptAlertSceneScan();
   private readonly temple: EncounterAlert;
   private readonly templeScene = new TempleAlertSceneScan();
   private readonly kitUse: EncounterAlert;
@@ -172,11 +158,6 @@ export class DungeonPrompts {
       id: 'sanctum-alert',
       className: 'ui-panel-strong encounter-alert sanctum-alert',
       kinds: SANCTUM_ALERT_KINDS,
-    });
-    this.crypt = new EncounterAlert(deps, {
-      id: 'crypt-alert',
-      className: 'ui-panel-strong encounter-alert crypt-alert',
-      kinds: CRYPT_ALERT_KINDS,
     });
     this.temple = new EncounterAlert(deps, {
       id: 'temple-alert',
@@ -252,17 +233,6 @@ export class DungeonPrompts {
         })
       : HINT_HIDDEN;
     this.sanctum.paint(sanctum);
-    let crypt: CryptAlertView = dungeonPromptEnabled('crypt', hints)
-      ? buildCryptAlertView({
-          selfId: p.id,
-          selfPos: p.pos,
-          auras: p.auras,
-          targetId: p.targetId,
-          entity,
-          scene: this.cryptScene.update(f.world),
-        })
-      : HINT_HIDDEN;
-    const cryptSoft = crypt.visible && CRYPT_SOFT_ALERT_KINDS.has(crypt.kind);
     const temple = dungeonPromptEnabled('temple', hints)
       ? buildTempleAlertView({
           selfPos: p.pos,
@@ -279,9 +249,10 @@ export class DungeonPrompts {
     slot.bastion = bastion.visible;
     slot.wildheart = wildheart.visible;
     slot.sanctum = sanctum.visible;
-    slot.crypt = crypt.visible;
+    // The Hollow Crypt alert left with the dungeon (2026-11-11).
+    slot.crypt = false;
     slot.temple = temple.visible;
-    slot.cryptSoft = cryptSoft;
+    slot.cryptSoft = false;
     slot.wildheartSoft = wildheartSoft;
     const use = usePromptYields(slot)
       ? null
@@ -292,8 +263,6 @@ export class DungeonPrompts {
           interactKey: f.interactKey,
           touch: f.touch,
         });
-    if (cryptSoft && use?.visible) crypt = KIT_USE_HIDDEN;
-    this.crypt.paint(crypt);
     // A spear to pull, and the use prompt offers it: the prompt says it.
     if (wildheartSoft && use?.visible) wildheart = KIT_USE_HIDDEN;
     this.wildheart.paint(wildheart);
@@ -307,7 +276,6 @@ export class DungeonPrompts {
     this.bastion.dispose();
     this.wildheart.dispose();
     this.sanctum.dispose();
-    this.crypt.dispose();
     this.temple.dispose();
     this.kitUse.dispose();
   }

@@ -26590,9 +26590,6 @@ export const es: EnTranslations = {
       "restless_bones": {
         "name": "Huesos inquietos"
       },
-      "marrow_restless_bones": {
-        "name": "Huesos inquietos"
-      },
       "gorrak": {
         "name": "Gorrak el Despiadado"
       },
@@ -26694,90 +26691,6 @@ export const es: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Aparecido de hueso"
-      },
-      "crypt_shambler": {
-        "name": "Tambaleante de la Cripta"
-      },
-      "hollow_acolyte": {
-        "name": "Acólito del Hueco"
-      },
-      "bonechill_widow": {
-        "name": "Viuda Huesofrío"
-      },
-      "sexton_marrow": {
-        "name": "Sacristán Marrow"
-      },
-      "morthen": {
-        "name": "Morthen el Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Centinela del Osario"
-      },
-      "hollow_gravedigger": {
-        "name": "Sepulturero Hueco"
-      },
-      "rime_egg_sac": {
-        "name": "Saco de Huevos de Escarcha"
-      },
-      "rimeweb_hatchling": {
-        "name": "Cría de Telaraña Escarchada"
-      },
-      "rimeweb_spinner": {
-        "name": "Tejedora de Telaraña Escarchada"
-      },
-      "candlewright_acolyte": {
-        "name": "Acólito Cerero"
-      },
-      "hollow_chorister": {
-        "name": "Corista Hueco"
-      },
-      "bound_soul": {
-        "name": "Alma atada"
-      },
-      "rimeweb": {
-        "name": "Dama del Frío de Huesos"
-      },
-      "cantor_ilvane": {
-        "name": "Cantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Guerrero del Osario"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adepto Invocador de Tumbas"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Degollador del Osario"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Nigromante Invocador de Tumbas"
-      },
-      "crypt_bone_minion": {
-        "name": "Esbirro de Hueso"
-      },
-      "crypt_bone_brute": {
-        "name": "Bruto de Hueso"
-      },
-      "crypt_bone_pile": {
-        "name": "Huesos Agitados"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gárgola de la Capilla"
-      },
-      "crypt_crow_caller": {
-        "name": "Invocador de Cuervos"
-      },
-      "crypt_carrion_crow": {
-        "name": "Cuervo Carroñero"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Draco del Osario"
-      },
-      "crypt_knellwyrm": {
-        "name": "Vermis del Doblar"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Vela del recuerdo"
       },
       "bastion_revenant": {
         "name": "Aparecido del Bastión"
@@ -28727,16 +28640,6 @@ export const es: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Los muertos inquietos",
-        "text": "La vieja capilla fue un lugar de descanso, hasta que algo despertó a sus muertos. Devuelve 8 huesos inquietos a la tierra, {playerName}.",
-        "completion": "Que descansen ahora, y que la Luz perdone a quien los despertó.",
-        "objectives": {
-          "0": {
-            "label": "Huesos inquietos devuelto al descanso"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Suministros robados",
         "text": "Esos bandidos asaltaron mi último carro y se llevaron cuatro cajas de mercancía: herramientas, sal, buen lino de Eastbrook. Las cajas están amontonadas por su campamento, en las colinas del noroeste. ¿Me las robarías de vuelta?",
@@ -28747,26 +28650,6 @@ export const es: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Susurros bajo tierra",
-        "text": "Los muertos vuelven a levantarse porque algo los llama. Busca en la capilla una señal de quien susurra y tráela intacta.",
-        "completion": "Este sigilo lleva la marca de los Gravecallers. Temía que esa secta siguiera muerta, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sigilo de Gravecaller"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Los nombres de los muertos",
-        "text": "Si los Gravecallers profanaron nuestras tumbas, necesito saber a quiénes robaron. Reúne 3 páginas del registro de entierros, {playerName}.",
-        "completion": "Pobres almas... y mira esto: el sacristán Marrow fue el primero. Morthen empezó con quien enterraba a Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Página de registro desgastada"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Silenciar la llamada",
         "text": "Cada nombre del registro es un alma que Morthen quiere arrancar de la tierra. Silencia 12 huesos inquietos, {playerName}, antes de que el susurro sea coro.",
@@ -28774,49 +28657,6 @@ export const es: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Huesos inquietos silenciado"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "El rito vinculante",
-        "text": "La cripta bajo la capilla debe abrirse si queremos detener al Gravecaller, pero solo un rito de vínculo dejará pasar a los vivos. Necesito 4 trozos de Sebo Bendito, los madrigueros de la mina acumulan sebo por cajones, y 6 Esencias Fantasmales de los muertos inquietos.",
-        "completion": "Está hecho. El camino de abajo se abre... reúne a tus compañeros más fuertes, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sebo bendito"
-          },
-          "1": {
-            "label": "Esencia fantasmal"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Dentro del Hueco",
-        "text": "Morthen te espera en el fondo de la Cripta Hueca, rodeado de muertos de élite. Lleva cuatro compañeros y acaba con él.",
-        "completion": "El susurro cesó. Los muertos duermen, {playerName}, y Eastbrook te debe cuanto tiene.",
-        "objectives": {
-          "0": {
-            "label": "Morthen el Gravecaller abatido"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "La campana del sacristán",
-        "text": "El registro nombra al sacristán Marrow, primer guardián alzado por Morthen. Entra con cuatro compañeros y dale el descanso robado, {playerName}.",
-        "completion": "Marrow es libre al fin. No doblen campanas por él; oyó bastantes en vida.",
-        "objectives": {
-          "0": {
-            "label": "Sacristán Marrow devuelto al descanso"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "El rastro del Gravecaller",
-        "text": "Morthen murió, pero su secta no gastaría un siglo de silencio en una sola capilla. Busca su grimorio entre las ruinas, {playerName}.",
-        "completion": "Morthen escribía a un 'Fogbinder' en la ciénaga del norte. La secta no está muerta, {playerName}, solo ha sido paciente.",
-        "objectives": {
-          "0": {
-            "label": "Grimorio de Morthen"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const es: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "La Cripta Hueca",
-        "enterText": "Desciendes a la Cripta Hueca...",
-        "leaveText": "Vuelves a subir a la luz del día."
-      },
       "sunken_bastion": {
         "name": "El Bastión Sumergido",
         "enterText": "Vadeas hacia las profundidades del Bastión Sumergido...",

@@ -26590,9 +26590,6 @@ export const sv_SE: EnTranslations = {
       "restless_bones": {
         "name": "Rastlösa ben"
       },
-      "marrow_restless_bones": {
-        "name": "Rastlöst skelett"
-      },
       "gorrak": {
         "name": "Gorrak den skoningslöse"
       },
@@ -26694,90 +26691,6 @@ export const sv_SE: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Benklädd gengångare"
-      },
-      "crypt_shambler": {
-        "name": "Kryptvandrare"
-      },
-      "hollow_acolyte": {
-        "name": "Ihålig akolyt"
-      },
-      "bonechill_widow": {
-        "name": "Benkylsänka"
-      },
-      "sexton_marrow": {
-        "name": "Klockare Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Gravkallaren"
-      },
-      "ossuary_sentinel": {
-        "name": "Benhusväktare"
-      },
-      "hollow_gravedigger": {
-        "name": "Ihålig dödgrävare"
-      },
-      "rime_egg_sac": {
-        "name": "Rimfrostsäggsäck"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rimnätsunge"
-      },
-      "rimeweb_spinner": {
-        "name": "Rimnätsspinnare"
-      },
-      "candlewright_acolyte": {
-        "name": "Ljusmakarakolyt"
-      },
-      "hollow_chorister": {
-        "name": "Ihålig korist"
-      },
-      "bound_soul": {
-        "name": "Bunden själ"
-      },
-      "rimeweb": {
-        "name": "Benkylans dam"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Benhuskrigare"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravkallaradept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Benhusets strupskärare"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravkallarnekromantiker"
-      },
-      "crypt_bone_minion": {
-        "name": "Bentjänare"
-      },
-      "crypt_bone_brute": {
-        "name": "Benbest"
-      },
-      "crypt_bone_pile": {
-        "name": "Rörliga ben"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapellgargoyl"
-      },
-      "crypt_crow_caller": {
-        "name": "Kråkkallare"
-      },
-      "crypt_carrion_crow": {
-        "name": "Askråka"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Benhusdrake"
-      },
-      "crypt_knellwyrm": {
-        "name": "Dödsklangslindorm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Minnesljus"
       },
       "bastion_revenant": {
         "name": "Bastionens gengångare"
@@ -28727,16 +28640,6 @@ export const sv_SE: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "De rastlösa döda",
-        "text": "Den gamla ruinen på den nordvästra kullen var en gång ett kapell, och dess gård en viloplats. Något har stört de döda ur deras sömn. Skänk dem frid, {playerName} - återlämna 8 Rastlösa ben till jorden.",
-        "completion": "Må de vila nu, och må Ljuset förlåta vad som än väckte dem.",
-        "objectives": {
-          "0": {
-            "label": "Rastlösa ben lagda till ro"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Stulna förråd",
         "text": "De där banditerna slog till mot min senaste vagn och kom undan med fyra lådor varor - verktyg, salt, fint Östbäckslinne. Lådorna är staplade runt deras läger i de nordvästra kullarna. Stjäl tillbaka dem åt mig, är du snäll?",
@@ -28747,26 +28650,6 @@ export const sv_SE: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Viskningar där nere",
-        "text": "Du har lagt de döda till ro, men de förblir inte vilande - något kallar tillbaka dem. Genomsök kapellruinen efter varje spår av den som kallar. Om du hittar ett sigill eller insegel, ta det till mig orört.",
-        "completion": "Det här sigillet... det bär Gravkallarnas märke, en sekt jag hade bett att vore utdöd. Det här är värre än jag fruktade, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravkallarens sigill"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "De dödas namn",
-        "text": "Om Gravkallarna reste våra döda måste jag veta vilkas gravar de plundrade. Kapellets klockare förde en begravningsliggare, och vinden har spridit dess sidor över kapellgården. Samla 3 av dem åt mig, {playerName} - de döda förtjänar att kallas vid sina namn.",
-        "completion": "Dessa arma själar... och se här. Klockare Marrow - kapellets egen levande vårdare - hans grav den första som stördes. Morthen började med just den man som begravde Östbäcks döda.",
-        "objectives": {
-          "0": {
-            "label": "Väderbiten liggarsida"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Tysta kallelsen",
         "text": "Varje namn i den liggaren är en själ Morthen tänker släpa upp ur jorden, och kapellgården kryllar redan av dem han har kallat. Återför 12 rastlösa ben till sina gravar, {playerName}, innan Gravkallarens viskning sväller till en kör.",
@@ -28774,49 +28657,6 @@ export const sv_SE: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Rastlösa ben tystade"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Den bindande riten",
-        "text": "Kryptan under kapellet måste öppnas om vi ska stoppa Gravecallern - men endast en bindande rit låter de levande passera. Jag behöver 4 klumpar välsignad talg - gruvans grävare hamstrar talg lådvis - och 6 spöklika essenser från de rastlösa döda.",
-        "completion": "Det är gjort. Vägen nedåt står öppen... och må Ljuset förlåta mig för att jag öppnade den. Samla dina starkaste följeslagare innan du stiger ner, {playerName}. Ingen bör möta den Ihåliga ensam.",
-        "objectives": {
-          "0": {
-            "label": "Välsignad talg"
-          },
-          "1": {
-            "label": "Spöklik essens"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "In i det ihåliga",
-        "text": "Morthen Gravkallaren väntar på botten av Den ihåliga kryptan, omringad av de elitdöda han har rest. Han är långt bortom någon enskild hjälte - ta fyra följeslagare, inte färre. Gör slut på honom, och Dalens döda kommer äntligen att sova.",
-        "completion": "Viskningarna har upphört. Du har gjort vad hela Dalen inte kunde, {playerName} - de döda sover, och Östbäck är dig skyldig allt det har.",
-        "objectives": {
-          "0": {
-            "label": "Morthen Gravkallaren dräpt"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Klockarens klocka",
-        "text": "Liggaren namngav honom och kryptan rymmer honom: klockare Marrow, kapellets vårdare, den förste man Morthen reste - vaktande sin mästares dörr i döden lika troget som han skötte kapellet i livet. Ta med fyra följeslagare in i Den ihåliga kryptan och skänk den gamle klockaren den ro han berövades, {playerName}.",
-        "completion": "Så Marrow är äntligen fri. Ring ingen klocka för honom - han hörde tillräckligt av dem i livet.",
-        "objectives": {
-          "0": {
-            "label": "Klockare Marrow lagd till ro"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Gravkallarens spår",
-        "text": "Morthen är död, men en fråga gnager i mig: en sekt som gömt sig i ett sekel slösar inte bort sig själv på ett enda bykapell. Han höll en grimoar - sina riter, sin korrespondens. Om något av den överlever, ligger den i sakristian i det ödelagda kapellet ovanför kryptan. Genomsök ruinen och hämta mig vad som än återstår av hans skrifter, {playerName}.",
-        "completion": "Morthen skrev till en 'Fogbinder' i det norra kärret. Sekten är inte död, {playerName} - den har bara varit tålmodig.",
-        "objectives": {
-          "0": {
-            "label": "Morthens grimoar"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const sv_SE: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Den ihåliga kryptan",
-        "enterText": "Du stiger ner i Den ihåliga kryptan ...",
-        "leaveText": "Du klättrar tillbaka upp i dagsljuset."
-      },
       "sunken_bastion": {
         "name": "Den sjunkna bastionen",
         "enterText": "Du vadar ner i Den sjunkna bastionen ...",

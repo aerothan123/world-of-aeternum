@@ -1807,7 +1807,7 @@ export const ZONE3_QUESTS: Record<string, QuestDef> = {
     turnInNpcId: 'brother_aldric_highwatch',
     text: 'The zealots move with purpose now, watches set and supplies counted, like soldiers before a siege. Cultists who organize are cultists taking orders, $N. One of them is carrying written orders from below. Find the zealot who has them and bring the orders to me: I would know the hand that commands them.',
     completionText:
-      "This script... I last saw its like in Morthen's grimoire, in Eastbrook. The same hand has guided every grave we have fought over, $N.",
+      'This script... I last saw its like in Eastbrook. The same hand has guided every grave we have fought over, $N.',
     objectives: [
       { type: 'collect', itemId: 'wyrmcult_orders', count: 1, label: 'Orders from Below' },
     ],

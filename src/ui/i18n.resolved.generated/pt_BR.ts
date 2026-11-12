@@ -26590,9 +26590,6 @@ export const pt_BR: EnTranslations = {
       "restless_bones": {
         "name": "Ossos inquietos"
       },
-      "marrow_restless_bones": {
-        "name": "Ossos Inquietos"
-      },
       "gorrak": {
         "name": "Gorrak o Impiedoso"
       },
@@ -26694,90 +26691,6 @@ export const pt_BR: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Revenante encouraçado de ossos"
-      },
-      "crypt_shambler": {
-        "name": "Cambaleante da cripta"
-      },
-      "hollow_acolyte": {
-        "name": "Acólito do Vazio"
-      },
-      "bonechill_widow": {
-        "name": "Viúva Frio-osso"
-      },
-      "sexton_marrow": {
-        "name": "Sacristão Marrow"
-      },
-      "morthen": {
-        "name": "Morthen o Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Sentinela do Ossuário"
-      },
-      "hollow_gravedigger": {
-        "name": "Coveiro Vazio"
-      },
-      "rime_egg_sac": {
-        "name": "Saco de Ovos de Geada"
-      },
-      "rimeweb_hatchling": {
-        "name": "Filhote de Teia de Geada"
-      },
-      "rimeweb_spinner": {
-        "name": "Tecelã de Teia de Geada"
-      },
-      "candlewright_acolyte": {
-        "name": "Acólito Fabricante de Velas"
-      },
-      "hollow_chorister": {
-        "name": "Corista Vazio"
-      },
-      "bound_soul": {
-        "name": "Alma presa"
-      },
-      "rimeweb": {
-        "name": "Dama do Frio nos Ossos"
-      },
-      "cantor_ilvane": {
-        "name": "Cantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Guerreiro do Ossuário"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adepto Gravecaller"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Degolador do Ossuário"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Necromante Gravecaller"
-      },
-      "crypt_bone_minion": {
-        "name": "Lacaio de Ossos"
-      },
-      "crypt_bone_brute": {
-        "name": "Bruto de Ossos"
-      },
-      "crypt_bone_pile": {
-        "name": "Ossos Agitados"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gárgula da Capela"
-      },
-      "crypt_crow_caller": {
-        "name": "Invocador de Corvos"
-      },
-      "crypt_carrion_crow": {
-        "name": "Corvo Carniceiro"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Draco do Ossuário"
-      },
-      "crypt_knellwyrm": {
-        "name": "Serpe do Dobre"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Vela da lembrança"
       },
       "bastion_revenant": {
         "name": "Revenante do Bastião"
@@ -28727,16 +28640,6 @@ export const pt_BR: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Os mortos inquietos",
-        "text": "A velha capela era lugar de descanso até algo acordar seus mortos. Devolva 8 ossos inquietos à terra, {playerName}.",
-        "completion": "Que descansem agora, e que a Luz perdoe quem os despertou.",
-        "objectives": {
-          "0": {
-            "label": "Ossos inquietos devolvido ao descanso"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Suprimentos roubados",
         "text": "Os bandidos levaram minha última carroça: ferramentas, sal e bom linho de Eastbrook. Recupere 4 caixas no acampamento noroeste.",
@@ -28747,26 +28650,6 @@ export const pt_BR: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Sussurros no subsolo",
-        "text": "Os mortos se levantam porque algo os chama. Procure na capela um selo ou sinal do chamador e traga intacto.",
-        "completion": "Este sigilo traz a marca dos Gravecallers. Eu rezava para que essa seita estivesse extinta, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sigilo Gravecaller"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Os nomes dos mortos",
-        "text": "Se os Gravecallers roubaram nossos túmulos, preciso saber quem foi tomado. Reúna 3 páginas do registro funerário, {playerName}.",
-        "completion": "Pobres almas... e veja: o sacristão Marrow foi o primeiro. Morthen começou pelo homem que enterrava Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Página de registro gasta"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Silenciar o chamado",
         "text": "Cada nome do registro é uma alma que Morthen quer arrancar da terra. Silencie 12 ossos inquietos, {playerName}, antes que o sussurro vire coro.",
@@ -28774,49 +28657,6 @@ export const pt_BR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Ossos inquietos silenciado"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "O rito de vínculo",
-        "text": "A cripta sob a capela precisa ser aberta se quisermos deter o Gravecaller, mas apenas um rito de vínculo deixará os vivos passarem. Preciso de 4 pedaços de Sebo Abençoado (os escavadores da mina acumulam sebo aos caixotes) e 6 Essências Espectrais dos mortos inquietos.",
-        "completion": "Está feito. O caminho abaixo se abre... reúna seus companheiros mais fortes, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sebo abençoado"
-          },
-          "1": {
-            "label": "Essência espectral"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Para o Vazio",
-        "text": "Morthen espera no fundo da Cripta Vazia, cercado pelos mortos de elite que ergueu. Leve quatro companheiros e acabe com ele.",
-        "completion": "Os sussurros pararam. Os mortos dormem, {playerName}, e Eastbrook lhe deve tudo.",
-        "objectives": {
-          "0": {
-            "label": "Morthen o Gravecaller abatido"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "O sino do sacristão",
-        "text": "O registro nomeia o sacristão Marrow, primeiro guardião erguido por Morthen. Desça com quatro companheiros e devolva o repouso roubado, {playerName}.",
-        "completion": "Marrow enfim está livre. Não toquem sinos por ele; ouviu sinos demais em vida.",
-        "objectives": {
-          "0": {
-            "label": "Sacristão Marrow devolvido ao descanso"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "A trilha do Gravecaller",
-        "text": "Morthen está morto, mas sua seita não gastaria um século de silêncio por uma só capela. Procure o grimório nas ruínas, {playerName}.",
-        "completion": "Morthen escrevia a um 'Fogbinder' no brejo ao norte. A seita não morreu, {playerName}; apenas foi paciente.",
-        "objectives": {
-          "0": {
-            "label": "Grimório de Morthen"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const pt_BR: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "A Cripta Vazia",
-        "enterText": "Você desce para a Cripta Vazia...",
-        "leaveText": "Você volta à luz do dia."
-      },
       "sunken_bastion": {
         "name": "O Bastião Submerso",
         "enterText": "Você avança pela água até as profundezas do Bastião Submerso...",

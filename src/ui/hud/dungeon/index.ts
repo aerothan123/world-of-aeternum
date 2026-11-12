@@ -18,22 +18,6 @@ export type { CageEscapeDeps } from './cage_escape_painter';
 export { CageEscapePrompt } from './cage_escape_painter';
 export type { CageEscapeInput, CageEscapeLive, CageEscapeView } from './cage_escape_view';
 export { buildCageEscapeView } from './cage_escape_view';
-export type { CryptSceneEntity, CryptSceneWorld } from './crypt_alert_scene_core';
-export { CryptAlertSceneScan } from './crypt_alert_scene_core';
-export type {
-  CryptAlertEntity,
-  CryptAlertInput,
-  CryptAlertKind,
-  CryptAlertScene,
-  CryptAlertView,
-} from './crypt_alert_view';
-export {
-  buildCryptAlertView,
-  CRYPT_ALERT_KINDS,
-  CRYPT_SOFT_ALERT_KINDS,
-  EMPTY_CRYPT_SCENE,
-  inMarkedHalf,
-} from './crypt_alert_view';
 export type { DungeonPromptsFrame } from './dungeon_prompts';
 export { DungeonPrompts } from './dungeon_prompts';
 export type { DungeonTrackerPainterDeps } from './dungeon_tracker_painter';

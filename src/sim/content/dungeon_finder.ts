@@ -128,66 +128,6 @@ export interface FinderActivity {
 const FIVE_MAN: FinderComposition = { tank: 1, healer: 1, dps: 3 };
 const TEN_RAID: FinderComposition = { tank: 2, healer: 2, dps: 6 };
 
-const HOLLOW_CRYPT_ENCOUNTERS: readonly FinderEncounter[] = [
-  // The rework's route (hollow_crypt.md): two wing bosses, the choir, the ring.
-  // The wing bosses' cores are their encounter modules (encounters/hollow_crypt).
-  {
-    mobId: 'sexton_marrow',
-    mechanics: ['crypt_shovelful', 'crypt_measured_for_the_grave', 'crypt_burial_toll'],
-  },
-  {
-    mobId: 'rimeweb',
-    mechanics: [
-      'crypt_brides_lament',
-      'crypt_frozen_embrace',
-      'crypt_rime_path',
-      'crypt_bridal_freeze',
-    ],
-  },
-  {
-    mobId: 'cantor_ilvane',
-    mechanics: [
-      'crypt_dirge_of_the_hollow',
-      'crypt_harmony',
-      'crypt_bone_organ',
-      'crypt_crescendo',
-    ],
-  },
-  // Morthen's three-act rite (encounters/hollow_crypt/morthen*.ts).
-  {
-    mobId: 'morthen',
-    final: true,
-    mechanics: [
-      'crypt_morthen_shadow_pulse',
-      'crypt_gravecall',
-      'crypt_rite_of_the_unquiet',
-      'crypt_reap_the_unquiet',
-    ],
-  },
-];
-
-// The heroic tier adds each boss's heroic twists (its own array, so the
-// normal preview never carries them); Morthen's line also carries the
-// Knellwyrm's heroic Burning Knell (the wyrm has no finder row of its own).
-const HOLLOW_CRYPT_ENCOUNTERS_HEROIC: readonly FinderEncounter[] = [
-  {
-    mobId: 'sexton_marrow',
-    mechanics: [...HOLLOW_CRYPT_ENCOUNTERS[0].mechanics, 'crypt_marrow_heroic'],
-  },
-  {
-    mobId: 'rimeweb',
-    mechanics: [...HOLLOW_CRYPT_ENCOUNTERS[1].mechanics, 'crypt_lady_heroic'],
-  },
-  {
-    mobId: 'cantor_ilvane',
-    mechanics: [...HOLLOW_CRYPT_ENCOUNTERS[2].mechanics, 'crypt_ilvane_heroic'],
-  },
-  {
-    ...HOLLOW_CRYPT_ENCOUNTERS[3],
-    mechanics: [...HOLLOW_CRYPT_ENCOUNTERS[3].mechanics, 'crypt_morthen_heroic'],
-  },
-];
-
 const SUNKEN_BASTION_ENCOUNTERS: readonly FinderEncounter[] = [
   // The rework's route (sunken_bastion.md): the bastion, the gaol (its
   // Turnkey miniboss, then Ossick), the crown.
@@ -411,21 +351,10 @@ const IGNIVAR_RAID_ENCOUNTERS_HEROIC: readonly FinderEncounter[] = [
   IGNIVAR_RAID_ENCOUNTERS[1],
 ];
 
+// The Hollow Crypt (the level 7 to 10 dungeon) was retired by the owner on
+// 2026-11-11 with no replacement yet, so the finder intentionally has no
+// activity in that band until a new dungeon is built.
 export const FINDER_ACTIVITIES: readonly FinderActivity[] = [
-  {
-    id: 'hollow_crypt_normal',
-    dungeonId: 'hollow_crypt',
-    difficulty: 'normal',
-    kind: 'dungeon',
-    minLevel: 7,
-    maxLevel: 10,
-    size: 5,
-    composition: FIVE_MAN,
-    autoQueue: true,
-    entranceDungeonId: 'hollow_crypt',
-    encounters: HOLLOW_CRYPT_ENCOUNTERS,
-    lockout: 'none',
-  },
   {
     id: 'sunken_bastion_normal',
     dungeonId: 'sunken_bastion',
@@ -467,20 +396,6 @@ export const FINDER_ACTIVITIES: readonly FinderActivity[] = [
     entranceDungeonId: 'gravewyrm_sanctum',
     encounters: GRAVEWYRM_SANCTUM_ENCOUNTERS,
     lockout: 'none',
-  },
-  {
-    id: 'hollow_crypt_heroic',
-    dungeonId: 'hollow_crypt',
-    difficulty: 'heroic',
-    kind: 'dungeon',
-    minLevel: 20,
-    maxLevel: 20,
-    size: 5,
-    composition: FIVE_MAN,
-    autoQueue: true,
-    entranceDungeonId: 'hollow_crypt',
-    encounters: HOLLOW_CRYPT_ENCOUNTERS_HEROIC,
-    lockout: 'daily',
   },
   {
     id: 'sunken_bastion_heroic',

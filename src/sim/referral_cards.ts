@@ -3,7 +3,9 @@ import { finderActivity } from './content/dungeon_finder';
 /** Stable keys and bit positions are persisted; append rather than reorder. */
 export const REFERRAL_MILESTONES = [
   { id: 'tutorial', questId: 'q_ps_set_sail', dungeonId: null },
-  { id: 'hollow', questId: 'q_hollow', dungeonId: 'hollow_crypt' },
+  // Retired with the Hollow Crypt (2026-11-11): the slot keeps its persisted
+  // bit position but no quest or dungeon can earn it any more.
+  { id: 'hollow', questId: null, dungeonId: null },
   { id: 'fogbinder', questId: 'q_mistcaller', dungeonId: 'sunken_bastion' },
   { id: 'gravewyrm', questId: 'q_gravewyrm', dungeonId: 'gravewyrm_sanctum' },
   { id: 'raid', questId: null, dungeonId: null },

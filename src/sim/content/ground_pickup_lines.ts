@@ -29,18 +29,6 @@ export const GROUND_PICKUP_LINES: Record<string, GroundPickupLines> = {
     deny: 'The crate is nailed shut.',
     enough: 'You already have enough supply crates.',
   },
-  gravecaller_sigil: {
-    deny: 'The sigil repels your touch.',
-    enough: "You already carry a Gravecaller's Sigil.",
-  },
-  weathered_ledger_page: {
-    deny: 'The ledger pages are bound too tightly to take.',
-    enough: 'You already have enough ledger pages.',
-  },
-  morthen_grimoire: {
-    deny: "The grimoire's clasp is magically sealed.",
-    enough: "You already have Morthen's Grimoire.",
-  },
   fen_muster_order: {
     deny: 'The wax seal holds until the order is yours to claim.',
     enough: 'You already have the Fenbridge muster order.',

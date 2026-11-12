@@ -198,7 +198,6 @@ export const table: DeedLocaleTable = {
     name: 'Børst Støvet Af',
     desc: 'Dø for første gang; det sker for de bedste af os.',
   },
-  dgn_hollow_crypt: { name: 'Kryptbryder', desc: 'Besejr Morthen Gravkalderen i Den Hule Krypt.' },
   dgn_sunken_bastion: {
     name: 'Fogbinderen Ubundet',
     desc: 'Besejr Vael Fogbinderen i Den Sunkne Bastion.',
@@ -210,10 +209,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Ormen Dernede',
     desc: 'Besejr Korzul Gravormen i Gravormens Helligdom.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroisk: Den Hule Krypt',
-    desc: 'Besejr Morthen Gravkalderen i Den Hule Krypt på heroisk sværhedsgrad.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroisk: Den Sunkne Bastion',
@@ -250,14 +245,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Halvtreds Døre Nede',
     desc: 'Besejr 50 slutbosser i fangekældrene.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Ikke en Knogle at Rafle om',
-    desc: 'Besejr Morthen Gravkalderen på heroisk sværhedsgrad, uden at noget gruppemedlem dør.',
-  },
-  dgn_morthen_trio: {
-    name: 'Tre mod Graven',
-    desc: 'Besejr Morthen Gravkalderen med tre eller færre spillere.',
   },
   dgn_olen_arc: {
     name: 'Et Skridt foran Leen',
@@ -1197,22 +1184,6 @@ export const table: DeedLocaleTable = {
     desc: 'Hold Verdens-PvP slået til i 7 dage spilletid, mens du er i live i den åbne verden eller en PvP-kamp. Helligdomme, PvE-instanser, død og udlogning sætter fremskridt på pause; at slå det fra nulstiller dem. Optjente titler er permanente.',
     title: 'Uovervindelig',
   },
-  dgn_morthen_candlelight: {
-    name: 'Alle lys tændt',
-    desc: 'Besejr Morthen Gravkalderen efter at have gentændt alle fire mindelys inden for 20 sekunder, efter at hans hvileløse værn opstod.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Stille nu',
-    desc: 'Besejr kantor Ilvane, uden at hendes Hulrummets klagesang nogensinde rammer nogen.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Ingen efterladt hængende',
-    desc: 'Besejr Knoglekuldens frue, uden at hun nogensinde taber nogen fra sit Frosne favntag.',
-  },
-  dgn_marrow_tidy: {
-    name: 'En ryddelig kirkegård',
-    desc: 'Besejr graver Marrow med hver åben grav lagt ved klokkegårdens kant.',
-  },
   dgn_drowned_temple_cantor: {
     name: 'Det sidste vers',
     desc: 'Besejr Ysolei, den druknede månes avatar, med Det blege kors sidste kantor ved din side.',
@@ -1257,10 +1228,6 @@ export const table: DeedLocaleTable = {
   dgn_turnkey_cage: {
     name: 'Intet bur holder os',
     desc: 'Besejr fængselsvogteren, uden at nogen knuses i et jernbur.',
-  },
-  dgn_crypt_knellwyrm: {
-    name: 'Ikke et svedent hår',
-    desc: 'Besejr dødsklangslindormen, uden at nogen brændes af dens Bålsvejp.',
   },
   dgn_mere_hydra: {
     name: 'Alle hoveder ned',

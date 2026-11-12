@@ -18,10 +18,6 @@ import type { DungeonGuideRun } from './dungeon_guide/types';
 import type { KorgathFightState } from './encounters/gravewyrm_sanctum/korgath_state';
 import type { KorzulFightState } from './encounters/gravewyrm_sanctum/korzul_state';
 import type { VelkharFightState } from './encounters/gravewyrm_sanctum/velkhar_state';
-import type {
-  CryptBossFightState,
-  KnellwyrmKnellState,
-} from './encounters/hollow_crypt/boss_state';
 import type { GrassClearCircle } from './grass_clear';
 import type { LockSession, LootTier, PickAction, StepResult, VisibleCell } from './lockpick';
 import type { MapObjectives } from './map_objectives';
@@ -6201,64 +6197,6 @@ export type SanctumFightState =
   | VelkharFightState
   | KorzulFightState;
 
-/** Morthen's entrance and the Knellwyrm finale at the Hollow Crypt's Rite Ring
- *  (encounters/hollow_crypt), on Morthen for the claim's life: the entrance
- *  plays once per claim, the finale once after he falls. */
-export interface CryptRiteState {
-  phase: 'dormant' | 'wakes' | 'rise' | 'proclaim' | 'descend' | 'land' | 'risen';
-  /** Seconds into the current entrance phase. */
-  t: number;
-  finale: 'none' | 'pyre' | 'arrive' | 'settle' | 'fight' | 'slain';
-  /** Seconds into the current finale phase. */
-  ft: number;
-  /** The Knellwyrm, once summoned. */
-  wyrmId: number | null;
-  /** The burning ritual circle (the warning), while it stands. */
-  pyreObjectId: number | null;
-}
-
-/** The Knellwyrm's fight (encounters/hollow_crypt/knellwyrm.ts), on the wyrm;
- *  cleared when the fight ends (a kill, an evade, a wipe). */
-export interface KnellwyrmFightState {
-  strafeTimer: number;
-  bellowTimer: number;
-  /** A marked strafe: its lane (instance-local), then the run along it. */
-  strafe: {
-    x: number;
-    z: number;
-    yaw: number;
-    length: number;
-    phase: 'mark' | 'run';
-    t: number;
-    /** Where it took wing from (instance-local). */
-    fromX: number;
-    fromZ: number;
-    /** The lane's encounter object (the mark, then the burning lane). */
-    objectId: number;
-    /** Players the run already burned (one hit each). */
-    hit: number[];
-  } | null;
-  /** Lanes still burning (their object ids). */
-  lanes: {
-    x: number;
-    z: number;
-    yaw: number;
-    length: number;
-    remaining: number;
-    tick: number;
-    objectId: number;
-  }[];
-  casts: number;
-  /** Someone was burned by a Pyre Strafe this fight (the deed reads it). */
-  burned: boolean;
-  /** Heroic Burning Knell (encounters/hollow_crypt/knellwyrm_knell.ts):
-   *  seconds to the next flight, and the flight in progress. */
-  knellTimer?: number;
-  knell?: KnellwyrmKnellState | null;
-  /** Burning Knells flown (the half pick's draw order). */
-  knells?: number;
-}
-
 /** What an in-dungeon gate looks like (render-only pick; collision is one box). */
 export type DungeonGateKind =
   | 'portcullis'
@@ -6405,7 +6343,6 @@ export interface DungeonDef {
     | 'ignivar_lift'
     | 'ignivar_depths'
     | 'wildheart'
-    | 'hollow_crypt'
     | 'sunken_bastion'
     | 'drowned_temple'
     | 'gravewyrm_sanctum'
@@ -8481,15 +8418,6 @@ export interface Entity extends ClientMirroredEntityFields {
    *  an engine piece no shipped template carries yet can be playtested. Sim
    *  authority only; never set in a live realm without ALLOW_DEV_COMMANDS. */
   devTrashKit?: TrashKitDef;
-  /** Morthen's entrance and the Knellwyrm finale (encounters/hollow_crypt),
-   *  on Morthen. Sim authority only; the client reads casts, auras, heights. */
-  cryptRite?: CryptRiteState;
-  /** The Knellwyrm's fight state (encounters/hollow_crypt/knellwyrm.ts). */
-  knellwyrmFight?: KnellwyrmFightState;
-  /** Per-fight state of a Hollow Crypt wing boss (encounters/hollow_crypt:
-   *  Sexton Marrow, the Lady of the Bonechill, Cantor Ilvane). Sim authority
-   *  only; the client reads casts, auras and the encounter objects. */
-  cryptBossFight?: CryptBossFightState;
   /** A 'relight' or 'free' G3 use completed on this body (mob/trash_kit/encounter_use.ts):
    *  the user's entity id, read and cleared by the dungeon module that owns
    *  the body on its next pass. Sim authority only. */

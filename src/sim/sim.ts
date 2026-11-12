@@ -778,7 +778,6 @@ import {
   awardHeroicMarks as awardHeroicMarksImpl,
   DEFAULT_RAID_LOCKOUT_MS,
   DEFAULT_WEEKLY_RAID_LOCKOUT_MS,
-  enterCrypt as enterCryptImpl,
   enterDungeon as enterDungeonImpl,
   inheritDungeonResetLocks as inheritDungeonResetLocksImpl,
   instanceClaimIdAt as instanceClaimIdAtImpl,
@@ -10342,11 +10341,7 @@ export class Sim {
     return this.players.get(pid)?.dungeonDifficulty ?? 'normal';
   }
 
-  // Legacy single-dungeon entry points (tests + scripts use these).
-  enterCrypt(pid?: number): void {
-    enterCryptImpl(this.ctx, pid);
-  }
-
+  // Legacy single-dungeon exit (tests + scripts use it).
   leaveCrypt(pid?: number): void {
     leaveCryptImpl(this.ctx, pid);
   }

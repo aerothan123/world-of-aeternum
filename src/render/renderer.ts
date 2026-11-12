@@ -500,7 +500,6 @@ import { HillRingVisuals } from './hill_ring';
 import { createHitchFrameAligner } from './hitch_frame_align_core';
 import { HOARD_BODY_IDS, hoardEntrance } from './hoard_entrance';
 import * as hoardValley from './hoard_valley_frame';
-import { paintsOwnBreath } from './hollow_crypt/crypt_creature_fx_core';
 import { buildHollowGates, type HollowGatesView } from './hollow_gates';
 import { type IceBlockVisual, syncIceBlockVisual } from './ice_block_visual';
 import { idleSlot } from './idle_queue';

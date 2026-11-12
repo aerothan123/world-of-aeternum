@@ -26590,9 +26590,6 @@ export const tr_TR: EnTranslations = {
       "restless_bones": {
         "name": "Huzursuz Kemikler"
       },
-      "marrow_restless_bones": {
-        "name": "Huzursuz Kemikler"
-      },
       "gorrak": {
         "name": "Acımasız Gorrak"
       },
@@ -26694,90 +26691,6 @@ export const tr_TR: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Kemikzırhlı Hortlak"
-      },
-      "crypt_shambler": {
-        "name": "Mahzen Sürünücüsü"
-      },
-      "hollow_acolyte": {
-        "name": "Oyuk Çömezi"
-      },
-      "bonechill_widow": {
-        "name": "Kemiksoğuk Dul"
-      },
-      "sexton_marrow": {
-        "name": "Zangoç Marrow"
-      },
-      "morthen": {
-        "name": "Mezarçağıran Morthen"
-      },
-      "ossuary_sentinel": {
-        "name": "Kemik Mahzeni Nöbetçisi"
-      },
-      "hollow_gravedigger": {
-        "name": "Boşluk Mezarcısı"
-      },
-      "rime_egg_sac": {
-        "name": "Kırağı Yumurta Kesesi"
-      },
-      "rimeweb_hatchling": {
-        "name": "Kırağı Ağı Yavrusu"
-      },
-      "rimeweb_spinner": {
-        "name": "Kırağı Ağı Örücüsü"
-      },
-      "candlewright_acolyte": {
-        "name": "Mum Ustası Müridi"
-      },
-      "hollow_chorister": {
-        "name": "Boşluk Korocusu"
-      },
-      "bound_soul": {
-        "name": "Bağlı Ruh"
-      },
-      "rimeweb": {
-        "name": "Kemik Donduran Leydi"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Kemik Mahzeni Savaşçısı"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Mezarçağıran Müridi"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Kemik Mahzeni Boğazkeseni"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Mezarçağıran Nekromansırı"
-      },
-      "crypt_bone_minion": {
-        "name": "Kemik Hizmetkâr"
-      },
-      "crypt_bone_brute": {
-        "name": "Kemik Kabadayı"
-      },
-      "crypt_bone_pile": {
-        "name": "Kıpırdayan Kemikler"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Şapel Gargoylesi"
-      },
-      "crypt_crow_caller": {
-        "name": "Karga Çağırıcısı"
-      },
-      "crypt_carrion_crow": {
-        "name": "Leş Kargası"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Kemik Mahzeni Ejderi"
-      },
-      "crypt_knellwyrm": {
-        "name": "Ölüm Çanı Ejderi"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Anma Mumu"
       },
       "bastion_revenant": {
         "name": "Kale Hortlağı"
@@ -28727,16 +28640,6 @@ export const tr_TR: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Huzursuz Ölüler",
-        "text": "Kuzeybatı tepesindeki eski harabe bir zamanlar bir şapeldi ve avlusu bir huzur yeriydi. Bir şey ölüleri uykularından uyandırdı. Onlara huzur ver, {playerName}, 8 Huzursuz Kemiği toprağa geri ver.",
-        "completion": "Artık huzur bulsunlar ve Işık, onları her ne uyandırdıysa onu bağışlasın.",
-        "objectives": {
-          "0": {
-            "label": "Huzursuz Kemikler huzura kavuşturuldu"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Çalınan Erzak",
         "text": "O haydutlar son arabamı bastı ve dört sandık malı alıp kaçtı; aletler, tuz, kaliteli Doğudere keteni. Sandıklar, kuzeybatıdaki tepelerde bulunan kamplarının çevresine yığılmış. Onları benim için geri çalar mısın?",
@@ -28747,26 +28650,6 @@ export const tr_TR: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Aşağıdaki Fısıltılar",
-        "text": "Ölüleri huzura kavuşturdun, ama dinlenmeye devam etmeyecekler, bir şey onları geri çağırıyor. Çağrıyı yapanın izini bulmak için şapel harabesini ara. Bir mühür ya da damga bulursan, ona dokunmadan bana getir.",
-        "completion": "Bu mühür... Mezar Çağıranlar'ın izini taşıyor, soyu tükendi diye dua ettiğim bir tarikatın. Bu korktuğumdan da beter, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Mezar Çağıran Mührü"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Ölülerin Adları",
-        "text": "Mezarçağıranlar ölülerimizi dirilttiyse, hangi mezarları soyduklarını bilmeliyim. Şapelin zangocu bir defin defteri tutardı ve rüzgâr sayfalarını şapel avlusuna savurdu. Benim için 3 tanesini topla, {playerName}; ölüler, adlarıyla anılmayı hak ediyor.",
-        "completion": "Bu zavallı ruhlar... ve şuraya bak. Zangoç Marrow; şapelin canlı bekçisi; mezarı ilk bozulan o oldu. Morthen, Doğudere'nin ölülerini gömen adamla başlamış.",
-        "objectives": {
-          "0": {
-            "label": "Yıpranmış Defter Sayfası"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Çağrıyı Sustur",
         "text": "O defterdeki her isim, Morthen'in topraktan çıkarmak istediği bir ruh ve şapel avlusu çağırdıklarıyla şimdiden kaynıyor. Mezarçağıran'ın fısıltısı bir koroya dönüşmeden, 12 Huzursuz Kemik'i mezarlarına geri yolla, {playerName}.",
@@ -28774,49 +28657,6 @@ export const tr_TR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Huzursuz Kemikler susturuldu"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Bağlama Ayini",
-        "text": "Gravecaller'ı durduracaksak şapelin altındaki mahzenin mührü açılmalı; ama yaşayanların geçmesine yalnızca bir bağlama ayini izin verir. 4 parça Kutsanmış Donyağı'na ihtiyacım var; madenin oyucuları donyağını sandık sandık biriktiriyor; bir de huzursuz ölülerden 6 Hayaletimsi Öz.",
-        "completion": "Tamamlandı. Aşağıya giden yol açık duruyor... ve onu açtığım için Işık beni affetsin. İnmeden önce en güçlü yoldaşlarını topla, {playerName}. Kimse Oyuk'la yalnız yüzleşmemeli.",
-        "objectives": {
-          "0": {
-            "label": "Kutsanmış Donyağı"
-          },
-          "1": {
-            "label": "Hayaletimsi Öz"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Oyuğun İçine",
-        "text": "Mezarçağıran Morthen, dirilttiği seçkin ölülerle çevrili olarak Oyuk Mezar'ın dibinde bekliyor. Tek bir kahramanın çok ötesinde, dört yoldaş al, daha az değil. Onu yok et, Vadi'nin ölüleri sonunda uyuyacak.",
-        "completion": "Fısıltı durdu. Bütün Vadi'nin yapamadığını sen yaptın, {playerName}, ölüler uyuyor ve Doğudere sana sahip olduğu her şeyi borçlu.",
-        "objectives": {
-          "0": {
-            "label": "Mezarçağıran Morthen öldürüldü"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Zangocun Çanı",
-        "text": "Defter onu adlandırdı ve mahzen onu barındırıyor: Zangoç Marrow, şapelin bekçisi, Morthen'in dirilttiği ilk adam; sağken şapeli koruduğu kadar sadakatle, ölümünde de efendisinin kapısını koruyor. Yanına dört yoldaş al, Oyuk Mezar'a gir ve yaşlı zangoca elinden alınan huzuru bağışla, {playerName}.",
-        "completion": "Demek Marrow sonunda özgür. Onun için çan çalma; sağken yeterince duydu.",
-        "objectives": {
-          "0": {
-            "label": "Zangoç Marrow huzura kavuşturuldu"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Mezarçağıranın İzi",
-        "text": "Morthen öldü, yine de bir soru içimi kemiriyor: bir asır boyunca saklanan bir tarikat, kendini tek bir köy şapelinde harcamaz. Bir büyü kitabı tutuyordu, ayinleri, yazışmaları. Ondan bir şey kaldıysa, mahzenin üstündeki yıkık şapelin kutsal odasında yatıyordur. Harabeyi ara ve yazılarından geriye ne kaldıysa bana getir, {playerName}.",
-        "completion": "Morthen, kuzey bataklığındaki bir 'Fogbinder'a yazmış. Tarikat ölü değil, {playerName}, yalnızca sabırlı davranmış.",
-        "objectives": {
-          "0": {
-            "label": "Morthen'in Büyü Kitabı"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const tr_TR: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Oyuk Mezar",
-        "enterText": "Oyuk Mezar'a inersin...",
-        "leaveText": "Gün ışığına geri tırmanırsın."
-      },
       "sunken_bastion": {
         "name": "Batık Kale",
         "enterText": "Batık Kale'ye doğru suya dalarsın...",

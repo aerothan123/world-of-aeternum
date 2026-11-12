@@ -347,11 +347,7 @@ const MOUNT_SOURCES: Readonly<
   nightwing_chimera: fromStore(),
   referral_raptor: fromActivity('referral_cards'),
   wobbles_slime: fromActivity('referral_cards'),
-  stormfeather_griffin: [
-    fromBoss('morthen'),
-    fromBoss('nythraxis_scourge_of_thornpeak'),
-    fromRift('B'),
-  ],
+  stormfeather_griffin: [fromBoss('nythraxis_scourge_of_thornpeak'), fromRift('B')],
   shadowjump_toad: [
     fromBoss('vael_the_mistcaller'),
     fromBoss('nythraxis_scourge_of_thornpeak'),
@@ -854,19 +850,9 @@ function setMembers(
 /** New heroic epics whose Reliquary slot waits for their painted icon art
  *  (a relic cell needs committed dark-card art; weapons cannot park on the
  *  art-pending list). Each joins its heroic page in the art pass. */
-export const RELIQUARY_ART_PENDING_HEROIC: readonly string[] = [
-  'sextons_burial_spade',
-  'rimesilk_hood',
-];
+export const RELIQUARY_ART_PENDING_HEROIC: readonly string[] = [];
 
 export const RELIQUARY_HEROIC_GEAR = {
-  // The Hollow Crypt rework spread Morthen's heroic epics over the four bosses
-  // (hollow_crypt.md 8.2); they share the one shipped heroic page.
-  sexton_marrow: ['cryptplate_helm'],
-  rimeweb: ['bonechill_striders', 'bonechill_cord'],
-  // The Slippers moved here off Morthen to join their Handwraps (2026-10-08).
-  cantor_ilvane: ['shadowpulse_handwraps', 'shadowpulse_slippers'],
-  morthen: ['morthens_cryptforged_hauberk', 'lunarward_cinch', 'bastion_sigil'],
   // The Sunken Bastion rework moved three of Vael's heroic epics onto Olen and
   // the new Gaoler Ossick (sunken_bastion.md 8.2); they share the one heroic page.
   knight_commander_olen: [
@@ -990,8 +976,9 @@ export const RELIQUARY_HEROIC_GEAR = {
 // ---------------------------------------------------------------------------
 // Conquerors shelf (Phase 2)
 // ---------------------------------------------------------------------------
-// Order: append-only. Phase 1 stub id `conquerors_hollow_crypt` is kept and
-// expanded with real Hollow Crypt uniques (boundstone_helm moved to Sanctum).
+// Order: append-only. The Hollow Crypt pages (the Phase 1 stub id
+// `conquerors_hollow_crypt` and its heroic twin) were removed when the owner
+// retired the dungeon outright (2026-11-11).
 
 // ---------------------------------------------------------------------------
 // The Rift page (Phase 21)
@@ -1161,62 +1148,6 @@ export const RELIQUARY_PAGES: readonly ReliquaryPageDef[] = freezePageTable([
   // 'heroic' filter, and the Crucible raid pages keep 'normal' because their
   // Normal tables hold normalOnly rows Heroic never pays. Derived and pinned by
   // tests/reliquary_content.test.ts ("count every difficulty that pays").
-  {
-    id: 'conquerors_hollow_crypt',
-    shelf: 'conquerors',
-    name: 'The Hollow Crypt',
-    desc: 'Signature spoils claimed from Morthen and the Hollow Crypt.',
-    // Normal clears only (2026-10-09): Morthen's four uncommon brand pieces
-    // drop on Normal alone (a Heroic kill pays no uncommon gear), so Heroic
-    // cannot pay the whole page; Heroic runs count on the Heroic page below.
-    clearSource: { kind: 'dungeon', dungeonId: 'hollow_crypt', difficulty: 'normal' },
-    // Four bosses pay the page since every boss's blue roll joined it
-    // (2026-10-08), so every row names its own; the first five are Morthen's.
-    // The rework's three rare chase rows (Spadehaft, Fang, Hymnal) join this
-    // page with their painted art (the dark-card rule), not before.
-    relics: items(
-      ['cryptbone_greaves', fromBoss('morthen')],
-      ['cryptbone_helm', fromBoss('morthen')],
-      ['cryptbone_pauldrons', fromBoss('morthen')],
-      ['greyjaw_hide_boots', fromBoss('morthen')],
-      ['gravewoven_bag', fromBoss('morthen')],
-      // Every boss's Normal blue roll (2026-10-08): a cloth, leather and mail
-      // piece of one slot plus a weapon, each paid on Heroic by its rare copy.
-      ['spadeworn_gauntlets', fromBoss('sexton_marrow')],
-      ['gravedirt_grips', fromBoss('sexton_marrow')],
-      ['bellrope_mitts', fromBoss('sexton_marrow')],
-      ['rimewreath_coif', fromBoss('rimeweb')],
-      ['rime_laced_hood', fromBoss('rimeweb')],
-      ['lamenting_veil', fromBoss('rimeweb')],
-      ['choirward_pauldrons', fromBoss('cantor_ilvane')],
-      ['choristers_spaulders', fromBoss('cantor_ilvane')],
-      ['cantors_stole', fromBoss('cantor_ilvane')],
-      ['knellbound_hauberk', fromBoss('morthen')],
-      ['candlewatch_jerkin', fromBoss('morthen')],
-      ['robe_of_the_unquiet_rite', fromBoss('morthen')],
-      ['gravecallers_rod', fromBoss('morthen')],
-    ),
-  },
-  {
-    id: 'conquerors_hollow_crypt_heroic',
-    shelf: 'conquerors',
-    name: 'Heroic Hollow Crypt',
-    desc: 'Heroic-only epics from Morthen the Gravecaller.',
-    clearSource: { kind: 'dungeon', dungeonId: 'hollow_crypt', difficulty: 'heroic' },
-    // The shipped eight keep their slots and order; the rework moved four of
-    // them to the new bosses (hinted per boss). Its two new epics join with
-    // their painted art (RELIQUARY_ART_PENDING_HEROIC).
-    relics: items(
-      ['morthens_cryptforged_hauberk', fromBoss('morthen')],
-      ['shadowpulse_handwraps', fromBoss('cantor_ilvane')],
-      ['bonechill_striders', fromBoss('rimeweb')],
-      ['lunarward_cinch', fromBoss('morthen')],
-      ['cryptplate_helm', fromBoss('sexton_marrow')],
-      ['shadowpulse_slippers', fromBoss('cantor_ilvane')],
-      ['bonechill_cord', fromBoss('rimeweb')],
-      ['bastion_sigil', fromBoss('morthen')],
-    ),
-  },
   {
     id: 'conquerors_sunken_bastion',
     shelf: 'conquerors',

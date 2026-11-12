@@ -26590,9 +26590,6 @@ export const vi_VN: EnTranslations = {
       "restless_bones": {
         "name": "Bộ Xương Bất An"
       },
-      "marrow_restless_bones": {
-        "name": "Bộ Xương Bất An"
-      },
       "gorrak": {
         "name": "Gorrak Tàn Nhẫn"
       },
@@ -26694,90 +26691,6 @@ export const vi_VN: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Vong Hồn Bọc Xương"
-      },
-      "crypt_shambler": {
-        "name": "Xác Lê Hầm Mộ"
-      },
-      "hollow_acolyte": {
-        "name": "Tu Đồ Rỗng"
-      },
-      "bonechill_widow": {
-        "name": "Góa Phụ Lạnh Xương"
-      },
-      "sexton_marrow": {
-        "name": "Quản Mộ Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Kẻ Gọi Mộ"
-      },
-      "ossuary_sentinel": {
-        "name": "Vệ Binh Nhà Hài Cốt"
-      },
-      "hollow_gravedigger": {
-        "name": "Kẻ Đào Mộ Rỗng"
-      },
-      "rime_egg_sac": {
-        "name": "Túi Trứng Sương Giá"
-      },
-      "rimeweb_hatchling": {
-        "name": "Nhện Non Tơ Sương"
-      },
-      "rimeweb_spinner": {
-        "name": "Nhện Dệt Tơ Sương"
-      },
-      "candlewright_acolyte": {
-        "name": "Tín Đồ Thợ Nến"
-      },
-      "hollow_chorister": {
-        "name": "Ca Viên Rỗng"
-      },
-      "bound_soul": {
-        "name": "Linh Hồn Bị Trói"
-      },
-      "rimeweb": {
-        "name": "Phu Nhân Lạnh Xương"
-      },
-      "cantor_ilvane": {
-        "name": "Người Lĩnh Xướng Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Chiến Binh Nhà Hài Cốt"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Môn Đồ Gọi Mộ"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Sát Thủ Nhà Hài Cốt"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Tử Linh Sư Gọi Mộ"
-      },
-      "crypt_bone_minion": {
-        "name": "Tay Sai Xương"
-      },
-      "crypt_bone_brute": {
-        "name": "Thú Dữ Xương"
-      },
-      "crypt_bone_pile": {
-        "name": "Hài Cốt Cựa Quậy"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Quỷ Đá Nhà Nguyện"
-      },
-      "crypt_crow_caller": {
-        "name": "Kẻ Gọi Quạ"
-      },
-      "crypt_carrion_crow": {
-        "name": "Quạ Ăn Xác"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Rồng Nhà Hài Cốt"
-      },
-      "crypt_knellwyrm": {
-        "name": "Rồng Chuông Tử"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Nến Tưởng Niệm"
       },
       "bastion_revenant": {
         "name": "Oán Linh Pháo Đài"
@@ -28727,16 +28640,6 @@ export const vi_VN: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Người Chết Bất An",
-        "text": "Tàn tích cổ trên ngọn đồi tây bắc từng là một nhà nguyện, và sân của nó là nơi an nghỉ. Thứ gì đó đã khuấy động người chết khỏi giấc ngủ. Hãy ban cho họ sự bình yên, {playerName}, trả 8 bộ Hài Cốt Bất An về với lòng đất.",
-        "completion": "Mong họ được yên nghỉ giờ đây, và mong Ánh Sáng tha thứ cho thứ đã đánh thức họ.",
-        "objectives": {
-          "0": {
-            "label": "Đã an nghỉ Hài Cốt Bất An"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Hàng Tiếp Tế Bị Đánh Cắp",
         "text": "Bọn cướp ấy đã đột kích chiếc xe ngựa cuối cùng của ta và cuỗm đi bốn thùng hàng - dụng cụ, muối, vải lanh Eastbrook hảo hạng. Những thùng hàng được chất đống quanh trại của chúng nơi vùng đồi tây bắc. Lấy cắp chúng về cho ta, được chứ?",
@@ -28747,26 +28650,6 @@ export const vi_VN: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Tiếng Thì Thầm Bên Dưới",
-        "text": "Ngươi đã cho người chết yên nghỉ, nhưng chúng sẽ không chịu yên nghỉ, có thứ gì đó gọi chúng trở về. Lục soát phế tích nhà nguyện tìm bất kỳ dấu vết nào của kẻ đang triệu gọi. Nếu ngươi tìm thấy một phù ấn hay con dấu, hãy mang đến cho ta nguyên vẹn.",
-        "completion": "Phù ấn này... nó mang dấu của Hội Triệu Mộ, một giáo phái mà ta đã cầu nguyện rằng đã tuyệt diệt. Chuyện này còn tệ hơn ta lo sợ, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Phù Ấn Triệu Mộ"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Tên Của Những Người Chết",
-        "text": "Nếu bọn Kẻ Gọi Mộ đã triệu dậy người chết của chúng ta, ta phải biết chúng đã cướp phá những ngôi mộ của ai. Người trông coi nhà nguyện có giữ một cuốn sổ tang lễ, và gió đã thổi tung những trang giấy của nó khắp sân nhà nguyện. Hãy thu thập 3 trang về cho ta, {playerName} - người chết xứng đáng được gọi bằng tên của họ.",
-        "completion": "Những linh hồn tội nghiệp... và nhìn đây này. Sexton Marrow - người trông coi nhà nguyện khi còn sống - ngôi mộ của ông là nơi đầu tiên bị quấy động. Morthen đã bắt đầu với chính người đã chôn cất những kẻ chết của Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Trang Sổ Cái Đã Mòn"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Dập Tắt Tiếng Gọi",
         "text": "Mỗi cái tên trong cuốn sổ cái ấy là một linh hồn mà Morthen định lôi lên khỏi lòng đất, và sân nhà nguyện đã lúc nhúc những kẻ hắn triệu gọi. Hãy đưa 12 bộ Xương Cốt Không Yên Nghỉ trở lại mộ phần của chúng, {playerName}, trước khi tiếng thì thầm của Kẻ Gọi Mộ dâng thành một dàn đồng ca.",
@@ -28774,49 +28657,6 @@ export const vi_VN: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Đã làm im lặng Xương Cốt Không Yên Nghỉ"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Nghi Lễ Trói Buộc",
-        "text": "Phải phá phong ấn hầm mộ bên dưới nhà nguyện nếu chúng ta muốn ngăn chặn Gravecaller, nhưng chỉ một nghi lễ trói buộc mới cho phép người sống đi qua. Ta cần 4 cục Mỡ Thánh, lũ đào hang trong mỏ tích trữ mỡ cả thùng, và 6 Tinh Chất Ma Quái từ những kẻ chết không yên nghỉ.",
-        "completion": "Đã xong. Con đường bên dưới đã rộng mở... và cầu Thánh Quang tha thứ cho ta vì đã mở nó ra. Hãy tập hợp những đồng đội mạnh nhất của ngươi trước khi xuống dưới, {playerName}. Không ai nên đối mặt với Hầm Mộ Rỗng một mình.",
-        "objectives": {
-          "0": {
-            "label": "Mỡ Thánh"
-          },
-          "1": {
-            "label": "Tinh Chất Ma Quái"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Tiến Vào Hầm Mộ Rỗng",
-        "text": "Morthen Kẻ Triệu Mộ chờ đợi dưới đáy Hầm Mộ Rỗng, vây quanh bởi những xác chết tinh nhuệ mà hắn đã hồi sinh. Hắn vượt xa khả năng của bất kỳ một anh hùng đơn lẻ nào - hãy mang theo bốn đồng đội, không ít hơn. Kết liễu hắn, và người chết của Thung Lũng cuối cùng sẽ được ngủ yên.",
-        "completion": "Tiếng thì thầm đã ngừng. Ngươi đã làm được điều cả Thung Lũng không thể, {playerName} - người chết ngủ yên, và Eastbrook nợ ngươi tất cả những gì nó có.",
-        "objectives": {
-          "0": {
-            "label": "Đã hạ Morthen Kẻ Triệu Mộ"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Chuông Của Người Trông Coi",
-        "text": "Cuốn sổ cái đã gọi tên ông và hầm mộ đang giam giữ ông: Sexton Marrow, người trông coi nhà nguyện, người đầu tiên mà Morthen triệu dậy - canh giữ cánh cửa của chủ nhân khi đã chết trung thành như lúc ông trông nom nhà nguyện khi còn sống. Hãy dẫn bốn đồng đội vào Hầm Mộ Rỗng và ban cho người trông coi già nua sự yên nghỉ mà ông đã bị tước đoạt, {playerName}.",
-        "completion": "Vậy là cuối cùng Marrow cũng được tự do. Đừng rung chuông cho ông - lúc còn sống ông đã nghe đủ tiếng chuông rồi.",
-        "objectives": {
-          "0": {
-            "label": "Đã đưa Sexton Marrow về an nghỉ"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Dấu Vết Kẻ Triệu Mộ",
-        "text": "Morthen đã chết, nhưng một câu hỏi cứ gặm nhấm ta: một giáo phái ẩn mình suốt một thế kỷ không dốc hết sức vào một nhà nguyện làng quê. Hắn giữ một cuốn ma thư - những nghi lễ, những thư từ của hắn. Nếu còn sót lại thứ gì, nó nằm trong phòng thánh của nhà nguyện đổ nát phía trên hầm mộ. Hãy lục soát tàn tích và mang cho ta bất cứ thứ gì còn lại từ những ghi chép của hắn, {playerName}.",
-        "completion": "Morthen đã viết thư cho một kẻ 'Fogbinder' ở đầm lầy phía bắc. Giáo phái chưa chết, {playerName}, nó chỉ đơn thuần là đã kiên nhẫn.",
-        "objectives": {
-          "0": {
-            "label": "Ma Thư của Morthen"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const vi_VN: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Hầm Mộ Rỗng",
-        "enterText": "Bạn đi xuống Hầm Mộ Rỗng...",
-        "leaveText": "Bạn trèo trở lại ánh sáng ban ngày."
-      },
       "sunken_bastion": {
         "name": "Pháo Đài Chìm",
         "enterText": "Bạn lội xuống Pháo Đài Chìm...",

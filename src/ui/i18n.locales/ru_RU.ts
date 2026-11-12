@@ -8690,7 +8690,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.willowfen_remedy_caravan.name': 'Караван лекарств Ивовой Топи',
   'entities.mobs.frostveil_supply_caravan.name': 'Караван припасов Морозного Предела',
   'entities.mobs.restless_bones.name': 'Беспокойные кости',
-  'entities.mobs.marrow_restless_bones.name': 'Беспокойные кости',
   'entities.mobs.gorrak.name': 'Горрак Безжалостный',
   'entities.mobs.mire_prowler.name': 'Болотный хищник',
   'entities.mobs.deepfen_murloc.name': 'Глубинный щелкун',
@@ -8732,11 +8731,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.wyrmcult_zealot.name': 'Фанатик Клятвы Выводка',
   'entities.mobs.wyrmcult_necromancer.name': 'Некромант Клятвы Выводка',
   'entities.mobs.boneclad_revenant.name': 'Костепанцирный ревенант',
-  'entities.mobs.crypt_shambler.name': 'Склепный шатун',
-  'entities.mobs.hollow_acolyte.name': 'Послушник Пустоты',
-  'entities.mobs.bonechill_widow.name': 'Ледяная вдова',
-  'entities.mobs.sexton_marrow.name': 'Пономарь Марроу',
-  'entities.mobs.morthen.name': 'Мортен Могильный Зов',
   'entities.mobs.bastion_revenant.name': 'Ревенант бастиона',
   'entities.mobs.tidebound_acolyte.name': 'Приливный послушник',
   'entities.mobs.drowned_thrall.name': 'Утопший раб',
@@ -9006,60 +9000,17 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Мы нашли добрую медную жилу, и тут из склона холма полезли эти роющие паразиты. Моя бригада не ступит в выработку, пока её не расчистят. Уложите 10 Глубокоскальных копателей.',
   'entities.quests.q_mine.completion': 'Ха! За работу, парни! Вот моя благодарность и моя монета.',
   'entities.quests.q_mine.objectives.0.label': 'Глубокоскальный копатель: убито',
-  'entities.quests.q_bones.title': 'Беспокойные мертвецы',
-  'entities.quests.q_bones.text':
-    'Старая часовня была местом покоя, пока что-то не разбудило мертвых. Верните земле 8 беспокойных костей, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Пусть они теперь покоятся, и пусть Свет простит то, что их разбудило.',
-  'entities.quests.q_bones.objectives.0.label': 'Беспокойные кости: упокоено',
   'entities.quests.q_supplies.title': 'Украденные припасы',
   'entities.quests.q_supplies.text':
     'Бандиты увели мой последний воз: инструменты, соль и добрый истврукский лен. Верните 4 ящика из лагеря на северо-западе.',
   'entities.quests.q_supplies.completion': 'Мои ящики! Почти без царапин. Вы просто чудо.',
   'entities.quests.q_supplies.objectives.0.label': 'Украденный ящик припасов',
-  'entities.quests.q_whispers.title': 'Шепот внизу',
-  'entities.quests.q_whispers.text':
-    'Мертвые встают снова, потому что что-то их зовет. Обыщите часовню и принесите любой знак зовущего нетронутым.',
-  'entities.quests.q_whispers.completion':
-    'На этом сигиле знак Могильного Зова. Я молился, чтобы эта секта исчезла, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Сигил Могильного Зова',
-  'entities.quests.q_names_of_the_dead.title': 'Имена мертвых',
-  'entities.quests.q_names_of_the_dead.text':
-    'Если Могильный Зов ограбил наши могилы, я должен знать, чьи имена украдены. Соберите 3 страницы погребальной книги, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Бедные души... а вот пономарь Марроу, первый потревоженный. Мортен начал с того, кто хоронил мертвых Истврука.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Выветренная страница книги учета',
   'entities.quests.q_silence_the_call.title': 'Заглушить зов',
   'entities.quests.q_silence_the_call.text':
     'Каждое имя в книге - душа, которую Мортен хочет вытащить из земли. Упокойте 12 беспокойных костей, {playerName}, пока шепот не стал хором.',
   'entities.quests.q_silence_the_call.completion':
     'Двор стал тише, но зов теперь поднимается из самой крипты, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label': 'Беспокойные кости: усмирено',
-  'entities.quests.q_rite.title': 'Обряд связывания',
-  'entities.quests.q_rite.text':
-    'Крипту под часовней нужно распечатать, если мы хотим остановить Зовущего Могилу, но только обряд связывания пропустит живых. Мне нужны 4 куска благословенного сала, шахтные землекопы копят сало ящиками, и 6 призрачных эссенций от беспокойных мертвецов.',
-  'entities.quests.q_rite.completion':
-    'Готово. Путь вниз открыт... соберите самых сильных спутников, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': 'Благословенное сало',
-  'entities.quests.q_rite.objectives.1.label': 'Призрачная эссенция',
-  'entities.quests.q_hollow.title': 'В Пустоту',
-  'entities.quests.q_hollow.text':
-    'Мортен ждет на дне Пустой крипты среди поднятых им элитных мертвецов. Возьмите четырех спутников и покончите с ним.',
-  'entities.quests.q_hollow.completion':
-    'Шепот стих. Мертвые спят, {playerName}, и Истврук обязан вам всем.',
-  'entities.quests.q_hollow.objectives.0.label': 'Мортен Могильный Зов: убито',
-  'entities.quests.q_sexton.title': 'Колокол пономаря',
-  'entities.quests.q_sexton.text':
-    'Книга называет пономаря Марроу, первого стража, поднятого Мортеном. Спуститесь с четырьмя спутниками и верните ему украденный покой, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Марроу наконец свободен. Не звоните по нему; в жизни он слышал достаточно колоколов.',
-  'entities.quests.q_sexton.objectives.0.label': 'Пономарь Марроу: упокоено',
-  'entities.quests.q_gravecallers_trail.title': 'След Могильного Зова',
-  'entities.quests.q_gravecallers_trail.text':
-    'Мортен мертв, но его секта не пряталась век ради одной деревенской часовни. Найдите его гримуар среди руин, {playerName}.',
-  'entities.quests.q_gravecallers_trail.completion':
-    'Мортен писал некоему Вязателю Тумана в северной топи. Секта не умерла, {playerName}, она лишь терпеливо ждала.',
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Гримуар Мортена',
   'entities.quests.q_bandits.title': 'Бандиты долины',
   'entities.quests.q_bandits.text':
     'Шайка головорезов стоит лагерем в северо-западных холмах. За неделю они ограбили три воза. Убейте 10 долинных бандитов.',
@@ -9778,9 +9729,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_seal_restored.completion':
     'Я почувствовала, как она сомкнулась, мягко, как сумерки. Лощина помнит своих друзей, {playerName}. Как бы далеко ты ни странствовал, под великим древом для тебя всегда будет гореть огонёк.',
   'entities.quests.q_seal_restored.objectives.0.label': 'Печать возвращена в печатный камень',
-  'entities.dungeons.hollow_crypt.name': 'Пустая крипта',
-  'entities.dungeons.hollow_crypt.enterText': 'Вы спускаетесь в Пустую крипту...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Вы выбираетесь обратно к дневному свету.',
   'entities.dungeons.sunken_bastion.name': 'Затонувший бастион',
   'entities.dungeons.sunken_bastion.enterText': 'Вы спускаетесь в Затонувший бастион по воде...',
   'entities.dungeons.sunken_bastion.leaveText': 'Вы выбираетесь из тонущей тьмы.',
@@ -23940,17 +23888,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraEffect.trinket.shackle': 'Скован цепью: не может двигаться.',
   'hudChrome.auraEffect.trinket.shackleSlow':
     'Скован цепью: скорость передвижения снижена на {pct}%.',
-  'entities.mobs.ossuary_sentinel.name': 'Страж оссуария',
-  'entities.mobs.hollow_gravedigger.name': 'Могильщик Пустоты',
-  'entities.mobs.rimeweb_hatchling.name': 'Паучок Инеистой Паутины',
-  'entities.mobs.rimeweb_spinner.name': 'Прядильщица Инеистой Паутины',
-  'entities.mobs.candlewright_acolyte.name': 'Послушник-свечник',
-  'entities.mobs.hollow_chorister.name': 'Хорист Пустоты',
-  'entities.mobs.bound_soul.name': 'Связанная душа',
-  'entities.mobs.rimeweb.name': 'Госпожа Костяного Холода',
-  'entities.mobs.cantor_ilvane.name': 'Кантор Ильвейн',
-  'entities.mobs.rime_egg_sac.name': 'Инеистый кокон с яйцами',
-  // The Hollow Crypt trash (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_grave_bolt': 'Могильная стрела',
   'abilityUi.cast.crypt_raise_bones': 'Подъём костей',
   'abilityUi.cast.crypt_murder_call': 'Зов стаи',
@@ -24012,18 +23949,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_gravespark_volley': 'Залп могильных искр',
   'abilityUi.cast.bastion_loose_on_my_mark': 'Огонь по моей метке',
   'abilityUi.cast.temple_call_of_the_shallows': 'Зов отмелей',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Воин оссуария',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Адепт Могильного Зова',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Головорез оссуария',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Некромант Могильного Зова',
-  'entities.mobs.crypt_bone_minion.name': 'Костяной прислужник',
-  'entities.mobs.crypt_bone_brute.name': 'Костяной громила',
-  'entities.mobs.crypt_bone_pile.name': 'Шевелящиеся кости',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Часовенная горгулья',
-  'entities.mobs.crypt_crow_caller.name': 'Зовущий воронов',
-  'entities.mobs.crypt_carrion_crow.name': 'Ворон-падальщик',
-  'entities.mobs.crypt_ossuary_drake.name': 'Костяной дракон оссуария',
-  // The Hollow Crypt finale (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_morthen_rite_wakes': 'Пробуждение обряда',
   'abilityUi.cast.crypt_morthen_rise': 'Восход Могильного Зова',
   'abilityUi.cast.crypt_morthen_proclaim': 'Могильное воззвание',
@@ -24043,8 +23968,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_ilvane_dirge': 'Погребальная песнь Пустоты',
   'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Непрерывный стих',
   'abilityUi.cast.crypt_ilvane_bone_organ': 'Костяной орган',
-  'entities.mobs.crypt_knellwyrm.name': 'Погребальный змий',
-  // The Sunken Bastion fifth pass (M16 non-Latin fills for its new names).
   'abilityUi.cast.bastion_iron_cage': 'Железная клетка',
   'abilityUi.cast.bastion_drowned_anchor_cast': 'Утопленный якорь',
   'abilityUi.cast.bastion_shackle_pair': 'Парные кандалы',
@@ -24545,7 +24468,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Пылающий звон',
   'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Пылающий звон',
   'abilityUi.cast.crypt_knellwyrm_knell_land': 'Пылающий звон',
-  'entities.mobs.crypt_remembrance_candle.name': 'Поминальная свеча',
   'hudChrome.auraEffect.crypt.gorged':
     'Наносит на {pct}% больше урона: {per}% за каждую Связанную душу, достигшую его, сейчас {stacks} из {max}, до конца боя. Каждая дошедшая душа также исцеляет его на {heal}% максимального здоровья. Встаньте на пути души, чтобы принять её на себя.',
   'hudChrome.auraEffect.crypt.unquietWard':

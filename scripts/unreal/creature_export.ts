@@ -11,11 +11,6 @@ import { abilityVfxFullSpec } from '../../src/render/ability_vfx_registry';
 import { VISUALS, visualKeyFor } from '../../src/render/characters/manifest';
 import { templeTelegraphSpecs } from '../../src/render/drowned_temple/temple_fx_core';
 import { sanctumTelegraphSpecs } from '../../src/render/gravewyrm_sanctum_fx/sanctum_fx_core';
-import {
-  coneFan,
-  cryptObjectTelegraphs,
-  cryptTelegraphSpecs,
-} from '../../src/render/hollow_crypt/crypt_trash_fx_core';
 import { MOUNT_VISUAL_SPECS } from '../../src/render/mount_visuals';
 import { bastionTelegraphSpecs } from '../../src/render/sunken_bastion/bastion_fx_core';
 import { basinTelegraphSpecs } from '../../src/render/wildheart_basin/basin_fx_core';
@@ -375,9 +370,21 @@ function telegraphRow(dungeon: string, s: AnyDef): TelegraphEntry {
   };
 }
 
+/** Local (x, z) points of a cone fan about +z, `segments` wedges: the apex
+ *  first, then the arc from one edge to the other (moved here from the retired
+ *  Hollow Crypt's crypt_trash_fx_core.ts). */
+function coneFan(range: number, arcDeg: number, segments: number): [number, number][] {
+  const half = (Math.min(360, arcDeg) * Math.PI) / 180 / 2;
+  const out: [number, number][] = [[0, 0]];
+  for (let i = 0; i <= segments; i++) {
+    const a = -half + (2 * half * i) / segments;
+    out.push([Math.sin(a) * range, Math.cos(a) * range]);
+  }
+  return out;
+}
+
 export function buildTelegraphExport(): TelegraphExport {
   const tables: [string, Readonly<Record<string, unknown>>][] = [
-    ['hollow_crypt', cryptTelegraphSpecs()],
     ['sunken_bastion', bastionTelegraphSpecs()],
     ['drowned_temple', templeTelegraphSpecs()],
     ['gravewyrm_sanctum', sanctumTelegraphSpecs()],
@@ -388,7 +395,9 @@ export function buildTelegraphExport(): TelegraphExport {
     for (const [id, s] of Object.entries(t)) all[id] = telegraphRow(dungeon, s as AnyDef);
   }
   const casts = sorted(Object.keys(all), (id) => all[id]);
-  const objRaw = cryptObjectTelegraphs() as unknown as Record<string, AnyDef>;
+  // Encounter-object telegraphs were the Hollow Crypt's alone; the table is
+  // empty since the dungeon was retired (2026-11-11).
+  const objRaw: Record<string, AnyDef> = {};
   const objects = sorted(Object.keys(objRaw), (id) => {
     const o = objRaw[id];
     return {

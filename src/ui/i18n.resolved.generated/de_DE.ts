@@ -26590,9 +26590,6 @@ export const de_DE: EnTranslations = {
       "restless_bones": {
         "name": "Ruhelose Knochen"
       },
-      "marrow_restless_bones": {
-        "name": "Ruhelose Knochen"
-      },
       "gorrak": {
         "name": "Gorrak der Gnadenlose"
       },
@@ -26694,90 +26691,6 @@ export const de_DE: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Knochengepanzerter Wiedergänger"
-      },
-      "crypt_shambler": {
-        "name": "Gruftschlurfer"
-      },
-      "hollow_acolyte": {
-        "name": "Akolyth der Höhlung"
-      },
-      "bonechill_widow": {
-        "name": "Knochenkälte-Witwe"
-      },
-      "sexton_marrow": {
-        "name": "Küster Marrow"
-      },
-      "morthen": {
-        "name": "Morthen der Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Beinhauswächter"
-      },
-      "hollow_gravedigger": {
-        "name": "Hohler Totengräber"
-      },
-      "rime_egg_sac": {
-        "name": "Raureifeiersack"
-      },
-      "rimeweb_hatchling": {
-        "name": "Raureifnetzjunges"
-      },
-      "rimeweb_spinner": {
-        "name": "Raureifnetzspinner"
-      },
-      "candlewright_acolyte": {
-        "name": "Kerzenmacherakolyth"
-      },
-      "hollow_chorister": {
-        "name": "Hohler Chorsänger"
-      },
-      "bound_soul": {
-        "name": "Gebundene Seele"
-      },
-      "rimeweb": {
-        "name": "Lady des Knochenfrosts"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Beinhauskrieger"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravecaller-Adept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Beinhausmeuchler"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravecaller-Nekromant"
-      },
-      "crypt_bone_minion": {
-        "name": "Knochendiener"
-      },
-      "crypt_bone_brute": {
-        "name": "Knochenkoloss"
-      },
-      "crypt_bone_pile": {
-        "name": "Sich regendes Gebein"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapellengargoyle"
-      },
-      "crypt_crow_caller": {
-        "name": "Krähenrufer"
-      },
-      "crypt_carrion_crow": {
-        "name": "Aaskrähe"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Beinhausdrache"
-      },
-      "crypt_knellwyrm": {
-        "name": "Totengeläutwyrm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Gedenkkerze"
       },
       "bastion_revenant": {
         "name": "Bastion-Wiedergänger"
@@ -28727,16 +28640,6 @@ export const de_DE: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Die ruhelosen Toten",
-        "text": "Die alte Kapelle war einst ein Ruheort, bis etwas die Toten weckte. Lege 8 ruhelose Knochen wieder in die Erde, {playerName}.",
-        "completion": "Mögen sie nun ruhen, und möge das Licht vergeben, was sie geweckt hat.",
-        "objectives": {
-          "0": {
-            "label": "Ruhelose Knochen zur Ruhe gelegt"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Gestohlene Vorräte",
         "text": "Die Banditen raubten meinen letzten Wagen: Werkzeug, Salz und gutes Eastbrook-Leinen. Hol 4 Kisten aus ihrem Lager im Nordwesten zurück.",
@@ -28747,26 +28650,6 @@ export const de_DE: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Flüstern darunter",
-        "text": "Die Toten stehen wieder auf, weil etwas sie ruft. Durchsuche die Kapelle nach dem Rufer und bring jedes Siegel unversehrt her.",
-        "completion": "Dieses Siegel trägt das Zeichen der Gravecaller. Ich hatte gebetet, diese Sekte sei erloschen, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravecaller-Siegel"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Die Namen der Toten",
-        "text": "Wenn die Gravecaller unsere Gräber raubten, muss ich wissen, wessen Ruhe sie stahlen. Sammle 3 Seiten des Begräbnisbuchs, {playerName}.",
-        "completion": "Arme Seelen... und sieh hier: Küster Marrow war der erste. Morthen begann mit dem Mann, der Eastbrooks Tote begrub.",
-        "objectives": {
-          "0": {
-            "label": "Verwitterte Buchseite"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Den Ruf verstummen lassen",
         "text": "Jeder Name im Buch ist eine Seele, die Morthen aus der Erde ziehen will. Bringe 12 ruhelose Knochen zum Schweigen, {playerName}, bevor der Flüsterton zum Chor wird.",
@@ -28774,49 +28657,6 @@ export const de_DE: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Ruhelose Knochen zum Schweigen gebracht"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Der Bindungsritus",
-        "text": "Die Gruft unter der Kapelle muss entsiegelt werden, wenn wir den Gravecaller aufhalten wollen, doch nur ein Bindungsritus lässt die Lebenden passieren. Ich brauche 4 Klumpen gesegneten Talg, die Wühler der Mine horten Talg kistenweise, und 6 geisterhafte Essenzen von den ruhelosen Toten.",
-        "completion": "Es ist getan. Der Weg hinab steht offen... sammle deine stärksten Gefährten, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gesegneter Talg"
-          },
-          "1": {
-            "label": "Geisterhafte Essenz"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "In die Höhlung",
-        "text": "Morthen wartet am Grund der Hohlen Gruft, umringt von den elitären Toten. Nimm vier Gefährten mit und beende ihn.",
-        "completion": "Das Flüstern ist verstummt. Die Toten schlafen, {playerName}, und Eastbrook schuldet dir alles.",
-        "objectives": {
-          "0": {
-            "label": "Morthen der Gravecaller getötet"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Die Glocke des Küsters",
-        "text": "Das Buch nennt Küster Marrow, Morthens ersten erhobenen Wächter. Steig mit vier Gefährten hinab und gib ihm die geraubte Ruhe zurück, {playerName}.",
-        "completion": "Marrow ist endlich frei. Läutet keine Glocke für ihn; er hörte im Leben genug.",
-        "objectives": {
-          "0": {
-            "label": "Küster Marrow zur Ruhe gelegt"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Die Spur des Gravecallers",
-        "text": "Morthen ist tot, doch seine Sekte verschwendet kein Jahrhundert des Schweigens an eine einzige Kapelle. Suche sein Grimoire in den Ruinen, {playerName}.",
-        "completion": "Morthen schrieb an einen 'Fogbinder' im nördlichen Moor. Die Sekte ist nicht tot, {playerName}, sie war nur geduldig.",
-        "objectives": {
-          "0": {
-            "label": "Morthens Grimoire"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const de_DE: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Die Hohle Gruft",
-        "enterText": "Du steigst in die Hohle Gruft hinab...",
-        "leaveText": "Du kletterst zurück ins Tageslicht."
-      },
       "sunken_bastion": {
         "name": "Die versunkene Bastion",
         "enterText": "Du watest in die versunkene Bastion hinab...",

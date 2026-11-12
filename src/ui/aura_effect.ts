@@ -125,7 +125,6 @@ import {
   VARKHUL_SHARED_PYRE_TOTAL_DAMAGE_NORMAL,
 } from '../sim/varkhul_shared_pyre';
 import { bastionAuraEffectDescriptor } from './bastion_aura_effect';
-import { cryptAuraEffectDescriptor } from './crypt_aura_effect';
 import { gourdlightAuraEffectDescriptor } from './gourdlight_aura_effect';
 import { sanctumAuraEffectDescriptor } from './sanctum_aura_effect';
 import { templeAuraEffectDescriptor } from './temple_aura_effect';
@@ -202,9 +201,6 @@ export function auraEffectDescriptor(
   // The Sunken Bastion's marks say theirs (bastion_aura_effect.ts).
   const bastion = bastionAuraEffectDescriptor(a);
   if (bastion) return bastion;
-  // The Hollow Crypt's trash and wing-boss marks say theirs (crypt_aura_effect.ts).
-  const crypt = cryptAuraEffectDescriptor(a);
-  if (crypt) return crypt;
   // The Drowned Temple's boss auras say theirs (temple_aura_effect.ts).
   const temple = templeAuraEffectDescriptor(a);
   if (temple) return temple;

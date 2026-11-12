@@ -8232,7 +8232,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.willowfen_remedy_caravan.name': '柳澤沼地藥品商隊',
   'entities.mobs.frostveil_supply_caravan.name': '霜幕之境補給商隊',
   'entities.mobs.restless_bones.name': '不寧骸骨',
-  'entities.mobs.marrow_restless_bones.name': '不寧骸骨',
   'entities.mobs.gorrak.name': '無情者戈拉克',
   'entities.mobs.mire_prowler.name': '泥沼潛伏獸',
   'entities.mobs.deepfen_murloc.name': '深沼鉗咬魚人',
@@ -8274,11 +8273,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.wyrmcult_zealot.name': '龍誓狂熱者',
   'entities.mobs.wyrmcult_necromancer.name': '龍誓死靈法師',
   'entities.mobs.boneclad_revenant.name': '骨甲亡魂',
-  'entities.mobs.crypt_shambler.name': '墓穴蹣跚者',
-  'entities.mobs.hollow_acolyte.name': '空洞侍僧',
-  'entities.mobs.bonechill_widow.name': '寒骨寡婦蛛',
-  'entities.mobs.sexton_marrow.name': '司事馬羅',
-  'entities.mobs.morthen.name': '喚墓者莫森',
   'entities.mobs.bastion_revenant.name': '堡壘亡魂',
   'entities.mobs.tidebound_acolyte.name': '潮縛侍僧',
   'entities.mobs.drowned_thrall.name': '溺亡奴僕',
@@ -8537,57 +8531,17 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '我們挖到了一條上好的銅礦脈，接著那些掘地害蟲就從山坡裡湧了出來。在礦坑清理乾淨之前，我的工班絕不會踏進去半步。放倒 10 隻深岩掘地者。',
   'entities.quests.q_mine.completion': '哈！回去幹活吧，夥計們！這是我的謝意和酬勞。',
   'entities.quests.q_mine.objectives.0.label': '擊敗深岩掘地者',
-  'entities.quests.q_bones.title': '不寧的死者',
-  'entities.quests.q_bones.text':
-    '舊禮拜堂曾是安息之地，如今有東西喚醒了死者。讓8具不寧骸骨歸土，{playerName}。',
-  'entities.quests.q_bones.completion': '願他們從此安息，也願聖光寬恕喚醒他們之物。',
-  'entities.quests.q_bones.objectives.0.label': '讓不寧骸骨安息',
   'entities.quests.q_supplies.title': '被盜的補給',
   'entities.quests.q_supplies.text':
     '強盜搶走了我的最後一輛貨車，工具、鹽和東溪亞麻都在裡面。去西北山丘的營地奪回4個補給箱。',
   'entities.quests.q_supplies.completion': '我的箱子！幾乎沒有刮痕。你真讓人驚喜。',
   'entities.quests.q_supplies.objectives.0.label': '被盜補給箱',
-  'entities.quests.q_whispers.title': '地下低語',
-  'entities.quests.q_whispers.text':
-    '死者又爬起來，因為有什麼在召喚他們。搜尋禮拜堂遺址，把召喚者留下的徽記完整帶給我。',
-  'entities.quests.q_whispers.completion':
-    '這枚徽記有喚墓者的印記。我曾祈禱這個教派早已滅絕，{playerName}。',
-  'entities.quests.q_whispers.objectives.0.label': '喚墓者徽記',
-  'entities.quests.q_names_of_the_dead.title': '死者之名',
-  'entities.quests.q_names_of_the_dead.text':
-    '如果喚墓者盜用了我們的墓地，我必須知道他們偷走了誰。收集3頁葬冊殘頁，{playerName}。',
-  'entities.quests.q_names_of_the_dead.completion':
-    '可憐的亡魂...看這裡，司事馬羅是第一個。莫森從埋葬東溪死者的人開始。',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': '風化帳頁',
   'entities.quests.q_silence_the_call.title': '讓呼喚沉寂',
   'entities.quests.q_silence_the_call.text':
     '名冊上的每個名字都是莫森想拖出泥土的靈魂。{playerName}，在低語變成合唱前，讓12具不寧骸骨沉寂。',
   'entities.quests.q_silence_the_call.completion':
     '墓園安靜了些，可召喚如今從墓穴下方升起，{playerName}。',
   'entities.quests.q_silence_the_call.objectives.0.label': '使不寧骸骨沉寂',
-  'entities.quests.q_rite.title': '束縛儀式',
-  'entities.quests.q_rite.text':
-    '若要阻止喚墓者，就必須解開禮拜堂下方墓穴的封印，但只有束縛儀式才能讓生者通過。我需要 4 塊祝福獸脂，礦坑裡的掘地怪整箱整箱地囤積獸脂，還需要 6 份取自不安亡者的幽魂精華。',
-  'entities.quests.q_rite.completion':
-    '完成了。下方的路已經打開...召集最強的同伴再下去，{playerName}。',
-  'entities.quests.q_rite.objectives.0.label': '祝福油脂',
-  'entities.quests.q_rite.objectives.1.label': '幽魂精華',
-  'entities.quests.q_hollow.title': '進入空洞',
-  'entities.quests.q_hollow.text':
-    '莫森在空洞墓穴底部等著，身邊是他喚起的精英亡者。帶上四名同伴，終結他。',
-  'entities.quests.q_hollow.completion': '低語停了。死者終於沉睡，{playerName}，東溪欠你一切。',
-  'entities.quests.q_hollow.objectives.0.label': '擊敗喚墓者莫森',
-  'entities.quests.q_sexton.title': '司事的鐘',
-  'entities.quests.q_sexton.text':
-    '葬冊寫著司事馬羅的名字，他是莫森喚起的第一個守門人。{playerName}，帶四名同伴下墓穴，還給他被奪走的安息。',
-  'entities.quests.q_sexton.completion': '馬羅終於自由了。別為他敲鐘，他生前聽得夠多了。',
-  'entities.quests.q_sexton.objectives.0.label': '讓司事馬羅安息',
-  'entities.quests.q_gravecallers_trail.title': '喚墓者的蹤跡',
-  'entities.quests.q_gravecallers_trail.text':
-    '莫森死了，但潛伏百年的教派不會只為一座村莊禮拜堂現身。去廢墟裡找他的魔典，{playerName}。',
-  'entities.quests.q_gravecallers_trail.completion':
-    '莫森曾寫信給北方濕地的一名「縛霧者」。這個教派並未死去，{playerName}，它只是一直在耐心等待。',
-  'entities.quests.q_gravecallers_trail.objectives.0.label': '莫森的魔典',
   'entities.quests.q_bandits.title': '谷地強盜',
   'entities.quests.q_bandits.text':
     '一群割喉強盜在西北山丘紮營，本週已經搶了三輛貨車。擊殺10名谷地強盜。',
@@ -9282,9 +9236,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_seal_restored.completion':
     '我在這裡感覺到它合攏了，溫柔如暮色。幽谷會記得它的朋友，{playerName}。無論你走多遠，大樹下總會為你留一盞燈。',
   'entities.quests.q_seal_restored.objectives.0.label': '封印已放回封印石',
-  'entities.dungeons.hollow_crypt.name': '空洞墓穴',
-  'entities.dungeons.hollow_crypt.enterText': '你走下空洞墓穴...',
-  'entities.dungeons.hollow_crypt.leaveText': '你重新爬回日光之下。',
   'entities.dungeons.sunken_bastion.name': '沉沒堡壘',
   'entities.dungeons.sunken_bastion.enterText': '你涉水進入沉沒堡壘深處...',
   'entities.dungeons.sunken_bastion.leaveText': '你爬出溺水般的黑暗。',
@@ -22403,17 +22354,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '用鎖鏈將 {range} 碼內的目標束縛在原地，持續 {duration} 秒。免疫控制的生物（例如首領）改為移動速度降低 {slow}%，除非它也免疫緩速。',
   'hudChrome.auraEffect.trinket.shackle': '被鎖鏈束縛：無法移動。',
   'hudChrome.auraEffect.trinket.shackleSlow': '鎖鏈纏身：移動速度降低 {pct}%。',
-  'entities.mobs.ossuary_sentinel.name': '骨堂哨兵',
-  'entities.mobs.hollow_gravedigger.name': '空洞掘墓人',
-  'entities.mobs.rimeweb_hatchling.name': '霜網幼蛛',
-  'entities.mobs.rimeweb_spinner.name': '霜網織絲蛛',
-  'entities.mobs.candlewright_acolyte.name': '燭匠侍僧',
-  'entities.mobs.hollow_chorister.name': '空洞唱詩者',
-  'entities.mobs.bound_soul.name': '縛魂',
-  'entities.mobs.rimeweb.name': '寒骨夫人',
-  'entities.mobs.cantor_ilvane.name': '領唱者伊爾凡',
-  'entities.mobs.rime_egg_sac.name': '霜卵囊',
-  // The Hollow Crypt trash (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_grave_bolt': '墓穴之箭',
   'abilityUi.cast.crypt_raise_bones': '喚起骸骨',
   'abilityUi.cast.crypt_murder_call': '鴉群召喚',
@@ -22475,18 +22415,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_gravespark_volley': '墓火齊射',
   'abilityUi.cast.bastion_loose_on_my_mark': '聽我號令放箭',
   'abilityUi.cast.temple_call_of_the_shallows': '淺灘的呼喚',
-  'entities.mobs.crypt_ossuary_warrior.name': '骨堂戰士',
-  'entities.mobs.crypt_gravecaller_adept.name': '喚墓者學徒',
-  'entities.mobs.crypt_ossuary_cutthroat.name': '骨堂割喉者',
-  'entities.mobs.crypt_gravecaller_necromancer.name': '喚墓者死靈法師',
-  'entities.mobs.crypt_bone_minion.name': '骸骨僕從',
-  'entities.mobs.crypt_bone_brute.name': '骸骨蠻兵',
-  'entities.mobs.crypt_bone_pile.name': '蠢動的骸骨',
-  'entities.mobs.crypt_chapel_gargoyle.name': '禮拜堂石像鬼',
-  'entities.mobs.crypt_crow_caller.name': '喚鴉者',
-  'entities.mobs.crypt_carrion_crow.name': '食腐烏鴉',
-  'entities.mobs.crypt_ossuary_drake.name': '骨堂骨龍',
-  // The Hollow Crypt finale (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_morthen_rite_wakes': '儀式甦醒',
   'abilityUi.cast.crypt_morthen_rise': '喚墓者升起',
   'abilityUi.cast.crypt_morthen_proclaim': '墓之宣告',
@@ -22506,8 +22434,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_ilvane_dirge': '空洞輓歌',
   'abilityUi.cast.crypt_ilvane_unbroken_dirge': '不斷之詩',
   'abilityUi.cast.crypt_ilvane_bone_organ': '骨管風琴',
-  'entities.mobs.crypt_knellwyrm.name': '喪鐘巨龍',
-  // The Sunken Bastion fifth pass (M16 non-Latin fills for its new names).
   'abilityUi.cast.bastion_iron_cage': '鐵籠',
   'abilityUi.cast.bastion_drowned_anchor_cast': '溺亡之錨',
   'abilityUi.cast.bastion_shackle_pair': '雙人鐐銬',
@@ -22945,7 +22871,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_knellwyrm_knell_mark': '燃燒喪鐘',
   'abilityUi.cast.crypt_knellwyrm_knell_breath': '燃燒喪鐘',
   'abilityUi.cast.crypt_knellwyrm_knell_land': '燃燒喪鐘',
-  'entities.mobs.crypt_remembrance_candle.name': '追思蠟燭',
   'hudChrome.auraEffect.crypt.gorged':
     '造成的傷害提高{pct}%：每個抵達他身邊的縛魂提高{per}%，目前{stacks}/{max}層，持續到戰鬥結束。每個抵達的靈魂還會為他恢復{heal}%的最大生命值。站到靈魂的路徑上，就能由你代為承受。',
   'hudChrome.auraEffect.crypt.unquietWard':

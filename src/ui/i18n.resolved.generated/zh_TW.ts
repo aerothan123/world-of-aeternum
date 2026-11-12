@@ -26590,9 +26590,6 @@ export const zh_TW: EnTranslations = {
       "restless_bones": {
         "name": "不寧骸骨"
       },
-      "marrow_restless_bones": {
-        "name": "不寧骸骨"
-      },
       "gorrak": {
         "name": "無情者戈拉克"
       },
@@ -26694,90 +26691,6 @@ export const zh_TW: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "骨甲亡魂"
-      },
-      "crypt_shambler": {
-        "name": "墓穴蹣跚者"
-      },
-      "hollow_acolyte": {
-        "name": "空洞侍僧"
-      },
-      "bonechill_widow": {
-        "name": "寒骨寡婦蛛"
-      },
-      "sexton_marrow": {
-        "name": "司事馬羅"
-      },
-      "morthen": {
-        "name": "喚墓者莫森"
-      },
-      "ossuary_sentinel": {
-        "name": "骨堂哨兵"
-      },
-      "hollow_gravedigger": {
-        "name": "空洞掘墓人"
-      },
-      "rime_egg_sac": {
-        "name": "霜卵囊"
-      },
-      "rimeweb_hatchling": {
-        "name": "霜網幼蛛"
-      },
-      "rimeweb_spinner": {
-        "name": "霜網織絲蛛"
-      },
-      "candlewright_acolyte": {
-        "name": "燭匠侍僧"
-      },
-      "hollow_chorister": {
-        "name": "空洞唱詩者"
-      },
-      "bound_soul": {
-        "name": "縛魂"
-      },
-      "rimeweb": {
-        "name": "寒骨夫人"
-      },
-      "cantor_ilvane": {
-        "name": "領唱者伊爾凡"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "骨堂戰士"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "喚墓者學徒"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "骨堂割喉者"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "喚墓者死靈法師"
-      },
-      "crypt_bone_minion": {
-        "name": "骸骨僕從"
-      },
-      "crypt_bone_brute": {
-        "name": "骸骨蠻兵"
-      },
-      "crypt_bone_pile": {
-        "name": "蠢動的骸骨"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "禮拜堂石像鬼"
-      },
-      "crypt_crow_caller": {
-        "name": "喚鴉者"
-      },
-      "crypt_carrion_crow": {
-        "name": "食腐烏鴉"
-      },
-      "crypt_ossuary_drake": {
-        "name": "骨堂骨龍"
-      },
-      "crypt_knellwyrm": {
-        "name": "喪鐘巨龍"
-      },
-      "crypt_remembrance_candle": {
-        "name": "追思蠟燭"
       },
       "bastion_revenant": {
         "name": "堡壘亡魂"
@@ -28727,16 +28640,6 @@ export const zh_TW: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "不寧的死者",
-        "text": "舊禮拜堂曾是安息之地，如今有東西喚醒了死者。讓8具不寧骸骨歸土，{playerName}。",
-        "completion": "願他們從此安息，也願聖光寬恕喚醒他們之物。",
-        "objectives": {
-          "0": {
-            "label": "讓不寧骸骨安息"
-          }
-        }
-      },
       "q_supplies": {
         "title": "被盜的補給",
         "text": "強盜搶走了我的最後一輛貨車，工具、鹽和東溪亞麻都在裡面。去西北山丘的營地奪回4個補給箱。",
@@ -28747,26 +28650,6 @@ export const zh_TW: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "地下低語",
-        "text": "死者又爬起來，因為有什麼在召喚他們。搜尋禮拜堂遺址，把召喚者留下的徽記完整帶給我。",
-        "completion": "這枚徽記有喚墓者的印記。我曾祈禱這個教派早已滅絕，{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "喚墓者徽記"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "死者之名",
-        "text": "如果喚墓者盜用了我們的墓地，我必須知道他們偷走了誰。收集3頁葬冊殘頁，{playerName}。",
-        "completion": "可憐的亡魂...看這裡，司事馬羅是第一個。莫森從埋葬東溪死者的人開始。",
-        "objectives": {
-          "0": {
-            "label": "風化帳頁"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "讓呼喚沉寂",
         "text": "名冊上的每個名字都是莫森想拖出泥土的靈魂。{playerName}，在低語變成合唱前，讓12具不寧骸骨沉寂。",
@@ -28774,49 +28657,6 @@ export const zh_TW: EnTranslations = {
         "objectives": {
           "0": {
             "label": "使不寧骸骨沉寂"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "束縛儀式",
-        "text": "若要阻止喚墓者，就必須解開禮拜堂下方墓穴的封印，但只有束縛儀式才能讓生者通過。我需要 4 塊祝福獸脂，礦坑裡的掘地怪整箱整箱地囤積獸脂，還需要 6 份取自不安亡者的幽魂精華。",
-        "completion": "完成了。下方的路已經打開...召集最強的同伴再下去，{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "祝福油脂"
-          },
-          "1": {
-            "label": "幽魂精華"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "進入空洞",
-        "text": "莫森在空洞墓穴底部等著，身邊是他喚起的精英亡者。帶上四名同伴，終結他。",
-        "completion": "低語停了。死者終於沉睡，{playerName}，東溪欠你一切。",
-        "objectives": {
-          "0": {
-            "label": "擊敗喚墓者莫森"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "司事的鐘",
-        "text": "葬冊寫著司事馬羅的名字，他是莫森喚起的第一個守門人。{playerName}，帶四名同伴下墓穴，還給他被奪走的安息。",
-        "completion": "馬羅終於自由了。別為他敲鐘，他生前聽得夠多了。",
-        "objectives": {
-          "0": {
-            "label": "讓司事馬羅安息"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "喚墓者的蹤跡",
-        "text": "莫森死了，但潛伏百年的教派不會只為一座村莊禮拜堂現身。去廢墟裡找他的魔典，{playerName}。",
-        "completion": "莫森曾寫信給北方濕地的一名「縛霧者」。這個教派並未死去，{playerName}，它只是一直在耐心等待。",
-        "objectives": {
-          "0": {
-            "label": "莫森的魔典"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const zh_TW: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "空洞墓穴",
-        "enterText": "你走下空洞墓穴...",
-        "leaveText": "你重新爬回日光之下。"
-      },
       "sunken_bastion": {
         "name": "沉沒堡壘",
         "enterText": "你涉水進入沉沒堡壘深處...",

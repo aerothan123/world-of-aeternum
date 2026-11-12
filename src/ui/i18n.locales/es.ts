@@ -9996,11 +9996,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.stormcrag_elemental.name': 'Elemental de Stormcrag',
   'entities.mobs.shardlord_kazzix.name': 'Señor de fragmentos Kazzix',
   'entities.mobs.boneclad_revenant.name': 'Aparecido de hueso',
-  'entities.mobs.crypt_shambler.name': 'Tambaleante de la Cripta',
-  'entities.mobs.hollow_acolyte.name': 'Acólito del Hueco',
-  'entities.mobs.bonechill_widow.name': 'Viuda Huesofrío',
-  'entities.mobs.sexton_marrow.name': 'Sacristán Marrow',
-  'entities.mobs.morthen.name': 'Morthen el Gravecaller',
   'entities.mobs.bastion_revenant.name': 'Aparecido del Bastión',
   'entities.mobs.tidebound_acolyte.name': 'Acólito atado a la marea',
   'entities.mobs.drowned_thrall.name': 'Siervo ahogado',
@@ -10165,61 +10160,18 @@ export const es: Partial<Record<TranslationKey, string>> = {
     'Dimos con una buena veta de cobre y entonces esas alimañas madrigueras brotaron de la ladera. Mi cuadrilla no pondrá un pie en la excavación hasta que esté despejada. Abate a 10 Excavadores de Deeprock.',
   'entities.quests.q_mine.completion': '¡A trabajar, muchachos! Tienes mi gratitud y mi paga.',
   'entities.quests.q_mine.objectives.0.label': 'Excavador de Deeprock abatido',
-  'entities.quests.q_bones.title': 'Los muertos inquietos',
-  'entities.quests.q_bones.text':
-    'La vieja capilla fue un lugar de descanso, hasta que algo despertó a sus muertos. Devuelve 8 huesos inquietos a la tierra, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Que descansen ahora, y que la Luz perdone a quien los despertó.',
-  'entities.quests.q_bones.objectives.0.label': 'Huesos inquietos devuelto al descanso',
   'entities.quests.q_supplies.title': 'Suministros robados',
   'entities.quests.q_supplies.text':
     'Esos bandidos asaltaron mi último carro y se llevaron cuatro cajas de mercancía: herramientas, sal, buen lino de Eastbrook. Las cajas están amontonadas por su campamento, en las colinas del noroeste. ¿Me las robarías de vuelta?',
   'entities.quests.q_supplies.completion':
     '¡Mis cajas! Apenas tienen un rasguño. Eres una maravilla.',
   'entities.quests.q_supplies.objectives.0.label': 'Caja de suministros robada',
-  'entities.quests.q_whispers.title': 'Susurros bajo tierra',
-  'entities.quests.q_whispers.text':
-    'Los muertos vuelven a levantarse porque algo los llama. Busca en la capilla una señal de quien susurra y tráela intacta.',
-  'entities.quests.q_whispers.completion':
-    'Este sigilo lleva la marca de los Gravecallers. Temía que esa secta siguiera muerta, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sigilo de Gravecaller',
-  'entities.quests.q_names_of_the_dead.title': 'Los nombres de los muertos',
-  'entities.quests.q_names_of_the_dead.text':
-    'Si los Gravecallers profanaron nuestras tumbas, necesito saber a quiénes robaron. Reúne 3 páginas del registro de entierros, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Pobres almas... y mira esto: el sacristán Marrow fue el primero. Morthen empezó con quien enterraba a Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Página de registro desgastada',
   'entities.quests.q_silence_the_call.title': 'Silenciar la llamada',
   'entities.quests.q_silence_the_call.text':
     'Cada nombre del registro es un alma que Morthen quiere arrancar de la tierra. Silencia 12 huesos inquietos, {playerName}, antes de que el susurro sea coro.',
   'entities.quests.q_silence_the_call.completion':
     'El patio está más quieto, pero la llamada sube ahora desde la cripta, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label': 'Huesos inquietos silenciado',
-  'entities.quests.q_rite.title': 'El rito vinculante',
-  'entities.quests.q_rite.text':
-    'La cripta bajo la capilla debe abrirse si queremos detener al Gravecaller, pero solo un rito de vínculo dejará pasar a los vivos. Necesito 4 trozos de Sebo Bendito, los madrigueros de la mina acumulan sebo por cajones, y 6 Esencias Fantasmales de los muertos inquietos.',
-  'entities.quests.q_rite.completion':
-    'Está hecho. El camino de abajo se abre... reúne a tus compañeros más fuertes, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': 'Sebo bendito',
-  'entities.quests.q_rite.objectives.1.label': 'Esencia fantasmal',
-  'entities.quests.q_hollow.title': 'Dentro del Hueco',
-  'entities.quests.q_hollow.text':
-    'Morthen te espera en el fondo de la Cripta Hueca, rodeado de muertos de élite. Lleva cuatro compañeros y acaba con él.',
-  'entities.quests.q_hollow.completion':
-    'El susurro cesó. Los muertos duermen, {playerName}, y Eastbrook te debe cuanto tiene.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen el Gravecaller abatido',
-  'entities.quests.q_sexton.title': 'La campana del sacristán',
-  'entities.quests.q_sexton.text':
-    'El registro nombra al sacristán Marrow, primer guardián alzado por Morthen. Entra con cuatro compañeros y dale el descanso robado, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Marrow es libre al fin. No doblen campanas por él; oyó bastantes en vida.',
-  'entities.quests.q_sexton.objectives.0.label': 'Sacristán Marrow devuelto al descanso',
-  'entities.quests.q_gravecallers_trail.title': 'El rastro del Gravecaller',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen murió, pero su secta no gastaría un siglo de silencio en una sola capilla. Busca su grimorio entre las ruinas, {playerName}.',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen escribía a un 'Fogbinder' en la ciénaga del norte. La secta no está muerta, {playerName}, solo ha sido paciente.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimorio de Morthen',
   'entities.quests.q_bandits.title': 'Bandidos del Valle',
   'entities.quests.q_bandits.text':
     'Una banda de degolladores acampa en las colinas del noroeste. Han robado tres carros esta semana. Abate 10 bandidos del Valle.',
@@ -10586,9 +10538,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'entities.zones.thornpeak_heights.pois.6.label': 'El Glimmermere',
   'entities.zones.thornpeak_heights.pois.8.label': 'Campos de aparecidos',
   'entities.zones.thornpeak_heights.pois.9.label': 'Santuario del Gravewyrm',
-  'entities.dungeons.hollow_crypt.name': 'La Cripta Hueca',
-  'entities.dungeons.hollow_crypt.enterText': 'Desciendes a la Cripta Hueca...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Vuelves a subir a la luz del día.',
   'entities.dungeons.sunken_bastion.name': 'El Bastión Sumergido',
   'entities.dungeons.sunken_bastion.enterText':
     'Vadeas hacia las profundidades del Bastión Sumergido...',
@@ -20750,8 +20699,6 @@ No hay un límite de profesiones que debas temer. Cada personaje puede subir nue
   'bossJournal.wildheart.bloom.spitName': 'Escupitajo floral',
   'entities.mobs.bastion_drowned_anchor.name': 'Ancla ahogada',
   'entities.mobs.bastion_gaol_cage.name': 'Jaula de hierro',
-  'entities.mobs.bound_soul.name': 'Alma atada',
-  'entities.mobs.crypt_remembrance_candle.name': 'Vela del recuerdo',
   'entities.mobs.muster_footman.name': 'Infante de la leva',
   'entities.mobs.muster_sergeant.name': 'Sargento de la leva',
   'editor.appearance.fire': 'Efecto de fuego (llama animada)',
@@ -21503,7 +21450,6 @@ No hay un límite de profesiones que debas temer. Cada personaje puede subir nue
   'entities.items.hoarfrost_mantle.name': 'Manto de Escarcha',
   'entities.letters.membership_annual_reward.sender': 'El Correo del Cuervo',
   'entities.letters.membership_token_delivery.sender': 'El Correo del Cuervo',
-  'entities.mobs.marrow_restless_bones.name': 'Huesos inquietos',
   'entities.mobs.vael_fog_shade.name': 'Vael el Fogbinder',
   'entities.npcs.patron_hester_quillby.title': 'Cartógrafo',
   'referralCards.milestones.fogbinder': 'El Fogbinder',
@@ -23019,20 +22965,6 @@ No hay un límite de profesiones que debas temer. Cada personaje puede subir nue
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Jabalí Colmillo Cornudo',
-  'entities.mobs.candlewright_acolyte.name': 'Acólito Cerero',
-  'entities.mobs.cantor_ilvane.name': 'Cantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Bruto de Hueso',
-  'entities.mobs.crypt_bone_minion.name': 'Esbirro de Hueso',
-  'entities.mobs.crypt_bone_pile.name': 'Huesos Agitados',
-  'entities.mobs.crypt_carrion_crow.name': 'Cuervo Carroñero',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gárgola de la Capilla',
-  'entities.mobs.crypt_crow_caller.name': 'Invocador de Cuervos',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adepto Invocador de Tumbas',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nigromante Invocador de Tumbas',
-  'entities.mobs.crypt_knellwyrm.name': 'Vermis del Doblar',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Degollador del Osario',
-  'entities.mobs.crypt_ossuary_drake.name': 'Draco del Osario',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Guerrero del Osario',
   'entities.mobs.drowned_pilgrim.name': 'Peregrino Ahogado',
   'entities.mobs.drowned_sergeant.name': 'Sargento Ahogado',
   'entities.mobs.drowned_watchman.name': 'Vigía Ahogado',
@@ -23042,8 +22974,6 @@ No hay un límite de profesiones que debas temer. Cada personaje puede subir nue
   'entities.mobs.gaoler_ossick.name': 'Carcelero Ossick',
   'entities.mobs.glacier_splinter.name': 'Esquirla de Glaciar',
   'entities.mobs.great_saurian.name': 'Gran Saurio',
-  'entities.mobs.hollow_chorister.name': 'Corista Hueco',
-  'entities.mobs.hollow_gravedigger.name': 'Sepulturero Hueco',
   'entities.mobs.howdah_hexcaller.name': 'Invocador de Maleficios de la Plataforma',
   'entities.mobs.ice_wraith.name': 'Espectro de Hielo',
   'entities.mobs.lagoon_snapper.name': 'Tortuga Mordedora de la Laguna',
@@ -23056,12 +22986,7 @@ No hay un límite de profesiones que debas temer. Cada personaje puede subir nue
   'entities.mobs.muster_drillmaster.name': 'Instructor de la Leva',
   'entities.mobs.muster_effigy.name': 'Capataz de Paja',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogro Arrastrador de Trineos',
-  'entities.mobs.ossuary_sentinel.name': 'Centinela del Osario',
-  'entities.mobs.rime_egg_sac.name': 'Saco de Huevos de Escarcha',
   'entities.mobs.rime_whelp.name': 'Cría de Escarcha',
-  'entities.mobs.rimeweb.name': 'Dama del Frío de Huesos',
-  'entities.mobs.rimeweb_hatchling.name': 'Cría de Telaraña Escarchada',
-  'entities.mobs.rimeweb_spinner.name': 'Tejedora de Telaraña Escarchada',
   'entities.mobs.sanctum_shackle_anvil.name': 'Grillete del Yunque',
   'entities.mobs.sanctum_shackle_bellows.name': 'Grillete del Fuelle',
   'entities.mobs.sanctum_shackle_hammer.name': 'Grillete del Martillo',

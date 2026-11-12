@@ -26590,9 +26590,6 @@ export const fr_CA: EnTranslations = {
       "restless_bones": {
         "name": "Ossements agités"
       },
-      "marrow_restless_bones": {
-        "name": "Ossements agités"
-      },
       "gorrak": {
         "name": "Gorrak l'Impitoyable"
       },
@@ -26694,90 +26691,6 @@ export const fr_CA: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Revenant caparaçonné d'os"
-      },
-      "crypt_shambler": {
-        "name": "Traînard de la crypte"
-      },
-      "hollow_acolyte": {
-        "name": "Acolyte du Creux"
-      },
-      "bonechill_widow": {
-        "name": "Veuve Frissos"
-      },
-      "sexton_marrow": {
-        "name": "Sacristain Marrow"
-      },
-      "morthen": {
-        "name": "Morthen le Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Sentinelle de l'ossuaire"
-      },
-      "hollow_gravedigger": {
-        "name": "Fossoyeur creux"
-      },
-      "rime_egg_sac": {
-        "name": "Sac d'œufs de givre"
-      },
-      "rimeweb_hatchling": {
-        "name": "Jeune araignée de toile givrée"
-      },
-      "rimeweb_spinner": {
-        "name": "Tisseuse de toile givrée"
-      },
-      "candlewright_acolyte": {
-        "name": "Acolyte cirier"
-      },
-      "hollow_chorister": {
-        "name": "Choriste creux"
-      },
-      "bound_soul": {
-        "name": "Âme liée"
-      },
-      "rimeweb": {
-        "name": "Dame du Froid d'Os"
-      },
-      "cantor_ilvane": {
-        "name": "Chantre Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Guerrier de l'ossuaire"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adepte Gravecaller"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Coupe-gorge de l'ossuaire"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Nécromancien Gravecaller"
-      },
-      "crypt_bone_minion": {
-        "name": "Serviteur d'os"
-      },
-      "crypt_bone_brute": {
-        "name": "Brute d'os"
-      },
-      "crypt_bone_pile": {
-        "name": "Ossements agités"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gargouille de la chapelle"
-      },
-      "crypt_crow_caller": {
-        "name": "Appelant des corbeaux"
-      },
-      "crypt_carrion_crow": {
-        "name": "Corbeau charognard"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Drake de l'ossuaire"
-      },
-      "crypt_knellwyrm": {
-        "name": "Knellwyrm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Bougie du souvenir"
       },
       "bastion_revenant": {
         "name": "Revenant du Bastion"
@@ -28727,16 +28640,6 @@ export const fr_CA: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Les morts sans repos",
-        "text": "La vieille chapelle était un lieu de repos avant que quelque chose réveille ses morts. Rendez 8 ossements agités à la terre, {playerName}.",
-        "completion": "Puissent-ils reposer, et puisse la Lumière pardonner à ce qui les a réveillés.",
-        "objectives": {
-          "0": {
-            "label": "Ossements agités rendu au repos"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Fournitures volées",
         "text": "Les bandits ont pris mon dernier chariot: outils, sel et bon lin d'Eastbrook. Reprenez 4 caisses dans leur camp du nord-ouest.",
@@ -28747,26 +28650,6 @@ export const fr_CA: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Murmures sous terre",
-        "text": "Les morts se relèvent parce que quelque chose les rappelle. Fouillez la chapelle et rapportez-moi tout sceau trouvé intact.",
-        "completion": "Ce sceau porte la marque des Gravecallers. Je priais pour que cette secte soit éteinte, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sceau de Gravecaller"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Les noms des morts",
-        "text": "Si les Gravecallers ont pillé nos tombes, je dois savoir qui ils ont volé. Rassemblez 3 pages du registre funéraire, {playerName}.",
-        "completion": "Pauvres âmes... et voici le sacristain Marrow, le premier dérangé. Morthen a commencé par celui qui enterrait Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Page de registre usée"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Faire taire l'appel",
         "text": "Chaque nom du registre est une âme que Morthen veut tirer de terre. Faites taire 12 ossements, {playerName}, avant que le murmure devienne chœur.",
@@ -28774,49 +28657,6 @@ export const fr_CA: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Ossements agités réduit au silence"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Le rite de lien",
-        "text": "La crypte sous la chapelle doit être descellée si nous voulons arrêter le Gravecaller, mais seul un rite de lien laissera passer les vivants. Il me faut 4 morceaux de Suif béni, les fouisseurs de la mine amassent le suif par caisses entières, et 6 Essences spectrales prélevées sur les morts sans repos.",
-        "completion": "C'est fait. Le passage s'ouvre... rassemblez vos compagnons les plus solides, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Suif béni"
-          },
-          "1": {
-            "label": "Essence spectrale"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Dans le Creux",
-        "text": "Morthen attend au fond de la Crypte creuse, entouré des morts d'élite qu'il a relevés. Prenez quatre compagnons et mettez fin à tout cela.",
-        "completion": "Les murmures ont cessé. Les morts dorment, {playerName}, et Eastbrook vous doit tout.",
-        "objectives": {
-          "0": {
-            "label": "Morthen le Gravecaller tué"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "La cloche du sacristain",
-        "text": "Le registre nomme le sacristain Marrow, premier serviteur relevé par Morthen. Descendez avec quatre compagnons et rendez-lui son repos, {playerName}.",
-        "completion": "Marrow est enfin libre. Ne sonnez pas pour lui; il a assez entendu de cloches.",
-        "objectives": {
-          "0": {
-            "label": "Sacristain Marrow rendu au repos"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "La piste du Gravecaller",
-        "text": "Morthen est mort, mais sa secte n'aurait pas attendu un siècle pour une seule chapelle. Cherchez son grimoire dans les ruines, {playerName}.",
-        "completion": "Morthen écrivait à un « Fogbinder » dans la fagne du nord. La secte n'est pas morte, {playerName}, elle a simplement patienté.",
-        "objectives": {
-          "0": {
-            "label": "Grimoire de Morthen"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const fr_CA: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "La Crypte creuse",
-        "enterText": "Vous descendez dans la Crypte creuse...",
-        "leaveText": "Vous remontez à la lumière du jour."
-      },
       "sunken_bastion": {
         "name": "Le Bastion englouti",
         "enterText": "Vous pataugez dans les profondeurs du Bastion englouti...",

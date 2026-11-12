@@ -11376,9 +11376,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.dungeons.gravewyrm_sanctum.enterText': 'Vzduch zchladne. Něco obrovského dole dýchá...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Vypotácíš se zpět do horského větru.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Svatyně Hrobodraka',
-  'entities.dungeons.hollow_crypt.enterText': 'Sestupuješ do Duté krypty...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Šplháš zpět na denní světlo.',
-  'entities.dungeons.hollow_crypt.name': 'Dutá krypta',
   'entities.dungeons.nythraxis_boss_arena.enterText': 'Procházíš zapečetěnými královskými dveřmi.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Vracíš se do chladného vzduchu Thornpeaku.',
   'entities.dungeons.nythraxis_boss_arena.name': 'Raidová aréna Nythraxis',
@@ -11532,7 +11529,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolytka Tessa',
   'entities.mobs.bastion_revenant.name': 'Revenant bašty',
   'entities.mobs.bog_bloat.name': 'Bahenní nadmutec',
-  'entities.mobs.bonechill_widow.name': 'Kostimrazá vdova',
   'entities.mobs.boneclad_revenant.name': 'Kostmi obrněný revenant',
   'entities.mobs.bound_guardian.name': 'Spoutaný strážce',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Drtič lebek',
@@ -11540,7 +11536,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.choir_thrall.name': 'Bažinný otrok',
   'entities.mobs.choirmother_selthe.name': 'Matka sboru Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Zkažený kněz Malric',
-  'entities.mobs.crypt_shambler.name': 'Belhavec z krypty',
   'entities.mobs.deacon_varric.name': 'Diákon Vandric',
   'entities.mobs.deacon_voss.name': 'Diákon Voss',
   'entities.mobs.deathstalker_voss.name': 'Smrtostopař Voss',
@@ -11567,7 +11562,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Vyvolávač Hrobovolajících',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Tunelový král',
   'entities.mobs.grubjaw.name': 'Grubjaw Nenasytný',
-  'entities.mobs.hollow_acolyte.name': 'Akolyta Dutiny',
   'entities.mobs.ironvein_foreman.name': 'Předák Železné žíly',
   'entities.mobs.ironvein_sapper.name': 'Podkopník Železné žíly',
   'entities.mobs.knight_commander_olen.name': 'Rytířský velitel Olen',
@@ -11583,7 +11577,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Moggerův poskok',
   'entities.mobs.moonspawn.name': 'Měsíční plémě',
-  'entities.mobs.morthen.name': 'Morthen Hrobovolající',
   'entities.mobs.mudfin_murloc.name': 'Bahennoploutvý plíživec',
   'entities.mobs.nhalia_mourner.name': 'Nhaliin truchlící',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, nesmrtelný hierofant',
@@ -11609,7 +11602,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Kostěná stráž svatyně',
   'entities.mobs.sanctum_drakonid.name': 'Šupinná stráž svatyně',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Bledá spirála',
-  'entities.mobs.sexton_marrow.name': 'Kostelník Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Pán střepů Kazzix',
   'entities.mobs.sister_nhalia.name': 'Sestra Nhalia',
   'entities.mobs.sister_nhalia_drowned_canticle.name': 'Sestra Nhalia, Utopený chvalozpěv',
@@ -11663,12 +11655,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Z kančí kůže jsou nejlepší cestovní vaky a louky severozápadně od města se těmi zvířaty jen hemží. Přines mi 5 štětinatých kančích kůží a vyplatí se ti to.',
   'entities.quests.q_boars.title': 'Štětinaté kančí kůže',
-  'entities.quests.q_bones.completion':
-    'Ať teď odpočívají a ať Světlo odpustí tomu, co je probudilo.',
-  'entities.quests.q_bones.objectives.0.label': 'Neklidné kosti uloženy ke klidu',
-  'entities.quests.q_bones.text':
-    'Stará ruina na severozápadním kopci bývala kaplí a její dvůr místem odpočinku. Něco vytrhlo mrtvé ze spánku. Dopřej jim pokoj, {playerName}, vrať 8 neklidných kostí do země.',
-  'entities.quests.q_bones.title': 'Neklidní mrtví',
   'entities.quests.q_breaking_the_seal.completion':
     'Hoří modře a čistě, hora si pamatuje svou starou přísahu. S nimi dokážu rozvázat bránu jen pro nás.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Požehnané uhlíky',
@@ -11777,12 +11763,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis mi ukázal hrudku vosku sebranou z jednoho z těch tunelářů. Září, {playerName}, a je teplá jako tlukot srdce. Chce další ke studiu a já to chci pryč ze seznamu požadavků. Přines šest hrudek zářícího vosku.',
   'entities.quests.q_glowing_wax.title': 'Podivný vosk',
-  'entities.quests.q_gravecallers_trail.completion':
-    'Morthen psal Mlhovazači v severním močálu. Sekta není mrtvá, {playerName}, jen byla trpělivá.',
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthenův grimoár',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen je mrtvý, ale hryže mě otázka: sekta, která se skrývala celé století, se nevyčerpá na jedné vesnické kapli. Měl grimoár, své rituály a korespondenci. Pokud z toho něco přežilo, leží to v sakristii zničené kaple nad kryptou. Prohledej ruinu a přines mi, co z jeho spisů zůstalo, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Stopa Hrobovolajícího',
   'entities.quests.q_gravewyrm.completion':
     'Je konec. Mrtví tří zemí mohou odpočívat, hora spí bez přízraků, a dnes v noci zní každý zvon odtud po Eastbrook tvým jménem, {playerName}.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Hrobodrak zabit',
@@ -11807,12 +11787,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Vaelova poslední slova mě neopouštějí, {playerName}: drak se hýbe pod štíty. Kapitánka Thessaly velí zdi v Highwatchi, na začátku horské cesty na sever. U její brány visí svolání, vezmi ho a řekni jí, že bratr Aldric stoupá na horu za tebou.',
   'entities.quests.q_highwatch_summons.title': 'Hlídka na štítech',
-  'entities.quests.q_hollow.completion':
-    'Šepot utichl. Dokázal jsi, co celé údolí nedokázalo, {playerName}: mrtví spí a Eastbrook ti dluží všechno, co má.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Hrobovolající zabit',
-  'entities.quests.q_hollow.text':
-    'Morthen Hrobovolající čeká na dně Duté krypty, obklopen elitními mrtvými, které vztyčil. Je daleko nad síly jednoho hrdiny, vezmi čtyři společníky, ne méně. Skoncuj s ním a mrtví údolí konečně usnou.',
-  'entities.quests.q_hollow.title': 'Do Dutiny',
   'entities.quests.q_idols.completion':
     'Práce Hrobovolajících, starší než Morthen, starší než já. Sekta nezačala v Eastbrooku, {playerName}. Začala tady a jezero si drželo svá tajemství.',
   'entities.quests.q_idols.objectives.0.label': 'Vodou nasáklý idol',
@@ -11859,12 +11833,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Dvacet let rybařím na Zrcadlovém jezeře a nikdy jsem nepřišel o síť, dokud z mělčin nevylezli ti bublající rybolidé. Zažeň Bahenní ploutve zpátky, zabij jich 8. A dávej na sebe pozor: kde je jedna bahenní ploutev, tam je jich pět.',
   'entities.quests.q_murlocs.title': 'Potíže u jezera',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Ubohé duše... a podívej sem. Kostelník Marrow, vlastní živý správce kaple, jeho hrob byl narušen jako první. Morthen začal s mužem, který pohřbíval mrtvé Eastbrooku.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Ošlehaná stránka účetní knihy',
-  'entities.quests.q_names_of_the_dead.text':
-    'Pokud Hrobovolající vztyčili naše mrtvé, musím vědět, čí hroby vyloupili. Kostelník kaple vedl pohřební knihu a vítr její stránky rozházel po hřbitově. Sesbírej mi 3, {playerName}, mrtví si zaslouží být voláni svými jmény.',
-  'entities.quests.q_names_of_the_dead.title': 'Jména mrtvých',
   'entities.quests.q_necromancers.completion':
     'Světlo nám odpusť. Tohle drží mrtvé údolí i močálu, každou mrtvolu, kterou kdy Hrobovolající vztyčili, sklizenou. Nikdy nebudovali armádu, {playerName}. Shromažďovali desátek.',
   'entities.quests.q_necromancers.objectives.0.label': 'Nekromant kultu draka zabit',
@@ -11976,25 +11944,12 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Bandité poslouchají jednoho muže: Gorraka Nemilosrdného. Usekni hlavu a tělo se rozprchne. Číhá v srdci jejich tábora. Ukonči ho, {playerName}.',
   'entities.quests.q_ringleader.title': 'Vůdce bandy',
-  'entities.quests.q_rite.completion':
-    'Je hotovo. Cesta dolů stojí otevřená... a ať mi Světlo odpustí, že jsem ji otevřel. Než sestoupíš, shromáždi své nejsilnější společníky, {playerName}. Nikdo by neměl čelit Dutině sám.',
-  'entities.quests.q_rite.objectives.0.label': 'Požehnaný lůj',
-  'entities.quests.q_rite.objectives.1.label': 'Přízračná esence',
-  'entities.quests.q_rite.text':
-    'Krypta pod kaplí musí být odpečetěna, máme-li zastavit Hrobovolajícího, ale jen poutací rituál dovolí živým projít. Potřebuji 4 kusy požehnaného loje, norníci v dole hromadí lůj po bednách, a 6 přízračných esencí z neklidných mrtvých.',
-  'entities.quests.q_rite.title': 'Poutací rituál',
   'entities.quests.q_sanctum_gate.completion':
     'Střepy sedí správně... a brána poznává svůj klíč. Cesta dolů stojí otevřená, {playerName}. Shromáždi nejsilnější společníky, které najdeš, tomu, co přijde, by nikdo neměl čelit sám.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Střep klíče od svatyně',
   'entities.quests.q_sanctum_gate.text':
     'Tohle je poslední práh, {playerName}. Brána Svatyně Hrobodraka byla zamčena klíčovým kamenem a kult ho roztříštil na střepy, aby se neobrátil proti nim. Střepy leží roztroušené na náměstí brány, pod očima kostmi obrněných mrtvých. Přines mi tři a otevřu cestu tak, jak Světlo zamýšlelo: tiše.',
   'entities.quests.q_sanctum_gate.title': 'Brána svatyně',
-  'entities.quests.q_sexton.completion':
-    'Tak je Marrow konečně svobodný. Nezvoňte mu, za života jich slyšel dost.',
-  'entities.quests.q_sexton.objectives.0.label': 'Kostelník Marrow uložen ke klidu',
-  'entities.quests.q_sexton.text':
-    'Kniha ho jmenovala a krypta ho drží: kostelník Marrow, správce kaple, první muž, kterého Morthen vztyčil. Ve smrti střežil dveře svého pána tak věrně, jako za života střežil kapli. Vezmi čtyři společníky do Duté krypty a dopřej starému kostelníkovi odpočinek, o který byl oloupen, {playerName}.',
-  'entities.quests.q_sexton.title': 'Kostelníkův zvon',
   'entities.quests.q_shard_cores.completion':
     'Každé jádro se sklání stejným směrem, jako železné piliny k magnetovci. Ukazují na jih, {playerName}. Ke svatyni.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Jádro bouře',
@@ -12088,12 +12043,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Včera v noci si celý tábor kultu najednou klekl, {playerName}, každý fanatik, každý nekromant, všichni čelem ke svatyni. Korzul k nim teď mluví ve spánku; Vael slyšel stejný hlas v močálu a Morthen před ním. Skol shromáždění, deset fanatiků, šest nekromantů, dřív než ten hlas bude mít dost rukou, aby sám otevřel bránu.',
   'entities.quests.q_voice_below.title': 'Hlas zdola',
-  'entities.quests.q_whispers.completion':
-    'Tahle pečeť... nese značku Hrobovolajících, sekty, o které jsem se modlil, aby vyhynula. Je to horší, než jsem se bál, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Pečeť Hrobovolajícího',
-  'entities.quests.q_whispers.text':
-    'Uložil jsi mrtvé ke klidu, ale oni v klidu nezůstávají, něco je volá zpátky. Prohledej ruinu kaple a najdi jakoukoli stopu toho, kdo volá. Pokud najdeš jakoukoli pečeť nebo značku, přines mi ji nedotčenou.',
-  'entities.quests.q_whispers.title': 'Šepoty zdola',
   'entities.quests.q_widows.completion':
     'Všechny váčky celé. Máš jistější ruce než polovina chirurgů na jihu, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Vdova z Mirefenu zabita',
@@ -20511,8 +20460,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'bossJournal.temple.ysolei.phaseTideName': 'Stoupající příliv',
   'bossJournal.temple.ysolei.tideName': 'Stoupající příliv',
   'bossJournal.wildheart.bloom.spitName': 'Květový plivanec',
-  'entities.mobs.bound_soul.name': 'Spoutaná duše',
-  'entities.mobs.crypt_remembrance_candle.name': 'Vzpomínková svíčka',
   'hudChrome.cryptAlert.soulTitle': 'Spoutaná duše',
   'hudChrome.sanctumAlert.slabTitle': 'Ledová deska',
   'editor.entityTool.titleField': 'Titul',
@@ -23038,20 +22985,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Kanec Tesákoroh',
-  'entities.mobs.candlewright_acolyte.name': 'Akolyta Svíčkaře',
-  'entities.mobs.cantor_ilvane.name': 'Kantorka Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Kostěný rváč',
-  'entities.mobs.crypt_bone_minion.name': 'Kostěný služebník',
-  'entities.mobs.crypt_bone_pile.name': 'Hýbající se kosti',
-  'entities.mobs.crypt_carrion_crow.name': 'Mrchožravá vrána',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Chrlič Kaple',
-  'entities.mobs.crypt_crow_caller.name': 'Vyvolávač vran',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adept Hrobovolajícího',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nekromant Hrobovolajícího',
-  'entities.mobs.crypt_knellwyrm.name': 'Drak umíráčku',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Hrdlořez z Kostnice',
-  'entities.mobs.crypt_ossuary_drake.name': 'Dráček z Kostnice',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Válečník z Kostnice',
   'entities.mobs.drowned_pilgrim.name': 'Utopený poutník',
   'entities.mobs.drowned_sergeant.name': 'Utopený seržant',
   'entities.mobs.drowned_watchman.name': 'Utopený hlídač',
@@ -23061,12 +22994,9 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Žalářník Ossick',
   'entities.mobs.glacier_splinter.name': 'Ledovcový úlomek',
   'entities.mobs.great_saurian.name': 'Velký ještěr',
-  'entities.mobs.hollow_chorister.name': 'Prázdný sborista',
-  'entities.mobs.hollow_gravedigger.name': 'Prázdný hrobník',
   'entities.mobs.howdah_hexcaller.name': 'Zaklínač z plošiny',
   'entities.mobs.ice_wraith.name': 'Ledový přízrak',
   'entities.mobs.lagoon_snapper.name': 'Lagunní kajmanka',
-  'entities.mobs.marrow_restless_bones.name': 'Neklidné kosti',
   'entities.mobs.mere_hydra_head_center.name': 'Jezerní hydra',
   'entities.mobs.mere_hydra_head_left.name': 'Jezerní hydra',
   'entities.mobs.mere_hydra_head_right.name': 'Jezerní hydra',
@@ -23076,12 +23006,7 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_drillmaster.name': 'Odvodní cvičitel',
   'entities.mobs.muster_effigy.name': 'Slaměný předák',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogr Tahoun saní',
-  'entities.mobs.ossuary_sentinel.name': 'Strážce Kostnice',
-  'entities.mobs.rime_egg_sac.name': 'Jinovatný vak vajec',
   'entities.mobs.rime_whelp.name': 'Jinovatné mládě',
-  'entities.mobs.rimeweb.name': 'Paní kostního chladu',
-  'entities.mobs.rimeweb_hatchling.name': 'Mládě Jinovatné sítě',
-  'entities.mobs.rimeweb_spinner.name': 'Přadlena Jinovatné sítě',
   'entities.mobs.sanctum_shackle_anvil.name': 'Pouto Kovadliny',
   'entities.mobs.sanctum_shackle_bellows.name': 'Pouto Měchu',
   'entities.mobs.sanctum_shackle_hammer.name': 'Pouto Kladiva',

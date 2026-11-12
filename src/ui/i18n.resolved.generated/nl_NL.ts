@@ -26590,9 +26590,6 @@ export const nl_NL: EnTranslations = {
       "restless_bones": {
         "name": "Rusteloze Beenderen"
       },
-      "marrow_restless_bones": {
-        "name": "Rusteloze Beenderen"
-      },
       "gorrak": {
         "name": "Gorrak de Meedogenloze"
       },
@@ -26694,90 +26691,6 @@ export const nl_NL: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Botgepantserde Weerganger"
-      },
-      "crypt_shambler": {
-        "name": "Cryptestrompelaar"
-      },
-      "hollow_acolyte": {
-        "name": "Holle Acoliet"
-      },
-      "bonechill_widow": {
-        "name": "Botkille Weduwe"
-      },
-      "sexton_marrow": {
-        "name": "Koster Marrow"
-      },
-      "morthen": {
-        "name": "Morthen de Grafroeper"
-      },
-      "ossuary_sentinel": {
-        "name": "Ossuariumwachter"
-      },
-      "hollow_gravedigger": {
-        "name": "Holle doodgraver"
-      },
-      "rime_egg_sac": {
-        "name": "Rijpeierzak"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rijpwebjong"
-      },
-      "rimeweb_spinner": {
-        "name": "Rijpwebspinner"
-      },
-      "candlewright_acolyte": {
-        "name": "Kaarsenmakeracoliet"
-      },
-      "hollow_chorister": {
-        "name": "Holle koorzanger"
-      },
-      "bound_soul": {
-        "name": "Gebonden ziel"
-      },
-      "rimeweb": {
-        "name": "Vrouwe van de Bottenkou"
-      },
-      "cantor_ilvane": {
-        "name": "Voorzanger Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Ossuariumkrijger"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Grafroeperadept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Ossuariummessentrekker"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Grafroeperdodenbezweerder"
-      },
-      "crypt_bone_minion": {
-        "name": "Bottenknecht"
-      },
-      "crypt_bone_brute": {
-        "name": "Bottenbruut"
-      },
-      "crypt_bone_pile": {
-        "name": "Bewegende botten"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapelwaterspuwer"
-      },
-      "crypt_crow_caller": {
-        "name": "Kraaienroeper"
-      },
-      "crypt_carrion_crow": {
-        "name": "Aaskraai"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Ossuariumdraak"
-      },
-      "crypt_knellwyrm": {
-        "name": "Doodsklokdraak"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Herdenkingskaars"
       },
       "bastion_revenant": {
         "name": "Bastion-Geestwraak"
@@ -28727,16 +28640,6 @@ export const nl_NL: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "De Rusteloze Doden",
-        "text": "De oude ruïne op de noordwestelijke heuvel was ooit een kapel, en haar erf een rustplaats. Iets heeft de doden uit hun slaap gewekt. Schenk hun vrede, {playerName}, geef 8 Rusteloze Beenderen terug aan de aarde.",
-        "completion": "Mogen ze nu rusten, en moge het Licht vergeven wat hen ook gewekt heeft.",
-        "objectives": {
-          "0": {
-            "label": "Rusteloze Beenderen ter ruste gelegd"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Gestolen Voorraden",
         "text": "Die bandieten overvielen mijn laatste wagen en gingen ervandoor met vier kratten goederen: gereedschap, zout, goed Oostbeeks linnen. De kratten staan opgestapeld rond hun kamp in de noordwestelijke heuvels. Steel ze voor me terug, wil je?",
@@ -28747,26 +28650,6 @@ export const nl_NL: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Gefluister Beneden",
-        "text": "Je hebt de doden te ruste gelegd, maar ze blijven niet rusten, iets roept hen terug. Doorzoek de kapelruïne naar enig spoor van degene die roept. Als je een zegel of merk vindt, breng het mij dan onaangeroerd.",
-        "completion": "Dit zegel... het draagt het merk van de Grafroepers, een sekte waarvan ik bad dat ze was uitgestorven. Dit is erger dan ik vreesde, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Zegel van de Grafroeper"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "De Namen van de Doden",
-        "text": "Als de Grafroepers onze doden hebben opgewekt, moet ik weten wiens graven ze hebben geplunderd. De koster van de kapel hield een begraafregister bij, en de wind heeft de bladzijden over het kapelterrein verstrooid. Verzamel er 3 voor me, {playerName} - de doden verdienen het bij hun naam te worden geroepen.",
-        "completion": "Deze arme zielen... en kijk hier. Koster Marrow - de levende verzorger van de kapel zelf - zijn graf het eerst geschonden. Morthen begon met juist de man die Eastbrooks doden begroef.",
-        "objectives": {
-          "0": {
-            "label": "Verweerde Grootboekpagina"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Breng de Roep tot Zwijgen",
         "text": "Elke naam in dat register is een ziel die Morthen uit de aarde wil rukken, en het kapelterrein krioelt al van degenen die hij heeft opgeroepen. Stuur 12 Rusteloze Beenderen terug naar hun graven, {playerName}, voordat het gefluister van de Grafroeper aanzwelt tot een koor.",
@@ -28774,49 +28657,6 @@ export const nl_NL: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Rusteloze Beenderen tot zwijgen gebracht"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Het Bindende Ritueel",
-        "text": "De crypte onder de kapel moet ontzegeld worden als we de Gravecaller willen stoppen, maar alleen een bindend ritueel laat de levenden passeren. Ik heb 4 brokken Gezegende Talg nodig, de gravers van de mijn hamsteren talg per krat, en 6 Spookachtige Essenties van de rusteloze doden.",
-        "completion": "Het is gedaan. De weg naar beneden staat open... en moge het Licht me vergeven dat ik hem opende. Verzamel je sterkste metgezellen voordat je afdaalt, {playerName}. Niemand zou de Holle alleen moeten trotseren.",
-        "objectives": {
-          "0": {
-            "label": "Gezegende Talk"
-          },
-          "1": {
-            "label": "Spookachtige Essentie"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Het Hol In",
-        "text": "Morthen de Grafroeper wacht op de bodem van de Holle Crypte, omringd door de elite-doden die hij heeft opgewekt. Hij gaat elke enkele held ver te boven, neem vier metgezellen mee, niet minder. Maak een eind aan hem, en de doden van het Dal zullen eindelijk slapen.",
-        "completion": "Het gefluister is gestopt. Je hebt gedaan wat het hele Dal niet kon, {playerName}, de doden slapen, en Oostbeek is je alles schuldig wat het heeft.",
-        "objectives": {
-          "0": {
-            "label": "Morthen de Grafroeper gedood"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "De Klok van de Koster",
-        "text": "Het register noemde hem en de crypte herbergt hem: Koster Marrow, de verzorger van de kapel, de eerste man die Morthen opwekte - die de deur van zijn meester in de dood even trouw bewaakt als hij in het leven de kapel bijhield. Neem vier metgezellen mee de Holle Crypte in en schenk de oude koster de rust waarvan hij beroofd werd, {playerName}.",
-        "completion": "Dus Marrow is eindelijk vrij. Lui geen klok voor hem - hij heeft er in zijn leven genoeg gehoord.",
-        "objectives": {
-          "0": {
-            "label": "Koster Marrow ter ruste gelegd"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Het Spoor van de Grafroeper",
-        "text": "Morthen is dood, toch knaagt een vraag aan me: een sekte die zich een eeuw lang verborg, verspilt zich niet aan één dorpskapel. Hij hield een grimoire bij, zijn riten, zijn briefwisseling. Als er iets van overleeft, ligt het in de sacristie van de geruïneerde kapel boven de crypte. Doorzoek de ruïne en breng me wat er ook van zijn geschriften over is, {playerName}.",
-        "completion": "Morthen schreef aan een 'Fogbinder' in het noordelijke veen. De sekte is niet dood, {playerName}, ze is slechts geduldig geweest.",
-        "objectives": {
-          "0": {
-            "label": "Morthens Grimoire"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const nl_NL: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "De Holle Crypte",
-        "enterText": "Je daalt af in de Holle Crypte...",
-        "leaveText": "Je klimt terug omhoog het daglicht in."
-      },
       "sunken_bastion": {
         "name": "Het Verzonken Bastion",
         "enterText": "Je waadt naar beneden het Verzonken Bastion in...",

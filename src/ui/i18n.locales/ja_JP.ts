@@ -6877,7 +6877,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.willowfen_remedy_caravan.name': 'ウィローフェン薬品隊商',
   'entities.mobs.frostveil_supply_caravan.name': 'フロストヴェイル補給隊商',
   'entities.mobs.restless_bones.name': '安らがぬ骨',
-  'entities.mobs.marrow_restless_bones.name': '安らがぬ骨',
   'entities.mobs.gorrak.name': '無慈悲なるゴラック',
   'entities.mobs.mire_prowler.name': '沼の徘徊者',
   'entities.mobs.deepfen_murloc.name': 'ディープフェンのスナッパー',
@@ -6919,11 +6918,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.wyrmcult_zealot.name': '竜誓団の狂信者',
   'entities.mobs.wyrmcult_necromancer.name': '竜誓団の死霊術師',
   'entities.mobs.boneclad_revenant.name': '骨まといの亡霊',
-  'entities.mobs.crypt_shambler.name': '墓所のよろめき手',
-  'entities.mobs.hollow_acolyte.name': '虚ろの侍祭',
-  'entities.mobs.bonechill_widow.name': '骨冷えのウィドウ',
-  'entities.mobs.sexton_marrow.name': '墓守マロウ',
-  'entities.mobs.morthen.name': '墓呼びのモーセン',
   'entities.mobs.bastion_revenant.name': '砦の亡霊',
   'entities.mobs.tidebound_acolyte.name': '潮縛りの侍祭',
   'entities.mobs.drowned_thrall.name': '溺れた下僕',
@@ -7193,61 +7187,18 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
     'よい銅脈を掘り当てた途端、あの穴を掘る害獣どもが丘の斜面から湧き出しました。片付くまで、私の作業員は坑道に足を踏み入れようとしません。ディープロックの掘削者を10体始末してください。',
   'entities.quests.q_mine.completion': 'よし、仕事に戻れ、皆！礼と報酬を受け取ってください。',
   'entities.quests.q_mine.objectives.0.label': 'ディープロックの掘削者を討伐',
-  'entities.quests.q_bones.title': '安らがぬ死者',
-  'entities.quests.q_bones.text':
-    '古い礼拝堂は眠りの場でしたが、何かが死者を起こしました。安らがぬ骨を8体、土へ返してください、{playerName}。',
-  'entities.quests.q_bones.completion':
-    '彼らが今こそ眠れますように。そして起こしたものを光が赦しますように。',
-  'entities.quests.q_bones.objectives.0.label': '安らがぬ骨を安息させる',
   'entities.quests.q_supplies.title': '盗まれた物資',
   'entities.quests.q_supplies.text':
     '盗賊が最後の荷車を奪いました。道具、塩、上等なイーストブルックの麻です。北西の野営地から箱を4つ取り戻してください。',
   'entities.quests.q_supplies.completion':
     '私の箱です！傷もほとんどありません。あなたは大した人です。',
   'entities.quests.q_supplies.objectives.0.label': '盗まれた補給箱',
-  'entities.quests.q_whispers.title': '地下の囁き',
-  'entities.quests.q_whispers.text':
-    '死者は何かに呼び戻されています。礼拝堂を調べ、呼び声の主の印か封を見つけたら無傷で持ってきてください。',
-  'entities.quests.q_whispers.completion':
-    'この印はグレイブコーラーのものです。滅んだと思いたかった一派でした、{playerName}。',
-  'entities.quests.q_whispers.objectives.0.label': 'グレイブコーラーの印章',
-  'entities.quests.q_names_of_the_dead.title': '死者の名',
-  'entities.quests.q_names_of_the_dead.text':
-    'グレイブコーラーが墓を暴いたなら、誰の眠りが奪われたのか知る必要があります。埋葬記録のページを3枚集めてください、{playerName}。',
-  'entities.quests.q_names_of_the_dead.completion':
-    '哀れな魂たち...ここに墓守マロウの名があります。モーセンはイーストブルックの死者を埋めた男から始めたのです。',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': '風化した帳簿のページ',
   'entities.quests.q_silence_the_call.title': '呼び声を沈めよ',
   'entities.quests.q_silence_the_call.text':
     '記録の名はすべて、モーセンが土から引き出そうとする魂です。{playerName}、囁きが合唱になる前に、安らがぬ骨を12体沈めてください。',
   'entities.quests.q_silence_the_call.completion':
     '墓地は静まりましたが、呼び声は今や地下の墓所から昇っています、{playerName}。',
   'entities.quests.q_silence_the_call.objectives.0.label': '安らがぬ骨を沈黙させる',
-  'entities.quests.q_rite.title': '束縛の儀式',
-  'entities.quests.q_rite.text':
-    'グレイブコーラーを止めるには、礼拝堂の下の墓所を開かねばなりません。しかし、生者が通れるのは束縛の儀式によってのみ。祝福された獣脂を4塊、鉱山の穴掘りどもは獣脂を木箱ごと溜め込んでいます、そして安らげぬ死者から幽霊のエッセンスを6つ必要です。',
-  'entities.quests.q_rite.completion':
-    '終わりました。下への道が開きます...最も強い仲間を集めてください、{playerName}。',
-  'entities.quests.q_rite.objectives.0.label': '祝福された獣脂',
-  'entities.quests.q_rite.objectives.1.label': '幽霊のエッセンス',
-  'entities.quests.q_hollow.title': '虚ろへ',
-  'entities.quests.q_hollow.text':
-    'モーセンは虚ろの墓所の底で、起こした精鋭の死者に囲まれています。四人の仲間と共に彼を終わらせてください。',
-  'entities.quests.q_hollow.completion':
-    '囁きは止みました。死者は眠り、イーストブルックはあなたにすべてを負っています、{playerName}。',
-  'entities.quests.q_hollow.objectives.0.label': '墓呼びのモーセンを討伐',
-  'entities.quests.q_sexton.title': '墓守の鐘',
-  'entities.quests.q_sexton.text':
-    '記録には墓守マロウの名があります。モーセンが最初に起こした門番です。{playerName}、四人の仲間と下り、奪われた眠りを返してください。',
-  'entities.quests.q_sexton.completion':
-    'マロウはようやく自由です。鐘は鳴らさないでください。生前に十分聞きました。',
-  'entities.quests.q_sexton.objectives.0.label': '墓守マロウを安息させる',
-  'entities.quests.q_gravecallers_trail.title': '墓呼びの足跡',
-  'entities.quests.q_gravecallers_trail.text':
-    'モーセンは死にましたが、一世紀潜んだ一派が一つの礼拝堂だけで終わるはずがありません。{playerName}、廃墟で彼の魔導書を探してください。',
-  'entities.quests.q_gravecallers_trail.completion':
-    'モーセンは北の湿地の『フォグバインダー』に書き送っていました。{playerName}、一派は死んでいません。ただ辛抱強く待っていたのです。',
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'モーセンの魔導書',
   'entities.quests.q_bandits.title': '谷の盗賊',
   'entities.quests.q_bandits.text':
     '北西の丘に盗賊団がいます。今週だけで荷車を三台襲いました。谷の盗賊を10人倒してください。',
@@ -7961,9 +7912,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_seal_restored.completion':
     'ここから閉じるのを感じたよ。黄昏のように穏やかに。幽谷は友を忘れない、{playerName}。どれほど遠くへ旅しても、大樹の下にはいつでもそなたの灯りがある。',
   'entities.quests.q_seal_restored.objectives.0.label': '封印を封印石に戻した',
-  'entities.dungeons.hollow_crypt.name': '虚ろの墓所',
-  'entities.dungeons.hollow_crypt.enterText': '虚ろの墓所へ降りていきます...',
-  'entities.dungeons.hollow_crypt.leaveText': '日の光の下へ戻ります。',
   'entities.dungeons.sunken_bastion.name': '沈んだ砦',
   'entities.dungeons.sunken_bastion.enterText': '沈んだ砦の深みへ水をかき分けて進みます...',
   'entities.dungeons.sunken_bastion.leaveText': '水に沈む闇から抜け出します。',
@@ -21825,17 +21773,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
     '{range}ヤード以内の対象を{duration}秒間その場に鎖で縛る。ボスなど行動阻害に耐性のあるクリーチャーは、代わりに移動速度が{slow}%低下する（減速にも耐性がある場合は無効）。',
   'hudChrome.auraEffect.trinket.shackle': '鎖で縛られている：移動できない。',
   'hudChrome.auraEffect.trinket.shackleSlow': '鎖につながれている：移動速度が{pct}%低下。',
-  'entities.mobs.ossuary_sentinel.name': '納骨堂の番兵',
-  'entities.mobs.hollow_gravedigger.name': '虚ろの墓掘り',
-  'entities.mobs.rimeweb_hatchling.name': '霜網の子蜘蛛',
-  'entities.mobs.rimeweb_spinner.name': '霜網の紡ぎ手',
-  'entities.mobs.candlewright_acolyte.name': '蝋燭職人の侍祭',
-  'entities.mobs.hollow_chorister.name': '虚ろの聖歌隊員',
-  'entities.mobs.bound_soul.name': '縛られし魂',
-  'entities.mobs.rimeweb.name': '骨冷えの貴婦人',
-  'entities.mobs.cantor_ilvane.name': '聖歌隊長イルヴェイン',
-  'entities.mobs.rime_egg_sac.name': '霜の卵嚢',
-  // The Hollow Crypt trash (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_grave_bolt': '墓所の矢',
   'abilityUi.cast.crypt_raise_bones': '骨の蘇生',
   'abilityUi.cast.crypt_murder_call': '鴉群の呼び声',
@@ -21897,18 +21834,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_gravespark_volley': '墓火花の一斉射',
   'abilityUi.cast.bastion_loose_on_my_mark': '我が合図で放て',
   'abilityUi.cast.temple_call_of_the_shallows': '浅瀬の呼び声',
-  'entities.mobs.crypt_ossuary_warrior.name': '納骨堂の戦士',
-  'entities.mobs.crypt_gravecaller_adept.name': '墓呼びの徒弟',
-  'entities.mobs.crypt_ossuary_cutthroat.name': '納骨堂の喉裂き',
-  'entities.mobs.crypt_gravecaller_necromancer.name': '墓呼びの死霊術師',
-  'entities.mobs.crypt_bone_minion.name': '骨の下僕',
-  'entities.mobs.crypt_bone_brute.name': '骨の巨兵',
-  'entities.mobs.crypt_bone_pile.name': '蠢く骨',
-  'entities.mobs.crypt_chapel_gargoyle.name': '礼拝堂のガーゴイル',
-  'entities.mobs.crypt_crow_caller.name': '鴉呼び',
-  'entities.mobs.crypt_carrion_crow.name': '腐肉喰らいの鴉',
-  'entities.mobs.crypt_ossuary_drake.name': '納骨堂の骨竜',
-  // The Hollow Crypt finale (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_morthen_rite_wakes': '儀式の目覚め',
   'abilityUi.cast.crypt_morthen_rise': '墓呼びの昇天',
   'abilityUi.cast.crypt_morthen_proclaim': '墓所の宣告',
@@ -21928,8 +21853,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_ilvane_dirge': '虚ろの挽歌',
   'abilityUi.cast.crypt_ilvane_unbroken_dirge': '途切れぬ詩節',
   'abilityUi.cast.crypt_ilvane_bone_organ': '骨のオルガン',
-  'entities.mobs.crypt_knellwyrm.name': '弔鐘竜',
-  // The Sunken Bastion fifth pass (M16 non-Latin fills for its new names).
   'abilityUi.cast.bastion_iron_cage': '鉄の檻',
   'abilityUi.cast.bastion_drowned_anchor_cast': '溺死の錨',
   'abilityUi.cast.bastion_shackle_pair': '連鎖の枷',
@@ -22403,7 +22326,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_knellwyrm_knell_mark': '燃える弔鐘',
   'abilityUi.cast.crypt_knellwyrm_knell_breath': '燃える弔鐘',
   'abilityUi.cast.crypt_knellwyrm_knell_land': '燃える弔鐘',
-  'entities.mobs.crypt_remembrance_candle.name': '追憶のろうそく',
   'hudChrome.auraEffect.crypt.gorged':
     '与えるダメージが{pct}%上昇：彼のもとに届いた縛られし魂1つごとに{per}%、現在{stacks}/{max}スタック、戦闘終了まで持続。魂が届くたびに最大体力の{heal}%も回復する。魂の進路に立てば代わりに受け止められる。',
   'hudChrome.auraEffect.crypt.unquietWard':

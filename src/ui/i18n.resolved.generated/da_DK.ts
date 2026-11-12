@@ -26590,9 +26590,6 @@ export const da_DK: EnTranslations = {
       "restless_bones": {
         "name": "Rastløse Knogler"
       },
-      "marrow_restless_bones": {
-        "name": "Hvileløse knogler"
-      },
       "gorrak": {
         "name": "Gorrak den Nådesløse"
       },
@@ -26694,90 +26691,6 @@ export const da_DK: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Benklædt Genganger"
-      },
-      "crypt_shambler": {
-        "name": "Kryptslæber"
-      },
-      "hollow_acolyte": {
-        "name": "Hul Akolyt"
-      },
-      "bonechill_widow": {
-        "name": "Benkulde-Enke"
-      },
-      "sexton_marrow": {
-        "name": "Kirkegraver Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Gravkalderen"
-      },
-      "ossuary_sentinel": {
-        "name": "Benhusvogter"
-      },
-      "hollow_gravedigger": {
-        "name": "Hul graver"
-      },
-      "rime_egg_sac": {
-        "name": "Rimfrostægsæk"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rimvævsunge"
-      },
-      "rimeweb_spinner": {
-        "name": "Rimvævsspinder"
-      },
-      "candlewright_acolyte": {
-        "name": "Lysmagerakolyt"
-      },
-      "hollow_chorister": {
-        "name": "Hul korsanger"
-      },
-      "bound_soul": {
-        "name": "Bundet sjæl"
-      },
-      "rimeweb": {
-        "name": "Knoglekuldens frue"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Benhuskriger"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravkalderadept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Benhusets strubeskærer"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravkaldernekromantiker"
-      },
-      "crypt_bone_minion": {
-        "name": "Knogletjener"
-      },
-      "crypt_bone_brute": {
-        "name": "Knoglebæst"
-      },
-      "crypt_bone_pile": {
-        "name": "Rørende knogler"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapelgargoyle"
-      },
-      "crypt_crow_caller": {
-        "name": "Kragekalder"
-      },
-      "crypt_carrion_crow": {
-        "name": "Ådselskrage"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Benhusdrage"
-      },
-      "crypt_knellwyrm": {
-        "name": "Dødsklangslindorm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Mindelys"
       },
       "bastion_revenant": {
         "name": "Bastionens Genganger"
@@ -28727,16 +28640,6 @@ export const da_DK: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "De Rastløse Døde",
-        "text": "Den gamle ruin på den nordvestlige bakke var engang et kapel, og dens gård et hvilested. Noget har vækket de døde af deres søvn. Skænk dem fred, {playerName} - giv 8 Rastløse Knogler tilbage til jorden.",
-        "completion": "Måtte de hvile nu, og måtte Lyset tilgive, hvad der end vækkede dem.",
-        "objectives": {
-          "0": {
-            "label": "Rastløse Knogler lagt til hvile"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Stjålne Forsyninger",
         "text": "De banditter ramte min sidste vogn og stak af med fire kasser varer - værktøj, salt, godt Østbæk-linned. Kasserne er stablet rundt om deres lejr i bakkerne mod nordvest. Stjæl dem tilbage for mig, vil du ikke?",
@@ -28747,26 +28650,6 @@ export const da_DK: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Hvisken Nedenunder",
-        "text": "Du har stedt de døde til hvile, men de vil ikke forblive i hvile, noget kalder dem tilbage. Gennemsøg kapelruinen for ethvert spor af den, der kalder. Hvis du finder en sigille eller et segl, så bring det uberørt til mig.",
-        "completion": "Denne sigille... den bærer Gravkaldernes mærke, en sekt jeg havde bedt til var uddød. Dette er værre end jeg frygtede, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravkalderens Sigille"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "De Dødes Navne",
-        "text": "Hvis Gravkalderne rejste vores døde, må jeg vide, hvis grave de plyndrede. Kapellets graver førte en begravelsesprotokol, og vinden har spredt dens sider ud over kapellets gård. Saml 3 af dem til mig, {playerName} - de døde fortjener at blive kaldt ved deres navne.",
-        "completion": "Disse stakkels sjæle... og se her. Graver Marrow - kapellets egen levende vogter - hans grav den første, der blev forstyrret. Morthen begyndte med netop den mand, der begravede Østbæks døde.",
-        "objectives": {
-          "0": {
-            "label": "Forvitret Regnskabsside"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Bring Kaldet til Tavshed",
         "text": "Hvert navn i den protokol er en sjæl, Morthen agter at slæbe op af jorden, og kapellets gård vrimler allerede med dem, han har kaldt. Bring 12 Hvileløse Ben tilbage til deres grave, {playerName}, før Gravkalderens hvisken svulmer til et kor.",
@@ -28774,49 +28657,6 @@ export const da_DK: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Hvileløse Ben bragt til tavshed"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Den Bindende Rite",
-        "text": "Krypten under kapellet må åbnes, hvis vi skal standse Gravecalleren - men kun en bindende rite vil lade de levende passere. Jeg har brug for 4 klumper Velsignet Tælle - minens gravere hamstrer tælle i kassevis - og 6 Spøgelsesagtige Essenser fra de hvileløse døde.",
-        "completion": "Det er gjort. Vejen nedenunder står åben... og må Lyset tilgive mig for at åbne den. Saml dine stærkeste ledsagere, før du stiger ned, {playerName}. Ingen bør møde Den Hule alene.",
-        "objectives": {
-          "0": {
-            "label": "Velsignet Tælle"
-          },
-          "1": {
-            "label": "Spøgelsesagtig Essens"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Ned i Det Hule",
-        "text": "Morthen Gravkalderen venter på bunden af Den Hule Krypt, omringet af de elitedøde, han har rejst. Han er langt hinsides nogen enkelt helt - tag fire følgesvende, ikke færre. Gør ende på ham, og Dalens døde vil endelig sove.",
-        "completion": "Hviskenen er hørt op. Du har gjort, hvad hele Dalen ikke kunne, {playerName} - de døde sover, og Østbæk skylder dig alt, hvad den ejer.",
-        "objectives": {
-          "0": {
-            "label": "Morthen Gravkalderen dræbt"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Graverens Klokke",
-        "text": "Protokollen navngav ham, og krypten holder ham: Graver Marrow, kapellets vogter, den første mand Morthen rejste - der vogter sin mesters dør i døden lige så trofast, som han passede kapellet i livet. Tag fire ledsagere med ind i Den Hule Krypt og skænk den gamle graver den hvile, han blev frarøvet, {playerName}.",
-        "completion": "Så er Marrow endelig fri. Ring ingen klokke for ham - han hørte nok af dem i livet.",
-        "objectives": {
-          "0": {
-            "label": "Graver Marrow stedt til hvile"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Gravkalderens Spor",
-        "text": "Morthen er død, men et spørgsmål nager mig: en sekt, der gemte sig i et århundrede, ødsler ikke sig selv på ét landsbykapel. Han holdt en grimoire - sine riter, sin korrespondance. Hvis noget af den overlever, ligger det i sakristiet i det forfaldne kapel over krypten. Søg ruinen igennem og bring mig, hvad der er tilbage af hans skrifter, {playerName}.",
-        "completion": "Morthen skrev til en 'Fogbinder' i den nordlige mose. Sekten er ikke død, {playerName} - den har blot været tålmodig.",
-        "objectives": {
-          "0": {
-            "label": "Morthens Grimoire"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const da_DK: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Den Hule Krypt",
-        "enterText": "Du stiger ned i Den Hule Krypt...",
-        "leaveText": "Du klatrer tilbage op i dagslyset."
-      },
       "sunken_bastion": {
         "name": "Den Sunkne Bastion",
         "enterText": "Du vader ned i Den Sunkne Bastion...",

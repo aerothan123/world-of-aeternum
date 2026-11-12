@@ -53,7 +53,6 @@ export const SCORE_TOWNS: Readonly<Partial<Record<MusicZone, string>>> = Object.
 
 /** Dungeon cues by instance id first (dungeons without a music zone of their own)... */
 export const SCORE_INSTANCE_DUNGEONS: Readonly<Record<string, string>> = Object.freeze({
-  hollow_crypt: 'wyn_dungeon_hollow_crypt',
   nythraxis_crypt: 'wyn_dungeon_hollow_crypt',
   sunken_bastion: 'wyn_dungeon_sunken_bastion',
   gravewyrm_sanctum: 'wyn_dungeon_gravewyrm_sanctum',

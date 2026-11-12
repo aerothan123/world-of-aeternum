@@ -206,7 +206,6 @@ export const table: DeedLocaleTable = {
     desc: 'Zasaď smrtící úder nepříteli alespoň o pět úrovní nad tebou.',
   },
   cmb_first_fall: { name: 'Oklepat a jít dál', desc: 'Zemři poprvé; stává se to i těm nejlepším.' },
-  dgn_hollow_crypt: { name: 'Lamač krypty', desc: 'Poraz Morthena Hrobovolajícího v Duté kryptě.' },
   dgn_sunken_bastion: {
     name: 'Mlhovazač bez pout',
     desc: 'Poraz Vaela Mlhovazače v Potopené baště.',
@@ -218,10 +217,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Drak v hlubinách',
     desc: 'Poraz Korzula Hrobodraka ve Svatyni Hrobodraka.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Hrdinská: Dutá krypta',
-    desc: 'Poraz Morthena Hrobovolajícího v Duté kryptě na hrdinské obtížnosti.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Hrdinská: Potopená bašta',
@@ -258,14 +253,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Padesát dveří za sebou',
     desc: 'Poraz 50 závěrečných bossů dungeonů.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Ani kůstka nazmar',
-    desc: 'Poraz Morthena Hrobovolajícího na hrdinské obtížnosti, aniž by kdokoli ze skupiny zemřel.',
-  },
-  dgn_morthen_trio: {
-    name: 'Tři proti hrobu',
-    desc: 'Poraz Morthena Hrobovolajícího s nejvýše třemi hráči.',
   },
   dgn_olen_arc: {
     name: 'Úkrok před žencem',
@@ -1277,10 +1264,6 @@ export const table: DeedLocaleTable = {
     name: 'Všechny hlavy dolů',
     desc: 'Zabij všechny tři hlavy Jezerní hydry v rozmezí 10 sekund od sebe.',
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Ani vlásek se nespálil',
-    desc: 'Poraz Draka umíráčku, aniž by někoho spálil jeho Přelet s pohřebním ohněm.',
-  },
   dgn_turnkey_cage: {
     name: 'Žádná klec nás neudrží',
     desc: 'Poraz Žalářního klíčníka, aniž by někdo byl rozdrcen v Železné kleci.',
@@ -1325,22 +1308,6 @@ export const table: DeedLocaleTable = {
     name: 'Poslední sloka',
     desc: 'Poraz Ysolei, avatar utopeného měsíce, s Posledním kantorem Bledého sboru po boku.',
     title: 'Svědek sboru',
-  },
-  dgn_marrow_tidy: {
-    name: 'Upravený hřbitov',
-    desc: 'Poraz Kostelníka Marrowa tak, aby každý Otevřený hrob ležel na okraji Zvonového nádvoří.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Nikdo nezůstane viset',
-    desc: 'Poraz Paní kostního chladu, aniž by kdy někoho upustila ze svého Ledového objetí.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Teď už ticho',
-    desc: 'Poraz Kantorku Ilvane, aniž by její Žalozpěv prázdnoty někoho zasáhl.',
-  },
-  dgn_morthen_candlelight: {
-    name: 'Každá svíčka hoří',
-    desc: 'Poraz Morthena Hrobovolajícího po opětovném zapálení všech čtyř Vzpomínkových svíček do 20 sekund od vzniku jeho Ochrany neklidných.',
   },
   dgn_guild_first_contract: {
     name: 'Podepsaná listina',

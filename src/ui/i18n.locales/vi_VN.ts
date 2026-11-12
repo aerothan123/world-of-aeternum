@@ -8400,9 +8400,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
     'Không khí trở nên lạnh giá. Có thứ gì đó khổng lồ đang thở bên dưới...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Bạn loạng choạng lùi lại vào gió núi.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Thánh Đường Mộ Long',
-  'entities.dungeons.hollow_crypt.enterText': 'Bạn đi xuống Hầm Mộ Rỗng...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Bạn trèo trở lại ánh sáng ban ngày.',
-  'entities.dungeons.hollow_crypt.name': 'Hầm Mộ Rỗng',
   'entities.dungeons.nythraxis_boss_arena.enterText': 'Bạn đi qua cánh cửa hoàng gia niêm phong.',
   'entities.dungeons.nythraxis_boss_arena.leaveText':
     'Bạn trở lại không khí lạnh giá của Đỉnh Gai.',
@@ -8822,14 +8819,12 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Tế Đồ Tessa',
   'entities.mobs.bastion_revenant.name': 'Oán Linh Pháo Đài',
   'entities.mobs.bog_bloat.name': 'Quái Phình Đầm Lầy',
-  'entities.mobs.bonechill_widow.name': 'Góa Phụ Lạnh Xương',
   'entities.mobs.boneclad_revenant.name': 'Vong Hồn Bọc Xương',
   'entities.mobs.bound_guardian.name': 'Vệ Thần Bị Trói',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Nghiền Sọ',
   'entities.mobs.captain_verlan.name': 'Đội Trưởng Verlan',
   'entities.mobs.choirmother_selthe.name': 'Mẫu Ca Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Tu Sĩ Hủ Hóa Malric',
-  'entities.mobs.crypt_shambler.name': 'Xác Lê Hầm Mộ',
   'entities.mobs.deacon_varric.name': 'Chấp Sự Vandric',
   'entities.mobs.deacon_voss.name': 'Chấp Sự Voss',
   'entities.mobs.deathstalker_voss.name': 'Sát Thủ Tử Thần Voss',
@@ -8851,7 +8846,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Triệu Hồi Sư Gọi Mộ',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Vua Đường Hầm',
   'entities.mobs.grubjaw.name': 'Grubjaw Phàm Ăn',
-  'entities.mobs.hollow_acolyte.name': 'Tu Đồ Rỗng',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Pyre Colossus',
   'entities.mobs.ironvein_foreman.name': 'Quản Đốc Mạch Sắt',
@@ -8868,7 +8862,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Tay Sai Mogger',
   'entities.mobs.moonspawn.name': 'Nguyệt Sinh',
-  'entities.mobs.morthen.name': 'Morthen Kẻ Gọi Mộ',
   'entities.mobs.mudfin_murloc.name': 'Kẻ Lẩn Vây Bùn',
   'entities.mobs.nhalia_mourner.name': 'Nhalia Kẻ Khóc Tang',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Đại Tư Tế Bất Tử',
@@ -8892,7 +8885,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Vệ Xương Thánh Đường',
   'entities.mobs.sanctum_drakonid.name': 'Vệ Vảy Thánh Đường',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Cuộn Nhợt',
-  'entities.mobs.sexton_marrow.name': 'Quản Mộ Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Lãnh Chúa Mảnh Vỡ Kazzix',
   'entities.mobs.sister_nhalia.name': 'Sơ Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtooth Kẻ Chết Chìm',
@@ -9036,12 +9028,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Da lợn lòi làm ra những chiếc túi du hành tốt nhất, và những đồng cỏ phía tây bắc thị trấn nhung nhúc lũ thú đó. Hãy mang cho ta 5 tấm Da Lợn Lòi Lông Cứng và ta sẽ không để ngươi phí công.',
   'entities.quests.q_boars.title': 'Da Lợn Rừng Lông Cứng',
-  'entities.quests.q_bones.completion':
-    'Mong họ được yên nghỉ giờ đây, và mong Ánh Sáng tha thứ cho thứ đã đánh thức họ.',
-  'entities.quests.q_bones.objectives.0.label': 'Đã an nghỉ Hài Cốt Bất An',
-  'entities.quests.q_bones.text':
-    'Tàn tích cổ trên ngọn đồi tây bắc từng là một nhà nguyện, và sân của nó là nơi an nghỉ. Thứ gì đó đã khuấy động người chết khỏi giấc ngủ. Hãy ban cho họ sự bình yên, {playerName}, trả 8 bộ Hài Cốt Bất An về với lòng đất.',
-  'entities.quests.q_bones.title': 'Người Chết Bất An',
   'entities.quests.q_breaking_the_seal.completion':
     'Chúng cháy xanh và trong - ngọn núi vẫn nhớ lời thề xưa của nó. Với những thứ này ta có thể mở cánh cổng cho riêng chúng ta.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Than Hồng Ban Phước',
@@ -9151,12 +9137,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis cho ta xem một cục sáp lấy từ một trong những kẻ đào hầm đó, nó phát sáng, {playerName}, và ấm như nhịp tim. Ông ấy muốn thêm để nghiên cứu, còn ta muốn nó khỏi danh sách trưng dụng của ta. Hãy mang về sáu cục sáp phát sáng.',
   'entities.quests.q_glowing_wax.title': 'Sáp Kỳ Lạ',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen đã viết thư cho một kẻ 'Fogbinder' ở đầm lầy phía bắc. Giáo phái chưa chết, {playerName}, nó chỉ đơn thuần là đã kiên nhẫn.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Ma Thư của Morthen',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen đã chết, nhưng một câu hỏi cứ gặm nhấm ta: một giáo phái ẩn mình suốt một thế kỷ không dốc hết sức vào một nhà nguyện làng quê. Hắn giữ một cuốn ma thư - những nghi lễ, những thư từ của hắn. Nếu còn sót lại thứ gì, nó nằm trong phòng thánh của nhà nguyện đổ nát phía trên hầm mộ. Hãy lục soát tàn tích và mang cho ta bất cứ thứ gì còn lại từ những ghi chép của hắn, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Dấu Vết Kẻ Triệu Mộ',
   'entities.quests.q_gravewyrm.completion':
     'Mọi chuyện đã kết thúc. Người chết của ba vùng đất có thể yên nghỉ, ngọn núi ngủ yên không còn bị ám - và chính tên ngươi, {playerName}, là cái tên mà mọi tiếng chuông từ đây đến Eastbrook ngân vang đêm nay.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Đã hạ Korzul Mộ Long',
@@ -9181,12 +9161,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Những lời cuối của Vael chưa rời khỏi ta, {playerName}: Mộ Long cựa mình bên dưới những đỉnh núi. Đại Úy Thessaly chỉ huy bức tường ở Highwatch, nơi đầu con đường núi phía bắc. Một lệnh triệu tập đang được dán ở cổng của bà - hãy nhận lấy, và nói với bà rằng Tu Huynh Aldric đang leo núi theo sau ngươi.',
   'entities.quests.q_highwatch_summons.title': 'Trạm Gác Trên Đỉnh Núi',
-  'entities.quests.q_hollow.completion':
-    'Tiếng thì thầm đã ngừng. Ngươi đã làm được điều cả Thung Lũng không thể, {playerName} - người chết ngủ yên, và Eastbrook nợ ngươi tất cả những gì nó có.',
-  'entities.quests.q_hollow.objectives.0.label': 'Đã hạ Morthen Kẻ Triệu Mộ',
-  'entities.quests.q_hollow.text':
-    'Morthen Kẻ Triệu Mộ chờ đợi dưới đáy Hầm Mộ Rỗng, vây quanh bởi những xác chết tinh nhuệ mà hắn đã hồi sinh. Hắn vượt xa khả năng của bất kỳ một anh hùng đơn lẻ nào - hãy mang theo bốn đồng đội, không ít hơn. Kết liễu hắn, và người chết của Thung Lũng cuối cùng sẽ được ngủ yên.',
-  'entities.quests.q_hollow.title': 'Tiến Vào Hầm Mộ Rỗng',
   'entities.quests.q_idols.completion':
     'Thủ công của bọn Triệu Mộ - cổ hơn Morthen, cổ hơn cả ta. Giáo phái không khởi đầu ở Eastbrook, {playerName}. Nó bắt đầu tại đây, và hồ nước đã giữ kín những bí mật của nó.',
   'entities.quests.q_idols.objectives.0.label': 'Thần Tượng Ngấm Nước',
@@ -9235,12 +9209,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Hai mươi năm ta câu cá ở Hồ Gương, chưa từng mất một tấm lưới cho đến khi lũ người cá ằng ặc kia bò lên từ vùng nước nông. Hãy đẩy lùi bọn Mudfin, tiêu diệt 8 con. Và coi chừng đấy: nơi nào có một con mudfin, nơi đó có năm con.',
   'entities.quests.q_murlocs.title': 'Rắc Rối Bên Hồ',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Những linh hồn tội nghiệp... và nhìn đây này. Sexton Marrow - người trông coi nhà nguyện khi còn sống - ngôi mộ của ông là nơi đầu tiên bị quấy động. Morthen đã bắt đầu với chính người đã chôn cất những kẻ chết của Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Trang Sổ Cái Đã Mòn',
-  'entities.quests.q_names_of_the_dead.text':
-    'Nếu bọn Kẻ Gọi Mộ đã triệu dậy người chết của chúng ta, ta phải biết chúng đã cướp phá những ngôi mộ của ai. Người trông coi nhà nguyện có giữ một cuốn sổ tang lễ, và gió đã thổi tung những trang giấy của nó khắp sân nhà nguyện. Hãy thu thập 3 trang về cho ta, {playerName} - người chết xứng đáng được gọi bằng tên của họ.',
-  'entities.quests.q_names_of_the_dead.title': 'Tên Của Những Người Chết',
   'entities.quests.q_necromancers.completion':
     'Cầu Thánh Quang tha thứ cho chúng ta. Những thứ này chứa đựng người chết của Thung Lũng và đầm lầy - mọi xác chết mà bọn Kẻ Gọi Mộ từng triệu dậy, đều bị thu hoạch. Chúng chưa bao giờ xây dựng một đạo quân, {playerName}. Chúng đang gom góp một thứ cống nạp.',
   'entities.quests.q_necromancers.objectives.0.label': 'Đã hạ Pháp Sư Tử Linh Long Giáo',
@@ -9350,25 +9318,12 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Bọn cướp chỉ nghe lệnh một kẻ: Gorrak Kẻ Tàn Nhẫn. Chặt đầu thì thân sẽ tan rã. Hắn lẩn lút giữa trung tâm trại của chúng. Hãy kết liễu hắn, {playerName}.',
   'entities.quests.q_ringleader.title': 'Kẻ Cầm Đầu',
-  'entities.quests.q_rite.completion':
-    'Đã xong. Con đường bên dưới đã rộng mở... và cầu Thánh Quang tha thứ cho ta vì đã mở nó ra. Hãy tập hợp những đồng đội mạnh nhất của ngươi trước khi xuống dưới, {playerName}. Không ai nên đối mặt với Hầm Mộ Rỗng một mình.',
-  'entities.quests.q_rite.objectives.0.label': 'Mỡ Thánh',
-  'entities.quests.q_rite.objectives.1.label': 'Tinh Chất Ma Quái',
-  'entities.quests.q_rite.text':
-    'Phải phá phong ấn hầm mộ bên dưới nhà nguyện nếu chúng ta muốn ngăn chặn Gravecaller, nhưng chỉ một nghi lễ trói buộc mới cho phép người sống đi qua. Ta cần 4 cục Mỡ Thánh, lũ đào hang trong mỏ tích trữ mỡ cả thùng, và 6 Tinh Chất Ma Quái từ những kẻ chết không yên nghỉ.',
-  'entities.quests.q_rite.title': 'Nghi Lễ Trói Buộc',
   'entities.quests.q_sanctum_gate.completion':
     'Những mảnh vỡ đã khớp đúng chỗ... và cánh cổng đã nhận ra chìa khóa của mình. Con đường bên dưới đã rộng mở, {playerName}. Hãy tập hợp những đồng đội mạnh nhất ngươi có thể tìm được - những gì sắp tới, không ai nên đối mặt một mình.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Mảnh Chìa Khóa Thánh Đường',
   'entities.quests.q_sanctum_gate.text':
     'Đây là ngưỡng cửa cuối cùng, {playerName}. Cánh cổng Thánh Đường Mộ Long từng bị khóa bằng một viên đá khóa, và giáo phái đã đập vỡ nó thành nhiều mảnh thay vì để nó bị dùng chống lại chúng. Những mảnh vỡ nằm rải rác nơi quảng trường trước cổng, dưới ánh mắt của những kẻ chết bọc xương. Hãy mang về cho ta ba mảnh, và ta sẽ mở con đường theo ý Thánh Quang định liệu - một cách lặng lẽ.',
   'entities.quests.q_sanctum_gate.title': 'Cổng Thánh Đường',
-  'entities.quests.q_sexton.completion':
-    'Vậy là cuối cùng Marrow cũng được tự do. Đừng rung chuông cho ông - lúc còn sống ông đã nghe đủ tiếng chuông rồi.',
-  'entities.quests.q_sexton.objectives.0.label': 'Đã đưa Sexton Marrow về an nghỉ',
-  'entities.quests.q_sexton.text':
-    'Cuốn sổ cái đã gọi tên ông và hầm mộ đang giam giữ ông: Sexton Marrow, người trông coi nhà nguyện, người đầu tiên mà Morthen triệu dậy - canh giữ cánh cửa của chủ nhân khi đã chết trung thành như lúc ông trông nom nhà nguyện khi còn sống. Hãy dẫn bốn đồng đội vào Hầm Mộ Rỗng và ban cho người trông coi già nua sự yên nghỉ mà ông đã bị tước đoạt, {playerName}.',
-  'entities.quests.q_sexton.title': 'Chuông Của Người Trông Coi',
   'entities.quests.q_shard_cores.completion':
     'Mỗi lõi đều nghiêng về cùng một hướng, như mạt sắt hướng về nam châm. Chúng chỉ về phía nam, {playerName}. Về phía Thánh Đường.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Lõi Bão Tố',
@@ -9453,12 +9408,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Đêm qua cả trại giáo phái quỳ rạp xuống cùng một lúc, {playerName}, từng tín đồ, từng tử linh sư, tất cả hướng về Thánh Đường. Korzul giờ nói chuyện với chúng trong giấc ngủ; Vael đã nghe thấy chính giọng nói ấy ở đầm lầy, và Morthen trước hắn. Hạ gục đám giáo đồ ấy, mười tín đồ, sáu tử linh sư, trước khi giọng nói đó có đủ tay để tự kéo mở cánh cổng.',
   'entities.quests.q_voice_below.title': 'Giọng Nói Bên Dưới',
-  'entities.quests.q_whispers.completion':
-    'Phù ấn này... nó mang dấu của Hội Triệu Mộ, một giáo phái mà ta đã cầu nguyện rằng đã tuyệt diệt. Chuyện này còn tệ hơn ta lo sợ, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Phù Ấn Triệu Mộ',
-  'entities.quests.q_whispers.text':
-    'Ngươi đã cho người chết yên nghỉ, nhưng chúng sẽ không chịu yên nghỉ, có thứ gì đó gọi chúng trở về. Lục soát phế tích nhà nguyện tìm bất kỳ dấu vết nào của kẻ đang triệu gọi. Nếu ngươi tìm thấy một phù ấn hay con dấu, hãy mang đến cho ta nguyên vẹn.',
-  'entities.quests.q_whispers.title': 'Tiếng Thì Thầm Bên Dưới',
   'entities.quests.q_widows.completion':
     'Túi nọc nguyên vẹn, từng cái một. Tay ngươi vững hơn nửa số thầy thuốc ở miền nam đấy, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Nhện Góa Đầm Lầy Bùn Sâu đã hạ',
@@ -20328,7 +20277,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'editor.weather.blizzard': 'Bão Tuyết',
   'entities.items.hoarfrost_mantle.name': 'Áo Choàng Sương Giá',
   'entities.mobs.buddy_spider.name': 'Nhện',
-  'entities.mobs.marrow_restless_bones.name': 'Bộ Xương Bất An',
   'entities.mobs.vael_fog_shade.name': 'Vael Fogbinder',
   'entities.npcs.patron_hester_quillby.title': 'Người Tạo Bản Đồ',
   'referralCards.milestones.fogbinder': 'Fogbinder',
@@ -20595,8 +20543,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'bossJournal.wildheart.bloom.spitName': 'Hoa Phun',
   'entities.mobs.bastion_drowned_anchor.name': 'Neo Chết Chìm',
   'entities.mobs.bastion_gaol_cage.name': 'Lồng Sắt',
-  'entities.mobs.bound_soul.name': 'Linh Hồn Bị Trói',
-  'entities.mobs.crypt_remembrance_candle.name': 'Nến Tưởng Niệm',
   'entities.mobs.muster_footman.name': 'Bộ Binh Tập Kết',
   'entities.mobs.muster_sergeant.name': 'Trung Sĩ Tập Kết',
   'editor.biome.edgeDetail': 'Chi Tiết Rìa',
@@ -25068,20 +25014,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Bộ Ba T',
   'entities.mobs.buddy_trollface.name': 'Mặt Cười Troll',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Lợn Rừng Nanh Sừng',
-  'entities.mobs.candlewright_acolyte.name': 'Tín Đồ Thợ Nến',
-  'entities.mobs.cantor_ilvane.name': 'Người Lĩnh Xướng Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Thú Dữ Xương',
-  'entities.mobs.crypt_bone_minion.name': 'Tay Sai Xương',
-  'entities.mobs.crypt_bone_pile.name': 'Hài Cốt Cựa Quậy',
-  'entities.mobs.crypt_carrion_crow.name': 'Quạ Ăn Xác',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Quỷ Đá Nhà Nguyện',
-  'entities.mobs.crypt_crow_caller.name': 'Kẻ Gọi Quạ',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Môn Đồ Gọi Mộ',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Tử Linh Sư Gọi Mộ',
-  'entities.mobs.crypt_knellwyrm.name': 'Rồng Chuông Tử',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Sát Thủ Nhà Hài Cốt',
-  'entities.mobs.crypt_ossuary_drake.name': 'Rồng Nhà Hài Cốt',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Chiến Binh Nhà Hài Cốt',
   'entities.mobs.drowned_pilgrim.name': 'Người Hành Hương Chết Chìm',
   'entities.mobs.drowned_sergeant.name': 'Trung Sĩ Chết Chìm',
   'entities.mobs.drowned_watchman.name': 'Lính Gác Chết Chìm',
@@ -25091,8 +25023,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Cai Ngục Ossick',
   'entities.mobs.glacier_splinter.name': 'Mảnh Sông Băng',
   'entities.mobs.great_saurian.name': 'Đại Thằn Lằn',
-  'entities.mobs.hollow_chorister.name': 'Ca Viên Rỗng',
-  'entities.mobs.hollow_gravedigger.name': 'Kẻ Đào Mộ Rỗng',
   'entities.mobs.howdah_hexcaller.name': 'Kẻ Gọi Bùa Trên Bành',
   'entities.mobs.ice_wraith.name': 'Ma Băng',
   'entities.mobs.lagoon_snapper.name': 'Rùa Cắn Đầm Phá',
@@ -25105,12 +25035,7 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_drillmaster.name': 'Huấn Luyện Viên Tập Kết',
   'entities.mobs.muster_effigy.name': 'Đốc Công Rơm',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogre Kéo Xe Trượt',
-  'entities.mobs.ossuary_sentinel.name': 'Vệ Binh Nhà Hài Cốt',
-  'entities.mobs.rime_egg_sac.name': 'Túi Trứng Sương Giá',
   'entities.mobs.rime_whelp.name': 'Rồng Con Sương Giá',
-  'entities.mobs.rimeweb.name': 'Phu Nhân Lạnh Xương',
-  'entities.mobs.rimeweb_hatchling.name': 'Nhện Non Tơ Sương',
-  'entities.mobs.rimeweb_spinner.name': 'Nhện Dệt Tơ Sương',
   'entities.mobs.sanctum_shackle_anvil.name': 'Xiềng Đe',
   'entities.mobs.sanctum_shackle_bellows.name': 'Xiềng Ống Bễ',
   'entities.mobs.sanctum_shackle_hammer.name': 'Xiềng Búa',

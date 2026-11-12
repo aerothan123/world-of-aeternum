@@ -8408,9 +8408,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.dungeons.gravewyrm_sanctum.leaveText':
     'Kau terhuyung kembali ke dalam angin pegunungan.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Sanktum Gravewyrm',
-  'entities.dungeons.hollow_crypt.enterText': 'Kau menuruni Kripta Berongga...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Kau memanjat kembali ke siang hari.',
-  'entities.dungeons.hollow_crypt.name': 'Kripta Berongga',
   'entities.dungeons.nythraxis_boss_arena.enterText': 'Kau melewati pintu kerajaan yang tersegel.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Kau kembali ke udara dingin Thornpeak.',
   'entities.dungeons.nythraxis_boss_arena.name': 'Arena Raid Nythraxis',
@@ -8830,14 +8827,12 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolit Tessa',
   'entities.mobs.bastion_revenant.name': 'Arwah Benteng',
   'entities.mobs.bog_bloat.name': 'Kembung Rawa',
-  'entities.mobs.bonechill_widow.name': 'Janda Beku Tulang',
   'entities.mobs.boneclad_revenant.name': 'Revenant Berbalut Tulang',
   'entities.mobs.bound_guardian.name': 'Sang Penjaga Terbelenggu',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Penghancur Tengkorak',
   'entities.mobs.captain_verlan.name': 'Kapten Verlan',
   'entities.mobs.choirmother_selthe.name': 'Ibu Paduan Suara Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Pendeta Tercemar Malric',
-  'entities.mobs.crypt_shambler.name': 'Penyaruk Kripta',
   'entities.mobs.deacon_varric.name': 'Diaken Vandric',
   'entities.mobs.deacon_voss.name': 'Diaken Voss',
   'entities.mobs.deathstalker_voss.name': 'Pembayang Maut Voss',
@@ -8859,7 +8854,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Penyeru Pemanggil Kubur',
   'entities.mobs.grix_the_tunnelking.name': 'Grix sang Raja Terowongan',
   'entities.mobs.grubjaw.name': 'Grubjaw si Rakus',
-  'entities.mobs.hollow_acolyte.name': 'Akolit Berongga',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Raksasa Pyre',
   'entities.mobs.ironvein_foreman.name': 'Mandor Ironvein',
@@ -8876,7 +8870,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Antek Mogger',
   'entities.mobs.moonspawn.name': 'Anak Bulan',
-  'entities.mobs.morthen.name': 'Morthen sang Pemanggil Kubur',
   'entities.mobs.mudfin_murloc.name': 'Penyelinap Mudfin',
   'entities.mobs.nhalia_mourner.name': 'Pelayat Nhalia',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Hierofan Nirmaut',
@@ -8900,7 +8893,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Pengawal Tulang Sanktum',
   'entities.mobs.sanctum_drakonid.name': 'Penjaga Sisik Sanktum',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael sang Lingkar Pucat',
-  'entities.mobs.sexton_marrow.name': 'Koster Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Tuan Serpihan Kazzix',
   'entities.mobs.sister_nhalia.name': 'Suster Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtooth sang Tenggelam',
@@ -9044,12 +9036,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Kulit babi hutan membuat ransel perjalanan terbaik, dan padang rumput di barat laut kota dipenuhi binatang itu. Bawakan padaku 5 Kulit Babi Hutan Berbulu Kasar dan akan kubuat waktumu sepadan.',
   'entities.quests.q_boars.title': 'Kulit Babi Hutan Berbulu Kasar',
-  'entities.quests.q_bones.completion':
-    'Semoga mereka beristirahat kini, dan semoga Sang Cahaya mengampuni apa pun yang membangunkan mereka.',
-  'entities.quests.q_bones.objectives.0.label': 'Tulang Gelisah dibaringkan',
-  'entities.quests.q_bones.text':
-    'Reruntuhan tua di bukit barat laut dahulu adalah kapel, dan halamannya tempat peristirahatan. Sesuatu telah membangunkan yang mati dari tidur mereka. Berikan mereka kedamaian, {playerName}, kembalikan 8 Tulang Gelisah ke tanah.',
-  'entities.quests.q_bones.title': 'Mayat yang Gelisah',
   'entities.quests.q_breaking_the_seal.completion':
     'Mereka menyala biru dan bersih, gunung mengingat sumpah lamanya. Dengan ini aku bisa melepaskan ikatan gerbang itu untuk kita sendiri.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Bara Terberkati',
@@ -9160,12 +9146,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis menunjukkan padaku sebongkah lilin yang diambil dari salah satu penggali itu, lilinnya berpendar, {playerName}, dan hangat bagai detak jantung. Ia ingin lebih banyak untuk diteliti, dan aku ingin itu lenyap dari daftar permintaanku. Bawa kembali enam bongkah lilin berpendar itu.',
   'entities.quests.q_glowing_wax.title': 'Lilin Aneh',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen menulis surat kepada seorang 'Fogbinder' di rawa utara. Sekte itu belum mati, {playerName}, ia hanya bersabar.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimoir Morthen',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen telah mati, namun satu pertanyaan menggerogotiku: sekte yang bersembunyi seabad tak menghabiskan dirinya pada satu kapel desa. Ia menyimpan grimoir, ritusnya, surat-menyuratnya. Jika ada yang tersisa, ia ada di ruang busana kapel runtuh di atas kripta. Geledah reruntuhan itu dan bawakan padaku apa pun yang tersisa dari tulisannya, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Jejak Sang Gravecaller',
   'entities.quests.q_gravewyrm.completion':
     'Semua berakhir. Para mayat dari tiga negeri boleh beristirahat, gunung tidur tanpa gangguan, dan namamu, {playerName}, yang dibunyikan setiap lonceng dari sini hingga Eastbrook malam ini.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Sang Gravewyrm terbunuh',
@@ -9190,12 +9170,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Kata-kata terakhir Vael tak meninggalkanku, {playerName}: Sang Wyrm bergolak di bawah puncak-puncak. Kapten Thessaly memimpin tembok di Highwatch, di kepala jalan gunung utara. Sebuah panggilan terpasang di gerbangnya, ambillah, dan katakan padanya Bruder Aldric mendaki gunung di belakangmu.',
   'entities.quests.q_highwatch_summons.title': 'Pengawal di Puncak',
-  'entities.quests.q_hollow.completion':
-    'Bisikan-bisikan telah berhenti. Kau telah melakukan apa yang seluruh Lembah tak mampu, {playerName}, para mayat tidur, dan Eastbrook berutang segala yang ia punya padamu.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Sang Gravecaller terbunuh',
-  'entities.quests.q_hollow.text':
-    'Morthen Sang Gravecaller menanti di dasar Kripta Berongga, dikelilingi para mayat elite yang ia bangkitkan. Ia jauh melampaui satu pahlawan mana pun, bawa empat rekan, tak kurang. Akhiri dia, dan para mayat Lembah akhirnya akan tidur.',
-  'entities.quests.q_hollow.title': 'Menuju Kripta Berongga',
   'entities.quests.q_idols.completion':
     'Karya Gravecaller, lebih tua dari Morthen, lebih tua dariku. Sekte itu tidak bermula di Eastbrook, {playerName}. Ia bermula di sini, dan danau telah menyimpan rahasianya.',
   'entities.quests.q_idols.objectives.0.label': 'Berhala Basah Kuyup',
@@ -9244,12 +9218,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Dua puluh tahun aku memancing di Danau Mirror, dan tak pernah kehilangan jala sampai manusia-ikan menggeram itu merangkak keluar dari perairan dangkal. Usir si Mudfin kembali - bunuh 8 dari mereka. Dan waspadalah: di mana ada satu Mudfin, di situ ada lima.',
   'entities.quests.q_murlocs.title': 'Masalah di Danau',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Jiwa-jiwa malang ini... dan lihat di sini. Koster Marrow - sang penjaga hidup kapel itu sendiri - makamnyalah yang pertama diganggu. Morthen memulai dengan orang yang justru menguburkan para mati Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Lembar Buku Besar Lapuk',
-  'entities.quests.q_names_of_the_dead.text':
-    'Jika para Gravecaller membangkitkan para mati kita, aku harus tahu makam siapa yang mereka rampok. Sang sexton kapel menyimpan buku besar pemakaman, dan angin telah menyebarkan halaman-halamannya ke seluruh pelataran kapel. Kumpulkan 3 lembar untukku, {playerName} - para mati layak dipanggil dengan nama mereka.',
-  'entities.quests.q_names_of_the_dead.title': 'Nama-Nama Para Mati',
   'entities.quests.q_necromancers.completion':
     'Semoga Cahaya mengampuni kita. Ini menampung para mati dari Lembah dan rawa - setiap mayat yang pernah dibangkitkan para Gravecaller, dipanen. Mereka tidak pernah membangun pasukan, {playerName}. Mereka sedang mengumpulkan upeti.',
   'entities.quests.q_necromancers.objectives.0.label': 'Necromancer Broodsworn dibunuh',
@@ -9357,25 +9325,12 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Para bandit menjawab pada satu orang: Gorrak sang Bengis. Penggal kepalanya dan tubuhnya akan tercerai-berai. Ia bersembunyi di jantung kemah mereka. Akhiri riwayatnya, {playerName}.',
   'entities.quests.q_ringleader.title': 'Sang Biang Kerok',
-  'entities.quests.q_rite.completion':
-    'Selesai sudah. Jalan ke bawah kini terbuka... dan semoga Cahaya mengampuniku karena membukanya. Kumpulkan rekan-rekanmu yang terkuat sebelum kau turun, {playerName}. Tak seorang pun seharusnya menghadapi sang Hollow sendirian.',
-  'entities.quests.q_rite.objectives.0.label': 'Lilin Lemak Terberkati',
-  'entities.quests.q_rite.objectives.1.label': 'Esensi Hantu',
-  'entities.quests.q_rite.text':
-    'Kripta di bawah kapel harus dibuka segelnya jika kita ingin menghentikan sang Gravecaller - tapi hanya ritus pengikatan yang akan mengizinkan yang hidup lewat. Aku butuh 4 bongkah Lemak Terberkati - para penggali liang tambang menimbun lemak per peti - dan 6 Esensi Hantu dari para mati yang gelisah.',
-  'entities.quests.q_rite.title': 'Ritus Pengikatan',
   'entities.quests.q_sanctum_gate.completion':
     'Serpihan-serpihan itu duduk pas... dan gerbang mengenali kuncinya. Jalan ke bawah kini terbuka, {playerName}. Kumpulkan rekan-rekan terkuat yang bisa kau temukan - apa yang menanti, tak seorang pun seharusnya hadapi sendirian.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Serpihan Kunci Sanktum',
   'entities.quests.q_sanctum_gate.text':
     'Ini ambang terakhir, {playerName}. Gerbang Sanktum Gravewyrm dikunci dengan sebuah batu kunci, dan sekte itu memecahnya menjadi serpihan-serpihan alih-alih melihatnya berbalik melawan mereka. Serpihan-serpihan itu tersebar di pelataran gerbang, di bawah pengawasan para mati berzirah tulang. Bawakan aku tiga, dan aku akan membuka jalan sebagaimana yang dikehendaki Cahaya - dengan diam-diam.',
   'entities.quests.q_sanctum_gate.title': 'Gerbang Sanktum',
-  'entities.quests.q_sexton.completion':
-    'Maka Marrow akhirnya bebas. Jangan bunyikan lonceng untuknya - ia sudah cukup mendengarnya semasa hidup.',
-  'entities.quests.q_sexton.objectives.0.label': 'Koster Marrow diistirahatkan',
-  'entities.quests.q_sexton.text':
-    'Buku besar itu menyebut namanya dan kripta menampungnya: Koster Marrow, penjaga kapel, orang pertama yang dibangkitkan Morthen - menjaga pintu tuannya dalam kematian sesetia ia merawat kapel semasa hidup. Bawa empat rekan ke Kripta Berongga dan berikan sang sexton tua ketenangan yang dirampas darinya, {playerName}.',
-  'entities.quests.q_sexton.title': 'Lonceng Sang Sexton',
   'entities.quests.q_shard_cores.completion':
     'Setiap inti condong ke arah yang sama, seperti serbuk besi pada magnet. Mereka menunjuk ke selatan, {playerName}. Ke Sanktum.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Inti Badai',
@@ -9460,12 +9415,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Tadi malam seluruh perkemahan kultus berlutut serentak, {playerName}, setiap fanatik, setiap necromancer, semua menghadap Sanktum. Korzul kini berbicara kepada mereka dalam tidur; Vael mendengar suara yang sama di rawa, dan Morthen sebelumnya. Tumpas jemaah itu, sepuluh fanatik, enam necromancer, sebelum suara itu punya tangan yang cukup untuk membuka gerbang itu sendiri.',
   'entities.quests.q_voice_below.title': 'Suara dari Bawah',
-  'entities.quests.q_whispers.completion':
-    'Sigil ini... membawa tanda para Gravecaller, sekte yang kuharap telah punah. Ini lebih buruk daripada yang kutakutkan, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sigil Gravecaller',
-  'entities.quests.q_whispers.text':
-    'Kau telah membaringkan para mati untuk beristirahat, tapi mereka tak mau tetap beristirahat, sesuatu memanggil mereka kembali. Geledah reruntuhan kapel untuk jejak siapa pun yang melakukan panggilan itu. Jika kau menemukan sigil atau segel, bawakan padaku tanpa disentuh.',
-  'entities.quests.q_whispers.title': 'Bisikan dari Bawah',
   'entities.quests.q_widows.completion':
     'Kantong utuh, semuanya. Tanganmu lebih mantap daripada separuh ahli bedah di selatan, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Janda Mirefen terbunuh',
@@ -21207,7 +21156,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Jangkar Tenggelam',
   'entities.mobs.bastion_gaol_cage.name': 'Kurungan Besi',
   'entities.mobs.bastion_warhound.name': 'Anjing Perang Benteng',
-  'entities.mobs.bound_soul.name': 'Jiwa Terikat',
   'entities.mobs.broodsworn_goadsmith.name': 'Pandai Pacu Bersumpah Kawanan',
   'entities.mobs.broodsworn_pyre_tender.name': 'Penjaga Unggun Bersumpah Kawanan',
   'entities.mobs.broodsworn_thawcaller.name': 'Pemanggil Pencairan Bersumpah Kawanan',
@@ -21241,21 +21189,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Muka Troll',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Babi Hutan Tanduk Gading',
-  'entities.mobs.candlewright_acolyte.name': 'Akolit Pembuat Lilin',
-  'entities.mobs.cantor_ilvane.name': 'Kantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Raksasa Tulang',
-  'entities.mobs.crypt_bone_minion.name': 'Anak Buah Tulang',
-  'entities.mobs.crypt_bone_pile.name': 'Tulang Bergerak',
-  'entities.mobs.crypt_carrion_crow.name': 'Gagak Bangkai',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gargoyle Kapel',
-  'entities.mobs.crypt_crow_caller.name': 'Pemanggil Gagak',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adep Pemanggil Makam',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nekromancer Pemanggil Makam',
-  'entities.mobs.crypt_knellwyrm.name': 'Wyrm Lonceng Kematian',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Pembunuh Rumah Tulang',
-  'entities.mobs.crypt_ossuary_drake.name': 'Drake Rumah Tulang',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Prajurit Rumah Tulang',
-  'entities.mobs.crypt_remembrance_candle.name': 'Lilin Kenangan',
   'entities.mobs.drowned_pilgrim.name': 'Peziarah Tenggelam',
   'entities.mobs.drowned_sergeant.name': 'Sersan Tenggelam',
   'entities.mobs.drowned_watchman.name': 'Penjaga Tenggelam',
@@ -21265,12 +21198,9 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Sipir Ossick',
   'entities.mobs.glacier_splinter.name': 'Serpihan Gletser',
   'entities.mobs.great_saurian.name': 'Kadal Raksasa',
-  'entities.mobs.hollow_chorister.name': 'Penyanyi Paduan Suara Hampa',
-  'entities.mobs.hollow_gravedigger.name': 'Penggali Kubur Hampa',
   'entities.mobs.howdah_hexcaller.name': 'Pemanggil Kutukan Tandu',
   'entities.mobs.ice_wraith.name': 'Arwah Es',
   'entities.mobs.lagoon_snapper.name': 'Penyu Penggigit Laguna',
-  'entities.mobs.marrow_restless_bones.name': 'Tulang Gelisah',
   'entities.mobs.mere_hydra_head_center.name': 'Hidra Danau',
   'entities.mobs.mere_hydra_head_left.name': 'Hidra Danau',
   'entities.mobs.mere_hydra_head_right.name': 'Hidra Danau',
@@ -21282,12 +21212,7 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Prajurit Infanteri Pengerahan',
   'entities.mobs.muster_sergeant.name': 'Sersan Pengerahan',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogre Penarik Kereta Luncur',
-  'entities.mobs.ossuary_sentinel.name': 'Penjaga Rumah Tulang',
-  'entities.mobs.rime_egg_sac.name': 'Kantung Telur Embun Beku',
   'entities.mobs.rime_whelp.name': 'Anak Naga Embun Beku',
-  'entities.mobs.rimeweb.name': 'Nyonya Dingin Tulang',
-  'entities.mobs.rimeweb_hatchling.name': 'Anak Jaring Embun Beku',
-  'entities.mobs.rimeweb_spinner.name': 'Pemintal Jaring Embun Beku',
   'entities.mobs.sanctum_shackle_anvil.name': 'Belenggu Landasan',
   'entities.mobs.sanctum_shackle_bellows.name': 'Belenggu Pengembus',
   'entities.mobs.sanctum_shackle_hammer.name': 'Belenggu Palu',

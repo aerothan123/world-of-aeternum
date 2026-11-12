@@ -2782,14 +2782,6 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
 
 export const GUIDE_DUNGEONS: GuideDungeon[] = [
   {
-    "id": "hollow_crypt",
-    "isRaid": false,
-    "suggestedPlayers": 5,
-    "min": 7,
-    "max": 10,
-    "name": "The Hollow Crypt"
-  },
-  {
     "id": "sunken_bastion",
     "isRaid": false,
     "suggestedPlayers": 5,
@@ -4435,14 +4427,6 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "crest": "/ui/deeds/cmb_first_fall.webp"
   },
   {
-    "id": "dgn_hollow_crypt",
-    "name": "Cryptbreaker",
-    "category": "dungeon",
-    "renown": 5,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_hollow_crypt.webp"
-  },
-  {
     "id": "dgn_sunken_bastion",
     "name": "Fogbinder Unbound",
     "category": "dungeon",
@@ -4465,14 +4449,6 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "renown": 10,
     "feat": false,
     "crest": "/ui/deeds/dgn_gravewyrm_sanctum.webp"
-  },
-  {
-    "id": "dgn_hollow_crypt_heroic",
-    "name": "Heroic: The Hollow Crypt",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_hollow_crypt_heroic.webp"
   },
   {
     "id": "dgn_sunken_bastion_heroic",
@@ -4546,22 +4522,6 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "renown": 10,
     "feat": false,
     "crest": "/ui/deeds/dgn_boss_clears_50.webp"
-  },
-  {
-    "id": "dgn_morthen_flawless",
-    "name": "No Bones About It",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_morthen_flawless.webp"
-  },
-  {
-    "id": "dgn_morthen_trio",
-    "name": "Three Against the Grave",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_morthen_trio.webp"
   },
   {
     "id": "dgn_olen_arc",
@@ -6793,14 +6753,6 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "crest": "/ui/deeds/dgn_mere_hydra.webp"
   },
   {
-    "id": "dgn_crypt_knellwyrm",
-    "name": "Not a Hair Singed",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_crypt_knellwyrm.webp"
-  },
-  {
     "id": "dgn_turnkey_cage",
     "name": "No Cage Can Hold Us",
     "category": "dungeon",
@@ -6888,38 +6840,6 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "feat": false,
     "rewardTitle": "Witness of the Choir",
     "crest": "/ui/deeds/dgn_drowned_temple_cantor.webp"
-  },
-  {
-    "id": "dgn_marrow_tidy",
-    "name": "A Tidy Churchyard",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_marrow_tidy.webp"
-  },
-  {
-    "id": "dgn_lady_nobody_hanging",
-    "name": "Nobody Left Hanging",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_lady_nobody_hanging.webp"
-  },
-  {
-    "id": "dgn_ilvane_hush",
-    "name": "Hush Now",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_ilvane_hush.webp"
-  },
-  {
-    "id": "dgn_morthen_candlelight",
-    "name": "Every Candle Lit",
-    "category": "dungeon",
-    "renown": 10,
-    "feat": false,
-    "crest": "/ui/deeds/dgn_morthen_candlelight.webp"
   },
   {
     "id": "dgn_guild_first_contract",
@@ -7083,124 +7003,6 @@ export const GUIDE_DEEDS: GuideDeed[] = [
 ];
 
 export const GUIDE_RELIQUARY: GuideReliquaryPage[] = [
-  {
-    "id": "conquerors_hollow_crypt",
-    "shelf": "conquerors",
-    "name": "The Hollow Crypt",
-    "relics": [
-      {
-        "kind": "item",
-        "name": "Cryptbone Greaves"
-      },
-      {
-        "kind": "item",
-        "name": "Cryptbone Helm"
-      },
-      {
-        "kind": "item",
-        "name": "Cryptbone Pauldrons"
-      },
-      {
-        "kind": "item",
-        "name": "Greyjaw Hide Boots"
-      },
-      {
-        "kind": "item",
-        "name": "Gravewoven Bag"
-      },
-      {
-        "kind": "item",
-        "name": "Spadeworn Gauntlets"
-      },
-      {
-        "kind": "item",
-        "name": "Gravedirt Grips"
-      },
-      {
-        "kind": "item",
-        "name": "Bellrope Mitts"
-      },
-      {
-        "kind": "item",
-        "name": "Rimewreath Coif"
-      },
-      {
-        "kind": "item",
-        "name": "Rime-Laced Hood"
-      },
-      {
-        "kind": "item",
-        "name": "Lamenting Veil"
-      },
-      {
-        "kind": "item",
-        "name": "Choirward Pauldrons"
-      },
-      {
-        "kind": "item",
-        "name": "Chorister's Spaulders"
-      },
-      {
-        "kind": "item",
-        "name": "Cantor's Stole"
-      },
-      {
-        "kind": "item",
-        "name": "Knellbound Hauberk"
-      },
-      {
-        "kind": "item",
-        "name": "Candlewatch Jerkin"
-      },
-      {
-        "kind": "item",
-        "name": "Robe of the Unquiet Rite"
-      },
-      {
-        "kind": "item",
-        "name": "Gravecaller's Rod"
-      }
-    ]
-  },
-  {
-    "id": "conquerors_hollow_crypt_heroic",
-    "shelf": "conquerors",
-    "name": "Heroic Hollow Crypt",
-    "relics": [
-      {
-        "kind": "item",
-        "name": "Morthen's Cryptforged Hauberk"
-      },
-      {
-        "kind": "item",
-        "name": "Shadowpulse Handwraps"
-      },
-      {
-        "kind": "item",
-        "name": "Bonechill Striders"
-      },
-      {
-        "kind": "item",
-        "name": "Lunarward Cinch"
-      },
-      {
-        "kind": "item",
-        "name": "Cryptplate Helm"
-      },
-      {
-        "kind": "item",
-        "name": "Shadowpulse Slippers"
-      },
-      {
-        "kind": "item",
-        "name": "Bonechill Cord"
-      },
-      {
-        "kind": "item",
-        "name": "Bastion Sigil"
-      }
-    ]
-  },
   {
     "id": "conquerors_sunken_bastion",
     "shelf": "conquerors",

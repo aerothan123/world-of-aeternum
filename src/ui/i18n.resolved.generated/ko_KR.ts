@@ -26590,9 +26590,6 @@ export const ko_KR: EnTranslations = {
       "restless_bones": {
         "name": "불안한 뼈무더기"
       },
-      "marrow_restless_bones": {
-        "name": "불안한 뼈무더기"
-      },
       "gorrak": {
         "name": "무자비한 고라크"
       },
@@ -26694,90 +26691,6 @@ export const ko_KR: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "뼈갑옷 망령"
-      },
-      "crypt_shambler": {
-        "name": "묘실 비틀걸음"
-      },
-      "hollow_acolyte": {
-        "name": "공허의 수행사제"
-      },
-      "bonechill_widow": {
-        "name": "뼈서리 과부거미"
-      },
-      "sexton_marrow": {
-        "name": "성구지기 매로우"
-      },
-      "morthen": {
-        "name": "무덤부름 모르덴"
-      },
-      "ossuary_sentinel": {
-        "name": "납골당 파수병"
-      },
-      "hollow_gravedigger": {
-        "name": "공허의 무덤파기꾼"
-      },
-      "rime_egg_sac": {
-        "name": "서리 알주머니"
-      },
-      "rimeweb_hatchling": {
-        "name": "서리거미줄 새끼거미"
-      },
-      "rimeweb_spinner": {
-        "name": "서리거미줄 실잣는거미"
-      },
-      "candlewright_acolyte": {
-        "name": "초장이 수행사제"
-      },
-      "hollow_chorister": {
-        "name": "공허의 성가대원"
-      },
-      "bound_soul": {
-        "name": "속박된 영혼"
-      },
-      "rimeweb": {
-        "name": "뼈서리의 귀부인"
-      },
-      "cantor_ilvane": {
-        "name": "성가대장 일베인"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "납골당 전사"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "무덤부름 수련생"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "납골당 멱따개"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "무덤부름 강령술사"
-      },
-      "crypt_bone_minion": {
-        "name": "뼈 하수인"
-      },
-      "crypt_bone_brute": {
-        "name": "뼈 야수병"
-      },
-      "crypt_bone_pile": {
-        "name": "꿈틀거리는 뼈"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "예배당 가고일"
-      },
-      "crypt_crow_caller": {
-        "name": "까마귀 부르미"
-      },
-      "crypt_carrion_crow": {
-        "name": "썩은고기 까마귀"
-      },
-      "crypt_ossuary_drake": {
-        "name": "납골당 뼈드레이크"
-      },
-      "crypt_knellwyrm": {
-        "name": "조종룡"
-      },
-      "crypt_remembrance_candle": {
-        "name": "추모의 양초"
       },
       "bastion_revenant": {
         "name": "요새 망령"
@@ -28727,16 +28640,6 @@ export const ko_KR: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "쉬지 못하는 죽은 자",
-        "text": "옛 예배당은 안식의 땅이었지만, 무언가가 죽은 자들을 깨웠습니다. 불안한 뼈무더기 8구를 흙으로 돌려보내십시오, {playerName}.",
-        "completion": "이제 쉬기를. 그리고 그들을 깨운 것을 빛이 용서하기를.",
-        "objectives": {
-          "0": {
-            "label": "불안한 뼈무더기 안식시킴"
-          }
-        }
-      },
       "q_supplies": {
         "title": "도난당한 보급품",
         "text": "도적들이 내 마지막 마차를 털었습니다. 도구, 소금, 이스트브룩 아마가 들었습니다. 북서쪽 야영지에서 보급 상자 4개를 되찾아 주십시오.",
@@ -28747,26 +28650,6 @@ export const ko_KR: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "아래의 속삭임",
-        "text": "죽은 자들이 다시 일어납니다. 무언가가 부르고 있기 때문입니다. 예배당을 수색해 부르는 자의 표식을 온전하게 가져오십시오.",
-        "completion": "이 인장은 무덤부름의 표식입니다. 이 교단이 사라졌기를 바랐는데, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "무덤부름 인장"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "죽은 자들의 이름",
-        "text": "무덤부름이 우리 무덤을 더럽혔다면 누구의 잠을 훔쳤는지 알아야 합니다. {playerName}이여, 매장 장부 페이지 3장을 모아 오십시오.",
-        "completion": "가엾은 영혼들... 여기 성구지기 매로우가 처음입니다. 모르덴은 이스트브룩의 죽은 자를 묻던 사람부터 시작했습니다.",
-        "objectives": {
-          "0": {
-            "label": "풍화된 장부 페이지"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "부름을 침묵시키기",
         "text": "장부의 모든 이름은 모르덴이 흙에서 끌어내려는 영혼입니다. {playerName}이여, 속삭임이 합창이 되기 전에 불안한 뼈 12구를 잠재우십시오.",
@@ -28774,49 +28657,6 @@ export const ko_KR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "불안한 뼈무더기 침묵시킴"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "속박 의식",
-        "text": "무덤부름을 막으려면 예배당 아래 묘실의 봉인을 풀어야 합니다. 하지만 오직 속박 의식만이 산 자를 지나가게 해줍니다. 축복받은 수지 4덩어리가 필요합니다. 광산의 굴착꾼들이 수지를 궤짝째 쌓아둡니다. 그리고 안식하지 못한 죽은 자들에게서 유령 정수 6개를 가져오십시오.",
-        "completion": "끝났습니다. 아래로 가는 길이 열렸습니다... 가장 강한 동료들을 모으십시오, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "축복받은 수지"
-          },
-          "1": {
-            "label": "유령 정수"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "공허 속으로",
-        "text": "모르덴은 텅 빈 묘실 밑바닥에서 자신이 일으킨 정예 망자들에게 둘러싸여 있습니다. 네 동료와 함께 끝내십시오.",
-        "completion": "속삭임이 멎었습니다. {playerName}이여, 온 계곡이 하지 못한 일을 그대가 해냈습니다. 죽은 자들은 잠들었고, 이스트브룩은 당신에게 모든 것을 빚졌습니다.",
-        "objectives": {
-          "0": {
-            "label": "무덤부름 모르덴 처치"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "성구지기의 종",
-        "text": "장부에는 성구지기 매로우의 이름이 있습니다. 모르덴이 처음 일으킨 문지기입니다. {playerName}이여, 네 동료와 내려가 빼앗긴 안식을 돌려주십시오.",
-        "completion": "매로우가 마침내 자유롭습니다. 종은 울리지 마십시오. 살아서 충분히 들었습니다.",
-        "objectives": {
-          "0": {
-            "label": "성구지기 매로우 안식시킴"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "무덤부름의 흔적",
-        "text": "모르덴은 죽었지만, 한 세기 숨어 있던 교단이 한 예배당 때문에 움직였을 리 없습니다. {playerName}이여, 폐허에서 그의 마법서를 찾으십시오.",
-        "completion": "모르덴은 북쪽 습지의 '안개엮는자'에게 편지를 보냈습니다. 교단은 죽지 않았습니다, {playerName}이여. 그저 참을성 있게 기다렸을 뿐입니다.",
-        "objectives": {
-          "0": {
-            "label": "모르덴의 마법서"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const ko_KR: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "텅 빈 묘실",
-        "enterText": "텅 빈 묘실로 내려갑니다...",
-        "leaveText": "다시 햇빛 아래로 올라옵니다."
-      },
       "sunken_bastion": {
         "name": "가라앉은 요새",
         "enterText": "가라앉은 요새의 깊은 곳으로 물을 헤치며 들어갑니다...",

@@ -8426,9 +8426,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Powietrze staje się zimne. Coś ogromnego oddycha w głębi...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Zataczasz się z powrotem w górski wiatr.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Sanktuarium Grobowego Żmija',
-  'entities.dungeons.hollow_crypt.enterText': 'Schodzisz do Wydrążonej Krypty...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Wspinasz się z powrotem ku światłu dnia.',
-  'entities.dungeons.hollow_crypt.name': 'Wydrążona Krypta',
   'entities.dungeons.nythraxis_boss_arena.enterText':
     'Przechodzisz przez zapieczętowane królewskie wrota.',
   'entities.dungeons.nythraxis_boss_arena.leaveText':
@@ -8842,14 +8839,12 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolitka Tessa',
   'entities.mobs.bastion_revenant.name': 'Upiór bastionu',
   'entities.mobs.bog_bloat.name': 'Bagienny obrzęklak',
-  'entities.mobs.bonechill_widow.name': 'Kościomroźna Wdowa',
   'entities.mobs.boneclad_revenant.name': 'Kościopancerny Powracający',
   'entities.mobs.bound_guardian.name': 'Spętany Strażnik',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Czaszkokrusz',
   'entities.mobs.captain_verlan.name': 'Kapitan Verlan',
   'entities.mobs.choirmother_selthe.name': 'Chórmatka Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Skażony Kapłan Malric',
-  'entities.mobs.crypt_shambler.name': 'Kryptowy Wlokący',
   'entities.mobs.deacon_varric.name': 'Diakon Vandric',
   'entities.mobs.deacon_voss.name': 'Diakon Voss',
   'entities.mobs.deathstalker_voss.name': 'Śmiercioczaj Voss',
@@ -8871,7 +8866,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Grobowy Przyzywacz',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Tunelowy Król',
   'entities.mobs.grubjaw.name': 'Larwopaszczy Żarłok',
-  'entities.mobs.hollow_acolyte.name': 'Wydrążony Akolita',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Pyre Colossus',
   'entities.mobs.ironvein_foreman.name': 'Sztygar z Żelaznej Żyły',
@@ -8888,7 +8882,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Pachołek Moggera',
   'entities.mobs.moonspawn.name': 'Księżycowy Pomiot',
-  'entities.mobs.morthen.name': 'Morthen Grobowy Wołacz',
   'entities.mobs.mudfin_murloc.name': 'Błotnopłetwy Skradacz',
   'entities.mobs.nhalia_mourner.name': 'Żałobnica Nhalia',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Nieśmiertelny Hierofant',
@@ -8912,7 +8905,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Kościostrażnik Sanktuarium',
   'entities.mobs.sanctum_drakonid.name': 'Strażnik łusek z Sanktuarium',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Bladozwój',
-  'entities.mobs.sexton_marrow.name': 'Grabarz Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Odłamkowładca Kazzix',
   'entities.mobs.sister_nhalia.name': 'Siostra Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Mulząb Utopiony',
@@ -9055,12 +9047,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Ze skóry dzika robi się najlepsze torby podróżne, a łąki na północny zachód od miasta aż roją się od tych bestii. Przynieś mi 5 szczeciniastych skór dzika, a wynagrodzę ci poświęcony czas.',
   'entities.quests.q_boars.title': 'Szczeciniaste skóry dzików',
-  'entities.quests.q_bones.completion':
-    'Niech teraz spoczywają, a Światłość niech wybaczy temu, co je przebudziło.',
-  'entities.quests.q_bones.objectives.0.label': 'Ułożone do snu niespokojne kości',
-  'entities.quests.q_bones.text':
-    'Stara ruina na północno-zachodnim wzgórzu była niegdyś kaplicą, a jej dziedziniec miejscem spoczynku. Coś wyrwało zmarłych ze snu. Daj im spokój, {playerName}, zwróć ziemi 8 niespokojnych kości.',
-  'entities.quests.q_bones.title': 'Niespokojni zmarli',
   'entities.quests.q_breaking_the_seal.completion':
     'Płoną czysto i błękitnie, góra pamięta swą dawną przysięgę. Dzięki nim zdołam otworzyć bramę tylko dla nas.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Błogosławione żary',
@@ -9169,12 +9155,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis pokazał mi bryłę wosku zabraną jednemu z tych drążycieli, wosk świeci, {playerName}, i jest ciepły jak bicie serca. On chce go więcej do badań, a ja chcę go skreślić z mojej listy zapotrzebowań. Przynieś sześć grudek świecącego wosku.',
   'entities.quests.q_glowing_wax.title': 'Dziwny wosk',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen pisał do 'Fogbindera' w północnym trzęsawisku. Sekta nie jest martwa, {playerName}, była jedynie cierpliwa.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grymuar Morthena',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen nie żyje, a jednak dręczy mnie pytanie: sekta, która ukrywała się przez stulecie, nie trwoni się na jedną wiejską kaplicę. Trzymał grymuar, swoje obrzędy, swoją korespondencję. Jeśli cokolwiek z niego przetrwało, leży w zakrystii zrujnowanej kaplicy nad kryptą. Przeszukaj ruinę i przynieś mi wszystko, co zostało z jego pism, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Trop Grobowołacza',
   'entities.quests.q_gravewyrm.completion':
     'Skończone. Zmarli z trzech krain mogą spocząć, góra śpi nienawiedzona, a to twoje imię, {playerName}, wydzwania dziś każdy dzwon stąd aż po Eastbrook.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Zabity Korzul, Grobowy Żmij',
@@ -9199,12 +9179,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Ostatnie słowa Vaela nie opuszczają mnie, {playerName}: Żmij budzi się pod szczytami. Kapitan Thessaly dowodzi murem w Highwatch, u początku górskiej drogi na północ. Przy jej bramie wywieszono wezwanie, zabierz je i powiedz jej, że brat Aldric wspina się na górę tuż za tobą.',
   'entities.quests.q_highwatch_summons.title': 'Straż na szczytach',
-  'entities.quests.q_hollow.completion':
-    'Szepty ustały. Dokonałeś tego, czego nie zdołała cała Dolina, {playerName}, zmarli śpią, a Eastbrook jest ci winne wszystko, co posiada.',
-  'entities.quests.q_hollow.objectives.0.label': 'Zabity Morthen Grobowołacz',
-  'entities.quests.q_hollow.text':
-    'Morthen Grobowołacz czeka na dnie Wydrążonej Krypty, otoczony elitarnymi zmarłymi, których wskrzesił. Jest zbyt potężny dla pojedynczego bohatera, weź czterech towarzyszy, nie mniej. Zgładź go, a zmarli z Doliny wreszcie spoczną.',
-  'entities.quests.q_hollow.title': 'W głąb Krypty',
   'entities.quests.q_idols.completion':
     'Dzieło Grobowołaczy, starsze od Morthena, starsze ode mnie. Sekta nie zaczęła się w Eastbrook, {playerName}. Zaczęła się tutaj, a jezioro strzegło swych sekretów.',
   'entities.quests.q_idols.objectives.0.label': 'Przemoczony bożek',
@@ -9252,12 +9226,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Dwadzieścia lat łowię w Jeziorze Lustrzanym i nigdy nie straciłem sieci, póki te bulgoczące rybo-ludy nie wypełzły z płycizn. Odeprzyj Mudfiny - ubij ich 8. I miej się na baczności: gdzie jest jeden Mudfin, tam jest ich pięć.',
   'entities.quests.q_murlocs.title': 'Kłopoty nad jeziorem',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Niech Światło wybaczy. A spójrz tutaj. Grabarz Marrow - żywy opiekun kaplicy - jego grób splądrowano jako pierwszy. Morthen zaczął od człowieka, który grzebał zmarłych Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Zwietrzała karta księgi',
-  'entities.quests.q_names_of_the_dead.text':
-    'Jeśli Grobozwańcy podnieśli naszych zmarłych, muszę wiedzieć, czyje groby splądrowali. Grabarz kaplicy prowadził księgę pochówków, a wiatr rozrzucił jej karty po cmentarzu przy kaplicy. Zbierz mi 3 z nich, {playerName} - zmarli zasługują, by zwać ich po imieniu.',
-  'entities.quests.q_names_of_the_dead.title': 'Imiona zmarłych',
   'entities.quests.q_necromancers.completion':
     'Niech Światło nam wybaczy. Te trzymają zmarłych z Doliny i z trzęsawiska - każdego trupa, jakiego Grobozwańcy kiedykolwiek podnieśli, zebranego jak żniwo. Oni nigdy nie budowali armii, {playerName}. Oni ściągali daninę.',
   'entities.quests.q_necromancers.objectives.0.label': 'Nekromanta Kultu Żmija pokonany',
@@ -9363,25 +9331,12 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Bandyci słuchają jednego człowieka: Gorraka Bezwzględnego. Odetnij głowę, a ciało się rozproszy. Czai się w sercu ich obozu. Skończ z nim, {playerName}.',
   'entities.quests.q_ringleader.title': 'Herszt',
-  'entities.quests.q_rite.completion':
-    'Stało się. Droga w dół stoi otworem... i niech Światło wybaczy mi, że ją otworzyłem. Zbierz swych najsilniejszych towarzyszy, nim zejdziesz, {playerName}. Nikt nie powinien mierzyć się z Wydrążoną w pojedynkę.',
-  'entities.quests.q_rite.objectives.0.label': 'Poświęcony łój',
-  'entities.quests.q_rite.objectives.1.label': 'Upiorna esencja',
-  'entities.quests.q_rite.text':
-    'Krypta pod kaplicą musi zostać odpieczętowana, jeśli mamy powstrzymać Gravecallera - lecz tylko obrzęd wiążący pozwoli żywym przejść. Potrzebuję 4 bryłek Poświęconego łoju - drążyciele z kopalni gromadzą łój skrzyniami - oraz 6 Upiornych esencji od niespokojnych zmarłych.',
-  'entities.quests.q_rite.title': 'Obrzęd wiążący',
   'entities.quests.q_sanctum_gate.completion':
     'Odłamki pasują jak należy... a brama zna swój klucz. Droga w dół stoi otworem, {playerName}. Zbierz najsilniejszych towarzyszy, jakich znajdziesz - z tym, co nadejdzie, nikt nie powinien mierzyć się sam.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Odłamek klucza Sanktuarium',
   'entities.quests.q_sanctum_gate.text':
     'To ostatni próg, {playerName}. Brama Sanktuarium Grobowego Żmija była zaryglowana kluczem, a kult rozbił go na odłamki, zamiast pozwolić obrócić go przeciw nim. Odłamki leżą rozrzucone na placu przed bramą, pod okiem kościstych zmarłych. Przynieś mi trzy, a otworzę drogę tak, jak chciało Światło - po cichu.',
   'entities.quests.q_sanctum_gate.title': 'Brama Sanktuarium',
-  'entities.quests.q_sexton.completion':
-    'Więc Marrow jest wreszcie wolny. Nie bij dla niego w dzwon - dość się ich nasłuchał za życia.',
-  'entities.quests.q_sexton.objectives.0.label': 'Grabarz Marrow ułożony do spoczynku',
-  'entities.quests.q_sexton.text':
-    'Księga go nazwała, a krypta go trzyma: Grabarz Marrow, opiekun kaplicy, pierwszy człowiek, którego Morthen podniósł - strzegący wrót swego mistrza po śmierci równie wiernie, jak za życia doglądał kaplicy. Weź czterech towarzyszy do Wydrążonej Krypty i obdarz starego grabarza spoczynkiem, którego go pozbawiono, {playerName}.',
-  'entities.quests.q_sexton.title': 'Dzwon grabarza',
   'entities.quests.q_shard_cores.completion':
     'Każdy rdzeń przechyla się w tę samą stronę, jak opiłki żelaza ku magnetytowi. Wskazują na południe, {playerName}. Ku Sanktuarium.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Burzowy rdzeń',
@@ -9463,12 +9418,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Zeszłej nocy cały obóz kultu uklęknął naraz, {playerName}, każdy fanatyk, każdy nekromanta, wszyscy zwróceni ku Sanktuarium. Korzul przemawia teraz do nich we śnie; Vael słyszał ten sam głos na trzęsawisku, a Morthen przed nim. Wytnij to zgromadzenie, dziesięciu fanatyków, sześciu nekromantów, zanim ten głos zyska dość rąk, by samemu rozewrzeć bramę.',
   'entities.quests.q_voice_below.title': 'Głos z głębi',
-  'entities.quests.q_whispers.completion':
-    'Ten sygil... nosi znak Grobowych Przyzywaczy, sekty, o której modliłem się, że wymarła. To gorzej, niż się obawiałem, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sygil Grobowego Przyzywacza',
-  'entities.quests.q_whispers.text':
-    'Złożyłeś zmarłych na spoczynek, lecz oni nie zostaną w spokoju, coś wzywa ich z powrotem. Przeszukaj ruiny kaplicy w poszukiwaniu jakiegokolwiek śladu tego, kto ich wzywa. Jeśli znajdziesz sygil lub pieczęć, przynieś mi je nietknięte.',
-  'entities.quests.q_whispers.title': 'Szepty z głębi',
   'entities.quests.q_widows.completion':
     'Całe woreczki, co do jednego. Masz pewniejsze ręce niż połowa chirurgów z południa, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Zabita Wdowa z Mokrzawia',
@@ -20753,8 +20702,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'bossJournal.temple.ysolei.phaseTideName': 'Wzbierający przypływ',
   'bossJournal.temple.ysolei.tideName': 'Wzbierający przypływ',
   'bossJournal.wildheart.bloom.spitName': 'Kwieciste plunięcie',
-  'entities.mobs.bound_soul.name': 'Spętana dusza',
-  'entities.mobs.crypt_remembrance_candle.name': 'Świeca pamięci',
   'hudChrome.cryptAlert.soulTitle': 'Spętana dusza',
   'hudChrome.sanctumAlert.slabTitle': 'Bryła lodu',
   'editor.city.roadCancel': 'Anuluj',
@@ -23327,20 +23274,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Odyniec Kłoróg',
-  'entities.mobs.candlewright_acolyte.name': 'Akolita Świecarza',
-  'entities.mobs.cantor_ilvane.name': 'Kantorka Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Kościany Brutal',
-  'entities.mobs.crypt_bone_minion.name': 'Kościany Sługa',
-  'entities.mobs.crypt_bone_pile.name': 'Poruszające się Kości',
-  'entities.mobs.crypt_carrion_crow.name': 'Padlinożerna Wrona',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gargulec Kaplicy',
-  'entities.mobs.crypt_crow_caller.name': 'Przyzywacz Wron',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adept Grobowego Wołacza',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nekromanta Grobowego Wołacza',
-  'entities.mobs.crypt_knellwyrm.name': 'Dzwonny Żmij',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Podrzynacz Gardła z Ossuarium',
-  'entities.mobs.crypt_ossuary_drake.name': 'Smok z Ossuarium',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Wojownik z Ossuarium',
   'entities.mobs.drowned_pilgrim.name': 'Utopiony Pielgrzym',
   'entities.mobs.drowned_sergeant.name': 'Utopiony Sierżant',
   'entities.mobs.drowned_watchman.name': 'Utopiony Wartownik',
@@ -23350,12 +23283,9 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Dozorca Ossick',
   'entities.mobs.glacier_splinter.name': 'Odłamek Lodowca',
   'entities.mobs.great_saurian.name': 'Wielki Jaszczur',
-  'entities.mobs.hollow_chorister.name': 'Pusty Chórzysta',
-  'entities.mobs.hollow_gravedigger.name': 'Pusty Grabarz',
   'entities.mobs.howdah_hexcaller.name': 'Zaklinacz Howdahu',
   'entities.mobs.ice_wraith.name': 'Lodowe Widmo',
   'entities.mobs.lagoon_snapper.name': 'Żółw Gryzący z Laguny',
-  'entities.mobs.marrow_restless_bones.name': 'Niespokojne Kości',
   'entities.mobs.mere_hydra_head_center.name': 'Jeziorna Hydra',
   'entities.mobs.mere_hydra_head_left.name': 'Jeziorna Hydra',
   'entities.mobs.mere_hydra_head_right.name': 'Jeziorna Hydra',
@@ -23365,12 +23295,7 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_drillmaster.name': 'Instruktor Zaciągu',
   'entities.mobs.muster_effigy.name': 'Słomiany Nadzorca',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogr Ciągnący Sanie',
-  'entities.mobs.ossuary_sentinel.name': 'Strażnik Ossuarium',
-  'entities.mobs.rime_egg_sac.name': 'Szronny Worek Jaj',
   'entities.mobs.rime_whelp.name': 'Szronne Smoczę',
-  'entities.mobs.rimeweb.name': 'Pani Przeszywającego Chłodu',
-  'entities.mobs.rimeweb_hatchling.name': 'Pisklę Szronnej Sieci',
-  'entities.mobs.rimeweb_spinner.name': 'Prządka Szronnej Sieci',
   'entities.mobs.sanctum_shackle_anvil.name': 'Kajdany Kowadła',
   'entities.mobs.sanctum_shackle_bellows.name': 'Kajdany Miecha',
   'entities.mobs.sanctum_shackle_hammer.name': 'Kajdany Młota',

@@ -8502,9 +8502,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'De lucht wordt koud. Iets reusachtigs ademt beneden...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Je wankelt terug de bergwind in.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Grafwurm-Heiligdom',
-  'entities.dungeons.hollow_crypt.enterText': 'Je daalt af in de Holle Crypte...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Je klimt terug omhoog het daglicht in.',
-  'entities.dungeons.hollow_crypt.name': 'De Holle Crypte',
   'entities.dungeons.nythraxis_boss_arena.enterText':
     'Je gaat door de verzegelde koninklijke deur.',
   'entities.dungeons.nythraxis_boss_arena.leaveText':
@@ -8919,14 +8916,12 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Acoliet Tessa',
   'entities.mobs.bastion_revenant.name': 'Bastion-Geestwraak',
   'entities.mobs.bog_bloat.name': 'Moerasbult',
-  'entities.mobs.bonechill_widow.name': 'Botkille Weduwe',
   'entities.mobs.boneclad_revenant.name': 'Botgepantserde Weerganger',
   'entities.mobs.bound_guardian.name': 'De Gebonden Wachter',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Schedelverbrijzelaar',
   'entities.mobs.captain_verlan.name': 'Kapitein Verlan',
   'entities.mobs.choirmother_selthe.name': 'Koormoeder Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Verdorven Priester Malric',
-  'entities.mobs.crypt_shambler.name': 'Cryptestrompelaar',
   'entities.mobs.deacon_varric.name': 'Diaken Vandric',
   'entities.mobs.deacon_voss.name': 'Diaken Voss',
   'entities.mobs.deathstalker_voss.name': 'Doodsbesluiper Voss',
@@ -8948,7 +8943,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Grafroeper-Oproeper',
   'entities.mobs.grix_the_tunnelking.name': 'Grix de Tunnelkoning',
   'entities.mobs.grubjaw.name': 'Grubjaw de Veelvraat',
-  'entities.mobs.hollow_acolyte.name': 'Holle Acoliet',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Pyre-Kolos',
   'entities.mobs.ironvein_foreman.name': 'IJzerader-Voorman',
@@ -8965,7 +8959,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Mogger-Handlanger',
   'entities.mobs.moonspawn.name': 'Maanspruit',
-  'entities.mobs.morthen.name': 'Morthen de Grafroeper',
   'entities.mobs.mudfin_murloc.name': 'Modvin-Sluiper',
   'entities.mobs.nhalia_mourner.name': 'Nhalia-Rouwklager',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Doodloze Hiërofant',
@@ -8989,7 +8982,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Heiligdom-Botwacht',
   'entities.mobs.sanctum_drakonid.name': 'Heiligdom-Scaleguard',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael de Bleekkronkel',
-  'entities.mobs.sexton_marrow.name': 'Koster Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Scherfheer Kazzix',
   'entities.mobs.sister_nhalia.name': 'Zuster Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtooth de Verdronkene',
@@ -9133,12 +9125,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Zwijnenhuid maakt de beste reistassen, en de weiden ten noordwesten van de stad wemelen van de beesten. Breng me 5 Borstelige Zwijnenhuiden en ik zal het de moeite waard maken.',
   'entities.quests.q_boars.title': 'Borstelige Everzwijnhuiden',
-  'entities.quests.q_bones.completion':
-    'Mogen ze nu rusten, en moge het Licht vergeven wat hen ook gewekt heeft.',
-  'entities.quests.q_bones.objectives.0.label': 'Rusteloze Beenderen ter ruste gelegd',
-  'entities.quests.q_bones.text':
-    'De oude ruïne op de noordwestelijke heuvel was ooit een kapel, en haar erf een rustplaats. Iets heeft de doden uit hun slaap gewekt. Schenk hun vrede, {playerName}, geef 8 Rusteloze Beenderen terug aan de aarde.',
-  'entities.quests.q_bones.title': 'De Rusteloze Doden',
   'entities.quests.q_breaking_the_seal.completion':
     'Ze branden blauw en zuiver, de berg herinnert zich zijn oude eed. Hiermee kan ik de poort ontbinden voor ons alleen.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Gezegende Sintels',
@@ -9248,12 +9234,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis liet me een klomp was zien die van een van die tunnelgravers was afgenomen, hij gloeit, {playerName}, en is warm als een hartslag. Hij wil er meer voor onderzoek, en ik wil het van mijn vorderingslijst af. Breng zes klompen van de gloeiende was terug.',
   'entities.quests.q_glowing_wax.title': 'Vreemde Was',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen schreef aan een 'Fogbinder' in het noordelijke veen. De sekte is niet dood, {playerName}, ze is slechts geduldig geweest.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthens Grimoire',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen is dood, toch knaagt een vraag aan me: een sekte die zich een eeuw lang verborg, verspilt zich niet aan één dorpskapel. Hij hield een grimoire bij, zijn riten, zijn briefwisseling. Als er iets van overleeft, ligt het in de sacristie van de geruïneerde kapel boven de crypte. Doorzoek de ruïne en breng me wat er ook van zijn geschriften over is, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Het Spoor van de Grafroeper',
   'entities.quests.q_gravewyrm.completion':
     'Het is voorbij. De doden van drie landen mogen rusten, de berg slaapt onbespookt, en het is jouw naam, {playerName}, die elke klok van hier tot Oostbeek vannacht luidt.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul de Grafwurm gedood',
@@ -9278,12 +9258,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Vaels laatste woorden hebben me niet losgelaten, {playerName}: de Wurm roert zich onder de pieken. Kapitein Thessaly voert het bevel over de muur bij Hoogwacht, aan het hoofd van de bergweg naar het noorden. Een oproep staat aangeplakt bij haar poort, neem hem op, en vertel haar dat Broeder Aldric de berg achter je op klimt.',
   'entities.quests.q_highwatch_summons.title': 'De Wacht op de Pieken',
-  'entities.quests.q_hollow.completion':
-    'Het gefluister is gestopt. Je hebt gedaan wat het hele Dal niet kon, {playerName}, de doden slapen, en Oostbeek is je alles schuldig wat het heeft.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen de Grafroeper gedood',
-  'entities.quests.q_hollow.text':
-    'Morthen de Grafroeper wacht op de bodem van de Holle Crypte, omringd door de elite-doden die hij heeft opgewekt. Hij gaat elke enkele held ver te boven, neem vier metgezellen mee, niet minder. Maak een eind aan hem, en de doden van het Dal zullen eindelijk slapen.',
-  'entities.quests.q_hollow.title': 'Het Hol In',
   'entities.quests.q_idols.completion':
     'Grafroeper-werk, ouder dan Morthen, ouder dan ik. De sekte begon niet in Oostbeek, {playerName}. Ze begon hier, en het meer heeft haar geheimen bewaard.',
   'entities.quests.q_idols.objectives.0.label': 'Doorweekt Afgodsbeeld',
@@ -9332,12 +9306,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Twintig jaar vis ik al in Mirror Lake, en nooit een net verloren tot die gorgelende vismannen uit de ondiepten kropen. Drijf de Mudfin terug, dood er 8. En kijk uit: waar één mudfin is, zijn er vijf.',
   'entities.quests.q_murlocs.title': 'Onrust bij het Meer',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Deze arme zielen... en kijk hier. Koster Marrow - de levende verzorger van de kapel zelf - zijn graf het eerst geschonden. Morthen begon met juist de man die Eastbrooks doden begroef.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Verweerde Grootboekpagina',
-  'entities.quests.q_names_of_the_dead.text':
-    'Als de Grafroepers onze doden hebben opgewekt, moet ik weten wiens graven ze hebben geplunderd. De koster van de kapel hield een begraafregister bij, en de wind heeft de bladzijden over het kapelterrein verstrooid. Verzamel er 3 voor me, {playerName} - de doden verdienen het bij hun naam te worden geroepen.',
-  'entities.quests.q_names_of_the_dead.title': 'De Namen van de Doden',
   'entities.quests.q_necromancers.completion':
     'Moge het Licht ons vergeven. Deze bevatten de doden van het Dal en het veen - elk lijk dat de Grafroepers ooit hebben opgewekt, geoogst. Ze bouwden nooit een leger, {playerName}. Ze inden een tiend.',
   'entities.quests.q_necromancers.objectives.0.label': 'Wurmsekte-Necromancer gedood',
@@ -9446,25 +9414,12 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'De bandieten luisteren naar één man: Gorrak de Meedogenloze. Sla het hoofd af en het lichaam zal uiteenvallen. Hij schuilt in het hart van hun kamp. Maak een eind aan hem, {playerName}.',
   'entities.quests.q_ringleader.title': 'De Belhamel',
-  'entities.quests.q_rite.completion':
-    'Het is gedaan. De weg naar beneden staat open... en moge het Licht me vergeven dat ik hem opende. Verzamel je sterkste metgezellen voordat je afdaalt, {playerName}. Niemand zou de Holle alleen moeten trotseren.',
-  'entities.quests.q_rite.objectives.0.label': 'Gezegende Talk',
-  'entities.quests.q_rite.objectives.1.label': 'Spookachtige Essentie',
-  'entities.quests.q_rite.text':
-    'De crypte onder de kapel moet ontzegeld worden als we de Gravecaller willen stoppen, maar alleen een bindend ritueel laat de levenden passeren. Ik heb 4 brokken Gezegende Talg nodig, de gravers van de mijn hamsteren talg per krat, en 6 Spookachtige Essenties van de rusteloze doden.',
-  'entities.quests.q_rite.title': 'Het Bindende Ritueel',
   'entities.quests.q_sanctum_gate.completion':
     'De scherven zitten juist... en de poort kent haar sleutel. De weg naar beneden staat open, {playerName}. Verzamel de sterkste metgezellen die je kunt vinden - wat hierna komt, zou niemand alleen moeten trotseren.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Heiligdom-Sleutelscherf',
   'entities.quests.q_sanctum_gate.text':
     'Dit is de laatste drempel, {playerName}. De poort van het Grafwurm-Heiligdom was met een sluitsteen vergrendeld, en de sekte versplinterde hem in scherven liever dan hem tegen henzelf gekeerd te zien. De scherven liggen verspreid op het poortplein, onder de ogen van de beenharnas-doden. Breng me er drie, en ik open de weg zoals het Licht het bedoelde - stilletjes.',
   'entities.quests.q_sanctum_gate.title': 'De Poort van het Heiligdom',
-  'entities.quests.q_sexton.completion':
-    'Dus Marrow is eindelijk vrij. Lui geen klok voor hem - hij heeft er in zijn leven genoeg gehoord.',
-  'entities.quests.q_sexton.objectives.0.label': 'Koster Marrow ter ruste gelegd',
-  'entities.quests.q_sexton.text':
-    'Het register noemde hem en de crypte herbergt hem: Koster Marrow, de verzorger van de kapel, de eerste man die Morthen opwekte - die de deur van zijn meester in de dood even trouw bewaakt als hij in het leven de kapel bijhield. Neem vier metgezellen mee de Holle Crypte in en schenk de oude koster de rust waarvan hij beroofd werd, {playerName}.',
-  'entities.quests.q_sexton.title': 'De Klok van de Koster',
   'entities.quests.q_shard_cores.completion':
     'Elke kern helt dezelfde kant op, als ijzervijlsel naar een magneetsteen. Ze wijzen naar het zuiden, {playerName}. Naar het Heiligdom.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Stormkern',
@@ -9549,12 +9504,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Vannacht knielde het hele cultuskamp ineens, {playerName}, elke dweper, elke necromancer, allen gericht naar het Heiligdom. Korzul spreekt nu tot hen in hun slaap; Vael hoorde dezelfde stem in het veen, en Morthen voor hem. Vel de gemeente, tien dwepers, zes necromancers, voordat die stem genoeg handen heeft om de poort zelf open te trekken.',
   'entities.quests.q_voice_below.title': 'De Stem Beneden',
-  'entities.quests.q_whispers.completion':
-    'Dit zegel... het draagt het merk van de Grafroepers, een sekte waarvan ik bad dat ze was uitgestorven. Dit is erger dan ik vreesde, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Zegel van de Grafroeper',
-  'entities.quests.q_whispers.text':
-    'Je hebt de doden te ruste gelegd, maar ze blijven niet rusten, iets roept hen terug. Doorzoek de kapelruïne naar enig spoor van degene die roept. Als je een zegel of merk vindt, breng het mij dan onaangeroerd.',
-  'entities.quests.q_whispers.title': 'Gefluister Beneden',
   'entities.quests.q_widows.completion':
     'Hele zakken, allemaal. Je hebt vastere handen dan de helft van de chirurgen in het zuiden, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Slijkveen-Weduwe gedood',
@@ -20491,7 +20440,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.letters.membership_annual_reward.sender': 'De Ravenpost',
   'entities.letters.membership_token_delivery.sender': 'De Ravenpost',
   'entities.mobs.buddy_spider.name': 'Spinnen',
-  'entities.mobs.marrow_restless_bones.name': 'Rusteloze Beenderen',
   'entities.mobs.vael_fog_shade.name': 'Vael de Fogbinder',
   'entities.npcs.patron_hester_quillby.title': 'Kaartenmaker',
   'referralCards.milestones.fogbinder': 'De Fogbinder',
@@ -22502,7 +22450,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Verdronken anker',
   'entities.mobs.bastion_gaol_cage.name': 'IJzeren kooi',
   'entities.mobs.bastion_warhound.name': 'Bastionoorlogshond',
-  'entities.mobs.bound_soul.name': 'Gebonden ziel',
   'entities.mobs.broodsworn_goadsmith.name': 'Broedgezworen drijversmid',
   'entities.mobs.broodsworn_pyre_tender.name': 'Broedgezworen brandstapelverzorger',
   'entities.mobs.broodsworn_thawcaller.name': 'Broedgezworen dooiroeper',
@@ -22539,21 +22486,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Slagtandhoornever',
-  'entities.mobs.candlewright_acolyte.name': 'Kaarsenmakeracoliet',
-  'entities.mobs.cantor_ilvane.name': 'Voorzanger Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Bottenbruut',
-  'entities.mobs.crypt_bone_minion.name': 'Bottenknecht',
-  'entities.mobs.crypt_bone_pile.name': 'Bewegende botten',
-  'entities.mobs.crypt_carrion_crow.name': 'Aaskraai',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Kapelwaterspuwer',
-  'entities.mobs.crypt_crow_caller.name': 'Kraaienroeper',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Grafroeperadept',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Grafroeperdodenbezweerder',
-  'entities.mobs.crypt_knellwyrm.name': 'Doodsklokdraak',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Ossuariummessentrekker',
-  'entities.mobs.crypt_ossuary_drake.name': 'Ossuariumdraak',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Ossuariumkrijger',
-  'entities.mobs.crypt_remembrance_candle.name': 'Herdenkingskaars',
   'entities.mobs.drowned_pilgrim.name': 'Verdronken pelgrim',
   'entities.mobs.drowned_sergeant.name': 'Verdronken sergeant',
   'entities.mobs.drowned_watchman.name': 'Verdronken wachtman',
@@ -22563,8 +22495,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Cipier Ossick',
   'entities.mobs.glacier_splinter.name': 'Gletsjersplinter',
   'entities.mobs.great_saurian.name': 'Grote Sauriër',
-  'entities.mobs.hollow_chorister.name': 'Holle koorzanger',
-  'entities.mobs.hollow_gravedigger.name': 'Holle doodgraver',
   'entities.mobs.howdah_hexcaller.name': 'Draagkoetsvloekroeper',
   'entities.mobs.ice_wraith.name': 'IJsgeest',
   'entities.mobs.lagoon_snapper.name': 'Lagunebijter',
@@ -22579,12 +22509,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Verzamelvoetknecht',
   'entities.mobs.muster_sergeant.name': 'Verzamelsergeant',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogersleetrekker',
-  'entities.mobs.ossuary_sentinel.name': 'Ossuariumwachter',
-  'entities.mobs.rime_egg_sac.name': 'Rijpeierzak',
   'entities.mobs.rime_whelp.name': 'Rijpjong',
-  'entities.mobs.rimeweb_hatchling.name': 'Rijpwebjong',
-  'entities.mobs.rimeweb_spinner.name': 'Rijpwebspinner',
-  'entities.mobs.rimeweb.name': 'Vrouwe van de Bottenkou',
   'entities.mobs.sanctum_shackle_anvil.name': 'Aambeeldboei',
   'entities.mobs.sanctum_shackle_bellows.name': 'Blaasbalgboei',
   'entities.mobs.sanctum_shackle_hammer.name': 'Hamerboei',

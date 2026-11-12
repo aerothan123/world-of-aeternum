@@ -26590,9 +26590,6 @@ export const id_ID: EnTranslations = {
       "restless_bones": {
         "name": "Tulang Gelisah"
       },
-      "marrow_restless_bones": {
-        "name": "Tulang Gelisah"
-      },
       "gorrak": {
         "name": "Gorrak si Kejam"
       },
@@ -26694,90 +26691,6 @@ export const id_ID: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Revenant Berbalut Tulang"
-      },
-      "crypt_shambler": {
-        "name": "Penyaruk Kripta"
-      },
-      "hollow_acolyte": {
-        "name": "Akolit Berongga"
-      },
-      "bonechill_widow": {
-        "name": "Janda Beku Tulang"
-      },
-      "sexton_marrow": {
-        "name": "Koster Marrow"
-      },
-      "morthen": {
-        "name": "Morthen sang Pemanggil Kubur"
-      },
-      "ossuary_sentinel": {
-        "name": "Penjaga Rumah Tulang"
-      },
-      "hollow_gravedigger": {
-        "name": "Penggali Kubur Hampa"
-      },
-      "rime_egg_sac": {
-        "name": "Kantung Telur Embun Beku"
-      },
-      "rimeweb_hatchling": {
-        "name": "Anak Jaring Embun Beku"
-      },
-      "rimeweb_spinner": {
-        "name": "Pemintal Jaring Embun Beku"
-      },
-      "candlewright_acolyte": {
-        "name": "Akolit Pembuat Lilin"
-      },
-      "hollow_chorister": {
-        "name": "Penyanyi Paduan Suara Hampa"
-      },
-      "bound_soul": {
-        "name": "Jiwa Terikat"
-      },
-      "rimeweb": {
-        "name": "Nyonya Dingin Tulang"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Prajurit Rumah Tulang"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adep Pemanggil Makam"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Pembunuh Rumah Tulang"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Nekromancer Pemanggil Makam"
-      },
-      "crypt_bone_minion": {
-        "name": "Anak Buah Tulang"
-      },
-      "crypt_bone_brute": {
-        "name": "Raksasa Tulang"
-      },
-      "crypt_bone_pile": {
-        "name": "Tulang Bergerak"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gargoyle Kapel"
-      },
-      "crypt_crow_caller": {
-        "name": "Pemanggil Gagak"
-      },
-      "crypt_carrion_crow": {
-        "name": "Gagak Bangkai"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Drake Rumah Tulang"
-      },
-      "crypt_knellwyrm": {
-        "name": "Wyrm Lonceng Kematian"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Lilin Kenangan"
       },
       "bastion_revenant": {
         "name": "Arwah Benteng"
@@ -28727,16 +28640,6 @@ export const id_ID: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Mayat yang Gelisah",
-        "text": "Reruntuhan tua di bukit barat laut dahulu adalah kapel, dan halamannya tempat peristirahatan. Sesuatu telah membangunkan yang mati dari tidur mereka. Berikan mereka kedamaian, {playerName}, kembalikan 8 Tulang Gelisah ke tanah.",
-        "completion": "Semoga mereka beristirahat kini, dan semoga Sang Cahaya mengampuni apa pun yang membangunkan mereka.",
-        "objectives": {
-          "0": {
-            "label": "Tulang Gelisah dibaringkan"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Perbekalan Curian",
         "text": "Para bandit itu menyergap gerobak terakhirku dan melarikan empat peti barang - peralatan, garam, linen Eastbrook yang bagus. Peti-peti itu ditumpuk di sekitar kemah mereka di perbukitan barat laut. Curi kembali untukku, maukah?",
@@ -28747,26 +28650,6 @@ export const id_ID: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Bisikan dari Bawah",
-        "text": "Kau telah membaringkan para mati untuk beristirahat, tapi mereka tak mau tetap beristirahat, sesuatu memanggil mereka kembali. Geledah reruntuhan kapel untuk jejak siapa pun yang melakukan panggilan itu. Jika kau menemukan sigil atau segel, bawakan padaku tanpa disentuh.",
-        "completion": "Sigil ini... membawa tanda para Gravecaller, sekte yang kuharap telah punah. Ini lebih buruk daripada yang kutakutkan, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sigil Gravecaller"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Nama-Nama Para Mati",
-        "text": "Jika para Gravecaller membangkitkan para mati kita, aku harus tahu makam siapa yang mereka rampok. Sang sexton kapel menyimpan buku besar pemakaman, dan angin telah menyebarkan halaman-halamannya ke seluruh pelataran kapel. Kumpulkan 3 lembar untukku, {playerName} - para mati layak dipanggil dengan nama mereka.",
-        "completion": "Jiwa-jiwa malang ini... dan lihat di sini. Koster Marrow - sang penjaga hidup kapel itu sendiri - makamnyalah yang pertama diganggu. Morthen memulai dengan orang yang justru menguburkan para mati Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Lembar Buku Besar Lapuk"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Bungkam Sang Panggilan",
         "text": "Setiap nama dalam buku besar itu adalah jiwa yang hendak diseret Morthen dari dalam tanah, dan pelataran kapel sudah dipenuhi mereka yang telah ia panggil. Kembalikan 12 Tulang Gelisah ke makam mereka, {playerName}, sebelum bisikan sang Gravecaller membengkak menjadi paduan suara.",
@@ -28774,49 +28657,6 @@ export const id_ID: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Tulang Gelisah dibungkam"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Ritus Pengikatan",
-        "text": "Kripta di bawah kapel harus dibuka segelnya jika kita ingin menghentikan sang Gravecaller - tapi hanya ritus pengikatan yang akan mengizinkan yang hidup lewat. Aku butuh 4 bongkah Lemak Terberkati - para penggali liang tambang menimbun lemak per peti - dan 6 Esensi Hantu dari para mati yang gelisah.",
-        "completion": "Selesai sudah. Jalan ke bawah kini terbuka... dan semoga Cahaya mengampuniku karena membukanya. Kumpulkan rekan-rekanmu yang terkuat sebelum kau turun, {playerName}. Tak seorang pun seharusnya menghadapi sang Hollow sendirian.",
-        "objectives": {
-          "0": {
-            "label": "Lilin Lemak Terberkati"
-          },
-          "1": {
-            "label": "Esensi Hantu"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Menuju Kripta Berongga",
-        "text": "Morthen Sang Gravecaller menanti di dasar Kripta Berongga, dikelilingi para mayat elite yang ia bangkitkan. Ia jauh melampaui satu pahlawan mana pun, bawa empat rekan, tak kurang. Akhiri dia, dan para mayat Lembah akhirnya akan tidur.",
-        "completion": "Bisikan-bisikan telah berhenti. Kau telah melakukan apa yang seluruh Lembah tak mampu, {playerName}, para mayat tidur, dan Eastbrook berutang segala yang ia punya padamu.",
-        "objectives": {
-          "0": {
-            "label": "Morthen Sang Gravecaller terbunuh"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Lonceng Sang Sexton",
-        "text": "Buku besar itu menyebut namanya dan kripta menampungnya: Koster Marrow, penjaga kapel, orang pertama yang dibangkitkan Morthen - menjaga pintu tuannya dalam kematian sesetia ia merawat kapel semasa hidup. Bawa empat rekan ke Kripta Berongga dan berikan sang sexton tua ketenangan yang dirampas darinya, {playerName}.",
-        "completion": "Maka Marrow akhirnya bebas. Jangan bunyikan lonceng untuknya - ia sudah cukup mendengarnya semasa hidup.",
-        "objectives": {
-          "0": {
-            "label": "Koster Marrow diistirahatkan"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Jejak Sang Gravecaller",
-        "text": "Morthen telah mati, namun satu pertanyaan menggerogotiku: sekte yang bersembunyi seabad tak menghabiskan dirinya pada satu kapel desa. Ia menyimpan grimoir, ritusnya, surat-menyuratnya. Jika ada yang tersisa, ia ada di ruang busana kapel runtuh di atas kripta. Geledah reruntuhan itu dan bawakan padaku apa pun yang tersisa dari tulisannya, {playerName}.",
-        "completion": "Morthen menulis surat kepada seorang 'Fogbinder' di rawa utara. Sekte itu belum mati, {playerName}, ia hanya bersabar.",
-        "objectives": {
-          "0": {
-            "label": "Grimoir Morthen"
           }
         }
       },
@@ -32783,11 +32623,6 @@ export const id_ID: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Kripta Berongga",
-        "enterText": "Kau menuruni Kripta Berongga...",
-        "leaveText": "Kau memanjat kembali ke siang hari."
-      },
       "sunken_bastion": {
         "name": "Benteng Karam",
         "enterText": "Kau menyusuri ke bawah menuju Benteng Karam...",

@@ -6831,7 +6831,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.willowfen_remedy_caravan.name': '버들늪 약품 대상단',
   'entities.mobs.frostveil_supply_caravan.name': '서리장막 보급 대상단',
   'entities.mobs.restless_bones.name': '불안한 뼈무더기',
-  'entities.mobs.marrow_restless_bones.name': '불안한 뼈무더기',
   'entities.mobs.gorrak.name': '무자비한 고라크',
   'entities.mobs.mire_prowler.name': '수렁 배회자',
   'entities.mobs.deepfen_murloc.name': '딥펜 무는이',
@@ -6873,11 +6872,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.wyrmcult_zealot.name': '용서약단 광신도',
   'entities.mobs.wyrmcult_necromancer.name': '용서약단 강령술사',
   'entities.mobs.boneclad_revenant.name': '뼈갑옷 망령',
-  'entities.mobs.crypt_shambler.name': '묘실 비틀걸음',
-  'entities.mobs.hollow_acolyte.name': '공허의 수행사제',
-  'entities.mobs.bonechill_widow.name': '뼈서리 과부거미',
-  'entities.mobs.sexton_marrow.name': '성구지기 매로우',
-  'entities.mobs.morthen.name': '무덤부름 모르덴',
   'entities.mobs.bastion_revenant.name': '요새 망령',
   'entities.mobs.tidebound_acolyte.name': '조수결속 수행사제',
   'entities.mobs.drowned_thrall.name': '익사한 노예',
@@ -7147,59 +7141,17 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '좋은 구리 광맥을 찾자마자 그 땅 파는 해충들이 언덕 비탈에서 쏟아져 나왔습니다. 갱도가 정리되기 전까지는 제 인부들이 발도 들이지 않을 겁니다. 깊은바위 채굴꾼 10마리를 처치하십시오.',
   'entities.quests.q_mine.completion': '하! 다시 일하러 가라, 친구들! 감사와 보수를 받으십시오.',
   'entities.quests.q_mine.objectives.0.label': '깊은바위 채굴꾼 처치',
-  'entities.quests.q_bones.title': '쉬지 못하는 죽은 자',
-  'entities.quests.q_bones.text':
-    '옛 예배당은 안식의 땅이었지만, 무언가가 죽은 자들을 깨웠습니다. 불안한 뼈무더기 8구를 흙으로 돌려보내십시오, {playerName}.',
-  'entities.quests.q_bones.completion': '이제 쉬기를. 그리고 그들을 깨운 것을 빛이 용서하기를.',
-  'entities.quests.q_bones.objectives.0.label': '불안한 뼈무더기 안식시킴',
   'entities.quests.q_supplies.title': '도난당한 보급품',
   'entities.quests.q_supplies.text':
     '도적들이 내 마지막 마차를 털었습니다. 도구, 소금, 이스트브룩 아마가 들었습니다. 북서쪽 야영지에서 보급 상자 4개를 되찾아 주십시오.',
   'entities.quests.q_supplies.completion': '내 상자들입니다! 흠집도 거의 없군요. 대단합니다.',
   'entities.quests.q_supplies.objectives.0.label': '도난당한 보급 상자',
-  'entities.quests.q_whispers.title': '아래의 속삭임',
-  'entities.quests.q_whispers.text':
-    '죽은 자들이 다시 일어납니다. 무언가가 부르고 있기 때문입니다. 예배당을 수색해 부르는 자의 표식을 온전하게 가져오십시오.',
-  'entities.quests.q_whispers.completion':
-    '이 인장은 무덤부름의 표식입니다. 이 교단이 사라졌기를 바랐는데, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': '무덤부름 인장',
-  'entities.quests.q_names_of_the_dead.title': '죽은 자들의 이름',
-  'entities.quests.q_names_of_the_dead.text':
-    '무덤부름이 우리 무덤을 더럽혔다면 누구의 잠을 훔쳤는지 알아야 합니다. {playerName}이여, 매장 장부 페이지 3장을 모아 오십시오.',
-  'entities.quests.q_names_of_the_dead.completion':
-    '가엾은 영혼들... 여기 성구지기 매로우가 처음입니다. 모르덴은 이스트브룩의 죽은 자를 묻던 사람부터 시작했습니다.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': '풍화된 장부 페이지',
   'entities.quests.q_silence_the_call.title': '부름을 침묵시키기',
   'entities.quests.q_silence_the_call.text':
     '장부의 모든 이름은 모르덴이 흙에서 끌어내려는 영혼입니다. {playerName}이여, 속삭임이 합창이 되기 전에 불안한 뼈 12구를 잠재우십시오.',
   'entities.quests.q_silence_the_call.completion':
     '묘지는 조용해졌지만, 부름은 이제 묘실 아래에서 올라옵니다, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label': '불안한 뼈무더기 침묵시킴',
-  'entities.quests.q_rite.title': '속박 의식',
-  'entities.quests.q_rite.text':
-    '무덤부름을 막으려면 예배당 아래 묘실의 봉인을 풀어야 합니다. 하지만 오직 속박 의식만이 산 자를 지나가게 해줍니다. 축복받은 수지 4덩어리가 필요합니다. 광산의 굴착꾼들이 수지를 궤짝째 쌓아둡니다. 그리고 안식하지 못한 죽은 자들에게서 유령 정수 6개를 가져오십시오.',
-  'entities.quests.q_rite.completion':
-    '끝났습니다. 아래로 가는 길이 열렸습니다... 가장 강한 동료들을 모으십시오, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': '축복받은 수지',
-  'entities.quests.q_rite.objectives.1.label': '유령 정수',
-  'entities.quests.q_hollow.title': '공허 속으로',
-  'entities.quests.q_hollow.text':
-    '모르덴은 텅 빈 묘실 밑바닥에서 자신이 일으킨 정예 망자들에게 둘러싸여 있습니다. 네 동료와 함께 끝내십시오.',
-  'entities.quests.q_hollow.completion':
-    '속삭임이 멎었습니다. {playerName}이여, 온 계곡이 하지 못한 일을 그대가 해냈습니다. 죽은 자들은 잠들었고, 이스트브룩은 당신에게 모든 것을 빚졌습니다.',
-  'entities.quests.q_hollow.objectives.0.label': '무덤부름 모르덴 처치',
-  'entities.quests.q_sexton.title': '성구지기의 종',
-  'entities.quests.q_sexton.text':
-    '장부에는 성구지기 매로우의 이름이 있습니다. 모르덴이 처음 일으킨 문지기입니다. {playerName}이여, 네 동료와 내려가 빼앗긴 안식을 돌려주십시오.',
-  'entities.quests.q_sexton.completion':
-    '매로우가 마침내 자유롭습니다. 종은 울리지 마십시오. 살아서 충분히 들었습니다.',
-  'entities.quests.q_sexton.objectives.0.label': '성구지기 매로우 안식시킴',
-  'entities.quests.q_gravecallers_trail.title': '무덤부름의 흔적',
-  'entities.quests.q_gravecallers_trail.text':
-    '모르덴은 죽었지만, 한 세기 숨어 있던 교단이 한 예배당 때문에 움직였을 리 없습니다. {playerName}이여, 폐허에서 그의 마법서를 찾으십시오.',
-  'entities.quests.q_gravecallers_trail.completion':
-    "모르덴은 북쪽 습지의 '안개엮는자'에게 편지를 보냈습니다. 교단은 죽지 않았습니다, {playerName}이여. 그저 참을성 있게 기다렸을 뿐입니다.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': '모르덴의 마법서',
   'entities.quests.q_bandits.title': '계곡의 도적들',
   'entities.quests.q_bandits.text':
     '북서쪽 언덕에 칼잡이들이 야영하고 있습니다. 이번 주에 마차 셋을 털었습니다. 계곡 도적 10명을 처치하십시오.',
@@ -7918,9 +7870,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_seal_restored.completion':
     '여기서도 닫히는 것이 느껴졌네. 황혼처럼 부드럽게. 골짜기는 벗을 기억한다네, {playerName}. 아무리 멀리 떠나도 큰 나무 아래에는 언제나 그대를 위한 불빛이 있을 걸세.',
   'entities.quests.q_seal_restored.objectives.0.label': '봉인을 봉인석에 되돌려 놓았다',
-  'entities.dungeons.hollow_crypt.name': '텅 빈 묘실',
-  'entities.dungeons.hollow_crypt.enterText': '텅 빈 묘실로 내려갑니다...',
-  'entities.dungeons.hollow_crypt.leaveText': '다시 햇빛 아래로 올라옵니다.',
   'entities.dungeons.sunken_bastion.name': '가라앉은 요새',
   'entities.dungeons.sunken_bastion.enterText':
     '가라앉은 요새의 깊은 곳으로 물을 헤치며 들어갑니다...',
@@ -21793,17 +21742,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '{range}미터 이내의 대상을 {duration}초 동안 사슬로 묶어 제자리에 고정합니다. 우두머리처럼 제어 효과에 면역인 생물은 대신 이동 속도가 {slow}% 감소하며, 감속에도 면역이면 효과가 없습니다.',
   'hudChrome.auraEffect.trinket.shackle': '사슬에 묶임: 이동할 수 없습니다.',
   'hudChrome.auraEffect.trinket.shackleSlow': '사슬에 묶임: 이동 속도가 {pct}% 감소합니다.',
-  'entities.mobs.ossuary_sentinel.name': '납골당 파수병',
-  'entities.mobs.hollow_gravedigger.name': '공허의 무덤파기꾼',
-  'entities.mobs.rimeweb_hatchling.name': '서리거미줄 새끼거미',
-  'entities.mobs.rimeweb_spinner.name': '서리거미줄 실잣는거미',
-  'entities.mobs.candlewright_acolyte.name': '초장이 수행사제',
-  'entities.mobs.hollow_chorister.name': '공허의 성가대원',
-  'entities.mobs.bound_soul.name': '속박된 영혼',
-  'entities.mobs.rimeweb.name': '뼈서리의 귀부인',
-  'entities.mobs.cantor_ilvane.name': '성가대장 일베인',
-  'entities.mobs.rime_egg_sac.name': '서리 알주머니',
-  // The Hollow Crypt trash (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_grave_bolt': '무덤 화살',
   'abilityUi.cast.crypt_raise_bones': '뼈 일으키기',
   'abilityUi.cast.crypt_murder_call': '까마귀떼 부름',
@@ -21865,18 +21803,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_gravespark_volley': '무덤 불꽃 일제 사격',
   'abilityUi.cast.bastion_loose_on_my_mark': '내 신호에 쏴라',
   'abilityUi.cast.temple_call_of_the_shallows': '여울의 부름',
-  'entities.mobs.crypt_ossuary_warrior.name': '납골당 전사',
-  'entities.mobs.crypt_gravecaller_adept.name': '무덤부름 수련생',
-  'entities.mobs.crypt_ossuary_cutthroat.name': '납골당 멱따개',
-  'entities.mobs.crypt_gravecaller_necromancer.name': '무덤부름 강령술사',
-  'entities.mobs.crypt_bone_minion.name': '뼈 하수인',
-  'entities.mobs.crypt_bone_brute.name': '뼈 야수병',
-  'entities.mobs.crypt_bone_pile.name': '꿈틀거리는 뼈',
-  'entities.mobs.crypt_chapel_gargoyle.name': '예배당 가고일',
-  'entities.mobs.crypt_crow_caller.name': '까마귀 부르미',
-  'entities.mobs.crypt_carrion_crow.name': '썩은고기 까마귀',
-  'entities.mobs.crypt_ossuary_drake.name': '납골당 뼈드레이크',
-  // The Hollow Crypt finale (M16 non-Latin fills for its new names).
   'abilityUi.cast.crypt_morthen_rite_wakes': '의식의 각성',
   'abilityUi.cast.crypt_morthen_rise': '무덤부름의 승천',
   'abilityUi.cast.crypt_morthen_proclaim': '무덤의 선포',
@@ -21896,8 +21822,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_ilvane_dirge': '공허의 만가',
   'abilityUi.cast.crypt_ilvane_unbroken_dirge': '끊기지 않는 구절',
   'abilityUi.cast.crypt_ilvane_bone_organ': '뼈 오르간',
-  'entities.mobs.crypt_knellwyrm.name': '조종룡',
-  // The Sunken Bastion fifth pass (M16 non-Latin fills for its new names).
   'abilityUi.cast.bastion_iron_cage': '강철 우리',
   'abilityUi.cast.bastion_drowned_anchor_cast': '익사의 닻',
   'abilityUi.cast.bastion_shackle_pair': '쌍둥이 족쇄',
@@ -22379,7 +22303,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.crypt_knellwyrm_knell_mark': '불타는 조종',
   'abilityUi.cast.crypt_knellwyrm_knell_breath': '불타는 조종',
   'abilityUi.cast.crypt_knellwyrm_knell_land': '불타는 조종',
-  'entities.mobs.crypt_remembrance_candle.name': '추모의 양초',
   'hudChrome.auraEffect.crypt.gorged':
     '주는 피해 {pct}% 증가: 그에게 도달한 속박된 영혼 하나마다 {per}%, 현재 {stacks}/{max}중첩이며 전투가 끝날 때까지 지속됩니다. 영혼이 도달할 때마다 최대 생명력의 {heal}%도 회복합니다. 영혼의 경로에 들어서면 대신 받아낼 수 있습니다.',
   'hudChrome.auraEffect.crypt.unquietWard':
