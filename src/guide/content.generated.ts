@@ -9271,6 +9271,126 @@ export const GUIDE_RELIQUARY: GuideReliquaryPage[] = [
     ]
   },
   {
+    "id": "conquerors_hollow_crypt",
+    "shelf": "horizons",
+    "name": "The Hollow Crypt",
+    "excludeFromCompletion": "retired",
+    "relics": [
+      {
+        "kind": "item",
+        "name": "Cryptbone Greaves"
+      },
+      {
+        "kind": "item",
+        "name": "Cryptbone Helm"
+      },
+      {
+        "kind": "item",
+        "name": "Cryptbone Pauldrons"
+      },
+      {
+        "kind": "item",
+        "name": "Greyjaw Hide Boots"
+      },
+      {
+        "kind": "item",
+        "name": "Gravewoven Bag"
+      },
+      {
+        "kind": "item",
+        "name": "Spadeworn Gauntlets"
+      },
+      {
+        "kind": "item",
+        "name": "Gravedirt Grips"
+      },
+      {
+        "kind": "item",
+        "name": "Bellrope Mitts"
+      },
+      {
+        "kind": "item",
+        "name": "Rimewreath Coif"
+      },
+      {
+        "kind": "item",
+        "name": "Rime-Laced Hood"
+      },
+      {
+        "kind": "item",
+        "name": "Lamenting Veil"
+      },
+      {
+        "kind": "item",
+        "name": "Choirward Pauldrons"
+      },
+      {
+        "kind": "item",
+        "name": "Chorister's Spaulders"
+      },
+      {
+        "kind": "item",
+        "name": "Cantor's Stole"
+      },
+      {
+        "kind": "item",
+        "name": "Knellbound Hauberk"
+      },
+      {
+        "kind": "item",
+        "name": "Candlewatch Jerkin"
+      },
+      {
+        "kind": "item",
+        "name": "Robe of the Unquiet Rite"
+      },
+      {
+        "kind": "item",
+        "name": "Gravecaller's Rod"
+      }
+    ]
+  },
+  {
+    "id": "conquerors_hollow_crypt_heroic",
+    "shelf": "horizons",
+    "name": "Heroic Hollow Crypt",
+    "excludeFromCompletion": "retired",
+    "relics": [
+      {
+        "kind": "item",
+        "name": "Morthen's Cryptforged Hauberk"
+      },
+      {
+        "kind": "item",
+        "name": "Shadowpulse Handwraps"
+      },
+      {
+        "kind": "item",
+        "name": "Bonechill Striders"
+      },
+      {
+        "kind": "item",
+        "name": "Lunarward Cinch"
+      },
+      {
+        "kind": "item",
+        "name": "Cryptplate Helm"
+      },
+      {
+        "kind": "item",
+        "name": "Shadowpulse Slippers"
+      },
+      {
+        "kind": "item",
+        "name": "Bonechill Cord"
+      },
+      {
+        "kind": "item",
+        "name": "Bastion Sigil"
+      }
+    ]
+  },
+  {
     "id": "horizons_riftbound",
     "shelf": "horizons",
     "name": "Riftbound",

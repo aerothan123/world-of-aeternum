@@ -11430,8 +11430,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
     'Eine überflutete Festung, ans Moor verloren, gehalten von ertrunkenen Verteidigern und der steigenden Flut selbst.',
   'guide.dungeonsPage.bastionName': 'Die versunkene Bastion',
   'guide.dungeonsPage.heading': 'Dungeons und Schlachtzüge',
-  'guide.dungeonsPage.hollowBody':
-    'Eine grabgeschändete Kapellengruft, in der die frisch Verstorbenen nicht ruhen wollen. Die erste echte Bewährungsprobe für eine neue Gruppe.',
   'guide.dungeonsPage.hollowName': 'Die Hohle Gruft',
   'guide.dungeonsPage.intro':
     'Wenn die offene Welt nicht genügt, scharst du eine Gruppe um dich und betrittst eine Instanz: eine private Kopie eines Dungeons, nur für deine Gruppe erstellt.',
@@ -12978,10 +12976,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Der alte Graukiefer, endlich',
   'entities.letters.letter_q_greyjaw.body':
     'Neuigkeiten verbreiten sich schnell in einer so kleinen Stadt. Die Hirten haben gestern Abend auf Eure Gesundheit getrunken, und Wilkes schwört, der Wolf sei so groß wie ein Karren gewesen. Lasst sie ruhig übertreiben: Ihr habt es Euch verdient.\n\nGönnt Euch ein Mahl auf Kosten der Wache.\n- Marschall Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Bruder Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Was Ihr im Dunkeln vollbracht habt',
-  'entities.letters.letter_q_hollow.body':
-    'Nur wenige werden je erfahren, was in jener Senke begraben lag, und noch weniger würden es glauben. Ich weiß es, und ich werde es nicht vergessen.\n\nMöge Euer Weg erleuchtet bleiben.\n- Bruder Aldric',
   'hudChrome.gathering.herbalism': 'Kräuterkunde',
   'hudChrome.gathering.logging': 'Holzfällen',
   'hudChrome.gathering.mining': 'Bergbau',
@@ -20536,7 +20530,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'guide.interfacePage.framesGovernedResourceAndHill':
     'Aktiviere Ressourcenleiste abtrennen im Reiter Rahmen. Dann gibt Rahmen bearbeiten auch deine Ressourcenleiste frei, sodass du Mana, Energie oder Wut unabhängig an einer beliebigen Stelle platzieren kannst. Breite der Ressourcenleiste und Höhe der Ressourcenleiste im selben Reiter passen ihre Größe an. Rahmen bearbeiten gibt auch die Leiste für König des Hügels frei. Hintergrunddeckkraft von König des Hügels im selben Reiter blendet deren Fläche aus, während der Text gut lesbar bleibt.',
   'hudChrome.options.pixelsValue': '{value} px',
-  'abilityUi.cast.crypt_morthen_descend': 'Abstieg',
   'abilityUi.cast.sanctum_goad': 'Anstacheln',
   'auth.wocBuilder.cat.face': 'Gesicht',
   'auth.wocBuilder.eye.teal': 'Petrol',
@@ -20655,48 +20648,9 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Sich sammelnder Nebel',
   'abilityUi.cast.bastion_veil_rise': 'Nebelschleier',
   'abilityUi.cast.cantor_last_verse': 'Die letzte Strophe',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Grabhügelflammenatem',
-  'abilityUi.cast.crypt_carrion_eye': 'Aasauge',
-  'abilityUi.cast.crypt_grave_bolt': 'Grabgeschoss',
-  'abilityUi.cast.crypt_grave_cleave': 'Grabhieb',
-  'abilityUi.cast.crypt_grave_rupture': 'Grabbruch',
-  'abilityUi.cast.crypt_gravespark_volley': 'Grabfunken-Salve',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Knochenorgel',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Klagelied der Hohlen',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Ungebrochene Strophe',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Abstieg vom Himmel',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Schreckensgebrüll',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Brennendes Totengeläut',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Brennendes Totengeläut',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Brennendes Totengeläut',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Brennendes Totengeläut',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Scheiterhaufen-Feuerflug',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Tiefflugangriff',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Brautfrost',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Klage der Braut',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Gefrorene Umarmung',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Gefrorene Umarmung',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Begräbnisgeläut',
-  'abilityUi.cast.crypt_marrow_crush': 'Markzertrümmerung',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Totengräberschlag',
-  'abilityUi.cast.crypt_marrow_measure': 'Für das Grab vermessen',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Schaufelladung',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Grabverkündung',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Die Ruhelosen ernten',
-  'abilityUi.cast.crypt_morthen_rise': 'Aufstieg des Gravecallers',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Ritus der Ruhelosen',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Der Ritus erwacht',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Schattenimpuls',
-  'abilityUi.cast.crypt_murder_call': 'Krähenschwarmruf',
-  'abilityUi.cast.crypt_raise_bones': 'Knochen erwecken',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Raureifseiden-Spucke',
-  'abilityUi.cast.crypt_stone_shriek': 'Steinschrei',
-  'abilityUi.cast.crypt_tail_lash': 'Schwanzpeitsche',
-  'abilityUi.cast.crypt_wing_gust': 'Flügelböe',
   'abilityUi.cast.ghost_captain_anchor': 'Verfluchter Anker',
   'abilityUi.cast.ghost_captain_boarding': 'Phantomenterung',
   'abilityUi.cast.ghost_captain_broadside': 'Geisterbreitseite',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Kerze wieder anzünden',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Kohlenbecken umstoßen',
   'abilityUi.cast.sanctum_branding_iron': 'Brandeisen',
   'abilityUi.cast.sanctum_cinder_breath': 'Glutatem',
@@ -20920,50 +20874,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
     'Erleidet {pct}% weniger Schaden, solange ein anderer Ertrunkener Wächter innerhalb von {radius} Yard steht. Ziehe sie auseinander.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Seine Ketten sind gebrochen. Es kämpft nicht mehr, kann nicht verletzt werden und geht bald fort.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Erhöht erlittenen Schaden um {pct}%: {per}% je Stapel, derzeit {stacks} von {max}. Jeder Totengräberschlag fügt einen Stapel hinzu und setzt die Dauer auf {seconds} Sek. zurück.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Jede Krähe im Kampf jagt dich {seconds} Sek. lang. Laufe zu deinem Tank, damit der Schwarm gemeinsam getötet werden kann.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Singt schneller: Das Klagelied der Hohlen dauert {cast} statt {castNormal} Sek. und kommt alle {every} statt {everyNormal} Sek.; die Knochenorgel spielt {waves} statt {wavesNormal} Notenwellen.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Verringert die Bewegungsgeschwindigkeit um {pct}%. Schaufelladung trifft alle vor Küster Marrow: Stelle dich hinter ihn.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'In den Armen der Lady hochgehalten: Du kannst nicht handeln und erleidest jede Sekunde {tick} Frostschaden ({tickHeroic} auf Heroisch). Fügt deine Gruppe ihr {share}% ihrer maximalen Gesundheit zu ({shareHeroic}% auf Heroisch), setzt sie dich sanft ab. Hält sie dich oben {hold} Sek. fest, lässt sie dich für {min} bis {max} Schaden aufs Eis fallen ({heroicMin} bis {heroicMax} auf Heroisch).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Verursacht für den Rest des Kampfes {pct}% mehr Schaden: {per}% je Gebundener Seele, die ihn erreicht hat, derzeit {stacks} von {max}. Jede Seele, die ihn erreicht, heilt ihn auch um {heal}% seiner maximalen Gesundheit. Stelle dich einer Seele in den Weg, um sie stattdessen aufzunehmen.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Erleidet {pct}% weniger Schaden, und der Stein wird alle {every} Sek. dicker, bis zu {max} Schichten. Eine Betäubung zerschmettert ihn; danach erleidet es {seconds} Sek. lang {cracked}% mehr Schaden.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'In {fuse} Sek. brechen Hände aus dem Ring unter dir hervor: Alle innerhalb von {radius} Yard seiner ursprünglichen Stelle werden {root} Sek. festgewurzelt und erleiden {min} bis {max} Schattenschaden. Verlasse den Ring.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Von den Händen des Grabes gehalten: Du kannst dich {seconds} Sek. nicht bewegen.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Erleidet jede Sekunde {bite} Schattenschaden ({biteHeroic} auf Heroisch), solange der Ritus der Ruhelosen anhält; dies steigt alle {every} Sek. um {step} ({stepHeroic} auf Heroisch). Zünde die Gedenkkerzen wieder an, um es zu beenden.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'In einem Offenen Grab: Bewegungsgeschwindigkeit um {slow}% verringert und jede Sekunde {damage} Schattenschaden ({heroic} auf Heroisch). Auf Heroisch erweckt ein Aufenthalt von {linger} Sek. in einem Grab Ruheloses Gebein. Verlasse das Grab.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Greift {pct}% schneller an, solange er in einem Offenen Grab steht. Halte ihn aus den Gräbern heraus.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Erleidet {pct}% weniger Schaden: {per}% für jeden ihrer lebenden Chorsänger. Töte zuerst die Chorsänger.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Fliegt außer Reichweite über dem Rituskreis. Es markiert eine Hälfte des Kreises {mark} Sek. lang und gießt dann Geisterfeuer darauf: {min} bis {max} Feuerschaden für alle darin. Es verbrennt pro Flug {breaths} Hälften und landet dann.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Wenn Klage der Braut endet, erleiden alle außerhalb von {radius} Yard um eine brennende Grablaterne {min} bis {max} Frostschaden ({heroicMin} bis {heroicMax} auf Heroisch). Eine Laterne schützt die {cap} nächsten Spieler, erlischt dann und schützt bei der nächsten Klage nicht.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Deine nächste Klage der Braut verursacht {pct}% mehr Schaden: {per}% je Stapel, bis zu {max} Stapel. Erleide die nächste im Licht einer Laterne.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Wenn dies endet, bricht ein Offenes Grab an deiner Position ein: {min} bis {max} Schaden ({heroicMin} bis {heroicMax} auf Heroisch) für alle innerhalb von {radius} Yard. Das Grab bleibt den ganzen Kampf; trage die Markierung daher an den Rand des Hofs, weg von der Gruppe.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Betäubt: Der zerschmetterte Schutz hindert ihn {seconds} Sek. am Handeln.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Erleidet {seconds} Sek. lang {pct}% mehr Schaden: Die wieder entzündeten Kerzen haben seinen Schutz gebrochen. Nutze jetzt deine stärksten Angriffe.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'Auf glattem Eis: Deine Geschwindigkeit ändert sich pro Sekunde höchstens um {grip} Yard/Sek.; du kommst langsam in Gang, rutschst beim Anhalten weiter und ziehst weite Kurven. Verlasse das Eis, um wieder festen Halt zu haben.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Immun gegen Schaden, während er zum Glockenseil schreitet und die Begräbnisglocke läutet. Am Ende des Läutens verursacht das Geläut bei allen {min} bis {max} Schattenschaden ({heroicMin} bis {heroicMax} auf Heroisch), und jedes Offene Grab gibt Ruheloses Gebein frei.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Immun gegen Schaden, während er am Altar den Ritus der Ruhelosen kanalisiert: {lit} von {total} Gedenkkerzen wieder entzündet. Eine Kerze anzuzünden erfordert {channel} Sek. Kanalisierung und entzieht der anzündenden Person jede Sekunde {drain}% ihrer maximalen Gesundheit ({drainHeroic}% auf Heroisch); Treffer unterbrechen sie nicht, ein Schritt oder eine Betäubung schon. Die letzte Kerze zerschmettert den Schutz. Auf Heroisch zünde sie in der vom Totenbuch genannten Reihenfolge an: Eine falsche Kerze löscht die zuletzt entzündete und verursacht bei der anzündenden Person {wrongMin} bis {wrongMax} Schattenschaden.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Die Laterne des Strohvorarbeiters ist für dich erloschen: Deine Schläge und die deines Begleiters ignorieren seine Bretterhaut und treffen mit voller Wucht',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -21213,43 +21123,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Kurier',
   'hudChrome.courier.unavailable': 'Beschwöre deinen Kurier, um eine Lieferung zu planen.',
   'hudChrome.courier.waiting': 'Wartet darauf, deine Gegenstände zurückzugeben',
-  'hudChrome.cryptAlert.embracedLine':
-    'Deine Gruppe muss der Lady des Knochenfrosts Schaden zufügen, um dich aus ihrem Griff zu befreien',
-  'hudChrome.cryptAlert.embracedTitle': 'Gefrorene Umarmung!',
-  'hudChrome.cryptAlert.graspLine':
-    'Verlasse den markierten Ring, bevor die Hände hervorbrechen, um Schaden und Festwurzeln zu vermeiden',
-  'hudChrome.cryptAlert.graspTitle': 'Griff des Grabes!',
-  'hudChrome.cryptAlert.graveLine': 'Die Graberde verbrennt und verlangsamt dich: Verlasse sie',
-  'hudChrome.cryptAlert.graveTitle': 'In einem Offenen Grab!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Töte die Chorsänger, um Ilvanes Schadensverringerung von {pct}% aufzuheben',
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmonie',
-  'hudChrome.cryptAlert.knellLine':
-    'Wenn der Balken endet, ergießt sich Geisterfeuer über diese Hälfte des Rings: Wechsle auf die andere Hälfte',
-  'hudChrome.cryptAlert.knellTitle': 'Brennendes Totengeläut!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Tritt ins Licht einer brennenden Laterne, um dem Schaden des Wehklagens zu entgehen: Pro Laterne passen nur zwei Spieler',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Bleibe im Licht dieser brennenden Laterne, um dem Schaden des Wehklagens zu entgehen: Du hast einen Schutzplatz',
-  'hudChrome.cryptAlert.lamentTitle': 'Klage der Braut!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Gehe vor dem Ende der Markierung an den Hofrand, um das schädliche Grab von deiner Gruppe fernzuhalten',
-  'hudChrome.cryptAlert.measuredTitle': 'Für das Grab vermessen!',
-  'hudChrome.cryptAlert.reapLine':
-    'Gehe hinter Morthen, um der Sense zu entgehen, die alle vor ihm trifft',
-  'hudChrome.cryptAlert.reapTitle': 'Die Ruhelosen ernten!',
-  'hudChrome.cryptAlert.riteLine':
-    'Zünde alle Gedenkkerzen wieder an, um Morthens Immunität zu brechen: {lit} von {total} brennen',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Zünde die Kerzen in der Reihenfolge des Totenbuchs an, um Morthens Immunität zu brechen: Eine falsche Kerze macht Fortschritt rückgängig ({lit}/{total})',
-  'hudChrome.cryptAlert.riteTitle': 'Ritus der Ruhelosen',
-  'hudChrome.cryptAlert.soulLine':
-    'Fange die schwebende Seele ab, damit sie Morthen weder heilt noch seinen Schaden erhöht. Das Abfangen verletzt dich',
-  'hudChrome.cryptAlert.soulTitle': 'Gebundene Seele',
-  'hudChrome.cryptAlert.timeAria': 'Noch {seconds} Sekunden',
-  'hudChrome.cryptAlert.tollLine':
-    'Bereite dich auf die Skelette aus offenen Gräbern vor: Marrow ist beim Glockenläuten immun',
-  'hudChrome.cryptAlert.tollTitle': 'Begräbnisgeläut!',
   'hudChrome.deeds.buddiesEmpty': 'Sammle einen Gefährten, um ihn aus diesem Regal zu beschwören.',
   'hudChrome.deeds.buddiesNone': 'Kein Gefährte',
   'hudChrome.deeds.buddiesSection': 'Gefährten',
@@ -21368,44 +21241,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
     'Spannung (entferne dich von jeder Säule, deren Kette noch hält)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Chor und Solo (bei einer Markierung sammeln, von der anderen entfernen)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Knochenorgel (alle 26 Sekunden spielt sie die Knochenorgel: Zwei Wellen von Schattennoten explodieren in Bahnen durch die Empore, auf Normal 100 bis 115 Schaden in einer Bahn; die zweite Welle füllt die Lücken der ersten)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Brautfrost (bei halber Gesundheit gefriert der gesamte Schluchtboden: rutschiges Eis für den Rest des Kampfes)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Klage der Braut (alle 22 Sekunden ein 3 Sekunden langes Wehklagen: auf Normal 60 bis 75 Frostschaden bei allen außerhalb des Lichts einer brennenden Grablaterne, dazu die Hälfte für jeden Stapel Anhaltende Klage aus bereits erlittenen Klagen. Eine Laterne schützt höchstens zwei Spieler und erlischt nach dem Schutz für 28 Sekunden; teilt euch auf und wechselt euch ab)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Begräbnisgeläut (bei 66 und 33 Prozent Gesundheit schreitet er immun gegen Schaden zum Glockenseil und läutet 3 Sekunden: auf Normal 30 bis 38 Schattenschaden bei allen, und jedes Offene Grab erweckt Ruheloses Gebein)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Crescendo (unter 30 Prozent Gesundheit dauert ihr Klagelied 1,8 Sekunden und kommt alle 11 Sekunden; die Orgel spielt eine dritte Welle)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Klagelied der Hohlen (alle 16 Sekunden ein unterbrechbarer Gesang von 2,5 Sekunden: Vollendet sie ihn, auf Normal 105 bis 125 Schattenschaden und 4 Sekunden Stille bei allen innerhalb von 45 Yard, die sie sehen können; unterbrich ihn oder verstecke dich hinter einer Chorsäule)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Gefrorene Umarmung (alle 30 Sekunden packt sie einen Spieler außer dem Tank und hebt ihn 5 Yard in die Luft, 6 Frostschaden pro Sekunde: Verursache innerhalb von 8 Sekunden 6 Prozent ihrer Gesundheit als Schaden, damit sie ihn absetzt; andernfalls lässt sie ihn auf Normal für 150 bis 180 Schaden fallen)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Grabruf (alle 15 Sekunden schwebt eine Gebundene Seele aus der nächsten Sarkophagnische zu ihm; erreicht sie ihn, wird er Von den Toten gesättigt, mit 10 Prozent mehr Schaden pro Seele bis zu 10 Stapel, und heilt 3 Prozent seiner Gesundheit. Ein Spieler auf ihrer Bahn nimmt sie stattdessen auf: auf Normal 12 bis 16 Schattenschaden)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmonie (jeder lebende Chorsänger verringert ihren erlittenen Schaden um 30 Prozent: Töte zuerst die Chorsänger)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroisch: Zugabe (ein Chorsänger, der 10 Sekunden tot liegt, während der andere noch lebt, erhebt sich erneut; töte sie daher gemeinsam) und Ungebrochene Strophe (jedes dritte Klagelied ist nicht unterbrechbar: Verstecke dich)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroisch: Jede brennende Laterne erlischt auch von selbst nach 30 Sekunden und bleibt 10 Sekunden dunkel; Gefrorene Umarmung packt zwei Spieler und lässt bei 4,4 Prozent ihrer Gesundheit los',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroisch: Totengräberschlag alle 9 Sekunden auf den Tank (jeder Stapel erhöht seinen erlittenen Schaden 20 Sekunden lang um 6 Prozent, bis zu 6 Stapel), Grabeskraft (er schlägt in einem Grab 30 Prozent schneller) und Ruhelose Erde (wer 2 Sekunden in einem Grab bleibt, erweckt dort Ruheloses Gebein)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Für das Grab vermessen (alle 15 Sekunden markiert er einen Spieler außer dem Tank; 4 Sekunden später bricht ein Offenes Grab unter ihm ein, auf Normal 42 bis 52 Schaden innerhalb von 3 Yard. Die Grube bleibt den ganzen Kampf: darin 9 Schaden pro Sekunde und 40 Prozent langsamere Bewegung; platziert die Gräber daher am Hofrand)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroisch: Die Toten benennen (das Totenbuch nennt die Kerzenreihenfolge: Eine falsche Kerze löscht die zuletzt entzündete und verursacht beim Anzündenden 252 bis 288 Schattenschaden; jedes erneute Anzünden entzieht 8 Prozent pro Sekunde), Griff des Grabes (alle 16 Sekunden erhalten 2 Spieler einen Ring von 4 Yard; 1,5 Sekunden später brechen Hände hervor: 3 Sekunden Festwurzeln und 162 bis 198 Schattenschaden) sowie Brennendes Totengeläut des Knellwyrms (er fliegt auf, markiert eine Ringhälfte 4,5 Sekunden lang und gießt dann Geisterfeuer für 1.000 bis 1.120 Feuerschaden darauf, 3 Hälften je Flug)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Schattenimpuls (alle 12 Sekunden eine Zauberzeit von 2 Sekunden, dann auf Normal 24 bis 30 Schattenschaden bei allen innerhalb von 12 Yard um ihn; entferne dich. Während seiner Letzten Riten alle 9 Sekunden)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Die Ruhelosen ernten (unter 35 Prozent Gesundheit kommen keine Seelen mehr; alle 14 Sekunden schwingt er nach 2 Sekunden Zauberzeit seine Sense: auf Normal 55 bis 65 Schattenschaden bei allen in einem 120-Grad-Bogen 14 Yard vor ihm. Schattenimpuls kommt dann alle 9 Sekunden)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Raureifpfad (sie hinterlässt auf ihrem Weg 25 Sekunden lang glatten Raureif: Darauf beschleunigst du langsam und rutschst beim Anhalten oder Drehen weiter)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Ritus der Ruhelosen (bei 65 Prozent Gesundheit kehrt er zum Altar zurück, immun im Schutz der Ruhelosen, während Grabeskälte bei allen 3 Schattenschaden pro Sekunde verursacht, alle 5 Sekunden um 1 steigend, und 2 Ruhelose Gebeine aus den Nischen klettern. Entzündet die 4 Gedenkkerzen erneut: Jede erfordert 4 Sekunden Kanalisierung und entzieht der anzündenden Person jede Sekunde 6 Prozent ihrer maximalen Gesundheit; Treffer unterbrechen nicht, ein Schritt oder eine Betäubung schon. Die letzte Kerze bricht den Ritus: Er ist 8 Sekunden betäubt und erleidet 25 Prozent mehr Schaden)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Schaufelladung (alle 11 Sekunden wirft er Graberde in einen 8 Yard langen Kegel vor sich: anderthalbfacher Nahkampfschaden und 6 Sekunden lang 50 Prozent langsamere Bewegung; stelle dich hinter ihn)',
   'hudChrome.finder.mech.drowned_anchor':
     'Ertrunkener Anker (sein Opfer wird zur Grube gezogen: Nähere dich einem brennenden Festmacherpfahl auf 3 Yard, um die Kette festzumachen; der Pfahl erlischt dann 30 Sekunden. Oder zerbrich die Kette mit 12 Treffern, 16 auf Heroisch)',
   'hudChrome.finder.mech.fog_veil':

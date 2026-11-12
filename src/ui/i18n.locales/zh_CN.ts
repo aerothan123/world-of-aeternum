@@ -11108,8 +11108,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'guide.dungeonsPage.levelExact': '{n} 级',
   'guide.dungeonsPage.raidSize': '十人，{n} 级',
   'guide.dungeonsPage.hollowName': '空洞地穴',
-  'guide.dungeonsPage.hollowBody':
-    '一座被盗墓的教堂地穴，新逝的死者拒绝安息。这是新队伍面临的第一场真正考验。',
   'guide.dungeonsPage.bastionName': '沉没堡垒',
   'guide.dungeonsPage.bastionBody': '一座沉入沼泽、被淹没守军和不断上涨的潮水所占据的失落要塞。',
   'guide.dungeonsPage.templeName': '沉没神殿',
@@ -13857,10 +13855,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': '老灰颚，终于倒下了',
   'entities.letters.letter_q_greyjaw.body':
     '小镇里消息传得快。牧人们昨晚为你的健康干杯，威尔克斯发誓那头狼有马车那么大。让他们添油加醋去吧：这是你应得的。\n\n请代守备队享用一顿好饭。\n- 雷德布鲁克元帅',
-  'entities.letters.letter_q_hollow.sender': '奥德里克修士',
-  'entities.letters.letter_q_hollow.subject': '你在黑暗中所做的一切',
-  'entities.letters.letter_q_hollow.body':
-    '很少有人会知道那处洼地里埋葬着什么，愿意相信的人更少。但我知道，而且我不会忘记。\n\n愿你的道路常明。\n- 奥德里克修士',
   'entities.letters.heroic_marks_reward.sender': '英勇军需官',
   'entities.letters.heroic_marks_reward.subject': '你的英勇印记',
   'entities.letters.heroic_marks_reward.body':
@@ -15187,34 +15181,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.finder.partyMemberMeta': '{level}级{cls}',
   'hudChrome.finder.difficultyHeading': '难度',
   'hudChrome.finder.mech.shadow_pulse': '暗影脉冲（周期性范围伤害）',
-  'hudChrome.finder.mech.crypt_shovelful':
-    '一铲坟土（每11秒他向身前8码锥形区域扬起坟土：造成他普通攻击1.5倍的伤害，并使移动速度降低50%，持续6秒，所以站到他身后）',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    '量身定墓（每15秒他标记一名非坦克玩家；4秒后脚下塌出一座敞开的坟墓，普通难度下对3码内造成42到52点伤害，坑会在整场战斗中保留：在其中每秒受到9点伤害且移动速度降低40%，所以把坟墓留在墓园边缘）',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    '葬礼丧钟（生命值降到66%和33%时，他大步走向钟绳，免疫伤害，摇钟3秒：普通难度下对所有人造成30到38点暗影伤害，并且每座敞开的坟墓都会爬出一具不安之骨）',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    '英雄：掘墓人重击，每9秒打击坦克（每层使其受到的伤害提高6%，持续20秒，最多6层）；坟墓之力（他站在坟墓里时攻击速度提高30%）；不宁之土（任何人在坟墓里停留2秒，就会在那里爬出一具不安之骨）',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    '新娘的哀歌（每22秒一次3秒的哀嚎：普通难度下对所有不在点亮的墓灯光芒中的人造成60到75点冰霜伤害，你已承受的每层萦绕哀歌再提高一半。每盏灯最多庇护两名玩家，庇护过任何人后会熄灭28秒，所以分散开轮流使用）',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    '冰封之拥（每30秒她抓住一名非坦克玩家，带着对方升到空中5码高，每秒造成6点冰霜伤害：在8秒内打掉她6%的生命值她就会把人放下，否则她会把人扔下，普通难度下造成150到180点伤害）',
-  'hudChrome.finder.mech.crypt_rime_path':
-    '霜径（她飘过的地方会留下光滑的白霜，持续25秒：在上面你加速缓慢，停下或转向时会继续滑行）',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    '新娘冰封（生命值降到一半时，整个峡谷地面都会冻结：在战斗剩余时间里都是光滑的冰面）',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    '英雄：每盏点亮的墓灯在30秒后也会自行熄灭10秒，冰封之拥会同时抓住两名玩家',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    '空洞挽歌（每16秒一首可打断的2.5秒歌曲：如果她唱完，普通难度下对45码内所有能看见她的人造成105到125点暗影伤害并沉默4秒，所以打断它或躲到唱诗柱后面）',
-  'hudChrome.finder.mech.crypt_harmony':
-    '和声（每名存活的唱诗者都使她受到的伤害降低30%：先杀唱诗者）',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    '骨管风琴（每26秒她弹奏骨管风琴：两波暗影音符沿着唱诗楼的通道爆发，普通难度下通道内造成100到115点伤害，第二波会填满第一波的空隙）',
-  'hudChrome.finder.mech.crypt_crescendo':
-    '渐强（生命值低于30%时，她的挽歌只需1.8秒且每11秒一次，风琴还会多奏一波）',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    '英雄：安可（一名唱诗者倒下10秒而另一名仍站着时，它会再次站起，所以同时杀掉它们）以及不断之诗（每第三首挽歌无法被打断：躲开它）',
   'hudChrome.finder.mech.reaping_arc': '收割之弧（正面顺劈）',
   'hudChrome.finder.mech.mist_surge': '迷雾涌动（周期性范围伤害）',
   'hudChrome.finder.mech.summons_adds': '召唤增援',
@@ -22338,18 +22304,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
     '用锁链将 {range} 码内的目标束缚在原地，持续 {duration} 秒。免疫控制的生物（例如首领）改为移动速度降低 {slow}%，除非它也免疫减速。',
   'hudChrome.auraEffect.trinket.shackle': '被锁链束缚：无法移动。',
   'hudChrome.auraEffect.trinket.shackleSlow': '锁链缠身：移动速度降低 {pct}%。',
-  'abilityUi.cast.crypt_grave_bolt': '墓穴之箭',
-  'abilityUi.cast.crypt_raise_bones': '唤起骸骨',
-  'abilityUi.cast.crypt_murder_call': '鸦群召唤',
-  'abilityUi.cast.crypt_stone_shriek': '石之尖啸',
-  'abilityUi.cast.crypt_grave_cleave': '墓穴横扫',
-  'abilityUi.cast.crypt_barrowflame_breath': '冢焰吐息',
-  'abilityUi.cast.crypt_tail_lash': '尾鞭',
-  'abilityUi.cast.crypt_wing_gust': '翼风',
-  'abilityUi.cast.crypt_grave_rupture': '墓穴崩裂',
-  'abilityUi.cast.crypt_carrion_eye': '腐鸦之眼',
-  'abilityUi.cast.crypt_marrow_crush': '碎髓重击',
-  'abilityUi.cast.crypt_rimesilk_spit': '霜丝喷吐',
   'abilityUi.cast.bastion_brine_mend': '盐水愈合',
   'abilityUi.cast.bastion_fog_ward': '雾之护佑',
   'abilityUi.cast.bastion_halberd_sweep': '戟之横扫',
@@ -22396,28 +22350,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.temple_ysolei_wrath': '溺亡之怒',
   'abilityUi.cast.temple_prism_glare': '棱镜凝视',
   'abilityUi.cast.temple_arcing_spark': '弧光火花',
-  'abilityUi.cast.crypt_gravespark_volley': '墓火齐射',
   'abilityUi.cast.bastion_loose_on_my_mark': '听我号令放箭',
   'abilityUi.cast.temple_call_of_the_shallows': '浅滩的呼唤',
-  'abilityUi.cast.crypt_morthen_rite_wakes': '仪式苏醒',
-  'abilityUi.cast.crypt_morthen_rise': '唤墓者升起',
-  'abilityUi.cast.crypt_morthen_proclaim': '墓之宣告',
-  'abilityUi.cast.crypt_morthen_descend': '降临',
-  'abilityUi.cast.crypt_knellwyrm_arrive': '自天而降',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': '火葬扫射',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': '俯冲扫射',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': '恐惧咆哮',
-  'abilityUi.cast.crypt_marrow_shovelful': '一铲坟土',
-  'abilityUi.cast.crypt_marrow_measure': '量身定墓',
-  'abilityUi.cast.crypt_marrow_burial_toll': '葬礼丧钟',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': '掘墓人重击',
-  'abilityUi.cast.crypt_lady_brides_lament': '新娘的哀歌',
-  'abilityUi.cast.crypt_lady_frozen_embrace': '冰封之拥',
-  'abilityUi.cast.crypt_lady_embrace_hold': '冰封之拥',
-  'abilityUi.cast.crypt_lady_bridal_freeze': '新娘冰封',
-  'abilityUi.cast.crypt_ilvane_dirge': '空洞挽歌',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': '不断之诗',
-  'abilityUi.cast.crypt_ilvane_bone_organ': '骨管风琴',
   'abilityUi.cast.bastion_iron_cage': '铁笼',
   'abilityUi.cast.bastion_drowned_anchor_cast': '溺亡之锚',
   'abilityUi.cast.bastion_shackle_pair': '双人镣铐',
@@ -22476,10 +22410,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
     '吞噬死者（{stacks}/{max}层）：每层使灵魂释放的范围扩大{radius}码，伤害提高{pct}%。',
   'hudChrome.auraEffect.bastion.snappedFetters':
     '它的锁链已断。它不再战斗，无法被伤害，并很快离开。',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    '战斗中的所有乌鸦都会追猎你，持续{seconds}秒。跑向你的坦克，让队伍一起消灭鸦群。',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    '受到的伤害降低{pct}%，石层每{every}秒增厚一次，最多{max}层。击晕会将其击碎，使其在{seconds}秒内受到的伤害提高{cracked}%。',
   'hudChrome.bastionChain.shackledTitle': '与 {name} 锁在一起',
   'hudChrome.bastionChain.shackledLine': '彼此保持在 {range} 码以内（当前相距 {dist} 码）',
   'hudChrome.bastionChain.strainedLine': '离得太远！锁链会伤害你们两人：靠近到 {range} 码以内',
@@ -22807,89 +22737,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'entities.npcs.cantor_laverock.title': '苍白唱诗班最后的领唱',
   'entities.npcs.cantor_laverock.greeting':
     '我曾是苍白唱诗班里最年轻的声音。仪式那夜，我没有喝，我逃了。从那以后，每逢满月，我都听见他们在水下歌唱。我必须在死前亲眼见到她。让我跟在你们身后吧。我不会战斗，也不会拖累你们。',
-  'hudChrome.cryptAlert.measuredTitle': '量身定墓！',
-  'hudChrome.cryptAlert.measuredLine': '计时条走完时，坟墓会在你脚下塌陷：把它带到墓园边缘',
-  'hudChrome.cryptAlert.embracedTitle': '冰封之拥！',
-  'hudChrome.cryptAlert.embracedLine': '她把你举在半空：你的队伍必须伤害她，她才会把你放下',
-  'hudChrome.cryptAlert.lamentTitle': '新娘的哀歌！',
-  'hudChrome.cryptAlert.lamentShelteredLine': '你站在点亮的墓灯光芒中，灯下还有你的位置：保持不动',
-  'hudChrome.cryptAlert.lamentOpenLine': '在哀嚎落下前进入点亮的墓灯光芒中：每盏灯两人',
-  'hudChrome.cryptAlert.graveTitle': '你在敞开的坟墓里！',
-  'hudChrome.cryptAlert.graveLine': '坟土会灼烧你并让你减速：离开坟墓',
-  'hudChrome.cryptAlert.tollTitle': '葬礼丧钟！',
-  'hudChrome.cryptAlert.tollLine': '他摇钟时无法受到伤害：准备承受丧钟和它唤起的亡者',
-  'hudChrome.cryptAlert.harmonyTitle': '和声',
-  'hudChrome.cryptAlert.harmonyLine': '她的唱诗者使她受到的伤害降低{pct}%：先杀死它们',
-  'hudChrome.cryptAlert.timeAria': '剩余{seconds}秒',
-  'hudChrome.auraEffect.crypt.measured':
-    '此效果结束时，一座敞开的坟墓会在你所站之处塌陷：对{radius}码内的所有人造成{min}到{max}点伤害（英雄难度{heroicMin}到{heroicMax}点）。坟墓会在整场战斗中保留，所以把印记带到墓园边缘，远离队伍。',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    '站在敞开的坟墓中：移动速度降低{slow}%，每秒受到{damage}点暗影伤害（英雄难度{heroic}点）。英雄难度下，在坟墓中停留{linger}秒会唤起一具不安之骨。离开坟墓。',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    '移动速度降低{pct}%。一铲坟土会击中司事马罗身前的所有人：站到他身后。',
-  'hudChrome.auraEffect.crypt.blow':
-    '受到的伤害提高{pct}%：每层{per}%，当前{stacks}/{max}层。每次掘墓人重击都会增加一层，并将持续时间重置为{seconds}秒。',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    '站在敞开的坟墓中时攻击速度提高{pct}%。别让他待在坟墓里。',
-  'hudChrome.auraEffect.crypt.tolling':
-    '他大步走向钟绳并敲响葬钟时免疫伤害。钟声结束时，丧钟对所有人造成{min}到{max}点暗影伤害（英雄难度{heroicMin}到{heroicMax}点），并且每座敞开的坟墓都会爬出一具不安之骨。',
-  'hudChrome.auraEffect.crypt.embraced':
-    '被夫人举在半空：无法行动，每秒受到{tick}点冰霜伤害（英雄难度{tickHeroic}点）。如果你的队伍打掉她{share}%的最大生命值（英雄难度{shareHeroic}%），她会把你轻轻放下；如果她在高处抓住你{hold}秒，就会把你扔到冰面上，造成{min}到{max}点伤害（英雄难度{heroicMin}到{heroicMax}点）。',
-  'hudChrome.auraEffect.crypt.lament':
-    '新娘的哀歌结束时，对所有不在点亮的墓灯{radius}码内的人造成{min}到{max}点冰霜伤害（英雄难度{heroicMin}到{heroicMax}点）。每盏灯只庇护离它最近的{cap}名玩家，然后熄灭并错过下一次哀歌。',
-  'hudChrome.auraEffect.crypt.lingering':
-    '你承受的下一次新娘的哀歌伤害提高{pct}%：每层{per}%，最多{max}层。下一次请在墓灯光芒中承受。',
-  'hudChrome.auraEffect.crypt.slippery':
-    '在光滑的冰面上：你的速度每秒最多改变{grip}码/秒，所以起步缓慢，停下时会继续滑行，转向时会甩出大弧线。离开冰面就能重新站稳。',
-  'hudChrome.auraEffect.crypt.harmony':
-    '受到的伤害降低{pct}%：她每有一名存活的唱诗者就降低{per}%。先杀死唱诗者。',
-  'hudChrome.auraEffect.crypt.crescendo':
-    '唱得更快：空洞挽歌只需{cast}秒（原为{castNormal}秒），每{every}秒一次（原为{everyNormal}秒），骨管风琴会奏出{waves}波音符（原为{wavesNormal}波）。',
   // Morthen the Gravecaller's Rite and the Knellwyrm's heroic Burning Knell
   // (M16 non-Latin fills for their new strings).
-  'abilityUi.cast.crypt_morthen_shadow_pulse': '暗影脉冲',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': '不宁者仪式',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': '收割不宁者',
-  'abilityUi.cast.kituse_crypt_relight_candle': '重燃蜡烛',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': '燃烧丧钟',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': '燃烧丧钟',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': '燃烧丧钟',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': '燃烧丧钟',
-  'hudChrome.auraEffect.crypt.gorged':
-    '造成的伤害提高{pct}%：每个抵达他身边的缚魂提高{per}%，当前{stacks}/{max}层，持续到战斗结束。每个抵达的灵魂还会为他恢复{heal}%的最大生命值。站到灵魂的路径上，就能由你代为承受。',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    '他在祭坛引导不宁者仪式时免疫伤害：已重燃{lit}/{total}根追思蜡烛。重燃一根需要引导{channel}秒，期间每秒吸取点燃者{drain}%的最大生命值（英雄难度{drainHeroic}%）；受到攻击不会打断，移动或昏迷会打断。最后一根蜡烛会击碎结界。英雄难度下，须按名册点出的顺序点燃：点错蜡烛会熄灭最后点燃的那根，并对点燃者造成{wrongMin}到{wrongMax}点暗影伤害。',
-  'hudChrome.auraEffect.crypt.riteBroken': '昏迷：破碎的结界让他{seconds}秒内无法行动。',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    '{seconds}秒内受到的伤害提高{pct}%：重燃的蜡烛击碎了他的结界。现在就打出最强的攻击。',
-  'hudChrome.auraEffect.crypt.graveChill':
-    '不宁者仪式持续期间，每秒受到{bite}点暗影伤害（英雄难度{biteHeroic}点），每{every}秒提高{step}点（英雄难度{stepHeroic}点）。重燃追思蜡烛来终结它。',
-  'hudChrome.auraEffect.crypt.graspMark':
-    '{fuse}秒后，你脚下的法环中会伸出鬼手：法环落下处{radius}码内的所有人被定身{root}秒，并受到{min}到{max}点暗影伤害。离开法环。',
-  'hudChrome.auraEffect.crypt.graspRoot': '被坟墓之手抓住：{seconds}秒内无法移动。',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    '在仪式之环上空飞行，无法触及。它会标记半个法环{mark}秒，然后向那一半倾泻幽魂之火：对其中所有人造成{min}到{max}点火焰伤害。每次飞行焚烧{breaths}个半区，然后降落。',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    '暗影脉冲（每12秒施法2秒，然后在普通难度下对他周围12码内所有人造成24到30点暗影伤害，所以要走开；在他的终末仪式中每9秒一次）',
-  'hudChrome.finder.mech.crypt_gravecall':
-    '唤墓（每15秒，一个缚魂从下一个石棺壁龛飘向他；抵达后他获得饱食亡者，每个灵魂使他造成的伤害提高10%，最多10层，并恢复3%的生命值。挡在路径上的玩家会代为承受：普通难度下12到16点暗影伤害）',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    '不宁者仪式（生命值降到65%时，他回到祭坛，在不宁结界中免疫伤害，同时墓穴寒意每秒对所有人造成3点暗影伤害，每5秒提高1点，还有2具不安之骨从壁龛中爬出。重燃4根追思蜡烛：每根需要引导4秒，每秒吸取点燃者6%的最大生命值，受到攻击不会打断，移动或昏迷会打断。最后一根蜡烛会打破仪式：他昏迷8秒，受到的伤害提高25%）',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    '收割不宁者（生命值低于35%时灵魂停止出现；每14秒施法2秒后挥动镰刀：普通难度下对他前方14码、120度扇形内的所有人造成55到65点暗影伤害。此后暗影脉冲每9秒一次）',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    '英雄难度：点名亡者（名册点出蜡烛的顺序：点错蜡烛会熄灭最后点燃的那根，并对点燃者造成252到288点暗影伤害，每次重燃每秒吸取8%），坟墓之握（每16秒2名玩家脚下出现4码法环；1.5秒后鬼手破土而出：定身3秒并造成162到198点暗影伤害），以及丧钟巨龙的燃烧丧钟（它飞上天空，标记半个法环4.5秒，然后向那一半倾泻幽魂之火，造成1,000到1,120点火焰伤害，每次飞行3个半区）',
-  'hudChrome.cryptAlert.knellTitle': '燃烧丧钟！',
-  'hudChrome.cryptAlert.knellLine': '计时条耗尽时，幽魂之火会倾泻到法环的这一半：去另一半',
-  'hudChrome.cryptAlert.graspTitle': '坟墓之握！',
-  'hudChrome.cryptAlert.graspLine': '鬼手会从这个法环中伸出，抓住站在里面的人：离开',
-  'hudChrome.cryptAlert.reapTitle': '收割不宁者！',
-  'hudChrome.cryptAlert.reapLine': '他的镰刀横扫面前的地面：绕到他身后',
-  'hudChrome.cryptAlert.riteTitle': '不宁者仪式',
-  'hudChrome.cryptAlert.riteLine': '重燃追思蜡烛以击碎他的结界：已点燃{lit}/{total}',
-  'hudChrome.cryptAlert.riteNamedLine': '只重燃名册接下来点出的蜡烛：已点燃{lit}/{total}',
-  'hudChrome.cryptAlert.soulTitle': '缚魂',
-  'hudChrome.cryptAlert.soulLine': '一个灵魂正飘向莫森：站到它的路径上，在它喂饱他之前接住它',
   'hudChrome.kitUse.relightLine': '引导时每秒吸取你的生命值：受到攻击不会打断，移动或昏迷会打断',
   'hudChrome.kitUse.relightKey': '重燃{name}',
   'hudChrome.kitUse.relightTap': '点击这里重燃{name}',

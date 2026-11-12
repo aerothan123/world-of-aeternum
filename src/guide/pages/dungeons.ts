@@ -16,7 +16,6 @@ import { callout, p, pageHeader, related, section } from './ui';
 
 // Curated flavor body, keyed by the generated dungeon id (raid is the withheld-name one).
 const BODY: Record<string, TranslationKey> = {
-  hollow_crypt: 'guide.dungeonsPage.hollowBody',
   sunken_bastion: 'guide.dungeonsPage.bastionBody',
   drowned_temple: 'guide.dungeonsPage.templeBody',
   gravewyrm_sanctum: 'guide.dungeonsPage.sanctumBody',

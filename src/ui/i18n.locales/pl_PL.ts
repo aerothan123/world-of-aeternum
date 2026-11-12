@@ -10112,8 +10112,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Wysoko na szczytach, z dala od głównej bitwy, kryje się chłodniejsza tajemnica. Stare groby noszą koronę, której żaden zapis nie pamięta, a zmarli, którzy ich strzegą, służyli niegdyś zapomnianemu królowi. Odczytaj ich kamienie, zbierz klucze sklepienia, które przechowywali, a zdołasz odpieczętować grobowiec, który trzy wierne dusze poległy, by trzymać zamknięty, opcjonalną próbę, która otwiera królestwu jego rajd dla dziesięciu graczy dla tych, którzy podążą za wskazówkami do końca.',
   'guide.dungeonsPage.cryptLeadTitle': 'Drzwi, które zmarli mieli trzymać zamknięte',
   'guide.dungeonsPage.heading': 'Lochy i rajdy',
-  'guide.dungeonsPage.hollowBody':
-    'Okradziona z grobów kaplica-krypta, gdzie świeżo zmarli odmawiają spoczynku. Pierwszy prawdziwy sprawdzian dla nowej drużyny.',
   'guide.dungeonsPage.hollowName': 'Wydrążona Krypta',
   'guide.dungeonsPage.intro':
     'Gdy otwarty świat to za mało, zbierz drużynę i wejdź do instancji: prywatnej kopii lochu stworzonej tylko dla twojej grupy.',
@@ -13179,10 +13177,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Stary Szaropaszcz, nareszcie',
   'entities.letters.letter_q_greyjaw.body':
     'Wieści szybko się niosą w tak małym miasteczku. Pasterze pili wczoraj za twoje zdrowie, a Wilkes przysięga, że wilk był wielki jak wóz. Niech sobie koloryzują: zasłużyłeś na to.\n\nZjedz posiłek na koszt straży.\n- Marszałek Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Brat Aldric',
-  'entities.letters.letter_q_hollow.subject': 'To, czego dokonałeś w mroku',
-  'entities.letters.letter_q_hollow.body':
-    'Niewielu kiedykolwiek się dowie, co było pogrzebane w tamtej kotlinie, a jeszcze mniej by uwierzyło. Ja wiem i nie zapomnę.\n\nNiech twoja droga pozostanie jasna.\n- Brat Aldric',
   'hudChrome.gathering.herbalism': 'Zielarstwo',
   'hudChrome.gathering.logging': 'Wyrąb',
   'hudChrome.gathering.mining': 'Górnictwo',
@@ -20276,49 +20270,9 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Gęstniejąca mgła',
   'abilityUi.cast.bastion_veil_rise': 'Zasłona mgły',
   'abilityUi.cast.cantor_last_verse': 'Ostatnia zwrotka',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Oddech kurhanowego płomienia',
-  'abilityUi.cast.crypt_carrion_eye': 'Oko padliny',
-  'abilityUi.cast.crypt_grave_bolt': 'Grobowy pocisk',
-  'abilityUi.cast.crypt_grave_cleave': 'Grobowe rozcięcie',
-  'abilityUi.cast.crypt_grave_rupture': 'Grobowe pęknięcie',
-  'abilityUi.cast.crypt_gravespark_volley': 'Salwa grobowych iskier',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Kościane organy',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Tren Pustki',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Nieprzerwana zwrotka',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Zstąpienie z nieba',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Ryk grozy',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Płonące podzwonne',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Płonące podzwonne',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Płonące podzwonne',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Płonące podzwonne',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Ognisty przelot',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Atak z przelotu',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Ślubny mróz',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Lament panny młodej',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Lodowe objęcie',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Lodowe objęcie',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Pogrzebowe bicie dzwonu',
-  'abilityUi.cast.crypt_marrow_crush': 'Zmiażdżenie szpiku',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Cios grabarza',
-  'abilityUi.cast.crypt_marrow_measure': 'Miara na grób',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Pełna łopata',
-  'abilityUi.cast.crypt_morthen_descend': 'Zstąpienie',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Grobowa proklamacja',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Żniwo niespokojnych',
-  'abilityUi.cast.crypt_morthen_rise': 'Powstanie Przyzywacza Grobów',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Rytuał niespokojnych',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Przebudzenie rytuału',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Puls cienia',
-  'abilityUi.cast.crypt_murder_call': 'Zew kruczego stada',
-  'abilityUi.cast.crypt_raise_bones': 'Wskrzeszenie kości',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Plunięcie szronnym jedwabiem',
-  'abilityUi.cast.crypt_stone_shriek': 'Kamienny wrzask',
-  'abilityUi.cast.crypt_tail_lash': 'Smagnięcie ogonem',
-  'abilityUi.cast.crypt_wing_gust': 'Podmuch skrzydeł',
   'abilityUi.cast.ghost_captain_anchor': 'Przeklęta kotwica',
   'abilityUi.cast.ghost_captain_boarding': 'Widmowy abordaż',
   'abilityUi.cast.ghost_captain_broadside': 'Widmowa salwa burtowa',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Zapal ponownie świecę',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Przewróć palenisko',
   'abilityUi.cast.sanctum_branding_iron': 'Żelazne piętno',
   'abilityUi.cast.sanctum_cinder_breath': 'Żarowy oddech',
@@ -20544,7 +20498,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'editor.tunnel.digAlpha.round': 'Okrągłe',
   'entities.mobs.bastion_drowned_anchor.name': 'Zatopiona kotwica',
   'entities.mobs.bastion_gaol_cage.name': 'Żelazna klatka',
-  'hudChrome.cryptAlert.riteTitle': 'Rytuał niespokojnych',
   'mode.playLoading': 'Wczytywanie',
   'mode.playStarting': 'Uruchamianie',
   'questUi.detail.chooseReward': 'Wybierz nagrodę:',
@@ -20685,7 +20638,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'bossJournal.wildheart.beast.wardName': 'Osłona grubej skóry',
   'entities.mobs.muster_footman.name': 'Piechur zaciężny',
   'entities.mobs.muster_sergeant.name': 'Sierżant zaciężny',
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmonia',
   'hudChrome.sanctumAlert.lockboundTitle': 'Spętany zamkami',
   'hudChrome.wildheartAlert.bondTitle': 'Więź stada',
   'bossJournal.bastion.vael.fogburstName': 'Wybuch mgły',
@@ -20702,7 +20654,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'bossJournal.temple.ysolei.phaseTideName': 'Wzbierający przypływ',
   'bossJournal.temple.ysolei.tideName': 'Wzbierający przypływ',
   'bossJournal.wildheart.bloom.spitName': 'Kwieciste plunięcie',
-  'hudChrome.cryptAlert.soulTitle': 'Spętana dusza',
   'hudChrome.sanctumAlert.slabTitle': 'Bryła lodu',
   'editor.city.roadCancel': 'Anuluj',
   'editor.city.wallCancel': 'Anuluj',
@@ -23746,12 +23697,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Otrzymuje o {pct}% mniej obrażeń, stojąc w Ławicy mgły. Wyciągnij go z mgły.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Jego łańcuchy są zerwane. Już nie walczy, nie można go zranić i wkrótce odejdzie.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Trzymany przez dłonie grobu: nie może się poruszać przez {seconds} s.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Atakuje o {pct}% szybciej, stojąc w Otwartym grobie. Trzymaj go poza grobami.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Ogłuszony: rozbita osłona uniemożliwia mu działanie przez {seconds} s.',
   'hudChrome.auraEffect.effigyPlankHide':
     'Odbija {pct}% każdego ciosu, dopóki pchnięcie Odłamkową Piką nie zgasi latarni w jego oku',
   'hudChrome.auraEffect.sanctum.doused':
@@ -23877,7 +23822,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.collections.presenceDefault': 'Czujesz obecność, która cię obserwuje.',
   'hudChrome.collections.revealed': '{name} postanawia za tobą podążać.',
   'hudChrome.collections.state.owned': 'Zebrane',
-  'hudChrome.cryptAlert.timeAria': 'Pozostało {seconds} sekund',
   'hudChrome.expeditions.dismiss': 'Odeślij',
   'hudChrome.kitUse.timeAria': 'Pozostało {seconds} sekund',
   'hudChrome.sanctumAlert.timeAria': 'Pozostało {seconds} sekund',
@@ -23904,29 +23848,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.send': 'Wyślij kuriera',
   'hudChrome.courier.unavailable': 'Przywołaj kuriera, aby zaplanować dostawę.',
   'hudChrome.courier.waiting': 'Czeka na zwrot twoich przedmiotów',
-  'hudChrome.cryptAlert.embracedLine':
-    'Twoja grupa musi zranić Panią Przeszywającego Chłodu, aby uwolnić cię z jej uścisku',
-  'hudChrome.cryptAlert.embracedTitle': 'Lodowe objęcie!',
-  'hudChrome.cryptAlert.graspLine':
-    'Opuść zaznaczony krąg przed pojawieniem się dłoni, aby uniknąć obrażeń i unieruchomienia',
-  'hudChrome.cryptAlert.graspTitle': 'Uścisk grobu!',
-  'hudChrome.cryptAlert.graveLine': 'Grobowa ziemia pali i spowalnia: wyjdź z niej',
-  'hudChrome.cryptAlert.graveTitle': 'W Otwartym grobie!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Zabij Chórzystów, aby usunąć zmniejszenie obrażeń Ilvane o {pct}%',
-  'hudChrome.cryptAlert.knellLine':
-    'Gdy pasek się skończy, widmowy ogień zaleje tę połowę kręgu: przejdź na drugą',
-  'hudChrome.cryptAlert.knellTitle': 'Płonące podzwonne!',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Pozostań w świetle tej zapalonej latarni, aby uniknąć obrażeń lamentu: masz miejsce w schronieniu',
-  'hudChrome.cryptAlert.lamentTitle': 'Lament panny młodej!',
-  'hudChrome.cryptAlert.measuredTitle': 'Miara na grób!',
-  'hudChrome.cryptAlert.reapLine':
-    'Przejdź za Morthena, aby uniknąć kosy uderzającej wszystkich z przodu',
-  'hudChrome.cryptAlert.reapTitle': 'Żniwo niespokojnych!',
-  'hudChrome.cryptAlert.riteLine':
-    'Zapal ponownie wszystkie Świece pamięci, aby przełamać odporność Morthena: płonie {lit} z {total}',
-  'hudChrome.cryptAlert.tollTitle': 'Pogrzebowe bicie dzwonu!',
   'hudChrome.deeds.buddiesEmpty': 'Zdobądź towarzysza, aby przywołać go z tej półki.',
   'hudChrome.deeds.buddiesNone': 'Brak towarzysza',
   'hudChrome.deeds.buddiesSection': 'Towarzysze',
@@ -24069,12 +23990,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Nakarmiony umarłymi ({stacks} z {max}): każdy ładunek poszerza Uwolnienie duszy o {radius} jardów i wzmacnia o {pct}%.',
   'hudChrome.auraEffect.bastion.halberdWall':
     'Otrzymuje o {pct}% mniej obrażeń, gdy inny Utopiony Wartownik stoi w promieniu {radius} jardów. Rozdziel ich.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Każda wrona w walce poluje na ciebie przez {seconds} s. Biegnij do tanka, aby zabić całe stado razem.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Zmniejsza szybkość ruchu o {pct}%. Pełna łopata trafia wszystkich przed Grabarzem Marrowem: stań za nim.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Otrzymuje o {pct}% mniej obrażeń: po {per}% za każdego żywego Chórzystę. Najpierw zabij Chórzystów.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Latarnia Słomianego Nadzorcy jest dla ciebie zgaszona: twoje ciosy i ciosy twojego zwierzaka ignorują Skórę z desek i trafiają z pełną siłą',
   'hudChrome.auraEffect.trinket.gutteredGlare':
@@ -24091,18 +24006,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Porusza się o {pct}% szybciej i poluje na Zwierzynę. Spowolnienia i unieruchomienia działają, ogłuszenia trwają o połowę krócej.',
   'hudChrome.courier.cargoSafe':
     'Zwrócone przedmioty trafiają do nadmiaru przy pełnych torbach. Po dostawie kurier znika do ponownego przywołania.',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Wejdź w światło zapalonej latarni, aby uniknąć obrażeń lamentu: przy każdej mieszczą się tylko dwaj gracze',
-  'hudChrome.cryptAlert.measuredLine':
-    'Przejdź na skraj dziedzińca przed końcem znaku, aby niebezpieczny grób był z dala od grupy',
-  'hudChrome.cryptAlert.soulLine':
-    'Przechwyć dryfującą duszę, aby nie uleczyła Morthena i nie zwiększyła jego obrażeń. Przechwycenie cię rani',
-  'hudChrome.cryptAlert.tollLine':
-    'Przygotuj się na szkielety z otwartych grobów: Marrow jest odporny, gdy bije w dzwon',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Ślubny mróz (przy połowie zdrowia dno wąwozu zamarza: śliski lód do końca walki)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmonia (każdy żywy Chórzysta zmniejsza otrzymywane przez nią obrażenia o 30 procent: zabij ich najpierw)',
   'hudChrome.finder.mech.rerivet_last_link':
     'Ponowne nitowanie i Ostatnie ogniwo (przerwij Kowala przypinającego łańcuch; ostatni łańcuch oznacza Wysiłek co 10 sekund)',
   'hudChrome.finder.mech.seal_shackles':
@@ -24279,38 +24182,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Przykuty do Zatopionej kotwicy: możesz się poruszać, ale nie oddalać od wyciągarki, która ciągnie cię ku Topielnej jamie. Zbliż się na {reach} jardów do oświetlonego słupka cumowniczego odległego o co najmniej {run} jardów od miejsca zahaczenia, aby przycumować łańcuch (słupek gaśnie na {dark} s), albo niech grupa zerwie go {links} trafieniami ({linksHeroic} na heroicznym). Jama zabiera {pit}% maksymalnego zdrowia ({pitHeroic}% na heroicznym).',
   'hudChrome.auraEffect.bastion.brineColumn':
     'Unieruchomiony w kolumnie morskiej wody: otrzymujesz {min} do {max} obrażeń natury co {tick} s przez maksymalnie {seconds} s. Przerwij lub ogłusz Akolitę Przypływu, aby zakończyć efekt.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Zwiększa otrzymywane obrażenia o {pct}%: {per}% za ładunek, obecnie {stacks} z {max}. Każdy Cios grabarza dodaje ładunek i odnawia czas do {seconds} s.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Śpiewa szybciej: Tren Pustki trwa {cast} s zamiast {castNormal} s i pojawia się co {every} s zamiast {everyNormal} s, a Kościane organy grają {waves} fal nut zamiast {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Trzymany wysoko w ramionach Pani: nie możesz działać i otrzymujesz {tick} obrażeń mrozu co sekundę ({tickHeroic} na heroicznym). Jeśli grupa zada obrażenia równe {share}% jej maksymalnego zdrowia ({shareHeroic}% na heroicznym), delikatnie cię odłoży; jeśli utrzyma cię na górze przez {hold} s, zrzuci cię na lód za {min} do {max} obrażeń ({heroicMin} do {heroicMax} na heroicznym).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Zadaje o {pct}% więcej obrażeń do końca walki: {per}% za każdą Spętaną duszę, która do niego dotarła, obecnie {stacks} z {max}. Każda taka dusza leczy go też o {heal}% maksymalnego zdrowia. Wejdź na drogę duszy, aby przejąć ją zamiast niego.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Otrzymuje o {pct}% mniej obrażeń, a kamień grubieje co {every} s, do {max} warstw. Ogłuszenie go rozbija i zwiększa otrzymywane obrażenia o {cracked}% na {seconds} s.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Dłonie wyłonią się z kręgu pod tobą za {fuse} s: każdy w promieniu {radius} jardów od miejsca jego powstania zostanie unieruchomiony na {root} s i otrzyma {min} do {max} obrażeń cienia. Wyjdź z kręgu.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Otrzymuje {bite} obrażeń cienia co sekundę ({biteHeroic} na heroicznym), dopóki trwa Rytuał niespokojnych; obrażenia rosną o {step} ({stepHeroic} na heroicznym) co {every} s. Zapal ponownie Świece pamięci, aby go zakończyć.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Stoisz w Otwartym grobie: szybkość ruchu zmniejszona o {slow}% i {damage} obrażeń cienia co sekundę ({heroic} na heroicznym). Na heroicznym przebywanie w grobie przez {linger} s wskrzesza Niespokojne Kości. Wyjdź z grobu.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Leci nad Kręgiem Rytuału, poza zasięgiem. Zaznacza połowę kręgu na {mark} s, potem zalewa ją widmowym ogniem: {min} do {max} obrażeń ognia dla każdego w środku. Podczas każdego lotu pali {breaths} połówek, a potem ląduje.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Gdy Lament panny młodej się kończy, zadaje {min} do {max} obrażeń mrozu ({heroicMin} do {heroicMax} na heroicznym) wszystkim poza promieniem {radius} jardów od zapalonej latarni grobowej. Latarnia chroni {cap} najbliższych graczy, potem gaśnie i nie osłania przed następnym Lamentem.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Następny Lament panny młodej zada ci o {pct}% więcej obrażeń: {per}% za ładunek, do {max} ładunków. Następny przyjmij w świetle latarni.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Gdy efekt się kończy, w twoim miejscu zapada się Otwarty grób: {min} do {max} obrażeń ({heroicMin} do {heroicMax} na heroicznym) dla każdego w promieniu {radius} jardów. Grób pozostaje do końca walki, więc zanieś znak na skraj dziedzińca, z dala od grupy.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Otrzymuje o {pct}% więcej obrażeń przez {seconds} s: ponownie zapalone świece rozbiły jego osłonę. Użyj teraz najsilniejszych ataków.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'Na śliskim lodzie: prędkość zmienia się najwyżej o {grip} jardów/s co sekundę, więc wolno ruszasz, ślizgasz się po zatrzymaniu i szeroko skręcasz. Zejdź z lodu, aby odzyskać przyczepność.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Odporny na obrażenia, gdy idzie do liny i bije w Pogrzebowy Dzwon. Po zakończeniu bicia Podzwonne zadaje wszystkim {min} do {max} obrażeń cienia ({heroicMin} do {heroicMax} na heroicznym), a z każdego Otwartego grobu powstają Niespokojne Kości.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Odporny na obrażenia podczas podtrzymywania Rytuału niespokojnych przy ołtarzu: ponownie zapalono {lit} z {total} Świec pamięci. Zapalenie jednej wymaga podtrzymywania przez {channel} s, które odbiera {drain}% maksymalnego zdrowia zapalającego co sekundę ({drainHeroic}% na heroicznym); trafienia nie przerywają, krok lub ogłuszenie tak. Ostatnia świeca rozbija osłonę. Na heroicznym zapalaj w kolejności z Księgi: niewłaściwa świeca gasi ostatnią zapaloną i zadaje zapalającemu {wrongMin} do {wrongMax} obrażeń cienia.',
   'hudChrome.auraEffect.sanctum.airborne':
     'W powietrzu, nie można go atakować. Ląduje Druzgocącym zstąpieniem na płycie z największą liczbą graczy, zadając {min} do {max} obrażeń ({heroicMin} do {heroicMax} na heroicznym) wszystkim w promieniu {radius} jardów.',
   'hudChrome.auraEffect.sanctum.branded':
@@ -24343,8 +24214,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Biegnij do oświetlonego słupka, aby przycumować łańcuch, lub niech grupa go zerwie, zanim wyciągarka wciągnie cię do jamy',
   'hudChrome.courier.instructions':
     'Wybierz całe stosy do swojego banku, Skarbca Materiałów lub innej postaci. Kurier najpierw je zdeponuje, a potem odbierze zamówione przedmioty. Przedmiotów zadaniowych nie można wysyłać.',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Zapalaj świece w kolejności Księgi, aby przełamać odporność Morthena: zła świeca cofa postęp ({lit}/{total})',
   'hudChrome.finder.guide.adds':
     'W miarę walki przybywają posiłki. Tank powinien je zebrać, zanim dotrą do uzdrowiciela. Zadający obrażenia powinni pomóc je zabić, aby grupa nie walczyła z kilkoma falami naraz.',
   'hudChrome.finder.guide.bleed':
@@ -24371,40 +24240,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Okresowe uderzenie rani i na krótko ogłusza pobliskich graczy. Uzdrowiciele i dystansowi powinni trzymać odległość. Utrzymuj wysokie zdrowie tanka przed uderzeniem, bo pobliscy sojusznicy mogą nie móc działać podczas ogłuszenia.',
   'hudChrome.finder.guide.ward':
     'Okresowo daje pobliskim sojusznikom tarczę pochłaniającą. Wspólnie skupcie się na jednym celu, aby rozbić tarczę i zabić go przed kolejną osłoną, zamiast rozdzielać obrażenia na grupę.',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Kościane organy (co 26 sekund gra na organach: dwie fale nut cienia biegną pasami empory, zadając 100 do 115 obrażeń na normalnym poziomie; druga fala wypełnia przerwy pierwszej)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Lament panny młodej (co 22 sekundy lament przez 3 sekundy: 60 do 75 obrażeń mrozu na normalnym poziomie dla każdego poza światłem zapalonej latarni grobowej, o połowę więcej za każdy ładunek Nieustającego lamentu z wcześniejszych trafień. Latarnia chroni najwyżej dwóch graczy i gaśnie na 28 sekund po osłonięciu kogokolwiek, więc rozdzielcie się i zmieniajcie)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Pogrzebowe bicie dzwonu (przy 66 i 33 procentach zdrowia idzie do liny, odporny na obrażenia, i bije przez 3 sekundy: 30 do 38 obrażeń cienia dla wszystkich na normalnym poziomie, a każdy Otwarty grób wskrzesza Niespokojne Kości)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Narastająca pieśń (poniżej 30 procent zdrowia Tren trwa 1.8 sekundy i pojawia się co 11 sekund, a organy grają trzecią falę)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Tren Pustki (co 16 sekund pieśń przez 2.5 sekundy, którą można przerwać: jeśli skończy, 105 do 125 obrażeń cienia na normalnym poziomie i wyciszenie na 4 sekundy dla każdego w promieniu 45 jardów, kto ją widzi; przerwij lub schowaj się za filarem chóru)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Lodowe objęcie (co 30 sekund chwyta gracza innego niż tank i unosi się z nim 5 jardów, zadając 6 obrażeń mrozu co sekundę: zadaj 6 procent jej zdrowia w ciągu 8 sekund, a go odstawi; inaczej zrzuci za 150 do 180 obrażeń na normalnym poziomie)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Zew grobu (co 15 sekund Spętana dusza dryfuje do niego z następnej wnęki sarkofagu; po dotarciu staje się Nasycony umarłymi: 10 procent więcej obrażeń za duszę, do 10 ładunków, i leczenie 3 procent zdrowia. Gracz na jej drodze przechwytuje ją: 12 do 16 obrażeń cienia na normalnym poziomie)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroiczny: Bis (Chórzysta martwy przez 10 sekund, gdy drugi żyje, powstaje ponownie; zabij ich razem) i Nieprzerwana zwrotka (co trzeci Tren nie daje się przerwać: schowaj się)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroiczny: każda zapalona latarnia gaśnie też sama po 30 sekundach i pozostaje ciemna przez 10, a Lodowe objęcie chwyta dwóch graczy i puszcza po zadaniu 4.4 procent jej zdrowia',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroiczny: Cios grabarza co 9 sekund w tanka (ładunek zwiększa otrzymywane obrażenia o 6 procent na 20 sekund, do 6 ładunków), Grobowa krzepa (atakuje o 30 procent szybciej w grobie) i Niespokojna ziemia (każdy przebywający w grobie 2 sekundy wskrzesza tam Niespokojne Kości)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Miara na grób (co 15 sekund naznacza gracza innego niż tank; po 4 sekundach zapada się pod nim Otwarty grób, 42 do 52 obrażeń w promieniu 3 jardów na normalnym poziomie; jama trwa do końca walki: 9 obrażeń co sekundę i ruch wolniejszy o 40 procent, więc umieszczaj groby na skraju dziedzińca)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroiczny: Nazwij zmarłych (Księga wskazuje kolejność świec: zła gasi ostatnią zapaloną i zadaje zapalającemu 252 do 288 obrażeń cienia, a każde zapalanie odbiera 8 procent co sekundę), Uścisk grobu (co 16 sekund 2 graczy otrzymuje krąg 4 jardów; po 1.5 sekundy wyłaniają się dłonie: unieruchomienie na 3 sekundy i 162 do 198 obrażeń cienia) oraz Płonące podzwonne Dzwonnego Żmija (wzbija się i zaznacza połowę kręgu na 4.5 sekundy, potem zalewa ją widmowym ogniem za 1000 do 1120 obrażeń ognia; 3 połowy na lot)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Puls cienia (co 12 sekund rzuca przez 2 sekundy, potem zadaje 24 do 30 obrażeń cienia na normalnym poziomie wszystkim w promieniu 12 jardów; odsuń się. Podczas Ostatnich Rytuałów co 9 sekund)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Żniwo niespokojnych (poniżej 35 procent zdrowia dusze ustają; co 14 sekund po rzucaniu przez 2 sekundy wykonuje zamach kosą: 55 do 65 obrażeń cienia na normalnym poziomie wszystkim w łuku 120 stopni na 14 jardów przed nim. Puls cienia pojawia się wtedy co 9 sekund)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Szronna ścieżka (zostawia śliski szron na 25 sekund tam, gdzie się przesuwa: wolno nabierasz na nim prędkości i ślizgasz się przy zatrzymaniu lub skręcie)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Rytuał niespokojnych (przy 65 procentach zdrowia wraca do ołtarza, odporny w Osłonie niespokojnych; Grobowy chłód zadaje wszystkim 3 obrażenia cienia co sekundę, rosnące o 1 co 5 sekund, a z wnęk wychodzą 2 Niespokojne Kości. Zapal ponownie 4 Świece pamięci: każda wymaga podtrzymywania przez 4 sekundy, odbiera 6 procent maksymalnego zdrowia zapalającego co sekundę; trafienia nie przerywają, ale krok i ogłuszenie tak. Ostatnia świeca przerywa Rytuał: ogłuszenie na 8 sekund i o 25 procent więcej otrzymywanych obrażeń)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Pełna łopata (co 11 sekund rzuca grobową ziemią w stożku 8 jardów przed sobą: półtora raza siły ciosu i ruch wolniejszy o 50 procent na 6 sekund; stań za nim)',
   'hudChrome.finder.mech.drowned_anchor':
     'Zatopiona kotwica (ofiara jest ciągnięta do jamy: zbliż się na 3 jardy do oświetlonego słupka, aby przycumować łańcuch; słupek gaśnie potem na 30 sekund, lub zerwij łańcuch 12 trafieniami, 16 na heroicznym)',
   'hudChrome.finder.mech.hallowed_brine':

@@ -9949,8 +9949,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Högt uppe på topparna, bortom huvudstriden, vilar ett kallare mysterium. Gamla gravar bär en krona som ingen krönika minns, och de döda som vaktar dem tjänade en gång en bortglömd kung. Läs deras stenar, samla de nyckelstenar de bevarade, så kan du bryta förseglingen på en grav som tre lojala själar dog för att hålla stängd, den valfria prövningen som öppnar riket för dess raid för tio spelare åt dem som följer ledtrådarna ända till slutet.',
   'guide.dungeonsPage.cryptLeadTitle': 'En dörr de döda var menade att hålla stängd',
   'guide.dungeonsPage.heading': 'Fängelsehålor och raider',
-  'guide.dungeonsPage.hollowBody':
-    'En gravplundrad kapellkrypta där de nyligen döda vägrar vila. Det första riktiga provet för en ny grupp.',
   'guide.dungeonsPage.hollowName': 'Den ihåliga kryptan',
   'guide.dungeonsPage.intro':
     'När den öppna världen inte räcker, samla en grupp och kliv in i en instans: en privat kopia av en fängelsehåla skapad bara för din grupp.',
@@ -12960,10 +12958,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Gamle Gråkäft, äntligen',
   'entities.letters.letter_q_greyjaw.body':
     'Nyheter färdas snabbt i en så liten stad. Herdarna skålade för din hälsa i går kväll, och Wilkes svär att vargen var stor som en kärra. Låt dem brodera ut det: du har förtjänat det.\n\nÄt en måltid på vaktens bekostnad.\n- Marskalk Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Broder Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Det du gjorde i mörkret',
-  'entities.letters.letter_q_hollow.body':
-    'Få kommer någonsin att veta vad som låg begravet i den sänkan, och ännu färre skulle tro det. Jag vet, och jag kommer inte att glömma.\n\nMå din väg förbli upplyst.\n- Broder Aldric',
   'hudChrome.gathering.herbalism': 'Örtkunskap',
   'hudChrome.gathering.logging': 'Skogsavverkning',
   'hudChrome.gathering.mining': 'Gruvdrift',
@@ -20133,49 +20127,9 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Samlande dimma',
   'abilityUi.cast.bastion_veil_rise': 'Dimslöja',
   'abilityUi.cast.cantor_last_verse': 'Sista versen',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Gravflammans andedräkt',
-  'abilityUi.cast.crypt_carrion_eye': 'Asöga',
-  'abilityUi.cast.crypt_grave_bolt': 'Gravprojektil',
-  'abilityUi.cast.crypt_grave_cleave': 'Gravklyvning',
-  'abilityUi.cast.crypt_grave_rupture': 'Gravbristning',
-  'abilityUi.cast.crypt_gravespark_volley': 'Gravgnistsalva',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Benorgel',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Klagosång från hålrummet',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Obruten vers',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Nedstigning från himlen',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Skräckvrål',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Brinnande dödsklang',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Brinnande dödsklang',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Brinnande dödsklang',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Brinnande dödsklang',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Bålsvep',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Svepande anfall',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Brudfrysning',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Brudens klagan',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Frusen omfamning',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Frusen omfamning',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Begravningsklang',
-  'abilityUi.cast.crypt_marrow_crush': 'Märgkross',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Dödgrävarens slag',
-  'abilityUi.cast.crypt_marrow_measure': 'Mätt för graven',
-  'abilityUi.cast.crypt_marrow_shovelful': 'En skyffel jord',
-  'abilityUi.cast.crypt_morthen_descend': 'Nedstigning',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Gravförkunnelse',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Skörda de oroliga',
-  'abilityUi.cast.crypt_morthen_rise': 'Gravkallarens uppstigande',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'De oroligas rit',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Riten vaknar',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Skuggpuls',
-  'abilityUi.cast.crypt_murder_call': 'Kråkflockens rop',
-  'abilityUi.cast.crypt_raise_bones': 'Väck benen',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Rimsilkesspott',
-  'abilityUi.cast.crypt_stone_shriek': 'Stenskrik',
-  'abilityUi.cast.crypt_tail_lash': 'Svanspiska',
-  'abilityUi.cast.crypt_wing_gust': 'Vingkast',
   'abilityUi.cast.ghost_captain_anchor': 'Förbannat ankare',
   'abilityUi.cast.ghost_captain_boarding': 'Spöklig äntring',
   'abilityUi.cast.ghost_captain_broadside': 'Spöksalva',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Tänd ljuset igen',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Vält fyrfatet',
   'abilityUi.cast.sanctum_branding_iron': 'Brännjärn',
   'abilityUi.cast.sanctum_cinder_breath': 'Glödandedräkt',
@@ -20431,50 +20385,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Tar {pct}% mindre skada medan en annan dränkt väktare står inom {radius} yard. Dra isär dem.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Dess kedjor är brutna. Den slåss inte längre, kan inte skadas och lämnar snart platsen.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Ökar skadan du tar med {pct}%: {per}% per laddning, nu {stacks} av {max}. Varje Dödgrävarens slag lägger till en laddning och återställer varaktigheten till {seconds} sek.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Varje kråka i striden jagar dig i {seconds} sek. Spring till din tank så att flocken kan huggas ned tillsammans.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Sjunger snabbare: Klagosång från hålrummet tar {cast} sek i stället för {castNormal} sek och kommer var {every}:e sek i stället för var {everyNormal}:e sek, och Benorgel spelar {waves} vågor av toner i stället för {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Minskar rörelsehastigheten med {pct}%. En skyffel jord träffar alla framför dödgrävaren Marrow: stå bakom honom.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Hålls uppe i damens armar: kan inte agera och tar {tick} frostskada varje sekund ({tickHeroic} i heroiskt läge). Om gruppen gör skada motsvarande {share}% av hennes maximala hälsa ({shareHeroic}% i heroiskt läge) sätter hon varsamt ned dig; om hon håller dig högst upp i {hold} sek släpper hon dig på isen för {min} till {max} skada ({heroicMin} till {heroicMax} i heroiskt läge).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Gör {pct}% mer skada: {per}% för varje bunden själ som nått honom, nu {stacks} av {max}, under resten av striden. Varje själ som når honom läker honom också med {heal}% av hans maximala hälsa. Ställ dig i själens väg för att ta den i stället.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Tar {pct}% mindre skada, och stenen tjocknar var {every}:e sek, upp till {max} lager. En bedövning krossar den och gör att den tar {cracked}% mer skada i {seconds} sek.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Händer bryter fram ur ringen under dig om {fuse} sek: alla inom {radius} yard från platsen där den lades rotas i {root} sek och tar {min} till {max} skuggskada. Gå ut ur ringen.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Fasthållen av gravens händer: kan inte röra dig i {seconds} sek.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Tar {bite} skuggskada varje sekund ({biteHeroic} i heroiskt läge) medan De oroligas rit pågår, med en ökning på {step} ({stepHeroic} i heroiskt läge) var {every}:e sek. Tänd minnesljusen igen för att avsluta den.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Står i en öppen grav: rörelsehastigheten minskar med {slow}% och du tar {damage} skuggskada varje sekund ({heroic} i heroiskt läge). Om du stannar i en grav i {linger} sek i heroiskt läge väcks ett rastlöst skelett. Gå ut ur graven.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Attackerar {pct}% snabbare medan han står i en öppen grav. Håll honom borta från gravarna.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Tar {pct}% mindre skada: {per}% för varje levande korist. Döda koristerna först.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Flyger ovanför ritringen, utom räckhåll. Den markerar halva ringen i {mark} sek och öser sedan spökeld över den halvan: {min} till {max} eldskada på alla där. Den bränner {breaths} halvor under varje flygning och landar sedan.',
-  'hudChrome.auraEffect.crypt.lament':
-    'När Brudens klagan tar slut gör den {min} till {max} frostskada ({heroicMin} till {heroicMax} i heroiskt läge) på alla som inte står inom {radius} yard från en tänd gravlykta. En lykta skyddar de {cap} närmaste spelarna, slocknar sedan och är släckt under nästa klagan.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Nästa Brudens klagan gör {pct}% mer skada på dig: {per}% per laddning, upp till {max} laddningar. Ta nästa i skenet från en lykta.',
-  'hudChrome.auraEffect.crypt.measured':
-    'När effekten tar slut rasar en öppen grav in där du står: {min} till {max} skada ({heroicMin} till {heroicMax} i heroiskt läge) på alla inom {radius} yard. Graven blir kvar under resten av striden, så bär markeringen till gårdens kant, bort från gruppen.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Bedövad: det krossade skyddet hindrar honom från att agera i {seconds} sek.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Tar {pct}% mer skada i {seconds} sek: de återtända ljusen bröt hans skydd. Använd dina starkaste attacker nu.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'På hal is: din hastighet ändras med högst {grip} yard/sek varje sekund, så du kommer långsamt i gång, glider vidare när du stannar och gör vida svängar. Gå av isen för att få fäste igen.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Immun mot skada medan han går till klockrepet och ringer i begravningsklockan. När ringningen slutar gör klangen {min} till {max} skuggskada ({heroicMin} till {heroicMax} i heroiskt läge) på alla, och varje öppen grav släpper fram ett rastlöst skelett.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Immun mot skada medan han kanaliserar De oroligas rit vid altaret: {lit} av {total} minnesljus återtända. Att tända ett ljus är en kanalisering på {channel} sek som dränerar {drain}% av tändarens maximala hälsa varje sekund ({drainHeroic}% i heroiskt läge); träffar bryter inte kanaliseringen, men ett steg eller en bedövning gör det. Det sista ljuset krossar skyddet. Tänd dem i liggarens ordning i heroiskt läge: fel ljus släcker det senast tända och gör {wrongMin} till {wrongMax} skuggskada på tändaren.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Halmförmannens lykta är släckt för dig: dina och ditt husdjurs slag ignorerar dess plankhud och gör full skada',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -20715,43 +20625,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Kurir',
   'hudChrome.courier.unavailable': 'Frammana din kurir för att planera en leverans.',
   'hudChrome.courier.waiting': 'Väntar på att lämna tillbaka dina föremål',
-  'hudChrome.cryptAlert.embracedLine':
-    'Din grupp måste skada Benkylans dam för att befria dig ur hennes grepp',
-  'hudChrome.cryptAlert.embracedTitle': 'Frusen omfamning!',
-  'hudChrome.cryptAlert.graspLine':
-    'Lämna den markerade ringen innan händerna bryter fram för att undvika skada och rotning',
-  'hudChrome.cryptAlert.graspTitle': 'Gravens grepp!',
-  'hudChrome.cryptAlert.graveLine': 'Gravjorden bränner och saktar dig: gå ur den',
-  'hudChrome.cryptAlert.graveTitle': 'I en öppen grav!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Döda koristerna för att ta bort Ilvanes skademinskning på {pct}%',
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmoni',
-  'hudChrome.cryptAlert.knellLine':
-    'Spökeld öser över denna halva av ringen när fältet tömts: ta dig till den andra halvan',
-  'hudChrome.cryptAlert.knellTitle': 'Brinnande dödsklang!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Gå in i skenet från en tänd lykta för att undvika klagans skada: bara två spelare får plats vid varje lykta',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Stanna i skenet från denna tända lykta för att undvika klagans skada: du har en skyddad plats',
-  'hudChrome.cryptAlert.lamentTitle': 'Brudens klagan!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Gå till gårdens kant innan markeringen tar slut för att hålla den skadande graven borta från gruppen',
-  'hudChrome.cryptAlert.measuredTitle': 'Mätt för graven!',
-  'hudChrome.cryptAlert.reapLine':
-    'Gå bakom Morthen för att undvika lien som träffar alla framför honom',
-  'hudChrome.cryptAlert.reapTitle': 'Skörda de oroliga!',
-  'hudChrome.cryptAlert.riteLine':
-    'Tänd alla minnesljus igen för att bryta Morthens immunitet: {lit} av {total} tända',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Tänd ljusen i liggarens ordning för att bryta Morthens immunitet: fel ljus återställer framsteg ({lit}/{total})',
-  'hudChrome.cryptAlert.riteTitle': 'De oroligas rit',
-  'hudChrome.cryptAlert.soulLine':
-    'Fånga upp den drivande själen för att hindra den från att läka Morthen och öka hans skada. Att fånga den skadar dig',
-  'hudChrome.cryptAlert.soulTitle': 'Bunden själ',
-  'hudChrome.cryptAlert.timeAria': '{seconds} sekunder kvar',
-  'hudChrome.cryptAlert.tollLine':
-    'Förbered dig på att slåss mot skeletten som väcks ur öppna gravar: Marrow är immun medan han ringer i klockan',
-  'hudChrome.cryptAlert.tollTitle': 'Begravningsklang!',
   'hudChrome.deeds.buddiesEmpty': 'Samla en följeslagare för att frammana den från denna hylla.',
   'hudChrome.deeds.buddiesNone': 'Ingen följeslagare',
   'hudChrome.deeds.buddiesSection': 'Följeslagare',
@@ -20866,44 +20739,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Ansträngning (gå bort från varje pelare vars kedja fortfarande håller)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Kör och Solo (samlas på den ena markeringen, sprid ut er från den andra)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Benorgel (var 26:e sekund spelar hon Benorgel: två vågor av skuggtoner brister fram längs läktarens banor, 100 till 115 skada i normalt läge i en bana, och den andra vågen fyller luckorna i den första)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Brudfrysning (vid halv hälsa fryser hela ravinens golv till: hal is under resten av striden)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Brudens klagan (var 22:a sekund en klagan på 3 sekunder: 60 till 75 frostskada i normalt läge på alla utanför skenet från en tänd gravlykta, hälften så mycket till för varje laddning av Kvardröjande klagan från de klagor du redan tagit. En lykta skyddar högst två spelare och slocknar i 28 sekunder efter att ha skyddat någon, så dela upp er och turas om)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Begravningsklang (vid 66 och 33 procent hälsa går han till klockrepet, immun mot skada, och ringer i 3 sekunder: 30 till 38 skuggskada på alla i normalt läge, och varje öppen grav väcker ett rastlöst skelett)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Stegring (under 30 procent hälsa tar hennes klagosång 1,8 sekunder och kommer var 11:e sekund, och orgeln spelar en tredje våg)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Klagosång från hålrummet (var 16:e sekund en sång på 2,5 sekunder som kan avbrytas: om hon slutför den gör den 105 till 125 skuggskada i normalt läge och tystar i 4 sekunder alla inom 45 yard som kan se henne, så avbryt den eller göm dig bakom en körpelare)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Frusen omfamning (var 30:e sekund griper hon en annan spelare än tanken och stiger 5 yard upp i luften med spelaren, 6 frostskada per sekund: gör skada motsvarande 6 procent av hennes hälsa inom 8 sekunder så sätter hon ned spelaren, annars släpper hon ned spelaren för 150 till 180 skada i normalt läge)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Gravkall (var 15:e sekund driver en bunden själ från nästa sarkofagnisch mot honom; när den når honom blir han Mätt på de döda, 10 procent mer skada per själ upp till 10 laddningar, och läker 3 procent av sin hälsa. En spelare i dess väg tar den i stället: 12 till 16 skuggskada i normalt läge)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmoni (varje levande korist får henne att ta 30 procent mindre skada: döda koristerna först)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroiskt: Extranummer (en korist som legat död i 10 sekunder medan den andra fortfarande står reser sig igen, så döda dem samtidigt) och Obruten vers (var tredje klagosång kan inte avbrytas: göm dig från den)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroiskt: varje tänd lykta slocknar även av sig själv efter 30 sekunder och förblir släckt i 10, och Frusen omfamning tar två spelare och släpper vid 4,4 procent av hennes hälsa',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroiskt: Dödgrävarens slag var 9:e sekund på tanken (varje laddning får tanken att ta 6 procent mer skada i 20 sekunder, upp till 6 laddningar), Gravkraft (han slår 30 procent snabbare medan han står i en grav) och Orolig jord (den som stannar i en grav i 2 sekunder väcker ett rastlöst skelett där)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Mätt för graven (var 15:e sekund markerar han en annan spelare än tanken; 4 sekunder senare rasar en öppen grav in under spelaren, 42 till 52 skada inom 3 yard i normalt läge, och gropen stannar under striden: 9 skada per sekund och 40 procent långsammare rörelse därinne, så placera gravarna vid gårdens kant)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroiskt: Namnge de döda (liggaren anger ljusens ordning: fel ljus släcker det senast tända och gör 252 till 288 skuggskada på tändaren, och varje återtändning dränerar 8 procent per sekund), Gravens grepp (var 16:e sekund får 2 spelare en ring på 4 yard; 1,5 sekunder senare bryter händer fram i den: en rotning på 3 sekunder och 162 till 198 skuggskada) och Dödsklangslindormens Brinnande dödsklang (den lyfter och markerar halva ringen i 4,5 sekunder och öser sedan spökeld över den halvan för 1 000 till 1 120 eldskada, 3 halvor per flygning)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Skuggpuls (var 12:e sekund en besvärjelse på 2 sekunder, sedan 24 till 30 skuggskada i normalt läge på alla inom 12 yard från honom, så gå undan; var 9:e sekund under hans Sista smörjelse)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Skörda de oroliga (under 35 procent hälsa upphör själarna; var 14:e sekund sveper han med lien efter en besvärjelse på 2 sekunder: 55 till 65 skuggskada i normalt läge på alla i en båge på 120 grader 14 yard framför honom. Skuggpuls kommer då var 9:e sekund)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Rimfroststig (hon lämnar hal rimfrost där hon svävar i 25 sekunder: på den ökar du farten långsamt och glider vidare när du stannar eller svänger)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'De oroligas rit (vid 65 procent hälsa återvänder han till altaret, immun inuti De oroligas skydd, medan Gravkyla gör 3 skuggskada per sekund på alla, med en ökning på 1 var 5:e sekund, och 2 rastlösa skelett klättrar upp ur nischerna. Tänd de 4 minnesljusen igen: varje ljus kräver en kanalisering på 4 sekunder som dränerar 6 procent av tändarens maximala hälsa varje sekund; träffar bryter inte den men ett steg eller en bedövning gör det. Det sista ljuset bryter riten: han bedövas i 8 sekunder och tar 25 procent mer skada)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'En skyffel jord (var 11:e sekund slungar han gravjord över en kon på 8 yard framför sig: en och en halv gånger hans vanliga slag och 50 procent långsammare rörelse i 6 sekunder, så stå bakom honom)',
   'hudChrome.finder.mech.drowned_anchor':
     'Dränkt ankare (offret vinschas mot gropen: spring inom 3 yard från en tänd förtöjningsstolpe för att förtöja kedjan, varefter stolpen slocknar i 30 sekunder, eller bryt kedjan med 12 träffar, 16 i heroiskt läge)',
   'hudChrome.finder.mech.fog_veil':

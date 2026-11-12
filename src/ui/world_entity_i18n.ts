@@ -1007,7 +1007,6 @@ const LETTER_IDS = [
   'ravenpost_welcome',
   'letter_q_wolves',
   'letter_q_greyjaw',
-  'letter_q_hollow',
   'heroic_marks_reward',
   // The absent-participant Wyrmfall Core delivery (Masterwrought phase 04,
   // WYRMFALL_CORE_LETTER in src/sim/content/letters.ts).

@@ -10629,8 +10629,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     'Zirvelerin yükseklerinde, ana savaştan uzakta, daha soğuk bir gizem yatar. Eski mezarlar hiçbir kaydın hatırlamadığı bir tacı taşır ve onları koruyan ölüler bir zamanlar unutulmuş bir krala hizmet etmiştir. Taşlarını okuyun, sakladıkları kilit taşlarını toplayın; böylece üç sadık ruhun kapalı tutmak için canını verdiği bir mezarın mührünü açabilirsiniz. Bu, ipuçlarını sonuna kadar takip edenler için diyarı on oyunculu akınına açan isteğe bağlı sınavdır.',
   'guide.dungeonsPage.cryptLeadTitle': 'Ölülerin kapalı tutması gereken bir kapı',
   'guide.dungeonsPage.heading': 'Zindanlar ve Akınlar',
-  'guide.dungeonsPage.hollowBody':
-    'Yeni ölülerin huzur bulmayı reddettiği, mezarları soyulmuş bir şapel mahzeni. Yeni bir grubun ilk gerçek sınavı.',
   'guide.dungeonsPage.hollowName': 'Oyuk Mezar',
   'guide.dungeonsPage.intro':
     'Açık dünya yetmediğinde, bir grup toplayıp bir örneğe adım atın: yalnızca sizin grubunuz için yapılmış özel bir zindan kopyası.',
@@ -13641,10 +13639,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Yaşlı Bozçene, sonunda',
   'entities.letters.letter_q_greyjaw.body':
     'Böyle küçük bir kasabada haber tez yayılır. Çobanlar dün gece sağlığına kadeh kaldırdı, Wilkes ise kurdun bir araba kadar iri olduğuna yemin ediyor. Bırak abartsınlar: bunu hak ettin.\n\nNöbetçilerin hesabına bir yemek ye.\n- Mareşal Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Birader Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Karanlıkta yaptıkların',
-  'entities.letters.letter_q_hollow.body':
-    'O çukurda neyin gömülü olduğunu çok az kişi bilecek, inanacak olansa daha da az. Ben biliyorum ve unutmayacağım.\n\nYolun hep aydınlık olsun.\n- Birader Aldric',
   'hudChrome.gathering.herbalism': 'Bitkicilik',
   'hudChrome.gathering.logging': 'Ağaç kesme',
   'hudChrome.gathering.mining': 'Madencilik',
@@ -20112,49 +20106,9 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Toplanan Sis',
   'abilityUi.cast.bastion_veil_rise': 'Sis Perdesi',
   'abilityUi.cast.cantor_last_verse': 'Son Kıta',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Mezar Alevi Nefesi',
-  'abilityUi.cast.crypt_carrion_eye': 'Leş Gözü',
-  'abilityUi.cast.crypt_grave_bolt': 'Mezar Oku',
-  'abilityUi.cast.crypt_grave_cleave': 'Mezar Yarması',
-  'abilityUi.cast.crypt_grave_rupture': 'Mezar Yarılması',
-  'abilityUi.cast.crypt_gravespark_volley': 'Mezar Kıvılcımı Yaylımı',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Kemik Orgu',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Boşluğun Ağıdı',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Kesintisiz Kıta',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Gökten İniş',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Dehşet Böğürtüsü',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Yanan Ölüm Çanı',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Yanan Ölüm Çanı',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Yanan Ölüm Çanı',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Yanan Ölüm Çanı',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Rov Alevi Geçişi',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Saldırı Geçişi',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Gelin Donu',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Gelinin Ağıdı',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Donmuş Kucaklama',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Donmuş Kucaklama',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Defin Çanı',
-  'abilityUi.cast.crypt_marrow_crush': 'İlik Ezişi',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Mezarcının Darbesi',
-  'abilityUi.cast.crypt_marrow_measure': 'Mezar Ölçüsü',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Bir Kürek Dolusu',
-  'abilityUi.cast.crypt_morthen_descend': 'İniş',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Mezar Bildirisi',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Huzursuzları Biç',
-  'abilityUi.cast.crypt_morthen_rise': 'Mezarçağıranın Yükselişi',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Huzursuzların Ayini',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Ayin Uyanıyor',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Gölge Atımı',
-  'abilityUi.cast.crypt_murder_call': 'Karga Sürüsü Çağrısı',
-  'abilityUi.cast.crypt_raise_bones': 'Kemikleri Dirilt',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Kırağı İpeği Tükürüğü',
-  'abilityUi.cast.crypt_stone_shriek': 'Taş Çığlığı',
-  'abilityUi.cast.crypt_tail_lash': 'Kuyruk Kamçısı',
-  'abilityUi.cast.crypt_wing_gust': 'Kanat Esintisi',
   'abilityUi.cast.ghost_captain_anchor': 'Lanetli Çapa',
   'abilityUi.cast.ghost_captain_boarding': 'Hayalet Baskını',
   'abilityUi.cast.ghost_captain_broadside': 'Hayalet Borda Ateşi',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Mumu Yeniden Yak',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Mangalı Devir',
   'abilityUi.cast.sanctum_branding_iron': 'Dağlama Demiri',
   'abilityUi.cast.sanctum_cinder_breath': 'Köz Nefesi',
@@ -20380,7 +20334,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'editor.tunnel.digAlpha.round': 'Yuvarlak',
   'entities.mobs.bastion_drowned_anchor.name': 'Batık Çapa',
   'entities.mobs.bastion_gaol_cage.name': 'Demir Kafes',
-  'hudChrome.cryptAlert.riteTitle': 'Huzursuzların Ayini',
   'mode.playLoading': 'Yükleniyor',
   'mode.playStarting': 'Başlatılıyor',
   'questUi.detail.chooseReward': 'Ödülünü seç:',
@@ -20520,7 +20473,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'bossJournal.wildheart.beast.wardName': 'Kalın Post Koruması',
   'entities.mobs.muster_footman.name': 'Toplanma Piyadesi',
   'entities.mobs.muster_sergeant.name': 'Toplanma Çavuşu',
-  'hudChrome.cryptAlert.harmonyTitle': 'Ahenk',
   'hudChrome.sanctumAlert.lockboundTitle': 'Kilitlerle Bağlı',
   'hudChrome.wildheartAlert.bondTitle': 'Sürü Bağı',
   'bossJournal.bastion.vael.fogburstName': 'Sis Patlaması',
@@ -20537,7 +20489,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'bossJournal.temple.ysolei.phaseTideName': 'Yükselen Gelgit',
   'bossJournal.temple.ysolei.tideName': 'Yükselen Gelgit',
   'bossJournal.wildheart.bloom.spitName': 'Çiçek Tükürüğü',
-  'hudChrome.cryptAlert.soulTitle': 'Bağlı Ruh',
   'hudChrome.sanctumAlert.slabTitle': 'Buz Levhası',
   'editor.city.roadCancel': 'İptal',
   'editor.city.wallCancel': 'İptal',
@@ -23534,11 +23485,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     'Sis Kümesinde dururken %{pct} daha az hasar alır. Sisin dışına çek.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Zincirleri kırıldı. Artık savaşmaz, zarar görmez ve yakında ayrılır.',
-  'hudChrome.auraEffect.crypt.graspRoot': 'Mezarın elleri tutuyor: {seconds} sn hareket edemez.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Açık Mezarda dururken %{pct} daha hızlı saldırır. Mezarlardan uzak tut.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Sersemlemiş: parçalanan koruma {seconds} sn eylem yapmasını engeller.',
   'hudChrome.auraEffect.effigyPlankHide':
     'Kıymık Kargısı hamlesi gözündeki feneri söndürene kadar her darbenin %{pct} kadarını savuşturur',
   'hudChrome.auraEffect.sanctum.doused':
@@ -23659,7 +23605,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.collections.presenceDefault': 'Seni izleyen bir varlık hissediyorsun.',
   'hudChrome.collections.revealed': '{name} seni izlemeye karar verdi.',
   'hudChrome.collections.state.owned': 'Toplandı',
-  'hudChrome.cryptAlert.timeAria': '{seconds} saniye kaldı',
   'hudChrome.kitUse.timeAria': '{seconds} saniye kaldı',
   'hudChrome.sanctumAlert.timeAria': '{seconds} saniye kaldı',
   'hudChrome.wildheartAlert.timeAria': '{seconds} saniye kaldı',
@@ -23684,29 +23629,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.send': 'Kuryeyi gönder',
   'hudChrome.courier.unavailable': 'Teslimat planlamak için kuryeni çağır.',
   'hudChrome.courier.waiting': 'Eşyalarını döndürmeyi bekliyor',
-  'hudChrome.cryptAlert.embracedLine':
-    'Seni tutuşundan kurtarmak için grubun Kemik Donduran Leydiye hasar vermeli',
-  'hudChrome.cryptAlert.embracedTitle': 'Donmuş Kucaklama!',
-  'hudChrome.cryptAlert.graspLine':
-    'Hasardan ve köklenmeden kaçmak için eller fışkırmadan işaretli halkadan çık',
-  'hudChrome.cryptAlert.graspTitle': 'Mezarın Kavrayışı!',
-  'hudChrome.cryptAlert.graveLine': 'Mezar toprağı yakıp yavaşlatır: dışına çık',
-  'hudChrome.cryptAlert.graveTitle': 'Açık Mezardasın!',
-  'hudChrome.cryptAlert.harmonyLine':
-    "Ilvane'nin %{pct} hasar azaltmasını kaldırmak için Korocuları öldür",
-  'hudChrome.cryptAlert.knellLine':
-    'Çubuk bitince hayalet ateşi halkanın bu yarısını kaplar: diğer yarıya geç',
-  'hudChrome.cryptAlert.knellTitle': 'Yanan Ölüm Çanı!',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Ağıt hasarından kaçmak için bu yanan fenerin ışığında kal: sığınak yerin var',
-  'hudChrome.cryptAlert.lamentTitle': 'Gelinin Ağıdı!',
-  'hudChrome.cryptAlert.measuredTitle': 'Mezar Ölçüsü!',
-  'hudChrome.cryptAlert.reapLine':
-    "Öndeki herkese vuran tırpandan kaçmak için Morthen'in arkasına geç",
-  'hudChrome.cryptAlert.reapTitle': 'Huzursuzları Biç!',
-  'hudChrome.cryptAlert.riteLine':
-    "Morthen'in bağışıklığını kırmak için tüm Anma Mumlarını yeniden yak: {total} mumdan {lit} yanıyor",
-  'hudChrome.cryptAlert.tollTitle': 'Defin Çanı!',
   'hudChrome.deeds.buddiesEmpty': 'Bu raftan çağırmak için yoldaş topla.',
   'hudChrome.deeds.buddiesNone': 'Yoldaş Yok',
   'hudChrome.deeds.buddiesSection': 'Yoldaşlar',
@@ -23839,12 +23761,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     'Ölülerle beslenmiş ({stacks} / {max}): her yük Ruh Salımını {radius} yarda genişletir ve %{pct} güçlendirir.',
   'hudChrome.auraEffect.bastion.halberdWall':
     'Başka Boğulmuş Nöbetçi {radius} yarda içindeyken %{pct} daha az hasar alır. Onları ayır.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Savaştaki her karga {seconds} sn seni avlar. Sürünün birlikte kesilebilmesi için tankına koş.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    "Hareket hızını %{pct} azaltır. Bir Kürek Dolusu, Zangoç Marrow'un önündeki herkese vurur: arkasında dur.",
-  'hudChrome.auraEffect.crypt.harmony':
-    '%{pct} daha az hasar alır: yaşayan her Korocusu için %{per}. Önce Korocuları öldür.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Saman Ustabaşının feneri senin için sönük: senin ve evcil hayvanının darbeleri Tahta Postunu yok sayıp tam vurur',
   'hudChrome.auraEffect.trinket.gutteredGlare':
@@ -23861,18 +23777,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     '%{pct} daha hızlı hareket edip Avını kovalar. Yavaşlatma ve kökleme işler, sersemletmeler yarı sürer.',
   'hudChrome.courier.cargoSafe':
     'Çantalar doluysa dönen eşyalar taşan eşyalara gider. Kurye teslimattan sonra yeniden çağrılana kadar kaybolur.',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Ağıt hasarından kaçmak için yanan fenerin ışığına gir: her fenere yalnızca iki oyuncu sığar',
-  'hudChrome.cryptAlert.measuredLine':
-    'Hasarlı mezarı gruptan uzak tutmak için işaret bitmeden avlu kenarına git',
-  'hudChrome.cryptAlert.soulLine':
-    "Morthen'i iyileştirip hasarını artırmasını önlemek için kayan ruhu yakala. Yakalamak sana hasar verir",
-  'hudChrome.cryptAlert.tollLine':
-    'Açık mezarlardan dirilen iskeletlerle savaşmaya hazırlan: Marrow çanı çalarken bağışıktır',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Gelin Donu (yarı sağlıkta tüm vadi zemini donar: savaşın kalanı için kaygan buz)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Ahenk (yaşayan her Korocu aldığı hasarı yüzde 30 azaltır: önce Korocuları öldür)',
   'hudChrome.finder.mech.rerivet_last_link':
     'Yeniden Perçinle ve Son Halka (zinciri yeniden takan Demirciyi kes; tek zincir kalınca her 10 saniyede Zorlanma)',
   'hudChrome.finder.mech.seal_shackles':
@@ -24050,38 +23954,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     "Batık Çapaya zincirlisin: hareket edebilirsin ama seni Boğulma Çukuruna çeken vinçten uzaklaşamazsın. Zinciri bağlamak için kancalandığın yerden en az {run} yarda uzaktaki yanan bağlama direğinin {reach} yarda yakınına ulaş (direk {dark} sn söner) veya grubun {links} vuruşla kırsın (Kahramanca'da {linksHeroic}). Çukur azami sağlığının %{pit} kadarını alır (Kahramanca'da %{pitHeroic}).",
   'hudChrome.auraEffect.bastion.brineColumn':
     "Deniz suyu sütununda köklüsün: en fazla {seconds} sn boyunca her {tick} sn'de {min} ile {max} arası Doğa hasarı alırsın. Kırmak için Gelgite Bağlı Müridi kes veya sersemlet.",
-  'hudChrome.auraEffect.crypt.blow':
-    "Alınan hasarı %{pct} artırır: yük başına %{per}, şimdi {stacks} / {max}. Her Mezarcının Darbesi bir yük ekler ve süreyi {seconds} sn'ye yeniler.",
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Daha hızlı söyler: Boşluğun Ağıdı {castNormal} sn yerine {cast} sn sürer, her {everyNormal} sn yerine her {every} sn gelir; Kemik Orgu {wavesNormal} yerine {waves} nota dalgası çalar.',
-  'hudChrome.auraEffect.crypt.embraced':
-    "Leydi kollarında yukarıda tutuyor: eylem yapamaz, saniyede {tick} Buz hasarı alırsın (Kahramanca'da {tickHeroic}). Grubun azami sağlığının %{share} kadarı hasar verirse (Kahramanca'da %{shareHeroic}) seni nazikçe indirir; tepede {hold} sn tutarsa buza bırakıp {min} ile {max} arası hasar verir (Kahramanca'da {heroicMin} ile {heroicMax}).",
-  'hudChrome.auraEffect.crypt.gorged':
-    'Savaşın kalanında %{pct} daha fazla hasar verir: ona ulaşan her Bağlı Ruh için %{per}, şimdi {stacks} / {max}. Ulaşan her ruh ayrıca azami sağlığının %{heal} kadarını iyileştirir. Onun yerine almak için ruhun yoluna gir.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    "%{pct} daha az hasar alır; taş her {every} sn'de kalınlaşır, en fazla {max} katman. Sersemletme kırar ve {seconds} sn boyunca %{cracked} daha fazla hasar almasını sağlar.",
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Altındaki halkadan {fuse} sn sonra eller fışkırır: koyulduğu yerin {radius} yarda içindeki herkes {root} sn köklenir ve {min} ile {max} arası Gölge hasarı alır. Halkadan çık.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    "Huzursuzların Ayini sürerken saniyede {bite} Gölge hasarı alır (Kahramanca'da {biteHeroic}); her {every} sn'de {step} artar (Kahramanca'da {stepHeroic}). Bitirmek için Anma Mumlarını yeniden yak.",
-  'hudChrome.auraEffect.crypt.graveDirt':
-    "Açık Mezarda duruyorsun: hareket hızı %{slow} azalır, saniyede {damage} Gölge hasarı (Kahramanca'da {heroic}). Kahramanca'da mezarda {linger} sn kalmak Huzursuz Kemikler diriltir. Mezardan çık.",
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Ayin Halkasının üzerinde kanatta, erişim dışında. Halkanın yarısını {mark} sn işaretler, sonra o yarıya hayalet ateşi döker: içindeki herkese {min} ile {max} arası Ateş hasarı. Her uçuşta {breaths} yarı yakıp iner.',
-  'hudChrome.auraEffect.crypt.lament':
-    "Gelinin Ağıdı bitince yanan mezar fenerinin {radius} yarda yakınında olmayan herkese {min} ile {max} arası Buz hasarı verir (Kahramanca'da {heroicMin} ile {heroicMax}). Fener en yakın {cap} oyuncuyu korur, sonra söner ve sonraki Ağıdı kaçırır.",
-  'hudChrome.auraEffect.crypt.lingering':
-    'Sonraki Gelinin Ağıdı sana %{pct} daha fazla hasar verir: yük başına %{per}, en fazla {max} yük. Sonrakini fener ışığında karşıla.',
-  'hudChrome.auraEffect.crypt.measured':
-    "Bu bitince durduğun yerde Açık Mezar çöker: {radius} yarda içindeki herkese {min} ile {max} arası hasar (Kahramanca'da {heroicMin} ile {heroicMax}). Mezar savaşın kalanında durur; işareti gruptan uzakta avlunun kenarına taşı.",
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    '{seconds} sn boyunca %{pct} daha fazla hasar alır: yeniden yanan mumlar korumasını kırdı. En güçlü saldırılarını şimdi kullan.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'Kaygan buzda: hızın her saniye en fazla {grip} yarda/sn değişir; yavaş hızlanır, durunca kayar, dönerken geniş yay çizersin. Tutuşu kazanmak için buzdan çık.',
-  'hudChrome.auraEffect.crypt.tolling':
-    "Çan ipine yürüyüp Defin Çanını çalarken hasara bağışık. Çalma bitince Çan herkese {min} ile {max} arası Gölge hasarı verir (Kahramanca'da {heroicMin} ile {heroicMax}); her Açık Mezar Huzursuz Kemikler çıkarır.",
-  'hudChrome.auraEffect.crypt.unquietWard':
-    "Sunakta Huzursuzların Ayinine kanal açarken hasara bağışık: {total} Anma Mumundan {lit} yeniden yakıldı. Birini yakmak {channel} sn kanal gerektirir ve yakanın azami sağlığının saniyede %{drain} kadarını tüketir (Kahramanca'da %{drainHeroic}); vuruş kesmez, adım veya sersemletme keser. Son mum korumayı parçalar. Kahramanca'da Defterin belirttiği sırayla yak: yanlış mum son yananı söndürür ve yakana {wrongMin} ile {wrongMax} arası Gölge hasarı verir.",
   'hudChrome.auraEffect.sanctum.airborne':
     "Havada ve saldırılamaz. En çok oyuncunun durduğu levhaya Yıkıcı İnişle iner, {radius} yarda içindeki herkese {min} ile {max} arası hasar verir (Kahramanca'da {heroicMin} ile {heroicMax}).",
   'hudChrome.auraEffect.sanctum.branded':
@@ -24114,8 +23986,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     'Zinciri bağlamak için yanan bağlama direğine koş veya vinç seni çukura çekmeden grubun kırsın',
   'hudChrome.courier.instructions':
     'Bankan, Malzeme Kasası veya başka bir karakter için tam yığınları seç. Kuryen önce onları yatırır, sonra istediğin eşyaları alır. Görev eşyaları gönderilemez.',
-  'hudChrome.cryptAlert.riteNamedLine':
-    "Morthen'in bağışıklığını kırmak için mumları Defter sırasıyla yeniden yak: yanlış mum ilerlemeyi geri alır ({lit}/{total})",
   'hudChrome.finder.guide.adds':
     'Savaş ilerledikçe takviyeler gelir. Tank, şifacıya ulaşmadan toplamalı. Hasar verenler temizlemeye yardım etmeli; grup aynı anda birkaç dalgayla karşılaşmasın.',
   'hudChrome.finder.guide.bleed':
@@ -24142,40 +24012,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     'Düzenli darbe yakındaki oyuncuları yaralar ve kısa sersemletir. Şifacılar ve menzilliler uzak durmalı. Darbeden önce tankı sağlıklı tut; yakındaki müttefikler sersemlemişken eylem yapamayabilir.',
   'hudChrome.finder.guide.ward':
     'Yakındaki müttefiklere düzenli emme kalkanı verir. Hasarı gruba yaymak yerine aynı hedefe birlikte odaklanıp kalkanını kırın ve sonraki korumadan önce bitirin.',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    "Kemik Orgu (her 26 saniyede çalar: iki gölge nota dalgası balkon hatlarına fırlar, Normal'de hatta 100 ile 115 hasar; ikinci dalga ilkinin boşluklarını doldurur)",
-  'hudChrome.finder.mech.crypt_brides_lament':
-    "Gelinin Ağıdı (her 22 saniyede 3 saniyelik ağıt: yanan mezar feneri ışığı dışındaki herkese Normal'de 60 ile 75 Buz hasarı; önceki Ağıtlardan aldığın her Süren Ağıt yükü için yarısı kadar eklenir. Fener en fazla iki oyuncuyu korur ve birini koruduktan sonra 28 saniye söner; ayrılıp sırayla kullanın)",
-  'hudChrome.finder.mech.crypt_burial_toll':
-    "Defin Çanı (yüzde 66 ve 33 sağlıkta hasara bağışık çan ipine yürür, 3 saniye çalar: Normal'de herkese 30 ile 38 Gölge hasarı; her Açık Mezar Huzursuz Kemikler diriltir)",
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Yükselen Ezgi (yüzde 30 sağlığın altında Ağıdı 1.8 saniye sürer, her 11 saniyede gelir; org üçüncü dalga çalar)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    "Boşluğun Ağıdı (her 16 saniyede kesilebilir 2.5 saniyelik şarkı: bitirirse onu görebilen 45 yarda içindeki herkese Normal'de 105 ile 125 Gölge hasarı ve 4 saniye susturma; kes veya koro sütunu arkasına saklan)",
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    "Donmuş Kucaklama (her 30 saniyede tank dışındaki oyuncuyu yakalayıp 5 yarda yükselir, saniyede 6 Buz hasarı: 8 saniyede sağlığının yüzde 6 kadarı hasar verin, indirir; yoksa Normal'de 150 ile 180 hasarla düşürür)",
-  'hudChrome.finder.mech.crypt_gravecall':
-    "Mezar Çağrısı (her 15 saniyede sonraki lahit oyuğundan Bağlı Ruh ona kayar; ulaşınca Ölülerle Beslenmiş olur, ruh başına yüzde 10 fazla hasar, en fazla 10 yük; sağlığının yüzde 3 kadarı iyileşir. Yolundaki oyuncu ruhu alır: Normal'de 12 ile 16 Gölge hasarı)",
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Kahramanca: Bis (diğeri yaşarken 10 saniye ölü kalan Korocu yeniden dirilir; birlikte öldürün) ve Kesintisiz Kıta (her üçüncü Ağıt kesilemez: saklan)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Kahramanca: her yanan fener ayrıca 30 saniye sonra kendi söner ve 10 saniye karanlık kalır; Donmuş Kucaklama iki oyuncuyu alır ve sağlığının yüzde 4.4 kadarı hasarda bırakır',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Kahramanca: tanka her 9 saniyede Mezarcının Darbesi (her yük 20 saniye yüzde 6 fazla alınan hasar, en fazla 6 yük), Mezar Dinçliği (mezarda yüzde 30 hızlı vurur) ve Huzursuz Toprak (mezarda 2 saniye kalan orada Huzursuz Kemikler diriltir)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    "Mezar Ölçüsü (her 15 saniyede tank dışındaki oyuncuyu işaretler; 4 saniye sonra altında Açık Mezar çöker, Normal'de 3 yarda içinde 42 ile 52 hasar; çukur savaş boyunca kalır: içeride saniyede 9 hasar ve yüzde 40 yavaş hareket; mezarları avlu kenarına koy)",
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Kahramanca: Ölülerin Adını Söyle (Defter mum sırasını belirtir: yanlış mum son yananı söndürür, yakana 252 ile 288 Gölge hasarı verir; her yeniden yakış saniyede yüzde 8 tüketir), Mezarın Kavrayışı (her 16 saniyede 2 oyuncuya 4 yarda halka; 1.5 saniye sonra eller fışkırır: 3 saniye kökleme ve 162 ile 198 Gölge hasarı) ve Ölüm Çanı Ejderinin Yanan Ölüm Çanı (havalanıp yarım halkayı 4.5 saniye işaretler, sonra o yarıya 1000 ile 1120 Ateş hasarlı hayalet ateşi döker; uçuş başına 3 yarı)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    "Gölge Atımı (her 12 saniyede 2 saniyelik kullanım, sonra 12 yarda yakınındaki herkese Normal'de 24 ile 30 Gölge hasarı; uzaklaş. Son Ayinlerinde her 9 saniyede)",
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    "Huzursuzları Biç (yüzde 35 sağlığın altında ruhlar durur; her 14 saniyede 2 saniyelik kullanım sonrası tırpan savurur: önünde 14 yarda, 120 derece yaydaki herkese Normal'de 55 ile 65 Gölge hasarı. Gölge Atımı artık her 9 saniyede gelir)",
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Kırağı Yolu (kaydığı yerde 25 saniye kaygan kırağı bırakır: üzerinde yavaş hızlanır, dururken veya dönerken kaymaya devam edersin)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Huzursuzların Ayini (yüzde 65 sağlıkta sunağa döner, Huzursuz Koruma içinde bağışıktır; Mezar Soğuğu herkese saniyede 3 Gölge hasarı verir, her 5 saniyede 1 artar; oyuklardan 2 Huzursuz Kemikler çıkar. 4 Anma Mumunu yeniden yak: her biri 4 saniye kanal, yakanın azami sağlığının saniyede yüzde 6 kadarını tüketir; vuruş kesmez, adım veya sersemletme keser. Son mum Ayini kırar: 8 saniye sersemler, yüzde 25 fazla hasar alır)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Bir Kürek Dolusu (her 11 saniyede önüne 8 yarda konide mezar toprağı fırlatır: vuruşunun bir buçuk katı ve 6 saniye yüzde 50 yavaş hareket; arkasında dur)',
   'hudChrome.finder.mech.drowned_anchor':
     "Batık Çapa (kurbanı çukura çeker: zinciri bağlamak için yanan bağlama direğinin 3 yarda yakınına koş; direk sonra 30 saniye söner veya zinciri 12 vuruşla kır, Kahramanca'da 16)",
   'hudChrome.finder.mech.hallowed_brine':

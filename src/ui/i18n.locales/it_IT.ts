@@ -11428,8 +11428,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
     'Una fortezza allagata perduta nella palude, difesa dagli annegati e dalla marea crescente in persona.',
   'guide.dungeonsPage.bastionName': 'Il Bastione Sommerso',
   'guide.dungeonsPage.heading': 'Dungeon e Incursioni',
-  'guide.dungeonsPage.hollowBody':
-    'Una cripta di cappella profanata dove i morti recenti si rifiutano di riposare. La prima vera prova di un nuovo gruppo.',
   'guide.dungeonsPage.hollowName': 'La Cripta Vuota',
   'guide.dungeonsPage.intro':
     "Quando il mondo aperto non basta, raduna un gruppo ed entra in un'istanza: una copia privata di un dungeon creata solo per il tuo gruppo.",
@@ -13276,10 +13274,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Il vecchio Grigiafauci, finalmente',
   'entities.letters.letter_q_greyjaw.body':
     'Le notizie corrono in una città così piccola. Ieri sera i pastori hanno brindato alla tua salute, e Wilkes giura che il lupo era grande quanto un carro. Lascia pure che ricamino: te lo sei guadagnato.\n\nConcediti un pasto a spese della guardia.\n- Maresciallo Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Fratello Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Ciò che hai compiuto nel buio',
-  'entities.letters.letter_q_hollow.body':
-    'Pochi sapranno mai cosa giaceva sepolto in quella conca, e ancora meno ci crederebbero. Io lo so, e non lo dimenticherò.\n\nChe la tua strada resti illuminata.\n- Fratello Aldric',
   'hudChrome.gathering.biteLine': 'Qualcosa abbocca alla lenza!',
   'hudChrome.gathering.catchLine': 'Riporti in superficie: {name}',
   'hudChrome.gathering.downgradeFind': 'Borse piene: un ritrovamento pregiato e scivolato via.',
@@ -21269,50 +21263,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
     "Subisce il {pct}% di danni in meno mentre un'altra Sentinella annegata si trova entro {radius} iarde. Separale.",
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Le sue catene sono spezzate. Non combatte più, non può essere ferito e presto se ne andrà.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Aumenta i danni subiti del {pct}%: {per}% per accumulo, attualmente {stacks} su {max}. Ogni Colpo del Becchino aggiunge un accumulo e ripristina la durata a {seconds} s.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Tutti i corvi dello scontro ti danno la caccia per {seconds} s. Corri verso il difensore per poter abbattere insieme lo stormo.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    "Canta più in fretta: il Lamento del Vuoto richiede {cast} s anziché {castNormal} s e arriva ogni {every} s anziché {everyNormal} s; l'Organo d'Ossa suona {waves} ondate di note anziché {wavesNormal}.",
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Riduce la velocità di movimento del {pct}%. Palata colpisce tutti davanti al Sagrestano Marrow: resta alle sue spalle.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Sei sollevato tra le braccia della Dama: non puoi agire e subisci {tick} danni da gelo al secondo ({tickHeroic} in modalità Eroica). Se il gruppo le infligge danni pari al {share}% della sua salute massima ({shareHeroic}% in modalità Eroica), ti posa dolcemente; se ti trattiene in alto per {hold} s, ti lascia cadere sul ghiaccio infliggendoti da {min} a {max} danni (da {heroicMin} a {heroicMax} in modalità Eroica).',
-  'hudChrome.auraEffect.crypt.gorged':
-    "Infligge il {pct}% di danni in più: {per}% per ogni Anima vincolata che lo ha raggiunto, attualmente {stacks} su {max}, per il resto dello scontro. Ogni anima che lo raggiunge gli ripristina anche il {heal}% della salute massima. Intercetta un'anima per prenderla al suo posto.",
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Subisce il {pct}% di danni in meno e la pietra si ispessisce ogni {every} s, fino a {max} strati. Uno stordimento la frantuma e gli fa subire il {cracked}% di danni in più per {seconds} s.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    "Tra {fuse} s, delle mani emergono dall'anello sotto di te: chiunque si trovi entro {radius} iarde dal punto in cui è apparso viene immobilizzato per {root} s e subisce da {min} a {max} danni da ombra. Esci dall'anello.",
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Sei trattenuto dalle mani della tomba: non puoi muoverti per {seconds} s.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Subisce {bite} danni da ombra al secondo ({biteHeroic} in modalità Eroica) finché dura il Rito degli Inquieti, con un aumento di {step} ({stepHeroic} in modalità Eroica) ogni {every} s. Riaccendi le Candele della Rimembranza per interromperlo.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Sei in una Tomba Aperta: velocità di movimento ridotta del {slow}% e {damage} danni da ombra al secondo ({heroic} in modalità Eroica). In modalità Eroica, restare {linger} s in una tomba fa sorgere delle Ossa inquiete. Esci dalla tomba.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Attacca il {pct}% più velocemente mentre si trova in una Tomba Aperta. Tienilo fuori dalle tombe.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Subisce il {pct}% di danni in meno: {per}% per ogni sua Corista ancora in vita. Uccidi prima le Coriste.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    "Vola sopra l'Anello del Rito, fuori portata. Segna metà dell'anello per {mark} s, poi riversa fuoco spettrale su quella metà: da {min} a {max} danni da fuoco a chiunque vi si trovi. Incendia {breaths} metà a ogni volo, poi atterra.",
-  'hudChrome.auraEffect.crypt.lament':
-    'Quando termina il Lamento della Sposa, infligge da {min} a {max} danni da gelo (da {heroicMin} a {heroicMax} in modalità Eroica) a chiunque non sia entro {radius} iarde da una lanterna funeraria accesa. Ogni lanterna ripara i {cap} giocatori più vicini, poi si spegne e non protegge dal Lamento successivo.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Il tuo prossimo Lamento della Sposa infligge il {pct}% di danni in più: {per}% per accumulo, fino a {max} accumuli. Affronta il prossimo nella luce di una lanterna.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Al termine, una Tomba Aperta sprofonda nel punto in cui ti trovi: da {min} a {max} danni (da {heroicMin} a {heroicMax} in modalità Eroica) a chiunque sia entro {radius} iarde. La tomba resta per tutto lo scontro, quindi porta il marchio al bordo del cortile, lontano dal gruppo.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Stordito: la protezione frantumata gli impedisce di agire per {seconds} s.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Subisce il {pct}% di danni in più per {seconds} s: le candele riaccese hanno spezzato la sua protezione. Usa ora i tuoi attacchi più potenti.',
-  'hudChrome.auraEffect.crypt.slippery':
-    "Sei sul ghiaccio scivoloso: la tua velocità cambia al massimo di {grip} iarde/s ogni secondo, quindi acceleri lentamente, scivoli quando ti fermi e fai curve larghe. Esci dal ghiaccio per ritrovare l'equilibrio.",
-  'hudChrome.auraEffect.crypt.tolling':
-    'È immune ai danni mentre raggiunge la fune e suona la Campana Funebre. Al termine dei rintocchi, il Rintocco infligge da {min} a {max} danni da ombra (da {heroicMin} a {heroicMax} in modalità Eroica) a tutti, e da ogni Tomba Aperta sorgono delle Ossa inquiete.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    "È immune ai danni mentre canalizza il Rito degli Inquieti all'altare: {lit} Candele della Rimembranza riaccese su {total}. Riaccenderne una richiede una canalizzazione di {channel} s che sottrae ogni secondo il {drain}% della salute massima di chi l'accende ({drainHeroic}% in modalità Eroica); i colpi non la interrompono, un passo o uno stordimento sì. L'ultima candela frantuma la protezione. In modalità Eroica, accendile nell'ordine indicato dal Registro: una candela sbagliata spegne l'ultima accesa e infligge da {wrongMin} a {wrongMax} danni da ombra a chi l'accende.",
   'hudChrome.auraEffect.effigyLanternOut':
     "Per te la lanterna del Caposquadra di paglia è spenta: i tuoi colpi e quelli del tuo famiglio ignorano la Pelle d'Assi e infliggono danni pieni",
   'hudChrome.auraEffect.effigyPlankHide':
@@ -21554,43 +21504,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Corriere',
   'hudChrome.courier.unavailable': 'Evoca il corriere per organizzare una consegna.',
   'hudChrome.courier.waiting': 'In attesa di restituire i tuoi oggetti',
-  'hudChrome.cryptAlert.embracedLine':
-    "Il gruppo deve danneggiare la Dama del Gelo d'Ossa per liberarti dalla sua presa",
-  'hudChrome.cryptAlert.embracedTitle': 'Abbraccio Gelido!',
-  'hudChrome.cryptAlert.graspLine':
-    "Esci dall'anello segnato prima che emergano le mani per evitare danni e immobilizzazione",
-  'hudChrome.cryptAlert.graspTitle': 'Presa della Tomba!',
-  'hudChrome.cryptAlert.graveLine': 'La terra della tomba ti brucia e ti rallenta: esci',
-  'hudChrome.cryptAlert.graveTitle': 'Sei in una Tomba Aperta!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Uccidi le Coriste per rimuovere la riduzione dei danni del {pct}% di Ilvane',
-  'hudChrome.cryptAlert.harmonyTitle': 'Armonia',
-  'hudChrome.cryptAlert.knellLine':
-    "Il fuoco spettrale si riversa su questa metà dell'anello allo scadere della barra: raggiungi l'altra metà",
-  'hudChrome.cryptAlert.knellTitle': 'Rintocco Ardente!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Entra nella luce di una lanterna accesa per evitare i danni del lamento: ogni lanterna ospita solo due giocatori',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Resta nella luce di questa lanterna accesa per evitare i danni del lamento: hai un posto al riparo',
-  'hudChrome.cryptAlert.lamentTitle': 'Lamento della Sposa!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Raggiungi il bordo del cortile prima che finisca il marchio per tenere la tomba dannosa lontana dal gruppo',
-  'hudChrome.cryptAlert.measuredTitle': 'Misurato per la Tomba!',
-  'hudChrome.cryptAlert.reapLine':
-    'Spostati dietro Morthen per evitare la falce che colpisce tutti davanti a lui',
-  'hudChrome.cryptAlert.reapTitle': 'Mieti gli Inquieti!',
-  'hudChrome.cryptAlert.riteLine':
-    "Riaccendi tutte le Candele della Rimembranza per spezzare l'immunità di Morthen: {lit} accese su {total}",
-  'hudChrome.cryptAlert.riteNamedLine':
-    "Riaccendi le candele nell'ordine del Registro per spezzare l'immunità di Morthen: una candela sbagliata annulla i progressi ({lit}/{total})",
-  'hudChrome.cryptAlert.riteTitle': 'Rito degli Inquieti',
-  'hudChrome.cryptAlert.soulLine':
-    "Intercetta l'anima fluttuante per impedirle di curare Morthen e aumentarne i danni. Catturarla ti ferisce",
-  'hudChrome.cryptAlert.soulTitle': 'Anima vincolata',
-  'hudChrome.cryptAlert.timeAria': '{seconds} secondi rimasti',
-  'hudChrome.cryptAlert.tollLine':
-    'Preparati a combattere gli scheletri sorti dalle tombe aperte: Marrow è immune mentre suona la campana',
-  'hudChrome.cryptAlert.tollTitle': 'Rintocco Funebre!',
   'hudChrome.deeds.buddiesEmpty': 'Raccogli un compagno per evocarlo da questo scaffale.',
   'hudChrome.deeds.buddiesNone': 'Nessun compagno',
   'hudChrome.deeds.buddiesSection': 'Compagni',
@@ -21706,44 +21619,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
     'Tensione (allontanati da ogni pilastro la cui catena è ancora intatta)',
   'hudChrome.finder.mech.chorus_and_solo':
     "Coro e Assolo (raggruppatevi su un marchio, allontanatevi dall'altro)",
-  'hudChrome.finder.mech.crypt_bone_organ':
-    "Organo d'Ossa (ogni 26 secondi suona l'Organo d'Ossa: due ondate di note d'ombra esplodono lungo le corsie del soppalco, infliggendo da 100 a 115 danni per corsia in modalità Normale; la seconda ondata riempie gli spazi lasciati dalla prima)",
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    "Gelo Nuziale (a metà salute l'intero fondo del burrone gela: ghiaccio scivoloso per il resto dello scontro)",
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Lamento della Sposa (ogni 22 secondi un lamento di 3 secondi: da 60 a 75 danni da gelo in modalità Normale a chiunque sia fuori dalla luce di una lanterna funeraria accesa, aumentati della metà per ogni accumulo di Lamento Persistente lasciato dai Lamenti già subiti. Ogni lanterna ripara al massimo due giocatori e si spegne per 28 secondi dopo aver riparato qualcuno, quindi dividetevi e alternatevi)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Rintocco Funebre (al 66 e al 33 percento di salute raggiunge la fune della campana, immune ai danni, e suona per 3 secondi: da 30 a 38 danni da ombra a tutti in modalità Normale, e da ogni Tomba Aperta sorgono delle Ossa inquiete)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    "Crescendo (sotto il 30 percento di salute il Lamento richiede 1,8 secondi e arriva ogni 11 secondi, e l'organo suona una terza ondata)",
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Lamento del Vuoto (ogni 16 secondi un canto interrompibile di 2,5 secondi: se lo completa, da 105 a 125 danni da ombra in modalità Normale e un silenzio di 4 secondi a chiunque possa vederla entro 45 iarde, quindi interrompilo o nasconditi dietro un pilastro del coro)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Abbraccio Gelido (ogni 30 secondi afferra un giocatore diverso dal difensore e si solleva con lui di 5 iarde, infliggendo 6 danni da gelo al secondo: infliggetele danni pari al 6 percento della sua salute entro 8 secondi e lo poserà, altrimenti lo lascia cadere per infliggere da 150 a 180 danni in modalità Normale)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    "Richiamo della Tomba (ogni 15 secondi un'Anima vincolata fluttua verso di lui dalla nicchia del sarcofago successivo; quando lo raggiunge, si Sazia dei Morti, ottenendo il 10 percento di danni in più per anima fino a 10 accumuli, e recupera il 3 percento della salute. Un giocatore sul percorso la prende al suo posto: da 12 a 16 danni da ombra in modalità Normale)",
-  'hudChrome.finder.mech.crypt_harmony':
-    'Armonia (ogni Corista viva le fa subire il 30 percento di danni in meno: uccidi prima le Coriste)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    "Eroica: Bis (una Corista morta da 10 secondi risorge se l'altra è ancora viva, quindi uccidile insieme) e Strofa Ininterrotta (ogni terzo Lamento non può essere interrotto: nasconditi)",
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    "Eroica: ogni lanterna accesa si spegne anche da sola dopo 30 secondi e resta spenta per 10; l'Abbraccio Gelido afferra due giocatori e li lascia andare al 4,4 percento della sua salute",
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Eroica: Colpo del Becchino ogni 9 secondi sul difensore (ogni accumulo aumenta i danni subiti del 6 percento per 20 secondi, fino a 6 accumuli), Vigore Sepolcrale (attacca il 30 percento più velocemente mentre è in una tomba) e Terra Inquieta (chi resta 2 secondi in una tomba vi fa sorgere delle Ossa inquiete)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Misurato per la Tomba (ogni 15 secondi marchia un giocatore diverso dal difensore; dopo 4 secondi una Tomba Aperta sprofonda sotto di lui, da 42 a 52 danni entro 3 iarde in modalità Normale, e la fossa resta per tutto lo scontro: 9 danni al secondo e movimento rallentato del 40 percento al suo interno, quindi colloca le tombe al bordo del cortile)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    "Eroica: Nomina i Morti (il Registro indica l'ordine delle candele: una candela sbagliata spegne l'ultima accesa e infligge da 252 a 288 danni da ombra a chi l'accende, e ogni riaccensione sottrae l'8 percento al secondo), Presa della Tomba (ogni 16 secondi 2 giocatori ricevono un anello di 4 iarde; dopo 1,5 secondi vi emergono mani: immobilizzazione di 3 secondi e da 162 a 198 danni da ombra) e Rintocco Ardente del Drago del Rintocco Funebre (spicca il volo e segna metà dell'anello per 4,5 secondi, poi riversa fuoco spettrale su quella metà per infliggere da 1.000 a 1.120 danni da fuoco, 3 metà a ogni volo)",
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    "Impulso d'Ombra (ogni 12 secondi un lancio di 2 secondi, poi da 24 a 30 danni da ombra in modalità Normale a chiunque sia entro 12 iarde da lui, quindi allontanati; ogni 9 secondi durante gli Ultimi Riti)",
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    "Mieti gli Inquieti (sotto il 35 percento di salute le anime cessano; ogni 14 secondi spazza con la falce dopo un lancio di 2 secondi: da 55 a 65 danni da ombra in modalità Normale a tutti in un arco di 120 gradi per 14 iarde davanti a lui. Impulso d'Ombra arriva poi ogni 9 secondi)",
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Sentiero di Brina (lascia brina scivolosa per 25 secondi dove fluttua: su di essa acceleri lentamente e continui a scivolare quando ti fermi o svolti)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    "Rito degli Inquieti (al 65 percento di salute torna all'altare, immune dentro la Protezione Inquieta, mentre Gelo Sepolcrale infligge a tutti 3 danni da ombra al secondo, aumentando di 1 ogni 5 secondi, e 2 Ossa inquiete escono dalle nicchie. Riaccendi le 4 Candele della Rimembranza: ognuna richiede una canalizzazione di 4 secondi che sottrae ogni secondo il 6 percento della salute massima di chi l'accende; i colpi non la interrompono, ma un passo o uno stordimento sì. L'ultima candela spezza il Rito: viene stordito per 8 secondi e subisce il 25 percento di danni in più)",
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Palata (ogni 11 secondi scaglia terra sepolcrale in un cono di 8 iarde davanti a sé: una volta e mezza i danni di un colpo e movimento rallentato del 50 percento per 6 secondi, quindi resta alle sue spalle)',
   'hudChrome.finder.mech.drowned_anchor':
     "Ancora Annegata (la vittima viene trascinata verso la fossa: corri entro 3 iarde da un palo d'ormeggio acceso per fissare la catena, poi il palo si spegne per 30 secondi, oppure spezza la catena con 12 colpi, 16 in modalità Eroica)",
   'hudChrome.finder.mech.fog_veil':
@@ -22265,49 +22140,9 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Nebbia che si Addensa',
   'abilityUi.cast.bastion_veil_rise': 'Velo di Nebbia',
   'abilityUi.cast.cantor_last_verse': "L'Ultima Strofa",
-  'abilityUi.cast.crypt_barrowflame_breath': 'Soffio della Fiamma Sepolcrale',
-  'abilityUi.cast.crypt_carrion_eye': 'Occhio delle Carogne',
-  'abilityUi.cast.crypt_grave_bolt': 'Dardo Sepolcrale',
-  'abilityUi.cast.crypt_grave_cleave': 'Fendente Sepolcrale',
-  'abilityUi.cast.crypt_grave_rupture': 'Rottura Sepolcrale',
-  'abilityUi.cast.crypt_gravespark_volley': 'Raffica di Scintille Sepolcrali',
-  'abilityUi.cast.crypt_ilvane_bone_organ': "Organo d'Ossa",
-  'abilityUi.cast.crypt_ilvane_dirge': 'Lamento del Vuoto',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Strofa Ininterrotta',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Discesa dal Cielo',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Ruggito del Terrore',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Rintocco Ardente',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Rintocco Ardente',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Rintocco Ardente',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Rintocco Ardente',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Passaggio della Pira',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Passaggio Radente',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Gelo Nuziale',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Lamento della Sposa',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Abbraccio Gelido',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Abbraccio Gelido',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Rintocco Funebre',
-  'abilityUi.cast.crypt_marrow_crush': 'Frantumazione del Midollo',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Colpo del Becchino',
-  'abilityUi.cast.crypt_marrow_measure': 'Misurato per la Tomba',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Palata',
-  'abilityUi.cast.crypt_morthen_descend': 'Discesa',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Proclamazione Sepolcrale',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Mieti gli Inquieti',
-  'abilityUi.cast.crypt_morthen_rise': "Ascesa dell'Evocatombe",
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Rito degli Inquieti',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Il Rito si Risveglia',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': "Impulso d'Ombra",
-  'abilityUi.cast.crypt_murder_call': 'Richiamo dello Stormo',
-  'abilityUi.cast.crypt_raise_bones': 'Risveglia Ossa',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Sputo di Seta Brinata',
-  'abilityUi.cast.crypt_stone_shriek': 'Stridio di Pietra',
-  'abilityUi.cast.crypt_tail_lash': 'Sferzata di Coda',
-  'abilityUi.cast.crypt_wing_gust': "Folata d'Ali",
   'abilityUi.cast.ghost_captain_anchor': 'Ancora Maledetta',
   'abilityUi.cast.ghost_captain_boarding': 'Abbordaggio Fantasma',
   'abilityUi.cast.ghost_captain_broadside': 'Bordata Spettrale',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Riaccendi la Candela',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Rovescia Braciere',
   'abilityUi.cast.sanctum_branding_iron': 'Ferro da Marchio',
   'abilityUi.cast.sanctum_cinder_breath': 'Soffio di Cenere',

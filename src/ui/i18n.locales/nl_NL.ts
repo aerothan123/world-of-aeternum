@@ -10104,8 +10104,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Hoog op de pieken, weg van het hoofdgevecht, ligt een kouder mysterie. Oude graven dragen een kroon die geen verslag zich herinnert, en de doden die hen bewaken dienden ooit een vergeten koning. Lees hun stenen, verzamel de sleutelstenen die zij bewaarden, en je kunt een tombe ontzegelen die drie trouwe zielen stierven om gesloten te houden, de optionele beproeving die het rijk zijn raid voor tien spelers ontsluit voor wie de aanwijzingen tot het einde volgt.',
   'guide.dungeonsPage.cryptLeadTitle': 'Een deur die de doden gesloten moesten houden',
   'guide.dungeonsPage.heading': 'Kerkers en Raids',
-  'guide.dungeonsPage.hollowBody':
-    'Een grafgeroofde kapelcrypte waar de pas gestorvenen weigeren te rusten. De eerste echte beproeving van een nieuwe groep.',
   'guide.dungeonsPage.hollowName': 'De Holle Crypte',
   'guide.dungeonsPage.intro':
     'Als de open wereld niet genoeg is, verzamel dan een groep en stap een instantie binnen: een privékopie van een kerker speciaal voor jouw groep gemaakt.',
@@ -13003,10 +13001,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Oude Grauwkaak, eindelijk',
   'entities.letters.letter_q_greyjaw.body':
     'Nieuws reist snel in zo’n klein stadje. De herders dronken gisteravond op je gezondheid, en Wilkes zweert dat de wolf zo groot was als een kar. Laat ze maar aandikken: je hebt het verdiend.\n\nEet een maaltijd op kosten van de wacht.\n- Maarschalk Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Broeder Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Wat je in het donker hebt gedaan',
-  'entities.letters.letter_q_hollow.body':
-    'Weinigen zullen ooit weten wat er in die kom begraven lag, en nog minder zouden het geloven. Ik weet het, en ik zal het niet vergeten.\n\nMoge je pad verlicht blijven.\n- Broeder Aldric',
   'hudChrome.gathering.herbalism': 'Kruidenkunde',
   'hudChrome.gathering.logging': 'Houtkap',
   'hudChrome.gathering.mining': 'Mijnbouw',
@@ -20348,7 +20342,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'guide.interfacePage.framesGovernedResourceAndHill':
     'Schakel Hulpbronnenbalk losmaken in op het tabblad Frames. Frames Bewerken maakt dan ook je hulpbronnenbalk los, zodat je mana, energie of woede afzonderlijk overal kunt neerzetten. Breedte van de hulpbronnenbalk en Hoogte van de hulpbronnenbalk op hetzelfde tabblad bepalen het formaat. Frames Bewerken maakt ook de balk van Koning van de Heuvel los. Achtergronddekking van Koning van de Heuvel op dat tabblad vervaagt het paneel terwijl de tekst duidelijk leesbaar blijft.',
   'hudChrome.options.pixelsValue': '{value} px',
-  'abilityUi.cast.crypt_morthen_descend': 'Afdaling',
   'abilityUi.cast.sanctum_goad': 'Provoceren',
   'auth.wocBuilder.cat.face': 'Gezicht',
   'auth.wocBuilder.eye.teal': 'Petrol',
@@ -20474,48 +20467,9 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Samenpakkende mist',
   'abilityUi.cast.bastion_veil_rise': 'Mistsluier',
   'abilityUi.cast.cantor_last_verse': 'Het laatste vers',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Grafheuvelvlamadem',
-  'abilityUi.cast.crypt_carrion_eye': 'Aasoog',
-  'abilityUi.cast.crypt_grave_bolt': 'Grafschicht',
-  'abilityUi.cast.crypt_grave_cleave': 'Grafklief',
-  'abilityUi.cast.crypt_grave_rupture': 'Grafbreuk',
-  'abilityUi.cast.crypt_gravespark_volley': 'Grafvonksalvo',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Bottenorgel',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Klaagzang van de holte',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Ongebroken vers',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Afdaling uit de hemel',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Angstgebrul',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Brandende doodsklok',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Brandende doodsklok',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Brandende doodsklok',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Brandende doodsklok',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Brandstapelbeschieting',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Scheervluchtaanval',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Bruidsvorst',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Klaagzang van de bruid',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Bevroren omhelzing',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Bevroren omhelzing',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Begrafenisklok',
-  'abilityUi.cast.crypt_marrow_crush': 'Mergverplettering',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Slag van de doodgraver',
-  'abilityUi.cast.crypt_marrow_measure': 'De maat voor het graf',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Schepvol',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Grafverkondiging',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Maai de rustelozen',
-  'abilityUi.cast.crypt_morthen_rise': 'Opkomst van de Grafroeper',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Ritueel van de rustelozen',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Het ritueel ontwaakt',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Schaduwpuls',
-  'abilityUi.cast.crypt_murder_call': 'Kraaienroep',
-  'abilityUi.cast.crypt_raise_bones': 'Botten doen herrijzen',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Rijpzijdespuug',
-  'abilityUi.cast.crypt_stone_shriek': 'Steenkreet',
-  'abilityUi.cast.crypt_tail_lash': 'Staartzweep',
-  'abilityUi.cast.crypt_wing_gust': 'Vleugelvlaag',
   'abilityUi.cast.ghost_captain_anchor': 'Vervloekt anker',
   'abilityUi.cast.ghost_captain_boarding': 'Spookentering',
   'abilityUi.cast.ghost_captain_broadside': 'Geestensalvo',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Steek de kaars opnieuw aan',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Vuurkorf omverwerpen',
   'abilityUi.cast.sanctum_branding_iron': 'Brandijzer',
   'abilityUi.cast.sanctum_cinder_breath': 'Sinteladem',
@@ -22674,50 +22628,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Krijgt {pct}% minder schade zolang een andere verdronken wachtman binnen {radius} yard staat. Trek ze uit elkaar.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Zijn kettingen zijn gebroken. Hij vecht niet meer, kan niet worden geschaad en vertrekt binnenkort.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Verhoogt ontvangen schade met {pct}%: {per}% per stapel, nu {stacks} van {max}. Elke Slag van de doodgraver voegt een stapel toe en zet de duur terug op {seconds} sec.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Elke kraai in het gevecht jaagt {seconds} sec op jou. Ren naar je tank zodat de zwerm samen kan worden gedood.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Zingt sneller: Klaagzang van de holte duurt {cast} sec in plaats van {castNormal} sec en komt elke {every} sec in plaats van elke {everyNormal} sec. Het Bottenorgel speelt {waves} notengolven in plaats van {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Vermindert de bewegingssnelheid met {pct}%. Schepvol raakt iedereen vóór Koster Marrow: ga achter hem staan.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Hoog in de armen van de Vrouwe gehouden: je kunt niets doen en krijgt elke seconde {tick} vorstschade ({tickHeroic} op Heroïsch). Brengt je groep haar schade toe gelijk aan {share}% van haar maximale gezondheid ({shareHeroic}% op Heroïsch), dan zet ze je zachtjes neer. Houdt ze je bovenaan {hold} sec vast, dan laat ze je op het ijs vallen voor {min} tot {max} schade ({heroicMin} tot {heroicMax} op Heroïsch).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Doet de rest van het gevecht {pct}% meer schade: {per}% per gebonden ziel die hem bereikte, nu {stacks} van {max}. Elke ziel die hem bereikt geneest hem ook voor {heal}% van zijn maximale gezondheid. Stap in het pad van een ziel om die zelf op te vangen.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Krijgt {pct}% minder schade. De steen wordt elke {every} sec dikker, tot {max} lagen. Een verdoving versplintert hem en laat hem {seconds} sec {cracked}% meer schade krijgen.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Over {fuse} sec breken handen uit de ring onder je: iedereen binnen {radius} yard van de oorspronkelijke plek wordt {root} sec vastgezet en krijgt {min} tot {max} schaduwschade. Stap uit de ring.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Vastgehouden door de handen van het graf: kan {seconds} sec niet bewegen.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Krijgt elke seconde {bite} schaduwschade ({biteHeroic} op Heroïsch) zolang het Ritueel van de Rustelozen voortduurt. Elke {every} sec stijgt dit met {step} ({stepHeroic} op Heroïsch). Steek de Herdenkingskaarsen opnieuw aan om het te beëindigen.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Staat in een Open graf: bewegingssnelheid verminderd met {slow}% en elke seconde {damage} schaduwschade ({heroic} op Heroïsch). Op Heroïsch laat {linger} sec in een graf een rusteloos skelet herrijzen. Stap uit het graf.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Valt {pct}% sneller aan zolang hij in een Open graf staat. Houd hem uit de graven.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Krijgt {pct}% minder schade: {per}% per levende koorzanger van haar. Dood eerst de koorzangers.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Vliegt boven de Ritueelring, buiten bereik. Markeert de helft van de ring {mark} sec en stort dan spookvuur over die helft: {min} tot {max} vuurschade aan iedereen erin. Verbrandt {breaths} helften per vlucht en landt daarna.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Wanneer Klaagzang van de bruid eindigt, doet die {min} tot {max} vorstschade ({heroicMin} tot {heroicMax} op Heroïsch) aan iedereen buiten {radius} yard van een brandende graflantaarn. Een lantaarn beschermt de {cap} dichtstbijzijnde spelers, dooft daarna en mist de volgende klaagzang.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Je volgende Klaagzang van de bruid doet {pct}% meer schade: {per}% per stapel, tot {max} stapels. Vang de volgende op in het licht van een lantaarn.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Wanneer dit eindigt, stort een Open graf in waar je staat: {min} tot {max} schade ({heroicMin} tot {heroicMax} op Heroïsch) aan iedereen binnen {radius} yard. Het graf blijft de rest van het gevecht liggen, dus draag de markering naar de rand van het erf, weg van de groep.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Verdoofd: door de gebroken bescherming kan hij {seconds} sec niets doen.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Krijgt {seconds} sec {pct}% meer schade: de opnieuw aangestoken kaarsen hebben zijn bescherming gebroken. Gebruik nu je sterkste aanvallen.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'Op glad ijs: je snelheid verandert met hoogstens {grip} yard/sec per seconde. Daardoor kom je traag op gang, glijd je door als je stopt en maak je ruime bochten. Stap van het ijs om weer grip te krijgen.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Immuun voor schade terwijl hij naar het kloktouw loopt en de Begrafenisklok luidt. Als het luiden eindigt, doet de klokslag iedereen {min} tot {max} schaduwschade ({heroicMin} tot {heroicMax} op Heroïsch) en geeft elk Open graf een rusteloos skelet prijs.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Immuun voor schade terwijl hij het Ritueel van de Rustelozen bij het altaar kanaliseert: {lit} van {total} Herdenkingskaarsen opnieuw aangestoken. Een kaars aansteken vereist {channel} sec kanaliseren en kost de aansteker elke seconde {drain}% van de maximale gezondheid ({drainHeroic}% op Heroïsch). Treffers onderbreken dit niet, een stap of verdoving wel. De laatste kaars breekt de bescherming. Steek ze op Heroïsch aan in de volgorde van het Register: een verkeerde kaars dooft de laatst aangestoken kaars en doet de aansteker {wrongMin} tot {wrongMax} schaduwschade.',
   'hudChrome.auraEffect.effigyLanternOut':
     'De lantaarn van de Strovoorman is voor jou uit: jouw slagen en die van je huisdier negeren zijn Plankenhuid en raken volledig',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -22956,43 +22866,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Koerier',
   'hudChrome.courier.unavailable': 'Roep je koerier op om een bezorging te plannen.',
   'hudChrome.courier.waiting': 'Wacht om je voorwerpen terug te brengen',
-  'hudChrome.cryptAlert.embracedLine':
-    'Je groep moet de Vrouwe van de Bottenkou schade doen om je uit haar greep te bevrijden',
-  'hudChrome.cryptAlert.embracedTitle': 'Bevroren omhelzing!',
-  'hudChrome.cryptAlert.graspLine':
-    'Verlaat de gemarkeerde ring voordat de handen uitbreken om schade en vastzetten te voorkomen',
-  'hudChrome.cryptAlert.graspTitle': 'Greep van het graf!',
-  'hudChrome.cryptAlert.graveLine': 'De grafaarde doet schade en vertraagt je: stap eruit',
-  'hudChrome.cryptAlert.graveTitle': 'In een Open graf!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Dood de koorzangers om Ilvanes {pct}% schadevermindering te verwijderen',
-  'hudChrome.cryptAlert.harmonyTitle': 'Samenklank',
-  'hudChrome.cryptAlert.knellLine':
-    'Spookvuur stroomt over deze helft van de ring zodra de balk leeg is: ga naar de andere helft',
-  'hudChrome.cryptAlert.knellTitle': 'Brandende doodsklok!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Ga in het licht van een brandende lantaarn staan om de klaagzangschade te vermijden: er passen maar twee spelers per lantaarn',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Blijf in het licht van deze brandende lantaarn om de klaagzangschade te vermijden: je hebt een schuilplaats',
-  'hudChrome.cryptAlert.lamentTitle': 'Klaagzang van de bruid!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Ga naar de rand van het erf voordat de markering eindigt om het schadelijke graf bij je groep vandaan te houden',
-  'hudChrome.cryptAlert.measuredTitle': 'De maat voor het graf!',
-  'hudChrome.cryptAlert.reapLine':
-    'Ga achter Morthen staan om de zeis te ontwijken die iedereen vóór hem raakt',
-  'hudChrome.cryptAlert.reapTitle': 'Maai de rustelozen!',
-  'hudChrome.cryptAlert.riteLine':
-    'Steek alle Herdenkingskaarsen opnieuw aan om Morthens immuniteit te breken: {lit} van {total} branden',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Steek kaarsen aan in de volgorde van het Register om Morthens immuniteit te breken: een verkeerde kaars draait voortgang terug ({lit}/{total})',
-  'hudChrome.cryptAlert.riteTitle': 'Ritueel van de rustelozen',
-  'hudChrome.cryptAlert.soulLine':
-    'Onderschep de zwevende ziel zodat die Morthen niet geneest en zijn schade niet verhoogt. Opvangen doet jou pijn',
-  'hudChrome.cryptAlert.soulTitle': 'Gebonden ziel',
-  'hudChrome.cryptAlert.timeAria': 'Nog {seconds} seconden',
-  'hudChrome.cryptAlert.tollLine':
-    'Bereid je voor op de skeletten die uit open graven herrijzen: Marrow is immuun terwijl hij de klok luidt',
-  'hudChrome.cryptAlert.tollTitle': 'Begrafenisklok!',
   'hudChrome.deeds.buddiesEmpty': 'Verzamel een metgezel om die vanaf deze plank op te roepen.',
   'hudChrome.deeds.buddiesNone': 'Geen metgezel',
   'hudChrome.deeds.buddiesSection': 'Metgezellen',
@@ -23109,44 +22982,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Inspanning (neem afstand van elke pilaar waarvan de ketting nog houdt)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Koorzang en Eenstemmige zang (verzamel op de ene markering, verspreid bij de andere)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Bottenorgel (elke 26 seconden bespeelt ze het Bottenorgel: twee golven schaduwnoten ontploffen in banen door de koorgalerij, 100 tot 115 schade op Normaal in een baan. De tweede golf vult de openingen van de eerste)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Bruidsvorst (bij halve gezondheid bevriest de hele ravijnvloer: glad ijs voor de rest van het gevecht)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Klaagzang van de bruid (elke 22 seconden een klaagzang van 3 seconden: 60 tot 75 vorstschade op Normaal aan iedereen buiten het licht van een brandende graflantaarn, de helft erbij per stapel Aanhoudende klaagzang van eerdere treffers. Een lantaarn beschermt maximaal twee spelers en dooft 28 seconden nadat hij iemand beschermt, dus verdeel je en wissel af)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Begrafenisklok (bij 66 en 33 procent gezondheid loopt hij immuun voor schade naar het kloktouw en luidt 3 seconden: 30 tot 38 schaduwschade aan iedereen op Normaal. Elk Open graf laat een rusteloos skelet herrijzen)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Aanzwelling (onder 30 procent gezondheid duurt haar klaagzang 1,8 seconden en komt elke 11 seconden. Het orgel speelt een derde golf)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Klaagzang van de holte (elke 16 seconden een onderbreekbaar lied van 2,5 seconden: voltooit ze het, dan 105 tot 125 schaduwschade op Normaal en 4 seconden stilte aan iedereen binnen 45 yard die haar kan zien. Onderbreek of schuil achter een koorpilaar)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Bevroren omhelzing (elke 30 seconden grijpt ze een speler die niet de tank is en stijgt 5 yard op. Dit doet 6 vorstschade per seconde. Doe binnen 8 seconden schade gelijk aan 6 procent van haar gezondheid en ze zet de speler neer. Anders laat ze die vallen voor 150 tot 180 schade op Normaal)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Grafroep (elke 15 seconden zweeft een gebonden ziel uit de volgende sarcofaagnis naar hem. Bereikt die hem, dan raakt hij Verzadigd door de doden: 10 procent meer schade per ziel tot 10 stapels, en 3 procent van zijn gezondheid genezen. Een speler op het pad vangt de ziel op: 12 tot 16 schaduwschade op Normaal)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Samenklank (elke levende koorzanger laat haar 30 procent minder schade krijgen: dood eerst de koorzangers)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroïsch: Toegift (een koorzanger die 10 seconden dood ligt terwijl de andere nog leeft, herrijst. Dood ze dus samen) en Ongebroken vers (elke derde klaagzang kan niet worden onderbroken: schuil ervoor)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroïsch: elke brandende lantaarn dooft ook vanzelf na 30 seconden en blijft 10 seconden donker. Bevroren omhelzing grijpt twee spelers en laat los bij schade gelijk aan 4,4 procent van haar gezondheid',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroïsch: Slag van de doodgraver elke 9 seconden op de tank (elke stapel geeft 20 seconden 6 procent meer ontvangen schade, tot 6 stapels), Grafkracht (hij slaat 30 procent sneller in een graf) en Rusteloze aarde (wie 2 seconden in een graf blijft, laat daar een rusteloos skelet herrijzen)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'De maat voor het graf (elke 15 seconden markeert hij een speler die niet de tank is. 4 seconden later stort een Open graf onder die speler in: 42 tot 52 schade binnen 3 yard op Normaal. De put blijft het gevecht liggen: 9 schade per seconde en 40 procent langzamer bewegen erin, dus leg de graven aan de rand van het erf)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroïsch: Noem de doden (het Register geeft de kaarsvolgorde: een verkeerde kaars dooft de laatste en doet de aansteker 252 tot 288 schaduwschade. Opnieuw aansteken kost elke seconde 8 procent), Greep van het graf (elke 16 seconden krijgen 2 spelers een ring van 4 yard. Na 1,5 seconden breken handen uit: 3 seconden vastzetten en 162 tot 198 schaduwschade) en Brandende doodsklok van de Doodsklokdraak (hij vliegt op en markeert de helft van de ring 4,5 seconden, daarna spookvuur over die helft voor 1.000 tot 1.120 vuurschade, 3 helften per vlucht)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Schaduwpuls (elke 12 seconden een spreuk van 2 seconden, daarna 24 tot 30 schaduwschade op Normaal aan iedereen binnen 12 yard. Neem dus afstand. Elke 9 seconden tijdens zijn Laatste rituelen)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Maai de rustelozen (onder 35 procent gezondheid stoppen de zielen. Elke 14 seconden zwaait hij zijn zeis na een spreuk van 2 seconden: 55 tot 65 schaduwschade op Normaal aan iedereen in een boog van 120 graden, 14 yard vóór hem. Schaduwpuls komt dan elke 9 seconden)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Rijppad (waar ze zweeft laat ze 25 seconden gladde rijp achter. Daarop kom je langzaam op snelheid en glijd je door als je stopt of draait)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Ritueel van de rustelozen (bij 65 procent gezondheid keert hij terug naar het altaar, immuun binnen de Rusteloze bescherming. Grafkou doet iedereen 3 schaduwschade per seconde, elke 5 seconden 1 meer. Er klimmen 2 rusteloze skeletten uit de nissen. Steek de 4 Herdenkingskaarsen opnieuw aan: elk vereist 4 seconden kanaliseren en kost de aansteker elke seconde 6 procent van de maximale gezondheid. Treffers onderbreken niet, een stap of verdoving wel. De laatste kaars breekt het ritueel: hij is 8 seconden verdoofd en krijgt 25 procent meer schade)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Schepvol (elke 11 seconden werpt hij grafaarde in een kegel van 8 yard vóór zich: anderhalf keer zijn slag en 6 seconden 50 procent langzamer bewegen. Ga achter hem staan)',
   'hudChrome.finder.mech.drowned_anchor':
     'Verdronken anker (het slachtoffer wordt naar de put getrokken: kom binnen 3 yard van een verlichte meerpaal om de ketting vast te maken. De paal dooft daarna 30 seconden. Of breek de ketting met 12 treffers, 16 op Heroïsch)',
   'hudChrome.finder.mech.fog_veil':
