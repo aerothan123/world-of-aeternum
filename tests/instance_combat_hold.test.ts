@@ -194,10 +194,12 @@ describe('instance combat hold: hate tables are slot-scoped, never distance-scop
   });
 
   it('holds a party member anywhere in the room for an instance boss, and nobody outside it', () => {
-    // Moved off the retired Hollow Crypt's Morthen (2026-11-11) onto
-    // Knight-Commander Olen, a boss with no scripted entrance to skip.
+    // Moved off the retired Hollow Crypt's Morthen (2026-11-11) onto Vael the
+    // Fogbinder: a template carrying the boss flag, with no scripted entrance
+    // to skip.
     const { sim, instance, pid, player, mobs } = claim('sunken_bastion');
-    const boss = expectDefined(mobs.find((m) => m.templateId === 'knight_commander_olen'));
+    const boss = expectDefined(mobs.find((m) => m.templateId === 'vael_the_mistcaller'));
+    expect(MOBS[boss.templateId].boss).toBe(true);
     const passivePid = sim.addPlayer('priest', 'Passive');
     sim.setPlayerLevel(30, passivePid);
     sim.partyInvite(passivePid, pid);

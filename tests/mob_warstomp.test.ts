@@ -14,7 +14,7 @@ function makeSim() {
 
 // Spawn a stomping boss locked in melee on the player and return it.
 function engagedStomper(sim: Sim): Entity {
-  const mob = createMob(900100, MOBS.ossuary_sentinel, 20, { ...sim.player.pos });
+  const mob = createMob(900100, MOBS.sump_troll_devourer, 20, { ...sim.player.pos });
   mob.spawnPos = { ...sim.player.pos }; // sit on the player: in melee + stomp radius, no leash
   mob.aiState = 'attack';
   mob.aggroTargetId = sim.playerId;
@@ -27,16 +27,16 @@ const stompAura = (e: Entity) => e.auras.find((a) => a.id === 'stomp_stun');
 
 describe('Shuddering Stomp boss mechanic', () => {
   // Korgath's Shuddering Stomp left his template for his encounter module (the
-  // Gravewyrm Sanctum rework); the Hollow Crypt's Ossuary Sentinel carries the
+  // Gravewyrm Sanctum rework); the delves' Sump Troll Devourer carries the
   // template stomp this file exercises.
-  it('the Ossuary Sentinel carries a template stomp (Bone Rattle)', () => {
-    expect(MOBS.ossuary_sentinel.stomp?.name).toBe('Bone Rattle');
+  it('the Sump Troll Devourer carries a template stomp (Sump Stomp)', () => {
+    expect(MOBS.sump_troll_devourer.stomp?.name).toBe('Sump Stomp');
   });
 
   it('is telegraphed: a freshly spawned stomper waits one interval before its first slam', () => {
     const sim = makeSim();
-    const mob = createMob(900101, MOBS.ossuary_sentinel, 20, { x: 0, y: 0, z: 0 });
-    expect(mob.stompTimer).toBe(MOBS.ossuary_sentinel.stomp!.every);
+    const mob = createMob(900101, MOBS.sump_troll_devourer, 20, { x: 0, y: 0, z: 0 });
+    expect(mob.stompTimer).toBe(MOBS.sump_troll_devourer.stomp!.every);
   });
 
   it('stuns a player in radius when the timer elapses and resets the timer', () => {
@@ -49,8 +49,8 @@ describe('Shuddering Stomp boss mechanic', () => {
 
     const aura = stompAura(sim.player);
     expect(aura?.kind).toBe('stun');
-    expect(aura?.name).toBe('Bone Rattle');
-    expect(mob.stompTimer).toBeCloseTo(MOBS.ossuary_sentinel.stomp!.every, 5);
+    expect(aura?.name).toBe('Sump Stomp');
+    expect(mob.stompTimer).toBeCloseTo(MOBS.sump_troll_devourer.stomp!.every, 5);
   });
 
   it('damages the player when the stomp carries a damage range', () => {
@@ -78,7 +78,7 @@ describe('Shuddering Stomp boss mechanic', () => {
       mob.stompTimer = 0.001;
       (sim as any).updateMob(mob);
       const hit = (sim.drainEvents() as any[]).find(
-        (e) => e.type === 'damage' && e.ability === MOBS.ossuary_sentinel.stomp!.name,
+        (e) => e.type === 'damage' && e.ability === MOBS.sump_troll_devourer.stomp!.name,
       );
       if (!hit) throw new Error('the slam never landed');
       return hit.amount as number;
@@ -102,7 +102,7 @@ describe('Shuddering Stomp boss mechanic', () => {
     far.maxHp = 5000;
     far.hp = 5000;
     far.pos = { ...mob.pos };
-    far.pos.x += MOBS.ossuary_sentinel.stomp!.radius + 5;
+    far.pos.x += MOBS.sump_troll_devourer.stomp!.radius + 5;
 
     mob.stompTimer = 0.001;
     (sim as any).updateMob(mob);
@@ -126,7 +126,7 @@ describe('Shuddering Stomp boss mechanic', () => {
     const mob = engagedStomper(sim);
     mob.stompTimer = 0;
     (sim as any).resetEvadingMob(mob);
-    expect(mob.stompTimer).toBe(MOBS.ossuary_sentinel.stomp!.every);
+    expect(mob.stompTimer).toBe(MOBS.sump_troll_devourer.stomp!.every);
   });
 
   it('a normal mob without a stomp template never gains a stomp aura', () => {

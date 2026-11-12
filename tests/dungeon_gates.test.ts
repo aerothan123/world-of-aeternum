@@ -175,9 +175,55 @@ describe('dungeon gates: the Sunken Bastion claim', () => {
     expect(blockedAt(sim, inst, 'gaol_grate')).toBe(false);
   });
 
-  // The multi-boss gate case (the crypt's Twin Seals) left with the dungeon
-  // (2026-11-11). A port onto the Wildheart Sunbone Causeway did not hold (the
-  // causeway read open with one of its bosses alive); left as an open item.
+  // The multi-boss gate (ported from the crypt's Twin Seals, 2026-11-11): the
+  // Wildheart Basin's Sunbone Causeway thorns list the Beastmaster, his
+  // jaguar and the Gorgebloom. The Beastmaster and the jaguar share one health
+  // pool and fall together (encounters/wildheart_basin/beastmaster.ts
+  // fellTogether), so the gate waits on two wing encounters: either one left
+  // standing holds the thorns shut.
+  const CAUSEWAY = 'sunbone_causeway_thorns';
+  const WILDHEART = 'wildheart_basin';
+  const PAIR = ['wildheart_beastmaster', 'fanglord_jaguar'];
+  const GORGEBLOOM = 'the_gorgebloom';
+
+  function alive(sim: Sim, inst: InstanceSlot, templateId: string): boolean {
+    const i = DUNGEONS[inst.dungeonId].spawns.findIndex((s) => s.mobId === templateId);
+    const mob = sim.ctx.entities.get(inst.mobIds[i]);
+    return !!mob && !mob.dead;
+  }
+
+  it('the Sunbone Causeway thorns list exactly the two wing encounters', () => {
+    expect([...(gate(CAUSEWAY, WILDHEART).bosses ?? [])].sort()).toEqual(
+      [...PAIR, GORGEBLOOM].sort(),
+    );
+  });
+
+  it('the Sunbone Causeway thorns hold while the Beastmaster pair stands', () => {
+    const { sim, inst } = setup(11, WILDHEART);
+    kill(sim, inst, [GORGEBLOOM]);
+    sim.tick();
+    expect(alive(sim, inst, PAIR[0]) && alive(sim, inst, PAIR[1])).toBe(true);
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('closed');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(true);
+    kill(sim, inst, PAIR);
+    sim.tick();
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('open');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(false);
+  });
+
+  it('the Sunbone Causeway thorns hold while the Gorgebloom stands', () => {
+    const { sim, inst } = setup(11, WILDHEART);
+    kill(sim, inst, PAIR);
+    sim.tick();
+    expect(alive(sim, inst, GORGEBLOOM)).toBe(true);
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('closed');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(true);
+    kill(sim, inst, [GORGEBLOOM]);
+    sim.tick();
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('open');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(false);
+  });
+
   it('a reset re-closes every gate for the fresh claim', () => {
     const { sim, pid, inst } = setup();
     kill(sim, inst, ['f1', 'f2', 'fa', 'fb', 'f3']);

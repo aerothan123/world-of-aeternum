@@ -516,7 +516,7 @@ describe('coverage: each scenario fires its subsystem', { timeout: 90_000 }, () 
     expect((rec.notes.instMobIds as number[]).length).toBeGreaterThan(0);
     // After the empty-reset, freeInstance nulled partyKey and despawned the mobs.
     const inst = (sim.instances as any[]).find(
-      (i) => i.dungeonId === 'hollow_crypt' && i.slot === rec.notes.slotA,
+      (i) => i.dungeonId === 'sunken_bastion' && i.slot === rec.notes.slotA,
     );
     expect(inst.partyKey).toBe(null);
     expect(inst.mobIds.length).toBe(0);

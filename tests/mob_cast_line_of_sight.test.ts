@@ -1,12 +1,12 @@
 // Mob casts and line of sight (src/sim/mob/cast_sight.ts, mob/chase_route.ts,
-// mob/trash_kit/kit_cast_sight.ts), in a real claimed HEROIC Hollow Crypt with
-// its real caster trash: the Gravecaller Adept's Grave Spark (its petSpell
-// bolt), its Grave Bolt (a kit cast bar) and its Gravespark Volley (the
-// line-of-sight nova that was already right). Full Sim ticks, seeded.
+// mob/trash_kit/kit_cast_sight.ts), in a real claimed Sunken Bastion with its
+// real caster trash: the Mistweaver's Chilling Mist (its petSpell bolt), and a
+// lent Glimmer Venom (the Drowned Temple's kit cast bar). Full Sim ticks,
+// seeded. (These cases drove the Hollow Crypt's Gravecaller Adept round the
+// Ossuary Monument until the crypt retired, 2026-11-11.)
 //
-// The walls are the crypt's own: the Ossuary Monument in the Cloister (a 5 yd
-// pillar of bone the party hides behind) and the Undercroft Grille's curtain
-// wall, whose only way through is its gate.
+// The wall is the Bastion's own: the Drowning Winch in the middle of the open
+// Drowning Yard (a 4.2 yd drum the party hides behind).
 //
 // Every cost claim is read off the sim's own per-tick tallies
 // (Sim.mobScanCounters: sight queries, route searches, cells judged), which
@@ -54,21 +54,15 @@ import { DT, dist2d, type Entity, LEASH_DISTANCE } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
 import { boss, type Fight, fight, put, tick } from './helpers/bastion_fight';
 
-// COVERAGE GAP (2026-11-11): the cases that drove a real claimed Hollow Crypt
-// (its walls, trash and bosses) were removed with the retired dungeon and
-// still need a port onto the Sunken Bastion's geometry. What remains below
-// never depended on the crypt.
-
 vi.setConfig({ testTimeout: 240_000 });
-const SPARK = 'Grave Spark';
-const BOLT = 'Grave Bolt';
-const MONUMENT = { x: 0, z: -30, r: 5 };
-/** South of the monument: where the caster stands. */
-const CASTER_SPOT = { x: 0, z: -44 };
+const WINCH = { x: -2, z: 24, r: 4.2 };
+/** South of the winch: where the caster stands. */
+const CASTER_SPOT = { x: -2, z: 10 };
 /** North of it, dead behind it from the caster: out of sight. */
-const HIDDEN = { x: 0, z: -18 };
+const HIDDEN = { x: -2, z: 36 };
 /** North of it and well to one side: in plain sight of the caster. */
-const SEEN = { x: 13, z: -23 };
+const SEEN = { x: 11, z: 31 };
+const MIST = MOBS.mistweaver.petSpell?.name ?? 'missing petSpell';
 function engage(mob: Entity, victim: Entity): void {
   mob.aggroTargetId = victim.id;
   mob.inCombat = true;
@@ -76,6 +70,131 @@ function engage(mob: Entity, victim: Entity): void {
   mob.leashAnchor = { ...mob.pos };
   addThreat(mob, victim.id, 100);
 }
+
+/** A cleared Bastion with the tank on `at` and a lone Mistweaver on its spot. */
+function yard(at: { x: number; z: number }): { f: Fight; caster: Entity } {
+  const f = fight('normal', 0, new Set());
+  tick(f);
+  put(f, f.tank, at.x, at.z);
+  const caster = createMob(
+    f.sim.ctx.nextId++,
+    MOBS.mistweaver,
+    12,
+    f.sim.ctx.groundPos(f.ox + CASTER_SPOT.x, f.oz + CASTER_SPOT.z),
+  );
+  caster.hostile = true;
+  caster.maxHp = 1e7;
+  caster.hp = 1e7;
+  f.sim.ctx.addEntity(caster);
+  f.inst.mobIds.push(caster.id);
+  // No kit: the only cast in the yard is the petSpell.
+  caster.devTrashKit = {};
+  engage(caster, f.tank);
+  return { f, caster };
+}
+
+/** The tank steps to the far side of the winch from wherever the caster stands. */
+function hideFrom(f: Fight, caster: Entity): boolean {
+  const wx = f.ox + WINCH.x;
+  const wz = f.oz + WINCH.z;
+  const dx = wx - caster.pos.x;
+  const dz = wz - caster.pos.z;
+  const d = Math.hypot(dx, dz);
+  put(f, f.tank, wx + (dx / d) * 12 - f.ox, wz + (dz / d) * 12 - f.oz);
+  return !f.sim.ctx.hasLineOfSight(caster, f.tank);
+}
+
+describe('the scene: the winch really breaks the line', () => {
+  it('hides the far side and shows the flank', () => {
+    const { f, caster } = yard(HIDDEN);
+    expect(f.sim.ctx.hasLineOfSight(caster, f.tank)).toBe(false);
+    put(f, f.tank, SEEN.x, SEEN.z);
+    expect(f.sim.ctx.hasLineOfSight(caster, f.tank)).toBe(true);
+    // In spell range either way: only the winch stands between them.
+    expect(dist2d(caster.pos, f.tank.pos)).toBeLessThan(MOBS.mistweaver.petSpell?.range ?? 0);
+  });
+});
+
+describe('a caster with no line of sight', () => {
+  it('casts nothing, walks round the winch until it sees its target, and casts from there', () => {
+    const { f, caster } = yard(HIDDEN);
+    expect(f.sim.ctx.hasLineOfSight(caster, f.tank)).toBe(false);
+    let plans = 0;
+    let landed = 0;
+    let blind = 0;
+    for (let i = 0; i < 400; i++) {
+      const hidden = !f.sim.ctx.hasLineOfSight(caster, f.tank);
+      const from = f.hits.length;
+      tick(f);
+      plans += f.sim.mobScanCounters.routePlans;
+      const now = f.hits
+        .slice(from)
+        .filter((h) => h.targetId === f.tank.id && h.ability === MIST).length;
+      landed += now;
+      if (hidden) blind += now;
+    }
+    expect(plans).toBeGreaterThanOrEqual(1);
+    expect(plans).toBeLessThanOrEqual(ROUTE_MAX_TRIES);
+    expect(landed).toBeGreaterThan(0);
+    expect(blind).toBe(0);
+    expect(f.sim.ctx.hasLineOfSight(caster, f.tank)).toBe(true);
+    // It never walked through the drum.
+    expect(
+      Math.hypot(caster.pos.x - f.ox - WINCH.x, caster.pos.z - f.oz - WINCH.z),
+    ).toBeGreaterThan(WINCH.r);
+  });
+
+  it('a dead caster keeps no route', () => {
+    const { f, caster } = yard(HIDDEN);
+    for (let i = 0; i < 200 && !caster.chaseRoute; i++) tick(f);
+    expect(caster.chaseRoute).toBeDefined();
+    f.sim.ctx.handleDeath(caster, f.tank);
+    tick(f);
+    expect(caster.chaseRoute).toBeUndefined();
+  });
+});
+
+describe('a target that hides while the cast is in flight', () => {
+  it('Chilling Mist: the windup runs out, nothing leaves its hand, nothing lands', () => {
+    const { f, caster } = yard(SEEN);
+    let ticks = 0;
+    while (caster.rangedWindupReleaseTick == null && ticks++ < 200) tick(f);
+    expect(caster.rangedWindupReleaseTick).not.toBeNull();
+    const release = caster.rangedWindupReleaseTick ?? -1;
+    expect(hideFrom(f, caster)).toBe(true);
+    const from = f.hits.length;
+    const cues = f.cues.length;
+    for (let i = 0; i < 60 && f.sim.tickCount <= release; i++) tick(f, () => hideFrom(f, caster));
+    expect(f.sim.tickCount).toBeGreaterThan(release);
+    expect(
+      f.hits.slice(from).filter((h) => h.targetId === f.tank.id && h.ability === MIST),
+    ).toEqual([]);
+    expect(f.cues.slice(cues).filter((c) => c.sourceId === caster.id)).toEqual([]);
+    expect(caster.rangedWindupReleaseTick ?? null).toBeNull();
+  });
+
+  it('a lent Glimmer Venom: the bar runs out with its victim hidden, and nothing lands', () => {
+    const venom = MOBS.glimmerscale_lurker.trashKit?.bolt;
+    if (!venom) throw new Error('Glimmer Venom');
+    const { f, caster } = yard(SEEN);
+    caster.devTrashKit = { bolt: { ...venom } };
+    const casting = () => caster.castingAbility === venom.castId;
+    let ticks = 0;
+    while (!casting() && ticks++ < 600) tick(f);
+    expect(casting()).toBe(true);
+    expect(hideFrom(f, caster)).toBe(true);
+    const from = f.hits.length;
+    let ran = 0;
+    while (casting() && ran < Math.round(venom.castTime / DT) + 20) {
+      tick(f, () => hideFrom(f, caster));
+      ran++;
+    }
+    expect(casting()).toBe(false);
+    expect(
+      f.hits.slice(from).filter((h) => h.targetId === f.tank.id && h.ability === venom.name),
+    ).toEqual([]);
+  });
+});
 
 // The same sight rule in the open world, on a world caster (Corrupted Priest
 // Malric's Mindfracture, an instant petSpell) with one of the world's own
