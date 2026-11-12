@@ -11297,7 +11297,7 @@ export const hudChromeStrings = {
     kinds: {
       dungeons: {
         category: 'Dungeons',
-        lore: 'The depths of the realm never rest: the Derelict Mech stirs again and the Sunken Bastion's drowned garrison wakes. Gather your allies and cleanse the dungeons of their corruption.',
+        lore: 'The depths of the realm never rest: the Derelict Mech stirs again and the drowned garrison of the Sunken Bastion wakes. Gather your allies and cleanse the dungeons of their corruption.',
         goal: 'Complete {count} dungeons on any difficulty.',
         goalLabel: 'Dungeons completed',
       },
