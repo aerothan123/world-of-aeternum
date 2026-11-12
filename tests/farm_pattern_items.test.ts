@@ -156,8 +156,11 @@ describe('farm pattern channel wiring (masterwrought R8: raid feast, five-man 75
     MOBS.nythraxis_scourge_of_thornpeak.loot.filter(
       (entry) => entry.rollGroup === 'nythraxis_farm',
     );
+  // Read off Vael, the lowest live heroic five-man final boss, since the Hollow
+  // Crypt's Morthen retired; tests/dungeons.test.ts pins the same group on
+  // every heroic five-man final boss.
   const fiveManPatternIds = new Set(
-    HEROIC_BOSS_LOOT.morthen
+    HEROIC_BOSS_LOOT.vael_the_mistcaller
       .filter((e) => e.rollGroup === FARM_HEROIC_PATTERN_GROUP)
       .map((e) => e.itemId as string),
   );
