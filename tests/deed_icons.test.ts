@@ -390,8 +390,10 @@ describe('Book of Deeds webp icons', () => {
     // join the pending ledger after it: 373 live.
     // The owner removed trick-or-treat: its two painted Feats (Every Doorstep, Three
     // Towns Startled) and their WebP crests left the catalog: 371 live, 354 painted.
-    expect(DEED_ORDER, 'the merged live deed catalog').toHaveLength(371);
-    expect(DEED_IMAGE_IDS.size, 'every live deed but the pending set is painted').toBe(354);
+    // The owner retired the Hollow Crypt: its nine painted deeds and their WebP
+    // crests left the catalog too: 362 live, 345 painted.
+    expect(DEED_ORDER, 'the merged live deed catalog').toHaveLength(362);
+    expect(DEED_IMAGE_IDS.size, 'every live deed but the pending set is painted').toBe(345);
     expect(DEED_ART_PENDING_IDS).toHaveLength(17);
     expect(DEED_ART_PENDING_IDS.at(-1)).toBe('chr_shore_that_remembers');
     expect(DEED_ART_PENDING_IDS.slice(0, 7)).toEqual([
