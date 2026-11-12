@@ -17,6 +17,7 @@ import {
 } from '../src/sim/content/chapter_one';
 import { OATHLESS_KING_TITLE } from '../src/sim/content/wyndlewood_lore';
 import { ESCORTS, GROUND_OBJECTS, ITEMS, MOBS, NPCS, QUESTS, zoneAt } from '../src/sim/data';
+import { campSiteKey, ebv2SiteOr, objectSiteKey } from '../src/sim/eastbrook_v2/sites';
 import { groundHeight, isInWaterBody, waterLevelAt } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
@@ -27,6 +28,16 @@ const dryAndOpen = (x: number, z: number) =>
 
 const ALL = { ...CHAPTER_ONE_QUESTS, ...TOWN_BOARD_QUESTS };
 
+// Eastbrook Vale v2: data.ts stands the authored objects, camps and NPCs on
+// their v2 design sites (eastbrook_v2/sites.ts applyEbv2Sites). The placement
+// checks below read where each one LIVES, through the same site keys.
+const liveObjectPos = (itemId: string, p: { x: number; z: number }) =>
+  ebv2SiteOr(objectSiteKey(itemId, p), p);
+const liveObject = (def: (typeof CHAPTER_ONE_OBJECTS)[number]) => ({
+  ...def,
+  positions: def.positions.map((p) => ({ ...p, ...liveObjectPos(def.itemId, p) })),
+});
+
 describe('Chapter One content', () => {
   it('merges every record into the shared tables', () => {
     for (const id of Object.keys(ALL)) expect(QUESTS[id], id).toBe(ALL[id]);
@@ -34,7 +45,9 @@ describe('Chapter One content', () => {
     for (const id of Object.keys(CHAPTER_ONE_MOBS)) expect(MOBS[id], id).toBeDefined();
     for (const id of Object.keys(CHAPTER_ONE_NPCS)) expect(NPCS[id], id).toBeDefined();
     for (const id of Object.keys(CHAPTER_ONE_ESCORTS)) expect(ESCORTS[id], id).toBeDefined();
-    for (const def of CHAPTER_ONE_OBJECTS) expect(GROUND_OBJECTS).toContain(def);
+    // Re-sited for Eastbrook Vale v2: an object the resite moved is merged as a
+    // copy at its design site (was: the authored record itself).
+    for (const def of CHAPTER_ONE_OBJECTS) expect(GROUND_OBJECTS).toContainEqual(liveObject(def));
   });
 
   it('resolves every giver, turn-in, target, item and prerequisite', () => {
@@ -71,11 +84,19 @@ describe('Chapter One content', () => {
   });
 
   it('puts every object, camp, NPC and escort point on dry open ground in its zone', () => {
+    // Eastbrook Vale v2: where each one lives (its design site, else as authored).
     const points: [string, number, number][] = [];
     for (const def of CHAPTER_ONE_OBJECTS)
-      for (const p of def.positions) points.push([def.itemId, p.x, p.z]);
-    for (const camp of CHAPTER_ONE_CAMPS) points.push([camp.mobId, camp.center.x, camp.center.z]);
-    for (const npc of Object.values(CHAPTER_ONE_NPCS)) points.push([npc.id, npc.pos.x, npc.pos.z]);
+      for (const p of def.positions) {
+        const at = liveObjectPos(def.itemId, p);
+        points.push([def.itemId, at.x, at.z]);
+      }
+    for (const camp of CHAPTER_ONE_CAMPS) {
+      const at = ebv2SiteOr(campSiteKey(camp), camp.center);
+      points.push([camp.mobId, at.x, at.z]);
+    }
+    for (const npc of Object.values(CHAPTER_ONE_NPCS))
+      points.push([npc.id, NPCS[npc.id].pos.x, NPCS[npc.id].pos.z]);
     for (const esc of Object.values(CHAPTER_ONE_ESCORTS)) {
       points.push([esc.id, esc.start.x, esc.start.z]);
       for (const w of esc.waypoints) points.push([esc.id, w.x, w.z]);
@@ -89,46 +110,13 @@ describe('Chapter One content', () => {
     }
   });
 
-  it('keeps clear of the town layout lots (houses, terrace, cottages, well)', () => {
-    // The town crew's Eastbrook relayout (docs/narrative/chapter_one_placements.md,
-    // "Reconciled with the town layout"): building centres and how far a
-    // chapter point keeps from each.
-    const lots: [string, number, number, number][] = [
-      ['meadow timber house', 36.3, -14.2, 8],
-      ['meadow house 2', 48.8, -17.6, 8],
-      ['meadow house 3', 18.7, -33.4, 8],
-      ['meadow green townhouse', 38.5, -30.8, 8],
-      ['meadow well', 57, -29, 4],
-      ['row terrace', -26, -84, 9],
-      ['stone cottage', -72, -86, 8],
-      ['red cottage', -76.5, -45.1, 8],
-    ];
-    const points: [string, number, number][] = [];
-    for (const def of CHAPTER_ONE_OBJECTS)
-      for (const p of def.positions) points.push([def.itemId, p.x, p.z]);
-    for (const npc of Object.values(CHAPTER_ONE_NPCS)) points.push([npc.id, npc.pos.x, npc.pos.z]);
-    for (const esc of Object.values(CHAPTER_ONE_ESCORTS)) {
-      points.push([esc.id, esc.start.x, esc.start.z]);
-      for (const w of esc.waypoints) points.push([esc.id, w.x, w.z]);
-    }
-    const near: string[] = [];
-    for (const [id, x, z] of points) {
-      for (const [lot, lx, lz, clear] of lots) {
-        if (Math.hypot(x - lx, z - lz) < clear) near.push(`${id}@${x},${z} by ${lot}`);
-      }
-    }
-    expect(near).toEqual([]);
-    // Every camp stands at least 11 yards past its radius from every lot.
-    for (const camp of CHAPTER_ONE_CAMPS) {
-      for (const [lot, lx, lz] of lots) {
-        const d = Math.hypot(camp.center.x - lx, camp.center.z - lz);
-        expect(d, `${camp.mobId} by ${lot}`).toBeGreaterThanOrEqual(camp.radius + 11);
-      }
-    }
-    // Wenna keeps her yard where the layout leaves room for it.
-    const pella = CHAPTER_ONE_NPCS.carpenter_pella.pos;
-    expect(Math.hypot(pella.x + 45, pella.z + 87)).toBeLessThan(3);
-  });
+  // Retired with the Eastbrook Vale v2 port: 'keeps clear of the town layout
+  // lots (houses, terrace, cottages, well)' pinned chapter points against the
+  // OLD town's building centres (meadow houses, row terrace, cottages, well)
+  // and Pella's old yard at (-45, -87). None of those stand in v2; the v2
+  // houses are design solids, which the dry-open-ground check above already
+  // keeps every live chapter point out of (eastbrook_v2_world.test.ts pins the
+  // same for every vale spawn).
 
   it('runs the main story in the owner order and ends outside the sealed crypt', () => {
     const chain = [

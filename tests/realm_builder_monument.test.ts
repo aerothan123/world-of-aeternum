@@ -391,7 +391,7 @@ describe('inspecting the Realm Builder monument', () => {
     expect(eventTypes(sim)).not.toContain('realmBuilder');
   });
 
-  it('never takes the interact key from the mailbox 6.21 yd away', () => {
+  it('never takes the interact key from the mailbox 5.15 yd away', () => {
     const sim = new Sim({ seed: SEED, playerClass: 'warrior', noPlayer: true });
     const pid = sim.addPlayer('warrior', 'Reader');
     const mailbox = mailboxEntity(sim);
@@ -399,7 +399,10 @@ describe('inspecting the Realm Builder monument', () => {
       mailbox.pos.x - MONUMENT.position.x,
       mailbox.pos.z - MONUMENT.position.z,
     );
-    expect(span).toBeCloseTo(6.21, 2);
+    // Re-pinned for Eastbrook Vale v2: the mailbox stands on its v2 design
+    // site (svc_mailbox, (-10, -100)) now, 5.15 yd off the monument (was 6.21
+    // across the old civic square). Nearest still wins below.
+    expect(span).toBeCloseTo(5.15, 2);
 
     // Pressed against the plinth on the mailbox's side, still inside the
     // monument's catchment: the mailbox is nearer and nearest wins.

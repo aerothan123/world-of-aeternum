@@ -17,6 +17,7 @@ import {
   ZONES,
   zoneAt,
 } from '../src/sim/data';
+import { ebv2SiteOr, objectSiteKey } from '../src/sim/eastbrook_v2/sites';
 import { MAX_AGGRO_RADIUS, MAX_WANDER_RADIUS } from '../src/sim/mob/aggro_ranges';
 import { summonMountItem } from '../src/sim/mounts';
 import {
@@ -524,16 +525,27 @@ describe('world quest content', () => {
       { x: -50, z: -78 },
       { x: -67, z: -62 },
     ];
+    // Eastbrook Vale v2: data.ts stands two of the crates and the wagon on
+    // their v2 design sites (sites.generated.ts obj:<item>@<x>,<z>), so the
+    // pins read each authored spot through the same site key.
+    const livePickups = pickupPositions.map((p) =>
+      ebv2SiteOr(objectSiteKey(objective.pickupObjectItemId, p), p),
+    );
+    const liveWagon = ebv2SiteOr(
+      objectSiteKey(objective.deliveryObjectItemId, { x: -78, z: -57 }),
+      {
+        x: -78,
+        z: -57,
+      },
+    );
     const pickups = [...sim.entities.values()].filter(
       (entity) => entity.objectItemId === objective.pickupObjectItemId,
     );
     const destination = [...sim.entities.values()].find(
       (entity) => entity.objectItemId === objective.deliveryObjectItemId,
     );
-    expect(pickups.map((pickup) => ({ x: pickup.pos.x, z: pickup.pos.z }))).toEqual(
-      pickupPositions,
-    );
-    expect(destination?.pos).toMatchObject({ x: -78, z: -57 });
+    expect(pickups.map((pickup) => ({ x: pickup.pos.x, z: pickup.pos.z }))).toEqual(livePickups);
+    expect(destination?.pos).toMatchObject(liveWagon);
     if (!destination) throw new Error('Missing freight wagon');
 
     for (const object of [...pickups, destination]) {
