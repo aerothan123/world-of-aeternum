@@ -347,7 +347,11 @@ const MOUNT_SOURCES: Readonly<
   nightwing_chimera: fromStore(),
   referral_raptor: fromActivity('referral_cards'),
   wobbles_slime: fromActivity('referral_cards'),
-  stormfeather_griffin: [fromBoss('nythraxis_scourge_of_thornpeak'), fromRift('B')],
+  stormfeather_griffin: [
+    fromBoss('vael_the_mistcaller'),
+    fromBoss('nythraxis_scourge_of_thornpeak'),
+    fromRift('B'),
+  ],
   shadowjump_toad: [
     fromBoss('vael_the_mistcaller'),
     fromBoss('nythraxis_scourge_of_thornpeak'),

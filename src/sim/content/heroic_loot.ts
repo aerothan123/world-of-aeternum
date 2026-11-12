@@ -979,6 +979,11 @@ export const HEROIC_BOSS_LOOT: Record<string, LootEntry[]> = {
     ]).map(preserveBaseLootSource),
     { itemId: 'mistcallers_duffel', chance: 0.1, preserveSourceTier: true },
     { itemId: 'reins_shadowjump_toad', chance: HEROIC_GREEN_MOUNT_CHANCE },
+    // The Stormfeather's five-man path, re-homed here from Morthen when the
+    // Hollow Crypt was retired (2026-11-12): the Bastion is the lowest live
+    // five-man, the nearest band to the crypt's. Same heroic 0.5% it paid on
+    // Morthen. Sits after the Toad so the Toad's draw keeps its stream slot.
+    { itemId: 'reins_stormfeather_griffin', chance: HEROIC_GREEN_MOUNT_CHANCE },
     ...heroicFarmPatternRows(),
   ],
   ysolei: [
