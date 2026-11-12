@@ -12,6 +12,15 @@ export const REFERRAL_MILESTONES = [
 ] as const;
 
 export type ReferralMilestone = (typeof REFERRAL_MILESTONES)[number]['id'];
+
+/** Retired slots keep their persisted bit but can no longer be earned, so they
+ * are never required for redemption order or for the completed card. */
+export const RETIRED_REFERRAL_MILESTONES: ReadonlySet<ReferralMilestone> = new Set(['hollow']);
+const RETIRED_BITS = REFERRAL_MILESTONES.reduce(
+  (mask, m, i) => (RETIRED_REFERRAL_MILESTONES.has(m.id) ? mask | (1 << i) : mask),
+  0,
+);
+const COMPLETE_BITS = ((1 << REFERRAL_MILESTONES.length) - 1) & ~RETIRED_BITS;
 export interface ReferralCharacter {
   accountId: number;
   characterId: number;
@@ -327,7 +336,8 @@ function redeem(
   const p = state.participants[index];
   if (p.redeemed & bit) return result(state, 'alreadyRedeemed');
   if (!(p.credited & bit)) return result(state, 'notEarned');
-  if ((p.redeemed & (bit - 1)) !== bit - 1) return result(state, 'previousRewardRequired');
+  const required = (bit - 1) & ~RETIRED_BITS;
+  if ((p.redeemed & required) !== required) return result(state, 'previousRewardRequired');
   const next = revised(state);
   if (command.milestone === 'fogbinder') {
     const pending = state.lockConfirmation;
@@ -355,7 +365,7 @@ function redeem(
       milestone: command.milestone,
     },
   ];
-  if (index === 1 && next.participants[1].redeemed === (1 << REFERRAL_MILESTONES.length) - 1) {
+  if (index === 1 && (next.participants[1].redeemed & COMPLETE_BITS) === COMPLETE_BITS) {
     intents.push({
       type: 'friendCompleted',
       key: `referral:${state.linkId}:completed`,
@@ -416,5 +426,9 @@ export function creditReferralCard(
 }
 
 export function referralNextMilestone(participant: ReferralParticipant): ReferralMilestone | null {
-  return REFERRAL_MILESTONES.find((_, i) => !(participant.redeemed & (1 << i)))?.id ?? null;
+  return (
+    REFERRAL_MILESTONES.find(
+      (m, i) => !RETIRED_REFERRAL_MILESTONES.has(m.id) && !(participant.redeemed & (1 << i)),
+    )?.id ?? null
+  );
 }

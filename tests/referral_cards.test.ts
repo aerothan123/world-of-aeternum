@@ -61,12 +61,14 @@ describe('referral card enrollment', () => {
   it('pins milestone quests to authored content without inventing a tutorial dungeon', () => {
     expect(REFERRAL_MILESTONES.map((m) => m.questId && QUESTS[m.questId].name)).toEqual([
       'Set Sail',
-      'Into the Hollow',
+      null,
       'The Fogbinder',
       'Korzul the Gravewyrm',
       null,
     ]);
     expect(REFERRAL_MILESTONES[0].dungeonId).toBeNull();
+    // The Hollow Crypt slot is retired: it keeps its bit but nothing earns it.
+    expect(REFERRAL_MILESTONES[1]).toEqual({ id: 'hollow', questId: null, dungeonId: null });
   });
   it('recovers tutorial credit on the assigned pair reunion only after both completed it', () => {
     const ctx = context();
@@ -206,9 +208,9 @@ describe('referral card milestone evidence', () => {
   it('rejects forged completion, unassigned characters, and solo turn-ins', () => {
     const state = active();
     const ctx = context();
-    const event = { type: 'questTurnIn', characterId: 101, questId: 'q_hollow' } as const;
+    const event = { type: 'questTurnIn', characterId: 101, questId: 'q_mistcaller' } as const;
     expect(creditReferralCard(state, event, ctx).state).toBe(state);
-    ctx.characters[0].completedQuestIds = ['q_hollow'];
+    ctx.characters[0].completedQuestIds = ['q_mistcaller'];
     expect(creditReferralCard(state, { ...event, characterId: 999 }, ctx).state).toBe(state);
     ctx.characters[1].partyId = 8;
     expect(creditReferralCard(state, event, ctx).error).toBe('notTogether');
@@ -220,25 +222,29 @@ describe('referral card milestone evidence', () => {
   it('catches up solo dungeon quests only on the matching shared clear with both eligible', () => {
     const state = active();
     const ctx = context();
-    ctx.characters[0].completedQuestIds = ['q_hollow', 'q_ps_set_sail'];
+    ctx.characters[0].completedQuestIds = ['q_mistcaller', 'q_ps_set_sail'];
     const event = {
       type: 'dungeonClear',
-      dungeonId: 'hollow_crypt',
+      dungeonId: 'sunken_bastion',
       eligibleCharacterIds: [101, 202],
     } as const;
     expect(creditReferralCard(state, { ...event, eligibleCharacterIds: [101] }, ctx).state).toBe(
       state,
     );
-    expect(creditReferralCard(state, { ...event, dungeonId: 'sunken_bastion' }, ctx).state).toBe(
+    expect(
+      creditReferralCard(state, { ...event, dungeonId: 'gravewyrm_sanctum' }, ctx).state,
+    ).toBe(state);
+    // A clear of the retired Hollow Crypt id earns nothing.
+    expect(creditReferralCard(state, { ...event, dungeonId: 'hollow_crypt' }, ctx).state).toBe(
       state,
     );
     const credited = creditReferralCard(state, event, ctx).state;
-    expect(credited.participants.map((p) => p.credited)).toEqual([2, 0]);
+    expect(credited.participants.map((p) => p.credited)).toEqual([4, 0]);
     expect(referralNextMilestone(credited.participants[0])).toBe('tutorial');
-    ctx.characters[1].completedQuestIds = ['q_hollow'];
+    ctx.characters[1].completedQuestIds = ['q_mistcaller'];
     expect(
       creditReferralCard(credited, event, ctx).state.participants.map((p) => p.credited),
-    ).toEqual([2, 2]);
+    ).toEqual([4, 4]);
   });
 
   it.each([
@@ -265,7 +271,7 @@ describe('referral card milestone evidence', () => {
   it('does not treat a dungeon boss, raid trash, or unknown activity as a raid milestone', () => {
     const state = active();
     for (const [activityId, mobId] of [
-      ['hollow_crypt_normal', 'morthen'],
+      ['sunken_bastion_normal', 'vael_the_mistcaller'],
       ['nythraxis_boss_arena_normal', 'nythraxis_skeleton_warrior'],
       ['unknown', 'nythraxis_scourge_of_thornpeak'],
     ]) {
@@ -281,6 +287,26 @@ describe('referral card milestone evidence', () => {
 });
 
 describe('referral rewards, lock confirmation, and character movement', () => {
+  it('skips the retired hollow slot for redemption order and card completion', () => {
+    // Real credit can never set the retired bit (1 << 1): only 29 is reachable.
+    let state = active();
+    for (const participant of state.participants) participant.credited = 29;
+    expect(claim(state, 'hollow').error).toBe('notEarned');
+    state = claim(state, 'tutorial').state;
+    expect(referralNextMilestone(state.participants[1])).toBe('fogbinder');
+    expect(claim(state, 'gravewyrm').error).toBe('previousRewardRequired');
+    state = claim(state, 'fogbinder').state;
+    state = claim(state, 'fogbinder', 20, 'understand').state;
+    state = claim(state, 'fogbinder', 20, 'confirm').state;
+    expect(state.participants[1].redeemed).toBe(5);
+    state = claim(state, 'gravewyrm').state;
+    const last = claim(state, 'raid');
+    expect(last.error).toBeUndefined();
+    expect(last.state.participants[1].redeemed).toBe(29);
+    expect(referralNextMilestone(last.state.participants[1])).toBeNull();
+    expect(last.intents.map((intent) => intent.type)).toEqual(['grant', 'friendCompleted']);
+  });
+
   it('requires milestone order and produces exactly one grant candidate with a stable key', () => {
     const state = earned();
     expect(claim(state, 'raid').error).toBe('previousRewardRequired');
