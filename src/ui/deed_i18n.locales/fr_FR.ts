@@ -1469,21 +1469,12 @@ export const table: DeedLocaleTable = {
     desc: 'Trouvez toutes les Citrouilles hantées cachées dans le monde pendant la Veillée des courges.',
     title: 'le Creux',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Tous les seuils',
-    desc: 'Demandez des bonbons ou un sort à chaque habitant qui répond à la porte à Eastbrook, Fenbridge et Highwatch pendant la Veillée des courges.',
-  },
   feat_gourdlight_errands: {
     name: 'Aux petits soins de Hester',
     desc: 'Terminez au moins une fois chacune des courses tournantes de Hester Gourdwick pour la Veillée des courges.',
   },
-  feat_gourdlight_frights: {
-    name: 'Trois villes effrayées',
-    desc: 'Pendant la course Bouh ! de Hester, effrayez un habitant dans chacune des villes d’Eastbrook, de Fenbridge et de Highwatch.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'La Veillée des courges de bout en bout',
-    desc: 'Accomplissez toute la Veillée des courges : vainquez le Vieux Thatchgrin, trouvez toutes les Citrouilles hantées, terminez chaque course de Hester, frappez à toutes les portes et effrayez un habitant dans chacune des trois villes.',
     title: 'le Fidèle des courges',
   },
 };

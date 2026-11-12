@@ -8609,23 +8609,7 @@ export const it_IT: EnTranslations = {
         "name": "Notte delle zucche"
       }
     },
-    "trickOrTreat": {
-      "row": "Dolcetto o scherzetto!",
-      "rowAria": "Chiedi dolcetto o scherzetto a {name}",
-      "knockedHint": "Oggi hai già bussato qui. La porta si riapre dopo il ripristino giornaliero.",
-      "treat": "{name} ti porge un dolcetto.",
-      "trick": "{name} ti fa uno scherzo: {trick}!",
-      "alreadyKnocked": "Oggi hai già chiesto dolcetto o scherzetto a {name}.",
-      "notActive": "La Notte delle zucche non è attiva al momento.",
-      "tooFar": "Avvicinati per bussare.",
-      "treatFlash": {
-        "one": "Dolcetto! {count} Dolcetto della Notte delle zucche",
-        "few": "Dolcetto! {count} Dolcetti della Notte delle zucche",
-        "many": "Dolcetto! {count} Dolcetti della Notte delle zucche",
-        "other": "Dolcetto! {count} Dolcetti della Notte delle zucche"
-      },
-      "trickFlash": "Scherzetto! {trick}"
-    },
+    "trickFlash": "Scherzetto! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Follia di pipistrello",
       "gourdlight_trick_skeleton": "Ossa tintinnanti",
@@ -8650,7 +8634,7 @@ export const it_IT: EnTranslations = {
       "trickJar": "Uso: ti fa uno scherzo casuale e innocuo per alcuni secondi. Cosmetico.",
       "pouch": "Uso: aprilo per ricevere {count} Dolcetti della Notte delle zucche.",
       "strawlingCharm": "Uso: ti trasforma in uno degli omini di paglia del Vecchio Thatchgrin per {seconds} secondi. Non utilizzabile in combattimento. Non si consuma mai. Cosmetico.",
-      "sweet": "Si ottiene chiedendo dolcetto o scherzetto durante la Notte delle zucche. Hester Gourdwick li scambia con oggetti cosmetici ai suoi banchi di Eastbrook, Fenbridge e Highwatch.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Uso: ti trasforma in uno scheletro tintinnante per {minutes} minuti. Si consuma. Non utilizzabile in combattimento; entrare in combattimento termina l’effetto. Cosmetico.",
       "costumeGhost": "Uso: ti trasforma in un fantasma fluttuante per {minutes} minuti. Si consuma. Non utilizzabile in combattimento; entrare in combattimento termina l’effetto. Cosmetico.",
       "costumeBat": "Uso: ti trasforma in un pipistrello svolazzante per {minutes} minuti. Si consuma. Non utilizzabile in combattimento; entrare in combattimento termina l’effetto. Cosmetico.",
@@ -8677,17 +8661,6 @@ export const it_IT: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Lasciata dal Vecchio Thatchgrin, nel suo campo di zucche oltre il Prato dei cinghiali, la prima volta che lo depredi. Nessun mercante la vende."
-    },
-    "boo": {
-      "row": "Bu!",
-      "rowAria": "Sbuca davanti a {name} e urla bu",
-      "needsCostume": "Mettiti prima un costume: un intruglio da travestimento, uno scherzo da pipistrello o scheletro, l’Amuleto dell’omino di paglia, la Testa di zucca intagliata o un sorso da goblin dal Calderone Verdegorgoglio.",
-      "frightenedHint": "{name} sobbalza ancora per il tuo ultimo spavento. Cerca qualcun altro.",
-      "landed": "Sbucando davanti a {name}, urli BU! Un grido squarcia l’aria e per poco non cade tutto.",
-      "flash": "BU! {name} ha preso uno spavento!",
-      "noCostume": "Senza costume, {name} ti ride soltanto in faccia. Mettine uno prima.",
-      "already": "{name} ha avuto abbastanza spaventi per oggi.",
-      "notOnErrand": "Hester non ti ha chiesto di spaventare nessuno oggi."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const it_IT: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Custode della Notte delle zucche",
-        "greeting": "Le zucche sono illuminate e le lanterne appese: dev’essere la Notte delle zucche. Bussa alle porte degli abitanti di Eastbrook, Fenbridge e Highwatch e pronuncia le parole: dolcetto o scherzetto. Quasi tutti ti daranno un dolce. Qualcuno ti farà uno scherzo. Portami i dolci a uno qualsiasi dei miei banchi e li scambierò con qualcosa da indossare."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Podestà Ottoline",
@@ -30948,16 +30921,6 @@ export const it_IT: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Il giro della Notte delle zucche",
-        "text": "Ogni Notte delle zucche i bambini della Valle fanno il loro giro, e quest’anno andrai con loro, {playerName}. Bussa a cinque porte nelle nostre città, pronuncia le parole e guarda cosa ti danno. Torna da me quando hai finito.",
-        "completion": "Cinque porte e hai ancora tutte le dita. Tieni, un sacchetto di dolci per tornare a casa. Ripassa domani, le porte si apriranno di nuovo.",
-        "objectives": {
-          "0": {
-            "label": "Porte a cui hai bussato"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Zucche dall’orto",
         "text": "L’orto del Vecchio Thatchgrin oltre il Prato dei cinghiali trabocca di zucche, e metà sono rotolate oltre la portata della sua paglia, dove una persona prudente può raccoglierle. Portamene cinque, {playerName}. Stai alla larga dal vecchio spaventapasseri. Le conta tutte.",
@@ -30968,16 +30931,6 @@ export const it_IT: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Bu!",
-        "text": "Nessuno in queste città si prende un bello spavento da un anno, {playerName}, e una Notte delle zucche senza spaventi è solo una notte fredda. Mettiti un costume, uno qualsiasi dei miei andrà bene, oppure quella testa di zucca se te ne sei guadagnata una. Poi avvicinati di soppiatto a tre abitanti e fai loro un bel BU! a gran voce.",
-        "completion": "Tre? Ho sentito il cuoco far cadere una padella dall’altra parte della piazza. Ben fatto. Ecco la tua parte.",
-        "objectives": {
-          "0": {
-            "label": "Abitanti spaventati"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Stoppini sinistri",
         "text": "Qualcuno ha lasciato candele con fiamme verdi ai piedi dei nostri lampioni. Bruciano senza sciogliersi e sussurrano quando volti le spalle. Spegnine sei per me, {playerName}, in una qualsiasi delle tre città, e portami i mozziconi.",
@@ -30985,22 +30938,6 @@ export const it_IT: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Candele maledette spente"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Una porta in ogni città",
-        "text": "I bambini dicono che un vero viandante delle zucche bussa in ogni città prima che finisca la notte. Dimostra che hanno ragione, {playerName}. Chiedi dolcetto o scherzetto a una porta di Eastbrook, una di Fenbridge e una di Highwatch. Le lanterne sulle strade ti indicheranno il cammino.",
-        "completion": "Tre città in una notte! I tuoi stivali se lo sono meritato più di te.",
-        "objectives": {
-          "0": {
-            "label": "Bussato a una porta di Eastbrook"
-          },
-          "1": {
-            "label": "Bussato a una porta di Fenbridge"
-          },
-          "2": {
-            "label": "Bussato a una porta di Highwatch"
           }
         }
       },

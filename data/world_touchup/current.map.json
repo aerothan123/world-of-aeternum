@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad76-3569995e-2a3be70e-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4acf7-ea6e5151-998ab81-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad76-3569995e-2a3be70e",
+    "overworldBase": "4acf7-ea6e5151-998ab81",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -6058,15 +6058,12 @@
         "facing": -1.5707963267948966,
         "color": 14251036,
         "questIds": [
-          "q_gourdlight_rounds",
           "q_gourdlight_daily_patch",
-          "q_gourdlight_daily_boo",
           "q_gourdlight_daily_wicks",
-          "q_gourdlight_daily_towns",
           "q_gourdlight_daily_feathers",
           "q_gourdlight_daily_baskets"
         ],
-        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. Knock on the doors of the townsfolk in Eastbrook, Fenbridge and Highwatch, and say the words: trick or treat. Most will hand you a sweet. A few will play a trick on you. Bring the sweets to me, at any of my stalls, and I will trade you something to wear.",
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear.",
         "vendorItems": [
           "jar_of_mischief",
           "prankers_pumpkin",

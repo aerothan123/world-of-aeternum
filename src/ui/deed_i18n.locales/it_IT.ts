@@ -1465,21 +1465,12 @@ export const table: DeedLocaleTable = {
     desc: 'Trova tutte le Zucche infestate nascoste nel mondo durante la Notte delle zucche.',
     title: 'il Cavo',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Ogni soglia',
-    desc: 'Chiedi dolcetto o scherzetto a tutti gli abitanti che rispondono alla porta a Eastbrook, Fenbridge e Highwatch durante la Notte delle zucche.',
-  },
   feat_gourdlight_errands: {
     name: 'Agli ordini di Hester',
     desc: 'Completa almeno una volta ciascuna delle commissioni a rotazione di Hester Gourdwick per la Notte delle zucche.',
   },
-  feat_gourdlight_frights: {
-    name: 'Tre città spaventate',
-    desc: 'Durante la commissione Bu! di Hester, spaventa un abitante in ciascuna città: Eastbrook, Fenbridge e Highwatch.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'La Notte delle zucche dall’inizio alla fine',
-    desc: 'Completa tutta la Notte delle zucche: sconfiggi il Vecchio Thatchgrin, trova tutte le Zucche infestate, completa ogni commissione di Hester, bussa a ogni porta e spaventa un abitante in ciascuna delle tre città.',
     title: 'il Giurato delle zucche',
   },
 };

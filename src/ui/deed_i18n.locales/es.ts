@@ -1470,21 +1470,12 @@ export const table: DeedLocaleTable = {
     desc: 'Encuentra todas las Calabazas embrujadas escondidas por el mundo durante la Noche de las Calabazas.',
     title: 'el Hueco',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Cada umbral',
-    desc: 'Pide truco o trato a todos los vecinos que respondan a una llamada en Eastbrook, Fenbridge y Highwatch durante la Noche de las Calabazas.',
-  },
   feat_gourdlight_errands: {
     name: 'A las órdenes de Hester',
     desc: 'Completa al menos una vez cada uno de los recados rotatorios de Hester Gourdwick durante la Noche de las Calabazas.',
   },
-  feat_gourdlight_frights: {
-    name: 'Tres pueblos asustados',
-    desc: 'Durante el recado ¡Bu! de Hester, asusta a un vecino en cada uno de estos pueblos: Eastbrook, Fenbridge y Highwatch.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'La Noche de las Calabazas de principio a fin',
-    desc: 'Completa toda la Noche de las Calabazas: derrota al Viejo Thatchgrin, encuentra todas las Calabazas embrujadas, completa cada recado de Hester, llama a todas las puertas y asusta a un vecino en cada uno de los tres pueblos.',
     title: 'el Juramentado de las Calabazas',
   },
 };

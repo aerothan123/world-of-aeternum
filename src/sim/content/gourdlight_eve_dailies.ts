@@ -1,12 +1,12 @@
 // Gourdlight Eve's rotating dailies (data only; the rules live in
 // src/sim/seasonal/gourdlight_dailies.ts). Each reset day while the event runs, Hester
-// Gourdwick offers ONE of these beside her trick-or-treat rounds: which one is decided
-// by the realm's reset day (the server's calendar feeds `resetDay`; the sim never reads
-// a clock), walking the pool in its authored order, so two days running never repeat
-// and every errand comes round once in six days.
+// Gourdwick offers ONE of these: which one is decided by the realm's reset day (the
+// server's calendar feeds `resetDay`; the sim never reads a clock), walking the pool in
+// its authored order, so two days running never repeat and every errand comes round
+// once in four days. (The owner removed trick-or-treat from the new world: the knock
+// errand "A Door in Every Town" and the Boo! fright errand are gone with it.)
 //
-// Every errand pays what the rounds pay (one Gourdlight Treat Pouch: six sweets), never
-// power. Their world pieces (the stray pumpkins round Old Thatchgrin's patch and the
+// Every errand pays one Gourdlight Treat Pouch (six sweets), never power. Their world pieces (the stray pumpkins round Old Thatchgrin's patch and the
 // cursed candles in the towns) stand only while the event runs, are resolved against
 // the live world (src/sim/seasonal_daily_sites.ts, never a coordinate here), and only a
 // player on the errand sees or takes them (quest_gated_entity.ts: a collect objective's
@@ -14,11 +14,9 @@
 import type { ItemDef, QuestDef, QuestObjective } from '../types';
 import {
   GOURDLIGHT_DAILY_BASKETS_QUEST_ID,
-  GOURDLIGHT_DAILY_BOO_QUEST_ID,
   GOURDLIGHT_DAILY_FEATHERS_QUEST_ID,
   GOURDLIGHT_DAILY_PATCH_QUEST_ID,
   GOURDLIGHT_DAILY_POOL,
-  GOURDLIGHT_DAILY_TOWNS_QUEST_ID,
   GOURDLIGHT_DAILY_WICKS_QUEST_ID,
   GOURDLIGHT_EVE_ID,
   GOURDLIGHT_KEEPER_NPC_ID,
@@ -27,11 +25,9 @@ import {
 
 export {
   GOURDLIGHT_DAILY_BASKETS_QUEST_ID,
-  GOURDLIGHT_DAILY_BOO_QUEST_ID,
   GOURDLIGHT_DAILY_FEATHERS_QUEST_ID,
   GOURDLIGHT_DAILY_PATCH_QUEST_ID,
   GOURDLIGHT_DAILY_POOL,
-  GOURDLIGHT_DAILY_TOWNS_QUEST_ID,
   GOURDLIGHT_DAILY_WICKS_QUEST_ID,
 };
 
@@ -54,37 +50,6 @@ export const CROW_FEATHER_ID = 'gourdlight_crow_feather';
 /** Three of the six crows his two Crowcalls bring each pull (at 80% and 40% health), so
  *  one full fight is always enough even when others kill some of the crows. */
 export const CROW_FEATHERS_WANTED = 3;
-
-/** The quest event a costumed fright credits, and how many different townsfolk. */
-export const GOURDLIGHT_BOO_QUEST_EVENT = 'gourdlight_boo';
-export const GOURDLIGHT_BOO_WANTED = 3;
-/** The looks that count as a costume for a fright: the three costume draughts, the
- *  tricks that swap the whole body (bat and skeleton, never the green fumes), the
- *  Strawling Charm's guise, and the Carved Pumpkin Head. */
-export const GOURDLIGHT_BOO_COSTUME_AURAS: readonly string[] = Object.freeze([
-  'gourdlight_costume_skeleton',
-  'gourdlight_costume_ghost',
-  'gourdlight_costume_bat',
-  'gourdlight_trick_bat',
-  'gourdlight_trick_skeleton',
-  'gourdlight_trick_strawling',
-  'gourdlight_pumpkin_head',
-  // the Gurglegreen Cauldron's goblin body (a costume in all but name)
-  'gourdlight_toy_gurglegreen',
-]);
-/** The townsperson's start: the gesture they play, and for how long (seconds). */
-export const GOURDLIGHT_BOO_STARTLE = Object.freeze({ gesture: 'cry' as const, seconds: 3 });
-/** The prefix a fright takes in the day's knock ledger (seasonal_state.ts): one ledger,
- *  rolled on the one reset day, so a townsperson is frightened once a day at most. */
-export const GOURDLIGHT_BOO_LEDGER_PREFIX = 'boo_';
-
-/** The per-town knock events the towns errand counts (trick_or_treat.ts credits the one
- *  for the knocked townsperson's city, beside the rounds' own event). */
-export const GOURDLIGHT_TOWN_KNOCK_EVENTS: Readonly<Record<string, string>> = Object.freeze({
-  eastbrook_vale: 'gourdlight_knock_eastbrook',
-  mirefen_marsh: 'gourdlight_knock_fenbridge',
-  thornpeak_heights: 'gourdlight_knock_highwatch',
-});
 
 /** The baskets errand: one townsperson in each event town (template ids; pinned to
  *  exist and stand in their town by tests/gourdlight_dailies.test.ts). */
@@ -146,20 +111,6 @@ export const GOURDLIGHT_DAILY_QUESTS: Record<string, QuestDef> = {
       },
     ],
   ),
-  [GOURDLIGHT_DAILY_BOO_QUEST_ID]: daily(
-    GOURDLIGHT_DAILY_BOO_QUEST_ID,
-    'Boo!',
-    'Nobody in these towns has had a proper fright in a year, $N, and a Gourdlight Eve without one is just a cold night. Put on a costume, any of mine will do, or that pumpkin head if you have earned one. Then creep up on three of the townsfolk and give them a good loud BOO.',
-    'Three of them? I heard the cook drop a pan from across the square. Well done. Here is your share.',
-    [
-      {
-        type: 'event',
-        eventId: GOURDLIGHT_BOO_QUEST_EVENT,
-        count: GOURDLIGHT_BOO_WANTED,
-        label: 'Townsfolk frightened',
-      },
-    ],
-  ),
   [GOURDLIGHT_DAILY_WICKS_QUEST_ID]: daily(
     GOURDLIGHT_DAILY_WICKS_QUEST_ID,
     'Wicked Wicks',
@@ -171,32 +122,6 @@ export const GOURDLIGHT_DAILY_QUESTS: Record<string, QuestDef> = {
         itemId: CURSED_CANDLE_ID,
         count: CURSED_CANDLES_WANTED,
         label: 'Cursed candles snuffed',
-      },
-    ],
-  ),
-  [GOURDLIGHT_DAILY_TOWNS_QUEST_ID]: daily(
-    GOURDLIGHT_DAILY_TOWNS_QUEST_ID,
-    'A Door in Every Town',
-    'The children say a true Gourdlight walker knocks in every town before the night is out. Prove them right, $N. Trick or treat at one door in Eastbrook, one in Fenbridge and one in Highwatch. The lanterns on the roads will light your way.',
-    'Three towns in one night! Your boots have earned this more than you have.',
-    [
-      {
-        type: 'event',
-        eventId: GOURDLIGHT_TOWN_KNOCK_EVENTS.eastbrook_vale,
-        count: 1,
-        label: 'A door knocked in Eastbrook',
-      },
-      {
-        type: 'event',
-        eventId: GOURDLIGHT_TOWN_KNOCK_EVENTS.mirefen_marsh,
-        count: 1,
-        label: 'A door knocked in Fenbridge',
-      },
-      {
-        type: 'event',
-        eventId: GOURDLIGHT_TOWN_KNOCK_EVENTS.thornpeak_heights,
-        count: 1,
-        label: 'A door knocked in Highwatch',
       },
     ],
   ),

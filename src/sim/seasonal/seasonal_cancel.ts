@@ -1,5 +1,5 @@
 // Right-click cancel for the seasonal cosmetic auras (a costume draught's body, a
-// trick-or-treat trick, the Strawling Charm's guise, the worn pumpkin head). They
+// Jar of Mischief trick, the Strawling Charm's guise, the worn pumpkin head). They
 // stay `undispellable` (no dispel or cleanse ever reads them), but the player who
 // wears one may take it off: they are pure looks with no sim effect, so ending one
 // early gives nothing a fight could read. Offered by the authoritative cancel

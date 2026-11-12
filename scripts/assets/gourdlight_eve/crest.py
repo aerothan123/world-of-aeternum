@@ -18,11 +18,9 @@
 # `--subject pumpkin_hunter` paints the Haunted Pumpkin hunt's Feat (feat_pumpkin_hunter):
 # the lit head on a moonlit midnight field, a row of dark unfound pumpkins at its foot.
 #
-# Round 12's whole-event checklist: `--subject doorsteps` (feat_gourdlight_doorsteps: an
-# oak door with an iron knocker behind the head, on a hearth-brown field), `errands`
+# Round 12's whole-event checklist: `--subject errands`
 # (feat_gourdlight_errands: Hester's errand list rolled behind the head, a green ribbon,
-# on a deep teal field), `frights` (feat_gourdlight_frights: three little sheet-ghosts
-# leaping round the head, on a pale moonlit violet), and `eve_complete`
+# on a deep teal field), and `eve_complete`
 # (feat_gourdlight_eve_complete, the Gourdsworn: the scythe crossed behind the head, a
 # crown of four lit pumpkins round it, on a rich gilt-amber field).
 #
@@ -250,41 +248,13 @@ def hunter_row(col):
 
 
 ROUND12_FIELDS = {
-    "doorsteps": [(0.02, 0.012, 0.03, 1), (0.2, 0.1, 0.24, 1), (0.07, 0.035, 0.09, 1)],
     "errands": [(0.004, 0.025, 0.03, 1), (0.04, 0.28, 0.3, 1), (0.012, 0.09, 0.1, 1)],
-    "frights": [(0.03, 0.02, 0.06, 1), (0.36, 0.3, 0.55, 1), (0.12, 0.09, 0.2, 1)],
     "eve_complete": [(0.04, 0.012, 0.03, 1), (0.42, 0.2, 0.04, 1), (0.16, 0.05, 0.06, 1)],
 }
 ROUND12_DEEDS = {
-    "doorsteps": "feat_gourdlight_doorsteps",
     "errands": "feat_gourdlight_errands",
-    "frights": "feat_gourdlight_frights",
     "eve_complete": "feat_gourdlight_eve_complete",
 }
-
-
-def door_behind(col):
-    """A tall arched oak door behind the head: planks standing proud on both sides of it,
-    iron straps across, and a ring knocker above its brow."""
-    oak = principled("DoorOak", (0.3, 0.16, 0.07), rough=0.72)
-    iron = principled("DoorIron", (0.1, 0.09, 0.09), rough=0.4, metal=0.9)
-    bm = bmesh.new()
-    for i in range(7):
-        x = -0.6 + i * 0.2
-        top = 0.5 + 0.28 * math.sqrt(max(0.0, 1.0 - (x / 0.72) ** 2))
-        bot = -0.7
-        bmesh.ops.create_cube(bm, size=1.0, matrix=Matrix.Translation((x, 0.0, (top + bot) / 2))
-                              @ Matrix.Diagonal((0.185, 0.06, top - bot, 1.0)))
-    obj("door_planks", bm, oak, col, smooth=False)
-    sb = bmesh.new()
-    for z in (-0.45, 0.3):
-        bmesh.ops.create_cube(sb, size=1.0, matrix=Matrix.Translation((0.0, -0.045, z))
-                              @ Matrix.Diagonal((1.38, 0.03, 0.07, 1.0)))
-    pts = [(math.cos(a / 20 * TAU) * 0.1, -0.1, 0.62 + math.sin(a / 20 * TAU) * 0.1) for a in range(21)]
-    model.tube_bm(sb, pts, 0.024, 6)
-    bmesh.ops.create_uvsphere(sb, u_segments=10, v_segments=6, radius=0.04,
-                              matrix=Matrix.Translation((0.0, -0.08, 0.72)))
-    obj("door_iron", sb, iron, col)
 
 
 def errand_roll(col):
@@ -294,48 +264,6 @@ def errand_roll(col):
     for o in col.objects:
         if o.name.startswith("crest_writ"):
             o.scale = (1.25, 1.25, 1.25)
-
-
-def ghost_bm(rad):
-    bm = bmesh.new()
-    rings = []
-    n = 18
-    for i in range(10):
-        t = i / 9
-        z = 0.9 * rad - t * 2.2 * rad
-        rr = rad * (math.sin(min(1.0, t * 2.2) * math.pi / 2) if t < 0.45 else 1.0 + 0.25 * (t - 0.45))
-        row = []
-        for k in range(n):
-            a = k / n * TAU
-            wave = 0.18 * rad * math.sin(a * 4) * max(0.0, t - 0.8) * 5
-            row.append(bm.verts.new((math.cos(a) * rr, math.sin(a) * rr, z + wave)))
-        rings.append(row)
-    top = bm.verts.new((0.0, 0.0, 0.92 * rad))
-    for k in range(n):
-        bm.faces.new((top, rings[0][(k + 1) % n], rings[0][k]))
-    for i in range(9):
-        for k in range(n):
-            bm.faces.new((rings[i][k], rings[i][(k + 1) % n], rings[i + 1][(k + 1) % n], rings[i + 1][k]))
-    return bm
-
-
-def leaping_ghosts(col):
-    """Three little sheet-ghosts leaping out round the head: the Boo! in three towns."""
-    sheet = principled("GhostSheet", (0.92, 0.93, 1.0), rough=0.6, emit=(0.6, 0.65, 1.0), strength=0.6)
-    eye = principled("GhostEye", (0.02, 0.02, 0.03), rough=0.9)
-    for i, (x, z, rad, tilt) in enumerate(((-0.6, 0.38, 0.17, 0.35), (0.62, 0.4, 0.16, -0.35), (0.0, -0.66, 0.15, 0.0))):
-        g = obj("ghost_%d" % i, ghost_bm(rad), sheet, col)
-        g.location = (x, -0.7, z)
-        g.rotation_euler = (0.0, tilt, 0.0)
-        eb = bmesh.new()
-        for ex in (-0.35, 0.35):
-            bmesh.ops.create_uvsphere(eb, u_segments=10, v_segments=6, radius=rad * 0.16,
-                                      matrix=Matrix.Translation((ex * rad, -0.92 * rad, 0.35 * rad)))
-        bmesh.ops.create_uvsphere(eb, u_segments=10, v_segments=6, radius=rad * 0.22,
-                                  matrix=Matrix.Translation((0.0, -0.92 * rad, -0.05 * rad)))
-        e = obj("ghost_eyes_%d" % i, eb, eye, col)
-        e.location = g.location
-        e.rotation_euler = g.rotation_euler
 
 
 def lit_crown(col):
@@ -389,12 +317,8 @@ def build(col):
         field.node_tree.links.new(ramp.outputs["Color"], b.inputs["Emission Color"])
         b.inputs["Emission Strength"].default_value = 1.3
     obj("field", disc(0.92, 0.05, 0.06), field, col)
-    if SUBJECT[0] == "doorsteps":
-        door_behind(col)
     if SUBJECT[0] == "errands":
         errand_roll(col)
-    if SUBJECT[0] == "frights":
-        leaping_ghosts(col)
     if SUBJECT[0] == "eve_complete":
         lit_crown(col)
     if SUBJECT[0] == "pumpkin_hunter":

@@ -196,7 +196,7 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // The tavern's seats add sit_seat (sent by ClientWorld.sitOnSeat, dispatched to
 // Sim.sitOnSeat) on feature/walkable-tavern-aaa: 248/262/14 on its own. Merged with
 // the v0.45.0 integration's 262/276: 263/277/14.
-// Main commands plus Gourdlight Eve trick-or-treat.
+// Main commands plus Gourdlight Eve trick-or-treat (since removed, below).
 // Player housing (Project H) adds buy_house (sent by ClientWorld.buyHouse,
 // dispatched to Sim.buyHouse): 274/288/14. Phase 2 adds place_furniture and
 // remove_furniture (ClientWorld.placeFurniture / removeFurniture, dispatched to
@@ -208,8 +208,12 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // server/session_preference_wire.ts), and the gathering tool belt adds
 // unequip_gather_tool (ClientWorld.unequipGatherTool, dispatched to
 // Sim.unequipGatherTool through server/material_stack_wire.ts): 280/294/14.
-const EXPECTED_SEND_COUNT = 280;
-const EXPECTED_DISPATCH_COUNT = 294;
+// The owner removed trick-or-treat from the new world ("remove anything trick or
+// treat"; "starting from the ground up"), so its trick_or_treat token was deleted
+// outright rather than kept as a dispatch-only tombstone: 279/293/14. The protocol is
+// string-keyed, so no other token moved.
+const EXPECTED_SEND_COUNT = 279;
+const EXPECTED_DISPATCH_COUNT = 293;
 const EXPECTED_DISPATCH_ONLY_COUNT = 14;
 
 // The chat sub-channel routing switch (server/game.ts `switch
@@ -346,21 +350,22 @@ describe('command schema parity (W0b)', () => {
   });
   it('appends courier dispatch as a complete client/server command pair', () => {
     // The integration adds the dungeon guide answer, then the buddy rename command; the
-    // Keep main wire tokens in place and append Gourdlight Eve.
-    // Player housing (Project H) appends buy_house after trick_or_treat, then
+    // Keep main wire tokens in place. (Gourdlight Eve's trick_or_treat token sat after
+    // guild_buy_cosmetic until the owner removed trick-or-treat.)
+    // Player housing (Project H) appends buy_house after guild_buy_cosmetic, then
     // phase 2 appends place_furniture and remove_furniture, then phase 3
     // appends house_storage_deposit and house_storage_withdraw, then kill-time
     // Auto Loot appends set_auto_loot, then the gathering tool belt appends
     // unequip_gather_tool.
-    expect(COMMAND_NAMES.slice(-14, -7)).toEqual([
+    expect(COMMAND_NAMES.slice(-13, -7)).toEqual([
       'courier_dispatch',
       'dungeon_guide_answer',
       'buddy_rename',
       'referralCards',
       'sit_seat',
       'guild_buy_cosmetic',
-      'trick_or_treat',
     ]);
+    expect(COMMAND_NAMES as readonly string[]).not.toContain('trick_or_treat');
     expect(COMMAND_NAMES.slice(-7)).toEqual([
       'buy_house',
       'place_furniture',

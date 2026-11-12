@@ -8609,23 +8609,7 @@ export const pl_PL: EnTranslations = {
         "name": "Wigilia Dyniowych Świateł"
       }
     },
-    "trickOrTreat": {
-      "row": "Cukierek albo psikus!",
-      "rowAria": "Powiedz {name}: cukierek albo psikus",
-      "knockedHint": "Dziś już tu pukano. Drzwi znów się otworzą po dziennym resecie.",
-      "treat": "{name} wręcza ci słodycz.",
-      "trick": "{name} płata ci figla: {trick}!",
-      "alreadyKnocked": "Dziś już proszono {name} o cukierek albo psikus.",
-      "notActive": "Wigilia Dyniowych Świateł obecnie nie trwa.",
-      "tooFar": "Podejdź bliżej, aby zapukać.",
-      "treatFlash": {
-        "one": "Cukierek! {count} dyniowy cukierek",
-        "few": "Cukierek! {count} dyniowe cukierki",
-        "many": "Cukierek! {count} dyniowych cukierków",
-        "other": "Cukierek! {count} dyniowego cukierka"
-      },
-      "trickFlash": "Psikus! {trick}"
-    },
+    "trickFlash": "Psikus! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Nietoperzowy odlot",
       "gourdlight_trick_skeleton": "Grzechoczące kości",
@@ -8650,7 +8634,7 @@ export const pl_PL: EnTranslations = {
       "trickJar": "Użycie: Płata ci losowego, nieszkodliwego figla na kilka sekund. Tylko wygląd.",
       "pouch": "Użycie: Otwórz, aby otrzymać {count} dyniowych cukierków.",
       "strawlingCharm": "Użycie: Zmieniasz się w jednego ze słomiaków Starego Słomochichota na {seconds} sekund. Poza walką. Nigdy się nie zużywa. Tylko wygląd.",
-      "sweet": "Zdobywane za cukierek albo psikus podczas Wigilii Dyniowych Świateł. Hester Dynioknot wymienia je na przedmioty kosmetyczne przy swoich straganach w Eastbrook, na Moście na Trzęsawisku i w Wysokiej Strażnicy.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Użycie: Zmieniasz się w grzechoczący szkielet na {minutes} minut. Zużywa się. Nie można użyć w walce, a wejście do walki kończy efekt. Tylko wygląd.",
       "costumeGhost": "Użycie: Zmieniasz się w unoszącego się ducha na {minutes} minut. Zużywa się. Nie można użyć w walce, a wejście do walki kończy efekt. Tylko wygląd.",
       "costumeBat": "Użycie: Zmieniasz się w trzepoczącego nietoperza na {minutes} minut. Zużywa się. Nie można użyć w walce, a wejście do walki kończy efekt. Tylko wygląd.",
@@ -8677,17 +8661,6 @@ export const pl_PL: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Wypada ze Starego Słomochichota na jego dyniowym polu za Łąką Dzików przy pierwszym zabraniu łupu. Żaden handlarz jej nie sprzedaje."
-    },
-    "boo": {
-      "row": "Bu!",
-      "rowAria": "Wyskocz przed {name} i krzyknij bu",
-      "needsCostume": "Najpierw załóż kostium: użyj eliksiru przebrania, nietoperzego lub szkieletowego psikusa, Talizmanu słomiaka, Rzeźbionej dyniowej głowy albo goblińskiego łyku z Zielonobulgoczącego kotła.",
-      "frightenedHint": "{name} wciąż podskakuje po twoim ostatnim straszeniu. Znajdź kogoś innego.",
-      "landed": "Wyskakujesz przed {name} z okrzykiem BU! Rozlega się wrzask i niemal wszystko wypada mu z rąk.",
-      "flash": "BU! {name} się przestraszył!",
-      "noCostume": "Bez kostiumu {name} tylko się z ciebie śmieje. Najpierw się przebierz.",
-      "already": "{name} ma już dość strachu na dziś.",
-      "notOnErrand": "Hester nie poprosiła cię dziś o straszenie kogokolwiek."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const pl_PL: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Dynioknot",
         "title": "Strażniczka Dyniowych Świateł",
-        "greeting": "Dynie świecą, latarnie wiszą, więc nadeszła Wigilia Dyniowych Świateł. Zapukaj do mieszkańców Eastbrook, na Moście na Trzęsawisku i w Wysokiej Strażnicy i powiedz: cukierek albo psikus. Większość da ci słodycz. Kilkoro spłata ci figla. Przynieś mi cukierki do dowolnego z moich straganów, a wymienię je na coś do ubrania."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Zarządczyni Ottoline",
@@ -30948,16 +30921,6 @@ export const pl_PL: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Dyniowy obchód",
-        "text": "W każdą Wigilię Dyniowych Świateł dzieci z Doliny obchodzą domy, a w tym roku do nich dołączysz, {playerName}. Zapukaj do pięciorga drzwi w naszych miastach, wypowiedz te słowa i zobacz, co dostaniesz. Wróć do mnie po wszystkim.",
-        "completion": "Pięcioro drzwi, a wszystkie palce na miejscu. Oto sakiewka słodyczy na drogę do domu. Wróć jutro, drzwi znów się otworzą.",
-        "objectives": {
-          "0": {
-            "label": "Drzwi, do których zapukano"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Dynie z poletka",
         "text": "Poletko Starego Słomochichota za Łąką Dzików pęka od dyń, a połowa wytoczyła się poza jego słomę, gdzie ostrożna osoba zdoła ich dosięgnąć. Przynieś mi pięć, {playerName}. Samego starego stracha omijaj szerokim łukiem. Liczy każdą sztukę.",
@@ -30968,16 +30931,6 @@ export const pl_PL: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Bu!",
-        "text": "Nikt w tych miastach od roku porządnie się nie przestraszył, {playerName}, a Wigilia Dyniowych Świateł bez strachu to tylko zimna noc. Załóż kostium, którykolwiek z moich, albo dyniową głowę, jeśli już ją masz. Potem podkradnij się do trojga mieszkańców i krzyknij głośno BU!",
-        "completion": "Troje? Przez cały plac usłyszałam, jak kucharz upuścił patelnię. Dobra robota. Oto twoja część.",
-        "objectives": {
-          "0": {
-            "label": "Wystraszeni mieszkańcy"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Nikczemne knoty",
         "text": "Ktoś ustawia świece o zielonych płomieniach u stóp naszych latarni. Płoną, nie topiąc się, i szepczą, gdy odwrócisz wzrok. Zgaś dla mnie sześć, {playerName}, w dowolnym z trzech miast i przynieś mi ogryzki.",
@@ -30985,22 +30938,6 @@ export const pl_PL: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Zgaszone przeklęte świece"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Drzwi w każdym mieście",
-        "text": "Dzieci mówią, że prawdziwy dyniowy wędrowiec zapuka w każdym mieście przed końcem nocy. Udowodnij im rację, {playerName}. Poproś o cukierek albo psikus przy jednych drzwiach w Eastbrook, jednych na Moście na Trzęsawisku i jednych w Wysokiej Strażnicy. Latarnie przy drogach rozświetlą ci trasę.",
-        "completion": "Trzy miasta w jedną noc! Twoje buty zasłużyły na to bardziej niż ty.",
-        "objectives": {
-          "0": {
-            "label": "Zapukano do drzwi w Eastbrook"
-          },
-          "1": {
-            "label": "Zapukano do drzwi na Moście na Trzęsawisku"
-          },
-          "2": {
-            "label": "Zapukano do drzwi w Wysokiej Strażnicy"
           }
         }
       },

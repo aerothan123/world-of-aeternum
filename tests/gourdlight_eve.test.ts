@@ -1,8 +1,9 @@
 // Gourdlight Eve and the seasonal-event core (src/sim/seasonal/): closed unless
 // the host or /dev opens it, the keeper rises and leaves with the event, the
-// trick-or-treat knock (once per NPC per reset day, treat or trick, both paid in
-// sweets, the rounds quest credited), the pumpkin head worn and re-worn, the
-// shop's token price, the seasonal quest gate, the daily lock and the save shape.
+// pumpkin head worn and re-worn, the shop's token price, the Jar of Mischief and
+// the save shape. Trick-or-treat (the knock and its rounds quest) was removed from
+// the new world by the owner, so its tests went with it; the save-shape test pins
+// that an old save's knock ledger is dropped on restore.
 import { afterEach, describe, expect, it } from 'vitest';
 import { isBlocked } from '../src/sim/colliders';
 import { DEEDS } from '../src/sim/content/deeds';
@@ -11,23 +12,19 @@ import {
   GOURDLIGHT_CANDIES,
   GOURDLIGHT_CANDY_RUNG,
   GOURDLIGHT_COSTUMES,
+  GOURDLIGHT_DAILY_POOL,
   GOURDLIGHT_EVE_ID,
   GOURDLIGHT_KEEPER_ENTITY_ID,
   GOURDLIGHT_KEEPER_NPC,
   GOURDLIGHT_KEEPER_POSTS,
-  GOURDLIGHT_ROUNDS_DOORS,
-  GOURDLIGHT_ROUNDS_QUEST_ID,
   GOURDLIGHT_SHOP_ITEMS,
   GOURDLIGHT_SHOP_PRICES,
   GOURDLIGHT_SWEET_ID,
   GOURDLIGHT_TITLE_WRITS,
-  GOURDLIGHT_TRICKS,
   JAR_OF_MISCHIEF_ID,
   PUMPKIN_HEAD_AURA_ID,
-  TRICK_OR_TREAT,
-  TRICK_OR_TREAT_NPCS,
 } from '../src/sim/content/gourdlight_eve';
-import { getActiveWorldContent, ITEMS, NPCS, QUESTS } from '../src/sim/data';
+import { getActiveWorldContent, ITEMS } from '../src/sim/data';
 import {
   activeSeasonalEventOf,
   freshSeasonalPlayerState,
@@ -58,14 +55,6 @@ function world(): Sim {
 function open(sim: Sim): void {
   sim.chat('/dev season on');
   sim.tick();
-}
-
-function npcEntity(sim: Sim, templateId: string): Entity {
-  const npc = [...sim.entities.values()].find(
-    (e) => e.kind === 'npc' && e.templateId === templateId,
-  );
-  if (!npc) throw new Error(`no ${templateId}`);
-  return npc;
 }
 
 function standBeside(sim: Sim, npc: Entity): void {
@@ -120,117 +109,6 @@ describe('the seasonal core', () => {
     syncSeasonalDecorColliders(WORLD_SEED, GOURDLIGHT_EVE_ID);
     expect(isBlocked(WORLD_SEED, x, z, 0.5)).toBe(true);
     syncSeasonalDecorColliders(WORLD_SEED, null);
-  });
-});
-
-describe('trick-or-treat', () => {
-  it('lists only real NPCs, each standing in its own city', () => {
-    const zones = getActiveWorldContent().zones;
-    for (const [zoneId, ids] of Object.entries(TRICK_OR_TREAT_NPCS)) {
-      const zone = zones.find((z) => z.id === zoneId);
-      expect(zone, zoneId).toBeDefined();
-      for (const id of ids) {
-        const def = NPCS[id];
-        expect(def, id).toBeDefined();
-        const d = Math.hypot(def.pos.x - (zone?.hub.x ?? 0), def.pos.z - (zone?.hub.z ?? 0));
-        expect(d, `${id} distance from ${zoneId}`).toBeLessThan(60);
-      }
-    }
-  });
-
-  it('is refused while the event is closed, without spending the door', () => {
-    const sim = world();
-    sim.tick();
-    const npc = npcEntity(sim, 'trader_wilkes');
-    standBeside(sim, npc);
-    sim.trickOrTreat(npc.id);
-    const events = seasonalEvents(sim.tick());
-    expect(events.map((e) => e.what)).toEqual(['notActive']);
-    expect(sim.trickOrTreatedToday).toEqual([]);
-  });
-
-  it('answers once per NPC per reset day with sweets, and credits the rounds quest', () => {
-    const sim = world();
-    open(sim);
-    standBeside(sim, sim.entities.get(GOURDLIGHT_KEEPER_ENTITY_ID) as Entity);
-    sim.acceptQuest(GOURDLIGHT_ROUNDS_QUEST_ID);
-    expect(sim.questLog.has(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe(true);
-    const ids = Object.values(TRICK_OR_TREAT_NPCS).flat();
-    let sweets = 0;
-    let tricks = 0;
-    for (const id of ids) {
-      const npc = npcEntity(sim, id);
-      standBeside(sim, npc);
-      sim.trickOrTreat(npc.id);
-      const [ev] = seasonalEvents(sim.tick());
-      expect(ev?.what === 'treat' || ev?.what === 'trick', id).toBe(true);
-      expect(ev.npc).toBe(id);
-      if (ev.what === 'treat') expect(ev.sweets).toBe(TRICK_OR_TREAT.treatSweets);
-      else {
-        tricks++;
-        expect(ev.sweets).toBe(TRICK_OR_TREAT.trickSweets);
-        expect(GOURDLIGHT_TRICKS.some((t) => t.id === ev.trick)).toBe(true);
-        expect(
-          sim.player.auras.some((a) => a.id === ev.trick && a.kind === 'seasonal_cosmetic'),
-        ).toBe(true);
-      }
-      sweets += ev.sweets ?? 0;
-    }
-    expect(sim.countItem(GOURDLIGHT_SWEET_ID)).toBe(sweets);
-    expect(sweets).toBeGreaterThan(0);
-    // Sixteen knocks are a fair sample of a 35% trick table on this seed.
-    expect(tricks).toBeGreaterThan(0);
-    expect(tricks).toBeLessThan(ids.length);
-    expect([...sim.trickOrTreatedToday]).toEqual([...ids].sort());
-    expect(sim.questState(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe('ready');
-    const progress = sim.questLog.get(GOURDLIGHT_ROUNDS_QUEST_ID);
-    expect(progress?.counts[0]).toBe(GOURDLIGHT_ROUNDS_DOORS);
-
-    // The same door twice in one day is refused and pays nothing.
-    const wilkes = npcEntity(sim, 'trader_wilkes');
-    standBeside(sim, wilkes);
-    sim.trickOrTreat(wilkes.id);
-    expect(seasonalEvents(sim.tick()).map((e) => e.what)).toEqual(['alreadyKnocked']);
-    expect(sim.countItem(GOURDLIGHT_SWEET_ID)).toBe(sweets);
-
-    // A new reset day opens every door again.
-    sim.resetDay = '2026-10-21';
-    sim.trickOrTreat(wilkes.id);
-    const [again] = seasonalEvents(sim.tick());
-    expect(again.what === 'treat' || again.what === 'trick').toBe(true);
-    expect(sim.trickOrTreatedToday).toEqual(['trader_wilkes']);
-  });
-
-  it('refuses a knock from out of reach and an NPC that does not answer', () => {
-    const sim = world();
-    open(sim);
-    const npc = npcEntity(sim, 'trader_wilkes');
-    sim.player.pos.x = npc.pos.x + TRICK_OR_TREAT.range + 3;
-    sim.player.pos.z = npc.pos.z;
-    sim.trickOrTreat(npc.id);
-    expect(seasonalEvents(sim.tick()).map((e) => e.what)).toEqual(['tooFar']);
-    const merchant = npcEntity(sim, 'the_merchant');
-    standBeside(sim, merchant);
-    sim.trickOrTreat(merchant.id);
-    expect(seasonalEvents(sim.tick())).toEqual([]);
-    expect(sim.trickOrTreatedToday).toEqual([]);
-  });
-
-  it('draws the same outcomes from the same seed (deterministic)', () => {
-    const run = () => {
-      const sim = world();
-      open(sim);
-      const out: string[] = [];
-      for (const id of TRICK_OR_TREAT_NPCS.eastbrook_vale) {
-        const npc = npcEntity(sim, id);
-        standBeside(sim, npc);
-        sim.trickOrTreat(npc.id);
-        const [ev] = seasonalEvents(sim.tick());
-        out.push(`${ev.what}:${ev.trick ?? ''}`);
-      }
-      return out;
-    };
-    expect(run()).toEqual(run());
   });
 });
 
@@ -361,65 +239,29 @@ describe('the keeper, the shop and the pumpkin head', () => {
   });
 });
 
-describe('the rounds quest', () => {
-  it('is offered only while its event runs, and locks until the daily reset once handed in', () => {
-    const sim = world();
-    sim.tick();
-    expect(sim.questState(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe('unavailable');
-    open(sim);
-    expect(sim.questState(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe('available');
-    expect(QUESTS[GOURDLIGHT_ROUNDS_QUEST_ID].dailyReset).toBe(true);
-    const keeper = sim.entities.get(GOURDLIGHT_KEEPER_ENTITY_ID) as Entity;
-    standBeside(sim, keeper);
-    sim.acceptQuest(GOURDLIGHT_ROUNDS_QUEST_ID);
-    for (const id of TRICK_OR_TREAT_NPCS.eastbrook_vale.slice(0, GOURDLIGHT_ROUNDS_DOORS)) {
-      const npc = npcEntity(sim, id);
-      standBeside(sim, npc);
-      sim.trickOrTreat(npc.id);
-      sim.tick();
-    }
-    standBeside(sim, keeper);
-    sim.turnInQuest(GOURDLIGHT_ROUNDS_QUEST_ID);
-    sim.tick();
-    expect(sim.questLog.has(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe(false);
-    expect(sim.countItem('gourdlight_treat_pouch')).toBe(1);
-    expect(sim.questState(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe('unavailable');
-  });
-});
-
 describe('the seasonal save shape', () => {
   it('omits an untouched ledger and round-trips a used one', () => {
     const fresh = freshSeasonalPlayerState();
     expect(seasonalSaveFragment(fresh)).toEqual({});
-    fresh.seasonalDay = '2026-10-20';
-    fresh.seasonalKnocked.add('trader_wilkes');
     fresh.pumpkinHeadWorn = true;
     const saved = seasonalSaveFragment(fresh).seasonal;
-    expect(saved).toEqual({ day: '2026-10-20', knocked: ['trader_wilkes'], head: true });
+    expect(saved).toEqual({ head: true });
     const back = freshSeasonalPlayerState();
     restoreSeasonalState(back, saved);
-    expect(back.seasonalDay).toBe('2026-10-20');
-    expect([...back.seasonalKnocked]).toEqual(['trader_wilkes']);
     expect(back.pumpkinHeadWorn).toBe(true);
-    // A hostile save cannot balloon the ledger or smuggle non-strings in.
-    restoreSeasonalState(back, {
-      knocked: [...Array(500)].map((_, i) => `n${i}`).concat([42 as unknown as string]),
-    });
-    expect(back.seasonalKnocked.size).toBe(64);
   });
 
-  it('a whole character save carries the ledger through addPlayer', () => {
-    const sim = world();
-    open(sim);
-    const npc = npcEntity(sim, 'trader_wilkes');
-    standBeside(sim, npc);
-    sim.trickOrTreat(npc.id);
-    sim.tick();
-    const state = sim.serializeCharacter(sim.playerId);
-    expect(state?.seasonal?.knocked).toEqual(['trader_wilkes']);
-    const other = world();
-    const pid = other.addPlayer('mage', 'Copy', { state: state ?? undefined });
-    expect(other.players.get(pid)?.seasonalKnocked.has('trader_wilkes')).toBe(true);
+  it('drops the removed trick-or-treat knock ledger from an old save', () => {
+    // Trick-or-treat was removed from the new world (owner direction), and with it the
+    // per-day knock ledger. A save written before the removal still restores cleanly,
+    // and the old `day` / `knocked` keys never come back out of the save fragment.
+    const back = freshSeasonalPlayerState();
+    const legacy = { day: '2026-10-20', knocked: ['trader_wilkes'], head: true } as Parameters<
+      typeof restoreSeasonalState
+    >[1];
+    restoreSeasonalState(back, legacy);
+    expect(back.pumpkinHeadWorn).toBe(true);
+    expect(seasonalSaveFragment(back)).toEqual({ seasonal: { head: true } });
   });
 });
 
@@ -506,9 +348,10 @@ describe('a stall in each city', () => {
     open(sim);
     for (const p of GOURDLIGHT_KEEPER_POSTS) {
       const npc = sim.entities.get(p.entityId) as Entity;
-      // the rounds, then the rotating dailies' pool (only the day's one is open)
+      // the rotating dailies' pool (only the day's one is open); the trick-or-treat
+      // rounds quest that used to lead it was removed with the feature
       expect(npc.questIds).toEqual(GOURDLIGHT_KEEPER_NPC.questIds);
-      expect(npc.questIds?.[0]).toBe(GOURDLIGHT_ROUNDS_QUEST_ID);
+      expect(npc.questIds).toEqual([...GOURDLIGHT_DAILY_POOL]);
     }
     expect(GOURDLIGHT_KEEPER_NPC.vendorItems).toEqual([...GOURDLIGHT_SHOP_ITEMS]);
   });

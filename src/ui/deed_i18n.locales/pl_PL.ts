@@ -1419,21 +1419,12 @@ export const table: DeedLocaleTable = {
     desc: 'Znajdź wszystkie nawiedzone dynie ukryte na świecie podczas Wigilii Dyniowych Świateł.',
     title: 'Pusty',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Każdy próg',
-    desc: 'Poproś o cukierek albo psikus każdego mieszkańca, który otwiera drzwi w Eastbrook, na Moście na Trzęsawisku i w Wysokiej Strażnicy podczas Wigilii Dyniowych Świateł.',
-  },
   feat_gourdlight_errands: {
     name: 'Na każde skinienie Hester',
     desc: 'Ukończ co najmniej raz każdy z rotujących sprawunków Hester Dynioknot podczas Wigilii Dyniowych Świateł.',
   },
-  feat_gourdlight_frights: {
-    name: 'Trzy wystraszone miasta',
-    desc: 'Podczas sprawunku Hester Bu! przestrasz mieszkańca w każdym z miast: Eastbrook, Most na Trzęsawisku i Wysoka Strażnica.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Dyniowe Światła od początku do końca',
-    desc: 'Ukończ całą Wigilię Dyniowych Świateł: pokonaj Starego Słomochichota, znajdź wszystkie nawiedzone dynie, ukończ każdy sprawunek Hester, zapukaj do wszystkich drzwi i przestrasz mieszkańca w każdym z trzech miast.',
     title: 'Zaprzysiężony Dyniom',
   },
 };

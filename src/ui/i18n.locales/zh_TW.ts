@@ -24333,19 +24333,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.hill.callout.shutDown': '{killer}終結了{victim}！',
   'hudChrome.auraEffect.seasonalCosmetic': '僅為外觀：不影響戰鬥',
   'seasonal.event.gourdlight_eve.name': '南瓜燈之夜',
-  'seasonal.trickOrTreat.row': '不給糖就搗蛋！',
-  'seasonal.trickOrTreat.rowAria': '對{name}說「不給糖就搗蛋」',
-  'seasonal.trickOrTreat.knockedHint': '你今天已經敲過這扇門了。每日重置後這扇門會再次打開。',
-  'seasonal.trickOrTreat.treat': '{name}遞給你一份糖果。',
-  'seasonal.trickOrTreat.trick': '{name}對你惡作劇：{trick}！',
-  'seasonal.trickOrTreat.alreadyKnocked': '你今天已經向{name}討過糖了。',
-  'seasonal.trickOrTreat.notActive': '南瓜燈之夜現在沒有舉行。',
-  'seasonal.trickOrTreat.tooFar': '走近一點再敲門。',
-  'seasonal.trickOrTreat.treatFlash.one': '糖果！{count}顆南瓜燈糖',
-  'seasonal.trickOrTreat.treatFlash.few': '糖果！{count}顆南瓜燈糖',
-  'seasonal.trickOrTreat.treatFlash.many': '糖果！{count}顆南瓜燈糖',
-  'seasonal.trickOrTreat.treatFlash.other': '糖果！{count}顆南瓜燈糖',
-  'seasonal.trickOrTreat.trickFlash': '搗蛋！{trick}',
+  'seasonal.trickFlash': '搗蛋！{trick}',
   'seasonal.tricks.gourdlight_trick_bat': '變成蝙蝠',
   'seasonal.tricks.gourdlight_trick_skeleton': '骨頭喀喀',
   'seasonal.tricks.gourdlight_trick_fumes': '綠色煙霧',
@@ -24357,7 +24345,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'seasonal.itemUse.trickJar':
     '使用：對你施加一個隨機的無害惡作劇，持續數秒。僅在南瓜燈之夜期間可用。純外觀。',
   'seasonal.itemUse.pouch': '使用：打開後獲得{count}顆南瓜燈糖。',
-  'seasonal.itemUse.sweet': '在南瓜燈之夜期間討糖獲得。東溪的赫絲特·葫蘆芯會用外觀物品交換它們。',
   'seasonal.tokenPrice': '{count}個{item}',
   'entities.items.gourdlight_sweet.name': '南瓜燈糖',
   'entities.items.gourdlight_treat_pouch.name': '南瓜燈糖果袋',
@@ -24365,14 +24352,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.items.jar_of_mischief.name': '惡作劇之罐',
   'entities.npcs.gourdlight_keeper.name': '赫絲特·葫蘆芯',
   'entities.npcs.gourdlight_keeper.title': '南瓜燈守護者',
-  'entities.npcs.gourdlight_keeper.greeting':
-    '南瓜點亮了，燈籠也掛起來了，那一定是南瓜燈之夜到了。去敲東溪、芬橋和高望城鎮民的門，說出那句話：不給糖就搗蛋。大多數人會給你一顆糖，少數人會對你惡作劇。把糖帶給我，我會跟你換些可以穿戴的東西。',
-  'entities.quests.q_gourdlight_rounds.title': '南瓜燈巡遊',
-  'entities.quests.q_gourdlight_rounds.text':
-    '每到南瓜燈之夜，谷地的孩子們都會挨家挨戶巡遊，今年你也加入他們吧，{playerName}。在我們的城鎮裡敲五扇門，說出那句話，看看你會得到什麼。完成後回來找我。',
-  'entities.quests.q_gourdlight_rounds.completion':
-    '敲了五扇門，手指還都在。拿著，這袋糖果讓你在回家路上吃。明天再來，門會再次打開。',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': '已敲的門',
   'seasonal.tricks.gourdlight_trick_strawling': '稻草人偽裝',
   'seasonal.guise': '護符劈啪作響，稻草爬滿了你的全身：{trick}！',
   'seasonal.itemUse.strawlingCharm':
@@ -24433,26 +24412,12 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.completion':
     '五個圓滾滾的，一口都沒被啃過。夠整個谷地做餡餅了。拿著，辛苦費。',
   'entities.quests.q_gourdlight_daily_patch.objectives.0.label': '南瓜田的南瓜',
-  'entities.quests.q_gourdlight_daily_boo.title': '哇！',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    '這幾個鎮子裡，一整年都沒人被好好嚇過一回了，{playerName}。沒有驚嚇的南瓜燈之夜，不過是個冷夜罷了。穿上裝扮，我的藥劑哪種都行，要是你贏到了那顆南瓜頭也可以。然後悄悄靠近三位鎮民，衝他們大喊一聲「哇！」',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    '三個？我在廣場另一頭都聽見廚子把鍋掉地上了。做得好。這是你的那份。',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': '被嚇到的鎮民',
   'entities.quests.q_gourdlight_daily_wicks.title': '邪惡的燭芯',
   'entities.quests.q_gourdlight_daily_wicks.text':
     '有人在我們的路燈腳下放了燃著綠火的蠟燭。它們燒著卻不融化，你一轉身它們就低聲細語。去掐滅六根吧，{playerName}，三個鎮子哪裡都行，把殘頭帶回來給我。',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     '六個殘頭，冷得像霜。點火的人還得再加把勁才行。拿著這個，去洗洗手。',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': '掐滅的詛咒蠟燭',
-  'entities.quests.q_gourdlight_daily_towns.title': '每個鎮子敲一扇門',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    '孩子們說，真正的南瓜燈行者會在天亮前把每個鎮子的門都敲一遍。去證明他們說得對吧，{playerName}。在東溪、芬橋和高望各找一扇門說不給糖就搗蛋。路上的燈籠會為你照路。',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    '一夜跑了三個鎮子！這份獎勵你的靴子比你更配得上。',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': '在東溪敲過的門',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': '在芬橋敲過的門',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': '在高望敲過的門',
   'entities.quests.q_gourdlight_daily_feathers.title': '為篝火取羽',
   'entities.quests.q_gourdlight_daily_feathers.text':
     '老稻草獰笑被逼急了，就會喚來烏鴉撲向敲打他稻草的人。牠們的羽毛在爐火裡會燒出綠焰，今晚的篝火我需要三根。去他的田裡參加一場戰鬥，{playerName}，從他的烏鴉身上拔下羽毛。',
@@ -24467,16 +24432,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.objectives.0.label': '交給Cook Marlow的籃子',
   'entities.quests.q_gourdlight_daily_baskets.objectives.1.label': '交給草藥師Yara的籃子',
   'entities.quests.q_gourdlight_daily_baskets.objectives.2.label': '交給Loremaster Caddis的籃子',
-  'seasonal.boo.row': '哇！',
-  'seasonal.boo.rowAria': '跳到{name}面前大喊一聲哇',
-  'seasonal.boo.needsCostume':
-    '先穿上裝扮：裝扮藥劑、蝙蝠或骷髏惡作劇、稻草小人護符，雕刻南瓜頭，或咕嘟綠坩堝裡一口變成地精的湯。',
-  'seasonal.boo.frightenedHint': '{name}還被你上次嚇得心驚膽戰。去找別人吧。',
-  'seasonal.boo.landed': '你跳到{name}面前大喊一聲哇！對方尖叫一聲，差點把東西全掉了。',
-  'seasonal.boo.flash': '哇！{name}被嚇到了！',
-  'seasonal.boo.noCostume': '沒穿裝扮，{name}只是衝你笑。先換上一套吧。',
-  'seasonal.boo.already': '{name}今天已經被嚇夠了。',
-  'seasonal.boo.notOnErrand': '赫絲特今天沒讓你去嚇唬誰。',
   'entities.items.prankers_pumpkin.name': '搗蛋鬼的南瓜',
   'entities.items.wanderwisp_lantern.name': '遊蕩鬼火提燈',
   'entities.items.sack_of_startled_bats.name': '一袋受驚的蝙蝠',

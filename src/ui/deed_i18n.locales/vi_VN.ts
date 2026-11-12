@@ -1451,21 +1451,12 @@ export const table: DeedLocaleTable = {
     desc: 'Tìm tất cả Bí Ngô Ma Ám ẩn khắp thế giới trong Đêm Đèn Bí Ngô.',
     title: 'Kẻ Rỗng',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Mọi Bậc Cửa',
-    desc: 'Xin kẹo hoặc ghẹo mọi người dân mở cửa ở Đông Khê, Cầu Đầm và Vọng Đài Cao trong Đêm Đèn Bí Ngô.',
-  },
   feat_gourdlight_errands: {
     name: 'Sẵn Sàng Phục Vụ Hester',
     desc: 'Hoàn thành ít nhất một lần mỗi việc vặt luân phiên của Hester Bấc Bí Ngô trong Đêm Đèn Bí Ngô.',
   },
-  feat_gourdlight_frights: {
-    name: 'Ba Thị Trấn Hoảng Hốt',
-    desc: 'Trong việc vặt Hù! của Hester, dọa một người dân ở mỗi nơi: Đông Khê, Cầu Đầm và Vọng Đài Cao.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Đèn Bí Ngô Từ Đầu Đến Cuối',
-    desc: 'Hoàn thành toàn bộ Đêm Đèn Bí Ngô: hạ Lão Rơm Cười, tìm tất cả Bí Ngô Ma Ám, làm mọi việc vặt của Hester, gõ mọi cánh cửa và dọa một người dân ở mỗi thị trấn trong ba nơi.',
     title: 'Người Thề Với Bí Ngô',
   },
 };

@@ -25969,8 +25969,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Makhluk Jerami',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Labu Membengkak',
   'entities.mobs.gourdlight_thatchgrin.name': 'Si Tua Seringai Jerami',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Labu sudah menyala dan lentera sudah digantung, jadi pastilah Malam Cahaya Labu telah tiba. Ketuk pintu warga Eastbrook, Jembatan Rawa, dan Menara Pengawas, lalu ucapkan: permen atau keisengan. Kebanyakan akan memberimu permen. Beberapa akan mengerjaimu. Bawa permen itu kepadaku di kiosku yang mana saja, dan akan kutukar dengan sesuatu untuk kau kenakan.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Sumbu Labu',
   'entities.npcs.gourdlight_keeper.title': 'Penjaga Cahaya Labu',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -25984,12 +25982,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Setiap Malam Cahaya Labu, kuisi sekeranjang permen untuk sahabat lama di setiap kota, tetapi lututku tak lagi seperti dulu. Antarkan untukku, {playerName}: kepada juru masak Marlow di Eastbrook, Yara si herbalis di Jembatan Rawa, dan Ahli Sejarah Caddis di Menara Pengawas.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Keranjang untuk Tetangga',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Tiga orang? Aku mendengar si juru masak menjatuhkan wajan dari seberang alun-alun. Bagus sekali. Ini bagianmu.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Warga yang ditakuti',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Sudah setahun tak ada seorang pun di kota-kota ini yang benar-benar ketakutan, {playerName}, dan Malam Cahaya Labu tanpa kejutan hanyalah malam dingin biasa. Kenakan kostum, yang mana saja dariku boleh, atau kepala labu itu jika sudah kau peroleh. Lalu dekati tiga warga diam-diam dan teriakkan HUU dengan keras.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Huu!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Hitam seperti ladang tanpa bulan, dan sudah berbau asap. Api unggunnya pasti indah. Terima kasih.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Bulu gagak',
@@ -26002,42 +25994,16 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Ladang Si Tua Seringai Jerami di seberang Padang Babi Hutan penuh labu, dan separuhnya menggelinding melewati jeraminya sehingga orang yang berhati-hati bisa mengambilnya. Bawakan aku lima, {playerName}. Jauhi orang-orangan sawah tua itu. Dia menghitung semuanya.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Labu dari Ladang',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Tiga kota dalam satu malam! Sepatumu lebih pantas mendapat ini daripada dirimu.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Pintu diketuk di Eastbrook',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'Pintu diketuk di Jembatan Rawa',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'Pintu diketuk di Menara Pengawas',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Anak-anak bilang pejalan Cahaya Labu sejati mengetuk pintu di setiap kota sebelum malam berakhir. Buktikan mereka benar, {playerName}. Mintalah permen atau keisengan di satu pintu Eastbrook, satu di Jembatan Rawa, dan satu di Menara Pengawas. Lentera di jalan akan menerangi langkahmu.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Pintu di Setiap Kota',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Enam puntung, dingin seperti embun beku. Siapa pun yang menyalakannya harus berusaha lebih keras. Ambil ini, lalu cuci tanganmu.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Lilin terkutuk dipadamkan',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Seseorang menaruh lilin berapi hijau di kaki tiang lampu kita. Lilin itu terbakar tanpa meleleh dan berbisik saat kau membelakanginya. Padamkan enam untukku, {playerName}, di mana saja di ketiga kota, lalu bawa puntungnya.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Sumbu Jahat',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Lima pintu dan jarimu masih lengkap. Ini sekantong permen untuk perjalanan pulang. Datanglah lagi besok, pintunya akan dibuka kembali.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Pintu yang diketuk',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Setiap Malam Cahaya Labu, anak-anak Lembah berkeliling, dan tahun ini kau ikut bersama mereka, {playerName}. Ketuk lima pintu di kota-kota kita, ucapkan kata-katanya, dan lihat apa yang diberikan kepadamu. Kembalilah kepadaku setelah selesai.',
-  'entities.quests.q_gourdlight_rounds.title': 'Keliling Cahaya Labu',
   'guide.interfacePage.framesGovernedPriest':
     'Edit Bingkai juga memungkinkanmu memindahkan medali Upeti Kelam dan Bom Persepuluhan milik priest Bayangan.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Sekali setiap dua jam, pada waktu yang tak dapat diprediksi, seluruh realm diberi tahu bahwa sebuah bukit akan muncul di salah satu zona utara dalam lima belas menit, dan lingkaran tempatnya berdiri ditandai di tanah terbuka. Setelah muncul, bukit bertahan tiga puluh menit lalu turun, dan setiap lima menit selama masih berdiri, realm diberi tahu lokasinya serta kelompok yang paling lama menguasainya. Party dengan pemain terbanyak di dalam lingkaran memperebutkan bukit, dan setelah unggul jumlah selama tiga puluh detik, bukit menjadi milik mereka. Masuknya party lawan hanya menjeda hitungan sampai partymu unggul lagi; hitungan dimulai ulang hanya jika tak ada anggota partymu yang masih hidup di dalam. Pemain solo dihitung sebagai party satu orang dan tetap menguasai bukit saat membentuk party, tetapi anggota raid sama sekali tidak dihitung. Selama party menguasai bukit, setiap anggotanya yang berdiri di dalam memperoleh Honor dalam jumlah yang sama setiap menit, berapa pun lama penguasaannya. Karena itu, party penuh yang menguasai bukit tanpa gangguan selama seluruh masa kemunculannya memperoleh kira-kira setara dua kemenangan medan perang. Saat bukit turun, jika kelompok yang paling lama menguasainya secara keseluruhan telah menguasainya setidaknya sepuluh menit, setiap orang yang berdiri di dalam untuk kelompok itu setidaknya satu menit dan masih menjadi anggotanya memperoleh satu kemenangan untuk baris PvP Brankas Mingguan. Bilah di atas area menunjukkan pemiliknya, jumlah pemain kedua pihak, dan waktu perebutan; /hill di chat menunjukkan lokasinya.',
-  'seasonal.boo.already': '{name} sudah cukup ditakuti untuk hari ini.',
-  'seasonal.boo.flash': 'HUU! {name} ketakutan!',
-  'seasonal.boo.frightenedHint':
-    '{name} masih gelisah setelah terakhir kau takuti. Cari orang lain.',
-  'seasonal.boo.landed':
-    'Kamu melompat di depan {name} sambil berteriak HUU! Dia menjerit dan hampir menjatuhkan semua barangnya.',
-  'seasonal.boo.needsCostume':
-    'Kenakan kostum dahulu: ramuan kostum, keisengan kelelawar atau kerangka, Jimat Makhluk Jerami, Kepala Labu Ukir, atau tegukan goblin dari Kuali Gelembung Hijau.',
-  'seasonal.boo.noCostume': 'Tanpa kostum, {name} hanya menertawakanmu. Kenakan kostum dahulu.',
-  'seasonal.boo.notOnErrand': 'Hester belum memintamu menakuti siapa pun hari ini.',
-  'seasonal.boo.row': 'Huu!',
-  'seasonal.boo.rowAria': 'Lompat di depan {name} dan teriakkan huu',
   'seasonal.boundItemGone':
     'Malam Cahaya Labu telah usai, dan {item} milikmu hancur kembali menjadi jerami.',
   'seasonal.costume': 'Kamu meminum ramuan dan berubah: {trick}!',
@@ -26060,8 +26026,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Si Tua Seringai Jerami memberi satu setiap hari kamu mengambil jarahannya, sampai kamu memiliki Sapu Bulu Bara. Hester Sumbu Labu menukar {count} dengan sapu di kios-kiosnya di Eastbrook, Jembatan Rawa, dan Menara Pengawas. Ikatan yang belum dibelanjakan disimpan untuk Malam Cahaya Labu berikutnya.',
   'seasonal.itemUse.strawlingCharm':
     'Pakai: Menjadi salah satu makhluk jerami Si Tua Seringai Jerami selama {seconds} detik. Di luar pertempuran. Tidak pernah habis dipakai. Kosmetik.',
-  'seasonal.itemUse.sweet':
-    'Diperoleh dengan meminta permen atau keisengan selama Malam Cahaya Labu. Hester Sumbu Labu menukarnya dengan kosmetik di kios-kiosnya di Eastbrook, Jembatan Rawa, dan Menara Pengawas.',
   'seasonal.itemUse.titleWrit':
     'Pakai: Dapatkan gelar {title} untuk karakter ini, dikenakan melalui Kitab Jasa. Habis dipakai. Disimpan jika gelar itu sudah dimiliki.',
   'seasonal.itemUse.toyBats':
@@ -26107,21 +26071,7 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} memecahkan labu di kepalamu! Lepaskan dengan klik kanan, atau kenakan dengan bangga.',
   'seasonal.toy.prankedFlash': 'Dikerjai oleh {name}!',
-  'seasonal.trickOrTreat.alreadyKnocked':
-    'Kamu sudah meminta permen atau keisengan kepada {name} hari ini.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Kamu sudah mengetuk di sini hari ini. Pintu terbuka lagi setelah reset harian.',
-  'seasonal.trickOrTreat.notActive': 'Malam Cahaya Labu sedang tidak berlangsung.',
-  'seasonal.trickOrTreat.row': 'Permen atau keisengan!',
-  'seasonal.trickOrTreat.rowAria': 'Ucapkan permen atau keisengan kepada {name}',
-  'seasonal.trickOrTreat.tooFar': 'Mendekatlah untuk mengetuk.',
-  'seasonal.trickOrTreat.treat': '{name} memberimu camilan.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Permen! {count} Permen Cahaya Labu',
-  'seasonal.trickOrTreat.treatFlash.many': 'Permen! {count} Permen Cahaya Labu',
-  'seasonal.trickOrTreat.treatFlash.one': 'Permen! {count} Permen Cahaya Labu',
-  'seasonal.trickOrTreat.treatFlash.other': 'Permen! {count} Permen Cahaya Labu',
-  'seasonal.trickOrTreat.trick': '{name} mengerjaimu: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Keisengan! {trick}',
+  'seasonal.trickFlash': 'Keisengan! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Kostum Kelelawar',
   'seasonal.tricks.gourdlight_costume_ghost': 'Kostum Hantu',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Kostum Kerangka',

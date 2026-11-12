@@ -1511,21 +1511,12 @@ export const table: DeedLocaleTable = {
     desc: 'Hitta alla Hemsökta pumpor som är gömda runt om i världen under Pumplyktornas afton.',
     title: 'den ihålige',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Varje dörrtröskel',
-    desc: 'Gå bus eller godis hos varje stadsbo som öppnar efter en knackning i Östbäck, Kärrbron och Högvakten under Pumplyktornas afton.',
-  },
   feat_gourdlight_errands: {
     name: 'Till Hesters tjänst',
     desc: 'Slutför vart och ett av Hester Pumpvekes roterande ärenden under Pumplyktornas afton minst en gång.',
   },
-  feat_gourdlight_frights: {
-    name: 'Tre skrämda städer',
-    desc: 'Under Hesters ärende Bu! ska du skrämma en stadsbo i vardera Östbäck, Kärrbron och Högvakten.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Pumplyktor från början till slut',
-    desc: 'Gör hela Pumplyktornas afton: besegra Gamle Halmflin, hitta alla Hemsökta pumpor, slutför alla Hesters ärenden, knacka på varje dörr och skräm en stadsbo i var och en av de tre städerna.',
     title: 'den pumpsvurne',
   },
 };

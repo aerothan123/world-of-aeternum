@@ -1,6 +1,6 @@
 // i18n source catalog - seasonal events (src/sim/seasonal/): the event names, the
-// trick-or-treat gossip row and its feedback lines, the tricks' names, the
-// pumpkin head toggle, and the event items' use lines. The sim emits ids and
+// tricks' names and their flash, the pumpkin head toggle, and the event items' use
+// lines. The sim emits ids and
 // numbers only (SimEvent 'seasonal'); every sentence the player reads is here.
 // English values only; the locale translations live in src/ui/i18n.locales/.
 //
@@ -22,24 +22,8 @@ export const seasonalStrings = {
       name: 'Gourdlight Eve',
     },
   },
-  trickOrTreat: {
-    row: 'Trick or treat!',
-    rowAria: 'Say trick or treat to {name}',
-    knockedHint: 'You already knocked here today. The door opens again after the daily reset.',
-    treat: '{name} hands you a treat.',
-    trick: '{name} plays a trick on you: {trick}!',
-    alreadyKnocked: 'You already trick-or-treated {name} today.',
-    notActive: 'Gourdlight Eve is not running right now.',
-    tooFar: 'Step closer to knock.',
-    // The banner flash for each outcome ({count} pre-formatted).
-    treatFlash: {
-      one: 'Treat! {count} Gourdlight Sweet',
-      few: 'Treat! {count} Gourdlight Sweets',
-      many: 'Treat! {count} Gourdlight Sweets',
-      other: 'Treat! {count} Gourdlight Sweets',
-    },
-    trickFlash: 'Trick! {trick}',
-  },
+  // The banner flash when a trick, costume or guise lands on the player.
+  trickFlash: 'Trick! {trick}',
   tricks: {
     gourdlight_trick_bat: 'Batty',
     gourdlight_trick_skeleton: 'Rattled Bones',
@@ -69,7 +53,7 @@ export const seasonalStrings = {
     strawlingCharm:
       "Use: Become one of Old Thatchgrin's strawlings for {seconds} seconds. Not in combat. Never consumed. Cosmetic.",
     sweet:
-      'Earned by trick-or-treating during Gourdlight Eve. Hester Gourdwick trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.',
+      "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
     // One sentence per costume (a noun spliced into a sentence cannot be localized).
     costumeSkeleton:
       'Use: Turn into a rattling skeleton for {minutes} minutes. Consumed. Not usable in combat, and entering combat ends it. Cosmetic.',
@@ -112,20 +96,6 @@ export const seasonalStrings = {
   itemSource: {
     pumpkinHead:
       'Dropped by Old Thatchgrin, in his pumpkin field past Boar Meadow, the first time you loot him. No vendor sells it.',
-  },
-  // The Boo! daily (src/sim/seasonal/gourdlight_dailies.ts): the gossip row at a
-  // townsperson, its hints, and the fright's feedback lines.
-  boo: {
-    row: 'Boo!',
-    rowAria: 'Leap out at {name} and shout boo',
-    needsCostume:
-      'Put on a costume first: a costume draught, a bat or skeleton trick, the Strawling Charm, the Carved Pumpkin Head or a goblin sip from the Gurglegreen Cauldron.',
-    frightenedHint: '{name} is still jumpy from your last fright. Find someone else.',
-    landed: 'You leap out at {name} with a BOO! They shriek and nearly drop everything.',
-    flash: 'BOO! {name} is frightened!',
-    noCostume: 'Without a costume, {name} only laughs at you. Put one on first.',
-    already: '{name} has had enough frights for one day.',
-    notOnErrand: 'Hester has not asked you to frighten anyone today.',
   },
   // The vendor row's token price: "{count} {item}" ({count} pre-formatted).
   tokenPrice: '{count} {item}',

@@ -156,7 +156,10 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // + tree chopping's first felling (prog_first_felling, renown 5): 370, 4015.
     // + the Bracken Circle's standing pair (Wyndlewood, 5 + 25): 372, 4045.
     // + Chapter One's chronicle (chr_shore_that_remembers, 10): 373, 4055.
-    expect(DEED_ORDER.length).toBe(373);
+    // - the owner's trick-or-treat removal (feat_gourdlight_doorsteps and
+    //   feat_gourdlight_frights, zero-Renown Feats; the no-retro-edit rule overridden by
+    //   the owner for these two): 371, 4055.
+    expect(DEED_ORDER.length).toBe(371);
     expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4055);
   });
 
@@ -213,7 +216,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // +1 the release's ferry round trip (exp_harbor_to_harbor).
       exploration: 23,
       // +3 Lantern Hall's quartermaster titles (bought for Lantern Seals).
-      feat: 16,
+      // -2 the owner's trick-or-treat removal (Every Doorstep, Three Towns Startled).
+      feat: 14,
       hidden: 10,
     });
   });
@@ -488,16 +492,18 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // ...and its field boss's (content/gourdlight_eve_scarecrow.ts).
       // ...and the three title writs Hester sells (GOURDLIGHT_TITLE_WRITS).
       // ...and the Haunted Pumpkin hunt's completion Feat.
-      // ...and the whole-event checklist (round 12): three sections, then the meta.
+      // ...and the whole-event checklist (round 12): the errands section, then the meta.
+      // The owner removed trick-or-treat from the new world and explicitly overrode the
+      // no-retro-edit rule for its deeds: feat_gourdlight_doorsteps (the knocks) and
+      // feat_gourdlight_frights (the Boo! errand) were deleted from the catalog and from
+      // this append-only order, not left as retired rows.
       'feat_gourdlight_guise',
       'feat_old_thatchgrin',
       'feat_title_gourdlit',
       'feat_title_trickster',
       'feat_title_hollow_grinned',
       'feat_pumpkin_hunter',
-      'feat_gourdlight_doorsteps',
       'feat_gourdlight_errands',
-      'feat_gourdlight_frights',
       'feat_gourdlight_eve_complete',
       // Tree chopping's first felling (docs/design/tree-chopping.md).
       'prog_first_felling',
@@ -1154,7 +1160,11 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Main's frozen catalog is preserved as the prefix; Halloween appends ten feats.
   // Tree chopping appends prog_first_felling (renown 5) at the tail: re-minted.
   // Wyndlewood appends the Bracken Circle's standing pair at the tail: re-minted.
-  const FROZEN_CATALOG_SHA256 = '77568a4c762544b6bfccf5873d2b426cd9d1fc46e2478118c3b31b85046a4f48';
+  // Re-measured when the owner removed trick-or-treat from the new world and EXPLICITLY
+  // overrode the no-retro-edit rule for its deeds: feat_gourdlight_doorsteps and
+  // feat_gourdlight_frights left the catalog, and feat_gourdlight_eve_complete's visits
+  // checklist lost the knock and Boo! marks. No other deed's trigger or renown moved.
+  const FROZEN_CATALOG_SHA256 = 'd5075740bae50772826b0b453ce5a5cc0899422a9c03a5caa2256c6fcfc79256';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -1244,8 +1254,14 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Chapter One's chronicle after prog_first_felling; the previous mint is tree chopping's 01e74f5e...
   // literal (rotated down here), and stripping the three reproduces it exactly
   // (the three shipped faction ladders kept their triggers, design rule 9).
+  //
+  // The owner's trick-or-treat removal (no-retro-edit rule overridden for those deeds,
+  // see FROZEN_CATALOG_SHA256 above) deleted two Feats ahead of prog_first_felling and
+  // edited the meta's checklist, so tree chopping's 01e74f5e... mint can no longer be
+  // reproduced. The pre-append digest is re-measured on the post-removal catalog; the
+  // appended three still strip cleanly off the tail.
   const PRE_APPEND_CATALOG_SHA256 =
-    '01e74f5e5bd8fc4cf7b0cfef5cfcf0408cf962dc0a16ae062690a5d35096c7bf';
+    'caf6941b135a3120b416b7970aad4fd0a67ac1855172bcd6eb6f7e4ca089046a';
   const APPENDED_SINCE: readonly string[] = [
     'prog_bracken_circle_trusted',
     'prog_bracken_circle_champion',
@@ -1495,11 +1511,12 @@ describe('table shape', () => {
     // quartermaster's third title last.
     // Tree chopping's first felling appends last, one seat behind everything.
     // Then Wyndlewood's three (the Bracken Circle pair, Chapter One's chronicle).
-    expect(DEED_ORDER[DEED_ORDER.length - 55]).toBe('exp_harbor_to_harbor');
-    expect(DEED_ORDER[DEED_ORDER.length - 46]).toBe('cmb_balgath_ten');
-    expect(DEED_ORDER[DEED_ORDER.length - 45]).toBe('cmb_point_taken');
-    expect(DEED_ORDER[DEED_ORDER.length - 21]).toBe('dgn_morthen_candlelight');
-    expect(DEED_ORDER[DEED_ORDER.length - 15]).toBe('feat_guild_of_lantern_hall');
+    // (Two seats nearer the tail since the owner removed trick-or-treat's two Feats.)
+    expect(DEED_ORDER[DEED_ORDER.length - 53]).toBe('exp_harbor_to_harbor');
+    expect(DEED_ORDER[DEED_ORDER.length - 44]).toBe('cmb_balgath_ten');
+    expect(DEED_ORDER[DEED_ORDER.length - 43]).toBe('cmb_point_taken');
+    expect(DEED_ORDER[DEED_ORDER.length - 19]).toBe('dgn_morthen_candlelight');
+    expect(DEED_ORDER[DEED_ORDER.length - 13]).toBe('feat_guild_of_lantern_hall');
     expect(DEED_ORDER.at(-5)).toBe('feat_gourdlight_eve_complete');
     expect(DEED_ORDER.at(-4)).toBe('prog_first_felling');
     expect(DEED_ORDER.at(-3)).toBe('prog_bracken_circle_trusted');

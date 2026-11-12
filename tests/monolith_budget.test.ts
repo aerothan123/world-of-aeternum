@@ -1292,7 +1292,9 @@ const MONOLITHS: MonolithRow[] = [
     // hooks. wc -l. Exact count.
     // LOWERED 11396 -> 11395 with the save-position epoch: the save's pos and
     // facing fields moved into saved_pos_exit.ts savedPlacement. wc -l. Exact.
-    ceiling: 11395,
+    // LOWERED 11395 -> 11389 when the owner removed trick-or-treat: the knock
+    // getter and verb (trickOrTreatedToday, trickOrTreat) left with it. wc -l. Exact.
+    ceiling: 11389,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1855,7 +1857,9 @@ const MONOLITHS: MonolithRow[] = [
     // the Exchange.
     // LOWERED 9592 -> 9589 with the gathering tool belt: the unequip_item case and the
     // new unequip_gather_tool case moved into material_stack_wire.ts. wc -l. Exact count.
-    ceiling: 9589,
+    // LOWERED 9589 -> 9586 when the owner removed trick-or-treat: its command case
+    // left with it. wc -l. Exact count.
+    ceiling: 9586,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {

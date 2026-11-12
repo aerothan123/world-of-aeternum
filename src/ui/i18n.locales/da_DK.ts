@@ -25690,8 +25690,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Halmvætte',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Svulmende græskar',
   'entities.mobs.gourdlight_thatchgrin.name': 'Gamle Halmgrin',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Græskarrene er tændt og lygterne hængt op, så det må være Græskarlygternes aften. Bank på hos byboerne i Østbæk, Sumpbroen og Højvagten, og sig ordene: slik eller ballade. De fleste giver dig noget sødt. Nogle få laver løjer med dig. Bring slikket til mig ved en af mine boder, så bytter jeg det for noget at tage på.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Græskarvæge',
   'entities.npcs.gourdlight_keeper.title': 'Græskarlygternes vogter',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -25704,12 +25702,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Hver Græskarlygternes aften fylder jeg en slikkurv til en gammel ven i hver by, men mine knæ er ikke, hvad de var. Bring dem ud for mig, {playerName}: til Kok Marlow i Østbæk, urtekenderen Yara i Sumpbroen og Lærdomsmester Caddis oppe i Højvagten.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Kurve til naboerne',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Tre? Jeg hørte kokken tabe en pande helt ovre fra den anden side af pladsen. Godt klaret. Her er din andel.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Forskrækkede byboere',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Ingen i disse byer er blevet ordentligt forskrækket i et år, {playerName}, og Græskarlygternes aften uden et gys er bare en kold nat. Tag et kostume på, et hvilket som helst af mine duer, eller det græskarhoved, hvis du har fortjent et. Snig dig så ind på tre byboere, og råb et ordentligt højt BØH.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Bøh!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Sorte som en måneløs mark, og de lugter allerede af røg. Det bliver et flot bål. Tak.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Kragefjer',
@@ -25722,42 +25714,16 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Gamle Halmgrins mark forbi Vildsvineengen bugner af græskar, og halvdelen er rullet uden for hans halm, hvor en forsigtig sjæl kan nå dem. Bring mig fem, {playerName}. Hold dig langt fra selve det gamle fugleskræmsel. Han tæller hver eneste.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Græskar fra marken',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Tre byer på én nat! Dine støvler har fortjent det her mere end dig.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'En dør banket på i Østbæk',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'En dør banket på i Sumpbroen',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'En dør banket på i Højvagten',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Børnene siger, at en ægte græskarlygtevandrer banker på i hver by, før natten er omme. Vis dem, at de har ret, {playerName}. Sig slik eller ballade ved én dør i Østbæk, én i Sumpbroen og én i Højvagten. Lygterne langs vejene lyser for dig.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'En dør i hver by',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Seks stumper, kolde som frost. Den, der tændte dem, må prøve hårdere. Tag dette, og vask hænderne.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Slukkede forbandede lys',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Nogen sætter lys med grønne flammer ved foden af vores lygtepæle. De brænder uden at smelte og hvisker, når du vender ryggen til. Sluk seks for mig, {playerName}, i hvilken som helst af de tre byer, og bring mig stumperne.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Onde væger',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Fem døre, og du har stadig alle fingrene. Her er en slikpose til turen hjem. Kom igen i morgen, så åbner dørene igen.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Døre banket på',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Hver Græskarlygternes aften går Dalens børn deres runde, og i år er du med, {playerName}. Bank på fem døre i vores byer, sig ordene, og se, hvad du får. Kom tilbage til mig, når du er færdig.',
-  'entities.quests.q_gourdlight_rounds.title': 'Græskarlygternes runde',
   'guide.interfacePage.framesGovernedPriest':
     'Rediger rammer lader dig også flytte Skyggepræstens medaljon for Mørketiende og Tiendebombe.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'En gang hver anden time, på et tidspunkt ingen kan forudsige, får hele realmen besked om, at en bakke vil rejse sig i en af de nordlige zoner om femten minutter. Cirklen, hvor den vil stå, markeres på åben grund. Bakken står i tredive minutter og synker så igen. Hvert femte minut, mens den står, får realmen at vide, hvor den er, og hvilke grupper der har holdt den længst. Gruppen med flest spillere indenfor kæmper om bakken og får den efter tredive sekunders flertal. Når en rivaliserende gruppe går ind, sættes tællingen kun på pause, indtil din gruppe fører igen; den starter kun forfra, hvis ingen fra din gruppe er i live indenfor. En solospiller tæller som en gruppe på én og beholder sin bakke, når en gruppe dannes, men raidmedlemmer tæller slet ikke. Mens en gruppe holder bakken, tjener hvert medlem indenfor samme mængde Ære hvert minut, uanset hvor længe de har holdt den. En fuld gruppe, der holder bakken uforstyrret hele perioden, tjener derfor omtrent det samme som to slagmarkssejre. Når bakken synker, og gruppen, der samlet holdt den længst, har holdt den i mindst ti minutter, får alle, der stod indenfor for den gruppe i mindst ét minut og stadig er i den, én sejr til PvP-rækken i Ugens Skatkammer. En bjælke over feltet viser, hvem der holder bakken, jeres antal mod deres og erobringstiden; /hill i chatten fortæller, hvor den står.',
-  'seasonal.boo.already': '{name} er blevet forskrækket nok for i dag.',
-  'seasonal.boo.flash': 'BØH! {name} bliver forskrækket!',
-  'seasonal.boo.frightenedHint':
-    '{name} er stadig nervøs efter din sidste forskrækkelse. Find en anden.',
-  'seasonal.boo.landed':
-    'Du springer frem mod {name} med et BØH! Der lyder et skrig, og alt er lige ved at blive tabt.',
-  'seasonal.boo.needsCostume':
-    'Tag først et kostume på: en kostumedrik, et flagermus- eller skelettrick, Halmvættens amulet, Udskåret græskarhoved eller en goblinslurk fra Grønboblekedlen.',
-  'seasonal.boo.noCostume': 'Uden kostume griner {name} bare af dig. Tag et på først.',
-  'seasonal.boo.notOnErrand': 'Hester har ikke bedt dig forskrække nogen i dag.',
-  'seasonal.boo.row': 'Bøh!',
-  'seasonal.boo.rowAria': 'Spring frem mod {name}, og råb bøh',
   'seasonal.boundItemGone':
     'Græskarlygternes aften er slut, og din {item} smuldrer tilbage til halm.',
   'seasonal.costume': 'Du drikker drikken og forvandles: {trick}!',
@@ -25780,8 +25746,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Gamle Halmgrin giver ét hver dag, du plyndrer ham, indtil du ejer Glødebørstekosten. Hester Græskarvæge bytter {count} for kosten ved sine boder i Østbæk, Sumpbroen og Højvagten. Ubrugte neg gemmes til næste Græskarlygternes aften.',
   'seasonal.itemUse.strawlingCharm':
     'Brug: Bliv en af Gamle Halmgrins halmvætter i {seconds} sekunder. Ikke i kamp. Forbruges aldrig. Kosmetisk.',
-  'seasonal.itemUse.sweet':
-    'Optjenes ved slik eller ballade under Græskarlygternes aften. Hester Græskarvæge bytter dem for kosmetiske genstande ved sine boder i Østbæk, Sumpbroen og Højvagten.',
   'seasonal.itemUse.titleWrit':
     'Brug: Få titlen {title} til denne figur. Den vælges i Bedrifternes Bog. Forbruges. Beholdes, hvis du allerede har titlen.',
   'seasonal.itemUse.toyBats':
@@ -25826,21 +25790,7 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} splatter et græskar på dit hoved! Fjern det med højreklik, eller bær det stolt.',
   'seasonal.toy.prankedFlash': '{name} har lavet løjer med dig!',
-  'seasonal.trickOrTreat.alreadyKnocked':
-    'Du har allerede sagt slik eller ballade til {name} i dag.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Du har allerede banket på her i dag. Døren åbner igen efter den daglige nulstilling.',
-  'seasonal.trickOrTreat.notActive': 'Græskarlygternes aften er ikke i gang lige nu.',
-  'seasonal.trickOrTreat.row': 'Slik eller ballade!',
-  'seasonal.trickOrTreat.rowAria': 'Sig slik eller ballade til {name}',
-  'seasonal.trickOrTreat.tooFar': 'Gå nærmere for at banke på.',
-  'seasonal.trickOrTreat.treat': '{name} giver dig noget sødt.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Slik! {count} Græskarlygteslik',
-  'seasonal.trickOrTreat.treatFlash.many': 'Slik! {count} Græskarlygteslik',
-  'seasonal.trickOrTreat.treatFlash.one': 'Slik! {count} Græskarlygteslik',
-  'seasonal.trickOrTreat.treatFlash.other': 'Slik! {count} Græskarlygteslik',
-  'seasonal.trickOrTreat.trick': '{name} laver løjer med dig: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Ballade! {trick}',
+  'seasonal.trickFlash': 'Ballade! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Flagermuskostume',
   'seasonal.tricks.gourdlight_costume_ghost': 'Spøgelseskostume',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Skeletkostume',

@@ -112,8 +112,10 @@ describe('seasonal decor placement against the live world', () => {
       const garlands = layout.garlands.filter((g) => near(g.ax, g.az));
       expect(garlands.length, `${rule.zoneId} garlands`).toBeGreaterThanOrEqual(2);
       expect(lanterns.length, `${rule.zoneId} lanterns`).toBeGreaterThanOrEqual(3);
-      expect(ground.filter((p) => p.anchor.startsWith('npc:')).length).toBeGreaterThanOrEqual(3);
-      // the rest of the townsfolk and the lamp clusters dress the street beyond the doors
+      // The knocking-door pumpkins (`npc:` anchors) left with trick-or-treat, which the
+      // owner removed from the new world: every townsperson now takes the `folk:` pair.
+      expect(ground.filter((p) => p.anchor.startsWith('npc:'))).toEqual([]);
+      // the townsfolk and the lamp clusters dress the street
       expect(ground.filter((p) => p.anchor.startsWith('folk:')).length).toBeGreaterThanOrEqual(3);
       expect(ground.filter((p) => /^lamp:\d+:c$/.test(p.anchor)).length).toBeGreaterThanOrEqual(3);
       // the road shoulders between the lamps carry their own harvest pieces
@@ -322,7 +324,7 @@ describe('seasonal decor placement against the live world', () => {
   });
 
   // Owner note 2026-10-18: the straw read as litter. A broken anchor hash pinned every
-  // share to 0, so every lamp, knocking door and townsfolk took a bale or a shock.
+  // share to 0, so every lamp and townsperson took a bale or a shock.
   // The straw is now an accent: a ceiling per city, a minority of every city's pieces,
   // and the lamp clusters genuinely varied (some posts with straw, most without).
   it('keeps the straw an accent in every city, not litter', () => {

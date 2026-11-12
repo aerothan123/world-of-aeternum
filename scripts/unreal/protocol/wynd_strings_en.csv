@@ -8289,7 +8289,7 @@ entities.npcs.glider_apprentice.title,Zephyrs Apprentice
 entities.npcs.glider_instructor.greeting,The thermals howling off the cliffs of The Shear are fierce today. Ready to strap into the mechanical glider and test your wings through the slalom course?
 entities.npcs.glider_instructor.name,Flightmaster Zephyr
 entities.npcs.glider_instructor.title,Windrider Instructor
-entities.npcs.gourdlight_keeper.greeting,"The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. Knock on the doors of the townsfolk in Eastbrook, Fenbridge and Highwatch, and say the words: trick or treat. Most will hand you a sweet. A few will play a trick on you. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
+entities.npcs.gourdlight_keeper.greeting,"The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
 entities.npcs.gourdlight_keeper.name,Hester Gourdwick
 entities.npcs.gourdlight_keeper.title,Gourdlight Keeper
 entities.npcs.gravekeeper_holven.greeting,Mind the paths between the stones. The ones beneath them have earned their quiet.
@@ -9334,10 +9334,6 @@ entities.quests.q_gourdlight_daily_baskets.objectives.1.label,Basket left with Y
 entities.quests.q_gourdlight_daily_baskets.objectives.2.label,Basket left with Loremaster Caddis
 entities.quests.q_gourdlight_daily_baskets.text,"I fill a basket of sweets for an old friend in each town every Gourdlight Eve, and my knees are not what they were. Take them round for me, {playerName}: Cook Marlow in Eastbrook, Yara the herbalist in Fenbridge, and Loremaster Caddis up in Highwatch."
 entities.quests.q_gourdlight_daily_baskets.title,Baskets for the Neighbours
-entities.quests.q_gourdlight_daily_boo.completion,Three of them? I heard the cook drop a pan from across the square. Well done. Here is your share.
-entities.quests.q_gourdlight_daily_boo.objectives.0.label,Townsfolk frightened
-entities.quests.q_gourdlight_daily_boo.text,"Nobody in these towns has had a proper fright in a year, {playerName}, and a Gourdlight Eve without one is just a cold night. Put on a costume, any of mine will do, or that pumpkin head if you have earned one. Then creep up on three of the townsfolk and give them a good loud BOO."
-entities.quests.q_gourdlight_daily_boo.title,Boo!
 entities.quests.q_gourdlight_daily_feathers.completion,"Black as a moonless field, and they smell of smoke already. The bonfire will be a sight. Thank you."
 entities.quests.q_gourdlight_daily_feathers.objectives.0.label,Crow feathers
 entities.quests.q_gourdlight_daily_feathers.text,"When Old Thatchgrin is pressed, he calls his crows down on whoever is beating at his straw. Their feathers burn green in a hearth, and I need three for tonight's bonfire. Find a fight at his patch, {playerName}, and pluck them from his crows."
@@ -9346,20 +9342,10 @@ entities.quests.q_gourdlight_daily_patch.completion,"Five round ones, and not a 
 entities.quests.q_gourdlight_daily_patch.objectives.0.label,Patch Pumpkins
 entities.quests.q_gourdlight_daily_patch.text,"Old Thatchgrin's patch past Boar Meadow is fat with pumpkins, and half of them have rolled out past his straw where a careful soul can reach them. Bring me five, {playerName}. Stay wide of the old scarecrow himself. He counts every one."
 entities.quests.q_gourdlight_daily_patch.title,Pumpkins from the Patch
-entities.quests.q_gourdlight_daily_towns.completion,Three towns in one night! Your boots have earned this more than you have.
-entities.quests.q_gourdlight_daily_towns.objectives.0.label,A door knocked in Eastbrook
-entities.quests.q_gourdlight_daily_towns.objectives.1.label,A door knocked in Fenbridge
-entities.quests.q_gourdlight_daily_towns.objectives.2.label,A door knocked in Highwatch
-entities.quests.q_gourdlight_daily_towns.text,"The children say a true Gourdlight walker knocks in every town before the night is out. Prove them right, {playerName}. Trick or treat at one door in Eastbrook, one in Fenbridge and one in Highwatch. The lanterns on the roads will light your way."
-entities.quests.q_gourdlight_daily_towns.title,A Door in Every Town
 entities.quests.q_gourdlight_daily_wicks.completion,"Six stubs, cold as frost. Whoever lit them will have to try harder than that. Take this, and wash your hands."
 entities.quests.q_gourdlight_daily_wicks.objectives.0.label,Cursed candles snuffed
 entities.quests.q_gourdlight_daily_wicks.text,"Someone has been setting candles with green flames at the feet of our lamp posts. They burn without melting and they whisper when you turn your back. Snuff six of them for me, {playerName}, in any of the three towns, and bring me the stubs."
 entities.quests.q_gourdlight_daily_wicks.title,Wicked Wicks
-entities.quests.q_gourdlight_rounds.completion,"Five doors and you still have all your fingers. Here, a pouch of sweets for the walk home. Come back tomorrow, the doors open again."
-entities.quests.q_gourdlight_rounds.objectives.0.label,Doors knocked on
-entities.quests.q_gourdlight_rounds.text,"Every Gourdlight Eve the children of the Vale make their rounds, and this year you are joining them, {playerName}. Knock on five doors in our towns, say the words, and see what you are given. Come back to me when you are done."
-entities.quests.q_gourdlight_rounds.title,Gourdlight Rounds
 entities.quests.q_gravecallers_trail.completion,"Morthen wrote to a 'Fogbinder' in the northern fen. The Pale Accord is not dead, {playerName}. It has merely been patient."
 entities.quests.q_gravecallers_trail.objectives.0.label,Morthen's Grimoire
 entities.quests.q_gravecallers_trail.text,"Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, {playerName}."
@@ -9988,6 +9974,7 @@ entities.zones.chalkbarrow_coast.pois.1.label,The Unlit Dig
 entities.zones.chalkbarrow_coast.pois.2.label,Chalk Mere
 entities.zones.chalkbarrow_coast.pois.3.label,The White Head
 entities.zones.chalkbarrow_coast.pois.4.label,Wreckers' Cove
+entities.zones.chalkbarrow_coast.pois.5.label,The Old Toll House
 entities.zones.chalkbarrow_coast.welcome,"The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who."
 entities.zones.drakelands.name,The Drakelands
 entities.zones.drakelands.pois.0.label,Wyrmwatch
@@ -10076,6 +10063,7 @@ entities.zones.kindlemoor.pois.1.label,The First Hearth Ring
 entities.zones.kindlemoor.pois.2.label,The Moor Tarn
 entities.zones.kindlemoor.pois.3.label,The Grey Tor
 entities.zones.kindlemoor.pois.4.label,The Heath Way
+entities.zones.kindlemoor.pois.5.label,Heathward Tower
 entities.zones.kindlemoor.welcome,"Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch."
 entities.zones.mirefen_marsh.name,Mirefen Marsh
 entities.zones.mirefen_marsh.pois.0.label,Fenbridge
@@ -10134,6 +10122,7 @@ entities.zones.sedgemarch.pois.1.label,The Withy Beds
 entities.zones.sedgemarch.pois.2.label,Heron Mere
 entities.zones.sedgemarch.pois.3.label,The Drowned Causey
 entities.zones.sedgemarch.pois.4.label,The Sedge Neck
+entities.zones.sedgemarch.pois.5.label,Drovers' Rest
 entities.zones.sedgemarch.welcome,"Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back."
 entities.zones.thornpeak_heights.name,Thornpeak Heights
 entities.zones.thornpeak_heights.pois.0.label,Highwatch
@@ -10194,6 +10183,7 @@ entities.zones.wychwold.pois.1.label,The Knotted Elm
 entities.zones.wychwold.pois.2.label,Charcoal Hollow
 entities.zones.wychwold.pois.3.label,The Sunk Lane
 entities.zones.wychwold.pois.4.label,The Salt Way
+entities.zones.wychwold.pois.5.label,The Hazel Pool
 entities.zones.wychwold.welcome,"The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir."
 entryGuard.body,"The game closed unexpectedly while entering the world, so graphics are now set to {preset}. You can change this in the graphics selector below or in the in-game Options."
 entryGuard.dismiss,Dismiss
@@ -21753,15 +21743,6 @@ referralCards.understand,"Yes, I understand"
 referralCards.unlocked,This card can move to another eligible character until you redeem The Fogbinder stamp reward. Redeeming that reward permanently locks it to this character.
 referralCards.waiting,Waiting for your bound friend to accept.
 referralCards.yourCard,{name}'s stamp card
-seasonal.boo.already,{name} has had enough frights for one day.
-seasonal.boo.flash,BOO! {name} is frightened!
-seasonal.boo.frightenedHint,{name} is still jumpy from your last fright. Find someone else.
-seasonal.boo.landed,You leap out at {name} with a BOO! They shriek and nearly drop everything.
-seasonal.boo.needsCostume,"Put on a costume first: a costume draught, a bat or skeleton trick, the Strawling Charm, the Carved Pumpkin Head or a goblin sip from the Gurglegreen Cauldron."
-seasonal.boo.noCostume,"Without a costume, {name} only laughs at you. Put one on first."
-seasonal.boo.notOnErrand,Hester has not asked you to frighten anyone today.
-seasonal.boo.row,Boo!
-seasonal.boo.rowAria,Leap out at {name} and shout boo
 seasonal.boundItemGone,"Gourdlight Eve is over, and your {item} crumbles back into straw."
 seasonal.costume,You drink the draught and change: {trick}!
 seasonal.event.gourdlight_eve.name,Gourdlight Eve
@@ -21775,7 +21756,7 @@ seasonal.itemUse.pouch,Use: Open it to receive {count} Gourdlight Sweets.
 seasonal.itemUse.pumpkinHead,"Use: Put on or take off a carved pumpkin lit from inside, worn over your helmet. Cosmetic."
 seasonal.itemUse.sheaf,"Old Thatchgrin gives one each day you loot him, until you own the Emberbristle Broom. Hester Gourdwick trades {count} for the broom at her stalls in Eastbrook, Fenbridge and Highwatch. Unspent sheaves are kept for the next Gourdlight Eve."
 seasonal.itemUse.strawlingCharm,Use: Become one of Old Thatchgrin's strawlings for {seconds} seconds. Not in combat. Never consumed. Cosmetic.
-seasonal.itemUse.sweet,"Earned by trick-or-treating during Gourdlight Eve. Hester Gourdwick trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch."
+seasonal.itemUse.sweet,"Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch."
 seasonal.itemUse.titleWrit,"Use: Earn the title {title} for this character, worn from the Book of Deeds. Consumed. Kept if you already hold the title."
 seasonal.itemUse.toyBats,Use: Open the sack. A squeaking swarm of bats bursts out and scatters around you for {seconds} seconds. Not usable in combat or while stealthed. Never consumed: usable again after {cooldown} seconds. Kept permanently and usable year-round. Cosmetic.
 seasonal.itemUse.toyCandleShadows,"Use: Light the candle in front of you. For {seconds} seconds its flames throw dancing shadows of a cat, a bat and a witch onto the ground around it, for everyone nearby to see. Not usable in combat or while stealthed. Never consumed: usable again after {cooldown} seconds. Kept permanently and usable year-round. Cosmetic."
@@ -21808,19 +21789,7 @@ seasonal.toy.prank,You throw the pumpkin. It splats onto {name}!
 seasonal.toy.prankNeedsPlayer,The pumpkin only splats on another player who is not in combat.
 seasonal.toy.pranked,"{name} splats a pumpkin on your head! Right-click it off, or wear it proudly."
 seasonal.toy.prankedFlash,Pranked by {name}!
-seasonal.trickOrTreat.alreadyKnocked,You already trick-or-treated {name} today.
-seasonal.trickOrTreat.knockedHint,You already knocked here today. The door opens again after the daily reset.
-seasonal.trickOrTreat.notActive,Gourdlight Eve is not running right now.
-seasonal.trickOrTreat.row,Trick or treat!
-seasonal.trickOrTreat.rowAria,Say trick or treat to {name}
-seasonal.trickOrTreat.tooFar,Step closer to knock.
-seasonal.trickOrTreat.treat,{name} hands you a treat.
-seasonal.trickOrTreat.treatFlash.few,Treat! {count} Gourdlight Sweets
-seasonal.trickOrTreat.treatFlash.many,Treat! {count} Gourdlight Sweets
-seasonal.trickOrTreat.treatFlash.one,Treat! {count} Gourdlight Sweet
-seasonal.trickOrTreat.treatFlash.other,Treat! {count} Gourdlight Sweets
-seasonal.trickOrTreat.trick,{name} plays a trick on you: {trick}!
-seasonal.trickOrTreat.trickFlash,Trick! {trick}
+seasonal.trickFlash,Trick! {trick}
 seasonal.tricks.gourdlight_costume_bat,Bat Costume
 seasonal.tricks.gourdlight_costume_ghost,Ghost Costume
 seasonal.tricks.gourdlight_costume_skeleton,Skeleton Costume

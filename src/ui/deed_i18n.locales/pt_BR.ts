@@ -1552,21 +1552,12 @@ export const table: DeedLocaleTable = {
     desc: 'Encontre todas as Abóboras assombradas escondidas pelo mundo durante a Noite das Abóboras.',
     title: 'o Oco',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Todas as soleiras',
-    desc: 'Peça doces ou travessuras a todos os moradores que atendem à porta em Eastbrook, Fenbridge e Highwatch durante a Noite das Abóboras.',
-  },
   feat_gourdlight_errands: {
     name: 'Às ordens de Hester',
     desc: 'Conclua pelo menos uma vez cada uma das tarefas rotativas de Hester Gourdwick para a Noite das Abóboras.',
   },
-  feat_gourdlight_frights: {
-    name: 'Três cidades assustadas',
-    desc: 'Na tarefa Bu! de Hester, assuste um morador em cada cidade: Eastbrook, Fenbridge e Highwatch.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Noite das Abóboras do início ao fim',
-    desc: 'Complete toda a Noite das Abóboras: derrote o Velho Thatchgrin, encontre todas as Abóboras assombradas, conclua todas as tarefas de Hester, bata a todas as portas e assuste um morador em cada uma das três cidades.',
     title: 'o Juramentado das Abóboras',
   },
 };

@@ -242,8 +242,8 @@ const NON_PROFESSIONS_BLOB_FIELDS = [
   // The weekly emissary's pick (src/sim/weekly_quests.ts), beside the world
   // quests it stands next to.
   'weeklyQuest',
-  // Seasonal events (src/sim/seasonal/): the day's trick-or-treat knocks and
-  // the worn pumpkin head; a bounded ledger (64 ids), never professions state.
+  // Seasonal events (src/sim/seasonal/): the worn pumpkin head and the Haunted
+  // Pumpkins found; a bounded ledger, never professions state.
   'seasonal',
   'arenaRating',
   'arenaWins',
@@ -2342,9 +2342,7 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       'feat_title_gourdlit',
       'feat_title_trickster',
       'feat_title_hollow_grinned',
-      'feat_gourdlight_doorsteps',
       'feat_gourdlight_errands',
-      'feat_gourdlight_frights',
       'feat_gourdlight_eve_complete',
     ]);
     const gourdlightItems = new Set([
@@ -2375,11 +2373,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       'thatchgrin_patch_pumpkin',
     ]);
     const gourdlightQuests = new Set([
-      'q_gourdlight_rounds',
       'q_gourdlight_daily_patch',
-      'q_gourdlight_daily_boo',
       'q_gourdlight_daily_wicks',
-      'q_gourdlight_daily_towns',
       'q_gourdlight_daily_feathers',
       'q_gourdlight_daily_baskets',
     ]);

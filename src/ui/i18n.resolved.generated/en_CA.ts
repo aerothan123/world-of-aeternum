@@ -8609,23 +8609,7 @@ export const en_CA: EnTranslations = {
         "name": "Gourdlight Eve"
       }
     },
-    "trickOrTreat": {
-      "row": "Trick or treat!",
-      "rowAria": "Say trick or treat to {name}",
-      "knockedHint": "You already knocked here today. The door opens again after the daily reset.",
-      "treat": "{name} hands you a treat.",
-      "trick": "{name} plays a trick on you: {trick}!",
-      "alreadyKnocked": "You already trick-or-treated {name} today.",
-      "notActive": "Gourdlight Eve is not running right now.",
-      "tooFar": "Step closer to knock.",
-      "treatFlash": {
-        "one": "Treat! {count} Gourdlight Sweet",
-        "few": "Treat! {count} Gourdlight Sweets",
-        "many": "Treat! {count} Gourdlight Sweets",
-        "other": "Treat! {count} Gourdlight Sweets"
-      },
-      "trickFlash": "Trick! {trick}"
-    },
+    "trickFlash": "Trick! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Batty",
       "gourdlight_trick_skeleton": "Rattled Bones",
@@ -8650,7 +8634,7 @@ export const en_CA: EnTranslations = {
       "trickJar": "Use: Plays a random harmless trick on you for a few seconds. Cosmetic.",
       "pouch": "Use: Open it to receive {count} Gourdlight Sweets.",
       "strawlingCharm": "Use: Become one of Old Thatchgrin's strawlings for {seconds} seconds. Not in combat. Never consumed. Cosmetic.",
-      "sweet": "Earned by trick-or-treating during Gourdlight Eve. Hester Gourdwick trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Use: Turn into a rattling skeleton for {minutes} minutes. Consumed. Not usable in combat, and entering combat ends it. Cosmetic.",
       "costumeGhost": "Use: Turn into a drifting ghost for {minutes} minutes. Consumed. Not usable in combat, and entering combat ends it. Cosmetic.",
       "costumeBat": "Use: Turn into a flapping bat for {minutes} minutes. Consumed. Not usable in combat, and entering combat ends it. Cosmetic.",
@@ -8677,17 +8661,6 @@ export const en_CA: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Dropped by Old Thatchgrin, in his pumpkin field past Boar Meadow, the first time you loot him. No vendor sells it."
-    },
-    "boo": {
-      "row": "Boo!",
-      "rowAria": "Leap out at {name} and shout boo",
-      "needsCostume": "Put on a costume first: a costume draught, a bat or skeleton trick, the Strawling Charm, the Carved Pumpkin Head or a goblin sip from the Gurglegreen Cauldron.",
-      "frightenedHint": "{name} is still jumpy from your last fright. Find someone else.",
-      "landed": "You leap out at {name} with a BOO! They shriek and nearly drop everything.",
-      "flash": "BOO! {name} is frightened!",
-      "noCostume": "Without a costume, {name} only laughs at you. Put one on first.",
-      "already": "{name} has had enough frights for one day.",
-      "notOnErrand": "Hester has not asked you to frighten anyone today."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const en_CA: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Gourdlight Keeper",
-        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. Knock on the doors of the townsfolk in Eastbrook, Fenbridge and Highwatch, and say the words: trick or treat. Most will hand you a sweet. A few will play a trick on you. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Reeve Ottoline",
@@ -30948,16 +30921,6 @@ export const en_CA: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Gourdlight Rounds",
-        "text": "Every Gourdlight Eve the children of the Vale make their rounds, and this year you are joining them, {playerName}. Knock on five doors in our towns, say the words, and see what you are given. Come back to me when you are done.",
-        "completion": "Five doors and you still have all your fingers. Here, a pouch of sweets for the walk home. Come back tomorrow, the doors open again.",
-        "objectives": {
-          "0": {
-            "label": "Doors knocked on"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Pumpkins from the Patch",
         "text": "Old Thatchgrin's patch past Boar Meadow is fat with pumpkins, and half of them have rolled out past his straw where a careful soul can reach them. Bring me five, {playerName}. Stay wide of the old scarecrow himself. He counts every one.",
@@ -30968,16 +30931,6 @@ export const en_CA: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Boo!",
-        "text": "Nobody in these towns has had a proper fright in a year, {playerName}, and a Gourdlight Eve without one is just a cold night. Put on a costume, any of mine will do, or that pumpkin head if you have earned one. Then creep up on three of the townsfolk and give them a good loud BOO.",
-        "completion": "Three of them? I heard the cook drop a pan from across the square. Well done. Here is your share.",
-        "objectives": {
-          "0": {
-            "label": "Townsfolk frightened"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Wicked Wicks",
         "text": "Someone has been setting candles with green flames at the feet of our lamp posts. They burn without melting and they whisper when you turn your back. Snuff six of them for me, {playerName}, in any of the three towns, and bring me the stubs.",
@@ -30985,22 +30938,6 @@ export const en_CA: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Cursed candles snuffed"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "A Door in Every Town",
-        "text": "The children say a true Gourdlight walker knocks in every town before the night is out. Prove them right, {playerName}. Trick or treat at one door in Eastbrook, one in Fenbridge and one in Highwatch. The lanterns on the roads will light your way.",
-        "completion": "Three towns in one night! Your boots have earned this more than you have.",
-        "objectives": {
-          "0": {
-            "label": "A door knocked in Eastbrook"
-          },
-          "1": {
-            "label": "A door knocked in Fenbridge"
-          },
-          "2": {
-            "label": "A door knocked in Highwatch"
           }
         }
       },

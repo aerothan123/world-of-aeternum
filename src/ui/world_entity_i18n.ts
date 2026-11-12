@@ -907,13 +907,9 @@ const QUEST_IDS = [
   // the Eastbrook hub dummy lesson (content/practice_dummies.ts)
   'q_hub_know_your_numbers',
   'q_hub_healing_numbers',
-  // Gourdlight Eve's daily rounds (content/gourdlight_eve.ts)
-  'q_gourdlight_rounds',
-  // ...and its rotating dailies (content/gourdlight_eve_dailies.ts)
+  // Gourdlight Eve's rotating dailies (content/gourdlight_eve_dailies.ts)
   'q_gourdlight_daily_patch',
-  'q_gourdlight_daily_boo',
   'q_gourdlight_daily_wicks',
-  'q_gourdlight_daily_towns',
   'q_gourdlight_daily_feathers',
   'q_gourdlight_daily_baskets',
   // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).

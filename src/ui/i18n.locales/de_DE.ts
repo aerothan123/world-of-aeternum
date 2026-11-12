@@ -26261,8 +26261,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Strohling',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Anschwellender Kürbis',
   'entities.mobs.gourdlight_thatchgrin.name': 'Alter Thatchgrin',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Die Kürbisse leuchten und die Laternen hängen, also muss Kürbislichtnacht sein. Klopfe bei den Leuten in Eastbrook, Fenbridge und Highwatch an und sage die Worte: Süßes oder Saures. Die meisten geben dir eine Süßigkeit. Einige spielen dir einen Streich. Bring die Süßigkeiten zu einem meiner Stände, und ich tausche sie gegen etwas zum Anziehen.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Gourdwick',
   'entities.npcs.gourdlight_keeper.title': 'Hüterin des Kürbislichts',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -26275,12 +26273,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Jede Kürbislichtnacht fülle ich in jeder Stadt einen Korb Süßigkeiten für einen alten Freund, und meine Knie sind nicht mehr die besten. Bring sie für mich herum, {playerName}: zu Koch Marlow in Eastbrook, zu Kräuterkundige Yara in Fenbridge und zu Lehrmeister Caddis oben in Highwatch.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Körbe für die Nachbarn',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Drei? Ich habe quer über den Platz gehört, wie der Koch eine Pfanne fallen ließ. Gut gemacht. Hier ist dein Anteil.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Stadtbewohner erschreckt',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Seit einem Jahr hat sich in diesen Städten niemand mehr richtig erschreckt, {playerName}, und eine Kürbislichtnacht ohne Schrecken ist nur eine kalte Nacht. Zieh ein Kostüm an, irgendeines von meinen genügt, oder den Kürbiskopf, falls du dir einen verdient hast. Dann schleiche dich an drei Stadtbewohner heran und rufe ein ordentlich lautes BUH!',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Buh!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Schwarz wie ein Feld ohne Mond, und sie riechen schon nach Rauch. Das Freudenfeuer wird ein Anblick. Danke.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Krähenfedern',
@@ -26293,45 +26285,16 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Der Acker des Alten Thatchgrin hinter der Eberwiese ist voller Kürbisse. Die Hälfte ist außerhalb der Reichweite seines Strohs gerollt, wo vorsichtige Leute sie erreichen können. Bring mir fünf, {playerName}. Halte dich von der alten Vogelscheuche selbst fern. Er zählt jeden einzelnen.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Kürbisse vom Acker',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Drei Städte in einer Nacht! Deine Stiefel haben sich das mehr verdient als du.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label':
-    'An einer Tür in Eastbrook angeklopft',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label':
-    'An einer Tür in Fenbridge angeklopft',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label':
-    'An einer Tür in Highwatch angeklopft',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Die Kinder sagen, ein echter Kürbislichtwanderer klopft in jeder Stadt an, ehe die Nacht vorbei ist. Gib ihnen recht, {playerName}. Verlange Süßes oder Saures an je einer Tür in Eastbrook, Fenbridge und Highwatch. Die Laternen an den Straßen leuchten dir den Weg.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Eine Tür in jeder Stadt',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Sechs Stummel, kalt wie Reif. Wer sie angezündet hat, muss sich mehr Mühe geben. Nimm das und wasch dir die Hände.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Verfluchte Kerzen gelöscht',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Jemand stellt Kerzen mit grünen Flammen an den Fuß unserer Laternenpfähle. Sie brennen, ohne zu schmelzen, und flüstern, wenn man ihnen den Rücken zukehrt. Lösche sechs für mich, {playerName}, in einer beliebigen der drei Städte, und bring mir die Stummel.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Böse Dochte',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Fünf Türen und noch alle Finger dran. Hier, ein Beutel Süßigkeiten für den Heimweg. Komm morgen wieder, dann öffnen sich die Türen erneut.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'An Türen angeklopft',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Jede Kürbislichtnacht ziehen die Kinder des Tals ihre Runden, und dieses Jahr begleitest du sie, {playerName}. Klopfe an fünf Türen in unseren Städten, sage die Worte und sieh, was du bekommst. Komm zu mir zurück, wenn du fertig bist.',
-  'entities.quests.q_gourdlight_rounds.title': 'Kürbislichtrunde',
   'guide.interfacePage.framesGovernedPriest':
     'Mit Rahmen bearbeiten kannst du auch das Medaillon für Düsterzehnt und Zehntbombe des Schattenpriesters verschieben.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Einmal alle zwei Stunden wird zu einem unvorhersehbaren Zeitpunkt dem ganzen Realm angekündigt, dass in fünfzehn Minuten ein Hügel in einer der nördlichen Zonen erscheint. Sein Kreis wird auf offenem Gelände markiert. Der Hügel bleibt dreißig Minuten und verschwindet dann. Solange er da ist, erfährt der Realm alle fünf Minuten seinen Standort und welche Gruppen ihn am längsten gehalten haben. Die Gruppe mit den meisten Spielern im Kreis beansprucht den Hügel und erobert ihn nach dreißig Sekunden Mehrheit. Betritt eine rivalisierende Gruppe den Kreis, pausiert dieser Zähler nur, bis deine Gruppe wieder führt; er beginnt erst neu, wenn kein lebendes Mitglied deiner Gruppe mehr im Kreis steht. Ein Einzelspieler zählt als Ein-Personen-Gruppe und behält seinen Hügel, wenn er eine Gruppe gründet; Schlachtzugsmitglieder zählen dagegen überhaupt nicht. Solange eine Gruppe den Hügel hält, erhält jedes ihrer Mitglieder im Kreis jede Minute gleich viel Ehre, unabhängig von der bisherigen Haltedauer. Eine volle Gruppe, die ihn während seiner gesamten Dauer unangefochten hält, verdient daher etwa so viel wie bei zwei Schlachtfeldsiegen. Verschwindet der Hügel, und hat die Gruppe mit der längsten gesamten Haltedauer ihn mindestens zehn Minuten gehalten, erhält jeder, der für diese Gruppe mindestens eine Minute im Kreis stand und ihr weiterhin angehört, einen Sieg für die PvP-Zeile der Wöchentlichen Tresors. Eine Leiste über dem Feld zeigt den Besitzer, eure Anzahl im Vergleich zur gegnerischen und den Eroberungszähler; /hill im Chat nennt den Standort.',
-  'seasonal.boo.already': '{name} hat für heute genug Schrecken erlebt.',
-  'seasonal.boo.flash': 'BUH! {name} ist erschrocken!',
-  'seasonal.boo.frightenedHint':
-    '{name} ist von deinem letzten Schrecken noch ganz schreckhaft. Suche jemand anderen.',
-  'seasonal.boo.landed':
-    'Du springst vor {name} und rufst BUH! Ein Kreischen ertönt, und beinahe fällt alles zu Boden.',
-  'seasonal.boo.needsCostume':
-    'Zieh zuerst ein Kostüm an: einen Kostümtrunk, einen Fledermaus- oder Skelettstreich, den Strohlingtalisman, den Geschnitzten Kürbiskopf oder einen Goblinschluck aus dem Grünblubberkessel.',
-  'seasonal.boo.noCostume': 'Ohne Kostüm lacht {name} dich nur aus. Zieh erst eines an.',
-  'seasonal.boo.notOnErrand': 'Hester hat dich heute nicht gebeten, jemanden zu erschrecken.',
-  'seasonal.boo.row': 'Buh!',
-  'seasonal.boo.rowAria': 'Vor {name} springen und Buh rufen',
   'seasonal.boundItemGone':
     'Die Kürbislichtnacht ist vorbei, und dein Gegenstand {item} zerfällt wieder zu Stroh.',
   'seasonal.costume': 'Du trinkst den Trunk und verwandelst dich: {trick}!',
@@ -26354,8 +26317,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
     'Der Alte Thatchgrin gibt dir an jedem Tag, an dem du ihn plünderst, eine Garbe, bis du den Glutborstenbesen besitzt. Hester Gourdwick tauscht an ihren Ständen in Eastbrook, Fenbridge und Highwatch {count} davon gegen den Besen. Nicht ausgegebene Garben bleiben für die nächste Kürbislichtnacht erhalten.',
   'seasonal.itemUse.strawlingCharm':
     'Benutzen: Werde für {seconds} Sekunden zu einem Strohling des Alten Thatchgrin. Nicht im Kampf benutzbar. Wird niemals verbraucht. Kosmetisch.',
-  'seasonal.itemUse.sweet':
-    'Durch Süßes oder Saures während der Kürbislichtnacht verdient. Hester Gourdwick tauscht sie an ihren Ständen in Eastbrook, Fenbridge und Highwatch gegen kosmetische Gegenstände.',
   'seasonal.itemUse.titleWrit':
     'Benutzen: Verleiht diesem Charakter den Titel {title}, der im Buch der Taten angelegt wird. Wird verbraucht. Bleibt erhalten, wenn du den Titel bereits besitzt.',
   'seasonal.itemUse.toyBats':
@@ -26403,21 +26364,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} wirft dir einen Kürbis auf den Kopf! Entferne ihn per Rechtsklick oder trage ihn mit Stolz.',
   'seasonal.toy.prankedFlash': '{name} hat dir einen Streich gespielt!',
-  'seasonal.trickOrTreat.alreadyKnocked':
-    'Du hast heute schon bei {name} Süßes oder Saures verlangt.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Du hast heute hier schon angeklopft. Nach der täglichen Zurücksetzung öffnet sich die Tür wieder.',
-  'seasonal.trickOrTreat.notActive': 'Die Kürbislichtnacht findet gerade nicht statt.',
-  'seasonal.trickOrTreat.row': 'Süßes oder Saures!',
-  'seasonal.trickOrTreat.rowAria': 'Bei {name} Süßes oder Saures verlangen',
-  'seasonal.trickOrTreat.tooFar': 'Komm näher, um anzuklopfen.',
-  'seasonal.trickOrTreat.treat': '{name} gibt dir eine Süßigkeit.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Süßes! {count} Kürbislicht-Süßigkeiten',
-  'seasonal.trickOrTreat.treatFlash.many': 'Süßes! {count} Kürbislicht-Süßigkeiten',
-  'seasonal.trickOrTreat.treatFlash.one': 'Süßes! {count} Kürbislicht-Süßigkeit',
-  'seasonal.trickOrTreat.treatFlash.other': 'Süßes! {count} Kürbislicht-Süßigkeiten',
-  'seasonal.trickOrTreat.trick': '{name} spielt dir einen Streich: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Saures! {trick}',
+  'seasonal.trickFlash': 'Saures! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Fledermauskostüm',
   'seasonal.tricks.gourdlight_costume_ghost': 'Geisterkostüm',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Skelettkostüm',

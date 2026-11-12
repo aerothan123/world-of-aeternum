@@ -660,11 +660,11 @@ export const IWORLD_MEMBERS = [
   { name: 'resting', kind: 'data' },
   // IWorldSeating (seating.ts): sit on a piece of furniture by its seat id.
   { name: 'sitOnSeat', kind: 'method' },
-  // IWorldSeasonal (seasonal.ts): the running seasonal event and trick-or-treat.
+  // IWorldSeasonal (seasonal.ts): the running seasonal event and the pumpkin finds.
+  // (trickOrTreat and trickOrTreatedToday were removed with trick-or-treat, owner
+  // direction: the new world starts from the ground up.)
   { name: 'activeSeasonalEvent', kind: 'data' },
-  { name: 'trickOrTreatedToday', kind: 'data' },
   { name: 'hauntedPumpkinsFound', kind: 'data' },
-  { name: 'trickOrTreat', kind: 'method' },
   // IWorldHousing (housing.ts): player housing, Project H phase 1.
   { name: 'houseLots', kind: 'data' },
   { name: 'myHouse', kind: 'data' },
@@ -1052,10 +1052,12 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // (IWorldDailyRewards: four methods) leaves 476/144/332, and tree chopping
     // adds felledTrees (method): 477/144/333. Kill-time Auto Loot adds
     // setAutoLoot (method), and the gathering tool belt adds gatherToolSlots
-    // (data) and unequipGatherTool (method): 480/145/335.
-    expect(IWORLD_MEMBERS.length).toBe(480);
-    expect(DATA_MEMBERS.length).toBe(145);
-    expect(METHOD_MEMBERS.length).toBe(335);
+    // (data) and unequipGatherTool (method): 480/145/335. The owner removed
+    // trick-or-treat: trickOrTreatedToday (data) and trickOrTreat (method) go,
+    // 478/144/334.
+    expect(IWORLD_MEMBERS.length).toBe(478);
+    expect(DATA_MEMBERS.length).toBe(144);
+    expect(METHOD_MEMBERS.length).toBe(334);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1510,8 +1512,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'tradeSetOffer',
       'trainRecipe',
       'treasureMap',
-      'trickOrTreat',
-      'trickOrTreatedToday',
       'turnInQuest',
       'unappliedDungeonDifficulty',
       'unbindItem',
@@ -1679,7 +1679,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'townFocusPending',
       'tradeInfo',
       'treasureMap',
-      'trickOrTreatedToday',
       'unlockedMilestones',
       'vaultInfo',
       'vehicleSession',
@@ -2017,7 +2016,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'tradeRequest',
       'tradeSetOffer',
       'trainRecipe',
-      'trickOrTreat',
       'turnInQuest',
       'unappliedDungeonDifficulty',
       'unbindItem',
@@ -2765,9 +2763,7 @@ type _ExhaustWorldPvp = AssertNever<
 const FACET_SEATING = ['sitOnSeat'] as const satisfies readonly (keyof IWorldSeating)[];
 const FACET_SEASONAL = [
   'activeSeasonalEvent',
-  'trickOrTreatedToday',
   'hauntedPumpkinsFound',
-  'trickOrTreat',
 ] as const satisfies readonly (keyof IWorldSeasonal)[];
 type _ExhaustSeasonal = AssertNever<Exclude<keyof IWorldSeasonal, (typeof FACET_SEASONAL)[number]>>;
 type _ExhaustSeating = AssertNever<Exclude<keyof IWorldSeating, (typeof FACET_SEATING)[number]>>;
@@ -2938,8 +2934,9 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture;
     // phase 3 adds houseStorage, houseStorageDeposit and houseStorageWithdraw.
     // The retired Daily Rewards facet removes its four methods; felledTrees adds one.
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(480);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(480);
+    // The removed trick-or-treat takes trickOrTreatedToday and trickOrTreat with it.
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(478);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(478);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

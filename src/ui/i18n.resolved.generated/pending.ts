@@ -206,6 +206,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -1172,7 +1173,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "es_ES": [
     "abilityUi.cast.chopping",
@@ -1371,6 +1373,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -2337,7 +2340,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "fr_FR": [
     "abilityUi.cast.chopping",
@@ -2536,6 +2540,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -3502,7 +3507,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "fr_CA": [
     "abilityUi.cast.chopping",
@@ -3701,6 +3707,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -4667,7 +4674,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "en_CA": [],
   "it_IT": [
@@ -4867,6 +4875,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -5833,7 +5842,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "de_DE": [
     "abilityUi.cast.chopping",
@@ -6032,6 +6042,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -6998,7 +7009,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "zh_CN": [
     "entities.items.c1_amended_cart_tag.name",
@@ -7157,6 +7169,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -7932,7 +7945,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "zh_TW": [
     "entities.items.c1_amended_cart_tag.name",
@@ -8091,6 +8105,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -8866,7 +8881,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "ko_KR": [
     "entities.items.c1_amended_cart_tag.name",
@@ -9025,6 +9041,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -9800,7 +9817,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "ja_JP": [
     "entities.items.c1_amended_cart_tag.name",
@@ -9959,6 +9977,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -10734,7 +10753,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "pt_BR": [
     "abilityUi.cast.chopping",
@@ -10933,6 +10953,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -11899,7 +11920,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "ru_RU": [
     "entities.items.c1_amended_cart_tag.name",
@@ -12058,6 +12080,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -12833,7 +12856,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "cs_CZ": [
     "abilityUi.cast.chopping",
@@ -13032,6 +13056,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -13998,7 +14023,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "nl_NL": [
     "abilityUi.cast.chopping",
@@ -14197,6 +14223,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -15163,7 +15190,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "pl_PL": [
     "abilityUi.cast.chopping",
@@ -15362,6 +15390,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -16328,7 +16357,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "id_ID": [
     "abilityUi.cast.chopping",
@@ -16527,6 +16557,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -17493,7 +17524,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "tr_TR": [
     "abilityUi.cast.chopping",
@@ -17692,6 +17724,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -18658,7 +18691,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "sv_SE": [
     "abilityUi.cast.chopping",
@@ -18857,6 +18891,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -19823,7 +19858,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "vi_VN": [
     "abilityUi.cast.chopping",
@@ -20022,6 +20058,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -20988,7 +21025,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ],
   "da_DK": [
     "abilityUi.cast.chopping",
@@ -21187,6 +21225,7 @@ export const pending: Record<string, readonly string[]> = {
     "entities.npcs.gardener_della.greeting",
     "entities.npcs.gardener_della.name",
     "entities.npcs.gardener_della.title",
+    "entities.npcs.gourdlight_keeper.greeting",
     "entities.npcs.gravekeeper_holven.greeting",
     "entities.npcs.gravekeeper_holven.name",
     "entities.npcs.gravekeeper_holven.title",
@@ -22153,6 +22192,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "seasonal.itemUse.sweet"
   ]
 };

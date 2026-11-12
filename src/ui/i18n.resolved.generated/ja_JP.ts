@@ -8609,23 +8609,7 @@ export const ja_JP: EnTranslations = {
         "name": "ゴードライトの宵"
       }
     },
-    "trickOrTreat": {
-      "row": "トリック・オア・トリート！",
-      "rowAria": "{name}に「トリック・オア・トリート」と言う",
-      "knockedHint": "今日はもうここの戸を叩いた。デイリーリセット後にまた開く。",
-      "treat": "{name}がお菓子をくれた。",
-      "trick": "{name}がいたずらをした：{trick}！",
-      "alreadyKnocked": "今日はもう{name}にお菓子をねだった。",
-      "notActive": "ゴードライトの宵は今は開催されていない。",
-      "tooFar": "もっと近づいて戸を叩こう。",
-      "treatFlash": {
-        "one": "トリート！ゴードライトの菓子 {count}個",
-        "few": "トリート！ゴードライトの菓子 {count}個",
-        "many": "トリート！ゴードライトの菓子 {count}個",
-        "other": "トリート！ゴードライトの菓子 {count}個"
-      },
-      "trickFlash": "トリック！{trick}"
-    },
+    "trickFlash": "トリック！{trick}",
     "tricks": {
       "gourdlight_trick_bat": "コウモリ化",
       "gourdlight_trick_skeleton": "カタカタ骨",
@@ -8650,7 +8634,7 @@ export const ja_JP: EnTranslations = {
       "trickJar": "使用：数秒間、無害ないたずらをランダムに自分にかける。ゴードライトの宵の間のみ。見た目のみ。",
       "pouch": "使用：開けるとゴードライトの菓子を{count}個受け取る。",
       "strawlingCharm": "使用：{seconds}秒間、オールド・サッチグリンの藁人形の姿になる。戦闘中は使えず、ゴードライトの宵の間のみ。消費されない。見た目のみ。",
-      "sweet": "ゴードライトの宵の間にお菓子をねだって手に入る。イーストブルックのヘスター・ゴードウィックが見た目アイテムと交換してくれる。",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "使用：{minutes}分間、カタカタ鳴るスケルトンに変身する。消費される。戦闘中は使用できず、戦闘に入ると解除される。ゴードライトの宵の期間のみ。見た目のみ。",
       "costumeGhost": "使用：{minutes}分間、漂うゴーストに変身する。消費される。戦闘中は使用できず、戦闘に入ると解除される。ゴードライトの宵の期間のみ。見た目のみ。",
       "costumeBat": "使用：{minutes}分間、羽ばたくコウモリに変身する。消費される。戦闘中は使用できず、戦闘に入ると解除される。ゴードライトの宵の期間のみ。見た目のみ。",
@@ -8677,17 +8661,6 @@ export const ja_JP: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "ボアメドウの先にあるカボチャ畑のオールド・サッチグリンから、初めて戦利品を受け取ったときに手に入る。商人は売っていない。"
-    },
-    "boo": {
-      "row": "わっ！",
-      "rowAria": "{name}の前に飛び出して「わっ！」と叫ぶ",
-      "needsCostume": "まず仮装をすること：仮装の薬、コウモリかガイコツのいたずら、藁人形のお守り、彫りカボチャの頭、またはぐつぐつ緑の大鍋のゴブリンになるひと口。",
-      "frightenedHint": "{name}はさっきの驚きでまだびくびくしている。別の人を探そう。",
-      "landed": "{name}の前に飛び出して「わっ！」と叫んだ！悲鳴を上げて、持ち物を落としそうになった。",
-      "flash": "わっ！{name}が驚いた！",
-      "noCostume": "仮装なしでは、{name}は笑うだけだ。まず仮装をしよう。",
-      "already": "{name}は今日はもう十分に驚かされた。",
-      "notOnErrand": "今日はヘスターから誰かを驚かせる頼みを受けていない。"
     },
     "tokenPrice": "{item} ×{count}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const ja_JP: EnTranslations = {
       "gourdlight_keeper": {
         "name": "ヘスター・ゴードウィック",
         "title": "ゴードライトの番人",
-        "greeting": "カボチャに火が灯り、ランタンも吊るされた。ゴードライトの宵が来たのね。イーストブルック、フェンブリッジ、ハイウォッチの町の人の戸を叩いて、あの言葉を言いなさい。トリック・オア・トリート。たいていはお菓子をくれるけど、いたずらをする人もいるわ。お菓子を持ってきてくれたら、身につけるものと交換してあげる。"
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "代官オトリーヌ",
@@ -30948,16 +30921,6 @@ export const ja_JP: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "ゴードライトの見回り",
-        "text": "ゴードライトの宵には、谷の子どもたちが家々を回るの。今年はあなたも一緒よ、{playerName}。私たちの町で五つの戸を叩いて、あの言葉を言って、何をもらえるか見てきて。終わったら戻ってきてね。",
-        "completion": "五つの戸を叩いて、指もちゃんと全部ある。はい、帰り道のお菓子袋よ。明日また来て。戸はまた開くから。",
-        "objectives": {
-          "0": {
-            "label": "叩いた戸"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "畑のカボチャ",
         "text": "ボアメドウの先にあるオールド・サッチグリンの畑はカボチャで実っていて、半分は藁の囲いの外まで転がり出ているの。気をつければ手が届くわ。五つ持ってきて、{playerName}。あの年寄りのかかし本人には近づかないこと。一つ残らず数えているから。",
@@ -30968,16 +30931,6 @@ export const ja_JP: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "わっ！",
-        "text": "この町の誰も、この一年ちゃんと驚かされていないのよ、{playerName}。驚きのないゴードライトの宵なんて、ただの寒い夜。仮装をしてちょうだい。私の薬ならどれでもいいし、手に入れたならあのカボチャ頭でもいいわ。それから町の人三人に忍び寄って、大きな声で「わっ！」と驚かせてきて。",
-        "completion": "三人も？広場の向こうから料理人が鍋を落とす音が聞こえたわ。よくやったわね。はい、あなたの分よ。",
-        "objectives": {
-          "0": {
-            "label": "驚かせた町の人"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "呪われた灯芯",
         "text": "誰かが街灯の足もとに緑の炎のろうそくを置いていくの。溶けもせずに燃えて、背を向けるとささやくのよ。三つの町のどこでもいいから六本吹き消して、燃えさしを持ってきて、{playerName}。",
@@ -30985,22 +30938,6 @@ export const ja_JP: EnTranslations = {
         "objectives": {
           "0": {
             "label": "吹き消した呪われたろうそく"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "どの町でも一つの戸を",
-        "text": "本物のゴードライトの歩き手は、夜が明ける前にすべての町で戸を叩くものだって子どもたちは言うの。それを証明してきて、{playerName}。イーストブルック、フェンブリッジ、ハイウォッチでそれぞれ一つの戸でトリック・オア・トリートを。道のランタンが行く手を照らしてくれるわ。",
-        "completion": "一晩で三つの町！あなたより、あなたのブーツのほうがこれにふさわしいわね。",
-        "objectives": {
-          "0": {
-            "label": "イーストブルックで叩いた戸"
-          },
-          "1": {
-            "label": "フェンブリッジで叩いた戸"
-          },
-          "2": {
-            "label": "ハイウォッチで叩いた戸"
           }
         }
       },

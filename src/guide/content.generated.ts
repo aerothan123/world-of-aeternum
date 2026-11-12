@@ -7019,28 +7019,12 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "crest": "/ui/deeds/feat_pumpkin_hunter.webp"
   },
   {
-    "id": "feat_gourdlight_doorsteps",
-    "name": "Every Doorstep",
-    "category": "feat",
-    "renown": 0,
-    "feat": true,
-    "crest": "/ui/deeds/feat_gourdlight_doorsteps.webp"
-  },
-  {
     "id": "feat_gourdlight_errands",
     "name": "At Hester's Beck and Call",
     "category": "feat",
     "renown": 0,
     "feat": true,
     "crest": "/ui/deeds/feat_gourdlight_errands.webp"
-  },
-  {
-    "id": "feat_gourdlight_frights",
-    "name": "Three Towns Startled",
-    "category": "feat",
-    "renown": 0,
-    "feat": true,
-    "crest": "/ui/deeds/feat_gourdlight_frights.webp"
   },
   {
     "id": "feat_gourdlight_eve_complete",

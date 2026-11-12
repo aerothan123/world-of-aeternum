@@ -8,7 +8,7 @@
 
 namespace WyndProtocol
 {
-inline constexpr const TCHAR* ExportHash = TEXT("625024ee71eaf33d");
+inline constexpr const TCHAR* ExportHash = TEXT("97dfe97ac2b58462");
 inline constexpr int32 OnlineWorldLayoutVersion = 48;
 inline constexpr const TCHAR* AuthType = TEXT("auth-world-48");
 inline constexpr int32 StableTimerWireVersion = 3;
@@ -344,7 +344,6 @@ inline constexpr const TCHAR* CommandNames[] = {
 	TEXT("referralCards"),
 	TEXT("sit_seat"),
 	TEXT("guild_buy_cosmetic"),
-	TEXT("trick_or_treat"),
 	TEXT("buy_house"),
 	TEXT("place_furniture"),
 	TEXT("remove_furniture"),
@@ -353,7 +352,7 @@ inline constexpr const TCHAR* CommandNames[] = {
 	TEXT("set_auto_loot"),
 	TEXT("unequip_gather_tool"),
 };
-inline constexpr int32 NumCommandNames = 294;
+inline constexpr int32 NumCommandNames = 293;
 
 inline constexpr const TCHAR* DispatchOnlyCommands[] = {
 	TEXT("buddy_cosmetic"),
@@ -496,7 +495,6 @@ inline constexpr const TCHAR* AllDeltaKeys[] = {
 	TEXT("tfocus"),
 	TEXT("tfpend"),
 	TEXT("tmap"),
-	TEXT("tot"),
 	TEXT("trade"),
 	TEXT("tslot"),
 	TEXT("udiff"),
@@ -515,7 +513,7 @@ inline constexpr const TCHAR* AllDeltaKeys[] = {
 	TEXT("wqrr"),
 	TEXT("xp"),
 };
-inline constexpr int32 NumAllDeltaKeys = 140;
+inline constexpr int32 NumAllDeltaKeys = 139;
 
 inline constexpr const TCHAR* CapabilityDeltaKeys[] = {
 	TEXT("auras"),

@@ -6,9 +6,7 @@
 // that moves with the city:
 //   - the town's streetlamps (the sim's lamp plan, src/sim/streetlamp_layout.ts):
 //     a paper lantern on each post, a leaf garland wound round it, gourds at its foot;
-//   - the event's trick-or-treat townsfolk (content/gourdlight_eve.ts): a lit
-//     pumpkin at each knocking door, so the doors to knock on read at a glance;
-//   - every other townsfolk in reach: a gourd pair at their side;
+//   - every townsperson in reach: a gourd pair at their side;
 //   - the event keeper: her market stall (src/sim/seasonal_decor_stall.ts), its
 //     footprint checked like everything else; a pile of gourds if it cannot fit;
 //   - the shoulders of the town's own roads: corn shocks, hay bales and lit

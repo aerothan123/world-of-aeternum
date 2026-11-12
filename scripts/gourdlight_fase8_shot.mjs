@@ -1,6 +1,6 @@
 // Screenshot rig for Gourdlight Eve's round 8: the pumpkin lanterns along the road
 // between Fenbridge and Highwatch at night, Hester's shop with no pumpkin head on the
-// shelf, and one of her rotating dailies offered beside the rounds.
+// shelf, and one of her rotating dailies offered.
 //
 //   GAME_URL=http://127.0.0.1:5196 OUT=tmp/fase8 [SHOTS=a,b] [PRESET=4]
 //     node scripts/gourdlight_fase8_shot.mjs
@@ -158,16 +158,16 @@ try {
   await page.keyboard.press('Escape');
   await page.keyboard.press('Escape');
   await frames(2, 250);
-  // the Boo! errand pinned for the shot (the day picks one; /dev season daily pins it)
-  await chat('/dev season daily q_gourdlight_daily_boo');
+  // the patch errand pinned for the shot (the day picks one; /dev season daily pins it)
+  await chat('/dev season daily q_gourdlight_daily_patch');
   await ev(`(()=>{const g=window.__game;g.hud.questDialog?.open?.(${keeper.id});})()`);
   await frames(3, 250);
   await shot('fase8-daily-offered', 0);
   await ev(
-    `(()=>{const b=document.querySelector('[data-quest="q_gourdlight_daily_boo"]');b&&b.click();})()`,
+    `(()=>{const b=document.querySelector('[data-quest="q_gourdlight_daily_patch"]');b&&b.click();})()`,
   );
   await frames(3, 250);
-  await shot('fase8-daily-boo', 0);
+  await shot('fase8-daily-patch', 0);
 } finally {
   await browser.close();
 }

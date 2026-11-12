@@ -25647,19 +25647,7 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.hill.callout.shutDown': '{killer}が{victim}をシャットダウン！',
   'hudChrome.auraEffect.seasonalCosmetic': '見た目のみ：戦闘に影響なし',
   'seasonal.event.gourdlight_eve.name': 'ゴードライトの宵',
-  'seasonal.trickOrTreat.row': 'トリック・オア・トリート！',
-  'seasonal.trickOrTreat.rowAria': '{name}に「トリック・オア・トリート」と言う',
-  'seasonal.trickOrTreat.knockedHint': '今日はもうここの戸を叩いた。デイリーリセット後にまた開く。',
-  'seasonal.trickOrTreat.treat': '{name}がお菓子をくれた。',
-  'seasonal.trickOrTreat.trick': '{name}がいたずらをした：{trick}！',
-  'seasonal.trickOrTreat.alreadyKnocked': '今日はもう{name}にお菓子をねだった。',
-  'seasonal.trickOrTreat.notActive': 'ゴードライトの宵は今は開催されていない。',
-  'seasonal.trickOrTreat.tooFar': 'もっと近づいて戸を叩こう。',
-  'seasonal.trickOrTreat.treatFlash.one': 'トリート！ゴードライトの菓子 {count}個',
-  'seasonal.trickOrTreat.treatFlash.few': 'トリート！ゴードライトの菓子 {count}個',
-  'seasonal.trickOrTreat.treatFlash.many': 'トリート！ゴードライトの菓子 {count}個',
-  'seasonal.trickOrTreat.treatFlash.other': 'トリート！ゴードライトの菓子 {count}個',
-  'seasonal.trickOrTreat.trickFlash': 'トリック！{trick}',
+  'seasonal.trickFlash': 'トリック！{trick}',
   'seasonal.tricks.gourdlight_trick_bat': 'コウモリ化',
   'seasonal.tricks.gourdlight_trick_skeleton': 'カタカタ骨',
   'seasonal.tricks.gourdlight_trick_fumes': '緑の煙',
@@ -25671,8 +25659,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'seasonal.itemUse.trickJar':
     '使用：数秒間、無害ないたずらをランダムに自分にかける。ゴードライトの宵の間のみ。見た目のみ。',
   'seasonal.itemUse.pouch': '使用：開けるとゴードライトの菓子を{count}個受け取る。',
-  'seasonal.itemUse.sweet':
-    'ゴードライトの宵の間にお菓子をねだって手に入る。イーストブルックのヘスター・ゴードウィックが見た目アイテムと交換してくれる。',
   'seasonal.tokenPrice': '{item} ×{count}',
   'entities.items.gourdlight_sweet.name': 'ゴードライトの菓子',
   'entities.items.gourdlight_treat_pouch.name': 'ゴードライトのお菓子袋',
@@ -25680,14 +25666,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.items.jar_of_mischief.name': 'いたずらの壺',
   'entities.npcs.gourdlight_keeper.name': 'ヘスター・ゴードウィック',
   'entities.npcs.gourdlight_keeper.title': 'ゴードライトの番人',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'カボチャに火が灯り、ランタンも吊るされた。ゴードライトの宵が来たのね。イーストブルック、フェンブリッジ、ハイウォッチの町の人の戸を叩いて、あの言葉を言いなさい。トリック・オア・トリート。たいていはお菓子をくれるけど、いたずらをする人もいるわ。お菓子を持ってきてくれたら、身につけるものと交換してあげる。',
-  'entities.quests.q_gourdlight_rounds.title': 'ゴードライトの見回り',
-  'entities.quests.q_gourdlight_rounds.text':
-    'ゴードライトの宵には、谷の子どもたちが家々を回るの。今年はあなたも一緒よ、{playerName}。私たちの町で五つの戸を叩いて、あの言葉を言って、何をもらえるか見てきて。終わったら戻ってきてね。',
-  'entities.quests.q_gourdlight_rounds.completion':
-    '五つの戸を叩いて、指もちゃんと全部ある。はい、帰り道のお菓子袋よ。明日また来て。戸はまた開くから。',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': '叩いた戸',
   'seasonal.tricks.gourdlight_trick_strawling': '藁人形の扮装',
   'seasonal.guise': 'お守りがぱちぱちと鳴り、藁が体を這い上がる：{trick}！',
   'seasonal.itemUse.strawlingCharm':
@@ -25748,26 +25726,12 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.completion':
     '丸いのが五つ、かじられた跡もなし。谷じゅうのパイになるわ。はい、手間賃よ。',
   'entities.quests.q_gourdlight_daily_patch.objectives.0.label': '畑のカボチャ',
-  'entities.quests.q_gourdlight_daily_boo.title': 'わっ！',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'この町の誰も、この一年ちゃんと驚かされていないのよ、{playerName}。驚きのないゴードライトの宵なんて、ただの寒い夜。仮装をしてちょうだい。私の薬ならどれでもいいし、手に入れたならあのカボチャ頭でもいいわ。それから町の人三人に忍び寄って、大きな声で「わっ！」と驚かせてきて。',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    '三人も？広場の向こうから料理人が鍋を落とす音が聞こえたわ。よくやったわね。はい、あなたの分よ。',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': '驚かせた町の人',
   'entities.quests.q_gourdlight_daily_wicks.title': '呪われた灯芯',
   'entities.quests.q_gourdlight_daily_wicks.text':
     '誰かが街灯の足もとに緑の炎のろうそくを置いていくの。溶けもせずに燃えて、背を向けるとささやくのよ。三つの町のどこでもいいから六本吹き消して、燃えさしを持ってきて、{playerName}。',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     '燃えさしが六本、霜みたいに冷たい。火をつけた誰かさんは、もっと頑張らないとね。これを受け取って、手を洗ってきなさい。',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': '吹き消した呪われたろうそく',
-  'entities.quests.q_gourdlight_daily_towns.title': 'どの町でも一つの戸を',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    '本物のゴードライトの歩き手は、夜が明ける前にすべての町で戸を叩くものだって子どもたちは言うの。それを証明してきて、{playerName}。イーストブルック、フェンブリッジ、ハイウォッチでそれぞれ一つの戸でトリック・オア・トリートを。道のランタンが行く手を照らしてくれるわ。',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    '一晩で三つの町！あなたより、あなたのブーツのほうがこれにふさわしいわね。',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'イーストブルックで叩いた戸',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'フェンブリッジで叩いた戸',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'ハイウォッチで叩いた戸',
   'entities.quests.q_gourdlight_daily_feathers.title': '焚き火のための羽根',
   'entities.quests.q_gourdlight_daily_feathers.text':
     'オールド・サッチグリンは追い詰められると、藁を叩く者にカラスを呼び寄せるの。その羽根は炉で緑に燃えて、今夜の焚き火に三枚いるのよ。畑で戦いに加わって、{playerName}、カラスから羽根をむしってきて。',
@@ -25782,17 +25746,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.objectives.0.label': 'Cook Marlowに届けたかご',
   'entities.quests.q_gourdlight_daily_baskets.objectives.1.label': '薬草師Yaraに届けたかご',
   'entities.quests.q_gourdlight_daily_baskets.objectives.2.label': 'Loremaster Caddisに届けたかご',
-  'seasonal.boo.row': 'わっ！',
-  'seasonal.boo.rowAria': '{name}の前に飛び出して「わっ！」と叫ぶ',
-  'seasonal.boo.needsCostume':
-    'まず仮装をすること：仮装の薬、コウモリかガイコツのいたずら、藁人形のお守り、彫りカボチャの頭、またはぐつぐつ緑の大鍋のゴブリンになるひと口。',
-  'seasonal.boo.frightenedHint': '{name}はさっきの驚きでまだびくびくしている。別の人を探そう。',
-  'seasonal.boo.landed':
-    '{name}の前に飛び出して「わっ！」と叫んだ！悲鳴を上げて、持ち物を落としそうになった。',
-  'seasonal.boo.flash': 'わっ！{name}が驚いた！',
-  'seasonal.boo.noCostume': '仮装なしでは、{name}は笑うだけだ。まず仮装をしよう。',
-  'seasonal.boo.already': '{name}は今日はもう十分に驚かされた。',
-  'seasonal.boo.notOnErrand': '今日はヘスターから誰かを驚かせる頼みを受けていない。',
   'entities.items.prankers_pumpkin.name': 'いたずら者のカボチャ',
   'entities.items.wanderwisp_lantern.name': 'さまよう鬼火のランタン',
   'entities.items.sack_of_startled_bats.name': '驚いたコウモリの袋',

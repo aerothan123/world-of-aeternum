@@ -1391,21 +1391,12 @@ export const table: DeedLocaleTable = {
     desc: 'Kabak Işığı Gecesi boyunca dünyaya gizlenmiş tüm Perili Kabakları bul.',
     title: 'İçi Boş',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Her Kapının Eşiği',
-    desc: "Kabak Işığı Gecesi boyunca Doğudere, Bataklık Köprüsü ve Yüksek Gözcü'de kapısını açan tüm kasabalılardan şeker ya da şaka iste.",
-  },
   feat_gourdlight_errands: {
     name: "Hester'ın Her Emrine Hazır",
     desc: "Hester Kabakfitil'in dönüşümlü Kabak Işığı Gecesi işlerinin her birini en az bir kez tamamla.",
   },
-  feat_gourdlight_frights: {
-    name: 'Üç Kasaba Ürktü',
-    desc: "Hester'ın Böö! işinde Doğudere, Bataklık Köprüsü ve Yüksek Gözcü'nün her birinde bir kasabalıyı korkut.",
-  },
   feat_gourdlight_eve_complete: {
     name: 'Baştan Sona Kabak Işığı',
-    desc: "Kabak Işığı Gecesi'nin tamamını yap: Yaşlı Sırıtan Saman'ı devir, tüm Perili Kabakları bul, Hester'ın tüm işlerini bitir, her kapıyı çal ve üç kasabanın her birinde bir kasabalıyı korkut.",
     title: 'Kabağa Yeminli',
   },
 };

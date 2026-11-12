@@ -1434,21 +1434,12 @@ export const table: DeedLocaleTable = {
     desc: 'Finde während der Kürbislichtnacht alle in der Welt versteckten Spukkürbisse.',
     title: 'der Hohle',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Jede Türschwelle',
-    desc: 'Verlange während der Kürbislichtnacht Süßes oder Saures bei allen Stadtbewohnern in Eastbrook, Fenbridge und Highwatch, die auf ein Klopfen antworten.',
-  },
   feat_gourdlight_errands: {
     name: 'Auf Hesters Geheiß',
     desc: 'Erledige jeden von Hester Gourdwicks wechselnden Aufträgen zur Kürbislichtnacht mindestens einmal.',
   },
-  feat_gourdlight_frights: {
-    name: 'Drei erschreckte Städte',
-    desc: 'Erschrecke bei Hesters Auftrag Buh! je einen Stadtbewohner in Eastbrook, Fenbridge und Highwatch.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Kürbislicht von Anfang bis Ende',
-    desc: 'Erlebe die gesamte Kürbislichtnacht: Besiege den Alten Thatchgrin, finde alle Spukkürbisse, erledige jeden Auftrag von Hester, klopfe an jede Tür und erschrecke je einen Bewohner in jeder der drei Städte.',
     title: 'der Kürbisgeschworene',
   },
 };

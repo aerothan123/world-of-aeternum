@@ -2380,8 +2380,8 @@ export const VISITED_MARK_NAMESPACES = [
   // at the destination. Registered so a save keeps a one-way crossing until
   // the return trip completes the deed.
   'ferry',
-  // Gourdlight Eve's whole-event checklist (content/gourdlight_eve_deeds.ts): knocks,
-  // frights per town, errands, the Thatchgrin kill and the pumpkin hunt, every id built
+  // Gourdlight Eve's whole-event checklist (content/gourdlight_eve_deeds.ts): errands,
+  // the Thatchgrin kill and the pumpkin hunt, every id built
   // from the event's own tables (seasonal/gourdlight_deed_marks.ts writes them).
   // Registered so a save keeps a half-done checklist across sessions and editions.
   'gourdlight',

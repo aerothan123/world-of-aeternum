@@ -26089,20 +26089,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.hill.callout.shutDown': '{killer} прервал серию {victim}!',
   'hudChrome.auraEffect.seasonalCosmetic': 'Только внешний вид: на бой не влияет',
   'seasonal.event.gourdlight_eve.name': 'Ночь Тыквенных Огней',
-  'seasonal.trickOrTreat.row': 'Сладость или гадость!',
-  'seasonal.trickOrTreat.rowAria': 'Сказать {name}: «Сладость или гадость»',
-  'seasonal.trickOrTreat.knockedHint':
-    'Сегодня вы уже стучались сюда. Дверь откроется снова после ежедневного сброса.',
-  'seasonal.trickOrTreat.treat': '{name} угощает вас сладостью.',
-  'seasonal.trickOrTreat.trick': '{name} подшучивает над вами: {trick}!',
-  'seasonal.trickOrTreat.alreadyKnocked': 'Сегодня вы уже выпрашивали сладости у {name}.',
-  'seasonal.trickOrTreat.notActive': 'Ночь Тыквенных Огней сейчас не проходит.',
-  'seasonal.trickOrTreat.tooFar': 'Подойдите ближе, чтобы постучать.',
-  'seasonal.trickOrTreat.treatFlash.one': 'Сладость! {count} тыквенная конфета',
-  'seasonal.trickOrTreat.treatFlash.few': 'Сладость! {count} тыквенные конфеты',
-  'seasonal.trickOrTreat.treatFlash.many': 'Сладость! {count} тыквенных конфет',
-  'seasonal.trickOrTreat.treatFlash.other': 'Сладость! {count} тыквенной конфеты',
-  'seasonal.trickOrTreat.trickFlash': 'Гадость! {trick}',
+  'seasonal.trickFlash': 'Гадость! {trick}',
   'seasonal.tricks.gourdlight_trick_bat': 'Летучая мышь',
   'seasonal.tricks.gourdlight_trick_skeleton': 'Гремящие кости',
   'seasonal.tricks.gourdlight_trick_fumes': 'Зелёный дым',
@@ -26114,8 +26101,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'seasonal.itemUse.trickJar':
     'Использование: на несколько секунд разыгрывает над вами случайную безобидную шутку. Только во время Ночи Тыквенных Огней. Только внешний вид.',
   'seasonal.itemUse.pouch': 'Использование: откройте, чтобы получить тыквенные конфеты: {count}.',
-  'seasonal.itemUse.sweet':
-    'Выдаётся, когда вы выпрашиваете сладости в Ночь Тыквенных Огней. Хестер Тыквинс в Истбруке обменивает их на предметы внешнего вида.',
   'seasonal.tokenPrice': '{item}: {count}',
   'entities.items.gourdlight_sweet.name': 'Тыквенная конфета',
   'entities.items.gourdlight_treat_pouch.name': 'Мешочек тыквенных сладостей',
@@ -26123,14 +26108,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.items.jar_of_mischief.name': 'Банка проказ',
   'entities.npcs.gourdlight_keeper.name': 'Хестер Тыквинс',
   'entities.npcs.gourdlight_keeper.title': 'Хранительница Тыквенных Огней',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Тыквы зажжены, фонари развешаны, значит, пришла Ночь Тыквенных Огней. Стучитесь в двери горожан Истбрука, Фенбриджа и Хайуотча и говорите те самые слова: сладость или гадость. Большинство угостит вас конфетой, а кое-кто над вами подшутит. Приносите конфеты мне, и я обменяю их на что-нибудь из одежды.',
-  'entities.quests.q_gourdlight_rounds.title': 'Обход Тыквенных Огней',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Каждую Ночь Тыквенных Огней дети долины обходят дома, и в этом году вы с ними, {playerName}. Постучите в пять дверей наших городов, скажите те самые слова и посмотрите, что вам дадут. Когда закончите, возвращайтесь ко мне.',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Пять дверей, и все пальцы на месте. Держите мешочек сладостей на дорогу домой. Приходите завтра, двери откроются снова.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Двери, в которые вы постучали',
   'seasonal.tricks.gourdlight_trick_strawling': 'Облик соломенника',
   'seasonal.guise': 'Оберег трещит, и солома ползёт по вам: {trick}!',
   'seasonal.itemUse.strawlingCharm':
@@ -26192,26 +26169,12 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.completion':
     'Пять круглых, и ни одна не надкушена. Пирогов хватит на всю долину. Держи, за труды.',
   'entities.quests.q_gourdlight_daily_patch.objectives.0.label': 'Тыквы с грядки',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Бу!',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'В этих городах целый год никто как следует не пугался, {playerName}, а Ночь Тыквенных Огней без испуга это просто холодная ночь. Надень костюм, подойдёт любое из моих зелий или та тыквенная голова, если ты её добыл. Потом подкрадись к трём горожанам и хорошенько крикни им БУ.',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Троих? Я с другого конца площади слышала, как повар уронил сковороду. Молодец. Вот твоя доля.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Напуганные горожане',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Злые фитили',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Кто-то ставит у подножия наших фонарей свечи с зелёным пламенем. Они горят и не тают, а стоит отвернуться, шепчут. Задуй шесть таких, {playerName}, в любом из трёх городов, и принеси мне огарки.',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Шесть огарков, холодных как иней. Тому, кто их зажёг, придётся постараться получше. Возьми это и вымой руки.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Задуто проклятых свечей',
-  'entities.quests.q_gourdlight_daily_towns.title': 'По двери в каждом городе',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Дети говорят, что настоящий путник Тыквенных Огней до рассвета стучит в дверь в каждом городе. Докажи, что они правы, {playerName}. Попроси сладостей у одной двери в Истбруке, у одной в Фенбридже и у одной в Хайуотче. Фонари на дорогах осветят тебе путь.',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Три города за одну ночь! Твои сапоги заслужили это больше, чем ты.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Дверь в Истбруке',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'Дверь в Фенбридже',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'Дверь в Хайуотче',
   'entities.quests.q_gourdlight_daily_feathers.title': 'Перья для костра',
   'entities.quests.q_gourdlight_daily_feathers.text':
     'Когда Старого Соломозуба прижимают, он насылает ворон на всех, кто колотит его солому. Их перья горят в очаге зелёным, и мне нужно три для сегодняшнего костра. Вступи в бой у его грядки, {playerName}, и надёргай перьев с его ворон.',
@@ -26226,18 +26189,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.objectives.0.label': 'Корзинка для Cook Marlow',
   'entities.quests.q_gourdlight_daily_baskets.objectives.1.label': 'Корзинка для травницы Yara',
   'entities.quests.q_gourdlight_daily_baskets.objectives.2.label': 'Корзинка для Loremaster Caddis',
-  'seasonal.boo.row': 'Бу!',
-  'seasonal.boo.rowAria': 'Выскочить перед {name} и крикнуть бу',
-  'seasonal.boo.needsCostume':
-    'Сначала наденьте костюм: зелье-костюм, проделку летучей мыши или скелета, Оберег соломенника Резную тыквенную голову или гоблинский глоток из Булькозелёного котелка.',
-  'seasonal.boo.frightenedHint':
-    '{name} всё ещё вздрагивает после прошлого испуга. Найдите кого-нибудь другого.',
-  'seasonal.boo.landed':
-    'Вы выскакиваете перед {name} с громким БУ! Тот вскрикивает и чуть не роняет всё из рук.',
-  'seasonal.boo.flash': 'БУ! {name} напуган!',
-  'seasonal.boo.noCostume': 'Без костюма {name} только смеётся над вами. Сначала наденьте костюм.',
-  'seasonal.boo.already': 'С {name} на сегодня испугов достаточно.',
-  'seasonal.boo.notOnErrand': 'Хестер сегодня не просила вас никого пугать.',
   'entities.items.prankers_pumpkin.name': 'Тыква проказника',
   'entities.items.wanderwisp_lantern.name': 'Фонарь блуждающего огонька',
   'entities.items.sack_of_startled_bats.name': 'Мешок вспугнутых летучих мышей',

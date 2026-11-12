@@ -1,12 +1,14 @@
+// The seasonal quest these cases use is Hester's patch errand: the trick-or-treat
+// rounds quest they used to use was removed from the new world by the owner.
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   CARVED_PUMPKIN_HEAD_ID,
   GOURDLIGHT_BROOM_ID,
   GOURDLIGHT_BROOM_MOUNT,
   GOURDLIGHT_COSTUMES,
+  GOURDLIGHT_DAILY_PATCH_QUEST_ID,
   GOURDLIGHT_EVE_ITEMS,
   GOURDLIGHT_KEEPER_ENTITY_ID,
-  GOURDLIGHT_ROUNDS_QUEST_ID,
   GOURDLIGHT_TITLE_WRITS,
   GOURDLIGHT_TOYS,
   JAR_OF_MISCHIEF_ID,
@@ -61,7 +63,7 @@ describe('permanent Halloween rewards', () => {
     expect(meta.bank.inventory).toEqual(stacks());
     expect(meta.courier.cargo).toEqual(stacks());
     expect(sim.entities.has(GOURDLIGHT_KEEPER_ENTITY_ID)).toBe(false);
-    expect(sim.questState(GOURDLIGHT_ROUNDS_QUEST_ID)).not.toBe('available');
+    expect(sim.questState(GOURDLIGHT_DAILY_PATCH_QUEST_ID)).not.toBe('available');
   });
 
   it('preserves saved rewards and deeds but clears unfinished quests and supplies on late login', () => {
@@ -71,12 +73,12 @@ describe('permanent Halloween rewards', () => {
     const meta = sim.players.get(sim.playerId)!;
     meta.inventory = [...rewards, ...supplies].map((itemId) => ({ itemId, count: 1 }));
     meta.bank.inventory = [{ itemId: GOURDLIGHT_BROOM_ID, count: 1 }];
-    meta.questLog.set(GOURDLIGHT_ROUNDS_QUEST_ID, {
-      questId: GOURDLIGHT_ROUNDS_QUEST_ID,
+    meta.questLog.set(GOURDLIGHT_DAILY_PATCH_QUEST_ID, {
+      questId: GOURDLIGHT_DAILY_PATCH_QUEST_ID,
       state: 'active',
       counts: [2],
     });
-    meta.questsDone.add(GOURDLIGHT_ROUNDS_QUEST_ID);
+    meta.questsDone.add(GOURDLIGHT_DAILY_PATCH_QUEST_ID);
     const writ = GOURDLIGHT_TITLE_WRITS[0];
     sim.useItem(writ.itemId);
     const state = sim.serializeCharacter(sim.playerId)!;
@@ -88,8 +90,8 @@ describe('permanent Halloween rewards', () => {
       expect(other.countItem(id, pid), id).toBe(1);
     for (const id of supplies) expect(other.countItem(id, pid), id).toBe(0);
     expect(restored.bank.inventory).toContainEqual({ itemId: GOURDLIGHT_BROOM_ID, count: 1 });
-    expect(restored.questLog.has(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe(false);
-    expect(restored.questsDone.has(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe(true);
+    expect(restored.questLog.has(GOURDLIGHT_DAILY_PATCH_QUEST_ID)).toBe(false);
+    expect(restored.questsDone.has(GOURDLIGHT_DAILY_PATCH_QUEST_ID)).toBe(true);
     expect(restored.deedsEarned.has(writ.deedId)).toBe(true);
   });
 
@@ -98,8 +100,8 @@ describe('permanent Halloween rewards', () => {
     sim.chat('/dev season on');
     sim.tick();
     const meta = sim.players.get(sim.playerId)!;
-    meta.questLog.set(GOURDLIGHT_ROUNDS_QUEST_ID, {
-      questId: GOURDLIGHT_ROUNDS_QUEST_ID,
+    meta.questLog.set(GOURDLIGHT_DAILY_PATCH_QUEST_ID, {
+      questId: GOURDLIGHT_DAILY_PATCH_QUEST_ID,
       state: 'ready',
       counts: [5],
     });
@@ -114,7 +116,7 @@ describe('permanent Halloween rewards', () => {
     const before = meta.wireRev;
     sim.chat('/dev season off');
     sim.tick();
-    expect(meta.questLog.has(GOURDLIGHT_ROUNDS_QUEST_ID)).toBe(false);
+    expect(meta.questLog.has(GOURDLIGHT_DAILY_PATCH_QUEST_ID)).toBe(false);
     expect(meta.questLog.has(ordinary.id)).toBe(true);
     expect(meta.inventory).toEqual([]);
     expect(meta.bank.inventory).toEqual([]);

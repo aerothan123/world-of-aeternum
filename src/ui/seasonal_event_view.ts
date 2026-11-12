@@ -1,14 +1,13 @@
 // The presentation of a seasonal SimEvent (src/sim/seasonal/): the log line and
-// the top-center flash for a knock's treat or trick, the refusals, the pumpkin
-// head toggle and the Jar of Mischief. The sim sends ids and numbers only; every
+// the top-center flash for the pumpkin hunt, the pumpkin head toggle, the Jar of
+// Mischief, the costumes and the toys. The sim sends ids and numbers only; every
 // sentence is composed here from the `seasonal.*` catalog. Pure (no DOM), so a
 // Vitest drives it directly; quest_event_view.ts routes the event here.
 import { gourdlightToy } from '../sim/content/gourdlight_eve';
 import type { SimEvent } from '../sim/types';
 import { deedTitleText } from './deed_i18n';
-import { npcDisplayName } from './entity_display_core';
 import { tEntity, zoneDisplayName } from './entity_i18n';
-import { formatNumber, type TranslationKey, t, tPlural } from './i18n';
+import { formatNumber, type TranslationKey, t } from './i18n';
 
 export interface SeasonalEventPresentation {
   logText: string;
@@ -36,7 +35,6 @@ export function seasonalTrickName(trickId: string | undefined): string {
 }
 
 export function seasonalEventPresentation(event: SeasonalEvent): SeasonalEventPresentation | null {
-  const name = event.npc ? npcDisplayName(event.npc) : '';
   switch (event.what) {
     case 'pumpkinFound': {
       const values = {
@@ -51,28 +49,6 @@ export function seasonalEventPresentation(event: SeasonalEvent): SeasonalEventPr
         sound: 'quest_ready',
       };
     }
-    case 'treat': {
-      const count = event.sweets ?? 0;
-      return {
-        logText: t('seasonal.trickOrTreat.treat', { name }),
-        flashText: tPlural('seasonal.trickOrTreat.treatFlash', count, {
-          count: formatNumber(count),
-        }),
-      };
-    }
-    case 'trick': {
-      const trick = seasonalTrickName(event.trick);
-      return {
-        logText: t('seasonal.trickOrTreat.trick', { name, trick }),
-        flashText: t('seasonal.trickOrTreat.trickFlash', { trick }),
-      };
-    }
-    case 'alreadyKnocked':
-      return { logText: t('seasonal.trickOrTreat.alreadyKnocked', { name }) };
-    case 'notActive':
-      return { logText: t('seasonal.trickOrTreat.notActive') };
-    case 'tooFar':
-      return { logText: t('seasonal.trickOrTreat.tooFar') };
     case 'pumpkinOn':
       return { logText: t('seasonal.pumpkinHead.on') };
     case 'pumpkinOff':
@@ -81,14 +57,14 @@ export function seasonalEventPresentation(event: SeasonalEvent): SeasonalEventPr
       const trick = seasonalTrickName(event.trick);
       return {
         logText: t('seasonal.jarTrick', { trick }),
-        flashText: t('seasonal.trickOrTreat.trickFlash', { trick }),
+        flashText: t('seasonal.trickFlash', { trick }),
       };
     }
     case 'costume': {
       const trick = seasonalTrickName(event.trick);
       return {
         logText: t('seasonal.costume', { trick }),
-        flashText: t('seasonal.trickOrTreat.trickFlash', { trick }),
+        flashText: t('seasonal.trickFlash', { trick }),
       };
     }
     case 'titleGranted':
@@ -105,21 +81,9 @@ export function seasonalEventPresentation(event: SeasonalEvent): SeasonalEventPr
       const trick = seasonalTrickName(event.trick);
       return {
         logText: t('seasonal.guise', { trick }),
-        flashText: t('seasonal.trickOrTreat.trickFlash', { trick }),
+        flashText: t('seasonal.trickFlash', { trick }),
       };
     }
-    case 'boo':
-      return {
-        logText: t('seasonal.boo.landed', { name }),
-        flashText: t('seasonal.boo.flash', { name }),
-        sound: 'quest_ready',
-      };
-    case 'booNoCostume':
-      return { logText: t('seasonal.boo.noCostume', { name }) };
-    case 'booAlready':
-      return { logText: t('seasonal.boo.already', { name }) };
-    case 'booNotOnErrand':
-      return { logText: t('seasonal.boo.notOnErrand') };
     case 'toy': {
       const key = TOY_LOG_KEYS[gourdlightToy(event.trick ?? '')?.effect ?? ''];
       return key ? { logText: t(key, { name: event.who ?? '' }) } : null;

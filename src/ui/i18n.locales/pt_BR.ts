@@ -26011,8 +26011,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Palhudo',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Abóbora inchada',
   'entities.mobs.gourdlight_thatchgrin.name': 'Velho Thatchgrin',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'As abóboras estão acesas e as lanternas penduradas, então só pode ser a Noite das Abóboras. Bata às portas dos moradores de Eastbrook, Fenbridge e Highwatch e diga as palavras: doces ou travessuras. A maioria dará um doce. Alguns farão uma travessura com você. Traga os doces para mim, em qualquer uma das minhas barracas, e eu os trocarei por algo para vestir.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Gourdwick',
   'entities.npcs.gourdlight_keeper.title': 'Guardiã da Noite das Abóboras',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -26026,12 +26024,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Toda Noite das Abóboras eu encho uma cesta de doces para um velho amigo em cada cidade, e meus joelhos já não são os mesmos. Entregue-as por mim, {playerName}: ao cozinheiro Marlow em Eastbrook, à Herbalista Yara em Fenbridge e ao mestre do saber Caddis lá em Highwatch.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Cestas para os vizinhos',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Três? Ouvi o cozinheiro derrubar uma frigideira do outro lado da praça. Muito bem. Aqui está sua parte.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Moradores assustados',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Ninguém nestas cidades levou um bom susto em um ano, {playerName}, e uma Noite das Abóboras sem sustos é só uma noite fria. Vista uma fantasia, qualquer uma das minhas serve, ou aquela cabeça de abóbora se você ganhou uma. Depois se aproxime de fininho de três moradores e dê um belo BU! bem alto.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Bu!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Negras como um campo sem lua, e já cheiram a fumaça. A fogueira será um espetáculo. Obrigada.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Penas de corvo',
@@ -26044,42 +26036,16 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'A horta do Velho Thatchgrin além do Campo dos javalis está cheia de abóboras, e metade rolou para longe da palha dele, onde alguém cuidadoso pode alcançá-las. Traga cinco para mim, {playerName}. Mantenha distância do velho espantalho. Ele conta uma por uma.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Abóboras da horta',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Três cidades em uma noite! Suas botas mereceram isto mais do que você.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Uma porta visitada em Eastbrook',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'Uma porta visitada em Fenbridge',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'Uma porta visitada em Highwatch',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'As crianças dizem que um verdadeiro andarilho das Abóboras bate às portas de todas as cidades antes do fim da noite. Prove que elas estão certas, {playerName}. Peça doces ou travessuras em uma porta de Eastbrook, uma de Fenbridge e uma de Highwatch. As lanternas nas estradas iluminarão seu caminho.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Uma porta em cada cidade',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Seis tocos, frios como geada. Quem os acendeu vai ter que se esforçar mais. Pegue isto e lave as mãos.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Velas amaldiçoadas apagadas',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Alguém anda colocando velas de chamas verdes aos pés dos nossos postes. Elas queimam sem derreter e sussurram quando você vira as costas. Apague seis para mim, {playerName}, em qualquer uma das três cidades, e traga os tocos.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Pavios perversos',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Cinco portas e você ainda tem todos os dedos. Tome, um saquinho de doces para a volta para casa. Volte amanhã, as portas abrirão de novo.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Portas visitadas',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Toda Noite das Abóboras as crianças do Vale fazem sua ronda, e este ano você vai com elas, {playerName}. Bata em cinco portas nas nossas cidades, diga as palavras e veja o que recebe. Volte para falar comigo quando terminar.',
-  'entities.quests.q_gourdlight_rounds.title': 'Ronda da Noite das Abóboras',
   'guide.interfacePage.framesGovernedPriest':
     'Editar quadros também permite mover o medalhão de Dízimo sombrio e Bomba do dízimo do sacerdote de Sombra.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Uma vez a cada duas horas, em um momento imprevisível, todo o reino é avisado de que uma colina surgirá em uma das zonas do norte em quinze minutos, e o círculo onde ficará é marcado em terreno aberto. Ao surgir, ela permanece por trinta minutos e depois desaparece. Enquanto está presente, o reino recebe a cada cinco minutos sua localização e os grupos que a controlaram por mais tempo. O grupo com mais jogadores dentro do círculo disputa a colina e a conquista após trinta segundos de maioria. A entrada de um grupo rival apenas pausa a contagem até o seu grupo voltar à frente; ela só recomeça se nenhum integrante vivo do seu grupo permanecer dentro. Um jogador sozinho conta como um grupo de uma pessoa e mantém a colina ao formar um grupo, mas integrantes de raides não contam. Enquanto um grupo controla a colina, cada integrante dentro do círculo ganha a mesma quantidade de Honra por minuto, independentemente de há quanto tempo a controla. Assim, um grupo completo que a mantenha sem oposição durante toda a duração ganha aproximadamente o mesmo que em duas vitórias em campos de batalha. Quando a colina desaparece, se o grupo que a controlou por mais tempo no total a manteve por pelo menos dez minutos, todos que ficaram dentro para aquele grupo por pelo menos um minuto e ainda fazem parte dele ganham uma vitória para a linha JxJ do Cofre Semanal. Uma barra sobre o campo mostra quem a controla, seus números contra os adversários e o tempo de disputa; /hill no chat informa a localização.',
-  'seasonal.boo.already': '{name} já levou sustos suficientes por hoje.',
-  'seasonal.boo.flash': 'BU! {name} levou um susto!',
-  'seasonal.boo.frightenedHint':
-    '{name} ainda está assustado desde seu último susto. Procure outra pessoa.',
-  'seasonal.boo.landed':
-    'Você salta na frente de {name} com um BU! Um grito ecoa e quase tudo vai ao chão.',
-  'seasonal.boo.needsCostume':
-    'Vista uma fantasia primeiro: uma poção de fantasia, uma travessura de morcego ou esqueleto, o Amuleto do palhudo, a Cabeça de abóbora esculpida ou um gole de goblin do Caldeirão Borbulhaverde.',
-  'seasonal.boo.noCostume': 'Sem fantasia, {name} só ri de você. Vista uma primeiro.',
-  'seasonal.boo.notOnErrand': 'Hester não pediu para você assustar ninguém hoje.',
-  'seasonal.boo.row': 'Bu!',
-  'seasonal.boo.rowAria': 'Salte na frente de {name} e grite bu',
   'seasonal.boundItemGone':
     'A Noite das Abóboras acabou e seu item {item} se desfaz em palha novamente.',
   'seasonal.costume': 'Você bebe a poção e se transforma: {trick}!',
@@ -26102,8 +26068,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
     'O Velho Thatchgrin dá um a cada dia em que você o saqueia, até você possuir a Vassoura de cerdas em brasa. Hester Gourdwick troca {count} pela vassoura em suas barracas em Eastbrook, Fenbridge e Highwatch. Os feixes não gastos são mantidos para a próxima Noite das Abóboras.',
   'seasonal.itemUse.strawlingCharm':
     'Uso: transforma você em um dos palhudos do Velho Thatchgrin por {seconds} segundos. Não pode ser usado em combate. Nunca é consumido. Cosmético.',
-  'seasonal.itemUse.sweet':
-    'Obtido ao pedir doces ou travessuras durante a Noite das Abóboras. Hester Gourdwick os troca por cosméticos em suas barracas em Eastbrook, Fenbridge e Highwatch.',
   'seasonal.itemUse.titleWrit':
     'Uso: concede o título {title} a este personagem, equipado pelo Livro dos Feitos. Consumido ao usar. Mantido se você já tiver o título.',
   'seasonal.itemUse.toyBats':
@@ -26149,20 +26113,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} espatifa uma abóbora na sua cabeça! Tire-a com o botão direito ou use com orgulho.',
   'seasonal.toy.prankedFlash': '{name} fez uma travessura com você!',
-  'seasonal.trickOrTreat.alreadyKnocked': 'Você já pediu doces ou travessuras a {name} hoje.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Você já bateu aqui hoje. A porta abre novamente após a reinicialização diária.',
-  'seasonal.trickOrTreat.notActive': 'A Noite das Abóboras não está acontecendo no momento.',
-  'seasonal.trickOrTreat.row': 'Doces ou travessuras!',
-  'seasonal.trickOrTreat.rowAria': 'Peça doces ou travessuras a {name}',
-  'seasonal.trickOrTreat.tooFar': 'Chegue mais perto para bater.',
-  'seasonal.trickOrTreat.treat': '{name} entrega um doce a você.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Doces! {count} Doces da Noite das Abóboras',
-  'seasonal.trickOrTreat.treatFlash.many': 'Doces! {count} Doces da Noite das Abóboras',
-  'seasonal.trickOrTreat.treatFlash.one': 'Doces! {count} Doce da Noite das Abóboras',
-  'seasonal.trickOrTreat.treatFlash.other': 'Doces! {count} Doces da Noite das Abóboras',
-  'seasonal.trickOrTreat.trick': '{name} faz uma travessura com você: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Travessura! {trick}',
+  'seasonal.trickFlash': 'Travessura! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Fantasia de morcego',
   'seasonal.tricks.gourdlight_costume_ghost': 'Fantasia de fantasma',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Fantasia de esqueleto',

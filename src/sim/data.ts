@@ -194,11 +194,7 @@ import {
   GALECREST_ZONE,
 } from './content/galecrest';
 import { GATHER_NODES as GATHER_NODES_CONTENT } from './content/gather_nodes';
-import {
-  GOURDLIGHT_EVE_ITEMS,
-  GOURDLIGHT_EVE_NPCS,
-  GOURDLIGHT_EVE_QUESTS,
-} from './content/gourdlight_eve';
+import { GOURDLIGHT_EVE_ITEMS, GOURDLIGHT_EVE_NPCS } from './content/gourdlight_eve';
 import { GOURDLIGHT_DAILY_ITEMS, GOURDLIGHT_DAILY_QUESTS } from './content/gourdlight_eve_dailies';
 import {
   GOURDLIGHT_SCARECROW_ITEMS,
@@ -704,7 +700,6 @@ export const QUESTS: Record<string, QuestDef> = {
   ...PROVING_SHORE_QUESTS,
   ...IGNIVAR_RAID_LORE_QUESTS,
   ...HUB_PRACTICE_QUESTS,
-  ...GOURDLIGHT_EVE_QUESTS,
   ...GOURDLIGHT_DAILY_QUESTS,
   // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).
   ...CHAPTER_ONE_QUESTS,
@@ -751,7 +746,6 @@ export const QUEST_ORDER: string[] = [
   ...IGNIVAR_RAID_LORE_QUEST_ORDER,
   ...HUB_PRACTICE_QUEST_ORDER,
   // the seasonal events' quests (open only while their event runs)
-  ...Object.keys(GOURDLIGHT_EVE_QUESTS),
   ...Object.keys(GOURDLIGHT_DAILY_QUESTS),
   // Wyndlewood Chapter One and the Eastbrook quest board, appended last.
   ...Object.keys(CHAPTER_ONE_QUESTS),

@@ -8609,23 +8609,7 @@ export const id_ID: EnTranslations = {
         "name": "Malam Cahaya Labu"
       }
     },
-    "trickOrTreat": {
-      "row": "Permen atau keisengan!",
-      "rowAria": "Ucapkan permen atau keisengan kepada {name}",
-      "knockedHint": "Kamu sudah mengetuk di sini hari ini. Pintu terbuka lagi setelah reset harian.",
-      "treat": "{name} memberimu camilan.",
-      "trick": "{name} mengerjaimu: {trick}!",
-      "alreadyKnocked": "Kamu sudah meminta permen atau keisengan kepada {name} hari ini.",
-      "notActive": "Malam Cahaya Labu sedang tidak berlangsung.",
-      "tooFar": "Mendekatlah untuk mengetuk.",
-      "treatFlash": {
-        "one": "Permen! {count} Permen Cahaya Labu",
-        "few": "Permen! {count} Permen Cahaya Labu",
-        "many": "Permen! {count} Permen Cahaya Labu",
-        "other": "Permen! {count} Permen Cahaya Labu"
-      },
-      "trickFlash": "Keisengan! {trick}"
-    },
+    "trickFlash": "Keisengan! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Kelakuan Kelelawar",
       "gourdlight_trick_skeleton": "Tulang Gemeretak",
@@ -8650,7 +8634,7 @@ export const id_ID: EnTranslations = {
       "trickJar": "Pakai: Memainkan keisengan acak yang tidak berbahaya padamu selama beberapa detik. Kosmetik.",
       "pouch": "Pakai: Buka untuk menerima {count} Permen Cahaya Labu.",
       "strawlingCharm": "Pakai: Menjadi salah satu makhluk jerami Si Tua Seringai Jerami selama {seconds} detik. Di luar pertempuran. Tidak pernah habis dipakai. Kosmetik.",
-      "sweet": "Diperoleh dengan meminta permen atau keisengan selama Malam Cahaya Labu. Hester Sumbu Labu menukarnya dengan kosmetik di kios-kiosnya di Eastbrook, Jembatan Rawa, dan Menara Pengawas.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Pakai: Berubah menjadi kerangka gemeretak selama {minutes} menit. Habis dipakai. Tidak dapat digunakan dalam pertempuran, dan memasuki pertempuran mengakhirinya. Kosmetik.",
       "costumeGhost": "Pakai: Berubah menjadi hantu melayang selama {minutes} menit. Habis dipakai. Tidak dapat digunakan dalam pertempuran, dan memasuki pertempuran mengakhirinya. Kosmetik.",
       "costumeBat": "Pakai: Berubah menjadi kelelawar yang mengepak selama {minutes} menit. Habis dipakai. Tidak dapat digunakan dalam pertempuran, dan memasuki pertempuran mengakhirinya. Kosmetik.",
@@ -8677,17 +8661,6 @@ export const id_ID: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Dijatuhkan Si Tua Seringai Jerami di ladang labunya melewati Padang Babi Hutan saat pertama kali kamu mengambil jarahannya. Tidak dijual pedagang mana pun."
-    },
-    "boo": {
-      "row": "Huu!",
-      "rowAria": "Lompat di depan {name} dan teriakkan huu",
-      "needsCostume": "Kenakan kostum dahulu: ramuan kostum, keisengan kelelawar atau kerangka, Jimat Makhluk Jerami, Kepala Labu Ukir, atau tegukan goblin dari Kuali Gelembung Hijau.",
-      "frightenedHint": "{name} masih gelisah setelah terakhir kau takuti. Cari orang lain.",
-      "landed": "Kamu melompat di depan {name} sambil berteriak HUU! Dia menjerit dan hampir menjatuhkan semua barangnya.",
-      "flash": "HUU! {name} ketakutan!",
-      "noCostume": "Tanpa kostum, {name} hanya menertawakanmu. Kenakan kostum dahulu.",
-      "already": "{name} sudah cukup ditakuti untuk hari ini.",
-      "notOnErrand": "Hester belum memintamu menakuti siapa pun hari ini."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const id_ID: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Sumbu Labu",
         "title": "Penjaga Cahaya Labu",
-        "greeting": "Labu sudah menyala dan lentera sudah digantung, jadi pastilah Malam Cahaya Labu telah tiba. Ketuk pintu warga Eastbrook, Jembatan Rawa, dan Menara Pengawas, lalu ucapkan: permen atau keisengan. Kebanyakan akan memberimu permen. Beberapa akan mengerjaimu. Bawa permen itu kepadaku di kiosku yang mana saja, dan akan kutukar dengan sesuatu untuk kau kenakan."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Demang Ottoline",
@@ -30948,16 +30921,6 @@ export const id_ID: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Keliling Cahaya Labu",
-        "text": "Setiap Malam Cahaya Labu, anak-anak Lembah berkeliling, dan tahun ini kau ikut bersama mereka, {playerName}. Ketuk lima pintu di kota-kota kita, ucapkan kata-katanya, dan lihat apa yang diberikan kepadamu. Kembalilah kepadaku setelah selesai.",
-        "completion": "Lima pintu dan jarimu masih lengkap. Ini sekantong permen untuk perjalanan pulang. Datanglah lagi besok, pintunya akan dibuka kembali.",
-        "objectives": {
-          "0": {
-            "label": "Pintu yang diketuk"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Labu dari Ladang",
         "text": "Ladang Si Tua Seringai Jerami di seberang Padang Babi Hutan penuh labu, dan separuhnya menggelinding melewati jeraminya sehingga orang yang berhati-hati bisa mengambilnya. Bawakan aku lima, {playerName}. Jauhi orang-orangan sawah tua itu. Dia menghitung semuanya.",
@@ -30968,16 +30931,6 @@ export const id_ID: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Huu!",
-        "text": "Sudah setahun tak ada seorang pun di kota-kota ini yang benar-benar ketakutan, {playerName}, dan Malam Cahaya Labu tanpa kejutan hanyalah malam dingin biasa. Kenakan kostum, yang mana saja dariku boleh, atau kepala labu itu jika sudah kau peroleh. Lalu dekati tiga warga diam-diam dan teriakkan HUU dengan keras.",
-        "completion": "Tiga orang? Aku mendengar si juru masak menjatuhkan wajan dari seberang alun-alun. Bagus sekali. Ini bagianmu.",
-        "objectives": {
-          "0": {
-            "label": "Warga yang ditakuti"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Sumbu Jahat",
         "text": "Seseorang menaruh lilin berapi hijau di kaki tiang lampu kita. Lilin itu terbakar tanpa meleleh dan berbisik saat kau membelakanginya. Padamkan enam untukku, {playerName}, di mana saja di ketiga kota, lalu bawa puntungnya.",
@@ -30985,22 +30938,6 @@ export const id_ID: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Lilin terkutuk dipadamkan"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Pintu di Setiap Kota",
-        "text": "Anak-anak bilang pejalan Cahaya Labu sejati mengetuk pintu di setiap kota sebelum malam berakhir. Buktikan mereka benar, {playerName}. Mintalah permen atau keisengan di satu pintu Eastbrook, satu di Jembatan Rawa, dan satu di Menara Pengawas. Lentera di jalan akan menerangi langkahmu.",
-        "completion": "Tiga kota dalam satu malam! Sepatumu lebih pantas mendapat ini daripada dirimu.",
-        "objectives": {
-          "0": {
-            "label": "Pintu diketuk di Eastbrook"
-          },
-          "1": {
-            "label": "Pintu diketuk di Jembatan Rawa"
-          },
-          "2": {
-            "label": "Pintu diketuk di Menara Pengawas"
           }
         }
       },

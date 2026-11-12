@@ -1397,21 +1397,12 @@ export const table: DeedLocaleTable = {
     desc: 'Najdi všechny strašidelné dýně ukryté po světě během Svátku dýňových světel.',
     title: 'Dutý',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Každý práh',
-    desc: 'Koleduj u všech obyvatel, kteří během Svátku dýňových světel otevřou na zaklepání v Eastbrooku, Fenbridge a Highwatchi.',
-  },
   feat_gourdlight_errands: {
     name: 'Hester k službám',
     desc: 'Splň alespoň jednou každou z obměňovaných pochůzek Hester Dýňoknotové během Svátku dýňových světel.',
   },
-  feat_gourdlight_frights: {
-    name: 'Tři vyděšená města',
-    desc: 'Při Hesteřině pochůzce Baf! vystraš jednoho obyvatele v Eastbrooku, jednoho ve Fenbridge a jednoho v Highwatchi.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Dýňová světla od začátku do konce',
-    desc: 'Zvládni celý Svátek dýňových světel: poraz Starého Slamoškleba, najdi všechny strašidelné dýně, splň každou Hesteřinu pochůzku, zaklepej na všechny dveře a vystraš jednoho obyvatele v každém ze tří měst.',
     title: 'Dýním přísežný',
   },
 };

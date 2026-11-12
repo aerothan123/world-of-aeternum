@@ -10,7 +10,7 @@ import {
   parseSeasonalWindows,
 } from '../server/seasonal_calendar';
 import { feedRealmCalendar, type SimCalendarSink } from '../server/sim_calendar_feed';
-import { decodeSeasonWire, decodeTrickOrTreatWire } from '../src/net/seasonal_wire_state';
+import { decodeSeasonWire } from '../src/net/seasonal_wire_state';
 import { DEFAULT_RAID_RESET_TIME_ZONE } from '../src/reset_calendar';
 import { GOURDLIGHT_EVE_ID } from '../src/sim/content/gourdlight_eve';
 import { KNOWN_SEASONAL_EVENTS } from '../src/sim/seasonal';
@@ -75,11 +75,5 @@ describe('the seasonal self keys (client decode)', () => {
     expect(decodeSeasonWire('<script>')).toBeNull();
   });
 
-  it('keeps well-formed knocked ids only', () => {
-    expect(decodeTrickOrTreatWire(['trader_wilkes', 7, 'Bad Id', 'cook_marlow'])).toEqual([
-      'trader_wilkes',
-      'cook_marlow',
-    ]);
-    expect(decodeTrickOrTreatWire('nope')).toEqual([]);
-  });
+  // (The trick-or-treat `tot` knock wire and its decoder were removed with the feature.)
 });
