@@ -62,7 +62,7 @@ describe('the walk-in town placement', () => {
   it('walks into every town building whose model bakes an open doorway', () => {
     // Eastbrook's six are sealed (the Early Access client draws each as an
     // assembled cottage-style building with a shut door, and the record
-    // collides on that building's own boxes: eastbrook_town_footprints.ts), and
+    // collides on that building's own boxes: eastbrook_town_footprints.ts, since retired), and
     // so are the shut-door models (Fenbridge's warden house, Highwatch's watch
     // house); every other placed building in the three towns is open
     expect(WALK_IN.map((building) => building.id)).toEqual([

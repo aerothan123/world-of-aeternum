@@ -380,7 +380,7 @@ const ON_A_DOCK_PLANK = { x: PROPS.docks[0].x, z: PROPS.docks[0].z };
 // Nudged two yards south 2026-11 (the hub safe zone pass moved the orchard
 // boar camp, whose terrain flatten disc reached this ground, out of town):
 // the smithy wall foot now meets the regraded ground further in.
-// Re-staged 2026-11 a step inside the chapel's forecourt wall (eastbrook_town_footprints.ts
+// Re-staged 2026-11 a step inside the chapel's forecourt wall (eastbrook_town_footprints.ts, since retired
 // chapel:0) when the Wyndlewood town rebuild cleared the crafts district's walls: standable
 // ground is under a yard out.
 // Re-staged for Eastbrook Vale v2 (src/sim/eastbrook_v2/) a step inside the east wall of

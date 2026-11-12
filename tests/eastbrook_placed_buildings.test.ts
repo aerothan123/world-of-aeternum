@@ -21,7 +21,6 @@ import { EASTBROOK_BUILDING_PAD_TERRAIN_EDITS, ZONE1_PROPS } from '../src/sim/co
 import { BUILTIN_WORLD, PLAYER_START, setActiveWorldContent } from '../src/sim/data';
 import { isExcludedDecoration, isExcludedStreetlamp } from '../src/sim/decoration_exclusions';
 import { EASTBROOK_LAYOUT, localToWorld, type Obb2 } from '../src/sim/eastbrook_layout';
-import { eastbrookTownRecordBoxes } from '../src/sim/eastbrook_town_footprints';
 import { ebv2FieldHeight, ebv2Owns, ebv2Weight, ebv2Xz } from '../src/sim/eastbrook_v2';
 import { HIGHWATCH_LAYOUT } from '../src/sim/highwatch_layout';
 import { PAINTED_TOWNS } from '../src/sim/painted_towns';
@@ -516,33 +515,41 @@ describe('placed building collision in the built-in world', () => {
     return record;
   };
 
-  it('collides each record on the town building the client draws, and on its own wall box once moved', () => {
+  it('collides each record on its own wall box and annexes, and on one wall box once moved', () => {
     for (const building of BUILDINGS) {
       const record = recordOf(building);
       expect(record.x).toBe(building.position.x);
       expect(record.z).toBe(building.position.z);
       expect(record.w).toBe(building.nativeDimensions.width);
       expect(record.d).toBe(building.nativeDimensions.depth);
-      // at its layout anchor the record stands on the Early Access town's boxes
-      // (eastbrook_town_footprints.ts), with a seed or without one
-      const boxes = eastbrookTownRecordBoxes(record);
-      if (!boxes) throw new Error(`${building.id} has no town boxes`);
-      expect(boxes.length, building.id).toBeGreaterThan(0);
+      // Re-pinned from the pilot town's boxes (eastbrook_town_footprints.ts, retired with the
+      // old town): at its layout anchor a sealed record collides on its own wall box plus its
+      // annexes, with a seed or without one. In the built-in world all of them stand down on
+      // the v2 design's ground (ebv2StandDown), which the world checks below cover.
       const colliders = buildingRecordColliders(record, 30, () => 0);
       expect(
         buildingRecordColliders(record, 30, () => 0, WORLD_SEED),
         building.id,
       ).toEqual(colliders);
-      expect(colliders, building.id).toHaveLength(boxes.length);
-      boxes.forEach((box, index) => {
-        expect(colliders[index], box.id).toMatchObject({
+      const annexes = placedBuildingAnnexes(record);
+      expect(colliders, building.id).toHaveLength(1 + annexes.length);
+      expect(colliders[0], building.id).toMatchObject({
+        type: 'obb',
+        x: building.position.x,
+        z: building.position.z,
+        hw: building.nativeDimensions.width / 2,
+        hd: building.nativeDimensions.depth / 2,
+        rot: building.rotation,
+        cameraTopY: 30,
+      });
+      annexes.forEach((annex, index) => {
+        expect(colliders[index + 1], annex.id).toMatchObject({
           type: 'obb',
-          x: box.x,
-          z: box.z,
-          hw: box.hw,
-          hd: box.hd,
-          rot: box.rot,
-          cameraTopY: box.h,
+          x: annex.center.x,
+          z: annex.center.z,
+          hw: annex.halfWidth,
+          hd: annex.halfDepth,
+          rot: annex.rotation,
         });
       });
       // a record a custom world moved is one sealed wall box again, annexes left behind
@@ -609,8 +616,13 @@ describe('placed building collision in the built-in world', () => {
     // still answers for its own boxes
     expect(BUILDINGS.filter(ON_V2).length + STANDING.length).toBe(BUILDINGS.length);
     for (const building of STANDING) {
-      const boxes = eastbrookTownRecordBoxes(recordOf(building));
-      if (!boxes) throw new Error(`${building.id} has no town boxes`);
+      // re-pinned from the retired pilot town boxes (eastbrook_town_footprints.ts): a building
+      // off the design answers for its own record boxes
+      const boxes = buildingRecordColliders(recordOf(building), 30, () => 0).flatMap((c, i) =>
+        c.type === 'obb'
+          ? [{ id: `${building.id}:${i}`, x: c.x, z: c.z, hw: c.hw, hd: c.hd, rot: c.rot }]
+          : [],
+      );
       for (const box of boxes) {
         expect(isBlocked(WORLD_SEED, box.x, box.z), box.id).toBe(true);
       }

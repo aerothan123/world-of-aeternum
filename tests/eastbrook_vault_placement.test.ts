@@ -30,7 +30,6 @@ import { promotedTownBuildingStandsDown } from '../src/sim/authored_town_buildin
 import { colliderInternalsForTest } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_LAYOUT, localToWorld } from '../src/sim/eastbrook_layout';
-import { EASTBROOK_TOWN_FOOTPRINTS } from '../src/sim/eastbrook_town_footprints';
 import { terrainHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
@@ -148,11 +147,11 @@ describe('the Weekly Vault record collider', () => {
       b.x === EASTBROOK_LAYOUT.buildings[0].position.x &&
       b.z === EASTBROOK_LAYOUT.buildings[0].position.z,
   );
-  // The record collides on its town footprint boxes since the Wyndlewood town rebuild
-  // (eastbrook_town_footprints.ts), not on the hall's own rectangle.
-  const VAULT_BOXES = EASTBROOK_TOWN_FOOTPRINTS.filter(
-    (box) => box.replaces === `building:${VAULT.id}`,
-  );
+  // Re-pinned from the pilot town's vault boxes (eastbrook_town_footprints.ts, retired with the
+  // old town): the record collides on the hall's own sealed rectangle again.
+  const VAULT_BOXES = record
+    ? [{ x: record.x, z: record.z, hw: record.w / 2, hd: record.d / 2 }]
+    : [];
   const vaultObb = (seed: number) =>
     colliderInternalsForTest
       .staticWorldColliders(seed)

@@ -403,7 +403,7 @@ const ON_MAZE_WALL_POCKET = { x: -232, z: 452 }; // steep, and encloses its own 
 // re-staged there when the genshin artstyle merge (8bff2cec638) cleared the
 // Wolf Run barracks the old (17, -6) fixture sat inside.
 // Re-staged 2026-11 at the middle of the chapel's town footprint
-// (eastbrook_town_footprints.ts chapel:0) when the Wyndlewood town rebuild moved the
+// (eastbrook_town_footprints.ts chapel:0, since retired) when the Wyndlewood town rebuild moved the
 // cottage's walls.
 const DEEP_INSIDE_A_BUILDING = { x: 33.1, z: -123.1 }; // standable ground is 3.7yd out
 const ON_THE_EASTBROOK_NORTH_LANE = { x: 0, z: 10 }; // the road itself: dry, flat, unblocked

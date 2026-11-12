@@ -17,7 +17,6 @@ import {
 import type { Collider } from './collider_shapes';
 import { emitPlacementBoxes } from './colliders_authored/placement_colliders';
 import { EASTBROOK_LAYOUT } from './eastbrook_layout';
-import { eastbrookTownRecordBoxes, townFootprintCollider } from './eastbrook_town_footprints';
 import { activeFenbridgeBuildingById } from './fenbridge_touchup';
 import { walkInPlacementFor } from './town_walk_in';
 import type { BuildingDef, PromotedScenery } from './types';
@@ -86,10 +85,6 @@ export function buildingRecordColliders(
   groundAt: (x: number, z: number) => number,
   seed?: number,
 ): Collider[] {
-  // An Eastbrook record the Early Access client redraws as an assembled cottage-style building
-  // collides on that building's own boxes (eastbrook_town_footprints.ts), annexes included.
-  const townBoxes = eastbrookTownRecordBoxes(building);
-  if (townBoxes) return townBoxes.map((box) => townFootprintCollider(box, groundAt));
   const walkIn = seed === undefined ? null : walkInPlacementFor(building);
   const baked = walkIn ? bakedBoxesForPath(walkIn.path) : null;
   if (walkIn && seed !== undefined && baked && baked.length > 0) {

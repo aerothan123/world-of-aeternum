@@ -3,22 +3,28 @@ import type { Collider } from '../src/sim/colliders';
 import { isBlocked, queryOpenWorldColliders } from '../src/sim/colliders';
 import { ZONE1_PROPS } from '../src/sim/content/zone1';
 import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
-import {
-  EASTBROOK_TOWN_FOOTPRINTS,
-  EASTBROOK_TOWN_RETIRED,
-  eastbrookTownRecordBoxes,
-  eastbrookTownRetiresDecorRow,
-  type TownFootprint,
-} from '../src/sim/eastbrook_town_footprints';
 import { ebv2Owns, ebv2Point, ebv2StandingColliderIndexes } from '../src/sim/eastbrook_v2';
 import { EBV2_COLLIDER_IDS, EBV2_COLLIDERS } from '../src/sim/eastbrook_v2/layout.generated';
 import { isResting } from '../src/sim/progression/xp';
 import { Sim } from '../src/sim/sim';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
-// Solid matches solid in Eastbrook: the server blocks on the boxes of the town the Early
-// Access client draws (src/sim/eastbrook_town_footprints.ts), and the painted models' own
-// walls, annexes and kit boxes it no longer draws stand down.
+// Solid matches solid in Eastbrook: the Eastbrook Vale v2 design owns the town ground, so the
+// server blocks on the design's own boxes there and every box of the old town (the painted
+// models' walls and annexes, the town kit) stands down. Renamed from
+// eastbrook_town_footprints.test.ts when the pilot town's footprint table
+// (eastbrook_town_footprints.ts) was retired with the old town: its table-only pins (owner
+// names, box sizes, pilot boxes standing down, the moved-record rule) went with it; the
+// gameplay guarantees below stay.
+
+interface TownBox {
+  readonly id: string;
+  readonly x: number;
+  readonly z: number;
+  readonly hw: number;
+  readonly hd: number;
+  readonly rot: number;
+}
 
 const TOWN = { minX: -100, maxX: 70, minZ: -140, maxZ: -8 };
 
@@ -38,7 +44,7 @@ function sameBox(collider: Collider, box: { x: number; z: number; hw: number; hd
   );
 }
 
-function inside(box: TownFootprint, x: number, z: number, margin: number): boolean {
+function inside(box: TownBox, x: number, z: number, margin: number): boolean {
   const cos = Math.cos(box.rot);
   const sin = Math.sin(box.rot);
   const lx = (x - box.x) * cos - (z - box.z) * sin;
@@ -46,62 +52,10 @@ function inside(box: TownFootprint, x: number, z: number, margin: number): boole
   return Math.abs(lx) < box.hw + margin && Math.abs(lz) < box.hd + margin;
 }
 
-describe('the Eastbrook town footprints', () => {
-  it('names a real owner for every box it replaces or retires', () => {
-    const ids = EASTBROOK_TOWN_FOOTPRINTS.map((box) => box.id);
-    expect(new Set(ids).size).toBe(ids.length);
-    const buildings = new Set([
-      ...EASTBROOK_LAYOUT.buildings.map((building) => `building:${building.id}`),
-      `building:${EASTBROOK_LAYOUT.weeklyVault.id}`,
-    ]);
-    const kit = new Set(EASTBROOK_LAYOUT.townKit.map((piece) => `kit:${piece.id}`));
-    const owners = [
-      ...EASTBROOK_TOWN_FOOTPRINTS.flatMap((box) => (box.replaces === null ? [] : [box.replaces])),
-      ...EASTBROOK_TOWN_RETIRED,
-    ];
-    for (const owner of owners) {
-      expect(buildings.has(owner) || kit.has(owner), owner).toBe(true);
-    }
-    // every town building record is redrawn: none keeps the painted model's walls
-    for (const owner of buildings) expect(owners, owner).toContain(owner);
-    for (const box of EASTBROOK_TOWN_FOOTPRINTS) {
-      expect(box.hw, box.id).toBeGreaterThan(0.1);
-      expect(box.hd, box.id).toBeGreaterThan(0.1);
-      // SCALE_STANDARD: only a piece over 1.2 m that looks solid gets a box
-      expect(box.h, box.id).toBeGreaterThan(1.2);
-    }
-  });
-
-  // Eastbrook Vale v2 (src/sim/eastbrook_v2/): the Unreal design's own solids stand on
-  // the design's ground, so every pilot box there stands down, and so does every box
-  // of a building record that stands there (the record is replaced whole); one the
-  // design does not own would still stand, exactly once.
-  it('stands every pilot box down on the v2 design ground, and any other exactly once', () => {
+describe('the Eastbrook town solids', () => {
+  it('stands the old town boxes down on the v2 design ground, so nothing unseen blocks', () => {
     const colliders = townColliders();
-    const recordOwned = (box: TownFootprint) => {
-      const id = box.replaces?.startsWith('building:') ? box.replaces.slice(9) : null;
-      const record = ZONE1_PROPS.buildings.find((b) => b.id === id);
-      return record !== undefined && ebv2Owns(record.x, record.z);
-    };
-    let down = 0;
-    for (const box of EASTBROOK_TOWN_FOOTPRINTS) {
-      const hits = colliders.filter((collider) => sameBox(collider, box));
-      if (ebv2Owns(box.x, box.z) || recordOwned(box)) {
-        expect(hits, box.id).toHaveLength(0);
-        down++;
-        continue;
-      }
-      expect(hits, box.id).toHaveLength(1);
-      expect(hits[0]).toMatchObject({ type: 'obb', rot: box.rot });
-      expect(isBlocked(WORLD_SEED, box.x, box.z), box.id).toBe(true);
-    }
-    // the town stands on the design's terrace: nearly every pilot box stood down
-    expect(down).toBeGreaterThan(EASTBROOK_TOWN_FOOTPRINTS.length * 0.8);
-  });
-
-  it('stands the replaced and retired boxes down, so nothing unseen blocks', () => {
-    const colliders = townColliders();
-    // the painted buildings' wall boxes and annexes
+    // the painted buildings' wall boxes and annexes (each record stands on design ground)
     for (const building of EASTBROOK_LAYOUT.buildings) {
       const old = [
         {
@@ -117,6 +71,7 @@ describe('the Eastbrook town footprints', () => {
           hd: annex.halfDepth,
         })),
       ];
+      expect(ebv2Owns(building.position.x, building.position.z), building.id).toBe(true);
       for (const box of old) {
         expect(
           colliders.some((collider) => sameBox(collider, box)),
@@ -124,18 +79,10 @@ describe('the Eastbrook town footprints', () => {
         ).toBe(false);
       }
     }
-    // the town kit pieces: a retired row carries no box, a kept one still does
-    const owners = new Set([
-      ...EASTBROOK_TOWN_FOOTPRINTS.flatMap((box) => (box.replaces === null ? [] : [box.replaces])),
-      ...EASTBROOK_TOWN_RETIRED,
-    ]);
-    let kept = 0;
+    // the town kit pieces: re-pinned from "a retired row carries no box, a kept one still does
+    // off the design": with the footprint table gone no row is retired by name, so a piece on
+    // the design's ground carries no box and one off it (none today) keeps its own
     for (const piece of EASTBROOK_LAYOUT.townKit) {
-      const retired = owners.has(`kit:${piece.id}`);
-      expect(
-        eastbrookTownRetiresDecorRow(piece.propKey, piece.position.x, piece.position.z),
-        piece.id,
-      ).toBe(retired);
       const stands = colliders.some((collider) =>
         sameBox(collider, {
           x: piece.collider.center.x,
@@ -144,32 +91,10 @@ describe('the Eastbrook town footprints', () => {
           hd: piece.collider.halfDepth,
         }),
       );
-      // a kept piece on the v2 design ground stands down with the rest of the old town
       const owned = ebv2Owns(piece.collider.center.x, piece.collider.center.z);
-      expect(stands, piece.id).toBe(!retired && !owned);
-      if (!retired) kept++;
-    }
-    // the crafting stations, the stalls, the cart, the clutter and the well keep their boxes
-    expect(kept).toBeGreaterThanOrEqual(13);
-    // a decor row that is not a town kit piece is never retired
-    for (const row of ZONE1_PROPS.decorProps ?? []) {
-      if (row.key.startsWith('town')) continue;
-      expect(eastbrookTownRetiresDecorRow(row.key, row.x, row.z), row.key).toBe(false);
+      expect(stands, piece.id).toBe(!owned);
     }
   });
-
-  it('leaves a record a custom world moved, turned or renamed on its own collider', () => {
-    const record = ZONE1_PROPS.buildings.find((building) => building.id === 'eastbrook_inn');
-    if (!record) throw new Error('missing the inn record');
-    expect(eastbrookTownRecordBoxes(record)).not.toBeNull();
-    expect(eastbrookTownRecordBoxes({ ...record, x: record.x + 3 })).toBeNull();
-    expect(eastbrookTownRecordBoxes({ ...record, z: record.z - 3 })).toBeNull();
-    expect(eastbrookTownRecordBoxes({ ...record, rot: record.rot + 0.4 })).toBeNull();
-    expect(eastbrookTownRecordBoxes({ ...record, id: undefined })).toBeNull();
-    expect(eastbrookTownRecordBoxes({ ...record, id: 'some_other_house' })).toBeNull();
-    expect(eastbrookTownRecordBoxes({ ...EASTBROOK_LAYOUT.weeklyVault })).not.toBeNull();
-  });
-
   it('keeps every town NPC, service and quest object out of the walls', () => {
     const sim = new Sim({ seed: WORLD_SEED, playerClass: 'warrior' });
     // the walls that stand: the v2 design's boxes on its own ground (the pilot boxes

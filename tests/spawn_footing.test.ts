@@ -20,7 +20,7 @@ describe('the spawn probe footing', () => {
     if (!walkIn) throw new Error('Highwatch stands no walk-in building');
     expect(spawnProbeStandsOnFloor(walkIn.position.x, walkIn.position.z)).toBe(true);
     // Eastbrook's buildings are sealed since the Wyndlewood town rebuild
-    // (eastbrook_town_footprints.ts): no baked upper storey overhangs a spawn there
+    // (eastbrook_town_footprints.ts, since retired): no baked upper storey overhangs a spawn there
     const apothecary = EASTBROOK_LAYOUT.buildings.find(
       (building) => building.id === 'eastbrook_apothecary',
     );

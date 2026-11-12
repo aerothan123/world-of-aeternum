@@ -903,7 +903,7 @@ describe('Eastbrook town renderer', () => {
     // box or over its roof line; eye and camera both inside keep it solid. A
     // camera inside the box with the eye outside still ghosts it. The sealed
     // cottage keeps the rule above unchanged (eastbrook_town_visibility_core.ts).
-    // Since the Wyndlewood town rebuild (eastbrook_town_footprints.ts) every Eastbrook
+    // Since the Wyndlewood town rebuild (eastbrook_town_footprints.ts, since retired) every Eastbrook
     // building is sealed, so each one answers by the sealed rule; the walk-in arm below
     // stays for a record that opens again.
     expect(
@@ -1456,7 +1456,7 @@ describe('Eastbrook town renderer', () => {
     const ground = (x: number, z: number) => 1.5 + 0.03 * x - 0.02 * z;
     const rooms = () => interiorCameraInternalsForTest.interiors();
     // Eastbrook stands no walk-in building since the Wyndlewood town rebuild sealed them
-    // (eastbrook_town_footprints.ts), so the town registers no air at all; the per-room
+    // (eastbrook_town_footprints.ts, since retired), so the town registers no air at all; the per-room
     // checks below hold for any record that opens again.
     const walkIn = EASTBROOK_LAYOUT.buildings.filter((building) => building.walkIn);
     expect(walkIn).toEqual([]);

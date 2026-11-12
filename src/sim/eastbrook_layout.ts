@@ -756,10 +756,9 @@ const APOTHECARY_SCALE = 1.5;
 // moved with the mesh. Reach boxes are the shipped models' bounds, and the
 // wall and annex boxes are their baked collision lines
 // (tests/eastbrook_placed_buildings.test.ts measures all of them off the
-// shipped files). Every one is SEALED: the Early Access client draws each as
-// an assembled cottage-style building with a shut door, smaller than the
-// painted model, so a record collides on that building's own boxes
-// (eastbrook_town_footprints.ts) and nobody walks into a wall they can see.
+// shipped files). Every one is SEALED. In the built-in world the Eastbrook
+// Vale v2 design owns this ground, so a record's own box stands down there
+// (eastbrook_v2/colliders.ts ebv2StandDown) and the design's solids block.
 // The walk-in rule (town_walk_in.ts) stays for Fenbridge and Highwatch.
 const BUILDINGS = [
   makePlacedBuilding({
