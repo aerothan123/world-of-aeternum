@@ -14,17 +14,24 @@ import { biomeAt, terrainHeight, WATER_LEVEL, waterLevel, zoneBiomeAt } from '..
 // re-shapes the terrain the sim and renderer both sample.
 
 const SEED = 1234;
-// A spread of overworld sample points across the three zone bands.
+// A spread of overworld sample points across the zone bands, all OUTSIDE the
+// eastbrook_vale slot (x -270..180, z -180..180): the Eastbrook Vale v2 design
+// ground is built-in-world-only by rule (src/sim/eastbrook_v2/CLAUDE.md), so a
+// custom world never sees it, and the seam these tests pin is the registry
+// indirection, not that overlay.
 const POINTS: [number, number][] = [
-  [0, 0],
-  [40, 140],
-  [-92, 88],
+  [0, 300],
+  [40, 440],
+  [-92, 388],
   [149.5, 295],
-  [0, -3],
-  [80, 80],
-  [-60, 4],
+  [0, 297],
+  [80, 380],
+  [-60, 304],
   [120, 360],
 ];
+// The terrain-edit stamp centre and its outside-radius probe (outside the slot).
+const STAMP = { x: 0, z: 300 };
+const OUTSIDE = { x: 100, z: 300 };
 
 function sampleDefault(): number[] {
   setActiveWorldContent(null);
@@ -66,7 +73,9 @@ describe('custom-map terrain seam', () => {
   });
 
   it('keeps generic exterior collision while removing specialized built-in town layouts', () => {
-    const bank = EASTBROOK_LAYOUT.buildings.find((building) => building.id === 'eastbrook_bank');
+    // The old Eastbrook bank pin is retired: Eastbrook Vale v2 rebuilds the town
+    // from the design (owner decision), so the old layout's bank no longer stands
+    // or collides in the built-in world. Fenbridge still carries the seam.
     const fenLayout = activeFenbridgeLayout();
     const authoredFenbridgeInn = fenLayout.buildings.find(
       (building) => building.id === 'fenbridge_crooked_reed_inn',
@@ -74,7 +83,6 @@ describe('custom-map terrain seam', () => {
     const fenbridgeInn = BUILTIN_WORLD.props.buildings.find(
       (building) => building.id === authoredFenbridgeInn?.id,
     );
-    expect(bank).toBeDefined();
     expect(fenbridgeInn).toMatchObject({
       id: 'fenbridge_crooked_reed_inn',
       // the painted tavern on the main street, stood grand (fenbridge_layout.ts)
@@ -82,10 +90,9 @@ describe('custom-map terrain seam', () => {
       x: authoredFenbridgeInn?.position.x,
       z: authoredFenbridgeInn?.position.z,
     });
-    if (!bank || !fenbridgeInn) return;
+    if (!fenbridgeInn) return;
 
     setActiveWorldContent(null);
-    expect(isBlocked(SEED, bank.position.x, bank.position.z, 0.4)).toBe(true);
     expect(isBlocked(SEED, fenbridgeInn.x, fenbridgeInn.z, 0.4)).toBe(true);
     expect(
       isBlocked(SEED, fenLayout.civic.cistern.position.x, fenLayout.civic.cistern.position.z, 0.4),
@@ -101,7 +108,6 @@ describe('custom-map terrain seam', () => {
 
     const props = clonePropsWithoutEastbrookLayout(BUILTIN_WORLD.props);
     setActiveWorldContent({ ...BUILTIN_WORLD, props });
-    expect(props.buildings.some((building) => building.id === bank.id)).toBe(false);
     expect(
       props.graveyards.some(
         ({ x, z }) =>
@@ -109,7 +115,6 @@ describe('custom-map terrain seam', () => {
           z === EASTBROOK_LAYOUT.services.graveyard.position.z,
       ),
     ).toBe(false);
-    expect(isBlocked(SEED, bank.position.x, bank.position.z, 0.4)).toBe(false);
     expect(props.buildings.some((building) => building.id === fenbridgeInn.id)).toBe(false);
     expect(isBlocked(SEED, fenbridgeInn.x, fenbridgeInn.z, 0.4)).toBe(false);
     expect(props.wells.some((well) => well.id === fenLayout.civic.cistern.id)).toBe(false);
@@ -161,15 +166,18 @@ describe('custom-map terrain seam', () => {
   });
 
   it('a terrain edit raises the ground at the stamp centre (sim + render agree)', () => {
-    const baseAtOrigin = terrainHeight(0, 0, SEED); // default content
+    const baseAtOrigin = terrainHeight(STAMP.x, STAMP.z, SEED); // default content
     setActiveWorldContent({
       ...BUILTIN_WORLD,
-      terrainEdits: [{ x: 0, z: 0, radius: 25, delta: 12, falloff: 'smooth' }],
+      terrainEdits: [{ ...STAMP, radius: 25, delta: 12, falloff: 'smooth' }],
     });
     // Smooth falloff is 1.0 at the centre, so the centre rises by exactly delta.
-    expect(terrainHeight(0, 0, SEED)).toBeCloseTo(baseAtOrigin + 12, 6);
+    expect(terrainHeight(STAMP.x, STAMP.z, SEED)).toBeCloseTo(baseAtOrigin + 12, 6);
     // Outside the radius is untouched.
-    expect(terrainHeight(100, 0, SEED)).toBeCloseTo(terrainHeightDefaultAt(100, 0), 6);
+    expect(terrainHeight(OUTSIDE.x, OUTSIDE.z, SEED)).toBeCloseTo(
+      terrainHeightDefaultAt(OUTSIDE.x, OUTSIDE.z),
+      6,
+    );
   });
 
   // SKIP (grid-world transplant): the adopted grid terrain's shapeAt reads the
@@ -203,12 +211,15 @@ describe('custom-map terrain seam', () => {
   it('a level stamp pulls the centre to an absolute height (flatten brush)', () => {
     setActiveWorldContent({
       ...BUILTIN_WORLD,
-      terrainEdits: [{ x: 0, z: 0, radius: 25, delta: 7, falloff: 'smooth', mode: 'level' }],
+      terrainEdits: [{ ...STAMP, radius: 25, delta: 7, falloff: 'smooth', mode: 'level' }],
     });
     // Full falloff weight at the centre: the height becomes exactly the target.
-    expect(terrainHeight(0, 0, SEED)).toBeCloseTo(7, 6);
+    expect(terrainHeight(STAMP.x, STAMP.z, SEED)).toBeCloseTo(7, 6);
     // Outside the radius is untouched.
-    expect(terrainHeight(100, 0, SEED)).toBeCloseTo(terrainHeightDefaultAt(100, 0), 6);
+    expect(terrainHeight(OUTSIDE.x, OUTSIDE.z, SEED)).toBeCloseTo(
+      terrainHeightDefaultAt(OUTSIDE.x, OUTSIDE.z),
+      6,
+    );
   });
 
   it('stamps compose in array order (add after level)', () => {
