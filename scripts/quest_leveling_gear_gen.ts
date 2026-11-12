@@ -127,18 +127,6 @@ const BANDS: readonly Band[] = [
 // and has no theme here stops the run). Named for the quest's boss or place but
 // never echoing its authored piece, so the two cards read apart.
 const BLUE_THEMES: Readonly<Record<string, Band>> = {
-  q_hollow: {
-    top: 0,
-    theme: 'Cryptbound',
-    region: 'the Hollow Crypt, where Morthen raised the dead',
-    palette: 'grave-dust grey, bone white, tarnished bronze, sickly green candle glow',
-  },
-  q_sexton: {
-    top: 0,
-    theme: 'Gravebell',
-    region: 'the Hollow Crypt bell tower of Sexton Marrow',
-    palette: 'bell bronze, funeral black, verdigris, pale bone',
-  },
   q_olen: {
     top: 0,
     theme: 'Oathbroken',
