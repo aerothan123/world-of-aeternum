@@ -1001,23 +1001,10 @@ describe('Eastbrook runtime collision, spawn, and services', () => {
       'retired wall ring colliders',
     ).toHaveLength(0);
 
-    const fence = EASTBROOK_LAYOUT.fences[0];
-    const fenceCenter = midpoint(fence.start, fence.end);
-    const fenceCollider = colliders.find(
-      (collider) =>
-        collider.type === 'obb' &&
-        collider.isFence === true &&
-        collider.x === fenceCenter.x &&
-        collider.z === fenceCenter.z,
-    );
-    expect(fenceCollider).toMatchObject({
-      type: 'obb',
-      hd: fence.width / 2,
-      isFence: true,
-    });
-    expect(fenceCollider?.cameraTopY).toBeCloseTo(
-      groundHeight(fenceCenter.x, fenceCenter.z, SEED) + fence.height,
-    );
+    // The stable corral's fence row retired with the old town kit (Eastbrook
+    // Vale v2 port): the layout authors no fence, so no town fence collider
+    // is left to pin here.
+    expect(EASTBROOK_LAYOUT.fences).toEqual([]);
 
     const board = EASTBROOK_LAYOUT.services.noticeboard;
     const boardCollider = colliders.find(
@@ -1172,14 +1159,10 @@ describe('Eastbrook runtime collision, spawn, and services', () => {
       ),
     ];
     // Town kit (phase 2): the yard's two new stations and the tanner joined
-    // the services (32), and every kit house and civic block's front step is
-    // walked to and from the square as well.
+    // the services (32). The kit house and civic front steps walked here too
+    // until the old town kit retired in the Eastbrook Vale v2 port; every
+    // service and building entrance above is still walked both ways.
     expect(destinations).toHaveLength(32);
-    const kitFronts = EASTBROOK_LAYOUT.townKit
-      .filter((kit) => kit.role === 'house' || kit.role === 'civic')
-      .map((kit) => ({ id: `${kit.id}:front`, point: kit.frontStandingPoint }));
-    expect(kitFronts.length).toBeGreaterThanOrEqual(10);
-    destinations.push(...kitFronts);
     const moverProfiles = [
       { id: 'player', bodyRadius: PLAYER_BODY_RADIUS },
       // Pet locomotion deliberately shares PLAYER_BODY_RADIUS; keep this

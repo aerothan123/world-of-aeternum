@@ -421,6 +421,15 @@ id), and the parity scenarios in `tests/parity/scenarios.ts`.
 
 ## 10. As built (phase 2)
 
+> **Retired.** The Eastbrook Vale v2 port retired the whole town kit (owner
+> direction: rebuild Eastbrook from the ground up and bring nothing over from
+> the old map). The kit placements, their props registry, map marks, decor rows,
+> scatter clearance and the stable corral fences are gone from the code; the
+> stations and keepers stand on the v2 design sites
+> (`src/sim/eastbrook_v2/sites.generated.ts`). This section is kept as history.
+> The shipped `public/models/props/town_*.glb` files and `assets_src/town_kit/`
+> are no longer read by the game.
+
 The placements live in `src/sim/eastbrook_layout.ts` (`TOWN_KIT_ASSETS` and the
 `YARD`, `MARKET_ROW`, `SQUARE_KIT`, `GATE_KIT` and `HOUSING` groups behind
 `EASTBROOK_LAYOUT.townKit`); every placement carries its reach, its collider and

@@ -9,11 +9,7 @@ import {
   instanceOrigin,
   setActiveWorldContent,
 } from '../src/sim/data';
-import {
-  EASTBROOK_BUILDINGS_BY_ID,
-  EASTBROOK_LAYOUT,
-  EASTBROOK_TOWN_KIT_BY_ID,
-} from '../src/sim/eastbrook_layout';
+import { EASTBROOK_BUILDINGS_BY_ID, EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { type CharacterState, Sim } from '../src/sim/sim';
 import { emptyZoneProps, type WorldContent } from '../src/sim/types';
 
@@ -81,13 +77,11 @@ describe('persisted overworld position escape', () => {
     // name is a walk-in room now (the case below)
     ['quay cottage', EASTBROOK_BUILDINGS_BY_ID.eastbrook_quay_cottage.position],
     ['market stall', EASTBROOK_LAYOUT.market.stalls[0].position],
-    // The town kit relayout (town kit phase 2) stood sealed houses and civic
-    // blocks on open ground a character may have logged out on: a save inside
-    // one is lifted out the same way. (The row terrace row retired with the old
-    // town's kit houses in the Eastbrook Vale v2 port, owner direction.)
-    ['trading post', EASTBROOK_TOWN_KIT_BY_ID.kit_trading_post.position],
-    ['storage shed', EASTBROOK_TOWN_KIT_BY_ID.kit_storage_shed.position],
-    ['stable', EASTBROOK_TOWN_KIT_BY_ID.kit_stable.position],
+    // The trading post, storage shed and stable rows (and the row terrace
+    // before them) retired with the old town kit in the Eastbrook Vale v2
+    // port (owner direction: bring nothing over from the old map). The kit
+    // pieces no longer stand or collide, so no save can be trapped in one;
+    // the rows above still exercise the escape against sealed solids.
   ])('moves a save trapped inside the %s to deterministic clear ground', (_label, position) => {
     expect(isBlocked(SEED, position.x, position.z, 0.5)).toBe(true);
     const first = loadAt(position).player;

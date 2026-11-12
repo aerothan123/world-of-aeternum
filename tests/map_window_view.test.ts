@@ -469,31 +469,22 @@ describe('buildOverworldMapModel (pure draw model)', () => {
       // appended to ZONE1_PROPS.buildings after the town list, so its footprint
       // draws last.
       EASTBROOK_LAYOUT.weeklyVault.id,
-      // The town kit's houses and civic blocks (town kit phase 2) stand as
-      // decor rows and draw after the placed architecture
-      // (ui/town_kit_map_marks.ts).
-      ...EASTBROOK_LAYOUT.townKit
-        .filter(
-          (kit) =>
-            (kit.asset.startsWith('house_') || kit.asset.startsWith('civic_')) &&
-            kit.asset !== 'civic_well' &&
-            !kit.asset.startsWith('civic_market_stall'),
-        )
-        .map((kit) => `${kit.propKey}@${kit.position.x},${kit.position.z}`),
+      // The town kit's houses and civic blocks drew here as decor-row marks
+      // until the old kit retired in the Eastbrook Vale v2 port.
     ]);
     expect(
       detail.props.filter((marker) => marker.kind === 'well').map((marker) => marker.id),
-    ).toEqual([EASTBROOK_LAYOUT.civic.monument.id, null]);
+      // The town kit's well mark (a decor row, no authored id) retired with the
+      // old kit in the Eastbrook Vale v2 port.
+    ).toEqual([EASTBROOK_LAYOUT.civic.monument.id]);
     const stallMarkerIds = detail.props
       .filter((marker) => marker.kind === 'stall')
       .map((marker) => marker.id);
-    // The two painted stalls, then the town kit's fruit and cloth stalls
-    // (decor rows, no authored id).
+    // The two painted stalls. The town kit's fruit and cloth stalls (decor
+    // rows, no authored id) retired with the old kit in the v2 port.
     expect(stallMarkerIds).toEqual([
       'eastbrook_market_stall_world_market',
       'eastbrook_market_stall_provisions',
-      null,
-      null,
     ]);
     expect(stallMarkerIds).not.toContain('eastbrook_market_stall_artisans');
     expect(

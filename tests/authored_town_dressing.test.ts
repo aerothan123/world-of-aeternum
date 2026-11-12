@@ -1,12 +1,13 @@
 // The authored towns' square dressing as a promotion family
 // (promotedScenery.authoredTownDressing): Eastbrook Vale's market stalls,
-// benches and yard fences, and Fenbridge's cistern, provision stall, muster
+// benches (the yard fences retired with the old town kit), and Fenbridge's
+// cistern, provision stall, muster
 // board and boardwalks become ordinary Studio placements. Pinned here:
 //  - the measured model sizes the conversion relies on match the shipped GLBs;
 //  - every promoted placement draws the exact box the town view draws
 //    (same anchor, same yaw, same width x height x depth, same slope and sink);
 //  - new world documents carry the family once, with its flag;
-//  - the stall, cistern and fence record colliders stand down under that flag
+//  - the stall and cistern record colliders stand down under that flag
 //    and no other, and the Realm Builder monument's never does;
 //  - the town-only models draw in their town's look when placed, and models
 //    shared with the wider world do not;
@@ -26,7 +27,6 @@ import { targetHeightFor } from '../src/render/asset_scale';
 import { buildEastbrookHarbor } from '../src/render/eastbrook_harbor';
 import { isTownStyledPlacedPath } from '../src/render/town_styled_placed_assets';
 import {
-  isAuthoredTownDressingFence,
   isAuthoredTownDressingStall,
   isAuthoredTownDressingWell,
   promotedColliderProps,
@@ -36,7 +36,6 @@ import { colliderInternalsForTest } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { FENBRIDGE_LAYOUT, localToWorld } from '../src/sim/fenbridge_layout';
-import { crossesFence } from '../src/sim/fence_crossing';
 import { harborStructureColliders } from '../src/sim/harbor_structures';
 import type { MapPlacement } from '../src/sim/map_doc';
 import { pitchedSegmentPlacement } from '../src/sim/pitched_segment';
@@ -153,6 +152,14 @@ describe('the promoted placements', () => {
     }
   });
 
+  // The stable corral's rails retired with the old town kit in the Eastbrook
+  // Vale v2 port (owner direction), so the family promotes no fence; the
+  // fence-run fit below is kept for any rail a later layout adds.
+  it('promote no Eastbrook fence now the corral rails are retired', () => {
+    expect(EASTBROOK_LAYOUT.fences).toEqual([]);
+    expect(placements.some((p) => p.worldPropKind === 'fence')).toBe(false);
+  });
+
   it('lay each fence run on the town slope and sink, and keep it a jumpable rail', () => {
     for (const fence of EASTBROOK_LAYOUT.fences) {
       const p = byName(fence.id);
@@ -206,22 +213,8 @@ describe('the promoted placements', () => {
     }
   });
 
-  it('still read as a jumpable rail where the town fence stood', () => {
-    const fence = EASTBROOK_LAYOUT.fences[0];
-    const mid = { x: (fence.start.x + fence.end.x) / 2, z: (fence.start.z + fence.end.z) / 2 };
-    const dx = fence.end.x - fence.start.x;
-    const dz = fence.end.z - fence.start.z;
-    const len = Math.hypot(dx, dz);
-    setActiveWorldContent({
-      ...BUILTIN_WORLD,
-      // the projection's shape: a placement plus its model path
-      placements: [{ ...byName(fence.id), path: '/models/props/fence.glb' }],
-      promotedScenery: { authoredTownDressing: true },
-    });
-    expect(
-      crossesFence(mid.x - dz / len, mid.z + dx / len, mid.x + dz / len, mid.z - dx / len, 0.3),
-    ).toBe(true);
-  });
+  // "still read as a jumpable rail where the town fence stood" retired with
+  // the corral rails (old town kit, v2 port): no town fence stands to probe.
 
   it('upgrade an older world document that was saved before the family existed', () => {
     const map = newCustomMap('Older', 'older', 1);
@@ -275,9 +268,9 @@ describe('the record colliders', () => {
     expect(stood.stalls).toHaveLength(props.stalls.length - droppedStalls.length);
     expect(props.wells.filter(isAuthoredTownDressingWell)).toHaveLength(1);
     expect(stood.wells).toHaveLength(props.wells.length - 1);
-    const droppedFences = props.fences.filter(isAuthoredTownDressingFence);
-    expect(droppedFences).toHaveLength(EASTBROOK_LAYOUT.fences.length);
-    expect(stood.fences).toHaveLength(props.fences.length - droppedFences.length);
+    // no fence record is town dressing since the corral rails retired with
+    // the old town kit (v2 port): every fence record keeps its collider
+    expect(stood.fences).toBe(props.fences);
     // the Realm Builder monument (Eastbrook's well record) is never dressing
     const monument = EASTBROOK_LAYOUT.civic.monument;
     expect(
@@ -298,23 +291,8 @@ describe('the record colliders', () => {
     expect(stallObb()).toHaveLength(0);
   });
 
-  it('stop a promoted fence record from counting as a rail crossing', () => {
-    const fence = EASTBROOK_LAYOUT.fences[0];
-    const mid = { x: (fence.start.x + fence.end.x) / 2, z: (fence.start.z + fence.end.z) / 2 };
-    const dx = fence.end.x - fence.start.x;
-    const dz = fence.end.z - fence.start.z;
-    const len = Math.hypot(dx, dz);
-    const nx = -dz / len;
-    const nz = dx / len;
-    const cross = () => crossesFence(mid.x - nx, mid.z - nz, mid.x + nx, mid.z + nz, 0.3);
-    expect(cross()).toBe(true);
-    setActiveWorldContent({
-      ...BUILTIN_WORLD,
-      placements: [],
-      promotedScenery: { authoredTownDressing: true },
-    });
-    expect(cross()).toBe(false);
-  });
+  // "stop a promoted fence record from counting as a rail crossing" retired
+  // with the corral rails (old town kit, v2 port): no fence record is dressing.
 });
 
 describe('town-styled placements', () => {

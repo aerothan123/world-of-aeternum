@@ -1295,6 +1295,16 @@ describe('Eastbrook town renderer', () => {
     const seed = 20061;
     const ground = (x: number, z: number) => terrainHeight(x, z, seed);
     const records = [
+      // The stable corral's north rail as a fixture span: the corral retired
+      // with the old town kit (Eastbrook Vale v2 port), and the layout has no
+      // fence or wall left, so this keeps the pitched-span fit exercised on the
+      // real town slope where the shipped rail used to stand.
+      {
+        id: 'fixture_corral_north',
+        start: { x: 20.65, z: -50 },
+        end: { x: 15.35, z: -50 },
+        width: 0.28,
+      },
       ...EASTBROOK_LAYOUT.fences.map((fence) => ({
         id: fence.id,
         start: fence.start,
@@ -1520,7 +1530,6 @@ describe('Eastbrook town renderer', () => {
     }
     const well = BUILTIN_WORLD.props.wells[0];
     const stall = BUILTIN_WORLD.props.stalls[0];
-    const fence = BUILTIN_WORLD.props.fences[0];
     expect(isEastbrookRebuildWell(well)).toBe(true);
     expect(isEastbrookRebuildWell({ ...well, x: well.x + 0.01 })).toBe(false);
     expect(isEastbrookRebuildStall(stall)).toBe(true);
@@ -1536,8 +1545,11 @@ describe('Eastbrook town renderer', () => {
         d: 2.2,
       }),
     ).toBe(false);
-    expect(isEastbrookRebuildFence(fence)).toBe(true);
-    expect(isEastbrookRebuildFence({ ...fence, x2: fence.x2 + 0.01 })).toBe(false);
+    // The stable corral's rails retired with the old town kit (Eastbrook Vale
+    // v2 port): no built-in fence record is the town's any more, so the props
+    // walk draws every fence itself.
+    expect(EASTBROOK_LAYOUT.fences).toEqual([]);
+    expect(BUILTIN_WORLD.props.fences.some((f) => isEastbrookRebuildFence(f))).toBe(false);
   });
 
   it('is mounted, updated, and de-duplicated at the renderer integration seam', () => {
@@ -1662,13 +1674,16 @@ describe('Eastbrook repeated placement triangle budget', () => {
     // reasoning, and the two levers left unpulled, are on `hardCeiling` in
     // src/render/eastbrook_town.ts. The 33,000 target is unchanged and is now
     // missed by a wide margin rather than a narrow one.
-    expect(budget.assetTriangles).toBe(56_347);
+    // Re-pinned for the Eastbrook Vale v2 port: the stable corral's three
+    // fence instances (208 each) retired with the old town kit, so the
+    // aggregate moves 56,347 to 55,723 and the runtime total 60,919 to 60,295.
+    expect(budget.assetTriangles).toBe(55_723);
     expect(budget.maximumFoundationTriangles).toBe(0);
     expect(budget.proceduralTriangles).toBe(4_572);
     expect(budget.maximumRuntimeTriangles).toBe(
       budget.assetTriangles + budget.maximumFoundationTriangles + budget.proceduralTriangles,
     );
-    expect(budget.maximumRuntimeTriangles).toBe(60_919);
+    expect(budget.maximumRuntimeTriangles).toBe(60_295);
     expect(budget.hardCeiling).toBe(64_000);
     expect(
       budget.maximumRuntimeTriangles,

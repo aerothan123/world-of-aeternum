@@ -52,7 +52,7 @@ describe('Eastbrook town preload', () => {
     ['Low', '?gfx=low', '.half.glb'],
     ['Standard', '?gfx=ultra', '.glb'],
   ] as const)(
-    'registers all nine shipping assets plus both support models on %s',
+    'registers all nine shipping assets plus the bench support model on %s',
     async (_materialPath, search, placedFileSuffix) => {
       vi.stubGlobal('window', { location: { search } });
       vi.stubGlobal('location', { search });
@@ -78,10 +78,11 @@ describe('Eastbrook town preload', () => {
       // (eleven lots over seven models) leave and the six painted Tidehold
       // models arrive, one lot each, so the deduped set goes 10 to 9: the six
       // buildings, the monument, the market stall and the wall wing. The two
-      // support models make 11.
+      // support models made 11; the fence left with the stable corral (old town
+      // kit, retired in the Eastbrook Vale v2 port), so the bench makes 10.
       expect(newUrls).toHaveLength(9);
       expect(new Set(newUrls).size).toBe(9);
-      expect(allUrls).toHaveLength(11);
+      expect(allUrls).toHaveLength(10);
       const placedUrls = [
         '/models/tidehold/bank.glb',
         '/models/tidehold/smithy.glb',
@@ -162,7 +163,8 @@ describe('Eastbrook town preload', () => {
       // this rule, for the same reason: every clone draws the painted atlases
       // of its model's loader-cache scene. What is left to release is the four
       // assets the vertex-colour bake copies out of: the stall, the wall wing,
-      // the bench and the fence.
+      // the bench and the fence. The fence left the set when the stable
+      // corral's rails retired with the old town kit (Eastbrook Vale v2 port).
       const keepsOwnMaterials = (url: string): boolean =>
         url.startsWith('/models/tidehold/') || url === EASTBROOK_LAYOUT.civic.monument.assetId;
       expect(allUrls.filter(keepsOwnMaterials)).toEqual([
@@ -174,7 +176,6 @@ describe('Eastbrook town preload', () => {
         EASTBROOK_LAYOUT.market.stalls[0].assetId,
         EASTBROOK_LAYOUT.wall.assetId,
         EASTBROOK_LAYOUT.civic.benches[0].assetId,
-        EASTBROOK_LAYOUT.fences[0].assetId,
       ]);
       expect(mocks.releaseGltf.mock.calls.map(([url]) => url)).toEqual(released);
 

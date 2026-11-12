@@ -863,354 +863,6 @@ function buildingById(id: string) {
   return building;
 }
 
-// ---------------------------------------------------------------------------
-// The town kit (docs/design/town-layout-eastbrook.md, phase 2): the painted
-// generated set under assets_src/town_kit/, shipped as props
-// (public/models/props/town_<asset>.glb) and placed as zone decor
-// (content/zone1.ts decorProps) with box colliders. Every kit model is
-// normalized to its own `propHeight` with its base on y 0, centred, and its
-// presentation side (door, open front, the worked face of a bench) facing
-// local +Z; `w` and `d` are its ground extents at that height, measured off
-// the shipped file (tests/town_kit_assets.test.ts pins them). A placement's
-// `height` is the size it stands at, so its scale is height / propHeight.
-// ---------------------------------------------------------------------------
-
-export interface TownKitAsset {
-  /** The shipped file and the props registry key (render/town_kit_props.ts). */
-  readonly url: string;
-  readonly propKey: string;
-  readonly propHeight: number;
-  readonly w: number;
-  readonly d: number;
-}
-
-function kitAsset(name: string, propKey: string, propHeight: number, w: number, d: number) {
-  return { url: `/models/props/town_${name}.glb`, propKey, propHeight, w, d };
-}
-
-export const TOWN_KIT_ASSETS = {
-  station_forge_canopy: kitAsset('station_forge_canopy', 'townForgeCanopy', 4.5, 3.61, 4.99),
-  station_anvil_armorer: kitAsset('station_anvil_armorer', 'townAnvilArmorer', 2.2, 2.64, 2.08),
-  station_smelter: kitAsset('station_smelter', 'townSmelter', 4, 4.73, 4.73),
-  station_tannery_rack: kitAsset('station_tannery_rack', 'townTanneryRack', 3, 2.72, 2.04),
-  station_loom_awning: kitAsset('station_loom_awning', 'townLoomAwning', 3.6, 3.83, 2.38),
-  station_alchemy_table: kitAsset('station_alchemy_table', 'townAlchemyTable', 2.6, 2.17, 1.09),
-  station_cooking_hearth: kitAsset('station_cooking_hearth', 'townCookingHearth', 3.8, 4.33, 3.56),
-  station_enchanting_altar: kitAsset(
-    'station_enchanting_altar',
-    'townEnchantingAltar',
-    2.6,
-    2.13,
-    1.91,
-  ),
-  station_jeweler_bench: kitAsset('station_jeweler_bench', 'townJewelerBench', 1.8, 1.6, 1.22),
-  station_engineering_bench: kitAsset(
-    'station_engineering_bench',
-    'townEngineeringBench',
-    2.4,
-    2.39,
-    1.21,
-  ),
-  station_scribe_desk: kitAsset('station_scribe_desk', 'townScribeDesk', 2.2, 1.75, 2.07),
-  station_woodshop: kitAsset('station_woodshop', 'townWoodshop', 1.8, 2.47, 2.26),
-  station_stonecutter: kitAsset('station_stonecutter', 'townStonecutter', 1.8, 1.36, 2.08),
-  house_cottage_redtile: kitAsset('house_cottage_redtile', 'townCottageRedtile', 6, 4.71, 5.1),
-  // The high-detail pilot: a Tripo H3.1 detailed build, 12k triangles, 1024 px maps.
-  house_townhouse_slate: kitAsset('house_townhouse_slate', 'townTownhouseSlate', 9, 4.99, 3.69),
-  house_townhouse_green: kitAsset('house_townhouse_green', 'townTownhouseGreen', 9, 7.46, 6.96),
-  house_timber_jettied: kitAsset('house_timber_jettied', 'townTimberJettied', 10, 6.26, 6.97),
-  house_timber_corner_tall: kitAsset(
-    'house_timber_corner_tall',
-    'townTimberCornerTall',
-    12,
-    7.9,
-    7.84,
-  ),
-  house_stone_thatch: kitAsset('house_stone_thatch', 'townStoneThatch', 6, 4.98, 5.1),
-  house_row_terrace: kitAsset('house_row_terrace', 'townRowTerrace', 9, 11.39, 5.82),
-  civic_trading_post: kitAsset('civic_trading_post', 'townTradingPost', 7, 8.77, 6.75),
-  civic_storage_shed: kitAsset('civic_storage_shed', 'townStorageShed', 4.5, 4.08, 3.76),
-  civic_stable: kitAsset('civic_stable', 'townStable', 6, 8.8, 5.39),
-  civic_market_stall_fruit: kitAsset('civic_market_stall_fruit', 'townStallFruit', 3.2, 3.01, 2.09),
-  civic_market_stall_cloth: kitAsset('civic_market_stall_cloth', 'townStallCloth', 3.2, 3.26, 2.61),
-  civic_well: kitAsset('civic_well', 'townWell', 3.2, 3.21, 2.92),
-  prop_lamp_post: kitAsset('prop_lamp_post', 'townLampPost', 3.4, 2.07, 0.92),
-  prop_cart_goods: kitAsset('prop_cart_goods', 'townCartGoods', 2, 1.62, 1.98),
-  prop_clutter_set: kitAsset('prop_clutter_set', 'townClutterSet', 1.6, 2.03, 2.01),
-} as const satisfies Record<string, TownKitAsset>;
-
-export type TownKitAssetId = keyof typeof TOWN_KIT_ASSETS;
-export type TownKitRole = 'station' | 'house' | 'civic' | 'dressing';
-
-/** How much of a model's measured ground box collides: roofs, awnings and
- *  bench tools overhang the walls and legs a body actually meets. */
-const KIT_COLLIDER_FILL: Readonly<Record<TownKitRole, number>> = {
-  station: 0.8,
-  house: 0.86,
-  civic: 0.86,
-  dressing: 0.8,
-};
-/** Where a visitor stands, off a kit piece's front face. */
-const KIT_FRONT_CLEARANCE = 1.4;
-
-const FACE_EAST = -Math.PI / 2;
-const FACE_WEST = Math.PI / 2;
-const FACE_NORTH = 0;
-
-function makeKitPlacement(
-  id: string,
-  asset: TownKitAssetId,
-  role: TownKitRole,
-  position: Point2,
-  rotation: number,
-  height: number,
-) {
-  const source = TOWN_KIT_ASSETS[asset];
-  const scale = height / source.propHeight;
-  const halfWidth = (source.w * scale) / 2;
-  const halfDepth = (source.d * scale) / 2;
-  const fill = KIT_COLLIDER_FILL[role];
-  return {
-    id,
-    asset,
-    role,
-    propKey: source.propKey,
-    assetId: source.url,
-    position,
-    rotation,
-    height,
-    scale,
-    /** The model's whole ground box at its placed size. */
-    reach: { id, center: position, halfWidth, halfDepth, rotation },
-    /** The solid part (the walls, the bench), a box of the same turn. */
-    collider: {
-      id,
-      center: position,
-      halfWidth: halfWidth * fill,
-      halfDepth: halfDepth * fill,
-      rotation,
-    },
-    frontStandingPoint: localToWorld(position, rotation, 0, halfDepth + KIT_FRONT_CLEARANCE),
-    /** The way a visitor looks standing at the front, facing the piece. */
-    frontFacing: Math.atan2(Math.sin(rotation + Math.PI), Math.cos(rotation + Math.PI)),
-  };
-}
-
-function kitFacing(from: Point2, to: Point2): number {
-  return Math.atan2(to.x - from.x, to.z - from.z);
-}
-
-// The crafting yard (plan section 4.3): one U round the crafts lane south of
-// the square, every station inside every other's 20 yd gate. Fire and metal
-// on the west rim (facing east across the lane), cloth, hide, potions and
-// gears on the east rim (facing west), wood and ink at the south end above
-// the strand, the smelter and the stonecutter behind the forge rim.
-const YARD = [
-  makeKitPlacement(
-    'kit_yard_cooking',
-    'station_cooking_hearth',
-    'station',
-    { x: 0, z: -108.5 },
-    FACE_EAST,
-    4.2,
-  ),
-  makeKitPlacement(
-    'kit_yard_forge',
-    'station_forge_canopy',
-    'station',
-    { x: 0, z: -113.8 },
-    FACE_EAST,
-    5,
-  ),
-  makeKitPlacement(
-    'kit_yard_armorer',
-    'station_anvil_armorer',
-    'station',
-    { x: 0.3, z: -118.8 },
-    FACE_EAST,
-    2.4,
-  ),
-  makeKitPlacement(
-    'kit_yard_jeweler',
-    'station_jeweler_bench',
-    'station',
-    { x: 0, z: -122.3 },
-    FACE_EAST,
-    2.4,
-  ),
-  makeKitPlacement(
-    'kit_yard_enchanting',
-    'station_enchanting_altar',
-    'station',
-    { x: 5.2, z: -120.6 },
-    FACE_NORTH,
-    3,
-  ),
-  makeKitPlacement(
-    'kit_yard_smelter',
-    'station_smelter',
-    'station',
-    { x: 6, z: -109.5 },
-    FACE_NORTH,
-    3.8,
-  ),
-  makeKitPlacement(
-    'kit_yard_stonecutter',
-    'station_stonecutter',
-    'station',
-    { x: 5.5, z: -115.5 },
-    FACE_NORTH,
-    2,
-  ),
-  makeKitPlacement(
-    'kit_yard_alchemy',
-    'station_alchemy_table',
-    'station',
-    { x: -18, z: -112 },
-    FACE_WEST,
-    3,
-  ),
-  makeKitPlacement(
-    'kit_yard_loom',
-    'station_loom_awning',
-    'station',
-    { x: -18, z: -116.6 },
-    FACE_WEST,
-    4,
-  ),
-  makeKitPlacement(
-    'kit_yard_tannery',
-    'station_tannery_rack',
-    'station',
-    { x: -18, z: -121.2 },
-    FACE_WEST,
-    3.4,
-  ),
-  makeKitPlacement(
-    'kit_yard_engineering',
-    'station_engineering_bench',
-    'station',
-    { x: -18, z: -125.6 },
-    FACE_WEST,
-    2.8,
-  ),
-  makeKitPlacement(
-    'kit_yard_woodshop',
-    'station_woodshop',
-    'station',
-    { x: -13.8, z: -128.6 },
-    FACE_NORTH,
-    2,
-  ),
-  makeKitPlacement(
-    'kit_yard_scribe',
-    'station_scribe_desk',
-    'station',
-    { x: -18.8, z: -129.8 },
-    FACE_NORTH,
-    2.6,
-  ),
-  makeKitPlacement(
-    'kit_yard_lamp_north',
-    'prop_lamp_post',
-    'dressing',
-    { x: -5.5, z: -106.5 },
-    FACE_NORTH,
-    4,
-  ),
-  makeKitPlacement(
-    'kit_yard_lamp_south',
-    'prop_lamp_post',
-    'dressing',
-    { x: -6, z: -125.5 },
-    FACE_NORTH,
-    4,
-  ),
-] as const;
-
-// The owner's scale pass: the kit first stood at about half the size of the
-// town's painted buildings (a door no taller than a character). Houses and
-// civic blocks now stand at these multiples of their first placed heights (the
-// kit houses are retired: the v2 design draws the vale's houses).
-/** Kit civic blocks (trading post, storage shed, stable) at this multiple. */
-export const TOWN_KIT_CIVIC_SCALE = 1.2;
-
-// Market Row (plan section 4.2): the trading post nearest the square and the
-// storage shed beside it, both opening north onto the main street.
-const MARKET_ROW = [
-  makeKitPlacement(
-    'kit_trading_post',
-    'civic_trading_post',
-    'civic',
-    // A yard back from the main street, so the street lamp at its corner
-    // (streetlampPlacements) keeps its post.
-    { x: -29, z: -110.4 },
-    FACE_NORTH,
-    9 * TOWN_KIT_CIVIC_SCALE,
-  ),
-  makeKitPlacement(
-    'kit_storage_shed',
-    'civic_storage_shed',
-    'civic',
-    { x: -41.6, z: -108.3 },
-    FACE_NORTH,
-    8 * TOWN_KIT_CIVIC_SCALE,
-  ),
-  makeKitPlacement(
-    'kit_row_cart',
-    'prop_cart_goods',
-    'dressing',
-    { x: -36.1, z: -103.2 },
-    FACE_NORTH,
-    2.2,
-  ),
-  makeKitPlacement(
-    'kit_row_clutter',
-    'prop_clutter_set',
-    'dressing',
-    { x: -48.6, z: -106.5 },
-    FACE_NORTH,
-    1.8,
-  ),
-  // The cloth stall closes the row's west end, past the shed.
-  makeKitPlacement(
-    'kit_row_stall_cloth',
-    'civic_market_stall_cloth',
-    'civic',
-    { x: -52.5, z: -107 },
-    FACE_NORTH,
-    3.4,
-  ),
-] as const;
-
-const SQUARE_KIT_CENTER = { x: -14, z: -102 } as const;
-const SQUARE_STALL_FRUIT = { x: -6, z: -94.5 } as const;
-const SQUARE_KIT = [
-  makeKitPlacement(
-    'kit_square_stall_fruit',
-    'civic_market_stall_fruit',
-    'civic',
-    SQUARE_STALL_FRUIT,
-    kitFacing(SQUARE_STALL_FRUIT, SQUARE_KIT_CENTER),
-    3.4,
-  ),
-] as const;
-
-// The stable at the north road gate (plan section 4.6), facing the road from
-// its west verge, back far enough that the wolves guidance curve
-// (render/eastbrook_wolves_guidance_core.ts) passes clear of it.
-const STABLE_POSITION = { x: 18, z: -61 } as const;
-const GATE_KIT = [
-  makeKitPlacement(
-    'kit_stable',
-    'civic_stable',
-    'civic',
-    STABLE_POSITION,
-    FACE_EAST,
-    7 * TOWN_KIT_CIVIC_SCALE,
-  ),
-] as const;
-
 // The housing quarter's kit houses (plan section 4.4) are retired: the vale
 // starts over on the v2 design (owner direction), and the house lots stand on
 // the design's houses (content/house_lots.ts, eastbrook_v2/lots.ts). Meadow
@@ -1222,11 +874,6 @@ const MEADOW_LANE_JOIN = { x: 30, z: -30 } as const;
 /** The housing quarter's lane (ROADS 'meadow_lane'). */
 export const EASTBROOK_MEADOW_LANE_Z = MEADOW_LANE_Z;
 export const EASTBROOK_MEADOW_LANE_JOIN = MEADOW_LANE_JOIN;
-
-// No service reads a kit piece any more (stations, masters, the Merchant and the
-// bursar stand on design sites); the kit stays only for its remaining render,
-// map and decor users until they retire with it.
-const TOWN_KIT = [...YARD, ...MARKET_ROW, ...SQUARE_KIT, ...GATE_KIT];
 
 function makeObbPlacement(
   id: string,
@@ -1357,9 +1004,8 @@ const MARKET_STALL_SPECS = [
   // Round 6b (owner): the two stalls stood 9 yd apart on one line, which put
   // their keepers 6 yd apart, the tightest pair in town. Opened out across the
   // square instead, so the market reads as a square rather than a queue.
-  // Town kit phase 2: The Merchant moved to the trading post's counter on
-  // Market Row (TOWN_KIT); the gold stall stays on the square as market
-  // dressing beside the kit's fruit stall.
+  // The Merchant stands on his v2 design site; the gold stall stays on the
+  // square as market dressing.
   ['eastbrook_market_stall_world_market', 'gold', { x: -20.5, z: -94 }, 2.4805494847391065],
   ['eastbrook_market_stall_provisions', 'green', { x: -19, z: -108 }, 0.6610431688506869],
 ] as const;
@@ -1383,7 +1029,7 @@ const MARKET_STALLS = MARKET_STALL_SPECS.map(([id, canopyVariant, position, rota
 
 function makeFence(
   id: string,
-  district: 'smithy_yard' | 'market_edge' | 'stable_corral',
+  district: 'smithy_yard' | 'market_edge',
   start: Point2,
   end: Point2,
   width: number,
@@ -1401,42 +1047,10 @@ function makeFence(
   };
 }
 
-// The stable's low corral fence (town kit phase 2), on the stable's north
-// flank away from the road bend. The forge yard's U of fencing it replaces
-// closed off the old forge bench, and that bench is the crafting yard's
-// forge canopy now (TOWN_KIT). The far rail stops short of the side rails
-// (CORRAL_CORNER_GAP) so no two rails share a corner post.
-const CORRAL_NEAR_Z = -54.6;
-const CORRAL_FAR_Z = -50;
-const CORRAL_WEST_X = 21;
-const CORRAL_EAST_X = 15;
-const CORRAL_CORNER_GAP = 0.35;
-const FENCES = [
-  makeFence(
-    'eastbrook_fence_corral_west',
-    'stable_corral',
-    { x: CORRAL_WEST_X, z: CORRAL_NEAR_Z },
-    { x: CORRAL_WEST_X, z: CORRAL_FAR_Z },
-    0.28,
-    0.9,
-  ),
-  makeFence(
-    'eastbrook_fence_corral_north',
-    'stable_corral',
-    { x: CORRAL_WEST_X - CORRAL_CORNER_GAP, z: CORRAL_FAR_Z },
-    { x: CORRAL_EAST_X + CORRAL_CORNER_GAP, z: CORRAL_FAR_Z },
-    0.28,
-    0.9,
-  ),
-  makeFence(
-    'eastbrook_fence_corral_east',
-    'stable_corral',
-    { x: CORRAL_EAST_X, z: CORRAL_FAR_Z },
-    { x: CORRAL_EAST_X, z: CORRAL_NEAR_Z },
-    0.28,
-    0.9,
-  ),
-] as const;
+// The stable corral's low rails retired with the old town kit (the v2 vale
+// starts over, owner direction). No fence stands in Eastbrook now; the
+// machinery stays so the layout keeps its shape for the fence consumers.
+const FENCES: ReturnType<typeof makeFence>[] = [];
 
 const WALL_CONFIG = {
   assetId: '/models/props/eastbrook_wall_wing.glb',
@@ -2119,9 +1733,6 @@ export const EASTBROOK_LAYOUT = deepFreeze({
     stalls: MARKET_STALLS,
   },
   fences: FENCES,
-  // The town kit (town kit phase 2): the crafting yard, Market Row, the
-  // square's corner stalls, the stable and the housing streets.
-  townKit: TOWN_KIT,
   wall: {
     ...WALL_CONFIG,
     gates: WALL_GATES,
@@ -2142,4 +1753,3 @@ export const EASTBROOK_BUILDINGS_BY_ID = indexById([
 ]);
 export const EASTBROOK_NPC_PLACEMENTS_BY_ID = indexById(EASTBROOK_LAYOUT.services.npcs);
 export const EASTBROOK_STATIONS_BY_ID = indexById(EASTBROOK_LAYOUT.services.stations);
-export const EASTBROOK_TOWN_KIT_BY_ID = indexById(EASTBROOK_LAYOUT.townKit);

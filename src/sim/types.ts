@@ -12422,9 +12422,9 @@ export interface StationDef {
   zoneId: string;
   pos: { x: number; z: number };
   masterNpcId: string;
-  /** The station's look is authored town dressing (a town kit bench placed as
-   *  zone decor, sim/eastbrook_layout.ts TOWN_KIT), so the generic per-type
-   *  prop cluster (sim/town_props.ts) is neither drawn nor collided there. */
+  /** The station's look belongs to its authored town (Eastbrook's v2 design
+   *  sites; the old town kit benches retired), so the generic per-type prop
+   *  cluster (sim/town_props.ts) is neither drawn nor collided there. */
   dressed?: boolean;
 }
 
