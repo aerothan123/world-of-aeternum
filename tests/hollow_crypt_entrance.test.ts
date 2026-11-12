@@ -426,8 +426,17 @@ describe('the Fallen Chapel seals nobody in', () => {
     // and no open pocket in the footprint is cut off from the rest: only a
     // crumb between two close solids (a few quarter-yard cells, where a body
     // centre would fit but can never arrive) may stay unvisited
+    // The flood box's north-west corner (world x 56..71, z 38..43) clips the
+    // v2 design's bandit palisade, whose interior opens through its own gate
+    // outside the box. That pocket is not chapel ground, so it is left out of
+    // the count; the chapel footprint itself is still held to the crumb bound.
+    const inPalisade = (k: number): boolean => {
+      const wx = DOOR.x + X0 + (k % NX) * STEP;
+      const wz = DOOR.z + Z0 + Math.floor(k / NX) * STEP;
+      return wx >= 56 && wx <= 71 && wz >= 38 && wz <= 43;
+    };
     let sealed = 0;
-    for (let k = 0; k < open.length; k++) if (open[k] && !seen[k]) sealed++;
+    for (let k = 0; k < open.length; k++) if (open[k] && !seen[k] && !inPalisade(k)) sealed++;
     expect(sealed, 'open cells no body can walk to').toBeLessThan(10);
   });
 });
