@@ -3,7 +3,7 @@ const SCENES: Readonly<Record<string, string>> = {
   drowned_temple: '/ui/dungeon-scenes/drowned-temple.webp',
   gravewyrm_sanctum: '/ui/dungeon-scenes/gravewyrm-sanctum.webp',
   wildheart_basin: '/ui/dungeon-scenes/wildheart-basin.webp',
-  nythraxis_crypt: '/textures/loading/hollow-crypt-empty.webp',
+  nythraxis_crypt: '/textures/loading/thornpeak-storm.webp',
   nythraxis_boss_arena: '/textures/loading/thornpeak-storm.webp',
   ignivar_raid_arena: '/textures/loading/drakemaw-caldera.webp',
 };

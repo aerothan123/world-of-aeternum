@@ -2597,8 +2597,6 @@ export const MEDIA_ASSETS: Record<string, string> =
   "textures/loading/eastbrook-square.webp": "/media/textures/loading/eastbrook-square.ff893f9fab9d.webp",
   "textures/loading/fenbridge-march.webp": "/media/textures/loading/fenbridge-march.5002edb83cf9.webp",
   "textures/loading/fenbridge-rain-skiff.webp": "/media/textures/loading/fenbridge-rain-skiff.6eadf638e3c7.webp",
-  "textures/loading/hollow-crypt-empty.webp": "/media/textures/loading/hollow-crypt-empty.b3b534dabcdc.webp",
-  "textures/loading/hollow-crypt-party.webp": "/media/textures/loading/hollow-crypt-party.de6f41886169.webp",
   "textures/loading/thornpeak-storm.webp": "/media/textures/loading/thornpeak-storm.2a821daf87a9.webp",
   "textures/loading/veiled-hollow-stag.webp": "/media/textures/loading/veiled-hollow-stag.8d7083f11cbf.webp",
   "textures/props/eastbrook_realm_builder_impostor.webp": "/media/textures/props/eastbrook_realm_builder_impostor.189acc3df135.webp",

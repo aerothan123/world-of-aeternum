@@ -4985,8 +4985,6 @@ export interface TrashKitDef {
     /** A stun on landing, in seconds (the Bastion Warhound's Lunge). */
     stun?: number;
   };
-  /** An add that stays alive this long in combat turns into `into`. */
-  grow?: { after: number; into: string; name: string };
   /** A perched statue: holds its perch until its pack is pulled, then dives. */
   perch?: { diveSeconds: number; name: string };
   /** A frontal-cone breath's rear twin: a short-bar lash of everything behind. */
@@ -6184,9 +6182,6 @@ export interface DungeonObjectSpawn {
     | 'bastion_buttress_intact'
     | 'bastion_beacon_lamp'
     | 'bastion_mooring_lit'
-    // The Hollow Crypt's grave lanterns (encounters/hollow_crypt/
-    // lady_lanterns.ts): lit, dark or kindling rides the template id.
-    | 'crypt_lady_lantern_lit'
     // The Gravewyrm Sanctum's story markers (encounters/gravewyrm_sanctum/
     // story.ts): the Calving Face's crack step rides the template id.
     | 'sanctum_story_0';

@@ -313,24 +313,11 @@ function stepDescent(ctx: SimContext, mob: Entity, st: TrashKitState): void {
   }
 }
 
-/** A summon template plus every form its kit grows into (a Bone Minion and the
- *  Bone Brute it swells into), read off the content: a grown add is still the
- *  summoner's, so it still counts toward the summon cap. */
-function summonFamily(templateId: string): ReadonlySet<string> {
-  const ids = new Set<string>();
-  for (let id: string | undefined = templateId; id && !ids.has(id); ) {
-    ids.add(id);
-    id = MOBS[id]?.trashKit?.grow?.into;
-  }
-  return ids;
-}
-
 function livingSummons(ctx: SimContext, owner: Entity, templateId: string): number {
-  const family = summonFamily(templateId);
   let n = 0;
   for (const id of owner.summonedIds) {
     const e = ctx.entities.get(id);
-    if (e && !e.dead && family.has(e.templateId)) n++;
+    if (e && !e.dead && e.templateId === templateId) n++;
   }
   return n;
 }
@@ -871,39 +858,6 @@ function stepLeap(
   return true;
 }
 
-/** A kit add that outlived its growth timer turns into its bigger form. */
-function grow(ctx: SimContext, inst: InstanceSlot, mob: Entity, into: string): void {
-  let owner: Entity = mob;
-  for (const id of inst.mobIds) {
-    const e = ctx.entities.get(id);
-    if (e && e.summonedIds.includes(mob.id)) {
-      owner = e;
-      break;
-    }
-  }
-  const victim = mob.aggroTargetId !== null ? (ctx.entities.get(mob.aggroTargetId) ?? null) : null;
-  const grown = spawnKitAdd(
-    ctx,
-    inst,
-    owner === mob ? mob : owner,
-    into,
-    mob.pos.x,
-    mob.pos.z,
-    victim,
-  );
-  if (grown) {
-    grown.facing = mob.facing;
-    grown.prevFacing = mob.facing;
-  }
-  owner.summonedIds = owner.summonedIds.filter((id) => id !== mob.id);
-  for (const meta of ctx.players.values()) {
-    const e = ctx.entities.get(meta.entityId);
-    if (e?.targetId === mob.id) e.targetId = grown?.id ?? null;
-  }
-  mob.trashKit = undefined;
-  ctx.dropEntity(mob.id);
-}
-
 /** The claim mobs that summoned `mob` (a caller's flock). */
 function summonersOf(ctx: SimContext, inst: InstanceSlot, mob: Entity): Entity[] {
   const out: Entity[] = [];
@@ -975,10 +929,6 @@ function stepMob(
   const st = mob.trashKit ?? startTrashKit(ctx, mob, kit, inst);
   mob.trashKit = st;
   st.engaged += DT;
-  if (kit.grow && st.engaged >= kit.grow.after) {
-    grow(ctx, inst, mob, kit.grow.into);
-    return;
-  }
   stepDescent(ctx, mob, st);
   stepPulse(ctx, inst, mob, kit, st);
   // The dungeons' own upkeep (kit_extension.ts): auras kept up, links, drags.

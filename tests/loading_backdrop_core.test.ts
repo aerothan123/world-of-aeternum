@@ -7,13 +7,11 @@ import { LOADING_BACKDROP_PATHS, selectLoadingBackdropPath } from '../src/ui/loa
 describe('loading backdrop selection', () => {
   it('ships the maintainer-selected optimized artwork exactly once', () => {
     expect(LOADING_BACKDROP_PATHS).toEqual([
-      '/textures/loading/hollow-crypt-empty.webp',
       '/textures/loading/crystal-delve.webp',
       '/textures/loading/duskmoor-eclipse.webp',
       '/textures/loading/thornpeak-storm.webp',
       '/textures/loading/eastbrook-mine-duel.webp',
       '/textures/loading/veiled-hollow-stag.webp',
-      '/textures/loading/hollow-crypt-party.webp',
       '/textures/loading/eastbrook-square.webp',
       '/textures/loading/drakemaw-caldera.webp',
       '/textures/loading/fenbridge-march.webp',

@@ -1,11 +1,9 @@
 export const LOADING_BACKDROP_PATHS = [
-  '/textures/loading/hollow-crypt-empty.webp',
   '/textures/loading/crystal-delve.webp',
   '/textures/loading/duskmoor-eclipse.webp',
   '/textures/loading/thornpeak-storm.webp',
   '/textures/loading/eastbrook-mine-duel.webp',
   '/textures/loading/veiled-hollow-stag.webp',
-  '/textures/loading/hollow-crypt-party.webp',
   '/textures/loading/eastbrook-square.webp',
   '/textures/loading/drakemaw-caldera.webp',
   '/textures/loading/fenbridge-march.webp',
