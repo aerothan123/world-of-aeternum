@@ -10,8 +10,8 @@
 // never a clock.
 
 import { describe, expect, it, vi } from 'vitest';
-import { DAWNHOLD, DAWNHOLD_GATES } from '../src/sim/dawnhold_layout';
 import { MOBS } from '../src/sim/data';
+import { DAWNHOLD, DAWNHOLD_GATES } from '../src/sim/dawnhold_layout';
 import { createMob } from '../src/sim/entity';
 import { isPinnedInPlace } from '../src/sim/instances/instance_combat_hold';
 import { ROUTE_MAX_TRIES, routeSearchOpts } from '../src/sim/mob/chase_route';

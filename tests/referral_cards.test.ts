@@ -231,9 +231,9 @@ describe('referral card milestone evidence', () => {
     expect(creditReferralCard(state, { ...event, eligibleCharacterIds: [101] }, ctx).state).toBe(
       state,
     );
-    expect(
-      creditReferralCard(state, { ...event, dungeonId: 'gravewyrm_sanctum' }, ctx).state,
-    ).toBe(state);
+    expect(creditReferralCard(state, { ...event, dungeonId: 'gravewyrm_sanctum' }, ctx).state).toBe(
+      state,
+    );
     // A clear of the retired Hollow Crypt id earns nothing.
     expect(creditReferralCard(state, { ...event, dungeonId: 'hollow_crypt' }, ctx).state).toBe(
       state,

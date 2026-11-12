@@ -197,7 +197,9 @@ describe('heroic charge through the full sim tick', () => {
     expect(stun!.kind).toBe('stun');
     // The announce mirrors the stomp "unleashes" line (localized client-side).
     expect(
-      events.some((e) => e.type === 'log' && e.text === `${MOBS.drowned_thrall.name} unleashes Onrush!`),
+      events.some(
+        (e) => e.type === 'log' && e.text === `${MOBS.drowned_thrall.name} unleashes Onrush!`,
+      ),
     ).toBe(true);
     expect(mob.mobChargeTargetId).toBe(pid);
 

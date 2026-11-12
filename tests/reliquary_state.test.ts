@@ -1504,12 +1504,20 @@ describe('Reliquary pure completion + curator rank', () => {
     const sim = makeSim();
     const { meta } = primary(sim);
     expect(
-      clearCountForSource(meta, { kind: 'dungeon', dungeonId: 'sunken_bastion', difficulty: 'any' }),
+      clearCountForSource(meta, {
+        kind: 'dungeon',
+        dungeonId: 'sunken_bastion',
+        difficulty: 'any',
+      }),
     ).toBe(0);
     meta.deedStats.dungeonClears.sunken_bastion = 1;
     meta.deedStats.dungeonClears['sunken_bastion:heroic'] = 2;
     expect(
-      clearCountForSource(meta, { kind: 'dungeon', dungeonId: 'sunken_bastion', difficulty: 'any' }),
+      clearCountForSource(meta, {
+        kind: 'dungeon',
+        dungeonId: 'sunken_bastion',
+        difficulty: 'any',
+      }),
     ).toBe(3);
     expect(
       clearCountForSource(meta, {

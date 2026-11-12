@@ -69,12 +69,7 @@ const HEROIC_NYTHRAXIS_BOSS_FLOOR = 146;
 const NORMAL_NYTHRAXIS_BOSS_FLOOR = 98;
 const NORMAL_NYTHRAXIS_ADD_FLOOR = 300;
 
-const FIVE_MANS = [
-  'sunken_bastion',
-  'drowned_temple',
-  'gravewyrm_sanctum',
-  'wildheart_basin',
-];
+const FIVE_MANS = ['sunken_bastion', 'drowned_temple', 'gravewyrm_sanctum', 'wildheart_basin'];
 const RAID = 'nythraxis_boss_arena';
 const RAID_BOSS = 'nythraxis_scourge_of_thornpeak';
 // Encounter-script waves (spawnNythraxisAdds / spawnNythraxisHeroicAdds spawn
