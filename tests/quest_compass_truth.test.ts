@@ -391,23 +391,33 @@ describe('the guide twins of audited direction claims (the wiki cannot drift alo
   });
 
   it('craftProse.cooking.ladderBody puts the kitchens on the side they stand', () => {
-    // "the Eastbrook kitchens in the crafting yard south of the square" (town
-    // kit phase 2: the kitchens moved in from the inn lane): the station
-    // record is the placement truth, the hub anchors "the square" exactly as
-    // every other Eastbrook row anchors "town". \bsouth\b cannot match inside
-    // "southeast" or "southwest" (the following letter is a word character), so
-    // the whole-word test is honest.
+    // "the Eastbrook kitchens in the inn northeast of the square" (Eastbrook
+    // Vale v2: the kitchens keep the design inn, svc_inn, where the old crafting
+    // yard south of the square no longer stands): the station record is the
+    // placement truth, the hub anchors "the square" exactly as every other
+    // Eastbrook row anchors "town". Both components are checked, in this
+    // world's frame (east is -X, north is +Z).
     const body = guideStrings.profPages.craftProse.cooking.ladderBody;
-    expect(/\bcrafting yard south of the square\b/.test(body)).toBe(true);
+    expect(/\binn northeast of the square\b/.test(body)).toBe(true);
     const kitchens = EASTBROOK_STATIONS_BY_ID.station_eastbrook_kitchens;
     expect(kitchens).toBeDefined();
     const from = hub(VALE);
     const dx = kitchens.position.x - from.x;
     const dz = kitchens.position.z - from.z;
-    expect(componentHolds('south', dx, dz), `kitchens at dx ${dx} dz ${dz} (south is -Z)`).toBe(
+    expect(componentHolds('north', dx, dz), `kitchens at dx ${dx} dz ${dz} (north is +Z)`).toBe(
       true,
     );
-    // NO dominance arm: "south of the square" names the yard's side, not a
-    // bearing; the yard's kitchens stand on its square end.
+    expect(componentHolds('east', dx, dz), `kitchens at dx ${dx} dz ${dz} (east is -X)`).toBe(true);
+    // The stations line names the same two sides: the yard's forge northwest,
+    // the inn's kitchens northeast.
+    const stations = guideStrings.professions.stationsBody;
+    expect(/\bcrafting yard northwest of the square\b/.test(stations)).toBe(true);
+    expect(/\bkitchens keep the inn northeast of the square\b/.test(stations)).toBe(true);
+    const forge = EASTBROOK_STATIONS_BY_ID.station_eastbrook_forge;
+    expect(componentHolds('north', forge.position.x - from.x, forge.position.z - from.z)).toBe(
+      true,
+    );
+    expect(componentHolds('west', forge.position.x - from.x, forge.position.z - from.z)).toBe(true);
+    // NO dominance arm: "of the square" names a side, not a bearing.
   });
 });
