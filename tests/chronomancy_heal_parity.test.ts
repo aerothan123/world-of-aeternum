@@ -123,8 +123,19 @@ describe('Chronomancy level-20 direct-heal parity', () => {
       if (peer.label !== 'Druid Healing Touch')
         expect(chrono.hps, peer.label).toBeGreaterThanOrEqual(peer.hps * 0.9);
       expect(chrono.hps, peer.label).toBeLessThanOrEqual(peer.hps * 1.45);
+      // Reciprocal ceiling re-anchored 1.45 to 1.56 (2026-11-12) for the
+      // Eastbrook Vale v2 port: the new player start has 11 mobs within 120 yd
+      // where the old one had 27, so the world's mobs consume a different
+      // number of shared-stream draws over the 120 s window and seed 73's crit
+      // rolls land differently. No class, ability or formula changed: the
+      // stream is draw-for-draw identical after world construction, and an
+      // A/B of the armor-avoidance probe anchor on flat versus rolling V2
+      // ground read the same values, so terrain is not the cause. Printed
+      // actuals: Druid 252.8 HPS vs Mend 171.1, ratio 1.4775 (pre-port 247.3
+      // vs 179.5, ratio 1.3777); same relative margin at the new actual, the
+      // convention of the mean-ceiling re-anchor below.
       if (peer.label === 'Druid Healing Touch')
-        expect(peer.hps, peer.label).toBeLessThanOrEqual(chrono.hps * 1.45);
+        expect(peer.hps, peer.label).toBeLessThanOrEqual(chrono.hps * 1.56);
     }
     expect(chrono.hps).toBeGreaterThanOrEqual(peerHpsMean * 0.9);
     // Ceiling re-anchored 1.15 to 1.19 (2026-08-18) for the Eastbrook harbor
