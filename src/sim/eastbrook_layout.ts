@@ -956,7 +956,6 @@ const KIT_FRONT_CLEARANCE = 1.4;
 const FACE_EAST = -Math.PI / 2;
 const FACE_WEST = Math.PI / 2;
 const FACE_NORTH = 0;
-const FACE_SOUTH = Math.PI;
 
 function makeKitPlacement(
   id: string,
@@ -1131,9 +1130,8 @@ const YARD = [
 
 // The owner's scale pass: the kit first stood at about half the size of the
 // town's painted buildings (a door no taller than a character). Houses and
-// civic blocks now stand at these multiples of their first placed heights.
-/** Kit houses stand at this multiple of their first placed height (owner scale pass). */
-export const TOWN_KIT_HOUSE_SCALE = 1.5;
+// civic blocks now stand at these multiples of their first placed heights (the
+// kit houses are retired: the v2 design draws the vale's houses).
 /** Kit civic blocks (trading post, storage shed, stable) at this multiple. */
 export const TOWN_KIT_CIVIC_SCALE = 1.2;
 
@@ -1213,137 +1211,24 @@ const GATE_KIT = [
   ),
 ] as const;
 
-// The housing quarter (plan section 4.4, spread by the owner after the first
-// aerials): the kit houses left the cramped peninsula tip and spread out. Most
-// open ground round the town is hunting ground (the Wolf Run, both boar
-// meadows, the bandit camp and the webwood nest each reach their camp radius
-// plus a mob's wander, mob/aggro_ranges.ts MAX_WANDER_RADIUS), so every house
-// stands where no camp reaches:
-// - the meadow beyond the stable, on Meadow Lane where it leaves the coast
-//   track's bend: the timber house and the slate townhouse on its north side,
-//   the corner house and the green townhouse on its south side;
-// - the old main-street lots the first spread freed: the row terrace north of
-//   the civic square and the stone cottage, both facing south onto open ground;
-// - the harbour rise above the quay, where the red cottage looks over the
-//   landing green, north of the ferry sightline and clear of the drill yard.
-// Every house faces north or south: a lot's door jambs (dungeon_door_jambs.ts)
-// stand either side of the door along x, so a house facing east or west would
-// have a jamb planted in its own doorway. Every house is a SEALED box whose
-// front door is a house lot (content/house_lots.ts), and every house is sized
-// to the town's painted buildings (TOWN_KIT_HOUSE_SCALE): a door stands clearly
-// taller than a character.
+// The housing quarter's kit houses (plan section 4.4) are retired: the vale
+// starts over on the v2 design (owner direction), and the house lots stand on
+// the design's houses (content/house_lots.ts, eastbrook_v2/lots.ts). Meadow
+// Lane's line stays only for the old road table below until the design's
+// roads replace it.
 /** Meadow Lane's line, and the coast track bend it leaves from. */
 const MEADOW_LANE_Z = -24;
 const MEADOW_LANE_JOIN = { x: 30, z: -30 } as const;
-/** A house's front edge stands this far off a lane's centreline. */
-const LANE_SETBACK = 3;
-/** Centre of a house of `depth` whose front faces a lane at `laneCoord`, on the
- *  side `sign` (+1 for the larger coordinate). */
-function offLane(laneCoord: number, sign: number, depth: number): number {
-  return laneCoord + sign * (LANE_SETBACK + depth / 2);
-}
-function houseDepth(asset: TownKitAssetId, height: number): number {
-  const source = TOWN_KIT_ASSETS[asset];
-  return (source.d * height) / source.propHeight;
-}
-function houseWidth(asset: TownKitAssetId, height: number): number {
-  const source = TOWN_KIT_ASSETS[asset];
-  return (source.w * height) / source.propHeight;
-}
-/** A house's centre x from its west-side (smaller x) edge. */
-function fromEdge(asset: TownKitAssetId, height: number, edge: number): number {
-  return edge + houseWidth(asset, height) / 2;
-}
-const H_TERRACE = 11 * TOWN_KIT_HOUSE_SCALE;
-const H_B1 = 11 * TOWN_KIT_HOUSE_SCALE;
-const H_B2 = 13 * TOWN_KIT_HOUSE_SCALE;
-const H_B3 = 8 * TOWN_KIT_HOUSE_SCALE;
-const H_B4 = 8 * TOWN_KIT_HOUSE_SCALE;
-const H_B5 = 12 * TOWN_KIT_HOUSE_SCALE;
-// The green townhouse's detailed build came back a deep block, so it stands at
-// the civic multiple: at the house multiple its back would reach the boar meadow.
-const H_B6 = 11 * TOWN_KIT_CIVIC_SCALE;
-// The meadow: every corner stays past each camp's reach. The timber house and
-// the slate townhouse stand on the lane's north side, the corner house and the
-// green townhouse on its south side.
-const HOUSE_B5 = {
-  x: fromEdge('house_timber_jettied', H_B5, 30.5),
-  z: offLane(MEADOW_LANE_Z, 1, houseDepth('house_timber_jettied', H_B5)),
-};
-const HOUSE_B1 = {
-  x: fromEdge('house_townhouse_slate', H_B1, 44.2),
-  z: offLane(MEADOW_LANE_Z, 1, houseDepth('house_townhouse_slate', H_B1)),
-};
-const HOUSE_B2 = {
-  x: fromEdge('house_timber_corner_tall', H_B2, 12),
-  z: offLane(MEADOW_LANE_Z, -1, houseDepth('house_timber_corner_tall', H_B2)),
-};
-const HOUSE_B6 = {
-  // West of the slate townhouse's line, so its back corner keeps 11 yd past
-  // the boar meadow's reach.
-  x: fromEdge('house_townhouse_green', H_B6, 33),
-  z: offLane(MEADOW_LANE_Z, -1, houseDepth('house_townhouse_green', H_B6)),
-};
-// The old main-street lots, freed by the first spread: the row terrace north of
-// the civic square and the stone cottage at the peninsula's west end, both
-// facing south onto open ground. The ground between them stays open for the
-// story's carpenter's yard (near (-45, -87) and (-66, -88)).
-// The terrace keeps a few yards of open turf between its doors and the square's
-// edge by Trader Wilkes, and its east end short of the smithy.
-const TERRACE_POSITION = { x: -26, z: -84 };
-const HOUSE_B3 = { x: -72, z: -86 };
-// The harbour rise: the red cottage's front on the landing green, well short of
-// the drill yard. At its detailed build's size it stands a little west, clear
-// of the quay cottage's crates (any further east its reach meets them).
-const HOUSE_B4 = { x: -76.5, z: -40 - houseDepth('house_cottage_redtile', H_B4) / 2 };
 /** The housing quarter's lane (ROADS 'meadow_lane'). */
 export const EASTBROOK_MEADOW_LANE_Z = MEADOW_LANE_Z;
 export const EASTBROOK_MEADOW_LANE_JOIN = MEADOW_LANE_JOIN;
-const HOUSING = [
-  makeKitPlacement(
-    'kit_house_a_terrace',
-    'house_row_terrace',
-    'house',
-    TERRACE_POSITION,
-    FACE_SOUTH,
-    H_TERRACE,
-  ),
-  makeKitPlacement(
-    'kit_house_a_well',
-    'civic_well',
-    'dressing',
-    { x: 57, z: MEADOW_LANE_Z - 5 },
-    FACE_EAST,
-    3.6,
-  ),
-  makeKitPlacement('kit_house_b1', 'house_townhouse_slate', 'house', HOUSE_B1, FACE_SOUTH, H_B1),
-  makeKitPlacement('kit_house_b2', 'house_timber_corner_tall', 'house', HOUSE_B2, FACE_NORTH, H_B2),
-  makeKitPlacement('kit_house_b3', 'house_stone_thatch', 'house', HOUSE_B3, FACE_SOUTH, H_B3),
-  makeKitPlacement('kit_house_b4', 'house_cottage_redtile', 'house', HOUSE_B4, FACE_SOUTH, H_B4),
-  makeKitPlacement('kit_house_b5', 'house_timber_jettied', 'house', HOUSE_B5, FACE_SOUTH, H_B5),
-  makeKitPlacement('kit_house_b6', 'house_townhouse_green', 'house', HOUSE_B6, FACE_NORTH, H_B6),
-] as const;
 
-const TOWN_KIT = [...YARD, ...MARKET_ROW, ...SQUARE_KIT, ...GATE_KIT, ...HOUSING];
+const TOWN_KIT = [...YARD, ...MARKET_ROW, ...SQUARE_KIT, ...GATE_KIT];
 
 function kitById(id: string) {
   const placement = TOWN_KIT.find((candidate) => candidate.id === id);
   if (!placement) throw new Error(`missing Eastbrook town kit placement ${id}`);
   return placement;
-}
-
-/** A house lot's door on a kit house: the front point, or for the row
- *  terrace any of its doors (0, 1 or 2), a third of the frontage apart. */
-export function townKitDoorPoint(id: string, door = 0): Point2 {
-  const house = kitById(id);
-  if (house.asset !== 'house_row_terrace') return house.frontStandingPoint;
-  const across = ((door - 1) * house.reach.halfWidth * 2) / 3;
-  return localToWorld(
-    house.position,
-    house.rotation,
-    across,
-    house.reach.halfDepth + KIT_FRONT_CLEARANCE,
-  );
 }
 
 function makeObbPlacement(

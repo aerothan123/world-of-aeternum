@@ -83,8 +83,8 @@ describe('persisted overworld position escape', () => {
     ['market stall', EASTBROOK_LAYOUT.market.stalls[0].position],
     // The town kit relayout (town kit phase 2) stood sealed houses and civic
     // blocks on open ground a character may have logged out on: a save inside
-    // one is lifted out the same way.
-    ['row terrace', EASTBROOK_TOWN_KIT_BY_ID.kit_house_a_terrace.position],
+    // one is lifted out the same way. (The row terrace row retired with the old
+    // town's kit houses in the Eastbrook Vale v2 port, owner direction.)
     ['trading post', EASTBROOK_TOWN_KIT_BY_ID.kit_trading_post.position],
     ['storage shed', EASTBROOK_TOWN_KIT_BY_ID.kit_storage_shed.position],
     ['stable', EASTBROOK_TOWN_KIT_BY_ID.kit_stable.position],

@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad76-3569995e-2a3be70e-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4a93f-88d11427-102ec737-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad76-3569995e-2a3be70e",
+    "overworldBase": "4a93f-88d11427-102ec737",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {

@@ -19,12 +19,14 @@
 // Door positions are the building record's frontStandingPoint
 // (src/sim/authored_town_registry.ts), and leaveOffset steps 3yd further out
 // along the building-to-door direction so leaving clears the 2yd door trigger;
-// tests/housing.test.ts pins both against the live records.
+// tests/housing.test.ts pins both against the live records. Eastbrook's lots
+// stand on the v2 design's houses instead (eastbrook_v2/lots.ts): the door is
+// the design's lot_door point and the step out is the resite tool's.
 //
 // PRICES ARE PLACEHOLDERS (copper), scaled by the town's place on the leveling
 // road, pending a balance pass. They are not classic-era figures.
 
-import { EASTBROOK_TOWN_KIT_BY_ID, townKitDoorPoint } from '../eastbrook_layout';
+import { ebv2LotBuildingId, ebv2LotDoor } from '../eastbrook_v2/lots';
 import { ebv2Site } from '../eastbrook_v2/sites';
 import type { DungeonDef } from '../types';
 
@@ -33,7 +35,8 @@ export interface HouseLotDef {
   readonly id: string;
   /** Player-visible name of the house. */
   readonly name: string;
-  /** The authored town building whose front door this lot is. */
+  /** The authored town building whose front door this lot is, or for an
+   *  Eastbrook lot the v2 design building (`ebv2:<lot_door point>`). */
   readonly buildingId: string;
   /** Zone the lot stands in (for the purchase prompt and the map). */
   readonly zoneId: string;
@@ -45,59 +48,40 @@ export interface HouseLotDef {
   readonly leaveOffset: { readonly x: number; readonly z: number };
   /** Purchase price in copper (placeholder, see the header). */
   readonly priceCopper: number;
-  /** A town kit house's door index (the row terrace has three; every other
-   *  kit house one, door 0). Absent for an authored town building's lot. */
-  readonly kitDoor?: number;
 }
 
-// The Eastbrook housing streets (town kit phase 2,
-// docs/design/town-layout-eastbrook.md section 4.4): every sealed kit house
-// in the housing quarter (Meadow Lane beyond the stable, the old main-street
-// lots and the harbour rise) is a lot. Its door is the kit house's
-// front (sim/eastbrook_layout.ts townKitDoorPoint) and leaving steps 3 yd
-// straight out of its facade.
-const KIT_LEAVE_STEP = 3;
-function kitLot(
+// The Eastbrook lots stand on the v2 design's houses (owner direction: the
+// vale starts over from the ground up, so the old town kit houses are gone).
+// Each lot is the design building at a lot_door point; its door is that point
+// and leaving steps 3 yd out (the resite tool's step, applied by withEbv2Door
+// below; straight +z until then). Ids, names, indexes and prices are the
+// persisted lots' own and never change.
+const DESIGN_LEAVE = Object.freeze({ x: 0, z: 3 });
+function designLot(
   id: string,
   name: string,
-  buildingId: string,
+  doorPointId: string,
   index: number,
   priceCopper: number,
-  kitDoor = 0,
 ): HouseLotDef {
-  const house = EASTBROOK_TOWN_KIT_BY_ID[buildingId];
-  if (!house) throw new Error(`missing Eastbrook kit house ${buildingId}`);
-  const door = townKitDoorPoint(buildingId, kitDoor);
+  const ref = { doorPointId };
+  const door = ebv2LotDoor(ref);
   return Object.freeze({
     id,
     name,
-    buildingId,
+    buildingId: ebv2LotBuildingId(ref),
     zoneId: 'eastbrook_vale',
     dungeonId: `house_${id}`,
     index,
     doorPos: Object.freeze({ x: door.x, z: door.z }),
-    leaveOffset: Object.freeze({
-      x: Math.sin(house.rotation) * KIT_LEAVE_STEP,
-      z: Math.cos(house.rotation) * KIT_LEAVE_STEP,
-    }),
+    leaveOffset: DESIGN_LEAVE,
     priceCopper,
-    kitDoor,
   });
 }
 
 export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze(
   [
-    Object.freeze({
-      id: 'eastbrook_quay_cottage',
-      name: 'Quay Cottage',
-      buildingId: 'eastbrook_quay_cottage',
-      zoneId: 'eastbrook_vale',
-      dungeonId: 'house_eastbrook_quay_cottage',
-      index: 15,
-      doorPos: Object.freeze({ x: -64.4, z: -56.46 }),
-      leaveOffset: Object.freeze({ x: -2.16, z: -2.09 }),
-      priceCopper: 10_00_00,
-    }),
+    designLot('eastbrook_quay_cottage', 'Quay Cottage', 'lot_cobbler', 15, 10_00_00),
     Object.freeze({
       id: 'fenbridge_warden_gatehouse',
       name: "Warden's Gatehouse",
@@ -121,24 +105,17 @@ export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze(
       priceCopper: 50_00_00,
     }),
     // APPENDED (town kit phase 2): the Eastbrook housing streets. Ids and
-    // indexes are new and never reused, like every lot above. The terrace faces
-    // south toward the civic square, as it did on the harbour rise.
-    kitLot('eastbrook_terrace_west', 'West Terrace House', 'kit_house_a_terrace', 18, 8_00_00, 0),
-    kitLot(
-      'eastbrook_terrace_middle',
-      'Middle Terrace House',
-      'kit_house_a_terrace',
-      19,
-      8_00_00,
-      1,
-    ),
-    kitLot('eastbrook_terrace_east', 'East Terrace House', 'kit_house_a_terrace', 20, 8_00_00, 2),
-    kitLot('eastbrook_slate_townhouse', 'Slate Townhouse', 'kit_house_b1', 21, 12_00_00),
-    kitLot('eastbrook_corner_house', 'Corner House', 'kit_house_b2', 22, 14_00_00),
-    kitLot('eastbrook_stone_cottage', 'Stone Cottage', 'kit_house_b3', 23, 10_00_00),
-    kitLot('eastbrook_red_roof_cottage', 'Red Roof Cottage', 'kit_house_b4', 24, 10_00_00),
-    kitLot('eastbrook_timber_house', 'Timber House', 'kit_house_b5', 25, 12_00_00),
-    kitLot('eastbrook_green_townhouse', 'Green Townhouse', 'kit_house_b6', 26, 12_00_00),
+    // indexes are new and never reused, like every lot above. Each now stands
+    // on a v2 design house (the names are the persisted lots' own).
+    designLot('eastbrook_terrace_west', 'West Terrace House', 'lot_larkspur', 18, 8_00_00),
+    designLot('eastbrook_terrace_middle', 'Middle Terrace House', 'lot_thimble', 19, 8_00_00),
+    designLot('eastbrook_terrace_east', 'East Terrace House', 'lot_honeystone', 20, 8_00_00),
+    designLot('eastbrook_slate_townhouse', 'Slate Townhouse', 'lot_plumtree', 21, 12_00_00),
+    designLot('eastbrook_corner_house', 'Corner House', 'lot_bracken', 22, 14_00_00),
+    designLot('eastbrook_stone_cottage', 'Stone Cottage', 'lot_ashgrove', 23, 10_00_00),
+    designLot('eastbrook_red_roof_cottage', 'Red Roof Cottage', 'lot_marketrest', 24, 10_00_00),
+    designLot('eastbrook_timber_house', 'Timber House', 'lot_reedbank', 25, 12_00_00),
+    designLot('eastbrook_green_townhouse', 'Green Townhouse', 'lot_fernhill', 26, 12_00_00),
   ].map(withEbv2Door),
 );
 
