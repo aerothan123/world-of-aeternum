@@ -14,10 +14,20 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { campSpawnOffset } from '../../src/sim/camp_scatter';
-import { rotY } from '../../src/sim/collider_shapes';
-import { isBlocked } from '../../src/sim/colliders';
+import { type Collider, rotY } from '../../src/sim/collider_shapes';
+import { bankerChestSpots, isBlocked, queryOpenWorldColliders } from '../../src/sim/colliders';
 import { HOUSE_LOTS } from '../../src/sim/content/house_lots';
-import { CAMPS, GATHER_NODES, GROUND_OBJECTS, MOBS, NPCS, ZONES, zoneAt } from '../../src/sim/data';
+import {
+  CAMPS,
+  GATHER_NODES,
+  GROUND_OBJECTS,
+  getActiveWorldContent,
+  MOBS,
+  NPCS,
+  WORLD_QUESTS,
+  ZONES,
+  zoneAt,
+} from '../../src/sim/data';
 import { EASTBROOK_LAYOUT } from '../../src/sim/eastbrook_layout';
 import {
   ebv2Colliders,
@@ -27,11 +37,11 @@ import {
   ebv2Weight,
 } from '../../src/sim/eastbrook_v2';
 import { EBV2_FIELD_GRID } from '../../src/sim/eastbrook_v2/field.generated';
-import { EBV2_COLLIDERS } from '../../src/sim/eastbrook_v2/layout.generated';
+import { EBV2_COLLIDERS, EBV2_NODES } from '../../src/sim/eastbrook_v2/layout.generated';
 import { EBV2_SITE_LOG, ebv2Site } from '../../src/sim/eastbrook_v2/sites';
 import { MAX_AGGRO_RADIUS } from '../../src/sim/mob/aggro_ranges';
 import { PLAYER_MAX_CLIMB_SLOPE } from '../../src/sim/pathfind';
-import { INTERACT_RANGE } from '../../src/sim/types';
+import { INTERACT_RANGE, REALM_BUILDER_MONUMENT_INTERACT_RADIUS } from '../../src/sim/types';
 import {
   groundHeight,
   roadDistance,
@@ -49,13 +59,17 @@ const cfg = JSON.parse(
   exact: string[];
   anchors: Record<string, string>;
   lots: Record<string, string>;
-  nodes: Record<string, 'ore' | 'herb' | 'berry'>;
+  /** a design node kind (export order), a named design node id, or an explicit spot */
+  nodes: Record<string, string | P>;
   objectGroups: (
     | { building: string; point: string; items: string[] }
     | { from: P; to: P; items: string[]; building?: undefined }
   )[];
   campFollowers: Record<string, string>;
-  searchRadius: Record<'npc' | 'object' | 'camp' | 'station' | 'service' | 'node', number>;
+  searchRadius: Record<
+    'npc' | 'object' | 'camp' | 'station' | 'service' | 'node' | 'monument',
+    number
+  >;
   npcSpacing: number;
   boardClearance: number;
   hubSafeMargin: number;
@@ -76,6 +90,41 @@ const r2 = (v: number) => Math.round(v * 100) / 100;
 const dist = (a: P, b: P) => Math.hypot(a.x - b.x, a.z - b.z);
 const inVale = (x: number, z: number) => zoneAt(x, z)?.id === 'eastbrook_vale';
 
+// A town service's own body (the Ravenpost pillar on each mailbox row, the banker's
+// strongbox on each resolved chest spot; eastbrook_v2/colliders.ts isServiceBody)
+// stands where the CURRENT sites put its service, and moves with it. A search that
+// saw those bodies would chase its own last answer (the mailbox stepping off its own
+// pillar, then back, every run) and never converge, so every search here looks
+// through them; the mailbox front is held clear of the pillar at the mailbox's NEW
+// site instead (step 1).
+const serviceAt = new Set<string>([
+  ...(getActiveWorldContent().services?.mailboxes ?? []).map((m) => `${m.x},${m.z}`),
+  ...bankerChestSpots(S).map((c) => `${c.x},${c.z}`),
+]);
+// The Realm Builder monument's cylinder is the same kind of body: it stands at the
+// monument's CURRENT site (step 1b moves it), so the searches look through it too.
+const monumentNow = EASTBROOK_LAYOUT.civic.monument;
+const isMonumentBody = (c: Collider) =>
+  c.type === 'circle' && c.x === monumentNow.position.x && c.z === monumentNow.position.z;
+const isServiceBody = (c: Collider) =>
+  (c.type === 'obb' && serviceAt.has(`${c.x},${c.z}`)) || isMonumentBody(c);
+function overlaps(c: Collider, x: number, z: number, r: number): boolean {
+  if (c.type === 'circle') return Math.hypot(x - c.x, z - c.z) < c.r + r;
+  if (c.type === 'obb') {
+    const l = rotY(x - c.x, z - c.z, -c.rot);
+    return Math.hypot(Math.max(Math.abs(l.x) - c.hw, 0), Math.max(Math.abs(l.z) - c.hd, 0)) < r;
+  }
+  return true;
+}
+/** isBlocked, looking through service bodies: only when a service body overlaps the
+ *  spot is the verdict re-judged on the other colliders alone. */
+function blocked(x: number, z: number, r: number): boolean {
+  if (!isBlocked(S, x, z, r)) return false;
+  const near = queryOpenWorldColliders(S, x - r - 1, z - r - 1, x + r + 1, z + r + 1, []);
+  if (!near.some((c) => isServiceBody(c) && overlaps(c, x, z, r))) return true;
+  return near.some((c) => !isServiceBody(c) && overlaps(c, x, z, r));
+}
+
 function standable(x: number, z: number, r: number, maxSlope = 0.55): boolean {
   if (!inVale(x, z)) return false;
   const h = groundHeight(x, z, S);
@@ -83,7 +132,7 @@ function standable(x: number, z: number, r: number, maxSlope = 0.55): boolean {
   const w = waterLevelAt(x, z, S);
   if (w !== -Infinity && h < w + 0.5) return false;
   if (terrainSteepness(x, z, S) > maxSlope) return false;
-  return !isBlocked(S, x, z, r);
+  return !blocked(x, z, r);
 }
 
 // Distance to the nearest of the design's own solids, low obstacles included (the
@@ -166,11 +215,60 @@ sites['svc:noticeboardFront'] = need(
   spiral(board, 4, 0.5, () => true, 1.5),
 );
 const mailbox = sites['svc:mailbox'];
-sites['svc:mailboxFront'] = need(
-  'svc:mailboxFront',
-  spiral(mailbox, 4, 0.5, () => true, 1.1),
-);
+// the pillar as the live list has it at the current site, stood at the new one
+const mailboxNow = svcCurrent['svc:mailbox'];
+const pillar = queryOpenWorldColliders(
+  S,
+  mailboxNow.x - 1,
+  mailboxNow.z - 1,
+  mailboxNow.x + 1,
+  mailboxNow.z + 1,
+  [],
+).find((c) => isServiceBody(c) && c.x === mailboxNow.x && c.z === mailboxNow.z);
+const clearOfPillar = (q: P) =>
+  !pillar || !overlaps({ ...pillar, x: mailbox.x, z: mailbox.z }, q.x, q.z, 0.5);
+sites['svc:mailboxFront'] = need('svc:mailboxFront', spiral(mailbox, 4, 0.5, clearOfPillar, 1.1));
 const boardSpots: P[] = [board, sites['svc:noticeboardFront'], mailbox, sites['svc:mailboxFront']];
+
+// 1b. The Realm Builder monument: the old square's statue stands on the design town
+// nearest its authored spot where a reader can walk all round its cylinder (clear
+// of the design's solids and the live list alike), its plinth stays off every
+// design road lane and every server road lane (EASTBROOK_LAYOUT.roads, kept a
+// half width clear as the layout suite asks), and the board, the mailbox and their
+// posting spots stand beyond its catchment, so it never competes with them for the
+// interact key (tests/realm_builder_monument.test.ts).
+const monumentKey = 'svc:monument';
+const monumentFrom = original(monumentKey, monumentNow.position);
+const monumentReach = monumentNow.radius + 0.6;
+const segDist = (p: P, a: P, b: P) => {
+  const dx = b.x - a.x;
+  const dz = b.z - a.z;
+  const len2 = dx * dx + dz * dz;
+  const t = len2 > 0 ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.z - a.z) * dz) / len2)) : 0;
+  return Math.hypot(p.x - (a.x + dx * t), p.z - (a.z + dz * t));
+};
+const clearOfLayoutRoads = (p: P) =>
+  EASTBROOK_LAYOUT.roads.every((road) =>
+    road.points.every(
+      (q, i) => i === 0 || segDist(p, road.points[i - 1], q) - monumentNow.radius >= road.halfWidth,
+    ),
+  );
+const monument = need(
+  monumentKey,
+  spiral(
+    monumentFrom,
+    cfg.searchRadius.monument,
+    monumentReach,
+    (p) =>
+      designClearance(p) >= monumentReach &&
+      ebv2RoadClearance(p.x, p.z) >= monumentNow.radius &&
+      clearOfLayoutRoads(p) &&
+      boardSpots.every((q) => dist(p, q) >= REALM_BUILDER_MONUMENT_INTERACT_RADIUS + 0.5),
+  ),
+);
+sites[monumentKey] = { x: monument.x, z: monument.z, fromX: monumentFrom.x, fromZ: monumentFrom.z };
+/** Clear of the monument's cylinder at its NEW site by `r` (a body's own radius). */
+const clearOfMonument = (p: P, r: number) => dist(p, monument) >= monumentNow.radius + r;
 
 // 2. Stations.
 for (const st of EASTBROOK_LAYOUT.services.stations) {
@@ -178,7 +276,10 @@ for (const st of EASTBROOK_LAYOUT.services.stations) {
   const anchor = cfg.anchors[key];
   if (!anchor) continue;
   const from = original(key, st.position);
-  const at = need(key, spiral(ebv2Point(anchor), cfg.searchRadius.station, 0.5));
+  const at = need(
+    key,
+    spiral(ebv2Point(anchor), cfg.searchRadius.station, 0.5, (p) => clearOfMonument(p, 0.5)),
+  );
   sites[key] = { x: at.x, z: at.z, fromX: from.x, fromZ: from.z };
 }
 
@@ -189,9 +290,27 @@ const placed: P[] = [];
 const stationSpots = Object.keys(sites)
   .filter((k) => k.startsWith('station:'))
   .map((k) => sites[k]);
-const npcOk = (p: P) =>
+// ...and clear of every service body by a body radius and a skin: the searches look
+// through those bodies (above), but spawn's collision resolve does not, so a keeper
+// standing on the banker's strongbox was pushed aside the moment he appeared. The
+// strongbox follows the bursar, who is placed first and whose site a re-run keeps,
+// so the live spots are the ones he spawns beside. The bursar himself is exempt from
+// the strongboxes: his chest stands at his own side and moves with him.
+const CHEST_KEEPER = 'npc:bursar_fernando';
+const clearOfServiceBodies = (p: P, key: string) =>
+  clearOfMonument(p, 0.7) &&
+  !queryOpenWorldColliders(S, p.x - 2, p.z - 2, p.x + 2, p.z + 2, []).some(
+    (c) =>
+      isServiceBody(c) &&
+      !isMonumentBody(c) &&
+      !(key === CHEST_KEEPER && bankerChestSpots(S).some((s) => s.x === c.x && s.z === c.z)) &&
+      overlaps(c, p.x, p.z, 0.7),
+  );
+const npcOkFor = (key: string) => (p: P) => npcOk(p, key);
+const npcOk = (p: P, key: string) =>
   ebv2RoadClearance(p.x, p.z) >= 0.6 &&
   designClearance(p) >= 0.6 &&
+  clearOfServiceBodies(p, key) &&
   stationSpots.every((q) => dist(p, q) >= 1.2) &&
   placed.every((q) => dist(p, q) >= cfg.npcSpacing) &&
   boardSpots.every((q) => dist(p, q) >= cfg.boardClearance);
@@ -204,7 +323,10 @@ for (const key of anchoredNpcs) {
     continue;
   }
   const from = original(key, fromLog(key, npc.pos));
-  const at = need(key, spiral(ebv2Point(cfg.anchors[key]), cfg.searchRadius.npc, 0.6, npcOk, 1.2));
+  const at = need(
+    key,
+    spiral(ebv2Point(cfg.anchors[key]), cfg.searchRadius.npc, 0.6, npcOkFor(key), 1.2),
+  );
   placed.push(at);
   sites[key] = { x: at.x, z: at.z, fromX: from.x, fromZ: from.z };
 }
@@ -217,11 +339,11 @@ for (const npc of Object.values(NPCS).sort((a, b) => (a.id < b.id ? -1 : 1))) {
     placed.push(from); // shipped ground: stays as authored, and camps keep clear of it
     continue;
   }
-  if (standable(from.x, from.z, 0.6) && npcOk(from)) {
+  if (standable(from.x, from.z, 0.6) && npcOk(from, key)) {
     placed.push(from);
     continue;
   }
-  const at = need(key, spiral(from, cfg.searchRadius.npc, 0.6, npcOk));
+  const at = need(key, spiral(from, cfg.searchRadius.npc, 0.6, npcOkFor(key)));
   placed.push(at);
   sites[key] = { x: at.x, z: at.z, fromX: from.x, fromZ: from.z };
 }
@@ -295,7 +417,28 @@ const nodeQueues = {
   berry: ebv2Nodes('berry').filter(designNodeOk),
 };
 const unfilled: string[] = [];
-for (const [id, kind] of Object.entries(cfg.nodes)) {
+// A node pinned to a named design node, or to an explicit spot (a patch where the
+// design has no node of its own, placed for the zone's gathering coverage), takes
+// that spot first, so the kind queues below never hand the same design node out twice.
+for (const [id, want] of Object.entries(cfg.nodes)) {
+  if (typeof want === 'object') {
+    // a patch's own body is no solid, so it needs a gatherer's footing clear of the design's
+    if (!designNodeOk(want) || designClearance(want) < 1.8)
+      problems.push(`node:${id} explicit spot ${want.x},${want.z} is not workable`);
+    sites[`node:${id}`] = { x: want.x, z: want.z };
+  } else if (!(want in nodeQueues)) {
+    const kind = EBV2_NODES.find((n) => n.id === want)?.kind as keyof typeof nodeQueues | undefined;
+    const queue = kind ? nodeQueues[kind] : undefined;
+    const at = queue?.findIndex((n) => n.id === want) ?? -1;
+    if (!queue || at < 0)
+      problems.push(`node:${id} names design node ${want}, missing or unworkable`);
+    else sites[`node:${id}`] = { x: queue[at].x, z: queue[at].z };
+    if (queue && at >= 0) queue.splice(at, 1);
+  }
+}
+for (const [id, want] of Object.entries(cfg.nodes)) {
+  if (typeof want === 'object' || !(want in nodeQueues)) continue;
+  const kind = want as keyof typeof nodeQueues;
   const n = nodeQueues[kind].shift() ?? (kind === 'berry' ? nodeQueues.herb.shift() : undefined);
   if (n) sites[`node:${id}`] = { x: n.x, z: n.z };
   else unfilled.push(id);
@@ -400,7 +543,115 @@ for (const g of cfg.objectGroups) {
 }
 // An object never rests on (or in) one of the design's solids, low crates included: a
 // pickup must lie on natural ground (tests/ground_object_placement.test.ts).
-const objectClear = (p: P) => designClearance(p) >= 0.4;
+// Room is a player body (0.5 yd), the clearance the content suites ask of every
+// pickup (tests/chapter_one_content.test.ts, tests/world_quests.test.ts), against the
+// live list and the design's own solids alike.
+const OBJECT_ROOM = 0.5;
+// A world quest's delivery cargo and wagon stay inside the quest's area by an
+// interact reach (tests/world_quests.test.ts, the freight yard), wherever they
+// stood inside it as authored.
+const deliveryAreas = new Map<string, { x: number; z: number; radius: number }[]>();
+for (const q of WORLD_QUESTS) {
+  const o = q.objective;
+  if (o.type !== 'delivery') continue;
+  for (const item of [o.pickupObjectItemId, o.deliveryObjectItemId]) {
+    deliveryAreas.set(item, [...(deliveryAreas.get(item) ?? []), q.area]);
+  }
+}
+// ...and in ONE walkable pocket: the design's fences and sheds cut an authored
+// yard into pockets, and a crate a carrier cannot walk to the wagon from is a
+// quest that cannot finish. The yard is the largest pocket of standable ground (a
+// 1 yd lattice, flood-filled four ways) inside the area's interact ring, and every
+// delivery object stands on one of its cells.
+const cellKey = (x: number, z: number) => `${Math.round(x)},${Math.round(z)}`;
+const pockets = new Map<{ x: number; z: number; radius: number }, Set<string>>();
+function yardOf(a: { x: number; z: number; radius: number }): Set<string> {
+  const known = pockets.get(a);
+  if (known) return known;
+  const open = new Set<string>();
+  const R = Math.ceil(a.radius + 4);
+  for (let x = Math.round(a.x) - R; x <= Math.round(a.x) + R; x++)
+    for (let z = Math.round(a.z) - R; z <= Math.round(a.z) + R; z++)
+      // a carrier's body plus a skin, so a squeeze the path search will not
+      // thread never joins two pockets
+      if (standable(x, z, OBJECT_ROOM + 0.3, PLAYER_MAX_CLIMB_SLOPE)) open.add(`${x},${z}`);
+  const seen = new Set<string>();
+  let best = new Set<string>();
+  let bestInside = -1;
+  for (const start of [...open].sort()) {
+    if (seen.has(start)) continue;
+    const pocket = new Set<string>([start]);
+    seen.add(start);
+    const stack = [start];
+    while (stack.length) {
+      const [x, z] = (stack.pop() as string).split(',').map(Number);
+      for (const n of [`${x + 1},${z}`, `${x - 1},${z}`, `${x},${z + 1}`, `${x},${z - 1}`]) {
+        if (open.has(n) && !seen.has(n)) {
+          seen.add(n);
+          pocket.add(n);
+          stack.push(n);
+        }
+      }
+    }
+    let inside = 0;
+    for (const k of pocket) {
+      const [x, z] = k.split(',').map(Number);
+      if (dist({ x, z }, a) + INTERACT_RANGE <= a.radius) inside++;
+    }
+    if (inside > bestInside) {
+      bestInside = inside;
+      best = pocket;
+    }
+  }
+  pockets.set(a, best);
+  return best;
+}
+// ...and keeping the yard's own spacing (tests/world_quests.test.ts): crates
+// DELIVERY_CRATE_GAP apart and the wagon DELIVERY_WAGON_GAP from every crate,
+// measured against where each one stands as this run has sited it so far.
+const DELIVERY_CRATE_GAP = 5;
+const DELIVERY_WAGON_GAP = 9;
+const deliveryRoles = new Map<string, { pickup: string; delivery: string }>();
+for (const q of WORLD_QUESTS) {
+  const o = q.objective;
+  if (o.type !== 'delivery') continue;
+  const roles = { pickup: o.pickupObjectItemId, delivery: o.deliveryObjectItemId };
+  deliveryRoles.set(o.pickupObjectItemId, roles);
+  deliveryRoles.set(o.deliveryObjectItemId, roles);
+}
+// Where each object has been decided to stand in THIS run (kept or moved), by its
+// authored key. A peer not decided yet counts at its authored spot, so the result
+// is a pure function of the authored content and a re-run writes the same file.
+const decided = new Map<string, P>();
+/** Where each of an item's objects stands for this run (see `decided`). */
+function standingOf(itemId: string, except: P): P[] {
+  const out: P[] = [];
+  for (const o of GROUND_OBJECTS) {
+    if (o.itemId !== itemId) continue;
+    for (const p of o.positions) {
+      const from = fromLog(`obj:${itemId}@`, { x: p.x, z: p.z });
+      if (from.x === except.x && from.z === except.z) continue;
+      out.push(decided.get(`obj:${itemId}@${from.x},${from.z}`) ?? from);
+    }
+  }
+  return out;
+}
+const objectClearFor = (itemId: string, from: P) => {
+  const areas = (deliveryAreas.get(itemId) ?? []).filter((a) => dist(from, a) <= a.radius);
+  const roles = deliveryRoles.get(itemId);
+  const gaps: [P, number][] = [];
+  if (roles && itemId === roles.pickup) {
+    for (const q of standingOf(roles.pickup, from)) gaps.push([q, DELIVERY_CRATE_GAP]);
+    for (const q of standingOf(roles.delivery, from)) gaps.push([q, DELIVERY_WAGON_GAP]);
+  } else if (roles) {
+    for (const q of standingOf(roles.pickup, from)) gaps.push([q, DELIVERY_WAGON_GAP]);
+  }
+  return (p: P) =>
+    designClearance(p) >= OBJECT_ROOM &&
+    clearOfMonument(p, OBJECT_ROOM) &&
+    gaps.every(([q, gap]) => dist(p, q) >= gap) &&
+    areas.every((a) => dist(p, a) + INTERACT_RANGE <= a.radius && yardOf(a).has(cellKey(p.x, p.z)));
+};
 // Run after the camps (step 7): an object that belongs to a camp (the stolen supply
 // crates in the bandit camps, sites_config.json campFollowers) moves with it.
 function siteObjects(campMoves: { mobId: string; from: P; to: P; radius: number }[]) {
@@ -418,15 +669,26 @@ function siteObjects(campMoves: { mobId: string; from: P; to: P; radius: number 
         : groupFor.get(o.itemId);
       if (shift) {
         const target = { x: r2(from.x + shift.x), z: r2(from.z + shift.z) };
-        const at = spiral(target, cfg.searchRadius.object, 0.4, objectClear);
+        const at = spiral(
+          target,
+          cfg.searchRadius.object,
+          OBJECT_ROOM,
+          objectClearFor(o.itemId, from),
+        );
         // say where it was aiming, so a re-import that strands a moved object is
         // diagnosable from the log alone
         if (!at) problems.push(`${key} aimed at ${target.x},${target.z}`);
         sites[key] = need(key, at);
+        decided.set(key, sites[key]);
         continue;
       }
-      if (standable(from.x, from.z, 0.4) && objectClear(from)) continue;
-      sites[key] = need(key, spiral(from, cfg.searchRadius.object, 0.4, objectClear));
+      const objectClear = objectClearFor(o.itemId, from);
+      if (standable(from.x, from.z, OBJECT_ROOM) && objectClear(from)) {
+        decided.set(key, from);
+        continue;
+      }
+      sites[key] = need(key, spiral(from, cfg.searchRadius.object, OBJECT_ROOM, objectClear));
+      decided.set(key, sites[key]);
     }
   }
 }

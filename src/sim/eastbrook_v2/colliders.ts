@@ -14,7 +14,9 @@
 import type { Collider } from '../collider_shapes';
 import { GATHER_NODES } from '../content/gather_nodes';
 import { isBuiltinWorldContent } from '../data';
+import { EASTBROOK_LAYOUT } from '../eastbrook_layout';
 import { HARBOR_ROUTE_MARKER_SRC } from '../harbor_route_markers';
+import { delveArchZ } from '../prop_layout';
 import type { WorldContent } from '../types';
 import { ebv2UnanchoredTreeIndexes } from './decorations';
 import { ebv2Owns } from './ground';
@@ -101,17 +103,30 @@ export function ebv2RetiresShippedCollider(c: Collider): boolean {
 }
 
 /** True when a collider is a town service's own body: the Ravenpost pillar
- *  (one per services.mailboxes row, centred on it) or the banker's strongbox
- *  (centred on a resolved chest spot). Like a gather node's body these are
- *  content, sited with their service on the design (sites.ts), not shipped
- *  props, so they keep blocking on design ground. */
+ *  (one per services.mailboxes row, centred on it), the banker's strongbox
+ *  (centred on a resolved chest spot) or the Realm Builder monument's cylinder
+ *  (its wells row). Like a gather node's body these are content, sited with
+ *  their service on the design (sites.ts), not shipped props, so they keep
+ *  blocking on design ground. */
 function isServiceBody(
   c: Collider,
   content: WorldContent | undefined,
   chests: readonly { x: number; z: number }[],
 ): boolean {
-  if (c.type !== 'obb') return false;
   const at = (p: { x: number; z: number }) => p.x === c.x && p.z === c.z;
+  if (c.type === 'circle') {
+    const monument = EASTBROOK_LAYOUT.civic.monument;
+    return (content?.props.wells ?? []).some((w) => w.id === monument.id && at(w));
+  }
+  if (c.type !== 'obb') return false;
+  // a delve entrance's arch slab (the Collapsed Reliquary's mouth sits on design
+  // ground): the one-way threshold leaveDelve drops players in front of
+  if (
+    (content?.props.delveMarkers ?? []).some((dm) =>
+      at({ x: dm.x, z: delveArchZ(dm.z, dm.delveId) }),
+    )
+  )
+    return true;
   return (content?.services?.mailboxes ?? []).some(at) || chests.some(at);
 }
 

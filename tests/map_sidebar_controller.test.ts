@@ -533,7 +533,12 @@ describe('map sidebar controller: walking cadence', () => {
     expect(test.root.querySelectorAll('.map-atlas-nearby-row').length).toBeGreaterThan(0);
     const painted = test.root.firstElementChild;
 
-    test.walk(3);
+    // Three yards toward -X (east in this world's frame). On the Eastbrook Vale
+    // v2 design Smith Haldren stands 5.5 yd toward +X of Marshal, so three yards
+    // that way brings his offer nearer than Marshal's and the list really does
+    // read differently (that walk repaints, correctly); this way nothing
+    // reorders and no rounded distance crosses a bucket edge.
+    test.walk(-3);
 
     // A live distance moved every tick, so the rail used to rebuild its whole
     // subtree four times a second while the player walked.

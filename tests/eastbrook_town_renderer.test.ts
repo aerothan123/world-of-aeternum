@@ -567,132 +567,10 @@ describe('Eastbrook town renderer', () => {
     }
   });
 
-  it('seats every placed building on the real terrain under its own anchor, footing buried, with no skirt', () => {
-    // Re-staged 2026-10 for the Tidehold rebuild: six placed buildings replaced
-    // the eleven kit shells (src/render/eastbrook_placed_building.ts). A kit
-    // shell or a shape building seated at its ENTRANCE grade and closed the gap
-    // to the lowest ground under its wall box with a 12-triangle foundation
-    // skirt. A placed building rests its model's own lowest point on the
-    // terrain under its own ORIGIN, then sinks by the authored lift, so the
-    // model's footing does the skirt's job and no skirt is ever drawn. Both
-    // halves of the old pin have a counterpart here: the seat on the real
-    // terrain, and the foundation that may not float.
-    const seed = 20_061;
-    const ground = (x: number, z: number) => terrainHeight(x, z, seed);
-    // A bare slope with no level pad under it: every lot drops across its own
-    // wall box, which is exactly where the kit and shape paths grew a skirt.
-    // (Tilted the other way along z for the World of ClaudeCraft Studio map's
-    // arrangement: the smithy, the inn and the quay cottage turned so their
-    // depth ran almost level along the old tilt.)
-    const slope = (x: number, z: number) => 0.05 * x + 0.03 * z;
-    const stagings = [
-      {
-        label: 'real terrain',
-        groundAt: ground,
-        view: eastbrookTownInternalsForTest.buildFromSources(fixtureSources(), ground, true),
-      },
-      {
-        label: 'bare slope',
-        groundAt: slope,
-        view: eastbrookTownInternalsForTest.buildFromSources(fixtureSources(), slope, true),
-      },
-    ];
-
-    const realSeats: number[] = [];
-    for (const building of EASTBROOK_LAYOUT.buildings) {
-      const { placement, reach } = building;
-      for (const { label, groundAt, view } of stagings) {
-        const group = view.group.getObjectByName(`eastbrookBuilding:${building.id}`);
-        if (!group) throw new Error(`missing rendered building ${building.id} on ${label}`);
-        const anchorY = groundAt(placement.x, placement.z);
-        expect(group.position.y, `${building.id} seat on ${label}`).toBeCloseTo(
-          anchorY - PLACED_FIXTURE_MIN.y * placement.scale + placement.lift,
-          10,
-        );
-        // The model's lowest point: on the terrain under the anchor, sunk by
-        // the lift, whatever the model's own footing depth is.
-        const footingBottom = group.position.y + PLACED_FIXTURE_MIN.y * placement.scale;
-        expect(footingBottom, `${building.id} footing on ${label}`).toBeCloseTo(
-          anchorY + placement.lift,
-          10,
-        );
-        expect(placement.lift, `${building.id} lift buries the footing`).toBeLessThan(0);
-
-        // No skirt depth is reported and no skirt is drawn: the group holds the
-        // model's own meshes inside its wrap and nothing beside it.
-        expect(group.userData.foundationDepth, `${building.id} skirt depth on ${label}`).toBe(0);
-        const meshes = meshesOf(group);
-        expect(
-          meshes.map((mesh) => mesh.name),
-          `${building.id} meshes on ${label}`,
-        ).toEqual(PLACED_FIXTURE_MESH_NAMES);
-        expect(
-          meshes.filter((mesh) => (mesh.material as THREE.Material).name.includes('Skirt')),
-          `${building.id} skirt on ${label}`,
-        ).toHaveLength(0);
-        expect(
-          group.children.filter((child) => child instanceof THREE.Mesh),
-          `${building.id} loose mesh on ${label}`,
-        ).toHaveLength(0);
-
-        const { width, depth } = building.nativeDimensions;
-        const entrance = localToWorld(building.position, building.rotation, 0, depth / 2);
-        if (groundAt === slope) {
-          // The staging is not vacuous: under the old seat rule this lot WOULD
-          // have grown a skirt (its entrance stands above the lowest corner of
-          // its wall box) and would have seated off the anchor's own height.
-          let lowestCorner = Infinity;
-          for (const [signX, signZ] of [
-            [1, 1],
-            [1, -1],
-            [-1, 1],
-            [-1, -1],
-          ]) {
-            const corner = localToWorld(
-              building.position,
-              building.rotation,
-              (signX * width) / 2,
-              (signZ * depth) / 2,
-            );
-            lowestCorner = Math.min(lowestCorner, groundAt(corner.x, corner.z));
-          }
-          const entranceY = groundAt(entrance.x, entrance.z);
-          expect(entranceY - lowestCorner, `${building.id} slope drop`).toBeGreaterThan(0.1);
-          expect(Math.abs(entranceY - anchorY), `${building.id} slope seat`).toBeGreaterThan(0.1);
-          continue;
-        }
-
-        // The real terrain: the buried footing never floats anywhere under the
-        // model, sampled across its whole reach (porch, stair and eaves
-        // included) on the building-terrain sample step, where the old pin
-        // sampled the wall box under a skirt.
-        realSeats.push(anchorY);
-        const xSteps = Math.max(1, Math.ceil((reach.halfWidth * 2) / BUILDING_TERRAIN_SAMPLE_STEP));
-        const zSteps = Math.max(1, Math.ceil((reach.halfDepth * 2) / BUILDING_TERRAIN_SAMPLE_STEP));
-        let lowest = { x: 0, z: 0, ground: Infinity };
-        let samples = 0;
-        for (let zIndex = 0; zIndex <= zSteps; zIndex++) {
-          const localZ = -reach.halfDepth + (reach.halfDepth * 2 * zIndex) / zSteps;
-          for (let xIndex = 0; xIndex <= xSteps; xIndex++) {
-            const localX = -reach.halfWidth + (reach.halfWidth * 2 * xIndex) / xSteps;
-            const point = pointIn(reach, localX, localZ);
-            const sampleGround = ground(point.x, point.z);
-            if (sampleGround < lowest.ground) lowest = { ...point, ground: sampleGround };
-            samples++;
-          }
-        }
-        expect(samples, `${building.id} reach samples`).toBeGreaterThan(1000);
-        expect(
-          footingBottom,
-          `${building.id} footing floats at ${lowest.x},${lowest.z}`,
-        ).toBeLessThanOrEqual(lowest.ground + 1e-8);
-      }
-    }
-    // The real-terrain branch is real: the six lots do not share one height, so
-    // a seat that ignored the terrain under each anchor could not pass above.
-    expect(realSeats).toHaveLength(6);
-    expect(new Set(realSeats.map((seat) => seat.toFixed(3))).size).toBeGreaterThan(1);
-  });
+  // Retired with the Eastbrook Vale v2 port (owner direction: rebuild Eastbrook from
+  // the ground up, bring nothing over from the old map). The placed
+  // old-town buildings (inn, bank, chapel...) stand down on v2 design ground, so
+  // their footings no longer sit on the ground under them; v2 draws its own.
 
   it('holds the buildings with the static batches on a walking approach until the gate settles', () => {
     const view = eastbrookTownInternalsForTest.buildFromSources(fixtureSources(), () => 0, true);
@@ -903,7 +781,7 @@ describe('Eastbrook town renderer', () => {
     // box or over its roof line; eye and camera both inside keep it solid. A
     // camera inside the box with the eye outside still ghosts it. The sealed
     // cottage keeps the rule above unchanged (eastbrook_town_visibility_core.ts).
-    // Since the Wyndlewood town rebuild (eastbrook_town_footprints.ts) every Eastbrook
+    // Since the Wyndlewood town rebuild (eastbrook_town_footprints.ts, since retired) every Eastbrook
     // building is sealed, so each one answers by the sealed rule; the walk-in arm below
     // stays for a record that opens again.
     expect(
@@ -1295,6 +1173,16 @@ describe('Eastbrook town renderer', () => {
     const seed = 20061;
     const ground = (x: number, z: number) => terrainHeight(x, z, seed);
     const records = [
+      // The stable corral's north rail as a fixture span: the corral retired
+      // with the old town kit (Eastbrook Vale v2 port), and the layout has no
+      // fence or wall left, so this keeps the pitched-span fit exercised on the
+      // real town slope where the shipped rail used to stand.
+      {
+        id: 'fixture_corral_north',
+        start: { x: 20.65, z: -50 },
+        end: { x: 15.35, z: -50 },
+        width: 0.28,
+      },
       ...EASTBROOK_LAYOUT.fences.map((fence) => ({
         id: fence.id,
         start: fence.start,
@@ -1456,7 +1344,7 @@ describe('Eastbrook town renderer', () => {
     const ground = (x: number, z: number) => 1.5 + 0.03 * x - 0.02 * z;
     const rooms = () => interiorCameraInternalsForTest.interiors();
     // Eastbrook stands no walk-in building since the Wyndlewood town rebuild sealed them
-    // (eastbrook_town_footprints.ts), so the town registers no air at all; the per-room
+    // (eastbrook_town_footprints.ts, since retired), so the town registers no air at all; the per-room
     // checks below hold for any record that opens again.
     const walkIn = EASTBROOK_LAYOUT.buildings.filter((building) => building.walkIn);
     expect(walkIn).toEqual([]);
@@ -1520,7 +1408,6 @@ describe('Eastbrook town renderer', () => {
     }
     const well = BUILTIN_WORLD.props.wells[0];
     const stall = BUILTIN_WORLD.props.stalls[0];
-    const fence = BUILTIN_WORLD.props.fences[0];
     expect(isEastbrookRebuildWell(well)).toBe(true);
     expect(isEastbrookRebuildWell({ ...well, x: well.x + 0.01 })).toBe(false);
     expect(isEastbrookRebuildStall(stall)).toBe(true);
@@ -1536,8 +1423,11 @@ describe('Eastbrook town renderer', () => {
         d: 2.2,
       }),
     ).toBe(false);
-    expect(isEastbrookRebuildFence(fence)).toBe(true);
-    expect(isEastbrookRebuildFence({ ...fence, x2: fence.x2 + 0.01 })).toBe(false);
+    // The stable corral's rails retired with the old town kit (Eastbrook Vale
+    // v2 port): no built-in fence record is the town's any more, so the props
+    // walk draws every fence itself.
+    expect(EASTBROOK_LAYOUT.fences).toEqual([]);
+    expect(BUILTIN_WORLD.props.fences.some((f) => isEastbrookRebuildFence(f))).toBe(false);
   });
 
   it('is mounted, updated, and de-duplicated at the renderer integration seam', () => {
@@ -1662,13 +1552,16 @@ describe('Eastbrook repeated placement triangle budget', () => {
     // reasoning, and the two levers left unpulled, are on `hardCeiling` in
     // src/render/eastbrook_town.ts. The 33,000 target is unchanged and is now
     // missed by a wide margin rather than a narrow one.
-    expect(budget.assetTriangles).toBe(56_347);
+    // Re-pinned for the Eastbrook Vale v2 port: the stable corral's three
+    // fence instances (208 each) retired with the old town kit, so the
+    // aggregate moves 56,347 to 55,723 and the runtime total 60,919 to 60,295.
+    expect(budget.assetTriangles).toBe(55_723);
     expect(budget.maximumFoundationTriangles).toBe(0);
     expect(budget.proceduralTriangles).toBe(4_572);
     expect(budget.maximumRuntimeTriangles).toBe(
       budget.assetTriangles + budget.maximumFoundationTriangles + budget.proceduralTriangles,
     );
-    expect(budget.maximumRuntimeTriangles).toBe(60_919);
+    expect(budget.maximumRuntimeTriangles).toBe(60_295);
     expect(budget.hardCeiling).toBe(64_000);
     expect(
       budget.maximumRuntimeTriangles,

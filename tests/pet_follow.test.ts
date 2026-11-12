@@ -119,7 +119,12 @@ describe('pet heel pathfinding', () => {
     // snaps to heel. Re-staged 2026-10-14 for the Tidehold rebuild of Eastbrook
     // (#4494): the old (12,-135)/(12,-48) pair's bank no longer breaks the line,
     // so the pet ran home instead. Staged on terrain, away from the town.
-    const { sim, pet, owner } = setup({ x: -150, y: 0, z: 178 }, { x: -150, y: 0, z: 90 });
+    // Re-staged for Eastbrook Vale v2: the (-150, 90)/(-150, 178) pair is v2
+    // design ground now and the pet found a route. On this suite's seed the
+    // first 88 yd column north of the v2 field that still leaves only the warp
+    // is (-180, 260)/(-180, 348) (tests/fixes_loot_npcs.test.ts re-staged its
+    // pair the same way on the production seed).
+    const { sim, pet, owner } = setup({ x: -180, y: 0, z: 348 }, { x: -180, y: 0, z: 260 });
     expect(dist(pet.pos, owner.pos)).toBeGreaterThan(60);
     sim.tick();
     expect(dist(pet.pos, owner.pos)).toBeLessThan(1);

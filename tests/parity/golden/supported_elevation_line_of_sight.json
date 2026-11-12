@@ -4,13 +4,13 @@
   "sampleEvery": 10,
   "ticks": 81,
   "coverage": [
-    "Eastbrook standable canopy supplies grounded player eye elevation for a completed heal",
-    "Eastbrook standable canopy keeps a jumping target visible without granting jump height",
+    "standable market canopy supplies grounded player eye elevation for a completed heal",
+    "standable market canopy keeps a jumping target visible without granting jump height",
     "airborne player elevation is rejected behind ordinary open-world cover",
     "shared Sim cast entry point and completion LOS recheck"
   ],
-  "draws": 352,
-  "drawDigest": "d75fc7c3",
+  "draws": 363,
+  "drawDigest": "a438d31c",
   "frames": [
     {
       "tick": 0,
@@ -30,8 +30,8 @@
       "tick": 0,
       "time": 0,
       "nextId": 1403,
-      "state": "87d063ca",
-      "events": "3d422aa7",
+      "state": "b55345d6",
+      "events": "cf84a232",
       "rng": {
         "draws": 0,
         "digest": "811c9dc5"
@@ -232,13 +232,18 @@
         {
           "aiState": "idle",
           "attackPower": 10,
+          "castRemaining": 2,
+          "castTargetId": 1402,
+          "castTotal": 2,
+          "castingAbility": "lesser_heal",
           "combatTimer": 99,
           "comboUntil": -1,
           "critChance": 0.0555,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0555,
-          "fallStartY": "-Infinity",
+          "fallStartY": 4.540129,
           "fiveSecondRule": 99,
+          "gcdRemaining": 1.5,
           "healPower": 12,
           "hp": 51,
           "id": 1401,
@@ -252,9 +257,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": "-Infinity",
-            "z": -94
+            "x": 326,
+            "y": 4.540129,
+            "z": 802
           },
           "potionCooldownUntil": -1,
           "resource": 175,
@@ -301,7 +306,7 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": 1.625,
+          "fallStartY": 2,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 1,
@@ -317,9 +322,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.625,
-            "z": -86
+            "x": 326,
+            "y": 2,
+            "z": 810
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -350,7 +355,7 @@
       "tick": 10,
       "time": 0.5,
       "nextId": 1403,
-      "state": "44338aa2",
+      "state": "8752d849",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -361,7 +366,7 @@
       "tick": 20,
       "time": 1,
       "nextId": 1403,
-      "state": "e06f8ab5",
+      "state": "6898194d",
       "events": "9af15890",
       "rng": {
         "draws": 0,
@@ -372,7 +377,7 @@
       "tick": 30,
       "time": 1.5,
       "nextId": 1403,
-      "state": "c6b8be67",
+      "state": "f1571e72",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -383,22 +388,22 @@
       "tick": 40,
       "time": 2,
       "nextId": 1403,
-      "state": "e0bfe138",
-      "events": "741638a5",
+      "state": "56a5d32b",
+      "events": "2e4437e6",
       "rng": {
-        "draws": 0,
-        "digest": "811c9dc5"
+        "draws": 2,
+        "digest": "f56e9f11"
       }
     },
     {
       "tick": 40,
       "time": 2,
       "nextId": 1403,
-      "state": "e0bfe138",
+      "state": "56a5d32b",
       "events": "741638a5",
       "rng": {
-        "draws": 0,
-        "digest": "811c9dc5"
+        "draws": 2,
+        "digest": "f56e9f11"
       },
       "label": "supported-heal-complete",
       "players": [
@@ -440,8 +445,7 @@
               "spring_water"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -540,7 +544,7 @@
               "worn_sword"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -603,13 +607,14 @@
         {
           "aiState": "idle",
           "attackPower": 10,
+          "castTotal": 2,
           "combatTimer": 101,
           "comboUntil": -1,
           "critChance": 0.0555,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0555,
-          "fallStartY": 1.5,
-          "fiveSecondRule": 101,
+          "fallStartY": 4.540129,
+          "fiveSecondRule": 0.05,
           "healPower": 12,
           "hp": 51,
           "id": 1401,
@@ -623,12 +628,12 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.5,
-            "z": -94
+            "x": 326,
+            "y": 4.540129,
+            "z": 802
           },
           "potionCooldownUntil": -1,
-          "resource": 175,
+          "resource": 149,
           "resourceType": "mana",
           "spawnPos": {
             "x": -16,
@@ -672,10 +677,10 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": 1.625,
+          "fallStartY": 2,
           "fiveSecondRule": 101,
           "healPower": 5,
-          "hp": 10,
+          "hp": 74,
           "id": 1402,
           "kind": "player",
           "level": 1,
@@ -688,9 +693,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.625,
-            "z": -86
+            "x": 326,
+            "y": 2,
+            "z": 810
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -721,11 +726,11 @@
       "tick": 41,
       "time": 2.05,
       "nextId": 1403,
-      "state": "d38e795b",
-      "events": "3d422aa7",
+      "state": "fff3755a",
+      "events": "cf84a232",
       "rng": {
-        "draws": 4,
-        "digest": "45cc6484"
+        "draws": 6,
+        "digest": "05c1975a"
       },
       "label": "canopy-jump-heal-start",
       "players": [
@@ -767,8 +772,7 @@
               "spring_water"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -867,7 +871,7 @@
               "worn_sword"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -930,13 +934,18 @@
         {
           "aiState": "idle",
           "attackPower": 10,
+          "castRemaining": 2,
+          "castTargetId": 1402,
+          "castTotal": 2,
+          "castingAbility": "lesser_heal",
           "combatTimer": 101.05,
           "comboUntil": -1,
           "critChance": 0.0555,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0555,
-          "fallStartY": 1.625,
-          "fiveSecondRule": 101.05,
+          "fallStartY": 2,
+          "fiveSecondRule": 0.1,
+          "gcdRemaining": 1.5,
           "healPower": 12,
           "hp": 51,
           "id": 1401,
@@ -950,9 +959,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.625,
-            "z": -86
+            "x": 326,
+            "y": 2,
+            "z": 810
           },
           "potionCooldownUntil": -1,
           "resource": 175,
@@ -999,11 +1008,12 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": 1.5,
+          "fallStartY": 4.540129,
           "fiveSecondRule": 101.05,
           "healPower": 5,
           "hp": 1,
           "id": 1402,
+          "jumping": true,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -1011,13 +1021,12 @@
           "maxResource": 100,
           "moveSpeed": 7,
           "offhandItemId": "eastbrook_buckler",
-          "onGround": true,
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.5,
-            "z": -94
+            "x": 326,
+            "y": 4.800129,
+            "z": 802
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -1048,55 +1057,55 @@
       "tick": 50,
       "time": 2.5,
       "nextId": 1403,
-      "state": "ad6d18e4",
+      "state": "7fb3ef70",
       "events": "741638a5",
       "rng": {
-        "draws": 66,
-        "digest": "178c81b8"
+        "draws": 68,
+        "digest": "67de50d8"
       }
     },
     {
       "tick": 60,
       "time": 3,
       "nextId": 1403,
-      "state": "6b542de5",
+      "state": "b545e948",
       "events": "741638a5",
       "rng": {
-        "draws": 157,
-        "digest": "f3d112e3"
+        "draws": 158,
+        "digest": "85fd701d"
       }
     },
     {
       "tick": 70,
       "time": 3.5,
       "nextId": 1403,
-      "state": "9f307517",
+      "state": "94a4dd7b",
       "events": "741638a5",
       "rng": {
-        "draws": 246,
-        "digest": "8faeec8e"
+        "draws": 250,
+        "digest": "3d6c5d68"
       }
     },
     {
       "tick": 80,
       "time": 4,
       "nextId": 1403,
-      "state": "25e4fd2a",
+      "state": "d24c9bee",
       "events": "741638a5",
       "rng": {
-        "draws": 346,
-        "digest": "5cb2dba3"
+        "draws": 354,
+        "digest": "6f936d90"
       }
     },
     {
       "tick": 81,
       "time": 4.05,
       "nextId": 1403,
-      "state": "b161debf",
-      "events": "741638a5",
+      "state": "85238878",
+      "events": "1be2dcfd",
       "rng": {
-        "draws": 352,
-        "digest": "d75fc7c3"
+        "draws": 363,
+        "digest": "a438d31c"
       },
       "label": "canopy-jump-heal-complete",
       "players": [
@@ -1138,8 +1147,7 @@
               "spring_water"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -1238,8 +1246,7 @@
               "worn_sword"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -1302,13 +1309,14 @@
         {
           "aiState": "idle",
           "attackPower": 10,
+          "castTotal": 2,
           "combatTimer": 103.05,
           "comboUntil": -1,
           "critChance": 0.0555,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0555,
-          "fallStartY": 1.625,
-          "fiveSecondRule": 103.05,
+          "fallStartY": 2,
+          "fiveSecondRule": 0.05,
           "healPower": 12,
           "hp": 51,
           "id": 1401,
@@ -1322,12 +1330,12 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.625,
-            "z": -86
+            "x": 326,
+            "y": 2,
+            "z": 810
           },
           "potionCooldownUntil": -1,
-          "resource": 175,
+          "resource": 145,
           "resourceType": "mana",
           "spawnPos": {
             "x": -16,
@@ -1371,10 +1379,10 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": 1.5,
+          "fallStartY": 4.540129,
           "fiveSecondRule": 103.05,
           "healPower": 5,
-          "hp": 10,
+          "hp": 79,
           "id": 1402,
           "kind": "player",
           "level": 1,
@@ -1387,9 +1395,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20.5,
-            "y": 1.5,
-            "z": -94
+            "x": 326,
+            "y": 4.540129,
+            "z": 802
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -1420,11 +1428,11 @@
       "tick": 81,
       "time": 4.05,
       "nextId": 1403,
-      "state": "634eb624",
-      "events": "cf84a232",
+      "state": "927e54b5",
+      "events": "3d422aa7",
       "rng": {
-        "draws": 352,
-        "digest": "d75fc7c3"
+        "draws": 363,
+        "digest": "a438d31c"
       },
       "label": "airborne-cover-denied",
       "players": [
@@ -1466,8 +1474,7 @@
               "spring_water"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -1566,8 +1573,7 @@
               "worn_sword"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -1630,18 +1636,14 @@
         {
           "aiState": "idle",
           "attackPower": 10,
-          "castRemaining": 2,
-          "castTargetId": 1402,
           "castTotal": 2,
-          "castingAbility": "lesser_heal",
           "combatTimer": 103.05,
           "comboUntil": -1,
           "critChance": 0.0555,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0555,
-          "fallStartY": 14.200748,
-          "fiveSecondRule": 103.05,
-          "gcdRemaining": 1.5,
+          "fallStartY": 13.604577,
+          "fiveSecondRule": 0.05,
           "healPower": 12,
           "hp": 51,
           "id": 1401,
@@ -1655,9 +1657,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -224,
-            "y": 14.200748,
-            "z": 200
+            "x": 154,
+            "y": 13.604577,
+            "z": 194
           },
           "potionCooldownUntil": -1,
           "resource": 175,
@@ -1704,7 +1706,7 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": 7.463051,
+          "fallStartY": 14.945975,
           "fiveSecondRule": 103.05,
           "healPower": 5,
           "hp": 1,
@@ -1720,9 +1722,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -224,
-            "y": 7.463051,
-            "z": 224
+            "x": 172,
+            "y": 14.945975,
+            "z": 194
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -1753,11 +1755,11 @@
       "tick": 81,
       "time": 4.05,
       "nextId": 1403,
-      "state": "634eb624",
+      "state": "927e54b5",
       "events": "741638a5",
       "rng": {
-        "draws": 352,
-        "digest": "d75fc7c3"
+        "draws": 363,
+        "digest": "a438d31c"
       },
       "label": "final",
       "players": [
@@ -1799,8 +1801,7 @@
               "spring_water"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -1899,8 +1900,7 @@
               "worn_sword"
             ],
             "visited": [
-              "poi:eastbrook_vale:eastbrook",
-              "poi:eastbrook_vale:the_sowfield"
+              "poi:evergarden:hedgewick"
             ]
           },
           "delveClears": {},
@@ -1963,18 +1963,14 @@
         {
           "aiState": "idle",
           "attackPower": 10,
-          "castRemaining": 2,
-          "castTargetId": 1402,
           "castTotal": 2,
-          "castingAbility": "lesser_heal",
           "combatTimer": 103.05,
           "comboUntil": -1,
           "critChance": 0.0555,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0555,
-          "fallStartY": 14.200748,
-          "fiveSecondRule": 103.05,
-          "gcdRemaining": 1.5,
+          "fallStartY": 13.604577,
+          "fiveSecondRule": 0.05,
           "healPower": 12,
           "hp": 51,
           "id": 1401,
@@ -1988,9 +1984,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -224,
-            "y": 14.200748,
-            "z": 200
+            "x": 154,
+            "y": 13.604577,
+            "z": 194
           },
           "potionCooldownUntil": -1,
           "resource": 175,
@@ -2037,7 +2033,7 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": 7.463051,
+          "fallStartY": 14.945975,
           "fiveSecondRule": 103.05,
           "healPower": 5,
           "hp": 1,
@@ -2053,9 +2049,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -224,
-            "y": 7.463051,
-            "z": 224
+            "x": 172,
+            "y": 14.945975,
+            "z": 194
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",

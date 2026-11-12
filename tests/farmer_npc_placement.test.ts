@@ -40,7 +40,9 @@ const FARMERS: readonly {
     id: 'farmer_jessica',
     patchId: 'patch_eastbrook',
     zoneId: 'eastbrook_vale',
-    seat: { x: -15.5, z: -81.5 },
+    // Eastbrook Vale v2: her v2 design site (sites.generated.ts
+    // npc:farmer_jessica), 1.5 yd north of her old seat (-15.5, -81.5).
+    seat: { x: -15.5, z: -80 },
   },
   {
     id: 'farmer_teasel',

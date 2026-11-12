@@ -21,7 +21,7 @@ function world(state = 'active'): WolvesGuideReader {
 describe('wolves guidance geometry and visibility', () => {
   it('resolves the authored forest wolf camp (a content rename degrades to no route, never a throw)', () => {
     expect(WOLF_RUN_CAMP).not.toBeNull();
-    expect(WOLVES_ROUTE.length).toBe(8);
+    expect(WOLVES_ROUTE.length).toBe(17);
   });
 
   it('answers a finished quest from questsDone before the zone scan or any questState read', () => {
@@ -86,22 +86,32 @@ describe('wolves guidance geometry and visibility', () => {
     const outbound = eastbrookWolvesGuide(world(), () => false);
     const home = eastbrookWolvesGuide(world('ready'), () => false);
     if (!outbound.plan) throw new Error('Expected active wolves route');
-    expect(WOLF_RUN_CAMP).toEqual({ x: -10, z: 6, radius: 28.5 });
+    // Eastbrook Vale v2: the camp authored at (-10, 6) stands on its design
+    // site (sites.generated.ts camp:forest_wolf@-10,6), radius unchanged.
+    expect(WOLF_RUN_CAMP).toEqual({ x: -22, z: 16, radius: 28.5 });
     expect(outbound.plan?.points).toEqual(WOLVES_ROUTE);
-    // Re-pinned 2026-10 for the Tidehold rebuild: the apothecary's shop stood
-    // on the old line north-west out of the square, so the trail followed the
-    // north road round its east end. Re-pinned for the World of ClaudeCraft
-    // Studio map's arrangement: the smithy stands on that line now, so the
-    // trail follows the north road's swing round its forge shelter's west end
-    // and back over the rise behind it, west of the road's lamp.
+    // Re-pinned for Eastbrook Vale v2: Marshal keeps the notice board on the
+    // design square, so the trail swings round the far side of the monument and
+    // the market stalls, takes the town road out of the north gate and the north
+    // road over the brook bridge (the old line round the smithy's forge
+    // shelter crossed the design's stalls).
     expect(WOLVES_ROUTE).toEqual([
       EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.position,
-      { x: 13.5, z: -93.5 },
-      { x: 16.3, z: -83 },
-      { x: 17.5, z: -76 },
-      { x: 14, z: -69 },
-      { x: 7.5, z: -61.5 },
-      { x: 5, z: -52 },
+      { x: -4, z: -109.6 },
+      { x: -11, z: -110.3 },
+      { x: -20, z: -107 },
+      { x: -21, z: -101 },
+      { x: -18.5, z: -97.5 },
+      { x: -14, z: -94 },
+      { x: -10.5, z: -89 },
+      { x: -9.5, z: -82 },
+      { x: -6.5, z: -70 },
+      { x: -6, z: -57 },
+      { x: -7, z: -50 },
+      { x: -13, z: -46 },
+      { x: -18, z: -41 },
+      { x: -18, z: -30 },
+      { x: -19, z: -18 },
       WOLF_RUN_CAMP,
     ]);
     expect(outbound.areaRing).toEqual(WOLF_RUN_CAMP);

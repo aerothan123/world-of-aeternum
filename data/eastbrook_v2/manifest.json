@@ -1,13 +1,13 @@
 {
   "note": "Written by scripts/eastbrook_v2/import_eastbrook_v2.ts. Do not edit by hand.",
   "source": {
-    "commit": "0091c326e526ecfb05ded209f9532fc39dac3d44",
+    "commit": "1ed8cf4da2d74c49dd764ecf05e0b221cae00757",
     "files": {
       "heightfield.json": "b4551c2194d49a825de922c47fd058e003b6087410d91239028e3a88122aae91",
-      "colliders.json": "df4a1ba8859d1380c0704332c2f7c2310ff1dd9d62d77083ed42a0d60a9f18fe",
-      "points.json": "83bc6c9ddbc688981ac45fc2900a536a4b991800126b8816398e8e831f70e7ad",
+      "colliders.json": "64c16459c1845f17346c47408a333c94747f30693d5eca1de3c5e57d89e0b3e7",
+      "points.json": "9c4f0a6761338d39377170de650fe56653576f697888774ecf7bd8db479b32ac",
       "nodes.json": "42e01f94cc33796fd8e4d975507fc14df703e19453bf603fea125de73ce1345d",
-      "roads.json": "d5ca6dff6a2fc096683e8380ed197b53358fbec510bc58aeae7c89e3671e4e7c"
+      "roads.json": "9da2a725ef9d840647059cbd3f8239058277c25c02b1bb44d2b6d7bc89640b94"
     }
   },
   "counts": {
@@ -33,6 +33,6 @@
     },
     "trees": 259,
     "nodesOutsideSlot": {},
-    "roads": 14
+    "roads": 15
   }
 }

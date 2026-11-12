@@ -21,6 +21,7 @@ import {
 import { Sim } from '../src/sim/sim';
 import { DT, type Entity, type ItemDef, RUN_SPEED, type Vec3 } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { VALE_MEADOW as M } from './helpers/vale_meadow';
 
 // A hunter pet used to be frozen at tame time: its health and damage came only
 // from the wild-mob template it was tamed from, and Entity.attackPower stayed 0
@@ -454,8 +455,11 @@ describe('pet_scaling: heeling a walking or mounted owner', () => {
     // exactly RUN_SPEED * 1.1 * DT and only owner-tracking can beat it. A fast wild
     // beast (forest_wolf runs 8) would otherwise clear the bar without the fix.
     pet.moveSpeed = 5.2;
-    place(owner, 0, 0);
-    place(pet, 0, -30); // well past the heel distance, well inside the warp range
+    // Re-sited for Eastbrook Vale v2: (0, 0) and (0, -30) are v2 design ground,
+    // whose relief and solids bend the measured step; the pair runs in the
+    // vale meadow, clear and level on every seed, with the same 30 yd gap.
+    place(owner, M.x, M.z);
+    place(pet, M.x, M.z - 30); // well past the heel distance, well inside the warp range
     const meta = sim.players.get(pid)!;
     meta.ridingTrained = ridingTier > 0;
     meta.ridingTier = ridingTier === 0 ? undefined : ridingTier;

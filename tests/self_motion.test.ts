@@ -388,18 +388,25 @@ describe('SelfMotionPredictor', () => {
     expect(lab.srv.player.pos.z).toBeCloseTo(-1000, 3);
   });
 
-  // Running into a blocker (an Eastbrook v2 building's south wall, the
-  // ebv2:col_25469 collider at world (-47.59, -100.01), whose flat south face
-  // stands at z = -104.22; the Fallen Chapel lane went with the Hollow Crypt's
-  // entrance) is the case the predictor must NOT "correct". Re-staged 2026-10: the lanes ran at x 17.5 into the Wolf Run
+  const BLOCKER_LANE = { x: -32.87, z: -88.6 - 5.82 };
+  const BLOCKER_LANE_NEAR = { x: -32.87, z: -88.6 - 4.02 };
+
+  // Running into a blocker (the south wall of the Eastbrook Vale v2 inn, see
+  // below; the Fallen Chapel lane went with the Hollow Crypt's entrance) is the
+  // case the predictor must NOT "correct". Re-staged 2026-10: the lanes ran at x 17.5 into the Wolf Run
   // barracks until the genshin artstyle merge (8bff2cec638) cleared it, which
   // left them running into open ground. The display stops at the wall a full
   // echo before the server does, and that is right. Stripping the lead against the lagging anchor teleports the avatar
   // backward by RUN_SPEED x echo on the contact frame. A normal forward step at
   // 60 fps is RUN_SPEED/60 = 0.117 yd, so any backward frame step of that order
   // reads as a snap; the leash + divergence servo alone keep it sub-centimeter.
+  // Re-staged for Eastbrook Vale v2: the Fallen Chapel's gable wall stands
+  // down on v2 design ground. The lanes now run north into the south wall of
+  // the v2 inn (EBV2_COLLIDERS col_27704, an axis-aligned 16.6 x 11.3 yd box at
+  // (-32.87, -82.94), its flat south face at z = -88.6) over level open ground,
+  // starting the same 5.82 yd (and 4.02 yd) short of the face as before.
   it.each([100, 200, 300])('does not snap the pose backward on contact at %ims echo', (lagMs) => {
-    const lab = new Lab(lagMs, FRAME_MS, { start: { x: -47.5, z: -110 }, facing: 0 });
+    const lab = new Lab(lagMs, FRAME_MS, { start: BLOCKER_LANE, facing: 0 });
     lab.frame();
     lab.frame();
     lab.setInput(mi({ forward: true }));
@@ -420,7 +427,7 @@ describe('SelfMotionPredictor', () => {
   });
 
   it('never renders the pose through a blocker it is running into', () => {
-    const lab = new Lab(200, FRAME_MS, { start: { x: -47.5, z: -110 }, facing: 0 });
+    const lab = new Lab(200, FRAME_MS, { start: BLOCKER_LANE, facing: 0 });
     lab.frame();
     lab.frame();
     lab.setInput(mi({ forward: true }));
@@ -439,7 +446,7 @@ describe('SelfMotionPredictor', () => {
   });
 
   it('holds a settled pose while forward is held against a wall', () => {
-    const lab = new Lab(120, FRAME_MS, { start: { x: -47.5, z: -108.2 }, facing: 0 });
+    const lab = new Lab(120, FRAME_MS, { start: BLOCKER_LANE_NEAR, facing: 0 });
     lab.setInput(mi({ forward: true }));
     for (let i = 0; i < 60; i++) lab.frame(); // run in and settle
 

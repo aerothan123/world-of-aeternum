@@ -74,26 +74,17 @@ describe('the calm field keeps graded features on their exact classic terrain', 
     // outside its flatten disc, so the ring eases this sample toward the
     // legacy field. Measured, understood, and far below anything a player
     // can see on a road; the golden follows the intended move.
-    ['vale road', 30, -30, -1.777849597020717],
+    // Retired with the Eastbrook Vale v2 port: 'vale road' (30, -30) and 'vale
+    // hub core' (-14, -102) stood inside the vale slot, where the v2 design's
+    // own heightfield now owns the ground (eastbrook_v2/ground.ts, pinned by
+    // tests/eastbrook_v2_world.test.ts), so the classic calm-field height no
+    // longer applies there.
     ['peaks road', -98, 727, 10.139872348652359],
     ['marsh road', 20, 470, -1.769678368869094],
     ['frost road', -73, 1696, 13.619770689175878],
     ['peaks camp core', -90, 700, 12.536439409032718],
     ['tiny camp core', -78, 716, 13.501711523786856],
     ['ember camp core', 392, 2296, 10.399999999999999],
-    // Re-minted 2026-08: the hub core moved with the town to the civic
-    // square on the harbor plat (d19aa33f76,
-    // docs/design/eastbrook-revamp/site-plan.md); calm is exactly 0 there
-    // and the value is the town-plat grade the square is built on, the same
-    // authored-grade family as the ember camp core and bench rows below.
-    // Re-minted again for the painted Tidehold town: the apothecary shop's
-    // level pad (zone1.ts EASTBROOK_BUILDING_PAD_TERRAIN_EDITS, the Studio
-    // rebuild map's own) ends 0.45 yd past this point, and its last sliver of
-    // taper eases it 5 mm toward the shop's shelf (-0.8902 before).
-    // Re-minted for the World of ClaudeCraft Studio map's arrangement: the
-    // shop moved down to the strand and no building pad reaches the square
-    // now, so the core is back on the plat's own grade.
-    ['vale hub core', -14, -102, -0.8902171227961108],
     ['drakemaw bench n', 390, 2330, 13.5055094022491],
     ['drakemaw bench s', 390, 2308, 13.4],
     ['drakemaw bench e', 402, 2320, 13.4],

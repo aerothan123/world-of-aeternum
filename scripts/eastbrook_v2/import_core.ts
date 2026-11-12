@@ -27,7 +27,38 @@ export interface ImportConfig {
   /** Boxes of the buildings a body rests in (the inn): their footprints become the
    *  rest areas (rested XP), whatever happens to the box as a collider. */
   restBuildings?: readonly string[];
+  /** Dry ground that keeps the design's flat offset even beside water: a structure the
+   *  design builds on the bank in its own frame (the brook bridge's abutments) must
+   *  meet the server ground at the same height it meets the design's. */
+  dryAnchors?: readonly DryAnchor[];
   corridors: readonly ImportCorridor[];
+}
+
+/** A rect (server x/z, yards) whose dry cells take the flat offset, easing back to the
+ *  water-edge offset over `blend` yards outside it. Wet cells are never touched. */
+export interface DryAnchor {
+  id: string;
+  xMin: number;
+  xMax: number;
+  zMin: number;
+  zMax: number;
+  blend: number;
+}
+
+/** How much a dry anchor holds (x, z) to the flat offset: 1 inside a rect, 0 beyond
+ *  its blend, smooth in between; the strongest anchor wins. */
+export function dryAnchorWeight(anchors: readonly DryAnchor[], x: number, z: number): number {
+  let w = 0;
+  for (const a of anchors) {
+    const dx = Math.max(a.xMin - x, 0, x - a.xMax);
+    const dz = Math.max(a.zMin - z, 0, z - a.zMax);
+    const d = Math.hypot(dx, dz);
+    if (d === 0) return 1;
+    if (a.blend <= 0 || d >= a.blend) continue;
+    const t = 1 - d / a.blend;
+    w = Math.max(w, t * t * (3 - 2 * t));
+  }
+  return w;
 }
 
 /** A rest area: [x, z, halfWidth, halfDepth, rot], the collider rows' convention. */
@@ -155,7 +186,9 @@ export function convertField(hf: DesignHeightfield, cfg: ImportConfig): Converte
   // Offset per cell: wet cells map their own surface to the server waterline, dry
   // cells take the flat offset, and dry cells within waterEdgeBlend of water ease
   // linearly from the nearest wet cell's offset (window search, ties by scan order).
+  // Dry anchors then pull their cells back to the flat offset (see DryAnchor).
   const R = Math.max(0, Math.round(cfg.waterEdgeBlend));
+  const anchors = cfg.dryAnchors ?? [];
   const out = new Int16Array(nx * nz);
   for (let j = 0; j < nz; j++) {
     for (let i = 0; i < nx; i++) {
@@ -183,6 +216,10 @@ export function convertField(hf: DesignHeightfield, cfg: ImportConfig): Converte
         if (best <= R && R > 0) {
           const t = best / (R + 1);
           offset = bestOffset * (1 - t) + dryOffsetCm * t;
+        }
+        if (anchors.length && offset !== dryOffsetCm) {
+          const a = dryAnchorWeight(anchors, xMin + i, zMin + j);
+          offset += (dryOffsetCm - offset) * a;
         }
       }
       const v = Math.round(h[k] + offset);

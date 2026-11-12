@@ -151,9 +151,10 @@ the yard well.
 
 The civic square at (-14, -102) stays: the monument, its benches and the
 open east arrival lane are pinned by `tests/eastbrook_layout_suite.test.ts`,
-`tests/realm_builder_monument.test.ts` and
-`tests/eastbrook_combat_giver_visibility.test.ts`, and the starter combat
-givers already work it. The provisions stall stays; two new stalls (the
+`tests/realm_builder_monument.test.ts`, and the starter combat givers
+already work it. (The Eastbrook Vale v2 port retired
+`tests/eastbrook_combat_giver_visibility.test.ts` with the old square; the v2
+giver and service guarantees are `tests/eastbrook_v2_town_services.test.ts`.) The provisions stall stays; two new stalls (the
 fruit and cloth stall variants) close the square's north-west and south-east
 corners so it reads as a market square. The mailbox stays.
 
@@ -420,6 +421,15 @@ id), and the parity scenarios in `tests/parity/scenarios.ts`.
 5. Stable: at the north road gate.
 
 ## 10. As built (phase 2)
+
+> **Retired.** The Eastbrook Vale v2 port retired the whole town kit (owner
+> direction: rebuild Eastbrook from the ground up and bring nothing over from
+> the old map). The kit placements, their props registry, map marks, decor rows,
+> scatter clearance and the stable corral fences are gone from the code; the
+> stations and keepers stand on the v2 design sites
+> (`src/sim/eastbrook_v2/sites.generated.ts`). This section is kept as history.
+> The shipped `public/models/props/town_*.glb` files and `assets_src/town_kit/`
+> are no longer read by the game.
 
 The placements live in `src/sim/eastbrook_layout.ts` (`TOWN_KIT_ASSETS` and the
 `YARD`, `MARKET_ROW`, `SQUARE_KIT`, `GATE_KIT` and `HOUSING` groups behind

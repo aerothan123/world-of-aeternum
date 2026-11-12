@@ -33,6 +33,13 @@ export function ebv2Nodes(kind: Ebv2Node['kind']): readonly Ebv2Node[] {
   return EBV2_NODES.filter((n) => n.kind === kind);
 }
 
+/** The design's roads as the sim's road polylines (zone1 ZONE1_ROADS, so the
+ *  terrain splat, the map painter, decoration and lantern placement and road
+ *  clearances all follow the design), in export order. Fresh arrays each call. */
+export function ebv2RoadPolylines(): { x: number; z: number }[][] {
+  return EBV2_ROADS.map((road) => road.points.map(([x, z]) => ({ x, z })));
+}
+
 /** How far (x, z) stands outside the nearest design road lane (centreline distance
  *  less half the road's width); negative inside a lane. Infinity with no roads. */
 export function ebv2RoadClearance(x: number, z: number): number {

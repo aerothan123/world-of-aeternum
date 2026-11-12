@@ -2137,7 +2137,10 @@ const MONOLITHS: MonolithRow[] = [
     // constant and list moved out to water_bodies.ts, paying for the two one-line
     // hooks into src/sim/eastbrook_v2/ (the design ground at the end of the pad
     // chain, the design trees at the decoration anchor). Exact count, zero slack.
-    ceiling: 5061,
+    // LOWERED 5061 -> 4930: the natural-roads block (spline densify, meander,
+    // roadDistance) moved to road_curves.ts so the v2 design roads can stand
+    // down the meander there. Exact count, zero slack.
+    ceiling: 4930,
     seam: 'zone/terrain data as content records; logic as sim sibling modules',
   },
   {

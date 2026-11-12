@@ -21,7 +21,9 @@ describe('newborn island spawn (auto-entered tutorial)', () => {
   it('leaves the offline default spawn in town (parity goldens depend on it)', () => {
     // The harbor-town rebuild (the New Eastbrook program) moved the authored
     // town spawn; the claim under test is only that it stays off the island.
-    expect(PLAYER_START).toEqual({ x: -94, z: -58 });
+    // Eastbrook Vale v2: the owner-approved start is the design's player_spawn
+    // below the town's south gate.
+    expect(PLAYER_START).toEqual({ x: -16, z: -158 });
     expect(isOnProvingShore(PLAYER_START.x, PLAYER_START.z)).toBe(false);
   });
 });

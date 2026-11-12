@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { isBlocked } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { createGroundObject } from '../src/sim/entity';
@@ -110,6 +111,27 @@ afterEach(() => {
   vi.restoreAllMocks();
   setActiveWorldContent(null);
 });
+
+/** Where the circle of radius ra round a meets the one of radius rb round b. */
+function circleMeet(
+  a: { x: number; z: number },
+  ra: number,
+  b: { x: number; z: number },
+  rb: number,
+): { x: number; z: number }[] {
+  const d = Math.hypot(b.x - a.x, b.z - a.z);
+  if (d > ra + rb || d < Math.abs(ra - rb)) return [];
+  const along = (ra * ra - rb * rb + d * d) / (2 * d);
+  const h = Math.sqrt(Math.max(0, ra * ra - along * along));
+  const ux = (b.x - a.x) / d;
+  const uz = (b.z - a.z) / d;
+  const mx = a.x + ux * along;
+  const mz = a.z + uz * along;
+  return [
+    { x: mx - uz * h, z: mz + ux * h },
+    { x: mx + uz * h, z: mz - ux * h },
+  ];
+}
 
 describe('RL interactable observation parity', () => {
   it('advertises and loots the selected corpse through applyAction', () => {
@@ -277,10 +299,15 @@ describe('RL interactable observation parity', () => {
     // adds interactables of its own, and the claim under test is
     // board-vs-Saul priority, not who is nearest overall.
     parkOtherInteractables(sim, board, saul);
-    const player = standAt(sim, {
-      x: 6.305857720281236,
-      z: -84.69364009697496,
-    });
+    // Re-sited for Eastbrook Vale v2: the board and Saul stand on their v2
+    // design sites, so the stand is computed (the same r=4.5 / r=4.8 circle
+    // intersection, the side a body can stand on) instead of the old literal
+    // (6.31, -84.69).
+    const spot = circleMeet(board.pos, 4.5, saul.pos, 4.8).find(
+      (p) => !isBlocked(SEED, p.x, p.z, 0.5),
+    );
+    if (!spot) throw new Error('no open stand 4.5 yd from the board and 4.8 from Saul');
+    const player = standAt(sim, spot);
 
     expect(board.pos.x).toBe(EASTBROOK_LAYOUT.services.noticeboard.position.x);
     expect(board.pos.z).toBe(EASTBROOK_LAYOUT.services.noticeboard.position.z);

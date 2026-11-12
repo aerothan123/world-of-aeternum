@@ -13,12 +13,8 @@ import {
 } from '../src/sim/content/house_lots';
 import { DUNGEON_X_THRESHOLD, DUNGEONS, dungeonAt } from '../src/sim/data';
 import { INTERIOR_LAYOUTS } from '../src/sim/dungeon_floor';
-import {
-  distancePointToObb,
-  EASTBROOK_TOWN_KIT_BY_ID,
-  townKitDoorPoint,
-} from '../src/sim/eastbrook_layout';
 import { ebv2Point } from '../src/sim/eastbrook_v2';
+import { ebv2LotBuildingId, ebv2LotDoorPointOf } from '../src/sim/eastbrook_v2/lots';
 import { ebv2Site } from '../src/sim/eastbrook_v2/sites';
 import { HOUSE_COTTAGE_LAYOUT, HOUSE_ENTRY, HOUSE_EXIT } from '../src/sim/housing/cottage_layout';
 import {
@@ -98,7 +94,7 @@ describe('house lots (content)', () => {
   });
 
   it('every lot door is its building front point, and leaving steps 3yd outward', () => {
-    for (const lot of HOUSE_LOTS.filter((x) => x.kitDoor === undefined && !onV2(x))) {
+    for (const lot of HOUSE_LOTS.filter((x) => !ebv2LotDoorPointOf(x.buildingId) && !onV2(x))) {
       const b = AUTHORED_TOWN_BUILDINGS.find((x) => x.id === lot.buildingId);
       expect(b, lot.buildingId).toBeDefined();
       if (!b) continue;
@@ -118,11 +114,14 @@ describe('house lots (content)', () => {
     }
   });
 
-  it('every Eastbrook town kit lot is a sealed kit house door, and leaving steps 3yd out of its facade', () => {
-    // The housing streets (town kit phase 2): ten Eastbrook lots in all, the
-    // quay cottage plus the row terrace's three doors and six street houses.
-    const kitLots = HOUSE_LOTS.filter((x) => x.kitDoor !== undefined);
-    expect(kitLots.map((x) => x.id)).toEqual([
+  // Re-keyed for the Eastbrook Vale v2 port: the old town kit houses (the row
+  // terrace and the six street houses) are retired with the old town (owner
+  // direction), so every Eastbrook lot is now a v2 design building at its
+  // lot_door point. This replaces the kit-house door and facade pins.
+  it('every Eastbrook lot is the v2 design building at its lot door', () => {
+    const vale = HOUSE_LOTS.filter((x) => x.zoneId === 'eastbrook_vale');
+    expect(vale.map((x) => x.id)).toEqual([
+      'eastbrook_quay_cottage',
       'eastbrook_terrace_west',
       'eastbrook_terrace_middle',
       'eastbrook_terrace_east',
@@ -133,22 +132,43 @@ describe('house lots (content)', () => {
       'eastbrook_timber_house',
       'eastbrook_green_townhouse',
     ]);
-    expect(HOUSE_LOTS.filter((x) => x.zoneId === 'eastbrook_vale')).toHaveLength(10);
-    for (const lot of kitLots.filter((x) => !onV2(x))) {
-      const house = EASTBROOK_TOWN_KIT_BY_ID[lot.buildingId];
-      expect(house, lot.buildingId).toBeDefined();
-      if (!house) continue;
-      expect(house.role).toBe('house');
-      const door = townKitDoorPoint(lot.buildingId, lot.kitDoor);
-      expect(lot.doorPos.x).toBeCloseTo(door.x, 9);
-      expect(lot.doorPos.z).toBeCloseTo(door.z, 9);
-      // the door stands just off the facade, outside the house's own box
-      expect(distancePointToObb(lot.doorPos, house.reach)).toBeGreaterThan(1);
-      expect(distancePointToObb(lot.doorPos, house.reach)).toBeLessThan(2);
-      const facade = { x: Math.sin(house.rotation), z: Math.cos(house.rotation) };
-      const dot = lot.leaveOffset.x * facade.x + lot.leaveOffset.z * facade.z;
-      expect(dot).toBeGreaterThan(2.9);
-      expect(Math.hypot(lot.leaveOffset.x, lot.leaveOffset.z)).toBeLessThan(3.1);
+    const doors = new Set<string>();
+    for (const lot of vale) {
+      const pointId = V2_LOTS[lot.id];
+      expect(pointId, lot.id).toBeDefined();
+      expect(lot.buildingId).toBe(ebv2LotBuildingId({ doorPointId: pointId }));
+      expect(ebv2LotDoorPointOf(lot.buildingId)).toBe(pointId);
+      expect(ebv2Point(pointId).kind, lot.id).toBe('lot_door');
+      doors.add(pointId);
+    }
+    // one lot per design house
+    expect(doors.size).toBe(vale.length);
+    // the lots elsewhere keep their authored town buildings
+    for (const lot of HOUSE_LOTS.filter((x) => x.zoneId !== 'eastbrook_vale')) {
+      expect(ebv2LotDoorPointOf(lot.buildingId), lot.id).toBeUndefined();
+    }
+  });
+
+  it('every Eastbrook lot can be bought at its door and its owner walks in and back out', () => {
+    for (const lot of HOUSE_LOTS.filter((x) => x.zoneId === 'eastbrook_vale')) {
+      const sim = makeSim();
+      const pid = sim.player.id;
+      const meta = metaOf(sim, pid);
+      meta.copper = lot.priceCopper;
+      standBeside(sim, pid, lot);
+      sim.buyHouse(lot.id, pid);
+      expect(eventsOfType(sim.tick(), 'housePurchased'), lot.id).toEqual([
+        { type: 'housePurchased', pid, lotId: lot.id },
+      ]);
+      place(sim, pid, lot.doorPos.x, lot.doorPos.z);
+      sim.tick();
+      expect(dungeonAt(sim.player.pos.x)?.id, `${lot.id} enters`).toBe(lot.dungeonId);
+      expect(leaveDungeon((sim as any).ctx, pid)).toBe(true);
+      expect(sim.player.pos.x).toBeLessThan(DUNGEON_X_THRESHOLD);
+      expect(
+        Math.hypot(sim.player.pos.x - lot.doorPos.x, sim.player.pos.z - lot.doorPos.z),
+        `${lot.id} leaves at its door`,
+      ).toBeLessThan(4);
     }
   });
 

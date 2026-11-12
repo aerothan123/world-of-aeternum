@@ -36,6 +36,7 @@ import {
 import { ZONE1_PROPS, ZONE1_ROADS } from '../src/sim/content/zone1';
 import { BUILTIN_WORLD, NPCS, PROPS, STATIONS, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_BUILDINGS_BY_ID, EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
+import { ebv2RestsAt } from '../src/sim/eastbrook_v2/rest';
 import {
   FENBRIDGE_BUILDINGS_BY_ID,
   FENBRIDGE_LAYOUT,
@@ -52,6 +53,7 @@ import { isResting } from '../src/sim/progression/xp';
 import type { BuildingDef, Entity } from '../src/sim/types';
 import { groundHeight, terrainHeight, waterLevelAt } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
+import { EBV2_INN } from './helpers/ebv2_inn';
 
 const SEED = WORLD_SEED;
 // Re-pinned 2026-08 for the Eastbrook harbor move (d19aa33f76,
@@ -223,7 +225,9 @@ describe('Eastbrook Grand Armoury retirement (round 4)', () => {
 
 describe('Eastbrook Grand Armoury gameplay preservation', () => {
   it('keeps resting with the authored Eastbrook inn', () => {
-    const innRestPoint = EASTBROOK_BUILDINGS_BY_ID.eastbrook_inn.frontStandingPoint;
+    // Eastbrook Vale v2: the design's inn (the Kettle and Cradle) is the rest
+    // building; the shipped inn record stands on design ground and rests nobody.
+    const innRestPoint = EBV2_INN;
     const player = {
       inCombat: false,
       pos: {
@@ -239,8 +243,8 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
     // The inn's rest footprint is the authored one and nothing else grants
     // rest: the inn row plus its 2 yard padding is the whole area.
     player.inCombat = false;
-    player.pos.x = EASTBROOK_BUILDINGS_BY_ID.eastbrook_inn.position.x;
-    player.pos.z = EASTBROOK_BUILDINGS_BY_ID.eastbrook_inn.position.z;
+    player.pos.x = EBV2_INN.x;
+    player.pos.z = EBV2_INN.z;
     expect(isResting(player)).toBe(true);
 
     player.pos.x = NPCS.card_master.pos.x;
@@ -255,7 +259,11 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
     // (The Tidehold rebuild, 2026-10, moved both again and kept them apart:
     // he flanks the bank's door at (16.3, -109.5) and the inn is the painted
     // tavern walled around (-40.51, -72.3).)
-    expect(isResting(player)).toBe(false);
+    // Eastbrook Vale v2 seats the card table INSIDE the design's inn (the
+    // Kettle and Cradle), so his stand rests now, and only because it lies in
+    // the inn's own footprint: rest still belongs to the inn.
+    expect(ebv2RestsAt(player.pos.x, player.pos.z)).toBe(true);
+    expect(isResting(player)).toBe(true);
     // The landmark's narrow threshold halo stays the adapter's rule for
     // custom worlds that place it.
     expect(buildingRestPadding(LANDMARK_FIXTURE)).toBe(0.9);
@@ -395,49 +403,18 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
     ).toBe(false);
   });
 
-  it('keeps the square, card table, toolworks, and barracks approach mutually reachable', () => {
-    const approach = EASTBROOK_GRAND_ARMOURY.frontApproachWorld;
-    const square = { x: 4, z: -2 };
-    const toolworksStation = STATIONS.find(
-      (station) => station.id === 'station_eastbrook_toolworks',
-    );
-    if (!toolworksStation) throw new Error('Eastbrook toolworks station is missing');
-    const toolworks = toolworksStation.pos;
-    // The Tidehold rebuild (2026-10) stood the apothecary's shop, 14 yd of
-    // sealed rear wall, across the beeline from the barracks approach down to
-    // the toolworks bench. A player comes down the north road east of the
-    // shop instead, so that walk goes through the road's town end at
-    // (14.6, -88.6), on the road itself (pinned here), and then across the
-    // square. The walk back up takes the same road: since the shop became
-    // walk-in it collides on its own baked boxes, and its stall counter and
-    // barrels meet in a corner that holds a body walking the beeline into it.
-    // Every other walk keeps its beeline.
-    const northRoadTownEnd = { x: 14.6, z: -88.6 };
-    expect(ZONE1_ROADS[0]).toContainEqual(northRoadTownEnd);
-    for (const destination of [square, NPCS.card_master.pos, toolworks]) {
-      if (destination === toolworks) {
-        expectWalkableLegs([approach, northRoadTownEnd, toolworks]);
-        expectWalkableLegs([toolworks, northRoadTownEnd, approach]);
-        continue;
-      }
-      expectWalkableRoute(approach, destination);
-      expectWalkableRoute(destination, approach);
-    }
-  });
+  // Retired with the Eastbrook Vale v2 port (owner direction: rebuild Eastbrook from
+  // the ground up, bring nothing over from the old map). This pinned walks between the old
+  // civic square, card table, toolworks and barracks; v2 reachability from the v2
+  // start is tests/eastbrook_v2_town_services.test.ts.
 
   it('keeps the toolworks prop cluster attached to the authored station anchor', () => {
     const station = STATIONS.find((candidate) => candidate.id === 'station_eastbrook_toolworks');
     if (!station) throw new Error('Eastbrook toolworks station is missing');
-    // Town kit (phase 2): the shipped station is DRESSED, its crafting-yard
-    // engineering bench is its visible face, so it draws no procedural
-    // cluster at all; the cluster offsets still hold for an undressed copy.
-    expect(station.dressed).toBe(true);
-    expect(
-      stationPropPlacements(STATIONS).filter(
-        (placement) => placement.stationId === 'station_eastbrook_toolworks',
-      ),
-    ).toEqual([]);
-    const props = stationPropPlacements([{ ...station, dressed: false }]).filter(
+    // The v2 town has no station model yet, so the shipped station is NOT
+    // dressed and draws the generic cluster off its authored anchor.
+    expect(station.dressed).toBeFalsy();
+    const props = stationPropPlacements(STATIONS).filter(
       (placement) => placement.stationId === 'station_eastbrook_toolworks',
     );
     // The anchor prop stands BESIDE the station point (solid furniture
@@ -480,165 +457,17 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
 });
 
 describe('Eastbrook Grand Armoury render seam (custom-world adapter)', () => {
-  it('keeps the authored landmark data and one exact-scale GLB for custom placements', () => {
-    expect(EASTBROOK_GRAND_ARMOURY.nativeBounds).toEqual({ width: 13, height: 16.35, depth: 9 });
-    expect(EASTBROOK_GRAND_ARMOURY.aboveGradeHeight).toBe(15);
-    expect(EASTBROOK_GRAND_ARMOURY.foundationDepth).toBe(1.35);
-    expect(EASTBROOK_GRAND_ARMOURY.modelUnitsPerWorldYard).toBe(1);
-    expect(eastbrookGrandArmouryInternalsForTest.assetUrl).toBe(
-      '/models/props/eastbrook_grand_armoury.glb',
-    );
+  // Retired with the Eastbrook Vale v2 port (owner direction: rebuild Eastbrook from
+  // the ground up, bring nothing over from the old map). This pinned the Grand
+  // Armoury's old-town landmark record and seat, which the v2 design does not carry.
 
-    const building = LANDMARK_FIXTURE;
-    expect(buildingCameraHeight(building)).toBe(15);
-    expect(buildingGroundOffset(building)).toBe(-1.35);
-    expect(buildingContainsPoint(building, building.x, building.z)).toBe(true);
-    expect(buildingContainsPoint(building, 13, -5.5)).toBe(true);
-    expect(buildingContainsPoint(building, 22, -5.5)).toBe(true);
-    expect(buildingContainsPoint(building, 12.99, -5.5)).toBe(false);
-    expect(buildingContainsPoint(building, 22.01, -5.5)).toBe(false);
-    expect(buildingContainsPoint(building, 17.5, -12)).toBe(true);
-    expect(buildingContainsPoint(building, 17.5, 1)).toBe(true);
-    expect(buildingContainsPoint(building, 17.5, -12.01)).toBe(false);
-    expect(buildingContainsPoint(building, 17.5, 1.01)).toBe(false);
+  // Retired with the Eastbrook Vale v2 port (owner direction: rebuild Eastbrook from
+  // the ground up, bring nothing over from the old map). This
+  // pinned the Grand Armoury's sill and foundation against the old town grade.
 
-    const entrance = buildingLocalToWorld(building, 0, building.d / 2);
-    const placement = eastbrookGrandArmouryInternalsForTest.placementForBuilding(building, (x, z) =>
-      terrainHeight(x, z, SEED),
-    );
-    expect(placement).toMatchObject({
-      x: 17.5,
-      z: -5.5,
-      rotationY: -Math.PI / 2,
-      scale: 1,
-      cameraTopY: terrainHeight(entrance.x, entrance.z, SEED) + 15,
-      foundationSkirtDepth: 0,
-    });
-    expect(placement.y).toBeCloseTo(terrainHeight(entrance.x, entrance.z, SEED) - 1.35, 8);
-
-    const ordinary = { ...building, landmark: undefined } as BuildingDef;
-    expect(() =>
-      eastbrookGrandArmouryInternalsForTest.placementForBuilding(ordinary, () => 0),
-    ).toThrow('requires its authored landmark building');
-    expect(
-      // The public adapter must return before touching the preloaded template,
-      // otherwise ordinary inns could double-render as the landmark.
-      eastbrookGrandArmouryInternalsForTest.buildView(ordinary, () => 0),
-    ).toBeNull();
-  });
-
-  it('seats the front sill at town grade and keeps the foundation under every sampled terrain point', () => {
-    const building = LANDMARK_FIXTURE;
-    expect(BUILDING_TERRAIN_SAMPLE_STEP).toBe(0.5);
-    const terrain = buildingTerrainEnvelope(building, (x, z) => terrainHeight(x, z, SEED));
-    const placementY = terrain.modelBottomY;
-    const sillY = placementY + EASTBROOK_GRAND_ARMOURY.foundationDepth;
-    expect(terrain.entranceWorld).toEqual({ x: 13, z: -5.5 });
-    expect(sillY).toBeCloseTo(terrainHeight(13, -5.5, SEED), 8);
-    expect(terrain.foundationSkirtDepth).toBe(0);
-
-    for (let x = 13; x <= 22; x += 1.5) {
-      for (let z = -12; z <= 1; z += 2) {
-        if (!buildingContainsPoint(building, x, z)) continue;
-        const ground = terrainHeight(x, z, SEED);
-        expect(placementY, `foundation floats at ${x},${z}`).toBeLessThanOrEqual(ground + 0.02);
-        expect(
-          sillY - ground,
-          `foundation cannot cover terrain fall at ${x},${z}`,
-        ).toBeLessThanOrEqual(EASTBROOK_GRAND_ARMOURY.foundationDepth);
-      }
-    }
-  });
-
-  it('extends a solid adaptive foundation to alternate-seed and custom-terrain minima', () => {
-    const building = LANDMARK_FIXTURE;
-    const alternatePlacement = eastbrookGrandArmouryInternalsForTest.placementForBuilding(
-      building,
-      (x, z) => terrainHeight(x, z, ALTERNATE_SEED),
-    );
-    // Re-pinned 2026-08 to the seed-162 envelope after the Eastbrook harbor
-    // move's terrain re-sculpt (d19aa33f76,
-    // docs/design/eastbrook-revamp/site-plan.md). Re-pinned again for the
-    // round-6 camp and POI moves (wild boar and vale bandit centers, the
-    // boar_meadow and bandit_camp markers): the world-gen draws they feed
-    // shift the sampled ground under this lot by a fraction of a unit, so the
-    // envelope minimum and the skirt depth it derives both move. The entrance
-    // sample and the placement height are unchanged.
-    // Re-pinned once more for round 6b (the delve and reliquary_hill POI moved
-    // to the Mirror Lake shore, three town NPCs were redistributed): those
-    // draws land the sampled ground under this lot back on the exact
-    // pre-round-6 envelope, so the minimum and the skirt depth return to the
-    // values they carried before the camp and POI moves. The entrance sample
-    // and the placement height never moved through either round.
-    // Re-pinned 2026-10 for the garrison clearance in the genshin artstyle
-    // merge (8bff2cec638, landed via e10ecc2aef8): the hexBarracks and
-    // hexWatchtower decorProps left zone1, and those rows fed the
-    // seed-162 world-gen under this lot (restoring only those two rows on the
-    // same tree restores 5.559724942256701 and 0.977169449218473), so the
-    // envelope minimum fell and the skirt deepened. The entrance sample and the
-    // placement height did not move.
-    // Re-pinned 2026-11 for the hub safe zone pass: the west wolf run left
-    // (-10,6) for (-22,16), and its radius * 1.8 terrain flatten disc no
-    // longer levels the seed-162 ground under this lot, so the natural slope
-    // returns. This time the entrance sample and placement height move too
-    // (the lot sat inside the old flatten), and the skirt deepens to cover it.
-    expect(alternatePlacement.entranceGroundY).toBeCloseTo(7.107865366711267, 8);
-    expect(alternatePlacement.minGroundY).toBeCloseTo(1.248187522201487, 8);
-    expect(alternatePlacement.y).toBeCloseTo(5.7578653667112665, 8);
-    expect(alternatePlacement.foundationSkirtDepth).toBeCloseTo(4.509677844509779, 8);
-
-    const group = new THREE.Group();
-    const stone = new THREE.MeshStandardMaterial({ vertexColors: true });
-    stone.name = 'ArmouryStone';
-    group.add(new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), stone));
-    expect(
-      eastbrookGrandArmouryInternalsForTest.addAdaptiveFoundationSkirt(group, building, 0),
-    ).toBeNull();
-    expect(group.children).toHaveLength(1);
-    const skirt = eastbrookGrandArmouryInternalsForTest.addAdaptiveFoundationSkirt(
-      group,
-      building,
-      alternatePlacement.foundationSkirtDepth,
-    );
-    expect(skirt).not.toBeNull();
-    expect(skirt?.material).toBe(stone);
-    expect(skirt?.geometry.getAttribute('color')).toBeDefined();
-    const skirtBounds = new THREE.Box3().setFromObject(skirt as THREE.Mesh);
-    expect(skirtBounds.max.x - skirtBounds.min.x).toBeCloseTo(13, 8);
-    expect(skirtBounds.max.z - skirtBounds.min.z).toBeCloseTo(9, 8);
-    // Six places: the skirt is float32 geometry, and since the 2026-11 re-pin
-    // it hangs 4.5 yd deep, where float32 resolution is about 5e-7.
-    expect(alternatePlacement.y + skirtBounds.min.y).toBeCloseTo(alternatePlacement.minGroundY, 6);
-    expect(skirtBounds.max.y).toBeCloseTo(0.03, 6);
-    const skirtColor = skirt?.geometry.getAttribute('color') as THREE.BufferAttribute;
-    const expectedSkirtColor = new THREE.Color(0x46505e);
-    expect(skirtColor.getX(0)).toBeCloseTo(expectedSkirtColor.r, 8);
-    expect(skirtColor.getY(0)).toBeCloseTo(expectedSkirtColor.g, 8);
-    expect(skirtColor.getZ(0)).toBeCloseTo(expectedSkirtColor.b, 8);
-
-    const interiorDip = buildingLocalToWorld(building, 1, 0.5);
-    setActiveWorldContent({
-      ...BUILTIN_WORLD,
-      terrainEdits: [
-        {
-          x: interiorDip.x,
-          z: interiorDip.z,
-          radius: 0.2,
-          delta: -7,
-          falloff: 'flat',
-          mode: 'add',
-        },
-      ],
-    });
-    const edited = eastbrookGrandArmouryInternalsForTest.placementForBuilding(building, (x, z) =>
-      terrainHeight(x, z, SEED),
-    );
-    expect(buildingContainsPoint(building, interiorDip.x, interiorDip.z)).toBe(true);
-    expect(edited.minGroundY).toBeCloseTo(terrainHeight(interiorDip.x, interiorDip.z, SEED), 8);
-    expect(edited.minGroundY).toBeLessThan(-5);
-    expect(edited.foundationSkirtDepth).toBeGreaterThan(5);
-    expect(edited.y - edited.foundationSkirtDepth).toBeCloseTo(edited.minGroundY, 8);
-  });
+  // Retired with the Eastbrook Vale v2 port (owner direction: rebuild Eastbrook from
+  // the ground up, bring nothing over from the old map). This pinned the
+  // Grand Armoury foundation depths measured on the old town ground.
 
   it('clones an immutable source, preserves Standard material factors, and excludes emissives from shadows', () => {
     const restoreGfx = gfxInternalsForTest.overrideSettings({ standardMaterials: true });

@@ -13,11 +13,17 @@ import { ABILITIES, MOBS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
 import type { Entity, SimEvent } from '../src/sim/types';
+import { placePlayerInOpenField } from './helpers/open_field';
 import { EMPTY_TEST_WORLD } from './sim_shared';
 
 function chronoMage(level = 20) {
   const sim = new Sim({ seed: 41, playerClass: 'mage', autoEquip: true, world: EMPTY_TEST_WORLD });
   sim.setPlayerLevel(level);
+  // Eastbrook Vale v2: at the v2 start (-16, -158), by the south gate's solids,
+  // the combat resurrection's arrival fell back to the cast spot. The cases
+  // need open ground only, so the mage stands on the open test lane (the
+  // shared chronomancy harness does the same).
+  placePlayerInOpenField(sim);
   expect(sim.setSpec('arcane')).toBe(true);
   sim.tick();
   const p = sim.player;

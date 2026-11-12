@@ -21,7 +21,7 @@
 // mobSwing, spawnDelveModule), never reaching into not-yet-extracted internals
 // in a way the sim itself does not already expose.
 
-import { supportHeightAt } from '../../src/sim/colliders';
+import { STALL_CANOPY_TOP, supportHeightAt } from '../../src/sim/colliders';
 import { CORPSE_DURATION } from '../../src/sim/combat/damage';
 import {
   arenaOrigin,
@@ -37,7 +37,6 @@ import {
   STATIONS,
   WORLD_QUESTS_BY_ID,
 } from '../../src/sim/data';
-import { EASTBROOK_LAYOUT } from '../../src/sim/eastbrook_layout';
 import {
   IGNIVAR_BRAND_AURA_ID,
   IGNIVAR_ROTATING_RAYS_ANGULAR_SPEED,
@@ -117,8 +116,10 @@ import {
   updateWorldQuests,
 } from '../../src/sim/world_quests';
 import { WORLD_SEED } from '../../src/sim/world_seed';
+import { EBV2_INN } from '../helpers/ebv2_inn';
 import { runCraft } from '../helpers/enchant_family_cast';
 import { OPEN_FIELD } from '../helpers/open_field';
+import { VALE_MEADOW } from '../helpers/vale_meadow';
 import type { Recorder, Scenario } from './record';
 
 // ----- shared helpers ---------------------------------------------------------
@@ -4824,11 +4825,9 @@ function g1bXpPrestige(): Scenario {
       // 1. Rested accrual: park inside an inn footprint, out of combat, and tick.
       //    updateRested fires each regen-phase tick while isResting(p) is true,
       //    accruing a positive (sub-unit) pool off DT.
-      const innB = requireValue(
-        PROPS.buildings.find((b) => b.kind === 'inn'),
-        'parity scenario building',
-      );
-      teleport(sim, p, innB.x, innB.z);
+      //    Eastbrook Vale v2: the design's inn is the built-in world's rest
+      //    building (the shipped inn record on design ground rests nobody).
+      teleport(sim, p, EBV2_INN.x, EBV2_INN.z);
       rec.tick(60);
       rec.notes.restedAfterAccrual = meta.restedXp;
       rec.snapshot('rested-accrued');
@@ -5345,7 +5344,11 @@ function professionsGather(seed = 1): Scenario {
       // byte-identical, and what moved is this position, the state digests that
       // hash it, and the mirror_lake POI visit the old spot only earned by
       // being underwater. The two-draw-per-harvest contract is untouched.
-      teleport(sim, p, -59, 91); // herb_eastbrook_1
+      // Eastbrook Vale v2 stood the patch on the design's own herb node, 130 yd
+      // from that literal, and every cast became a "Too far away." denial
+      // (tests/parity/coverage_c.test.ts counts the harvests): the stand point
+      // is derived from the node now, like step 1's.
+      standOnNode(sim, p, 'herb_eastbrook_1');
       for (let i = 0; i < 100; i++) {
         meta.gatheringProficiency.herbalism = 0;
         // The retention filter keeps the three tools (ahead of the gate,
@@ -5626,7 +5629,12 @@ function priestCodex(seed = 2929): Scenario {
       const benison = sim.entities.get(benisonId) as AnyEntity;
       const benisonAlly = sim.entities.get(benisonAllyId) as AnyEntity;
       const vespers = sim.entities.get(vespersId) as AnyEntity;
-      const origin = doctrine.pos;
+      // The rig stands in the vale meadow (tests/helpers/vale_meadow.ts): the
+      // Eastbrook Vale v2 start sits among the south gate's solids, which cut
+      // the sight line to a dummy and dropped its Effigy Echo
+      // (tests/parity/coverage_c.test.ts expects both echo targets).
+      teleport(sim, doctrine, VALE_MEADOW.x, VALE_MEADOW.z);
+      const origin = { ...doctrine.pos };
       for (const [index, entity] of [
         doctrine,
         doctrineAlly,
@@ -6008,7 +6016,7 @@ export const FARM_GOLDEN_PADDING_CYCLES = 36;
 
 function professionsFarmingSession(seed = 1): Scenario {
   // The two northern beds of the Eastbrook allotments (content/farm_patches.ts
-  // bed_eastbrook_1 at 16,30 and bed_eastbrook_2 at 21,30). Beds sit on a 5
+  // bed_eastbrook_1 at -27,-75 and bed_eastbrook_2 at -32,-75). Beds sit on a 5
   // yard pitch, which is INTERACT_RANGE, so the midpoint below is 2.5yd from
   // each and one stand point reaches both: no teleport between the plants, and
   // none between the harvests. The Phase 5 extension (deviation (z)) then
@@ -6069,11 +6077,12 @@ function professionsFarmingSession(seed = 1): Scenario {
       sim.addItem('vale_wheat_seed', 2, pid);
       // The step-12 hoe gate: plantCrop now refuses without a wieldable hoe.
       sim.addItem('garden_hoe', 1, pid);
-      // Midway between bed_eastbrook_1 (-24, -84) and bed_eastbrook_2 (-19, -84),
+      // Midway between bed_eastbrook_1 (-27, -75) and bed_eastbrook_2 (-32, -75),
       // both in reach. The patch moved from the north lane (beds at z 30) to the
       // rebuilt town's north-east edge at the release/v0.41.0 merge, when the
-      // second wolf run landed on the old site.
-      teleport(sim, p, -21.5, -84);
+      // second wolf run landed on the old site; beds 1 and 2 stepped off the v2
+      // design's building in the Eastbrook Vale v2 port.
+      teleport(sim, p, -29.5, -75);
 
       // Plant one: the first two draws of the session.
       plantCrop(sim.ctx, p, meta, BED_READY, CROP);
@@ -6155,6 +6164,15 @@ function professionsFarmingSession(seed = 1): Scenario {
 
       // HUSK CONVERSION: the withered beat above paid exactly 2 husks, one
       // batch, so this trades them into exactly one compost. Zero draws.
+      // The trade asks for a farmer in reach (farmer_npcs.ts nearFarmerNpc):
+      // on Eastbrook Vale v2 the beds stepped off the design's building and
+      // Farmer Jessica keeps her own site 15 yd away, so the drive walks over
+      // to her first (a stand point derived from her live entity).
+      const farmer = [...(sim.entities as Map<number, AnyEntity>).values()].find(
+        (e) => e.kind === 'npc' && e.templateId === 'farmer_jessica',
+      );
+      if (!farmer) throw new Error('parity scenario: no farmer_jessica');
+      teleport(sim, p, farmer.pos.x + 1.5, farmer.pos.z);
       convertHusks(sim.ctx, p, meta);
       rec.snapshot('husks-converted');
 
@@ -6191,7 +6209,7 @@ function professionsFarmingSession(seed = 1): Scenario {
       // fact: a draw or a repeat here moves the event digest and nothing
       // else in the suite would see it. ----
       sim.addItem('vale_wheat_seed', 1, pid);
-      teleport(sim, p, -21.5, -84); // back to the freed Eastbrook bed (the pair's midpoint)
+      teleport(sim, p, -29.5, -75); // back to the freed Eastbrook bed (the pair's midpoint)
       // Ride out the t3 plant's flavor cast remainder (its harvest landed
       // mid-cast and tick(8) covers only 0.4 sec), or this plant denies busy.
       rec.tick(FARM_PLANT_WINDOW_TICKS);
@@ -6959,15 +6977,22 @@ function riftClearRewards(baseLevel = 25, seed = 4332): Scenario {
 
 // The entity-aware open-world LOS policy must use real supported feet while
 // continuing to reject an airborne source whose lifted ray clears ordinary
-// cover. Both arms run in the shipping world seed so the positive arm uses the
-// exact Eastbrook stall and the negative arm stays on the same deterministic
+// cover. Both arms run in the shipping world seed so the positive arm uses a
+// real shipped stall and the negative arm stays on the same deterministic
 // collider set.
+// Re-sited for Eastbrook Vale v2: the positive arms stood on the Eastbrook
+// World Market stall's flat 2.7 canopy (EASTBROOK_LAYOUT.market.stalls[0]),
+// which stands down on v2 design ground, and v2 has no standable roof tall
+// enough to lift the eye over a plain sight line. They now stand on the
+// generic Evergarden market stall at (326, 802), whose gabled canopy ridge
+// (STALL_CANOPY_TOP) is the same kind of standable support
+// (tests/line_of_sight_elevation.test.ts uses the same stall).
 function supportedElevationLineOfSight(): Scenario {
   return {
     name: 'supported_elevation_line_of_sight',
     coverage: [
-      'Eastbrook standable canopy supplies grounded player eye elevation for a completed heal',
-      'Eastbrook standable canopy keeps a jumping target visible without granting jump height',
+      'standable market canopy supplies grounded player eye elevation for a completed heal',
+      'standable market canopy keeps a jumping target visible without granting jump height',
       'airborne player elevation is rejected behind ordinary open-world cover',
       'shared Sim cast entry point and completion LOS recheck',
     ],
@@ -6979,7 +7004,10 @@ function supportedElevationLineOfSight(): Scenario {
       const allyId = sim.addPlayer('warrior', 'SightAlly') as number;
       const healer = requireEntity(sim, healerId, 'elevated healer');
       const ally = requireEntity(sim, allyId, 'line-of-sight ally');
-      const stall = EASTBROOK_LAYOUT.market.stalls[0];
+      const stallSpot = { x: 326, z: 802 };
+      if (!PROPS.stalls.some((s) => s.x === stallSpot.x && s.z === stallSpot.z))
+        throw new Error('the Evergarden market stall fixture moved');
+      const stall = { position: stallSpot, height: STALL_CANOPY_TOP };
       const terrainY = groundHeight(stall.position.x, stall.position.z, WORLD_SEED);
       const canopyY = supportHeightAt(
         WORLD_SEED,
@@ -7045,8 +7073,13 @@ function supportedElevationLineOfSight(): Scenario {
       rec.tick(40);
       rec.snapshot('canopy-jump-heal-complete');
 
-      const from = { x: -224, z: 200 };
-      const to = { x: -224, z: 224 };
+      // Re-sited for Eastbrook Vale v2 with the stall arms: on the v2 world the
+      // grounded ray from (-224, 200) to (-224, 224) no longer meets cover, so
+      // the cast started. (154, 194) to (172, 194), just
+      // north of the v2 field, keeps the contract on this seed: the grounded
+      // ray blocked, the lifted eye clear, no camp near.
+      const from = { x: 154, z: 194 };
+      const to = { x: 172, z: 194 };
       place(
         healer,
         {

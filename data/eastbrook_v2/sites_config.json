@@ -1,5 +1,5 @@
 {
-  "note": "Where each piece of Eastbrook content stands on the v2 design. scripts/eastbrook_v2/resite_eastbrook_v2.ts reads this and writes src/sim/eastbrook_v2/sites.generated.ts. `anchors` ties a content key to a design point (the content stands at the nearest clear, dry, walkable spot to it; `exact` keys stand on the point itself). Every other Eastbrook NPC, quest object and camp keeps its own position when that is still valid on the design ground, and otherwise moves to the nearest valid spot (searchRadius yards). `nodes` maps vale gather nodes onto the design's own nodes; the six Copper Dig veins are left out on purpose, so they keep their field round the Copper Dig landmark that q_prof_intro sends a miner to (the design's two in-slot veins lie 90 yd apart, far from it), stepping only as far as they must to clear the design's solids. Content standing on shipped ground (the edge band) never moves, and neither does a camp whose levelling disc already reaches past the slot edge, so no neighbour's ground changes. The first Vale Bandit camp anchors to the design's bandit camp muster ground (camp_banditcamp_muster: the compound moved inside the slot by pass 4, and the spot in it where the camp's whole spawn ring stands clear and every camp rule holds). An object group either follows a building onto a design point, or moves by an explicit from/to offset: the old quay's cargo and posts (the harbor cove is the design's mill ground now) gather on the bank behind the west cove's ferry dock.",
+  "note": "Where each piece of Eastbrook content stands on the v2 design. scripts/eastbrook_v2/resite_eastbrook_v2.ts reads this and writes src/sim/eastbrook_v2/sites.generated.ts. `anchors` ties a content key to a design point (the content stands at the nearest clear, dry, walkable spot to it; `exact` keys stand on the point itself). Every other Eastbrook NPC, quest object and camp keeps its own position when that is still valid on the design ground, and otherwise moves to the nearest valid spot (searchRadius yards). `nodes` maps vale gather nodes onto the design's own nodes (a kind takes that kind's next design node in export order, an id takes that design node, and an {x, z} spot stands a patch where the design has none: the design's herb and berry nodes cluster in the east of the vale (this world's east is -x), so three patches stand on open meadow in the north-west, the middle and the south-west of the vale to keep the zone's gathering coverage floor in tests/gather_node_placement.test.ts, which twelve nodes cannot reach from the design's spots alone); the six Copper Dig veins are left out on purpose, so they keep their field round the Copper Dig landmark that q_prof_intro sends a miner to (the design's two in-slot veins lie 90 yd apart, far from it), stepping only as far as they must to clear the design's solids. Content standing on shipped ground (the edge band) never moves, and neither does a camp whose levelling disc already reaches past the slot edge, so no neighbour's ground changes. The first Vale Bandit camp anchors to the design's bandit camp muster ground (camp_banditcamp_muster: the compound moved inside the slot by pass 4, and the spot in it where the camp's whole spawn ring stands clear and every camp rule holds). An object group either follows a building onto a design point, or moves by an explicit from/to offset: the old quay's cargo and posts (the harbor cove is the design's mill ground now) gather on the bank behind the west cove's ferry dock.",
   "exact": ["svc:noticeboard", "svc:playerStart"],
   "anchors": {
     "svc:playerStart": "player_spawn",
@@ -51,12 +51,12 @@
     "eastbrook_quay_cottage": "lot_cobbler"
   },
   "nodes": {
-    "herb_eastbrook_1": "herb",
-    "herb_eastbrook_2": "herb",
-    "herb_eastbrook_3": "herb",
-    "herb_eastbrook_4": "herb",
-    "herb_eastbrook_5": "herb",
-    "herb_eastbrook_6": "berry"
+    "herb_eastbrook_1": { "x": 54, "z": 96 },
+    "herb_eastbrook_2": "herb_ebv_13",
+    "herb_eastbrook_3": { "x": -112, "z": 12 },
+    "herb_eastbrook_4": "herb_ebv_26",
+    "herb_eastbrook_5": { "x": 94, "z": -48 },
+    "herb_eastbrook_6": "berry_ebv_01"
   },
   "objectGroups": [
     {
@@ -100,7 +100,15 @@
     }
   ],
   "campFollowers": { "supply_crate": "vale_bandit" },
-  "searchRadius": { "npc": 16, "object": 8, "camp": 110, "station": 8, "service": 8, "node": 12 },
+  "searchRadius": {
+    "npc": 16,
+    "object": 14,
+    "camp": 110,
+    "station": 8,
+    "service": 8,
+    "node": 12,
+    "monument": 30
+  },
   "npcSpacing": 2.2,
   "boardClearance": 5.5,
   "hubSafeMargin": 60,

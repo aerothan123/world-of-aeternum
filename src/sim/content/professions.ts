@@ -571,6 +571,10 @@ export const STATION_TYPE_BY_CRAFT: Readonly<Record<string, StationType>> = {
 // aggro radius; the bar is pinned in tests/professions_station_placement.test.ts). The
 // zone-1 forge shares smith_haldren's forge. `masterNpcId` values name the
 // resident master each station belongs to (NpcDefs in the zone modules).
+// No Eastbrook station is `dressed` while the v2 town has no station models:
+// the old town kit benches are gone, so each draws (and collides as) the
+// generic per-type prop cluster at its v2 site, and a player always sees
+// what they craft at. Re-dress a station only when its v2 model ships.
 export const STATIONS: readonly StationDef[] = [
   {
     id: 'station_eastbrook_forge',
@@ -578,7 +582,6 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_forge.position },
     masterNpcId: 'forgemistress_darva',
-    dressed: true,
   },
   {
     id: 'station_eastbrook_kitchens',
@@ -586,7 +589,6 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_kitchens.position },
     masterNpcId: 'cook_marlow',
-    dressed: true,
   },
   {
     id: 'station_eastbrook_loom',
@@ -594,7 +596,6 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_loom.position },
     masterNpcId: 'weaver_ottilie',
-    dressed: true,
   },
   {
     id: 'station_eastbrook_toolworks',
@@ -602,7 +603,6 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_toolworks.position },
     masterNpcId: 'tinker_gizzel',
-    dressed: true,
   },
   {
     id: 'station_fenbridge_tannery',
@@ -628,7 +628,6 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_apothecary.position },
     masterNpcId: 'apothecary_lin',
-    dressed: true,
   },
   {
     id: 'station_eastbrook_tannery',
@@ -636,6 +635,5 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_tannery.position },
     masterNpcId: 'tanner_tamsin',
-    dressed: true,
   },
 ];

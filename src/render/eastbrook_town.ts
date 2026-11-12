@@ -114,7 +114,9 @@ const NEW_ASSET_URLS = Object.freeze([
 ]);
 const SUPPORT_ASSET_URLS = Object.freeze([
   EASTBROOK_LAYOUT.civic.benches[0].assetId,
-  EASTBROOK_LAYOUT.fences[0].assetId,
+  // The stable corral's fence retired with the old town kit: no fence model
+  // left to preload.
+  ...EASTBROOK_LAYOUT.fences.slice(0, 1).map((fence) => fence.assetId),
 ]);
 const ALL_ASSET_URLS = Object.freeze([...new Set([...NEW_ASSET_URLS, ...SUPPORT_ASSET_URLS])]);
 

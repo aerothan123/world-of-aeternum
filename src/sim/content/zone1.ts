@@ -7,6 +7,7 @@ import {
   EASTBROOK_NPC_PLACEMENTS_BY_ID,
   wallSegmentMirrored,
 } from '../eastbrook_layout';
+import { ebv2RoadPolylines } from '../eastbrook_v2/points';
 import { WORK_ORDER_CADENCE_TICKS } from '../professions/cadence';
 import type {
   CampDef,
@@ -129,20 +130,6 @@ export const SOWFIELD_SEABED_TERRAIN_EDITS: HeightStamp[] = [
   { x: 20, z: -146, radius: 13, delta: -5.2, falloff: 'smooth', mode: 'level' },
 ];
 
-// The Tidehold rebuild's building pads (sim/eastbrook_layout.ts pads): a grid
-// of level stamps under each placed building, its solid cores covering the
-// model's whole reach, each shelf eased into the streets by its own taper,
-// the vault on the bank's shelf. Applied LAST (array order is application
-// order), after the plat, the quay and the strand; the Studio rebuild map
-// carries the same list. None reaches the quay's working pad or the player
-// start, and none lifts a cell of sea out of the water. A grid, not one disc
-// per building: a disc whose core covers a whole reach spills well past its
-// long sides, and on the World of ClaudeCraft Studio map's sites those discs
-// (the bank's above all) lifted the harbour seabed out of the sea.
-// Copied: the layout's records are frozen, and edit lists are plain data.
-export const EASTBROOK_BUILDING_PAD_TERRAIN_EDITS: HeightStamp[] = EASTBROOK_LAYOUT.pads.map(
-  (pad) => ({ ...pad }),
-);
 // Flower drifts beside the lamplit town streets (owner refinement round 3).
 // The renderer's grass ring treats these circles as guaranteed bloom cells
 // (the REALM_FLOWER_MEADOWS mechanism); placement inside them still skips
@@ -1849,48 +1836,14 @@ export const ZONE1_OBJECTS: GroundObjectDef[] = [
   },
 ];
 
-// Roads from town toward each hub — used for terrain painting and the map.
-// Roads from town toward each hub — used for terrain painting and the map.
-export const ZONE1_ROADS: { x: number; z: number }[][] = [
-  [
-    ...EASTBROOK_LAYOUT.roads[0].points,
-    { x: -2, z: -34 },
-    { x: 2, z: -4 },
-    { x: -8, z: 30 },
-    { x: -15, z: 55 },
-    { x: -2, z: 78 },
-    { x: -16, z: 104 },
-    { x: -26, z: 124 },
-    { x: -32, z: 140 },
-  ], // north over the chapel green, through the Wolf Run on the old town ground, on past Mirror Lake to the Copper Dig and the Mirefen road
-  [...EASTBROOK_LAYOUT.roads[1].points], // the main street: market square east to the harbor quay
-  [
-    ...EASTBROOK_LAYOUT.roads[2].points,
-    // Owner report (round 6e): the old beach line (-24,-132)(-12,-135)(12,-131)
-    // dipped under the bay south of town (min height -4.49 vs water -4.3), so
-    // the map painted the meadow road cut by the sea. This arc hugs the dry
-    // sand instead: every sample along it, across a 2.5yd half-width, holds at
-    // least 1.2yd of freeboard over WATER_LEVEL (probed against live terrain).
-    { x: -18, z: -128 },
-    { x: -16, z: -130 },
-    { x: -10, z: -126.5 },
-    { x: -4, z: -123.5 },
-    // Up off the strand past the chapel's door, clear of its bell tower, and
-    // north across the square's west corner.
-    { x: 2, z: -119 },
-    { x: 6, z: -113 },
-    { x: 9, z: -106 },
-    { x: 14, z: -99 },
-    { x: 30, z: -30 },
-    { x: 50, z: -50 },
-    { x: 65, z: -65 },
-  ], // crafts lane, then the coast track along the bay, north to the boar meadow
-  [...EASTBROOK_LAYOUT.roads[3].points], // the beach promenade
-  [...EASTBROOK_LAYOUT.roads[4].points], // civic link across the squares
-  [...EASTBROOK_LAYOUT.roads[5].points, { x: -96, z: -66 }], // the quay walk, joining the flank track (the freed dig ground)
-  [...EASTBROOK_LAYOUT.roads[6].points], // the inn lane down to the main street
-  [...EASTBROOK_LAYOUT.roads[7].points], // Meadow Lane: across the meadow from the coast track bend (housing)
-];
+// Eastbrook Vale's roads are the v2 design's (EBV2_ROADS, layout.generated.ts), in
+// export order: the vale road, the mill lane and spur, the north road over the stream
+// bridge, the farm lane and hill track, the shore path, the church lane, the town
+// streets, the Mirefen road, the causeway road and the ferry lane. The terrain splat,
+// the map painter, decoration and lantern placement and every roadDistance clearance
+// read these, so they follow the design on every re-import. The old town streets and
+// tracks (EASTBROOK_LAYOUT.roads) are retired with the rest of the old town.
+export const ZONE1_ROADS: { x: number; z: number }[][] = ebv2RoadPolylines();
 
 // ---------------------------------------------------------------------------
 // Static props (rendering + collision share this placement data)
@@ -2045,23 +1998,9 @@ export const ZONE1_PROPS: ZonePropsDef = {
     // walk-through like every flower, set off the painted track
     { key: 'shrubFlowering', x: 55, z: -66, rot: -1.2, scale: 0.95 },
     { key: 'shrubFlowering', x: 50, z: -76, rot: 0.3, scale: 0.9 },
-    // The town kit (town kit phase 2, docs/design/town-layout-eastbrook.md):
-    // the crafting yard's benches, Market Row, the square's corner stalls, the
-    // stable and the housing streets, each a box collider on its walls (the
-    // layout's `collider`, trimmed off the eaves) and its whole reach as the
-    // clearance radius scatter and roads keep. APPENDED last, after every
-    // earlier decor row.
-    ...EASTBROOK_LAYOUT.townKit.map((kit) => ({
-      key: kit.propKey,
-      x: kit.position.x,
-      z: kit.position.z,
-      rot: kit.rotation,
-      scale: kit.scale,
-      r: Math.hypot(kit.reach.halfWidth, kit.reach.halfDepth),
-      h: kit.height,
-      hw: kit.collider.halfWidth,
-      hd: kit.collider.halfDepth,
-    })),
+    // The old town kit's rows (appended last here) retired with the kit: the
+    // v2 vale starts over (owner direction), and its stations and keepers
+    // stand on design sites.
   ],
   docks: [{ x: -64, z: 60, rot: -2.2, hutLocal: { x: 2.8, z: 2.4, hw: 1.7, hd: 1.5 } }],
   // The first two tents, the first two crates and the first campfire are the

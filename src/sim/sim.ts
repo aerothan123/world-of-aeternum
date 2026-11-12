@@ -5996,7 +5996,7 @@ export class Sim {
         // positive transition needs a dirty mark (a resting player must not
         // stay perpetually dirty for the tick-tail evaluator).
         const wasUnrested = meta.restedXp === 0;
-        updateRested(p, meta, this.worldContent.props.buildings);
+        updateRested(p, meta, this.worldContent);
         if (wasUnrested && meta.restedXp > 0) deedsMod.markDeedsDirty(this.ctx, p.id);
         if (meta.pendingGatherGrants.length > 0) {
           drainGatheringGrants(meta);

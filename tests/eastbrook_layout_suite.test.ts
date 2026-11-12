@@ -1013,7 +1013,7 @@ describe('authoritative Eastbrook replacement plan', () => {
     }
   });
 
-  it('pins only the low stable-corral fences', () => {
+  it('pins no fence since the stable corral retired', () => {
     // Re-pinned 2026-08 for the harbor move (d19aa33f76,
     // docs/design/eastbrook-revamp/site-plan.md): the yard fences derive
     // from the smithy, which moved to the crafts district at (-2, -122);
@@ -1025,42 +1025,10 @@ describe('authoritative Eastbrook replacement plan', () => {
     // Re-pinned for the town kit (phase 2): the crafting yard's benches took
     // the forge lot, so its fence retired, and the only fences left are the
     // stable corral's low rails at the north road gate (still low).
-    expect(
-      EASTBROOK_LAYOUT.fences.map((fence) => ({
-        id: fence.id,
-        district: fence.district,
-        start: fence.start,
-        end: fence.end,
-        width: fence.width,
-        height: fence.height,
-      })),
-    ).toEqual([
-      {
-        id: 'eastbrook_fence_corral_west',
-        district: 'stable_corral',
-        start: { x: 21, z: -54.6 },
-        end: { x: 21, z: -50 },
-        width: 0.28,
-        height: 0.9,
-      },
-      {
-        id: 'eastbrook_fence_corral_north',
-        district: 'stable_corral',
-        start: { x: 20.65, z: -50 },
-        end: { x: 15.35, z: -50 },
-        width: 0.28,
-        height: 0.9,
-      },
-      {
-        id: 'eastbrook_fence_corral_east',
-        district: 'stable_corral',
-        start: { x: 15, z: -50 },
-        end: { x: 15, z: -54.6 },
-        width: 0.28,
-        height: 0.9,
-      },
-    ]);
-    expect(EASTBROOK_LAYOUT.fences.every((fence) => fence.height <= 1)).toBe(true);
+    // Re-pinned for the Eastbrook Vale v2 port: the corral rails retired with
+    // the old town kit (owner direction: bring nothing over from the old map),
+    // so Eastbrook authors no fence at all.
+    expect(EASTBROOK_LAYOUT.fences).toEqual([]);
   });
 });
 
@@ -1122,6 +1090,9 @@ describe('wall and road geometry', () => {
     // gate are the nearest layout solid now, still over fifty yards off.
     // The scale pass nudged the corral a yard north to clear the larger
     // stable, so the rails sit a yard closer, still over fifty yards off.
+    // Re-pinned for the Eastbrook Vale v2 port: the corral retired with the old
+    // town kit, so the inn is the nearest layout solid again, over seventy
+    // yards off.
     const wanderTarget = { x: 29.4338221478, z: 0.9998592577 };
     expect(EASTBROOK_LAYOUT.wall.segments).toHaveLength(0);
     const clearances = nonWallSolidObbs()
@@ -1131,8 +1102,8 @@ describe('wall and road geometry', () => {
       }))
       .sort((left, right) => left.clearance - right.clearance);
     expect(clearances[0]).toEqual({
-      id: 'eastbrook_fence_corral_north',
-      clearance: 51.61279701040464,
+      id: 'eastbrook_inn',
+      clearance: 74.03488192823825,
     });
     expect(clearances[0].clearance).toBeGreaterThan(PLAYER_RADIUS);
   });
@@ -1619,28 +1590,28 @@ describe('layout clearance and service anchors', () => {
         id: 'station_eastbrook_kitchens',
         type: 'kitchens',
         masterNpcId: 'cook_marlow',
-        position: { x: -33.27, z: -89.8 },
+        position: { x: -32.87, z: -89.8 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_loom',
         type: 'loom',
         masterNpcId: 'weaver_ottilie',
-        position: { x: 2.14, z: -79.25 },
+        position: { x: 2.45, z: -78.85 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_toolworks',
         type: 'toolworks',
         masterNpcId: 'tinker_gizzel',
-        position: { x: 2.8, z: -80.5 },
+        position: { x: 1.43, z: -82.6 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_apothecary',
         type: 'apothecary',
         masterNpcId: 'apothecary_lin',
-        position: { x: 2.36, z: -76.47 },
+        position: { x: 2.6, z: -75.5 },
         interactionRadius: 20,
       },
       {
@@ -1661,23 +1632,27 @@ describe('layout clearance and service anchors', () => {
         npc.anchorId,
       ]),
     ).toEqual([
-      ['the_merchant', -4.4, -99.26, 0, 'kit_trading_post'],
+      ['the_merchant', -4.4, -99.26, 0, 'eastbrook_world_market'],
       ['marshal_redbrook', -3.49, -106.72, -1.9787985229559204, 'eastbrook_noticeboard'],
       ['trader_wilkes', -4.26, -96.82, 2.1995926132103296, 'eastbrook_civic_square'],
-      ['apothecary_lin', 1.41, -75.63, -2.6312333237070438, 'station_eastbrook_apothecary'],
+      ['apothecary_lin', 1.89, -76.47, -2.584861572527948, 'station_eastbrook_apothecary'],
       ['brother_aldric', -3.15, -57.45, -0.9599310885968813, 'eastbrook_chapel'],
       ['smith_haldren', 1.8, -108.15, -2.7925268031909276, 'eastbrook_smithy'],
       ['fisherman_brandt', -111.42, -98.7, 1.2672255874712333, 'eastbrook_civic_square'],
       ['foreman_odell', 1.25, -81.17, -1.5328398816065827, 'eastbrook_civic_square'],
-      ['bursar_fernando', -42.4, -98.81, 0, 'kit_storage_shed'],
-      ['card_master', -32.23, -90.4, 0.7853981633974481, 'eastbrook_bank'],
-      ['chronicler_saul', -14.03, -104.03, 0.5880026035475675, 'mailbox_eastbrook'],
+      ['bursar_fernando', -42.4, -98.81, -0.21866894587394195, 'eastbrook_banker_chest'],
+      ['card_master', -31.83, -90.4, 0.7853981633974481, 'eastbrook_bank'],
+      // re-sited off the Realm Builder monument's cylinder, which he stood
+      // inside while the statue's collider stood down on design ground
+      ['chronicler_saul', -15.96, -98.28, 0.5880026035475675, 'mailbox_eastbrook'],
       ['forgemistress_darva', -1, -83.8, -1.5707963267948966, 'station_eastbrook_forge'],
-      ['cook_marlow', -30.11, -89.3, -1.5707963267948966, 'station_eastbrook_kitchens'],
-      ['weaver_ottilie', 5.82, -80.63, 1.5707963267948966, 'station_eastbrook_loom'],
-      ['tinker_gizzel', 1.82, -84.52, 1.5707963267948966, 'station_eastbrook_toolworks'],
-      ['fury', -14.2, -119.43, -2.0570389598824015, 'eastbrook_chapel'],
-      ['tanner_tamsin', -1.91, -74.97, 1.5707963267948966, 'station_eastbrook_tannery'],
+      ['cook_marlow', -29.71, -89.3, -1.827402372878145, 'station_eastbrook_kitchens'],
+      ['weaver_ottilie', -0.69, -77.26, -1.5707963267948966, 'station_eastbrook_loom'],
+      ['tinker_gizzel', 1.82, -84.52, -1.5707963267948966, 'station_eastbrook_toolworks'],
+      // faces the road from the guard post (keeperPost), not the old turn
+      // measured at his retired spot
+      ['fury', -14.2, -119.43, -2.530605592600772, 'eastbrook_chapel'],
+      ['tanner_tamsin', -0.16, -74.6, -1.5707963267948966, 'station_eastbrook_tannery'],
     ]);
 
     // Every anchor stands on the v2 design's ground now, so it answers to the live
@@ -1685,7 +1660,13 @@ describe('layout clearance and service anchors', () => {
     // cleared it for; the old town footprints this suite pins stood down.
     const pointAnchors = [
       EASTBROOK_LAYOUT.services.playerStart,
-      EASTBROOK_LAYOUT.services.mailbox,
+      // The Ravenpost pillar is a solid itself (the noticeboard pattern), so the
+      // clear anchor is the posting spot in front of it, not the pillar's point.
+      {
+        id: `${EASTBROOK_LAYOUT.services.mailbox.id}:standing`,
+        position: EASTBROOK_LAYOUT.services.mailbox.frontStandingPoint,
+        bodyRadius: 0.5,
+      },
       {
         id: `${EASTBROOK_LAYOUT.services.noticeboard.id}:standing`,
         position: EASTBROOK_LAYOUT.services.noticeboard.frontStandingPoint,
@@ -1831,12 +1812,21 @@ describe('layout clearance and service anchors', () => {
 describe('pure deterministic module boundary', () => {
   it('contains no runtime dependency, DOM, Three, random, or wall-clock access', () => {
     const source = readFileSync(new URL('../src/sim/eastbrook_layout.ts', import.meta.url), 'utf8');
-    // The one import allowed is the Eastbrook v2 site table: generated,
-    // pure data (scripts/eastbrook_v2/resite_eastbrook_v2.ts) that moves the
-    // authored anchors onto the v2 design ground.
+    // The imports allowed are the Eastbrook v2 site table (generated, pure data
+    // from scripts/eastbrook_v2/resite_eastbrook_v2.ts that moves the authored
+    // anchors onto the v2 design ground) and the v2 facing rule, a pure leaf over
+    // the generated design roads that turns the keepers toward their road.
     const imports = source.match(/^\s*import\s.*$/gm) ?? [];
     expect(imports.map((line) => line.trim())).toEqual([
+      "import { ebv2FacingToRoad } from './eastbrook_v2/facing';",
       "import { ebv2Site, ebv2SiteOr } from './eastbrook_v2/sites';",
+    ]);
+    const facing = readFileSync(
+      new URL('../src/sim/eastbrook_v2/facing.ts', import.meta.url),
+      'utf8',
+    );
+    expect((facing.match(/^\s*import\s.*$/gm) ?? []).map((line) => line.trim())).toEqual([
+      "import { EBV2_ROADS } from './layout.generated';",
     ]);
     const sites = readFileSync(
       new URL('../src/sim/eastbrook_v2/sites.ts', import.meta.url),

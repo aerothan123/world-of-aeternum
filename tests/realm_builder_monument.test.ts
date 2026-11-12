@@ -209,8 +209,12 @@ describe('the Realm Builder monument as a static world service', () => {
   });
 
   it('spawns on the reserved id without touching the allocator or the rng', () => {
+    // Eastbrook Vale v2: the copy is still the built-in ground (the editor's
+    // live-world preview flag), so the design owns the vale in both worlds and
+    // the only difference left between them is the monument itself.
     const withoutMonument: WorldContent = {
       ...BUILTIN_WORLD,
+      liveWorldPreview: true,
       props: {
         ...BUILTIN_WORLD.props,
         wells: BUILTIN_WORLD.props.wells.filter((well) => well.id !== MONUMENT.id),
@@ -391,7 +395,7 @@ describe('inspecting the Realm Builder monument', () => {
     expect(eventTypes(sim)).not.toContain('realmBuilder');
   });
 
-  it('never takes the interact key from the mailbox 6.21 yd away', () => {
+  it('never takes the interact key from the mailbox 5.15 yd away', () => {
     const sim = new Sim({ seed: SEED, playerClass: 'warrior', noPlayer: true });
     const pid = sim.addPlayer('warrior', 'Reader');
     const mailbox = mailboxEntity(sim);
@@ -399,7 +403,11 @@ describe('inspecting the Realm Builder monument', () => {
       mailbox.pos.x - MONUMENT.position.x,
       mailbox.pos.z - MONUMENT.position.z,
     );
-    expect(span).toBeCloseTo(6.21, 2);
+    // Re-pinned for Eastbrook Vale v2: the mailbox stands on its v2 design
+    // site (svc_mailbox, (-10, -100)) now, 5.15 yd off the monument (was 6.21
+    // across the old civic square); the monument's own design-town site
+    // (svc:monument) is its authored spot. Nearest still wins below.
+    expect(span).toBeCloseTo(5.15, 2);
 
     // Pressed against the plinth on the mailbox's side, still inside the
     // monument's catchment: the mailbox is nearer and nearest wins.

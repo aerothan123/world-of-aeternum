@@ -361,7 +361,6 @@ import {
 import { YUMI_MOBS } from './content/yumi';
 import {
   COPPER_DIG_TERRAIN_EDITS,
-  EASTBROOK_BUILDING_PAD_TERRAIN_EDITS,
   EASTBROOK_QUAY_TERRAIN_EDITS,
   GRAVEYARD_POS,
   HARBOR_SAND_TERRAIN_EDITS,
@@ -1277,8 +1276,8 @@ export const BASE_WORLD: WorldContent = {
     ...HARBOR_SAND_TERRAIN_EDITS,
     ...SOWFIELD_SEABED_TERRAIN_EDITS,
     ...FORGEFATHER_ISLE_TERRAIN_EDITS,
-    // last, as the Studio rebuild map applies them: over the plat and the strand
-    ...EASTBROOK_BUILDING_PAD_TERRAIN_EDITS,
+    // (Eastbrook's old building pads retired with the v2 port: the v2 design
+    // ground, applied after every stamp, owns all of the town's ground.)
     // Highwatch's painted buildings stand on level pads cut into the shelf's
     // rim, eased out by wide aprons (sim/highwatch_layout.ts pads); no other
     // stamp touches that ground. The calm skirts round nearby anchors are sized

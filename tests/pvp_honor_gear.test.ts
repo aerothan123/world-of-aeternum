@@ -13,6 +13,7 @@ import {
   WARFARE_TRINKET_STOCK,
 } from '../src/sim/content/pvp_honor';
 import { ITEMS, NPCS } from '../src/sim/data';
+import { EBV2_SITES } from '../src/sim/eastbrook_v2/sites.generated';
 import { createPlayer, recalcPlayerStats } from '../src/sim/entity';
 import { canEquipItem } from '../src/sim/equipment_rules';
 import { weaponDpsBudget } from '../src/sim/item_budget';
@@ -213,7 +214,12 @@ describe('FURY WARFARE stock', () => {
     // smithy's forge shelter took the north road's old line, so the road swings
     // west round it over his stand and he keeps the town's edge a few strides
     // on, between that road and the coast track.
-    expect(NPCS.fury.pos).toEqual({ x: 21, z: -83.5 });
+    // Re-pinned for Eastbrook Vale v2: data.ts stands him on his v2 design site
+    // (sites.generated.ts npc:fury, 12 yd north of the v2 guard post).
+    // His facing is still the turn toward the old civic square from his old
+    // stand, carried over unchanged.
+    expect(NPCS.fury.pos).toEqual({ x: -14.2, z: -119.43 });
+    expect(EBV2_SITES['npc:fury']).toMatchObject({ x: -14.2, z: -119.43, fromX: 21, fromZ: -83.5 });
     expect(NPCS.fury.facing).toBe(-2.0570389598824015);
     expect(NPCS.fury.dynamic).toBe(true);
     // The entry tier first, then the two honor trinkets, then Warfare Season 2

@@ -18,11 +18,49 @@
 import { isBuiltinWorldActive, WORLD_MAX_X, WORLD_MIN_X, WORLD_MIN_Z } from '../data';
 import { hash2 } from '../rng';
 import type { Decoration } from '../world';
-import { ebv2Owns, inEbv2Field } from './ground';
+import { ebv2FieldHeight, ebv2Owns, ebv2Weight, inEbv2Field } from './ground';
 import { EBV2_TREES } from './layout.generated';
 
 const CELL = 10;
 const HALF = CELL / 2;
+
+// A design tree on a cliff face (the design's bandit-camp scarp carries two) is
+// never a decoration: the shared scatter rule (world.ts DECORATION_MAX_SLOPE,
+// tests/fixes.test.ts) keeps every tree and rock off a wall steeper than the climb
+// limit, and a choppable tree there would ask a woodcutter to stand on the wall.
+// It still stands as a plain trunk where the Unreal client draws it (an anchor
+// skips it, so ebv2UnanchoredTreeIndexes hands it to colliders.ts). The slope is
+// read off the design field itself, the way world.ts terrainSteepness reads the
+// ground (central differences STEEPNESS_SAMPLE apart): where the design owns the
+// ground outright its field IS the ground (ebv2Ground is applied last). Both
+// literals are pinned equal to world.ts's by tests/eastbrook_v2_world.test.ts;
+// this leaf cannot import world.ts (world.ts imports it).
+export const EBV2_TREE_MAX_SLOPE = 1.5;
+export const EBV2_SLOPE_SAMPLE = 0.35;
+
+// The verdict is a pure function of the generated field, so it is read once per tree.
+let cliffTrees: boolean[] | null = null;
+
+/** True when design tree `i` stands on a cliff face of fully owned design ground. */
+export function ebv2TreeOnCliff(i: number): boolean {
+  cliffTrees ??= EBV2_TREES.map((_, j) => treeOnCliff(j));
+  return cliffTrees[i];
+}
+
+function treeOnCliff(i: number): boolean {
+  const [x, z] = EBV2_TREES[i];
+  const e = EBV2_SLOPE_SAMPLE;
+  const samples: [number, number][] = [
+    [x + e, z],
+    [x - e, z],
+    [x, z + e],
+    [x, z - e],
+  ];
+  if (samples.some(([sx, sz]) => ebv2Weight(sx, sz) < 1)) return false;
+  const hx = (ebv2FieldHeight(x + e, z) - ebv2FieldHeight(x - e, z)) / (2 * e);
+  const hz = (ebv2FieldHeight(x, z + e) - ebv2FieldHeight(x, z - e)) / (2 * e);
+  return Math.hypot(hx, hz) > EBV2_TREE_MAX_SLOPE;
+}
 
 // Bucket the trees on a 10 yd grid aligned to multiples of 10 (any alignment works:
 // a lookup scans the buckets its query cell overlaps).
@@ -37,26 +75,56 @@ EBV2_TREES.forEach(([x, z], i) => {
 // The tree registry names a tree by rounding its position onto ITS lattice, whose x
 // origin (trees/tree_registry.ts X_START, -(WORLD_MAX_X - 14)) need not be a whole
 // number of steps from the decoration grid's (WORLD_MIN_X + 14) once the world is
-// asymmetric. A design tree is only owned where both cells agree, so every owned tree
-// is found by its own anchor's window AND keeps a registry id no other tree shares.
+// asymmetric (it sits 2 yd off today). An anchor takes the nearest design tree in its
+// own decoration cell, so every owned tree is found by its own anchor's window; it
+// keeps a registry id no other tree shares because, where two neighbouring anchors'
+// trees round to ONE registry cell, only the tree nearer that cell's lattice point
+// stands as a decoration (the other stands as a trunk). Earlier this was a window
+// cut to the overlap of the two cells, which also dropped every tree in the 2 yd
+// strip where the cells disagree even when no other tree claimed its registry id.
 const REGISTRY_X0 = -(WORLD_MAX_X - 14);
 const REGISTRY_Z0 = WORLD_MIN_Z + 14;
 
-function cellAround(origin: number, g: number): [number, number] {
-  const c = origin + Math.round((g - origin) / CELL) * CELL;
-  return [c - HALF, c + HALF];
+const registryCell = (origin: number, v: number) => origin + Math.round((v - origin) / CELL) * CELL;
+
+/** The registry lattice point a design tree's id rounds to, and its squared distance. */
+function registryOf(i: number): { rx: number; rz: number; d: number } {
+  const [x, z] = EBV2_TREES[i];
+  const rx = registryCell(REGISTRY_X0, x);
+  const rz = registryCell(REGISTRY_Z0, z);
+  return { rx, rz, d: (x - rx) ** 2 + (z - rz) ** 2 };
 }
 
 /** The index of the design tree owning anchor (gx, gz), or -1. */
 export function ebv2TreeForAnchor(gx: number, gz: number): number {
+  const i = nearestInCell(gx, gz);
+  if (i < 0) return -1;
+  const mine = registryOf(i);
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dz = -1; dz <= 1; dz++) {
+      if (dx === 0 && dz === 0) continue;
+      const nx = gx + dx * CELL;
+      const nz = gz + dz * CELL;
+      // only an anchor the design owns shows its design tree (world.ts)
+      if (!inEbv2Field(nx, nz) || !ebv2Owns(nx, nz)) continue;
+      const n = nearestInCell(nx, nz);
+      if (n < 0) continue;
+      const theirs = registryOf(n);
+      if (theirs.rx !== mine.rx || theirs.rz !== mine.rz) continue;
+      if (theirs.d < mine.d || (theirs.d === mine.d && n < i)) return -1;
+    }
+  }
+  return i;
+}
+
+/** The design tree nearest anchor (gx, gz) inside its decoration cell, or -1. */
+function nearestInCell(gx: number, gz: number): number {
   let best = -1;
   let bestD = Number.POSITIVE_INFINITY;
-  const [rx0, rx1] = cellAround(REGISTRY_X0, gx);
-  const [rz0, rz1] = cellAround(REGISTRY_Z0, gz);
-  const x0 = Math.max(gx - HALF, rx0);
-  const x1 = Math.min(gx + HALF, rx1);
-  const z0 = Math.max(gz - HALF, rz0);
-  const z1 = Math.min(gz + HALF, rz1);
+  const x0 = gx - HALF;
+  const x1 = gx + HALF;
+  const z0 = gz - HALF;
+  const z1 = gz + HALF;
   const bx0 = Math.floor((gx - HALF) / CELL);
   const bz0 = Math.floor((gz - HALF) / CELL);
   for (let bx = bx0; bx <= bx0 + 1; bx++) {
@@ -64,6 +132,7 @@ export function ebv2TreeForAnchor(gx: number, gz: number): number {
       for (const i of BUCKETS.get(`${bx},${bz}`) ?? []) {
         const [x, z] = EBV2_TREES[i];
         if (x < x0 || x >= x1 || z < z0 || z >= z1 || !ebv2Owns(x, z)) continue;
+        if (ebv2TreeOnCliff(i)) continue;
         const d = (x - gx) ** 2 + (z - gz) ** 2;
         if (d < bestD || (d === bestD && i < best)) {
           bestD = d;

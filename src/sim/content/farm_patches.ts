@@ -91,8 +91,14 @@ const FARM_PATCH_ROWS: readonly FarmPatchDef[] = [
     x: -21.5,
     z: -81.5,
     beds: [
-      { id: 'bed_eastbrook_1', x: -24, z: -84 },
-      { id: 'bed_eastbrook_2', x: -19, z: -84 },
+      // Eastbrook Vale v2: the design's building took beds 1 and 2's old
+      // (-24, -84) and (-19, -84) ground (both stood inside its wall), so they
+      // step onto the clear ground north-west of bed 3, still on the 5 yard
+      // pitch: bed 1 is 5 yd from bed 2 and from bed 3, so one stand point
+      // reaches each pair, and every bed is 5 yd or more off the design lanes.
+      // Beds 3 and 4 keep their places beside Farmer Jessica's design site.
+      { id: 'bed_eastbrook_1', x: -27, z: -75 },
+      { id: 'bed_eastbrook_2', x: -32, z: -75 },
       { id: 'bed_eastbrook_3', x: -24, z: -79 },
       { id: 'bed_eastbrook_4', x: -19, z: -79 },
     ],

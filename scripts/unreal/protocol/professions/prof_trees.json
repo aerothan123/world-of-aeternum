@@ -49,9 +49,9 @@
  },
  {
   "id": 25118,
-  "x": -222.96,
-  "y": -2.729,
-  "z": 157.1,
+  "x": -230.5,
+  "y": -3.192,
+  "z": 157.4,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -112,6 +112,18 @@
   "x": -216.65,
   "y": -2.364,
   "z": 152.28,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 25861,
+  "x": -211.73,
+  "y": -3.283,
+  "z": -98.21,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -216,6 +228,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 26266,
+  "x": -201.48,
+  "y": 0.031,
+  "z": 112.13,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 26272,
   "x": -193.77,
   "y": -4.029,
@@ -252,6 +276,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 26640,
+  "x": -191.12,
+  "y": -1.057,
+  "z": 18.78,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 26642,
   "x": -185.08,
   "y": -0.196,
@@ -268,6 +304,18 @@
   "x": -177.5,
   "y": 1.286,
   "z": 22.05,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 27027,
+  "x": -181.36,
+  "y": 0.184,
+  "z": 39.77,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -304,18 +352,6 @@
   "x": -165.12,
   "y": 0.451,
   "z": -154.62,
-  "kind": "tree2",
-  "scale": 1,
-  "zoneId": "eastbrook_vale",
-  "tier": 1,
-  "level": 4,
-  "itemId": "ironbark_log"
- },
- {
-  "id": 27408,
-  "x": -169.51,
-  "y": 2.029,
-  "z": 15.09,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -456,6 +492,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 27797,
+  "x": -160.25,
+  "y": 4.199,
+  "z": 68.42,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 27799,
   "x": -152.12,
   "y": 2.525,
@@ -504,6 +552,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 28180,
+  "x": -150.96,
+  "y": 3.34,
+  "z": 56.31,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 28182,
   "x": -148.29,
   "y": 2.219,
@@ -520,6 +580,18 @@
   "x": -147.15,
   "y": 2.022,
   "z": 104.25,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 28187,
+  "x": -151.74,
+  "y": 4.859,
+  "z": 128.35,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -708,6 +780,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 29334,
+  "x": -120.7,
+  "y": -3.828,
+  "z": 70.87,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 29342,
   "x": -116.29,
   "y": 5.067,
@@ -880,18 +964,6 @@
   "x": -76.57,
   "y": 1.78,
   "z": -20.23,
-  "kind": "tree2",
-  "scale": 1,
-  "zoneId": "eastbrook_vale",
-  "tier": 1,
-  "level": 4,
-  "itemId": "ironbark_log"
- },
- {
-  "id": 30862,
-  "x": -78.4,
-  "y": 2.28,
-  "z": -10.44,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -1144,6 +1216,18 @@
   "x": -45.75,
   "y": 6.938,
   "z": 171.52,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 32413,
+  "x": -40.56,
+  "y": 7.928,
+  "z": 140.75,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -1464,10 +1548,22 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 34706,
+  "x": 18.94,
+  "y": 4.468,
+  "z": 33.01,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 34717,
-  "x": 26.06,
-  "y": 5.236,
-  "z": 142.18,
+  "x": 19.9,
+  "y": 5.39,
+  "z": 143.84,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -1536,6 +1632,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 35468,
+  "x": 38.53,
+  "y": 1.902,
+  "z": -29.94,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 35473,
   "x": 44.43,
   "y": 4.932,
@@ -1584,6 +1692,18 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 35841,
+  "x": 49.03,
+  "y": 1.315,
+  "z": -131.53,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 35859,
   "x": 51.89,
   "y": 5.18,
@@ -1624,30 +1744,6 @@
   "x": 52.52,
   "y": 9.099,
   "z": 165.64,
-  "kind": "tree2",
-  "scale": 1,
-  "zoneId": "eastbrook_vale",
-  "tier": 1,
-  "level": 4,
-  "itemId": "ironbark_log"
- },
- {
-  "id": 36239,
-  "x": 66.29,
-  "y": 1.205,
-  "z": 5.66,
-  "kind": "tree2",
-  "scale": 1,
-  "zoneId": "eastbrook_vale",
-  "tier": 1,
-  "level": 4,
-  "itemId": "ironbark_log"
- },
- {
-  "id": 36240,
-  "x": 60.45,
-  "y": 5.13,
-  "z": 10.17,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -1705,9 +1801,9 @@
  },
  {
   "id": 36624,
-  "x": 76.89,
-  "y": -0.566,
-  "z": 9.27,
+  "x": 69.01,
+  "y": 5.158,
+  "z": 9.98,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -1756,6 +1852,18 @@
   "x": 72.32,
   "y": 9.161,
   "z": 163.95,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 36989,
+  "x": 79.19,
+  "y": -2.569,
+  "z": -177.2,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",
@@ -1956,6 +2064,30 @@
   "itemId": "ironbark_log"
  },
  {
+  "id": 37769,
+  "x": 98.05,
+  "y": 6.129,
+  "z": -53.92,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 37771,
+  "x": 98.19,
+  "y": 5.018,
+  "z": -40.15,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
   "id": 37793,
   "x": 107.24340376909822,
   "y": 12,
@@ -1972,6 +2104,18 @@
   "x": 113.24,
   "y": 4.772,
   "z": -159.93,
+  "kind": "tree2",
+  "scale": 1,
+  "zoneId": "eastbrook_vale",
+  "tier": 1,
+  "level": 4,
+  "itemId": "ironbark_log"
+ },
+ {
+  "id": 38152,
+  "x": 108.95,
+  "y": 12.232,
+  "z": -67.03,
   "kind": "tree2",
   "scale": 1,
   "zoneId": "eastbrook_vale",

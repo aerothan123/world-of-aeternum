@@ -30,7 +30,11 @@ const R = PLAYER_BODY_RADIUS;
 // gone, so the fixture sits against a dig-flank building in the new town.
 // Re-anchored 4yd south for the grand painted towns (#4525), which stood Eastbrook's
 // buildings on Duallam's Studio layout: still 1yd short of a wall on heading 0.
-const START = { x: -101.0, z: -81.0 };
+// Re-anchored for Eastbrook Vale v2: that building stands down on v2 design
+// ground. The fixture now sits against the v2 inn's flat south face
+// (EBV2_COLLIDERS col_27704, axis-aligned, face at z = -88.6), still 1yd short
+// of the wall on heading 0, with level open ground south of it.
+const START = { x: -32.87, z: -90.1 };
 const INTO_WALL = 0; // +z, into the building 1yd ahead
 const AWAY = Math.PI; // -z, open ground to the south
 

@@ -67,7 +67,10 @@ function findDeepWater(seed: number): { x: number; z: number } {
   // way (a general deepest-first scan can land in a cluttered or narrow spot that
   // stalls the run against a wall). The fixture seed is fixed, so this is stable;
   // the guard fires loudly if a future world change moves the lake.
-  const spot = { x: -100, z: 70 };
+  // Re-sited for Eastbrook Vale v2: the v2 design lays Mirror Lake round
+  // (-92, 88); (-100, 70) is its shore now. (-92, 84) keeps the whole run
+  // (6 yd each side, 12 yd ahead) 2 yd below the swim line and collider-free.
+  const spot = { x: -92, z: 84 };
   // (the no-stuck shore grading floats every carved bed ~0.9yd shallower, so
   // the guard bites at 2yd: still far past the 0.8yd swim line for the run)
   if (groundHeight(spot.x, spot.z, seed) >= WATER_LEVEL - 2) {

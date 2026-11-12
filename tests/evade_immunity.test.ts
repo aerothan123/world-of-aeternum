@@ -11,16 +11,22 @@ import { Sim } from '../src/sim/sim';
 import type { Entity } from '../src/sim/types';
 import { dist2d } from '../src/sim/types';
 import { WORLD_SEED } from '../src/sim/world_seed';
+import { WOLF_TEST_WORLD } from './sim_shared';
 
+// Re-sited for Eastbrook Vale v2: these cases take the mob nearest the start,
+// which was a wild vale wolf; nearest the v2 start (-16, -158) stand the hub
+// practice yard's dummies and, past them, a friendly escort. WOLF_TEST_WORLD
+// keeps only the wolf camps, and nearestMob skips non-hostile mobs (the escort
+// spawns from her quest, not a camp), so the nearest mob is a wild wolf again.
 function makeSim() {
-  return new Sim({ seed: 42, playerClass: 'warrior', autoEquip: true });
+  return new Sim({ seed: 42, playerClass: 'warrior', autoEquip: true, world: WOLF_TEST_WORLD });
 }
 
 function nearestMob(sim: Sim): Entity {
   let best: Entity | null = null;
   let bestD = Infinity;
   for (const e of sim.entities.values()) {
-    if (e.kind !== 'mob' || e.dead || e.ownerId !== null) continue;
+    if (e.kind !== 'mob' || e.dead || e.ownerId !== null || !e.hostile) continue;
     const d = dist2d(sim.player.pos, e.pos);
     if (d < bestD) {
       bestD = d;

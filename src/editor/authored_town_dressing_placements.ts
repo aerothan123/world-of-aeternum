@@ -1,5 +1,5 @@
 // The authored towns' square dressing as editable placements: Eastbrook
-// Vale's market stalls, benches and yard fences, and Fenbridge's Mirelight
+// Vale's market stalls and benches, and Fenbridge's Mirelight
 // cistern, provision stall, muster board and boardwalks
 // (promotedScenery.authoredTownDressing; the town views stand their copies
 // down and sim/authored_town_dressing.ts stands the record colliders down).
@@ -122,7 +122,8 @@ function segmentPlacement(
   };
 }
 
-/** Eastbrook Vale's benches, market stalls and yard fences. */
+/** Eastbrook Vale's benches and market stalls (the stable corral's yard
+ *  fences retired with the old town kit). */
 function eastbrookDressing(seed: number): MapPlacement[] {
   const out: MapPlacement[] = [];
   for (const bench of EASTBROOK_LAYOUT.civic.benches) {
@@ -159,26 +160,6 @@ function eastbrookDressing(seed: number): MapPlacement[] {
         true,
       ),
     );
-  }
-  for (const fence of EASTBROOK_LAYOUT.fences) {
-    const placement = segmentPlacement(
-      fence.assetId,
-      fence.id,
-      fence.start,
-      fence.end,
-      fence.height,
-      fence.width,
-      seed,
-    );
-    // A rail, like every promoted world fence: the isFence OBB collider and the
-    // jump-aware crossing read worldPropWidth/Depth at scale 1 (normalized).
-    const { natural, scale } = naturalScale(placement.assetId);
-    placement.collide = true;
-    placement.collisionMode = 'baked';
-    placement.worldPropKind = 'fence';
-    placement.worldPropWidth = natural.x / scale;
-    placement.worldPropDepth = natural.z / scale;
-    out.push(placement);
   }
   return out;
 }

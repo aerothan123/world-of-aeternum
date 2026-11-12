@@ -12,6 +12,7 @@ import {
 } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
 import { rockHeightOf } from '../src/sim/decoration_dims';
+import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import {
   COYOTE_TIME,
   GRAVITY,
@@ -31,6 +32,7 @@ import {
   WATER_LEVEL,
 } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
+import { OPEN_FIELD } from './helpers/open_field';
 
 // Parkour movement and height-aware prop collision:
 //  - low prop tops (moveTopY) pass a mover whose feet clear them, so a jump
@@ -58,9 +60,13 @@ function world(props: Partial<WorldContent['props']>): WorldContent {
 
 // A flat, dry, collider-free south-north strip to author the course on:
 // steady height, walkable slope, nothing else colliding along it.
+// Re-sited for Eastbrook Vale v2: this used to search x, z0 -120..120, which is
+// now the v2 design field, where the shipped props the course authors
+// (campfires, crates, cannonball piles) stand down. It searches the open test
+// lane around OPEN_FIELD instead; the course only needs generic flat ground.
 function findFlatCourse(len: number): { x: number; z0: number } {
-  for (let x = -120; x <= 120; x += 3) {
-    outer: for (let z0 = -120; z0 <= 120; z0 += 3) {
+  for (let x = OPEN_FIELD.x - 120; x <= OPEN_FIELD.x + 120; x += 3) {
+    outer: for (let z0 = OPEN_FIELD.z - 120; z0 <= OPEN_FIELD.z + 120; z0 += 3) {
       const h0 = terrainHeight(x, z0, SEED);
       if (h0 < WATER_LEVEL + 1.5) continue;
       for (let dz = 0; dz <= len; dz += 1) {
@@ -83,6 +89,9 @@ const COURSE = findFlatCourse(18);
 // a returned point is guaranteed to trip them.
 function findSteepFooting(seed: number): { x: number; z: number } {
   for (let z = -60; z <= 820; z += 7) {
+    // Eastbrook Vale v2: the rim inside the v2 design field is design ground
+    // now, so the walk starts north of it on the same west rim.
+    if (inEbv2Field(-130, z)) continue;
     for (let x = -130; x >= -184; x -= 0.25) {
       if (terrainHeight(x, z, seed) < WATER_LEVEL + 0.5) break;
       if (isBlocked(seed, x, z, 0.6)) break;

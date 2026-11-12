@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { colliderInternalsForTest, lineOfSightClear, supportHeightAt } from '../src/sim/colliders';
+import {
+  colliderInternalsForTest,
+  lineOfSightClear,
+  STALL_CANOPY_TOP,
+  supportHeightAt,
+} from '../src/sim/colliders';
 import { RESURRECTION_RANGE, resurrectionReachError } from '../src/sim/combat/resurrection_reach';
-import { MOBS } from '../src/sim/data';
-import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
+import { MOBS, PROPS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
 import { entityLineOfSightClear } from '../src/sim/line_of_sight_elevation';
 import { PLAYER_BODY_RADIUS } from '../src/sim/pathfind';
@@ -10,6 +14,20 @@ import { Sim } from '../src/sim/sim';
 import type { Entity, SimEvent } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
+
+// Re-sited for Eastbrook Vale v2: these cases stood on the Eastbrook World
+// Market stall's flat 2.7 canopy (EASTBROOK_LAYOUT.market.stalls[0]), which
+// stands down on v2 design ground, and the v2 design has no standable roof
+// tall enough to lift the eye over a plain sight line (its standable solids
+// are the low ones a jump clears). They now stand on a shipped generic market
+// stall in Evergarden, on open ground with no hostile camp within 60 yd: its
+// gabled canopy ridge (STALL_CANOPY_TOP) is the same kind of standable support.
+const STALL_SPOT = { x: 326, z: 802 } as const;
+const STALL = (() => {
+  const prop = PROPS.stalls.find((s) => s.x === STALL_SPOT.x && s.z === STALL_SPOT.z);
+  if (!prop) throw new Error('the Evergarden market stall fixture moved');
+  return { position: STALL_SPOT, height: STALL_CANOPY_TOP, prop };
+})();
 
 function player(sim: Sim, id: number): Entity {
   const entity = sim.entities.get(id);
@@ -47,7 +65,7 @@ function makeSim(playerClass: 'hunter' | 'mage' | 'priest', seed = WORLD_SEED): 
 }
 
 function canopyHeight(): number {
-  const stall = EASTBROOK_LAYOUT.market.stalls[0];
+  const stall = STALL;
   return supportHeightAt(
     WORLD_SEED,
     stall.position.x,
@@ -58,7 +76,7 @@ function canopyHeight(): number {
 }
 
 function placeOnCanopy(sim: Sim, entity: Entity): void {
-  const stall = EASTBROOK_LAYOUT.market.stalls[0];
+  const stall = STALL;
   place(sim, entity, { x: stall.position.x, y: canopyHeight(), z: stall.position.z }, true);
 }
 
@@ -74,13 +92,13 @@ function addWolf(sim: Sim, id: number, x: number, z: number): Entity {
 }
 
 describe('grounded line-of-sight elevation', () => {
-  it('lets Whispered Prayer heal from the supported Eastbrook market canopy', () => {
+  it('lets Whispered Prayer heal from a supported market canopy', () => {
     const sim = makeSim('priest');
     const healerId = sim.addPlayer('priest', 'Healer');
     const allyId = sim.addPlayer('warrior', 'Ally');
     const healer = player(sim, healerId);
     const ally = player(sim, allyId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
     const terrainY = groundHeight(stall.position.x, stall.position.z, WORLD_SEED);
     const canopyY = supportHeightAt(
       WORLD_SEED,
@@ -90,15 +108,11 @@ describe('grounded line-of-sight elevation', () => {
       terrainY + stall.height,
     );
 
-    expect(stall.id).toBe('eastbrook_market_stall_world_market');
-    expect(stall.height).toBe(2.7);
-    // The stall tracks EASTBROOK_LAYOUT, so the New Eastbrook rebuild moved it
-    // into the harbor basin; the terrain sanity pin follows the new site.
-    // Re-pinned 2026-10 for the Tidehold rebuild: the taper of the level pad
-    // under the apothecary's shop lifted the ground here by 0.08 yd. Re-pinned
-    // for the World of ClaudeCraft Studio map's arrangement: no building pad
-    // reaches the square now, so the stall stands on the plat's own grade.
-    expect(terrainY).toBeCloseTo(-0.642);
+    // A generic (unsized) stall: its collider is the gabled canopy, ridge at
+    // STALL_CANOPY_TOP over the ground at its centre.
+    expect(stall.prop.w).toBeUndefined();
+    expect(stall.height).toBeCloseTo(2.54);
+    expect(terrainY).toBeCloseTo(2.0);
     expect(canopyY).toBeCloseTo(terrainY + stall.height);
     const stallCollider = colliderInternalsForTest
       .staticWorldColliders(WORLD_SEED)
@@ -109,7 +123,6 @@ describe('grounded line-of-sight elevation', () => {
           collider.z === stall.position.z,
       );
     expect(stallCollider).toMatchObject({
-      cameraTopY: canopyY,
       moveTopY: canopyY,
       standable: true,
     });
@@ -152,7 +165,7 @@ describe('grounded line-of-sight elevation', () => {
     const allyId = sim.addPlayer('warrior', 'Ally');
     const healer = player(sim, healerId);
     const ally = player(sim, allyId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
 
     place(
       sim,
@@ -186,7 +199,7 @@ describe('grounded line-of-sight elevation', () => {
     const hopper = player(sim, hopperId);
     const hopperMeta = sim.players.get(hopperId);
     if (!hopperMeta) throw new Error('missing hopper metadata');
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
     const supportedY = canopyHeight();
 
     place(
@@ -234,7 +247,7 @@ describe('grounded line-of-sight elevation', () => {
     const sim = makeSim('mage');
     const casterId = sim.addPlayer('mage', 'Caster');
     const caster = player(sim, casterId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
     const wolf = addWolf(sim, 990_352_301, stall.position.x, stall.position.z + 8);
 
     placeOnCanopy(sim, caster);
@@ -272,7 +285,7 @@ describe('grounded line-of-sight elevation', () => {
     const fallenId = sim.addPlayer('warrior', 'Fallen');
     const caster = player(sim, casterId);
     const fallen = player(sim, fallenId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
 
     placeOnCanopy(sim, caster);
     place(
@@ -298,7 +311,7 @@ describe('grounded line-of-sight elevation', () => {
     const fallenId = sim.addPlayer('warrior', 'Fallen');
     const caster = player(sim, casterId);
     const fallen = player(sim, fallenId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
 
     place(
       sim,
@@ -322,7 +335,7 @@ describe('grounded line-of-sight elevation', () => {
     const sim = makeSim('hunter');
     const hunterId = sim.addPlayer('hunter', 'Hunter');
     const hunter = player(sim, hunterId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
     const wolf = addWolf(sim, 990_352_302, stall.position.x, stall.position.z + 8);
 
     placeOnCanopy(sim, hunter);
@@ -347,7 +360,7 @@ describe('grounded line-of-sight elevation', () => {
     const sim = makeSim('priest');
     const watcherId = sim.addPlayer('priest', 'Watcher');
     const watcher = player(sim, watcherId);
-    const stall = EASTBROOK_LAYOUT.market.stalls[0];
+    const stall = STALL;
     const wolf = addWolf(sim, 990_352_303, stall.position.x, stall.position.z);
 
     place(
@@ -378,8 +391,11 @@ describe('grounded line-of-sight elevation', () => {
     // now sits inside the Proving Shore tutorial island's flattened window, so
     // the pair moved to mid-vale cover that still blocks a grounded ray while
     // a trusted airborne eye would clear it.
-    const from = { x: 114, z: 48 };
-    const to = { x: 132, z: 48 };
+    // Re-sited for Eastbrook Vale v2: the mid-vale pair at (114, 48) is v2
+    // design ground now; this pair, east of the vale's north edge, keeps the
+    // same contract (grounded ray blocked, lifted eye clear, no camp nearby).
+    const from = { x: 210, z: 202 };
+    const to = { x: 228, z: 202 };
 
     place(sim, healer, { x: from.x, y: groundHeight(from.x, from.z, seed) + 3, z: from.z }, false);
     place(sim, ally, { x: to.x, y: groundHeight(to.x, to.z, seed), z: to.z }, true);

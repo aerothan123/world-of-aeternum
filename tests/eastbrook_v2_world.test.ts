@@ -2,13 +2,14 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { campSpawnOffset } from '../src/sim/camp_scatter';
-import { colliderInternalsForTest, isBlocked } from '../src/sim/colliders';
+import { bankerChestSpots, colliderInternalsForTest, isBlocked } from '../src/sim/colliders';
 import { HOUSE_LOTS } from '../src/sim/content/house_lots';
 import { LAKE } from '../src/sim/content/zone1';
 import {
   CAMPS,
   GATHER_NODES,
   GROUND_OBJECTS,
+  getActiveWorldContent,
   NPCS,
   PLAYER_START,
   ZONES,
@@ -26,14 +27,24 @@ import {
   ebv2Weight,
   inEbv2Field,
 } from '../src/sim/eastbrook_v2';
+import {
+  EBV2_SLOPE_SAMPLE,
+  EBV2_TREE_MAX_SLOPE,
+  ebv2TreeOnCliff,
+} from '../src/sim/eastbrook_v2/decorations';
 import { EBV2_COLLIDERS, EBV2_POINTS, EBV2_TREES } from '../src/sim/eastbrook_v2/layout.generated';
 import { EBV2_SITES } from '../src/sim/eastbrook_v2/sites.generated';
 import { HARBOR_ROUTE_MARKER_SRC } from '../src/sim/harbor_route_markers';
 import { PLAYER_BODY_RADIUS, PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
+import { delveArchZ } from '../src/sim/prop_layout';
+import { treeAnchorId } from '../src/sim/trees/tree_registry';
 import {
+  DECORATION_MAX_SLOPE,
   generateDecorationsInBounds,
   groundHeight,
+  STEEPNESS_SAMPLE,
   terrainHeight,
+  terrainSteepness,
   terrainSteepnessAt,
   WATER_LEVEL,
   waterLevelAt,
@@ -64,7 +75,13 @@ describe('eastbrook v2: the import is the whole of the vale', () => {
     expect(EBV2_COLLIDERS.length).toBe(1071);
     expect(EBV2_POINTS.length).toBe(46);
     expect(EBV2_TREES.length).toBe(259);
-    expect(Object.keys(EBV2_SITES).length).toBe(125);
+    // 124, was 125: with the resite converged (it looks through the service bodies
+    // that move with their service), the Moonrest ferry bell keeps its own authored
+    // spot on the west cove bank and needs no site of its own. 126 now: the
+    // Realm Builder monument's own site (svc:monument), and a freight crate
+    // (obj:eastbrook_freight_crate@-55,-75) that steps into the freight yard's
+    // one walkable pocket.
+    expect(Object.keys(EBV2_SITES).length).toBe(126);
   });
 
   it('resolves every design point the content is tied to', () => {
@@ -163,8 +180,42 @@ describe('eastbrook v2: solids and trees', () => {
     expect(new Set(crossing.map((c) => c.gate).filter(Boolean))).toEqual(
       new Set(['eastbrookNightbloom:0']),
     );
+    // ...and the town services' own bodies: the Ravenpost pillar on each mailbox row
+    // and the banker's strongbox on each resolved chest spot. Re-pinned for the v2
+    // port: like a vein's body these are content sited with their service on the
+    // design (sites.ts), not shipped props, and ebv2StandDown keeps them
+    // (eastbrook_v2/colliders.ts isServiceBody); every shipped prop still retires.
+    const serviceSpots = new Set([
+      ...(getActiveWorldContent().services?.mailboxes ?? []).map((m) => `${m.x},${m.z}`),
+      ...bankerChestSpots(S).map((c) => `${c.x},${c.z}`),
+    ]);
+    const service = (c: { type: string; x: number; z: number }) =>
+      c.type === 'obb' && serviceSpots.has(`${c.x},${c.z}`);
+    // ...and two more content bodies the stand-down keeps, each pinned exactly:
+    // the Realm Builder monument's cylinder on its design-town site (svc:monument)
+    // and the Collapsed Reliquary's delve arch slab, the one-way threshold the
+    // delve exit drops players in front of (tests/physics_audit_world.test.ts).
+    const monument = EASTBROOK_LAYOUT.civic.monument;
+    const reliquary = (getActiveWorldContent().props.delveMarkers ?? []).find(
+      (dm) => dm.delveId === 'collapsed_reliquary',
+    );
+    if (!reliquary) throw new Error('the Collapsed Reliquary lost its delve marker');
+    const content = onDesign.filter(
+      (c) =>
+        (c.type === 'circle' && c.x === monument.position.x && c.z === monument.position.z) ||
+        (c.type === 'obb' &&
+          c.x === reliquary.x &&
+          c.z === delveArchZ(reliquary.z, reliquary.delveId)),
+    );
+    expect(content.map((c) => c.type).sort()).toEqual(['circle', 'obb']);
     expect(
-      onDesign.filter((c) => !nodeSpots.has(`${c.x},${c.z}`) && !crossing.includes(c)),
+      onDesign.filter(
+        (c) =>
+          !nodeSpots.has(`${c.x},${c.z}`) &&
+          !crossing.includes(c) &&
+          !service(c) &&
+          !content.includes(c),
+      ),
     ).toEqual([]);
     // every vale vein keeps its solid body (the stand-down never takes one)
     const veins = GATHER_NODES.filter((n) => n.zoneId === 'eastbrook_vale' && n.type === 'ore');
@@ -193,6 +244,65 @@ describe('eastbrook v2: solids and trees', () => {
     expect(inside.length).toBeGreaterThan(80);
     for (const d of inside)
       expect(designed.has(`${d.x},${d.z}`), `${d.kind} at ${d.x},${d.z}`).toBe(true);
+  });
+
+  it('keeps a design tree on a cliff face a plain trunk, never a choppable decoration', () => {
+    // the cliff rule is world.ts's own, restated in the leaf world.ts imports
+    expect(EBV2_TREE_MAX_SLOPE).toBe(DECORATION_MAX_SLOPE);
+    expect(EBV2_SLOPE_SAMPLE).toBe(STEEPNESS_SAMPLE);
+    const cliffs = EBV2_TREES.map((_, i) => i).filter((i) => ebv2TreeOnCliff(i));
+    // the bandit-camp scarp's two trees, (66, 6) and (77, 9), and one more
+    expect(cliffs.map((i) => EBV2_TREES[i])).toEqual([
+      [119.13, 44.81],
+      [66.29, 5.66],
+      [76.89, 9.27],
+    ]);
+    const unanchored = new Set(ebv2UnanchoredTreeIndexes());
+    for (const i of cliffs) {
+      const [x, z] = EBV2_TREES[i];
+      // the field slope agrees with the world's own reading of the ground
+      expect(terrainSteepness(x, z, S), `${x},${z}`).toBeGreaterThan(DECORATION_MAX_SLOPE);
+      expect(unanchored.has(i), `${x},${z} stands as a trunk`).toBe(true);
+    }
+    // ...and no tree on the design field is a decoration on a wall (tests/fixes.test.ts)
+    const field = generateDecorationsInBounds(S, { minX: -270, maxX: 180, minZ: -180, maxZ: 180 });
+    for (const d of field.filter((t) => ebv2Weight(t.x, t.z) === 1))
+      expect(terrainSteepness(d.x, d.z, S), `${d.x},${d.z}`).toBeLessThanOrEqual(
+        DECORATION_MAX_SLOPE,
+      );
+  });
+
+  it('anchors every design tree whose registry id no nearer tree claims', () => {
+    // The decoration and registry lattices sit 2 yd apart in x (the world is
+    // asymmetric), so the strip where their cells disagree used to drop its trees
+    // as trunks even with no rival. Now a tree is unanchored only when it is a
+    // cliff tree or another tree takes its cell or its registry id.
+    const field = generateDecorationsInBounds(S, { minX: -270, maxX: 180, minZ: -180, maxZ: 180 });
+    const decorated = new Set(field.map((d) => `${d.x},${d.z}`));
+    const ids = new Map<number, string>();
+    for (const d of field.filter((t) => ebv2Weight(t.x, t.z) >= 0.5)) {
+      const id = treeAnchorId(d.x, d.z);
+      expect(ids.get(id), `registry id ${id} shared`).toBeUndefined();
+      ids.set(id, `${d.x},${d.z}`);
+    }
+    for (const i of ebv2UnanchoredTreeIndexes()) {
+      const [x, z] = EBV2_TREES[i];
+      // the export carries two trees on one spot ((0, 0)): one decorates, the
+      // other is its own rival
+      const twin = EBV2_TREES.some(([ox, oz], j) => j !== i && ox === x && oz === z);
+      if (!twin) expect(decorated.has(`${x},${z}`), `${x},${z}`).toBe(false);
+      if (ebv2TreeOnCliff(i)) continue;
+      // a rival: another tree in the same decoration cell, or a decorated tree
+      // holding the same registry id
+      const rival = EBV2_TREES.some(
+        ([ox, oz], j) =>
+          j !== i &&
+          ((decorated.has(`${ox},${oz}`) && treeAnchorId(ox, oz) === treeAnchorId(x, z)) ||
+            (ebv2AnchorOf(ox, oz).gx === ebv2AnchorOf(x, z).gx &&
+              ebv2AnchorOf(ox, oz).gz === ebv2AnchorOf(x, z).gz)),
+      );
+      expect(rival, `${x},${z} lost to a rival tree`).toBe(true);
+    }
   });
 });
 

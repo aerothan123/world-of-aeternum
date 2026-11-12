@@ -15,6 +15,7 @@ import {
   STATIC_WORLD_SERVICE_ENTITY_ID_MIN,
   type WorldContent,
 } from '../src/sim/types';
+import { EBV2_INN } from './helpers/ebv2_inn';
 import { runCraft } from './helpers/enchant_family_cast';
 
 function civicPlacements(
@@ -313,8 +314,9 @@ describe('WorldContent static gameplay services', () => {
       BUILTIN_WORLD.playerStart,
     );
     if (!builtinPlayer) throw new Error('missing built-in player');
-    builtinPlayer.pos.x = builtinInn.x;
-    builtinPlayer.pos.z = builtinInn.z;
+    // Eastbrook Vale v2: the built-in world rests at the design's inn
+    builtinPlayer.pos.x = EBV2_INN.x;
+    builtinPlayer.pos.z = EBV2_INN.z;
     builtin.rebucket(builtinPlayer);
     builtin.tick();
     expect(builtin.meta(builtinPid)?.restedXp).toBeGreaterThan(0);

@@ -1,6 +1,6 @@
 // The authored towns' (Eastbrook Vale / Fenbridge) square DRESSING, the
 // pieces the town views draw from their static layouts beside the buildings:
-// Eastbrook's market stalls, benches and yard fences, and Fenbridge's
+// Eastbrook's market stalls and benches, and Fenbridge's
 // Mirelight cistern, provision stall, muster board and boardwalks.
 //
 // A Studio document can own that dressing as ordinary placements
@@ -8,7 +8,8 @@
 // down, and the props RECORDS that still carry the stalls, the cistern and the
 // fences keep feeding everything else that reads them (market ambience, the
 // terrain calm anchors, the map dots) while their colliders stand down here,
-// so a moved stall leaves no invisible box on the square. colliders.ts and
+// so a moved stall leaves no invisible box on the square (Eastbrook's yard
+// fences retired with the old town kit). colliders.ts and
 // fence_crossing.ts must not import src/render, so this is the sim-side twin
 // of the render predicates in eastbrook_town.ts / fenbridge_town.ts. Records
 // match by their stable layout ids, the custom_world_props.ts convention, so a
@@ -27,15 +28,11 @@ import type { PromotedScenery, ZonePropsDef } from './types';
 
 type StallRecord = ZonePropsDef['stalls'][number];
 type WellRecord = ZonePropsDef['wells'][number];
-type FenceRecord = ZonePropsDef['fences'][number];
 
 const DRESSING_STALL_IDS: ReadonlySet<string> = new Set([
   ...EASTBROOK_LAYOUT.market.stalls.map((stall) => stall.id),
   FENBRIDGE_LAYOUT.civic.provisionStall.id,
 ]);
-const DRESSING_FENCE_IDS: ReadonlySet<string> = new Set(
-  EASTBROOK_LAYOUT.fences.map((fence) => fence.id),
-);
 
 /** An Eastbrook market stall or the Fenbridge provision stall. */
 export function isAuthoredTownDressingStall(stall: StallRecord): boolean {
@@ -46,11 +43,6 @@ export function isAuthoredTownDressingStall(stall: StallRecord): boolean {
  *  Builder monument, which stays town-drawn (it is an interactable). */
 export function isAuthoredTownDressingWell(well: WellRecord): boolean {
   return well.id === FENBRIDGE_LAYOUT.civic.cistern.id;
-}
-
-/** An Eastbrook yard fence. */
-export function isAuthoredTownDressingFence(fence: FenceRecord): boolean {
-  return fence.id !== undefined && DRESSING_FENCE_IDS.has(fence.id);
 }
 
 /**
@@ -82,7 +74,6 @@ export function promotedColliderProps(
   if (dressing) {
     stood.stalls = props.stalls.filter((stall) => !isAuthoredTownDressingStall(stall));
     stood.wells = props.wells.filter((well) => !isAuthoredTownDressingWell(well));
-    stood.fences = props.fences.filter((fence) => !isAuthoredTownDressingFence(fence));
   }
   if (!byFlags) {
     byFlags = new Map();

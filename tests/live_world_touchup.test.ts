@@ -392,14 +392,16 @@ describe('live-world touch-up pipeline', () => {
       expect(entity?.pos.x, npc.id).toBeCloseTo(npc.position.x, 6);
       expect(entity?.pos.z, npc.id).toBeCloseTo(npc.position.z, 6);
     }
-    // The weaver keeps her Eastbrook stand at the crafting yard's loom (town
-    // kit phase 2); the Fenbridge patch never moves her.
+    // The weaver keeps her Eastbrook stand beside the loom (re-pinned for
+    // Eastbrook Vale v2: her design site by the design's loom, station_loom,
+    // was (-13.678, -116.6) in the retired town kit); the Fenbridge patch never
+    // moves her.
     expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos).toEqual({
       x: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position.x,
       z: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position.z,
     });
-    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.x).toBeCloseTo(-13.678, 2);
-    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.z).toBeCloseTo(-116.6, 2);
+    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.x).toBeCloseTo(-0.69, 2);
+    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.z).toBeCloseTo(-77.26, 2);
 
     // 5. Petra Vell's banker chest and Crooked Reed Inn rest area follow the moved buildings.
     const petra = layout.services.npcs.find((n) => n.id === 'bursar_petra_vell');

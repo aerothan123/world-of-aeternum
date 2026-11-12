@@ -87,15 +87,11 @@ describe('Eastbrook town grass exclusion', () => {
     const painted = PAINTED_TOWNS.flatMap((town) => town.buildings);
     // The 3 added north Fenbridge cottages (fenbridge_touchup.ts) also clear
     // their reach and service apron (two rows each, six more: 99 to 105; Lantern Hall adds two more).
-    // Town kit (phase 2): every Eastbrook kit placement clears its reach, one
-    // row each, so the count follows the kit list.
-    expect(exclusions).toHaveLength(
-      107 + tavernGroundsRects().length + 2 * painted.length + EASTBROOK_LAYOUT.townKit.length,
-    );
+    // The old town kit's rows (one reach per kit piece) retired with the kit
+    // in the Eastbrook Vale v2 port, and so did the stable corral's three
+    // fence rows (107 to 104).
+    expect(exclusions).toHaveLength(104 + tavernGroundsRects().length + 2 * painted.length);
     expect(tavernGroundsRects().length).toBe(25);
-    for (const kit of EASTBROOK_LAYOUT.townKit) {
-      expect(exclusions.some((item) => item.id === kit.id)).toBe(true);
-    }
     for (const building of [...HIGHWATCH_LAYOUT.buildings, ...painted]) {
       expect(exclusions.some((item) => item.id === building.id)).toBe(true);
       expect(exclusions.some((item) => item.id === `${building.id}:serviceApron`)).toBe(true);
@@ -278,7 +274,9 @@ describe('Eastbrook town grass exclusion', () => {
       halfDepth: 0.3,
       // Re-pinned 2026-08: the noticeboard was re-laid with the harbor move
       // (d19aa33f76, docs/design/eastbrook-revamp/site-plan.md).
-      rotation: -2.17084654019665,
+      // Re-pinned for Eastbrook Vale v2: the board stands on its v2 design
+      // site (svc_noticeboard) square to the world axes (was -2.17084654019665).
+      rotation: 0,
     });
     expect(byId.get('eastbrook_noticeboard:serviceApron')).toMatchObject({
       kind: 'circle',
@@ -308,10 +306,9 @@ describe('Eastbrook town grass exclusion', () => {
     // grown smithy lot, so the half widths carry fresh float noise.
     // Re-pinned for the town kit (phase 2): the smithy-yard fences retired with
     // the forge lot, and the stable corral's three low rails replaced them.
-    expect(fenceDimensions.map(([halfWidth]) => halfWidth)).toEqual([
-      2.3000000000000007, 2.6499999999999995, 2.3000000000000007,
-    ]);
-    expect(fenceDimensions.map(([, halfDepth]) => halfDepth)).toEqual([0.14, 0.14, 0.14]);
+    // Those rails retired with the old town kit in the Eastbrook Vale v2 port:
+    // no Eastbrook fence is left to exclude.
+    expect(fenceDimensions).toEqual([]);
 
     const wallDimensions = dimensionsFor(
       EASTBROOK_LAYOUT.wall.segments.map((segment) => segment.id),

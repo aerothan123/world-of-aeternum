@@ -9256,7 +9256,7 @@ Your weekly rewards await. Choose one item from your earned choices after the Cr
 | Weekly Rewards
 |-
 ! Position
-| -41.69, -100.98
+| -42.65, -101.18
 |-
 ! Quest count
 | 0
@@ -9324,7 +9324,7 @@ Care for a Card Duel? Best of three, winner takes the bragging rights.
 | Dealer of Chance
 |-
 ! Position
-| -32.23, -90.4
+| -31.83, -90.4
 |-
 ! Quest count
 | 0
@@ -9348,7 +9348,7 @@ Care for a Card Duel? Best of three, winner takes the bragging rights.
       <comment>Seed World of Claudecraft wiki content</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text xml:space="preserve" bytes="289">== Greeting ==
+      <text xml:space="preserve" bytes="288">== Greeting ==
 Every deed worth doing is worth writing down twice, $N: once for the ledger and once for the fireside.
 
 == Facts ==
@@ -9358,7 +9358,7 @@ Every deed worth doing is worth writing down twice, $N: once for the ledger and 
 | The Vale Chronicle
 |-
 ! Position
-| -14.03, -104.03
+| -15.96, -98.28
 |-
 ! Quest count
 | 0
@@ -9443,7 +9443,7 @@ Nothing leaves my kitchens half-cooked, $C. Sit, eat, then get back out there.
 | Master of the Kitchens
 |-
 ! Position
-| -30.11, -89.3
+| -29.71, -89.3
 |-
 ! Quest count
 | 5
@@ -15198,7 +15198,7 @@ It could be worse. Usually is. Sit, eat, and tell me which way the trouble is wa
 | Innkeeper
 |-
 ! Position
-| -34.43, -91.05
+| -34.03, -91.05
 |-
 ! Quest count
 | 7

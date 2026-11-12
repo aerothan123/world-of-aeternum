@@ -11,8 +11,8 @@ slot of the built-in world so the server agrees with what the Unreal client draw
 | `layout.generated.ts` | the design's solids (OBB rows), points by id, gather/fishing nodes, wild trees, roads, rest areas |
 | `ground.ts` | decode + bilinear sample + blend weight; `ebv2Ground` is applied LAST in `world.ts` terrain pads; `ebv2OwnsBuiltin` stands down shipped walkable decks on design ground (`deck_surfaces.ts`) |
 | `rest.ts` | `ebv2RestsAt`: the design inn's footprint, where a body rests (rested XP, `progression/xp.ts`) |
-| `decorations.ts` | one design tree per 10 yd decoration anchor (choppable, stable tree ids); procedural scatter off in the field |
-| `colliders.ts` | the design boxes plus trunks for unanchored trees; `ebv2StandDown` retires shipped props on design ground |
+| `decorations.ts` | one design tree per 10 yd decoration anchor (choppable, stable tree ids, one tree per registry id); a tree on a cliff face stays a trunk; procedural scatter off in the field |
+| `colliders.ts` | the design boxes plus trunks for unanchored trees; `ebv2StandDown` retires shipped props on design ground, keeping content bodies (vein bodies, the mailbox pillar, the banker's strongbox, the Realm Builder monument, delve arches) |
 | `points.ts` | `ebv2Point(id)` / `ebv2Xz(id)` / `ebv2Nodes(kind)` for content tables |
 
 ## Rules

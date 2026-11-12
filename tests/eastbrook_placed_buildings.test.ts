@@ -17,23 +17,15 @@ import { cloneMaterialWithHooks } from '../src/render/material_clone_hooks';
 import { setDitherFadeEnabledForTest } from '../src/render/occluder_dither_fade';
 import { buildingRecordColliders, placedBuildingAnnexes } from '../src/sim/authored_town_buildings';
 import { isBlocked, streetlampPlacements } from '../src/sim/colliders';
-import { EASTBROOK_BUILDING_PAD_TERRAIN_EDITS, ZONE1_PROPS } from '../src/sim/content/zone1';
-import { BUILTIN_WORLD, PLAYER_START, setActiveWorldContent } from '../src/sim/data';
+import { ZONE1_PROPS } from '../src/sim/content/zone1';
+import { BUILTIN_WORLD, PLAYER_START } from '../src/sim/data';
 import { isExcludedDecoration, isExcludedStreetlamp } from '../src/sim/decoration_exclusions';
 import { EASTBROOK_LAYOUT, localToWorld, type Obb2 } from '../src/sim/eastbrook_layout';
-import { eastbrookTownRecordBoxes } from '../src/sim/eastbrook_town_footprints';
 import { ebv2FieldHeight, ebv2Owns, ebv2Weight, ebv2Xz } from '../src/sim/eastbrook_v2';
 import { HIGHWATCH_LAYOUT } from '../src/sim/highwatch_layout';
 import { PAINTED_TOWNS } from '../src/sim/painted_towns';
-import { PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
 import { Sim } from '../src/sim/sim';
-import {
-  generateDecorationsInBounds,
-  groundHeight,
-  terrainHeight,
-  terrainSteepnessAt,
-  WATER_LEVEL,
-} from '../src/sim/world';
+import { generateDecorationsInBounds, groundHeight, terrainHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
 // The built-in Eastbrook stands six painted Tidehold buildings where the
@@ -208,10 +200,6 @@ function boundsOf(building: Building): NaturalBounds {
 
 /** Placed-asset target height: a placement's scale is in multiples of it. */
 const PLACED_TARGET_HEIGHT = 2.2;
-
-/** The east edge of the quay's flat working pad (content/zone1.ts
- *  EASTBROOK_QUAY_TERRAIN_EDITS: flat stamps of radius 7 centred on x -92). */
-const QUAY_PAD_EAST_EDGE = -85;
 
 describe('the six placed Eastbrook buildings', () => {
   it('are the painted Tidehold set, one building each', () => {
@@ -516,33 +504,41 @@ describe('placed building collision in the built-in world', () => {
     return record;
   };
 
-  it('collides each record on the town building the client draws, and on its own wall box once moved', () => {
+  it('collides each record on its own wall box and annexes, and on one wall box once moved', () => {
     for (const building of BUILDINGS) {
       const record = recordOf(building);
       expect(record.x).toBe(building.position.x);
       expect(record.z).toBe(building.position.z);
       expect(record.w).toBe(building.nativeDimensions.width);
       expect(record.d).toBe(building.nativeDimensions.depth);
-      // at its layout anchor the record stands on the Early Access town's boxes
-      // (eastbrook_town_footprints.ts), with a seed or without one
-      const boxes = eastbrookTownRecordBoxes(record);
-      if (!boxes) throw new Error(`${building.id} has no town boxes`);
-      expect(boxes.length, building.id).toBeGreaterThan(0);
+      // Re-pinned from the pilot town's boxes (eastbrook_town_footprints.ts, retired with the
+      // old town): at its layout anchor a sealed record collides on its own wall box plus its
+      // annexes, with a seed or without one. In the built-in world all of them stand down on
+      // the v2 design's ground (ebv2StandDown), which the world checks below cover.
       const colliders = buildingRecordColliders(record, 30, () => 0);
       expect(
         buildingRecordColliders(record, 30, () => 0, WORLD_SEED),
         building.id,
       ).toEqual(colliders);
-      expect(colliders, building.id).toHaveLength(boxes.length);
-      boxes.forEach((box, index) => {
-        expect(colliders[index], box.id).toMatchObject({
+      const annexes = placedBuildingAnnexes(record);
+      expect(colliders, building.id).toHaveLength(1 + annexes.length);
+      expect(colliders[0], building.id).toMatchObject({
+        type: 'obb',
+        x: building.position.x,
+        z: building.position.z,
+        hw: building.nativeDimensions.width / 2,
+        hd: building.nativeDimensions.depth / 2,
+        rot: building.rotation,
+        cameraTopY: 30,
+      });
+      annexes.forEach((annex, index) => {
+        expect(colliders[index + 1], annex.id).toMatchObject({
           type: 'obb',
-          x: box.x,
-          z: box.z,
-          hw: box.hw,
-          hd: box.hd,
-          rot: box.rot,
-          cameraTopY: box.h,
+          x: annex.center.x,
+          z: annex.center.z,
+          hw: annex.halfWidth,
+          hd: annex.halfDepth,
+          rot: annex.rotation,
         });
       });
       // a record a custom world moved is one sealed wall box again, annexes left behind
@@ -609,8 +605,13 @@ describe('placed building collision in the built-in world', () => {
     // still answers for its own boxes
     expect(BUILDINGS.filter(ON_V2).length + STANDING.length).toBe(BUILDINGS.length);
     for (const building of STANDING) {
-      const boxes = eastbrookTownRecordBoxes(recordOf(building));
-      if (!boxes) throw new Error(`${building.id} has no town boxes`);
+      // re-pinned from the retired pilot town boxes (eastbrook_town_footprints.ts): a building
+      // off the design answers for its own record boxes
+      const boxes = buildingRecordColliders(recordOf(building), 30, () => 0).flatMap((c, i) =>
+        c.type === 'obb'
+          ? [{ id: `${building.id}:${i}`, x: c.x, z: c.z, hw: c.hw, hd: c.hd, rot: c.rot }]
+          : [],
+      );
       for (const box of boxes) {
         expect(isBlocked(WORLD_SEED, box.x, box.z), box.id).toBe(true);
       }
@@ -751,42 +752,19 @@ describe('walking into the walk-in Eastbrook buildings', () => {
 });
 
 describe('the ground under the placed buildings', () => {
-  it('carries the layout level pads, the last edits on their ground, as the rebuild map does', () => {
-    const pads = EASTBROOK_BUILDING_PAD_TERRAIN_EDITS;
-    // Highwatch's pads come after them in both lists, on the Thornpeak shelf
-    // far to the north, where no Eastbrook pad reaches
-    const highwatchPads = HIGHWATCH_LAYOUT.pads.length;
-    for (const pad of HIGHWATCH_LAYOUT.pads) {
-      for (const own of pads) {
-        expect(Math.hypot(pad.x - own.x, pad.z - own.z)).toBeGreaterThan(
-          pad.radius + own.radius + 100,
-        );
-      }
+  it('carries no Eastbrook building pad: the v2 design ground owns the town', () => {
+    // The old Tidehold building pads retired with the v2 port: the design's
+    // heightfield is applied after every stamp at full weight over the whole
+    // town, so they shaped no ground. The layout no longer builds any.
+    expect('pads' in EASTBROOK_LAYOUT).toBe(false);
+    for (const building of STANDING) {
+      expect(ebv2Weight(building.placement.x, building.placement.z), building.id).toBe(1);
     }
-    // Each stamp in the repo file carries the editor's permanent id
-    // (src/editor/map_item_ids.ts); the game never sees it, so compare without.
-    const mapStamps = REBUILD_MAP.terrainEdits.map(({ id: _id, ...stamp }) => stamp);
-    expect(mapStamps.slice(-highwatchPads)).toEqual(HIGHWATCH_LAYOUT.pads);
-    const mapPads = mapStamps.slice(-pads.length - highwatchPads, -highwatchPads);
-    // a grid of level stamps under every building (and the vault on the bank's
-    // shelf), copied plain from the layout, and the map carries the same list
-    expect(pads).toEqual(EASTBROOK_LAYOUT.pads.map((pad) => ({ ...pad })));
-    expect(mapPads).toEqual(pads);
-    for (const pad of pads) {
-      expect(pad.mode).toBe('level');
-      expect(pad.falloff).toBe('smooth');
-    }
-    // the shelf heights: the harbour end at the main street's height, the
-    // chapel on the plat, the rise north of the square a little above it
-    expect([...new Set(pads.map((pad) => pad.delta))].sort((a, b) => a - b)).toEqual([
-      -0.9, -0.7, 0.5,
-    ]);
-    // the built-in world stands the painted towns' pads after Highwatch's
-    // (sim/painted_towns/); the rebuild map carries none of them
+    // the built-in world still ends with Highwatch's pads, then the painted towns'
     const paintedPads = PAINTED_TOWNS.flatMap((town) => town.pads).length;
+    const highwatchPads = HIGHWATCH_LAYOUT.pads.length;
     const builtin = BUILTIN_WORLD.terrainEdits ?? [];
     const edits = builtin.slice(0, builtin.length - paintedPads);
-    expect(edits.slice(-pads.length - highwatchPads, -highwatchPads)).toEqual(pads);
     expect(edits.slice(-highwatchPads)).toEqual(HIGHWATCH_LAYOUT.pads);
   });
 
@@ -813,11 +791,10 @@ describe('the ground under the placed buildings', () => {
     }
   });
 
-  it('leaves the quay and the ground a new character first stands on exactly as they were', () => {
+  it('stands a new character on the design ground', () => {
     // Eastbrook Vale v2: a new character starts at the design's spawn, on the
-    // design's own ground (the quay keeps its shipped ground in the harbor cove)
-    // (the spawn sits in the field's southern edge band, so its ground is mostly
-    // the design's, eased toward the Southway's shipped ground)
+    // design's own ground. (The old pad-versus-quay comparison retired with the
+    // building pads: there is no pad left to compare against.)
     expect(PLAYER_START).toEqual(ebv2Xz('player_spawn'));
     expect(ebv2Owns(PLAYER_START.x, PLAYER_START.z)).toBe(true);
     expect(
@@ -826,135 +803,14 @@ describe('the ground under the placed buildings', () => {
           ebv2FieldHeight(PLAYER_START.x, PLAYER_START.z),
       ),
     ).toBeLessThan(0.5);
-    for (const pad of EASTBROOK_BUILDING_PAD_TERRAIN_EDITS) {
-      expect(
-        Math.hypot(pad.x - PLAYER_START.x, pad.z - PLAYER_START.z),
-        `pad at ${pad.x}, ${pad.z}`,
-      ).toBeGreaterThan(pad.radius);
-    }
-    // The quay's working pad, its boardwalk and the pier roots the ferry's
-    // boarding stage is seated from: the same world without the building pads
-    // has the same ground there, to the bit.
-    const samples: { x: number; z: number; y: number }[] = [];
-    for (let x = -130; x <= QUAY_PAD_EAST_EDGE; x += 2.5) {
-      for (let z = -90; z <= -20; z += 2.5) {
-        samples.push({ x, z, y: terrainHeight(x, z, WORLD_SEED) });
-      }
-    }
-    const pads = new Set<unknown>(EASTBROOK_BUILDING_PAD_TERRAIN_EDITS);
-    setActiveWorldContent({
-      ...BUILTIN_WORLD,
-      // still the built-in world (the v2 design ground stays laid in), less the pads
-      liveWorldPreview: true,
-      terrainEdits: (BUILTIN_WORLD.terrainEdits ?? []).filter((edit) => !pads.has(edit)),
-    });
-    try {
-      for (const sample of samples) {
-        expect(terrainHeight(sample.x, sample.z, WORLD_SEED), `${sample.x}, ${sample.z}`).toBe(
-          sample.y,
-        );
-      }
-    } finally {
-      setActiveWorldContent(null);
-    }
   });
 
-  it('leaves the waterline where it was: no ground crosses the sea surface', () => {
-    // A yard grid over the whole town and its shore, with and without the
-    // building pads. Under the map's own chapel pad 300-odd half-yard cells of
-    // seabed west of the chapel came up out of the water.
-    const box = { minX: -110, maxX: 70, minZ: -160, maxZ: -30 };
-    const sample = (): number[] => {
-      const out: number[] = [];
-      for (let x = box.minX; x <= box.maxX; x += 1) {
-        for (let z = box.minZ; z <= box.maxZ; z += 1) out.push(terrainHeight(x, z, WORLD_SEED));
-      }
-      return out;
-    };
-    const withPads = sample();
-    const pads = new Set<unknown>(EASTBROOK_BUILDING_PAD_TERRAIN_EDITS);
-    setActiveWorldContent({
-      ...BUILTIN_WORLD,
-      // still the built-in world (the v2 design ground stays laid in), less the pads
-      liveWorldPreview: true,
-      terrainEdits: (BUILTIN_WORLD.terrainEdits ?? []).filter((edit) => !pads.has(edit)),
-    });
-    let withoutPads: number[];
-    try {
-      withoutPads = sample();
-    } finally {
-      setActiveWorldContent(null);
-    }
-    // the pads do move this ground (positive control), just never across the surface.
-    // Eastbrook Vale v2: only on the shipped ground (blend weight 0); where the design's
-    // field eases in, its own waterline is the design's (tests/eastbrook_v2_import.test.ts)
-    const shipped: boolean[] = [];
-    for (let x = box.minX; x <= box.maxX; x += 1) {
-      for (let z = box.minZ; z <= box.maxZ; z += 1) shipped.push(ebv2Weight(x, z) === 0);
-    }
-    let moved = 0;
-    let crossed = 0;
-    withPads.forEach((y, index) => {
-      if (y !== withoutPads[index]) moved++;
-      if (shipped[index] && y > WATER_LEVEL !== withoutPads[index] > WATER_LEVEL) crossed++;
-    });
-    expect(moved).toBeGreaterThan(1000);
-    expect(crossed).toBe(0);
-  });
-
-  it('never leaves a bank too steep to climb round a building where the pads shaped it', () => {
-    // A pad's taper carries its shelf into the ground round it; cut into the
-    // rise north of the square or built out over the strand, that ease must
-    // stay walkable. Read through the movement gate's own steepness (the
-    // gradient a climbing step is refused on, player_motion.ts) on a half-yard
-    // grid 0.75 to 8 yd round every reach, and compared with the same world
-    // without the building pads: the harbour bluff below the bank is as steep
-    // as it always was, and a pad only answers for the slopes it made.
-    const cells: { x: number; z: number; steepness: number }[] = [];
-    for (let z = -150; z <= -30; z += 0.5) {
-      for (let x = -100; x <= 60; x += 0.5) {
-        const near = Math.min(
-          ...BUILDINGS.map((building) => {
-            const local = toModelAxes(building, { x, z });
-            const reach = rectOf(building, building.reach);
-            return Math.hypot(
-              Math.max(reach.x0 - local.x, 0, local.x - reach.x1),
-              Math.max(reach.z0 - local.z, 0, local.z - reach.z1),
-            );
-          }),
-        );
-        if (near < 0.75 || near > 8) continue;
-        cells.push({ x, z, steepness: terrainSteepnessAt(x, z, WORLD_SEED) });
-      }
-    }
-    expect(cells.length).toBeGreaterThan(10000);
-    const pads = new Set<unknown>(EASTBROOK_BUILDING_PAD_TERRAIN_EDITS);
-    setActiveWorldContent({
-      ...BUILTIN_WORLD,
-      // still the built-in world (the v2 design ground stays laid in), less the pads
-      liveWorldPreview: true,
-      terrainEdits: (BUILTIN_WORLD.terrainEdits ?? []).filter((edit) => !pads.has(edit)),
-    });
-    const tooSteep: string[] = [];
-    let shaped = 0;
-    try {
-      for (const cell of cells) {
-        const before = terrainSteepnessAt(cell.x, cell.z, WORLD_SEED);
-        if (Math.abs(cell.steepness - before) < 1e-9) continue;
-        shaped++;
-        if (cell.steepness > PLAYER_MAX_CLIMB_SLOPE && cell.steepness > before) {
-          tooSteep.push(`${cell.x}, ${cell.z}: ${cell.steepness.toFixed(3)}`);
-        }
-      }
-    } finally {
-      setActiveWorldContent(null);
-    }
-    // Eastbrook Vale v2: the design's own ground carries most of the town, so the pads
-    // shape only the eased edge of it and the harbor cove
-    expect(shaped).toBeGreaterThan(500);
-    if (process.env.PRINT_STEEP) console.log(tooSteep.join(' | '));
-    expect(tooSteep).toEqual([]);
-  });
+  // Retired with the Eastbrook building pads (v2 port): "leaves the waterline
+  // where it was" and "never leaves a bank too steep to climb round a building
+  // where the pads shaped it" compared the world with and without the pads, and
+  // the v2 design ground already owned every cell they reached (the steep check
+  // pinned 0 shaped cells). The v2 waterline and walkability guarantees live in
+  // tests/eastbrook_v2_import.test.ts and tests/eastbrook_v2_world.test.ts.
 
   it('clears the scatter the rebuild map clears, and nothing grows on a building', () => {
     for (const key of REBUILD_MAP.decorationExclusions) {

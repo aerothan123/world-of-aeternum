@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import {
   bankerChestSpots,
   type Collider,
@@ -27,6 +27,7 @@ import {
   YUMI_BAND_X_MIN,
 } from '../src/sim/data';
 import { CRYPT_LAYOUT, DAIS_HEIGHT, tombSlotRoll } from '../src/sim/dungeon_layout';
+import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { FENBRIDGE_LAYOUT } from '../src/sim/fenbridge_layout';
 import {
   CHAPEL_HALL_ROOF_EAVE,
@@ -41,6 +42,7 @@ import {
 import { Sim } from '../src/sim/sim';
 import type { MoveInput, StaticObbPropDef } from '../src/sim/types';
 import { groundHeight, terrainHeight } from '../src/sim/world';
+import { OPEN_FIELD } from './helpers/open_field';
 
 // The physics-asset audit, world half (docs/design/physics-asset-audit.md):
 // every town standable reachable and stable, every full-height prop a real
@@ -48,6 +50,12 @@ import { groundHeight, terrainHeight } from '../src/sim/world';
 // collider sanity sweeps (camera tops, NPC spots, interior tops).
 
 const SEED = 42;
+
+// The civic bench and market stall cases author their fixture on the open
+// test lane; put the built-in world back after every case.
+afterEach(() => {
+  setActiveWorldContent(null);
+});
 const IDLE: MoveInput = {
   forward: false,
   back: false,
@@ -330,8 +338,36 @@ describe('civic bench (rebuild furniture)', () => {
     // rot 0, drawn 1.8 x 0.6 x 0.40: the 0.40 seat sits inside
     // MAX_STEP_HEIGHT, so a plain walk climbs it like a kerb, and the
     // far-side walk-off crosses toward the square and re-seats on terrain.
+    // Re-sited for Eastbrook Vale v2: the civic square's benches stand down
+    // on v2 design ground. The case authors that same shipped bench record
+    // (asset, size, turn, the zone1 collider height) on the open test lane.
+    const bench = EASTBROOK_LAYOUT.civic.benches.find(
+      (b) => b.id === 'eastbrook_civic_bench_south',
+    );
+    if (!bench) throw new Error('missing the civic south bench record');
+    const bx = OPEN_FIELD.x;
+    const bz = OPEN_FIELD.z;
+    setActiveWorldContent({
+      ...BUILTIN_WORLD,
+      props: {
+        ...BUILTIN_WORLD.props,
+        benches: [
+          {
+            id: bench.id,
+            assetId: bench.assetId,
+            x: bx,
+            z: bz,
+            w: bench.width,
+            d: bench.depth,
+            rot: bench.rotation,
+            height: 1,
+          },
+        ],
+      },
+    });
+    expect(bench.rotation).toBe(0);
     const sim = makeSim();
-    teleport(sim, -14, -104.9 - 1.3, 0);
+    teleport(sim, bx, bz - 1.3, 0);
     const p = sim.player;
     let stood = 0;
     for (let i = 0; i < 40; i++) {
@@ -354,11 +390,40 @@ describe('rebuild market stall (flat canopy at the authored height)', () => {
   // square placement at (-17.5, -97.5): the same authored 2.8 x 2.2 OBB
   // whose canopy deck is the mesh's bounding top, drawn at exactly
   // height 2.7. The rotation is the authored MARKET_STALL_SPECS literal.
-  const sx = -17.5;
-  const sz = -97.5;
-  const srot = 2.4805494847391065;
+  // Re-sited for Eastbrook Vale v2: the market square's stalls stand down on
+  // v2 design ground. The case authors that same shipped World Market stall
+  // record (asset, 2.8 x 2.2 OBB, height 2.7, turn) on the open test lane.
+  const stall = EASTBROOK_LAYOUT.market.stalls.find(
+    (s) => s.id === 'eastbrook_market_stall_world_market',
+  );
+  if (!stall) throw new Error('missing the World Market stall record');
+  const sx = OPEN_FIELD.x;
+  const sz = OPEN_FIELD.z;
+  const srot = stall.rotation;
 
   it('jump at the counter grabs the canopy, stands flat at 2.7, and walks off', () => {
+    expect(srot).toBe(2.4805494847391065);
+    expect(stall.height).toBe(2.7);
+    setActiveWorldContent({
+      ...BUILTIN_WORLD,
+      props: {
+        ...BUILTIN_WORLD.props,
+        stalls: [
+          {
+            id: stall.id,
+            assetId: stall.assetId,
+            x: sx,
+            z: sz,
+            rot: srot,
+            r: Math.hypot(stall.width / 2, stall.depth / 2),
+            w: stall.width,
+            d: stall.depth,
+            height: stall.height,
+            canopyVariant: stall.canopyVariant,
+          },
+        ],
+      },
+    });
     const sim = makeSim();
     // Approach along the stall's local +z (its front face).
     const fx = Math.sin(srot);
@@ -481,12 +546,18 @@ describe('stall rim behavior', () => {
 describe('dock flows', () => {
   it('deck to hut roof to deck, and step into the moored rowboat', () => {
     const sim = makeSim();
-    // Hut world position (dock -64,60 rot -2.2; hut local 2.8,2.4).
-    const rot = -2.2;
-    const hx = -64 + 2.8 * Math.cos(rot) + 2.4 * Math.sin(rot);
-    const hz = 60 - 2.8 * Math.sin(rot) + 2.4 * Math.cos(rot);
+    // Re-sited for Eastbrook Vale v2: the Eastbrook dock (-64, 60, rot -2.2)
+    // stands down on v2 design ground. Fenbridge's dock is the same shipped
+    // dock with the same hut (local 2.8, 2.4), so the flow runs there.
+    const dock = BUILTIN_WORLD.props.docks.find((d) => d.x === -66 && d.z === 305);
+    if (!dock) throw new Error('missing the Fenbridge dock');
+    expect(dock.hutLocal).toMatchObject({ x: 2.8, z: 2.4 });
+    const { x: dx, z: dz, rot } = dock;
+    // Hut world position (dock anchor and turn; hut local 2.8,2.4).
+    const hx = dx + 2.8 * Math.cos(rot) + 2.4 * Math.sin(rot);
+    const hz = dz - 2.8 * Math.sin(rot) + 2.4 * Math.cos(rot);
     // Approach across the deck from the dock anchor toward the hut.
-    teleport(sim, -64, 60, Math.atan2(hx + 64, hz - 60));
+    teleport(sim, dx, dz, Math.atan2(hx - dx, hz - dz));
     const p = sim.player;
     let onRoof = false;
     for (let i = 0; i < 140 && !onRoof; i++) {
@@ -501,9 +572,14 @@ describe('dock flows', () => {
       x: 2.4 * Math.cos(rot) + -5.0 * Math.sin(rot),
       z: -2.4 * Math.sin(rot) + -5.0 * Math.cos(rot),
     };
-    const bx = -64 + boff.x;
-    const bz = 60 + boff.z;
-    teleport(sim, bx - Math.sin(0.4) * 3, bz - Math.cos(0.4) * 3, 0.4);
+    const bx = dx + boff.x;
+    const bz = dz + boff.z;
+    // The approach heading was 0.4 at the Eastbrook dock, whose boat floated.
+    // Fenbridge's boat sits beached on the waterline instead; probed over 16
+    // headings, the held-jump walk settles on its deck inside the 2 yd window
+    // from 2.75, so that is this boat's approach (one heading, as before).
+    const heading = 2.75;
+    teleport(sim, bx - Math.sin(heading) * 3, bz - Math.cos(heading) * 3, heading);
     let inBoat = false;
     for (let i = 0; i < 100 && !inBoat; i++) {
       hold(sim, { forward: true, jump: true }, 1);
