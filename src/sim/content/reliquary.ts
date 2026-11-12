@@ -977,8 +977,9 @@ export const RELIQUARY_HEROIC_GEAR = {
 // Conquerors shelf (Phase 2)
 // ---------------------------------------------------------------------------
 // Order: append-only. The Hollow Crypt pages (the Phase 1 stub id
-// `conquerors_hollow_crypt` and its heroic twin) were removed when the owner
-// retired the dungeon outright (2026-11-11).
+// `conquerors_hollow_crypt` and its heroic twin) left this shelf when the owner
+// retired the dungeon outright (2026-11-11); they live on as retired pages
+// beside the Vault of Ages (rule 7), under their original ids.
 
 // ---------------------------------------------------------------------------
 // The Rift page (Phase 21)
@@ -1999,6 +2000,63 @@ export const RELIQUARY_PAGES: readonly ReliquaryPageDef[] = freezePageTable([
       'scourgehide_carapace',
       'soulforged_warplate',
       'soulrend_diadem',
+    ),
+  },
+
+  // ---- The Hollow Crypt (retired 2026-11-11): rule 7, outside completion ----
+  // The owner retired the dungeon outright, so its two pages become visible,
+  // labeled retired pages rather than a silent delete (docs/design/reliquary.md
+  // rule 7). The ids keep their original `conquerors_` spelling on purpose:
+  // page ids are append-only (restore filters illuminatedPages against live
+  // ids, so a rename or a removal would erase every holder's sticky
+  // illumination). They sit on the horizons shelf because the shelf-shape pin
+  // forbids an unearnable conquerors slot. Like the vault they are SOURCELESS
+  // (no door is left to name) and carry no clear meter (the dungeon is gone);
+  // the relic ids are the shipped save-compat item defs, in the shipped order.
+  {
+    id: 'conquerors_hollow_crypt',
+    shelf: 'horizons',
+    name: 'The Hollow Crypt',
+    desc: 'Signature spoils claimed from Morthen and the Hollow Crypt.',
+    clearSource: { kind: 'none' },
+    excludeFromCompletion: 'retired',
+    relics: items(
+      'cryptbone_greaves',
+      'cryptbone_helm',
+      'cryptbone_pauldrons',
+      'greyjaw_hide_boots',
+      'gravewoven_bag',
+      'spadeworn_gauntlets',
+      'gravedirt_grips',
+      'bellrope_mitts',
+      'rimewreath_coif',
+      'rime_laced_hood',
+      'lamenting_veil',
+      'choirward_pauldrons',
+      'choristers_spaulders',
+      'cantors_stole',
+      'knellbound_hauberk',
+      'candlewatch_jerkin',
+      'robe_of_the_unquiet_rite',
+      'gravecallers_rod',
+    ),
+  },
+  {
+    id: 'conquerors_hollow_crypt_heroic',
+    shelf: 'horizons',
+    name: 'Heroic Hollow Crypt',
+    desc: 'Heroic-only epics from Morthen the Gravecaller.',
+    clearSource: { kind: 'none' },
+    excludeFromCompletion: 'retired',
+    relics: items(
+      'morthens_cryptforged_hauberk',
+      'shadowpulse_handwraps',
+      'bonechill_striders',
+      'lunarward_cinch',
+      'cryptplate_helm',
+      'shadowpulse_slippers',
+      'bonechill_cord',
+      'bastion_sigil',
     ),
   },
 
