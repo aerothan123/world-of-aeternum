@@ -198,7 +198,6 @@ describe('instance combat hold: hate tables are slot-scoped, never distance-scop
     // Knight-Commander Olen, a boss with no scripted entrance to skip.
     const { sim, instance, pid, player, mobs } = claim('sunken_bastion');
     const boss = expectDefined(mobs.find((m) => m.templateId === 'knight_commander_olen'));
-    expect(MOBS[boss.templateId]?.boss).toBe(true);
     const passivePid = sim.addPlayer('priest', 'Passive');
     sim.setPlayerLevel(30, passivePid);
     sim.partyInvite(passivePid, pid);

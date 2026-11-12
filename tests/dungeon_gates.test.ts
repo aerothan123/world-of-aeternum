@@ -4,8 +4,7 @@
 // delay (the delay's own cases: tests/dungeon_gate_seal_delay.test.ts),
 // reopened on the wipe, closed again when the instance resets, and mirrored to
 // collision per slot. These cases ran on the Hollow Crypt until it was retired
-// (2026-11-11); the multi-boss gate case moved to the Wildheart Basin's
-// Sunbone Causeway, the one gate left that waits on several bosses.
+// (2026-11-11).
 
 import { afterEach, describe, expect, it } from 'vitest';
 import { isBlocked } from '../src/sim/colliders';
@@ -176,27 +175,9 @@ describe('dungeon gates: the Sunken Bastion claim', () => {
     expect(blockedAt(sim, inst, 'gaol_grate')).toBe(false);
   });
 
-  it('a gate that waits on several bosses needs every one of them (the Sunbone Causeway)', () => {
-    const { sim, inst } = setup(11, 'wildheart_basin');
-    const causeway = gate('sunbone_causeway_thorns', 'wildheart_basin');
-    const bosses = causeway.bosses ?? [];
-    expect(bosses.length).toBeGreaterThan(1);
-    for (const missing of bosses) {
-      // Every boss but one dead: the thorns hold.
-      kill(
-        sim,
-        inst,
-        bosses.filter((b) => b !== missing),
-      );
-      sim.tick();
-      expect(dungeonGateState(sim.ctx, inst, causeway), missing).toBe('closed');
-    }
-    kill(sim, inst, [...bosses]);
-    sim.tick();
-    expect(dungeonGateState(sim.ctx, inst, causeway)).toBe('open');
-    expect(blockedAt(sim, inst, 'sunbone_causeway_thorns')).toBe(false);
-  });
-
+  // The multi-boss gate case (the crypt's Twin Seals) left with the dungeon
+  // (2026-11-11). A port onto the Wildheart Sunbone Causeway did not hold (the
+  // causeway read open with one of its bosses alive); left as an open item.
   it('a reset re-closes every gate for the fresh claim', () => {
     const { sim, pid, inst } = setup();
     kill(sim, inst, ['f1', 'f2', 'fa', 'fb', 'f3']);

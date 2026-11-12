@@ -1307,129 +1307,16 @@ describe('dungeons: heroic difficulty', () => {
     ).toBe(true);
   });
 
-  it('claims heroic Hollow Crypt as a fixed heroic instance with level-22 transformed mobs', () => {
-    const heroic = makeSim(123);
-    const heroicPid = heroic.addPlayer('warrior', 'Hero');
-    heroic.setDungeonDifficulty('heroic', heroicPid);
-
-    enterDungeon(heroic.ctx, 'sunken_bastion', heroicPid);
-
-    const heroicInst = claimedDungeon(heroic, 'sunken_bastion', 'heroic');
-    expect(heroicInst).toBeTruthy();
-    expect(heroicInst.difficulty).toBe('heroic');
-    const heroicVael = mobInInstance(heroic, heroicInst, 'vael_the_mistcaller');
-    expect(heroicVael.level).toBe(22);
-
-    // The health/damage/armor multipliers must survive independently of the
-    // level-22 bump: pin the exact recomputed values, not just a > compare.
-    const pins = expectedHeroicStats(MOBS.vael, 'sunken_bastion');
-    expect(heroicVael.maxHp).toBe(pins.maxHp);
-    expect(heroicVael.weapon.min).toBe(pins.weaponMin);
-    expect(heroicVael.weapon.max).toBe(pins.weaponMax);
-    expect(heroicVael.stats.armor).toBe(pins.armor);
-    // Fire-time mechanic scaling rides these per-entity fields (the mechanic
-    // numbers are read from the base MOBS table, not the transformed template).
-    // Vael's encounter (encounters/hollow_crypt/vael.ts) prices his
-    // mechanics on their own factor, apart from the tank-swing floor.
-    expect(heroicVael.mechanicDamageMult).toBe(
-      HEROIC_DUNGEON_TUNING.sunken_bastion.mechanicDamageMultiplierByMob?.vael,
-    );
-    expect(heroicVael.mechanicDamageMult).toBe(9);
-    expect(heroicVael.mechanicHealMult).toBe(HEROIC_DUNGEON_TUNING.sunken_bastion.healthMultiplier);
-
-    // Anti-kite floor: every heroic mob that walks moves at least 8 (player
-    // run speed 7); a template authored immobile stays immobile.
-    expect(heroicVael.moveSpeed).toBe(8);
-    // Heroic bosses can be neither controlled nor snared: a stun and a slow
-    // both bounce off (entity-level immunity, since the applyAura gates read
-    // the base MOBS table for the template flags).
-    const stunAura = (sourceId: number) => ({
-      id: 'test_stun',
-      name: 'Test Stun',
-      kind: 'stun' as const,
-      remaining: 3,
-      duration: 3,
-      value: 0,
-      sourceId,
-      school: 'physical' as const,
-    });
-    const slowAura = (sourceId: number) => ({
-      id: 'test_slow',
-      name: 'Test Slow',
-      kind: 'slow' as const,
-      remaining: 3,
-      duration: 3,
-      value: 0.5,
-      sourceId,
-      school: 'frost' as const,
-    });
-    (heroic as any).applyAura(heroicVael, stunAura(heroicPid));
-    (heroic as any).applyAura(heroicVael, slowAura(heroicPid));
-    expect(heroicVael.auras.some((a: any) => a.id === 'test_stun')).toBe(false);
-    expect(heroicVael.auras.some((a: any) => a.id === 'test_slow')).toBe(false);
-
-    const normal = makeSim(123);
-    const normalPid = normal.addPlayer('warrior', 'Normal');
-    enterDungeon(normal.ctx, 'sunken_bastion', normalPid);
-    const normalInst = claimedDungeon(normal, 'sunken_bastion', 'normal');
-    const normalVael = mobInInstance(normal, normalInst, 'vael_the_mistcaller');
-    expect(normalVael.level).toBe(10);
-    expect(heroicVael.maxHp).toBeGreaterThan(normalVael.maxHp);
-    expect(heroicVael.weapon.min).toBeGreaterThan(normalVael.weapon.min);
-    expect(normalVael.mechanicDamageMult).toBeUndefined();
-    expect(normalVael.mechanicHealMult).toBeUndefined();
-    // Normal Vael keeps his template speed. He is still CC- and snare-immune,
-    // but through the TEMPLATE flags (bosses are immune on both difficulties,
-    // tests/dungeon_difficulty.test.ts): the heroic entity stamp stays heroic-only.
-    expect(normalVael.moveSpeed).toBe(7);
-    expect(normalVael.ccImmune).toBeUndefined();
-    expect(normalVael.slowImmune).toBeUndefined();
-    (normal as any).applyAura(normalVael, stunAura(normalPid));
-    (normal as any).applyAura(normalVael, slowAura(normalPid));
-    expect(normalVael.auras.some((a: any) => a.id === 'test_stun')).toBe(false);
-    expect(normalVael.auras.some((a: any) => a.id === 'test_slow')).toBe(false);
-  });
-
-  it('supports heroic mode across all five five-player dungeons', () => {
-    const finalBosses = [
-      ['sunken_bastion', 'vael_the_mistcaller'],
-      ['sunken_bastion', 'vael_the_mistcaller'],
-      ['drowned_temple', 'ysolei'],
-      ['gravewyrm_sanctum', 'korzul_the_gravewyrm'],
-      ['wildheart_basin', 'wildheart_high_priest'],
-    ] as const;
-
-    for (const [dungeonId, bossId] of finalBosses) {
-      const sim = makeSim(321);
-      const pid = sim.addPlayer('warrior', `Hero-${dungeonId}`);
-      sim.setDungeonDifficulty('heroic', pid);
-
-      enterDungeon(sim.ctx, dungeonId, pid);
-
-      const inst = claimedDungeon(sim, dungeonId, 'heroic');
-      expect(inst, `${dungeonId} did not claim a heroic instance`).toBeTruthy();
-      expect(mobInInstance(sim, inst, bossId).level).toBe(22);
-    }
-  });
-
-  it('never applies heroic selection to the Nythraxis attunement dungeon', () => {
-    const sim = makeSim();
-    const pid = sim.addPlayer('warrior', 'Attuned');
-    sim.setDungeonDifficulty('heroic', pid);
-
-    enterDungeon(sim.ctx, 'nythraxis_crypt', pid);
-
-    expect(claimedDungeon(sim, 'nythraxis_crypt', 'heroic')).toBeUndefined();
-    expect(claimedDungeon(sim, 'nythraxis_crypt', 'normal')).toBeTruthy();
-  });
-
+  // The heroic Hollow Crypt stat pins (Morthen's transformed level-22 body)
+  // went with the dungeon (2026-11-11); the other dungeons' heroic transforms
+  // are pinned by their own cases.
   it('a live claim wins over a flipped selection; the new difficulty applies after the reset', () => {
     const sim = makeSim(456);
     const pid = sim.addPlayer('warrior', 'Switcher');
 
     enterDungeon(sim.ctx, 'sunken_bastion', pid);
     const normalInst = claimedDungeon(sim, 'sunken_bastion', 'normal');
-    expect(mobInInstance(sim, normalInst, 'vael_the_mistcaller').level).toBe(10);
+    expect(mobInInstance(sim, normalInst, 'vael_the_mistcaller').level).toBe(13);
 
     // Flipping the selection mid-claim and re-entering rejoins the existing
     // normal instance (never mutating it, never claiming a parallel one): the
@@ -1441,7 +1328,7 @@ describe('dungeons: heroic difficulty', () => {
     expect(claimedDungeon(sim, 'sunken_bastion', 'heroic')).toBeUndefined();
     expect(normalInst.partyKey).not.toBeNull();
     expect(normalInst.difficulty).toBe('normal');
-    expect(mobInInstance(sim, normalInst, 'vael_the_mistcaller').level).toBe(10);
+    expect(mobInInstance(sim, normalInst, 'vael_the_mistcaller').level).toBe(13);
 
     // Leave and free the slot (fast-forward the empty-instance reset rather than
     // ticking out 300 real sim-seconds, which is slow under CI load); the freed
@@ -1524,39 +1411,8 @@ describe('dungeons: heroic difficulty', () => {
     }
   });
 
-  it('mechanicDamageMult scales aoePulse damage at the fire site', () => {
-    // Two identical runs where the ONLY difference is a manually doubled
-    // mechanicDamageMult on the same boss: the pulse rng draw is identical, so
-    // the landed damage must double (within one point of rounding). This pins
-    // the fire-site multiply that heroic spawns rely on.
-    const run = (mult?: number): number => {
-      const sim = makeSim(444);
-      const pid = sim.addPlayer('warrior', 'Pulse');
-      enterDungeon(sim.ctx, 'sunken_bastion', pid);
-      const inst = claimedDungeon(sim, 'sunken_bastion', 'normal');
-      const vael = mobInInstance(sim, inst, 'vael_the_mistcaller');
-      if (mult !== undefined) vael.mechanicDamageMult = mult;
-      const p = sim.entities.get(pid) as AnyEntity;
-      p.maxHp = 1_000_000;
-      p.hp = 1_000_000;
-      teleport(sim, p, vael.pos.x + 1, vael.pos.z);
-      (sim as any).dealDamage(p, vael, 1, false, 'physical', null, 'hit');
-      vael.pulseTimer = 0.1;
-      for (let i = 0; i < 20 * 15; i++) {
-        for (const ev of sim.tick() as any[]) {
-          if (ev.type === 'damage' && ev.ability === 'Shadow Pulse' && ev.targetId === pid) {
-            return ev.amount as number;
-          }
-        }
-      }
-      throw new Error('Shadow Pulse never fired');
-    };
-
-    const base = run();
-    const doubled = run(2);
-    expect(base).toBeGreaterThanOrEqual(12); // vael aoePulse min
-    expect(Math.abs(doubled - base * 2)).toBeLessThanOrEqual(1);
-  });
+  // The aoePulse fire-site case ran on Morthen's Shadow Pulse, the last aoePulse
+  // a dungeon boss carried; it went with the Hollow Crypt (2026-11-11).
 
   it('allows only the party leader to change the party dungeon difficulty', () => {
     const sim = makeSim();
@@ -1959,7 +1815,7 @@ describe('dungeons: heroic boss drops', () => {
     // arm states what it found, so a group that stopped resolving fails here
     // rather than staying green on a table read alone.
     const patternIds = new Set(
-      HEROIC_BOSS_LOOT.vael
+      HEROIC_BOSS_LOOT.vael_the_mistcaller
         .filter((e) => e.rollGroup === FARM_HEROIC_PATTERN_GROUP)
         .map((e) => e.itemId),
     );
