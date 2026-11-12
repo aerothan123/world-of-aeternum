@@ -96,6 +96,29 @@ describe('eastbrook v2 import: conversion', () => {
     expect(next).toBeGreaterThan(5 - 8.9);
   });
 
+  it('holds dry ground inside a dry anchor at the flat offset beside water, easing out of it', () => {
+    const hf = grid(
+      (i, j) => (i === 3 && j === 3 ? 240 : 500),
+      (i, j) => (i === 3 && j === 3 ? 460 : 0),
+    );
+    const eased = convertField(hf, cfg({ waterEdgeBlend: 2 }));
+    const anchored = convertField(
+      hf,
+      cfg({
+        waterEdgeBlend: 2,
+        dryAnchors: [{ id: 'abutment', xMin: 2, xMax: 2, zMin: 1, zMax: 1, blend: 2 }],
+      }),
+    );
+    // inside the rect: the flat offset, as if no water were near
+    expect(fieldHeightAt(anchored, 2, 1)).toBeCloseTo(5 - 8.3, 6);
+    expect(fieldHeightAt(eased, 2, 1)).toBeLessThan(5 - 8.3);
+    // a yard out it is part way back to the eased ground, and the water cell never moves
+    const out = fieldHeightAt(anchored, 3, 1);
+    expect(out).toBeGreaterThan(fieldHeightAt(eased, 3, 1));
+    expect(out).toBeLessThan(5 - 8.3);
+    expect(fieldHeightAt(anchored, 2, 2)).toBeCloseTo(fieldHeightAt(eased, 2, 2), 6);
+  });
+
   it('turns the design yaw into the server OBB rotation so the long side lies where drawn', () => {
     const f = convertField(
       grid(

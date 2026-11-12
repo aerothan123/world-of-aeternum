@@ -4,6 +4,9 @@
 // "bridge"); keep the two equal. The deck runs along z at x, from the south bank (z0) to the north
 // bank (z1), its top rising from y0 to y1 with an arch at mid span; the design's road lanes stop at
 // its two ends (north_road, north_road_n). Server frame, yards (the design is server + 8.3 m).
+// y0 and y1 are the bank ground at each end on the centre line, so the deck meets both banks
+// flush; the import keeps those two abutments at the flat 8.3 m offset (dryAnchors in
+// data/eastbrook_v2/import_config.json), so the server bank and the design bank agree there.
 // Built-in world only. Pure leaf: no rng, no clock.
 
 import { isBuiltinWorldActive } from '../data';
@@ -13,8 +16,8 @@ export const EBV2_BROOK_BRIDGE = {
   z0: -44,
   z1: -28,
   halfWidth: 2.2,
-  y0: -2.05,
-  y1: -2.47,
+  y0: -1.79,
+  y1: -2.15,
   arch: 0.6,
 } as const;
 

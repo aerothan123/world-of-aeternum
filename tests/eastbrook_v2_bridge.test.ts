@@ -1,7 +1,7 @@
 // The Eastbrook Vale v2 brook bridge (src/sim/eastbrook_v2/bridge.ts): the north road
 // crosses the brook on a timber deck beside the Broken Span, which stays a ruin.
 import { describe, expect, it } from 'vitest';
-import { EBV2_BROOK_BRIDGE } from '../src/sim/eastbrook_v2/bridge';
+import { EBV2_BROOK_BRIDGE, ebv2BridgeSurface } from '../src/sim/eastbrook_v2/bridge';
 import { EBV2_ROADS } from '../src/sim/eastbrook_v2/layout.generated';
 import { ebv2Point } from '../src/sim/eastbrook_v2/points';
 import { groundHeight, terrainHeight, WATER_LEVEL } from '../src/sim/world';
@@ -35,6 +35,21 @@ describe('Eastbrook v2 brook bridge', () => {
       prev = g;
     }
     expect(wet).toBeGreaterThan(0);
+  });
+
+  it('meets each bank flush: both deck ends within 5 cm of the bank ground', () => {
+    // The import holds the two abutments at the design's flat offset (dryAnchors), so
+    // the bank Unreal builds the deck onto is the bank the server walks off.
+    for (const z of [B.z0, B.z1]) {
+      const deck = ebv2BridgeSurface(B.x, z);
+      const bank = terrainHeight(B.x, z, WORLD_SEED);
+      expect(Math.abs(deck - bank), `deck end at z ${z}: deck ${deck}, bank ${bank}`).toBeLessThan(
+        0.05,
+      );
+    }
+    // and the arch still rises over the brook
+    const mid = ebv2BridgeSurface(B.x, (B.z0 + B.z1) / 2);
+    expect(mid).toBeGreaterThan(Math.max(B.y0, B.y1) + 0.2);
   });
 
   it('leaves the Broken Span standing as a landmark a few yards upstream', () => {

@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4aa5f-2d192e9a-f95db18a-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4aa60-4e3276e6-6752ab96-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4aa5f-2d192e9a-f95db18a",
+    "overworldBase": "4aa60-4e3276e6-6752ab96",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -7943,8 +7943,8 @@
         "name": "Faded Founding Map",
         "positions": [
           {
-            "x": -16.96,
-            "z": -46.35
+            "x": -16.54,
+            "z": -46.13
           }
         ]
       },
@@ -7953,8 +7953,8 @@
         "name": "Reading Desk",
         "positions": [
           {
-            "x": -21.2,
-            "z": -42.88
+            "x": -21.45,
+            "z": -47.37
           }
         ]
       },
