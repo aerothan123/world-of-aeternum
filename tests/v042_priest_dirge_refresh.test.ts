@@ -18,10 +18,17 @@ import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
 import type { SimContext } from '../src/sim/sim_context';
 import type { Aura, Entity, SimEvent } from '../src/sim/types';
+import { placePlayerInValeMeadow } from './helpers/vale_meadow';
 
 function vespersPriest(seed: number): { sim: Sim; priest: Entity; ctx: SimContext } {
   const sim = new Sim({ seed, playerClass: 'priest', autoEquip: true });
   sim.setPlayerLevel(20);
+  // Re-sited for Eastbrook Vale v2: the dummies stand at fixed offsets from
+  // the priest, who stood at the player start. At the v2 start (-16, -158)
+  // the south gate's solids and the hub practice yard sit inside that ring,
+  // and the OPEN_FIELD lane's scatter follows each case's seed, so the priest
+  // stands in the vale meadow, clear on every seed.
+  placePlayerInValeMeadow(sim);
   expect(sim.setSpec('shadow')).toBe(true);
   sim.tick();
   sim.player.resource = sim.player.maxResource;
@@ -640,7 +647,8 @@ describe('v0.42.0 Vespers: Dirge fan-out event order', () => {
     // (content/harbor_route_markers.ts, at -100.2, -55.75) stands about 6.6
     // yards off the authored spawn (-94, -58) and blocks the sight line to
     // (-20, +6), which would drop the west dummy for LOS and hide the
-    // ordering this pins.
+    // ordering this pins. (The priest stands in the vale meadow since the
+    // Eastbrook Vale v2 port; the offsets are kept as they were.)
     // Lower id, placed EAST (larger x -> larger spatial-grid cx bucket).
     const lowerIdEast = addDummy(sim, priest, 20, -6);
     pushOwnDirge(lowerIdEast, priest.id, { remaining: 4, duration: 4 });

@@ -6,6 +6,7 @@ import { dist2d, type Entity, type SimEvent } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
 import { abilityRequirementKeys } from '../src/ui/hud/action_bar/ability_requirement_keys';
 import { classAbilityNamesEn } from '../src/ui/i18n.catalog/abilities';
+import { VALE_MEADOW as M } from './helpers/vale_meadow';
 
 // Shadeslip repositions the CASTER and does nothing to the thing it steps to,
 // so it resolves against an ally the same way it resolves against an enemy
@@ -42,8 +43,11 @@ function makePair(): { sim: Sim; rogue: Entity; ally: Entity; rogueId: number } 
   // (d19aa33f76, docs/design/eastbrook-revamp/site-plan.md) put the forest_wolf
   // camp at (-10, 6) r28.5 and harbor structures over the old open ground, so
   // origin-anchored rigs pick up wild aggro and line-of-sight refusals.
-  teleport(sim, rogue, 200, 0);
-  teleport(sim, ally, 212, 0);
+  // Re-anchored for Eastbrook Vale v2: the port grew the vale slot and opened
+  // the strait east of it, and (200, 0) no longer has the 12 yd of clear sight;
+  // the rig stands in the vale meadow (clear on every seed), offsets unchanged.
+  teleport(sim, rogue, M.x, M.z);
+  teleport(sim, ally, M.x + 12, M.z);
   rogue.resource = rogue.maxResource;
   return { sim, rogue, ally, rogueId };
 }
@@ -69,13 +73,13 @@ describe('Shadeslip steps to friend or foe', () => {
     const { sim, rogue, ally, rogueId } = makePair();
     sim.targetEntity(ally.id, rogueId);
     for (let use = 0; use < 2; use++) {
-      teleport(sim, rogue, 200, 0);
+      teleport(sim, rogue, M.x, M.z);
       sim.castAbility('shadowstep', rogueId);
       expect(errors(sim.tick())).toEqual([]);
       expect(dist2d(rogue.pos, ally.pos)).toBeCloseTo(1.5, 1);
       for (let tick = 0; tick < 40; tick++) sim.tick();
     }
-    teleport(sim, rogue, 200, 0);
+    teleport(sim, rogue, M.x, M.z);
     sim.castAbility('shadowstep', rogueId);
     expect(errors(sim.tick()).length).toBeGreaterThan(0);
     expect(dist2d(rogue.pos, ally.pos)).toBeCloseTo(12, 1);
@@ -88,10 +92,10 @@ describe('Shadeslip steps to friend or foe', () => {
 
   it('still steps to a hostile mob, unchanged', () => {
     const { sim, rogue, rogueId } = makePair();
-    const mob = createMob(31_000, MOBS.forest_wolf, 10, { x: 200, y: 0, z: 0 });
+    const mob = createMob(31_000, MOBS.forest_wolf, 10, { x: M.x + 10, y: 0, z: M.z });
     mob.hostile = true;
     (sim as unknown as SimInternals).addEntity(mob);
-    teleport(sim, mob, 210, 0);
+    teleport(sim, mob, M.x + 10, M.z);
 
     sim.targetEntity(mob.id, rogueId);
     sim.castAbility('shadowstep', rogueId);

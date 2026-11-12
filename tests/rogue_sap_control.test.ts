@@ -5,6 +5,7 @@ import { incapacitateDrCategory } from '../src/sim/incapacitate_dr';
 import { Sim } from '../src/sim/sim';
 import type { CrowdControlDrCategory, Entity } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
+import { VALE_MEADOW as M } from './helpers/vale_meadow';
 
 // Sap is the classic out-of-combat setup tool. Two defects it had:
 //   1. its incapacitate arm called enterCombat, which put both sides in combat
@@ -38,12 +39,15 @@ function sapRig(): { sim: Sim; rogue: Entity; mob: Entity } {
   const sim = new Sim({ seed: 9, playerClass: 'rogue', autoEquip: true });
   sim.setPlayerLevel(20);
   const rogue = sim.player;
-  teleport(sim, rogue, 0, 0);
+  // Re-sited for Eastbrook Vale v2: the rig stood at (0, 0), which is v2
+  // design ground with its own solids and trees now; it stands in the vale
+  // meadow (clear on every seed), with the same offsets as before.
+  teleport(sim, rogue, M.x, M.z);
   const mob = createMob(32_000, MOBS.forest_wolf, 10, { x: 0, y: 0, z: 0 });
   mob.hostile = true;
   mob.aiState = 'idle';
   (sim as unknown as SimInternals).addEntity(mob);
-  teleport(sim, mob, 3, 0);
+  teleport(sim, mob, M.x + 3, M.z);
   rogue.facing = Math.atan2(mob.pos.x - rogue.pos.x, mob.pos.z - rogue.pos.z);
   rogue.resource = rogue.maxResource;
   return { sim, rogue, mob };
@@ -88,7 +92,7 @@ describe('Sap does not start a fight', () => {
 
     // Park the rogue well outside any proximity-aggro radius so the only thing
     // that could pull the mob is the Sap itself, then run the full 8 sec out.
-    teleport(sim, rogue, 0, 60);
+    teleport(sim, rogue, M.x, M.z + 60);
     for (let i = 0; i < 20 * 10; i++) sim.tick();
 
     expect(sapAura(mob)).toBeUndefined();

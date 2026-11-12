@@ -8,6 +8,7 @@ import { MOBS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
 import type { Entity } from '../src/sim/types';
+import { placePlayerInValeMeadow } from './helpers/vale_meadow';
 import { EMPTY_TEST_WORLD } from './sim_shared';
 
 const CHOICES = ['twin_covenant', 'second_verse', 'incarnate_spirit'] as const;
@@ -29,6 +30,12 @@ function damage(
     world: EMPTY_TEST_WORLD,
   });
   sim.setPlayerLevel(20);
+  // Eastbrook Vale v2: targets stand on the priest's plane 15 yd out, and the
+  // v2 start (-16, -158) sits on sloped design ground by the south gate, where
+  // the capstone payoffs came out wrong. The priest stands in the vale meadow,
+  // level and open on every seed (scripts/probe_anchor.ts explains why probe
+  // targets want level ground).
+  placePlayerInValeMeadow(sim);
   expect(
     sim.applyTalents({
       spec: 'shadow',
