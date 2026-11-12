@@ -50,20 +50,31 @@ const MARSHAL_POS = EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.position;
 // module-load throw taking the client down; the core test pins the camp.
 const camp = ZONE1_CAMPS.find((c) => c.mobId === 'forest_wolf') ?? null;
 export const WOLF_RUN_CAMP = camp ? { ...camp.center, radius: camp.radius } : null;
-// The trail leaves the square by the north road: round the west end of the
-// smithy's forge shelter (the road swings out round it), and back over the
-// rise behind the smithy, west of the road's lamp, before it bends up the
-// Wolf Run. Clear of every collider by more than a body's width even after
-// the trail's curve smoothing, and 2 yd round Chronicler Saul.
+// Eastbrook Vale v2: the trail steps back from the notice board onto the lane
+// south of the market stalls, swings round the far side of the Realm Builder
+// monument and the stalls' end, crosses the square to the town road, leaves by the
+// north gate, follows the north road to the brook bridge, crosses it, and runs
+// up the open ground to the Wolf Run. Clear of every collider by more than a
+// body's width even after the trail's curve smoothing (tests: the rendered
+// curve at 0.7 yd, every straight leg at 0.5), and 2 yd round Chronicler Saul.
 export const WOLVES_ROUTE: readonly Point[] = WOLF_RUN_CAMP
   ? [
       MARSHAL_POS,
-      { x: 13.5, z: -93.5 },
-      { x: 16.3, z: -83 },
-      { x: 17.5, z: -76 },
-      { x: 14, z: -69 },
-      { x: 7.5, z: -61.5 },
-      { x: 5, z: -52 },
+      { x: -4, z: -109.6 },
+      { x: -11, z: -110.3 },
+      { x: -20, z: -107 },
+      { x: -21, z: -101 },
+      { x: -18.5, z: -97.5 },
+      { x: -14, z: -94 },
+      { x: -10.5, z: -89 },
+      { x: -9.5, z: -82 },
+      { x: -6.5, z: -70 },
+      { x: -6, z: -57 },
+      { x: -7, z: -50 },
+      { x: -13, z: -46 },
+      { x: -18, z: -41 },
+      { x: -18, z: -30 },
+      { x: -19, z: -18 },
       WOLF_RUN_CAMP,
     ]
   : [];
