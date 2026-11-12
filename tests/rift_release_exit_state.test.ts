@@ -143,7 +143,7 @@ describe('leaving a rift through a graveyard move clears the online rift floor',
     const { sim } = enterRiftSolo();
     const delver = sim.addPlayer('warrior', 'Delver');
     sim.setPlayerLevel(20, delver);
-    sim.enterDungeon('hollow_crypt', delver);
+    sim.enterDungeon('sunken_bastion', delver);
     expect(dungeonAt(sim.entities.get(delver)!.pos.x), 'sanity: inside the dungeon').not.toBeNull();
     sim.drainEvents();
     kill(sim, delver);

@@ -127,7 +127,7 @@ describe('Crucible floor soundtrack', () => {
   });
 
   it('leaves ordinary dungeon combat and Nythraxis music intact', () => {
-    const ordinary = instanceMusicDecision(input('hollow_crypt', { lastCombatEventAt: 19999 }));
+    const ordinary = instanceMusicDecision(input('sunken_bastion', { lastCombatEventAt: 19999 }));
     expect(ordinary).toMatchObject({
       crucibleFloor: null,
       inCombat: true,

@@ -4,7 +4,7 @@
 // (its dungeonRow dep, wired exactly as hud.ts wires it) and the real quest
 // strip controller paints it into the strip's own markup. The sibling suite
 // (dungeon_tracker_strip.test.ts) pins the controller's hand-off against a
-// stubbed strip; this one pins what the player reads: "Sexton Marrow: 0/1".
+// stubbed strip; this one pins what the player reads: "Knight-Commander Olen: 0/1".
 import { beforeEach, describe, expect, it } from 'vitest';
 import { QUESTS, WORLD_QUESTS_BY_ID } from '../src/sim/data';
 import { createForgeWorkshop } from '../src/sim/minigames/forge_workshop';
@@ -20,7 +20,12 @@ import { worldQuestDisplayName } from '../src/ui/world_quest_view';
 import type { IWorld } from '../src/world_api';
 import type { DungeonRunView } from '../src/world_api/dungeons';
 
-const CRYPT = ['sexton_marrow', 'rimeweb', 'cantor_ilvane', 'morthen'] as const;
+const BASTION = [
+  'knight_commander_olen',
+  'gaol_turnkey',
+  'gaoler_ossick',
+  'vael_the_mistcaller',
+] as const;
 const LESSON = 'wq_evergarden_forging';
 
 /** The strip markup of both entries (mirrors tests/quest_strip_controller.test.ts). */
@@ -48,9 +53,9 @@ function run(
   difficulty: 'normal' | 'heroic' = 'normal',
 ): DungeonRunView {
   return Object.freeze({
-    dungeonId: 'hollow_crypt',
+    dungeonId: 'sunken_bastion',
     difficulty,
-    bosses: CRYPT.map((mobId) => ({ mobId, defeated: defeated.includes(mobId) })),
+    bosses: BASTION.map((mobId) => ({ mobId, defeated: defeated.includes(mobId) })),
   });
 }
 
@@ -161,13 +166,13 @@ describe('the dungeon run through the real touch quest strip', () => {
     r.world.dungeonRun = run();
     r.tick();
     // The page took the strip on first sight and every boss fits (no "+N more").
-    expect(r.title()).toBe('The Hollow Crypt');
+    expect(r.title()).toBe('The Sunken Bastion');
     expect(r.counter()).toBe('2/2');
     expect(r.objectives()).toEqual([
-      'Sexton Marrow: 0/1',
-      'Lady of the Bonechill: 0/1',
-      'Cantor Ilvane: 0/1',
-      'Morthen the Gravecaller: 0/1',
+      'Knight-Commander Olen: 0/1',
+      'Gaol Turnkey: 0/1',
+      'Gaoler Ossick: 0/1',
+      'Vael the Fogbinder: 0/1',
     ]);
     expect(r.more()).toBe('');
     // The desktop plate stays unpainted: on touch the strip is the tracker.
@@ -179,18 +184,18 @@ describe('the dungeon run through the real touch quest strip', () => {
     const r = mount();
     r.world.dungeonRun = run();
     r.tick();
-    r.world.dungeonRun = run(['sexton_marrow']);
+    r.world.dungeonRun = run(['knight_commander_olen']);
     r.tick();
-    expect(r.title()).toBe('The Hollow Crypt');
-    expect(r.objectives()[0]).toBe('Sexton Marrow: 1/1');
-    expect(r.objectives()[1]).toBe('Lady of the Bonechill: 0/1');
+    expect(r.title()).toBe('The Sunken Bastion');
+    expect(r.objectives()[0]).toBe('Knight-Commander Olen: 1/1');
+    expect(r.objectives()[1]).toBe('Gaol Turnkey: 0/1');
   });
 
   it('titles a heroic run with its difficulty', () => {
     const r = mount();
     r.world.dungeonRun = run([], 'heroic');
     r.tick();
-    expect(r.title()).toBe('The Hollow Crypt (Heroic)');
+    expect(r.title()).toBe('The Sunken Bastion (Heroic)');
   });
 
   it('gives the strip back to the quests on leaving', () => {
@@ -225,17 +230,17 @@ describe('the dungeon run through the real touch quest strip', () => {
     const r = mount();
     r.world.dungeonRun = run([], 'heroic');
     r.tick();
-    expect(r.title()).toBe('The Hollow Crypt (Heroic)');
+    expect(r.title()).toBe('The Sunken Bastion (Heroic)');
     await ensureLocaleLoaded('ja_JP');
     setLanguage('ja_JP');
     // A plain pass cannot see a locale-only change: the page is remembered.
     r.tick();
-    expect(r.title()).toBe('The Hollow Crypt (Heroic)');
+    expect(r.title()).toBe('The Sunken Bastion (Heroic)');
     r.dungeonTracker.relocalize();
     r.questTracker.relocalize();
     r.tick();
-    const name = dungeonDisplayName('hollow_crypt');
-    expect(name).not.toBe('The Hollow Crypt');
+    const name = dungeonDisplayName('sunken_bastion');
+    expect(name).not.toBe('The Sunken Bastion');
     expect(r.title()).toBe(
       t('hudChrome.dungeonTracker.heroicTitle', {
         name,
@@ -244,11 +249,11 @@ describe('the dungeon run through the real touch quest strip', () => {
     );
     expect(r.objectives()[0]).toBe(
       t('questUi.detail.objectiveProgress', {
-        label: mobDisplayName('sexton_marrow'),
+        label: mobDisplayName('knight_commander_olen'),
         current: '0',
         total: '1',
       }),
     );
-    expect(r.objectives()[0]).not.toContain('Sexton Marrow');
+    expect(r.objectives()[0]).not.toContain('Knight-Commander Olen');
   });
 });

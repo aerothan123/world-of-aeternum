@@ -42,11 +42,10 @@ const SYNTHETIC: MobTemplate = {
 };
 
 describe('heroic tuning data contract', () => {
-  it('covers the five five-player dungeons plus all three raid arenas and final bosses', () => {
+  it('covers the four five-player dungeons plus all three raid arenas and final bosses', () => {
     expect([...HEROIC_DUNGEON_IDS].sort()).toEqual([
       'drowned_temple',
       'gravewyrm_sanctum',
-      'hollow_crypt',
       'ignivar_forge_approach',
       'ignivar_forge_lift',
       'ignivar_inner_crucible',
@@ -59,7 +58,6 @@ describe('heroic tuning data contract', () => {
     expect(
       Object.fromEntries(Object.values(HEROIC_DUNGEON_TUNING).map((t) => [t.id, t.finalBossId])),
     ).toEqual({
-      hollow_crypt: 'morthen',
       sunken_bastion: 'vael_the_mistcaller',
       drowned_temple: 'ysolei',
       gravewyrm_sanctum: 'korzul_the_gravewyrm',
@@ -79,7 +77,6 @@ describe('heroic tuning data contract', () => {
         Object.values(HEROIC_DUNGEON_TUNING).map((t) => [t.id, t.marksPerParticipant]),
       ),
     ).toEqual({
-      hollow_crypt: 1,
       sunken_bastion: 1,
       drowned_temple: 1,
       gravewyrm_sanctum: 1,
@@ -111,9 +108,6 @@ describe('heroic tuning data contract', () => {
         ]),
       ),
     ).toEqual({
-      // The rework's summoned adds (Marrow's bones, Rimeweb's hatchlings) are
-      // floored at 9.5 (tests/heroic_difficulty_floors.test.ts).
-      hollow_crypt: [3.8, 9, 9.5, 1.3],
       sunken_bastion: [4.0, 6.9, 9.75, 1.3],
       drowned_temple: [5.2, 6.4, 9.15, 1.25],
       gravewyrm_sanctum: [4.0, 5.1, 8.55, 1.2],
@@ -133,7 +127,7 @@ describe('heroic tuning data contract', () => {
 
 describe('claimDifficultyForDungeon', () => {
   it('grants heroic to the supported dungeons and the raid arena only', () => {
-    expect(claimDifficultyForDungeon('hollow_crypt', 'heroic')).toBe('heroic');
+    expect(claimDifficultyForDungeon('sunken_bastion', 'heroic')).toBe('heroic');
     expect(claimDifficultyForDungeon('gravewyrm_sanctum', 'heroic')).toBe('heroic');
     expect(claimDifficultyForDungeon('nythraxis_boss_arena', 'heroic')).toBe('heroic');
     expect(claimDifficultyForDungeon('ignivar_raid_arena', 'heroic')).toBe('heroic');
@@ -143,38 +137,40 @@ describe('claimDifficultyForDungeon', () => {
     // The attunement dungeon is story content: normal even when heroic is selected.
     expect(claimDifficultyForDungeon('nythraxis_crypt', 'heroic')).toBe('normal');
     expect(claimDifficultyForDungeon('no_such_dungeon', 'heroic')).toBe('normal');
-    expect(claimDifficultyForDungeon('hollow_crypt', 'normal')).toBe('normal');
+    expect(claimDifficultyForDungeon('sunken_bastion', 'normal')).toBe('normal');
   });
 });
 
 describe('mobTemplateForDungeonDifficulty', () => {
   it('returns the SAME template untouched for normal difficulty', () => {
-    // A dungeon with no normal tuning record (the Hollow Crypt gained one for
-    // its wing bosses' pools, so it no longer serves here).
+    // A dungeon with no normal tuning record (the Sunken Bastion has one for
+    // its bosses' pools, so it does not serve here).
     expect(mobTemplateForDungeonDifficulty(SYNTHETIC, 'the_last_keep', 'normal')).toBe(SYNTHETIC);
     // A dungeon WITH a health-only normal record still leaves an unlisted mob's
     // numbers untouched (a copy, every field equal).
-    expect(mobTemplateForDungeonDifficulty(SYNTHETIC, 'hollow_crypt', 'normal')).toEqual(SYNTHETIC);
+    expect(mobTemplateForDungeonDifficulty(SYNTHETIC, 'sunken_bastion', 'normal')).toEqual(
+      SYNTHETIC,
+    );
     expect(mobTemplateForDungeonDifficulty(SYNTHETIC, 'no_such_dungeon', 'heroic')).toBe(SYNTHETIC);
   });
 
   it('produces an exact heroic transform without mutating the base template', () => {
     const before = JSON.stringify(SYNTHETIC);
-    const heroic = mobTemplateForDungeonDifficulty(SYNTHETIC, 'hollow_crypt', 'heroic');
-    // hollow_crypt tuning: health x3.8, damage x9, armor x1.3, level 22.
+    const heroic = mobTemplateForDungeonDifficulty(SYNTHETIC, 'sunken_bastion', 'heroic');
+    // sunken_bastion tuning: health x4.0, damage x6.9, armor x1.3, level 22.
     expect(heroic).not.toBe(SYNTHETIC);
     expect(heroic.minLevel).toBe(22);
     expect(heroic.maxLevel).toBe(22);
-    expect(heroic.hpBase).toBeCloseTo(380, 10);
-    expect(heroic.hpPerLevel).toBeCloseTo(38, 10);
-    expect(heroic.dmgBase).toBeCloseTo(180, 10);
-    expect(heroic.dmgPerLevel).toBeCloseTo(18, 10);
+    expect(heroic.hpBase).toBeCloseTo(400, 10);
+    expect(heroic.hpPerLevel).toBeCloseTo(40, 10);
+    expect(heroic.dmgBase).toBeCloseTo(138, 10);
+    expect(heroic.dmgPerLevel).toBeCloseTo(13.8, 10);
     expect(heroic.armorPerLevel).toBeCloseTo(5.2, 10);
     // Every heroic mob is floored to the anti-kite speed (player RUN_SPEED is
     // 7); a template already at or above the floor keeps its own speed.
     expect(heroic.moveSpeed).toBe(8);
     expect(
-      mobTemplateForDungeonDifficulty({ ...SYNTHETIC, moveSpeed: 10.5 }, 'hollow_crypt', 'heroic')
+      mobTemplateForDungeonDifficulty({ ...SYNTHETIC, moveSpeed: 10.5 }, 'sunken_bastion', 'heroic')
         .moveSpeed,
     ).toBe(10.5);
     // Untouched fields carry over; the base template is never mutated.
@@ -183,29 +179,29 @@ describe('mobTemplateForDungeonDifficulty', () => {
   });
 
   it('scales a boss-SUMMONED add by addDamageMultiplier, everything else unchanged', () => {
-    const add = mobTemplateForDungeonDifficulty(SYNTHETIC, 'hollow_crypt', 'heroic', {
+    const add = mobTemplateForDungeonDifficulty(SYNTHETIC, 'sunken_bastion', 'heroic', {
       summonedAdd: true,
     });
-    // hollow_crypt addDamageMultiplier is 9.5 (Marrow's Restless Bones).
-    expect(add.dmgBase).toBeCloseTo(190, 10);
-    expect(add.dmgPerLevel).toBeCloseTo(19, 10);
+    // sunken_bastion addDamageMultiplier is 9.75 (Vael's drowned thralls).
+    expect(add.dmgBase).toBeCloseTo(195, 10);
+    expect(add.dmgPerLevel).toBeCloseTo(19.5, 10);
     // Health, armor, level, and the speed floor stay on the dungeon-wide tuning.
-    expect(add.hpBase).toBeCloseTo(380, 10);
-    expect(add.hpPerLevel).toBeCloseTo(38, 10);
+    expect(add.hpBase).toBeCloseTo(400, 10);
+    expect(add.hpPerLevel).toBeCloseTo(40, 10);
     expect(add.armorPerLevel).toBeCloseTo(5.2, 10);
     expect(add.minLevel).toBe(22);
     expect(add.moveSpeed).toBe(8);
     // The role flag does nothing outside heroic.
     expect(
-      mobTemplateForDungeonDifficulty(SYNTHETIC, 'hollow_crypt', 'normal', { summonedAdd: true }),
+      mobTemplateForDungeonDifficulty(SYNTHETIC, 'sunken_bastion', 'normal', { summonedAdd: true }),
     ).toEqual(SYNTHETIC);
   });
 });
 
 describe('mobLevelForDungeonDifficulty', () => {
   it('pins heroic spawns to the tuning level and passes rolled levels through otherwise', () => {
-    expect(mobLevelForDungeonDifficulty('hollow_crypt', 'heroic', 11)).toBe(22);
-    expect(mobLevelForDungeonDifficulty('hollow_crypt', 'normal', 11)).toBe(11);
+    expect(mobLevelForDungeonDifficulty('sunken_bastion', 'heroic', 11)).toBe(22);
+    expect(mobLevelForDungeonDifficulty('sunken_bastion', 'normal', 11)).toBe(11);
     expect(mobLevelForDungeonDifficulty('no_such_dungeon', 'heroic', 11)).toBe(11);
   });
 });
@@ -236,18 +232,18 @@ describe('applyDungeonMobTuning', () => {
     // The heroic entity stamp is belt and braces on top of the template flags
     // below: it stays boss-only and heroic-only (the applyAura gates check
     // template OR entity, so a normal boss is covered by its template).
-    const boss = { templateId: 'morthen' } as Entity;
-    applyDungeonMobTuning(boss, 'hollow_crypt', 'heroic');
+    const boss = { templateId: 'vael_the_mistcaller' } as Entity;
+    applyDungeonMobTuning(boss, 'sunken_bastion', 'heroic');
     expect(boss.ccImmune).toBe(true);
     expect(boss.slowImmune).toBe(true);
 
-    const trash = { templateId: 'crypt_shambler' } as Entity;
-    applyDungeonMobTuning(trash, 'hollow_crypt', 'heroic');
+    const trash = { templateId: 'tidebound_acolyte' } as Entity;
+    applyDungeonMobTuning(trash, 'sunken_bastion', 'heroic');
     expect(trash.ccImmune).toBeUndefined();
     expect(trash.slowImmune).toBeUndefined();
 
-    const normalBoss = { templateId: 'morthen' } as Entity;
-    applyDungeonMobTuning(normalBoss, 'hollow_crypt', 'normal');
+    const normalBoss = { templateId: 'vael_the_mistcaller' } as Entity;
+    applyDungeonMobTuning(normalBoss, 'sunken_bastion', 'normal');
     expect(normalBoss.ccImmune).toBeUndefined();
     expect(normalBoss.slowImmune).toBeUndefined();
   });
@@ -257,7 +253,7 @@ describe('boss templates are CC and snare immune on BOTH difficulties', () => {
   it('every boss-flagged dungeon template carries both flags', () => {
     // The complete boss enumeration of the four five-mans, the public raid,
     // and both Ignivar development-raid encounters. These are the ONLY boss: true templates
-    // in dungeons.ts + temple.ts (Korgath, Velkhar, Sexton Marrow, Olen, Selthe,
+    // in dungeons.ts + temple.ts (Korgath, Velkhar, Olen, Selthe,
     // and the Nythraxis adds are deliberately NOT boss-flagged). Template-level
     // flags cover normal spawns too: the applyAura gates read MOBS[templateId]
     // at fire time, so a normal Korzul can no longer be stunned or kited on a
@@ -265,7 +261,6 @@ describe('boss templates are CC and snare immune on BOTH difficulties', () => {
     const bossIds = [
       'ignivar_herald_of_the_last_flame',
       'varkhul_forgefather_of_the_last_flame',
-      'morthen',
       'vael_the_mistcaller',
       'ysolei',
       'korzul_the_gravewyrm',
@@ -300,7 +295,6 @@ describe('boss templates are CC and snare immune on BOTH difficulties', () => {
     // flag also drives the Avatar control-break boundary
     // (tests/avatar_break_control.test.ts) and boss loot, which must not move.
     const midBossIds = [
-      'sexton_marrow',
       'knight_commander_olen',
       'choirmother_selthe',
       'korgath_the_bound',

@@ -1406,14 +1406,14 @@ describe('unstuck area identity', () => {
 
   it('reports content-local positions for dungeon, delve, and procedural rift clones', () => {
     const dungeon = makeWorld();
-    dungeon.enterDungeon('hollow_crypt', dungeon.player.id);
+    dungeon.enterDungeon('sunken_bastion', dungeon.player.id);
     const dungeonLocation = required(
       unstuckLocationAt(dungeon.ctx, dungeon.player.id, dungeon.player.pos),
       'dungeon location',
     );
     expect(dungeonLocation.area).toMatchObject({
       kind: 'dungeon',
-      id: 'hollow_crypt',
+      id: 'sunken_bastion',
       instanceId: expect.any(String),
       slot: expect.any(Number),
     });
@@ -1478,7 +1478,7 @@ describe('unstuck area identity', () => {
     const sim = makeWorld();
     const owner = sim.player.id;
     const foreign = sim.addPlayer('warrior', 'Stranger');
-    sim.enterDungeon('hollow_crypt', owner);
+    sim.enterDungeon('sunken_bastion', owner);
     const ownerPlayer = required(sim.entities.get(owner), 'dungeon owner');
     const foreignPlayer = required(sim.entities.get(foreign), 'foreign player');
     const claim = required(

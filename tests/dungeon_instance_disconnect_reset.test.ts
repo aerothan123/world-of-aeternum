@@ -88,7 +88,9 @@ function dropSocket(server: GameServer, session: ClientSession, ws: any): boolea
 function claimedHollowCrypt(server: GameServer, pid: number): any {
   const sim = server.sim as AnySim;
   const key = instanceKeyFor(sim.ctx, pid);
-  return (sim.instances as any[]).find((i) => i.dungeonId === 'hollow_crypt' && i.partyKey === key);
+  return (sim.instances as any[]).find(
+    (i) => i.dungeonId === 'sunken_bastion' && i.partyKey === key,
+  );
 }
 
 function killAMob(server: GameServer, inst: any, actorPid: number): AnyEntity {
@@ -109,7 +111,7 @@ describe('dungeon instance survives a dropped connection (issue #1351)', () => {
     const ws = fakeWs();
     const session = expectJoined(server.join(ws, 11, 101, 'Solo', 'warrior', null));
 
-    enterDungeon(server.sim.ctx, 'hollow_crypt', session.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', session.pid);
     const inst = claimedHollowCrypt(server, session.pid);
     expect(inst).toBeTruthy();
     const mobIds = [...inst.mobIds];
@@ -151,7 +153,7 @@ describe('dungeon instance survives a dropped connection (issue #1351)', () => {
     const ws = fakeWs();
     const session = expectJoined(server.join(ws, 11, 102, 'Ghosted', 'warrior', null));
 
-    enterDungeon(server.sim.ctx, 'hollow_crypt', session.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', session.pid);
     const inst = claimedHollowCrypt(server, session.pid);
     const mobIds = [...inst.mobIds];
     const killedMob = killAMob(server, inst, session.pid);
@@ -174,7 +176,7 @@ describe('dungeon instance survives a dropped connection (issue #1351)', () => {
     expect(relogged).not.toBe(session); // a genuinely fresh session and pid
     expect(relogged.pid).not.toBe(session.pid);
 
-    enterDungeon(server.sim.ctx, 'hollow_crypt', relogged.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', relogged.pid);
 
     expect(claimedHollowCrypt(server, relogged.pid)).toBe(inst); // same claim, not a fresh one
     expect(inst.mobIds).toEqual(mobIds); // no respawn happened
@@ -186,7 +188,7 @@ describe('dungeon instance survives a dropped connection (issue #1351)', () => {
     const ws = fakeWs();
     const session = expectJoined(server.join(ws, 11, 103, 'Abandoned', 'warrior', null));
 
-    enterDungeon(server.sim.ctx, 'hollow_crypt', session.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', session.pid);
     const inst = claimedHollowCrypt(server, session.pid);
     const exitId = inst.exitId;
 
@@ -212,7 +214,7 @@ describe('dungeon instance survives a dropped connection (issue #1351)', () => {
     const ws = fakeWs();
     const session = expectJoined(server.join(ws, 11, 104, 'Leaver', 'warrior', null));
 
-    enterDungeon(server.sim.ctx, 'hollow_crypt', session.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', session.pid);
     const inst = claimedHollowCrypt(server, session.pid);
     expect(inst).toBeTruthy();
 
@@ -234,10 +236,10 @@ describe('dungeon instance survives a dropped connection (issue #1351)', () => {
     (server.sim as AnySim).partyInvite(b.pid, a.pid);
     (server.sim as AnySim).partyAccept(b.pid);
 
-    enterDungeon(server.sim.ctx, 'hollow_crypt', a.pid);
-    enterDungeon(server.sim.ctx, 'hollow_crypt', b.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', a.pid);
+    enterDungeon(server.sim.ctx, 'sunken_bastion', b.pid);
     const inst = (server.sim as AnySim).instances.find(
-      (i: any) => i.dungeonId === 'hollow_crypt' && i.partyKey?.startsWith('party:'),
+      (i: any) => i.dungeonId === 'sunken_bastion' && i.partyKey?.startsWith('party:'),
     );
     expect(inst).toBeTruthy();
 

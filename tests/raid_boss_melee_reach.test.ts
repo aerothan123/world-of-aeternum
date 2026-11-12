@@ -111,7 +111,7 @@ describe('big-bodied boss reach (bodyRadius)', () => {
 
   it('covers the reworked dungeons’ big bosses', () => {
     const ids = BODIED.map((m) => m.id);
-    for (const id of ['ysolei', 'crypt_knellwyrm', 'morthen']) expect(ids).toContain(id);
+    for (const id of ['ysolei', 'korzul_the_gravewyrm']) expect(ids).toContain(id);
   });
 
   it.each(BODIED.map((m) => [m.id, m.bodyRadius as number, m.scale] as const))(

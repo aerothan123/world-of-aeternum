@@ -162,14 +162,14 @@ describe('teleports cancel a live session', () => {
     const pid = sim.playerId;
     const p = startGatherSession(sim, pid);
     sim.drainEvents();
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', pid)).toBe(true);
     expectSessionEnded(sim, p);
   });
 
   it('dungeon exit cancels a session', () => {
     const sim = makeSim();
     const pid = sim.playerId;
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', pid)).toBe(true);
     const p = assignFishingSession(sim, pid);
     sim.drainEvents();
     expect(leaveDungeon(sim.ctx, pid)).toBe(true);

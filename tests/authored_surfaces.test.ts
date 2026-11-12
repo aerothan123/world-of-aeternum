@@ -224,8 +224,8 @@ const AUTHORED_ATLAS_DEFS = [
   'mount_nightwing_chimera',
   'mount_wobbles_slime',
   // the Blender-built dungeon bosses and bodies: the Sunken Bastion's Vael,
-  // Iron Cage, Drowned Anchor and Gaol Turnkey, and the Hollow Crypt's Lich
-  // Bishop (Morthen); and the Bastion's sculpted drowned (the Revenant first)
+  // Iron Cage, Drowned Anchor and Gaol Turnkey; and the Bastion's sculpted
+  // drowned (the Revenant first)
   'bastion_vael',
   'bastion_drowned_revenant',
   'bastion_warhound',
@@ -243,18 +243,9 @@ const AUTHORED_ATLAS_DEFS = [
   'npc_laverock',
   'bastion_drowned_anchor',
   'bastion_turnkey',
-  'crypt_morthen_lich',
-  // the Hollow Crypt's bosses on the art guide's models: Sexton Marrow (the skeletal
-  // gravedigger), the Lady of the Bonechill (the frozen bride's ghost), Cantor Ilvane
-  // (the skeletal choir mistress), and the rime egg sacs the Lady's spiders hatch from
-  'crypt_skel_sexton',
-  'crypt_lady_bonechill',
-  'crypt_skel_cantor',
-  'crypt_rime_egg_sac',
   // the art guide's skeleton minion (Tripo P2, rigged in Blender) on its three keys
   'skel_minion',
   'delve_skel_wraith',
-  'crypt_skel_minion',
   // the Sunken Bastion's Blender crawler and the Stormbrass Foundry's turretback, flagged in
   // manifest.ts on the v0.45.0 integration and listed here late
   'bastion_crawler',
@@ -270,24 +261,13 @@ const AUTHORED_ATLAS_DEFS = [
   'temple_reflection_shaman',
   'temple_reflection_warlock',
   'temple_reflection_warrior',
-  // the art guide's Hollow Crypt trash bodies (Tripo P2, rigged in Blender)
-  'crypt_skel_warrior',
-  'crypt_skel_adept',
-  'crypt_skel_necromancer',
-  'crypt_skel_cutthroat',
-  'crypt_skel_brute',
-  'crypt_skel_chorister',
   // the Gravewyrm Sanctum's three Blender bosses (characters/sanctum_boss_looks.ts)
   'sanctum_korgath',
   'sanctum_velkhar',
   'sanctum_korzul',
   'sanctum_seal_shackle',
-  // the Hollow Crypt's Blender gargoyle, drake and Knellwyrm, the Drowned
-  // Temple's Ysolei, the Gravewyrm Sanctum's Sledge Tusker and Soul Brazier
-  // prop, and the Wildheart Basin's Blender bodies and mask-totem prop
-  'mob_crypt_gargoyle',
-  'mob_crypt_drake',
-  'mob_crypt_knellwyrm',
+  // the Drowned Temple's Ysolei, the Gravewyrm Sanctum's Sledge Tusker and
+  // Soul Brazier prop, and the Wildheart Basin's Blender bodies and mask-totem prop
   'temple_ysolei',
   // the Drowned Temple's Blender Tide Pilgrim (the sacred sea snail)
   'temple_pilgrim',

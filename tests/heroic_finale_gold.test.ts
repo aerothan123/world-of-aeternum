@@ -35,7 +35,6 @@ const RAID_FINALE_DUNGEON_IDS = new Set([
 // The full normal-mode finale money ladder, pinned so a single-boss retune
 // (up or down) is a deliberate edit here, not a drive-by.
 const NORMAL_FINALE_COPPER: Record<string, number> = {
-  hollow_crypt: 2500,
   sunken_bastion: 5000,
   drowned_temple: 6000,
   gravewyrm_sanctum: 15000,

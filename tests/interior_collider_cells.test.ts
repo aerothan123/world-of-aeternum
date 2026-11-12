@@ -35,13 +35,7 @@ import {
 import { derivedInteriorColliders } from '../src/sim/interior_collider_sets';
 
 const SEED = 93;
-const REWORKED = [
-  'gravewyrm_sanctum',
-  'hollow_crypt',
-  'sunken_bastion',
-  'drowned_temple',
-  'wildheart_basin',
-];
+const REWORKED = ['gravewyrm_sanctum', 'sunken_bastion', 'drowned_temple', 'wildheart_basin'];
 /** Every dungeon that names an interior (one per interior set). */
 const ALL_INTERIORS = Object.keys(DUNGEONS).filter((id) => DUNGEONS[id].interior);
 // 0.5 is BODY_RADIUS; 1.6 reads ring 1 and 20 ring 2 (bodies wider than the margin).
@@ -185,9 +179,9 @@ describe('interior collider cell index', () => {
         }
       }
     }
-    // The five gated open-air reworks (the Stormbrass Foundry, the sixth, is
-    // parked).
-    expect(gated).toBeGreaterThanOrEqual(5);
+    // The four gated open-air reworks (the Stormbrass Foundry is parked and
+    // the Hollow Crypt retired).
+    expect(gated).toBeGreaterThanOrEqual(4);
     expect(mismatches).toEqual([]);
   });
 

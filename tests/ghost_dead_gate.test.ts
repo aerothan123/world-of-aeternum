@@ -525,7 +525,7 @@ describe('auto-release-on-logout: save/load of a dead-unreleased character', () 
     const sim = makeSim();
     sim.setPlayerLevel(10);
     const p = sim.player as AnyEntity;
-    sim.enterDungeon('hollow_crypt');
+    sim.enterDungeon('sunken_bastion');
     expect(p.pos.x).toBeGreaterThan(DUNGEON_X_THRESHOLD);
     // die deeper inside the instance
     p.pos = { x: p.pos.x, y: p.pos.y, z: p.pos.z + 30 };
@@ -554,7 +554,7 @@ describe('auto-release-on-logout: save/load of a dead-unreleased character', () 
     const sim = makeSim();
     sim.setPlayerLevel(10);
     const p = sim.player as AnyEntity;
-    sim.enterDungeon('hollow_crypt');
+    sim.enterDungeon('sunken_bastion');
     expect(p.pos.x).toBeGreaterThan(DUNGEON_X_THRESHOLD);
     // Die deeper inside the instance, then release: the normal death path
     // (spirit.ts releasePlayerSpirit) stamps corpseInstanceId from the live
@@ -566,7 +566,7 @@ describe('auto-release-on-logout: save/load of a dead-unreleased character', () 
     p.dead = true;
     sim.releaseSpirit();
     const inst = (sim.instances as any[]).find(
-      (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+      (i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null,
     );
     expect(p.corpseInstanceId).toBe(inst.exitId);
 

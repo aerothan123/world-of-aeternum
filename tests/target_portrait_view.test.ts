@@ -140,11 +140,15 @@ const CORRECTED_TINTED_PORTRAITS = {
 
 describe('targetPortraitUrl', () => {
   it('selects committed portrait art for mob templates only', () => {
-    expect(targetPortraitUrl('morthen', true)).toBe('/ui/mobs/morthen.webp');
+    expect(targetPortraitUrl('vael_the_mistcaller', true)).toBe(
+      '/ui/mobs/vael_the_mistcaller.webp',
+    );
     expect(targetPortraitUrl('the_merchant', false)).toBeNull();
-    // Sexton Marrow is both a living NPC id and an undead encounter id. Entity
-    // kind, not catalog overlap, decides whether portrait art is appropriate.
-    expect(MOBS.sexton_marrow).toBeDefined();
+    // Entity kind, not catalog presence, decides whether portrait art is
+    // appropriate: a mob template id read as a non-mob gets none. (Sexton
+    // Marrow, the NPC whose id the Hollow Crypt boss shared, keeps none too.)
+    expect(MOBS.vael_the_mistcaller).toBeDefined();
+    expect(targetPortraitUrl('vael_the_mistcaller', false)).toBeNull();
     expect(targetPortraitUrl('sexton_marrow', false)).toBeNull();
   });
 

@@ -65,7 +65,7 @@ const GAMEPLAY: TargetState = {
   hp: 420,
   maxHp: 600,
   level: 62,
-  templateId: 'morthen',
+  templateId: 'vael_the_mistcaller',
   dead: false,
   hostile: true,
   displayName: 'Nythraxis',

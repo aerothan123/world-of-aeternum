@@ -708,7 +708,7 @@ describe('Shadow talent choices with Vampiric Touch and Tithe Bomb', () => {
         const originZone = zoneAt(f.p.pos.x, f.p.pos.z).id;
         f.p.pos.z += 2;
         expect(zoneAt(f.p.pos.x, f.p.pos.z).id).not.toBe(originZone);
-      } else expect(enterDungeon(f.ctx, 'hollow_crypt', f.p.id, true)).toBe(true);
+      } else expect(enterDungeon(f.ctx, 'sunken_bastion', f.p.id, true)).toBe(true);
       const before = f.target.hp;
       for (let i = 0; i < 121; i++) tickGroundAoEs(f.ctx);
       expect(f.target.hp).toBe(before);
@@ -727,9 +727,9 @@ describe('Shadow talent choices with Vampiric Touch and Tithe Bomb', () => {
 
   it('deactivates a residual on released claim even when the owner position and zone stay unchanged', () => {
     const f = fixture({ 20: 'pri_r20_incarnate_spirit' });
-    expect(enterDungeon(f.ctx, 'hollow_crypt', f.p.id, true)).toBe(true);
+    expect(enterDungeon(f.ctx, 'sunken_bastion', f.p.id, true)).toBe(true);
     const slot = f.ctx.instances.find(
-      (entry) => entry.dungeonId === 'hollow_crypt' && entry.partyKey !== null,
+      (entry) => entry.dungeonId === 'sunken_bastion' && entry.partyKey !== null,
     );
     if (!slot) throw new Error('Missing claimed dungeon');
     const enemy = f.ctx.entities.get(slot.mobIds[0]);

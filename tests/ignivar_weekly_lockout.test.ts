@@ -122,9 +122,13 @@ describe('normal-difficulty weekly lockout on the raid rooms', () => {
 
   it('a normal kill in a NON-raid dungeon locks nothing (the control)', () => {
     const sim = makeSim();
-    const { boss, recipients } = encounterInstance(sim, 'morthen', 'hollow_crypt', 'normal', [
-      'Tank',
-    ]);
+    const { boss, recipients } = encounterInstance(
+      sim,
+      'vael_the_mistcaller',
+      'sunken_bastion',
+      'normal',
+      ['Tank'],
+    );
     sim.ctx.awardHeroicMarks(boss, recipients);
     expect(recipients[0].raidLockouts.size).toBe(0);
   });
@@ -165,12 +169,16 @@ describe('heroic raid kills take the weekly boundary; ordinary heroics stay dail
 
   it('a heroic kill in an ordinary dungeon keeps the DAILY boundary (the control)', () => {
     const sim = makeSim();
-    const { boss, recipients } = encounterInstance(sim, 'morthen', 'hollow_crypt', 'heroic', [
-      'Tank',
-    ]);
+    const { boss, recipients } = encounterInstance(
+      sim,
+      'vael_the_mistcaller',
+      'sunken_bastion',
+      'heroic',
+      ['Tank'],
+    );
     const nowMs = Math.floor(sim.time * 1000);
     sim.ctx.awardHeroicMarks(boss, recipients);
-    expect(recipients[0].raidLockouts.get(heroicLockoutId('hollow_crypt'))).toBe(nowMs + DAY_MS);
+    expect(recipients[0].raidLockouts.get(heroicLockoutId('sunken_bastion'))).toBe(nowMs + DAY_MS);
   });
 });
 

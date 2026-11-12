@@ -67,7 +67,7 @@ describe('instance arrival resets an airborne player (dungeons)', () => {
     p.onGround = false;
     p.fallStartY = 45;
 
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', pid)).toBe(true);
 
     expect(p.onGround).toBe(true);
     expect(p.jumping).toBe(false);

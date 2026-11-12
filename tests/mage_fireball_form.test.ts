@@ -87,7 +87,7 @@ describe('Mage Fireball Form', () => {
   });
 
   it.each([
-    ['a dungeon', 'hollow_crypt'],
+    ['a dungeon', 'sunken_bastion'],
     ['a raid', 'nythraxis_crypt'],
   ] as const)('cannot be activated inside %s instance', (_label, dungeonId) => {
     const sim = mageWithSpec('fire');
@@ -130,7 +130,7 @@ describe('Mage Fireball Form', () => {
   });
 
   it.each([
-    ['a dungeon', 'hollow_crypt'],
+    ['a dungeon', 'sunken_bastion'],
     ['a raid', 'nythraxis_crypt'],
   ] as const)(
     'cancels its running cast when the Mage enters %s before completion',
@@ -264,7 +264,7 @@ describe('Mage Fireball Form', () => {
   });
 
   it.each([
-    ['a dungeon', 'hollow_crypt'],
+    ['a dungeon', 'sunken_bastion'],
     ['a raid', 'nythraxis_crypt'],
   ] as const)('can still be toggled off inside %s', (_label, dungeonId) => {
     const sim = mageWithSpec('arcane');

@@ -23,16 +23,21 @@ import { makeWriterFacet, type PainterHostWriters } from '../src/ui/painter_host
 import type { DungeonRunView } from '../src/world_api/dungeons';
 
 const { ensureLocaleLoaded, setLanguage, t } = i18n;
-const CRYPT = ['sexton_marrow', 'rimeweb', 'cantor_ilvane', 'morthen'] as const;
+const BASTION = [
+  'knight_commander_olen',
+  'gaol_turnkey',
+  'gaoler_ossick',
+  'vael_the_mistcaller',
+] as const;
 
 function run(
   defeated: readonly string[] = [],
   difficulty: 'normal' | 'heroic' = 'normal',
 ): DungeonRunView {
   return Object.freeze({
-    dungeonId: 'hollow_crypt',
+    dungeonId: 'sunken_bastion',
     difficulty,
-    bosses: CRYPT.map((mobId) => ({ mobId, defeated: defeated.includes(mobId) })),
+    bosses: BASTION.map((mobId) => ({ mobId, defeated: defeated.includes(mobId) })),
   });
 }
 
@@ -135,11 +140,11 @@ describe('DungeonTrackerPainter: skeleton', () => {
     const plate = q('.dgt-plate');
     const firstRow = root.querySelector('.dgt-row');
     painter.update();
-    world.dungeonRun = run(['sexton_marrow']);
+    world.dungeonRun = run(['knight_commander_olen']);
     painter.update();
     world.dungeonRun = null;
     painter.update();
-    world.dungeonRun = run([...CRYPT], 'heroic');
+    world.dungeonRun = run([...BASTION], 'heroic');
     painter.update();
     expect(q('.dgt-plate')).toBe(plate);
     expect(root.querySelector('.dgt-row')).toBe(firstRow);
@@ -172,14 +177,14 @@ describe('DungeonTrackerPainter: in the real entry markup', () => {
       const root = stack.querySelector('#dungeon-tracker') as HTMLElement;
       expect(root.getAttribute('role')).toBe('group');
       const siblings = stack.children.length;
-      const world = { dungeonRun: run(['rimeweb'], 'heroic') as DungeonRunView | null };
+      const world = { dungeonRun: run(['gaol_turnkey'], 'heroic') as DungeonRunView | null };
       const painter = new DungeonTrackerPainter({
         writers: countingFacet().facet,
         world: () => world,
       });
       painter.update();
       expect(root.classList.contains('is-live')).toBe(true);
-      expect(root.querySelector('.dgt-name')?.textContent).toBe('The Hollow Crypt');
+      expect(root.querySelector('.dgt-name')?.textContent).toBe('The Sunken Bastion');
       expect(stack.children.length).toBe(siblings);
       expect(stack.querySelector('#qt-body')?.innerHTML).toBe('');
     },
@@ -202,12 +207,12 @@ describe('DungeonTrackerPainter: what it shows', () => {
   it('names the dungeon and every boss from the entity name keys, counted 0 of 1', () => {
     const { painter, q, rows, root } = rig(run());
     painter.update();
-    expect(q('.dgt-name').textContent).toBe('The Hollow Crypt');
+    expect(q('.dgt-name').textContent).toBe('The Sunken Bastion');
     expect(rows().map((row) => row.querySelector('.dgt-boss')?.textContent)).toEqual([
-      'Sexton Marrow',
-      'Lady of the Bonechill',
-      'Cantor Ilvane',
-      'Morthen the Gravecaller',
+      'Knight-Commander Olen',
+      'Gaol Turnkey',
+      'Gaoler Ossick',
+      'Vael the Fogbinder',
     ]);
     const zeroOfOne = t('hudChrome.questTracker.objectiveValue', { current: '0', total: '1' });
     expect(zeroOfOne).toBe('0 / 1');
@@ -230,20 +235,20 @@ describe('DungeonTrackerPainter: what it shows', () => {
       'dgt-boss',
       'dgt-mark',
     ]);
-    expect(row.textContent).toBe('0 / 1Sexton Marrow');
+    expect(row.textContent).toBe('0 / 1Knight-Commander Olen');
   });
 
   it('ticks a boss to 1 of 1, marks its row done, and moves the rail and tally', () => {
     const { world, painter, q, rows } = rig(run());
     painter.update();
-    world.dungeonRun = run(['rimeweb']);
+    world.dungeonRun = run(['gaol_turnkey']);
     painter.update();
-    const [marrow, lady] = rows();
-    expect(lady.querySelector('.dgt-count')?.textContent).toBe('1 / 1');
-    expect(lady.classList.contains('is-done')).toBe(true);
-    expect(lady.classList.contains('is-flash')).toBe(true);
-    expect(marrow.classList.contains('is-done')).toBe(false);
-    expect(marrow.classList.contains('is-flash')).toBe(false);
+    const [olen, turnkey] = rows();
+    expect(turnkey.querySelector('.dgt-count')?.textContent).toBe('1 / 1');
+    expect(turnkey.classList.contains('is-done')).toBe(true);
+    expect(turnkey.classList.contains('is-flash')).toBe(true);
+    expect(olen.classList.contains('is-done')).toBe(false);
+    expect(olen.classList.contains('is-flash')).toBe(false);
     expect(q('.dgt-tally').textContent).toBe('1 / 4');
     expect(q('.dgt-bar-fill').style.width).toBe('25%');
   });
@@ -251,7 +256,7 @@ describe('DungeonTrackerPainter: what it shows', () => {
   it('lets the kill highlight go after its hold, leaving the row done', () => {
     const { world, painter, rows } = rig(run());
     painter.update();
-    world.dungeonRun = run(['sexton_marrow']);
+    world.dungeonRun = run(['knight_commander_olen']);
     for (let i = 0; i < DUNGEON_TRACKER_FLASH_BUILDS; i++) painter.update();
     expect(rows()[0].classList.contains('is-flash')).toBe(true);
     painter.update();
@@ -271,10 +276,12 @@ describe('DungeonTrackerPainter: what it shows', () => {
   });
 
   it('reads a finished run as complete, in the tracker`s own word', () => {
-    const { world, painter, q, rows } = rig(run(['sexton_marrow', 'rimeweb', 'cantor_ilvane']));
+    const { world, painter, q, rows } = rig(
+      run(['knight_commander_olen', 'gaol_turnkey', 'gaoler_ossick']),
+    );
     painter.update();
     expect(q('.dgt-plate').classList.contains('is-complete')).toBe(false);
-    world.dungeonRun = run([...CRYPT]);
+    world.dungeonRun = run([...BASTION]);
     painter.update();
     expect(q('.dgt-plate').classList.contains('is-complete')).toBe(true);
     expect(q('.dgt-plate').classList.contains('is-complete-flash')).toBe(true);
@@ -288,14 +295,14 @@ describe('DungeonTrackerPainter: what it shows', () => {
   });
 
   it('a run walked into already finished is complete without the glow', () => {
-    const { painter, q } = rig(run([...CRYPT]));
+    const { painter, q } = rig(run([...BASTION]));
     painter.update();
     expect(q('.dgt-plate').classList.contains('is-complete')).toBe(true);
     expect(q('.dgt-plate').classList.contains('is-complete-flash')).toBe(false);
   });
 
   it('hides the rows a shorter boss list leaves behind, and clears their state', () => {
-    const { world, painter, rows, root } = rig(run([...CRYPT]));
+    const { world, painter, rows, root } = rig(run([...BASTION]));
     painter.update();
     expect(rows()).toHaveLength(4);
     world.dungeonRun = Object.freeze({
@@ -321,7 +328,7 @@ describe('DungeonTrackerPainter: nothing changed means nothing done', () => {
     ['a Sim-shaped run', (view: DungeonRunView) => view],
     ['a ClientWorld-shaped run', mirrored],
   ])('an unchanged %s writes once and then nothing', (_label, shape) => {
-    const { world, painter, counts } = rig(shape(run(['sexton_marrow'], 'heroic')));
+    const { world, painter, counts } = rig(shape(run(['knight_commander_olen'], 'heroic')));
     painter.update();
     const establishing = counts.writes;
     expect(establishing).toBeGreaterThan(10);
@@ -329,23 +336,23 @@ describe('DungeonTrackerPainter: nothing changed means nothing done', () => {
     expect(counts.writes).toBe(establishing);
     expect(counts.skips).toBeGreaterThan(0);
     // A real change writes again: the elision is not a stuck painter.
-    world.dungeonRun = shape(run(['sexton_marrow', 'rimeweb'], 'heroic'));
+    world.dungeonRun = shape(run(['knight_commander_olen', 'gaol_turnkey'], 'heroic'));
     painter.update();
     expect(counts.writes).toBeGreaterThan(establishing);
   });
 
   it('resolves no text at all on an unchanged poll', () => {
-    const { world, painter } = rig(run(['sexton_marrow'], 'heroic'));
+    const { world, painter } = rig(run(['knight_commander_olen'], 'heroic'));
     const spies = resolveSpies();
     painter.update();
     // The first paint resolves everything: the name, the chip, the tally, the
     // aria label, and a name and a count per boss.
-    expect(spies.calls()).toBeGreaterThanOrEqual(4 + CRYPT.length * 2);
+    expect(spies.calls()).toBeGreaterThanOrEqual(4 + BASTION.length * 2);
     spies.clear();
     for (let i = 0; i < 40; i++) painter.update();
     expect(spies.calls()).toBe(0);
     // A boss falls: one resolve pass, then silence again while the glow runs.
-    world.dungeonRun = run(['sexton_marrow', 'rimeweb'], 'heroic');
+    world.dungeonRun = run(['knight_commander_olen', 'gaol_turnkey'], 'heroic');
     painter.update();
     expect(spies.calls()).toBeGreaterThan(0);
     spies.clear();
@@ -365,27 +372,27 @@ describe('DungeonTrackerPainter: nothing changed means nothing done', () => {
   });
 
   it('a language switch re-resolves once through relocalize, with the run unchanged', async () => {
-    const { painter, q, rows, root } = rig(run([...CRYPT], 'heroic'));
+    const { painter, q, rows, root } = rig(run([...BASTION], 'heroic'));
     painter.update();
-    expect(q('.dgt-name').textContent).toBe('The Hollow Crypt');
+    expect(q('.dgt-name').textContent).toBe('The Sunken Bastion');
     await ensureLocaleLoaded('ja_JP');
     setLanguage('ja_JP');
     // The gate is blind to the locale by design: a plain poll keeps the old text.
     painter.update();
-    expect(q('.dgt-name').textContent).toBe('The Hollow Crypt');
+    expect(q('.dgt-name').textContent).toBe('The Sunken Bastion');
     const spies = resolveSpies();
     painter.relocalize();
     expect(spies.calls()).toBeGreaterThan(0);
-    expect(q('.dgt-name').textContent).toBe(entityI18n.dungeonDisplayName('hollow_crypt'));
-    expect(q('.dgt-name').textContent).not.toBe('The Hollow Crypt');
+    expect(q('.dgt-name').textContent).toBe(entityI18n.dungeonDisplayName('sunken_bastion'));
+    expect(q('.dgt-name').textContent).not.toBe('The Sunken Bastion');
     expect(q('.dgt-diff').textContent).toBe(t('hudChrome.finder.heroic'));
     expect(q('.dgt-diff').textContent).not.toBe('Heroic');
     expect(q('.dgt-tally').textContent).toBe(t('hudChrome.dungeonTracker.complete'));
     expect(q('.dgt-tally').textContent).not.toBe('Complete');
     expect(rows()[0].querySelector('.dgt-boss')?.textContent).toBe(
-      displayCore.mobDisplayName('sexton_marrow'),
+      displayCore.mobDisplayName('knight_commander_olen'),
     );
-    expect(rows()[0].querySelector('.dgt-boss')?.textContent).not.toBe('Sexton Marrow');
+    expect(rows()[0].querySelector('.dgt-boss')?.textContent).not.toBe('Knight-Commander Olen');
     expect(root.getAttribute('aria-label')).not.toBe('Dungeon Tracker');
     // And the gate is re-latched, not cleared: the next poll resolves nothing.
     spies.clear();
@@ -466,7 +473,7 @@ describe('DungeonTrackerPainter: on touch the strip carries the run', () => {
     const rail = document.createElement('div');
     const railRead = vi.fn(() => rectOf({ left: 0, top: 0, right: 0, bottom: 0 }));
     rail.getBoundingClientRect = railRead;
-    const { root, painter, counts } = rig(run(['sexton_marrow'], 'heroic'), rail);
+    const { root, painter, counts } = rig(run(['knight_commander_olen'], 'heroic'), rail);
     const spies = resolveSpies();
     for (let i = 0; i < 10; i++) painter.update();
     expect(root.classList.contains('is-live')).toBe(false);
@@ -479,23 +486,23 @@ describe('DungeonTrackerPainter: on touch the strip carries the run', () => {
   it('hands the strip a page built once per run, not once per poll', () => {
     const { world, painter } = rig();
     expect(painter.stripQuest()).toBeNull();
-    world.dungeonRun = run(['sexton_marrow']);
+    world.dungeonRun = run(['knight_commander_olen']);
     const spies = resolveSpies();
     const page = painter.stripQuest();
     expect(page).toMatchObject({
-      title: 'The Hollow Crypt',
+      title: 'The Sunken Bastion',
       complete: false,
       objectives: [
-        { label: 'Sexton Marrow', current: 1, total: 1 },
-        { label: 'Lady of the Bonechill', current: 0, total: 1 },
-        { label: 'Cantor Ilvane', current: 0, total: 1 },
-        { label: 'Morthen the Gravecaller', current: 0, total: 1 },
+        { label: 'Knight-Commander Olen', current: 1, total: 1 },
+        { label: 'Gaol Turnkey', current: 0, total: 1 },
+        { label: 'Gaoler Ossick', current: 0, total: 1 },
+        { label: 'Vael the Fogbinder', current: 0, total: 1 },
       ],
     });
     spies.clear();
     for (let i = 0; i < 20; i++) expect(painter.stripQuest()).toBe(page);
     expect(spies.calls()).toBe(0);
-    world.dungeonRun = run(['sexton_marrow', 'rimeweb']);
+    world.dungeonRun = run(['knight_commander_olen', 'gaol_turnkey']);
     expect(painter.stripQuest()).not.toBe(page);
     expect(painter.stripQuest()?.objectives[1].current).toBe(1);
     world.dungeonRun = null;
@@ -504,7 +511,7 @@ describe('DungeonTrackerPainter: on touch the strip carries the run', () => {
 
   it('titles a heroic run with its difficulty through the catalog template', () => {
     const { painter } = rig(run([], 'heroic'));
-    expect(painter.stripQuest()?.title).toBe('The Hollow Crypt (Heroic)');
+    expect(painter.stripQuest()?.title).toBe('The Sunken Bastion (Heroic)');
   });
 
   it('rebuilds the page in the new language after relocalize', async () => {
@@ -515,9 +522,9 @@ describe('DungeonTrackerPainter: on touch the strip carries the run', () => {
     painter.relocalize();
     const japanese = painter.stripQuest();
     expect(japanese).not.toBe(english);
-    expect(japanese?.title).not.toBe('The Hollow Crypt (Heroic)');
-    expect(japanese?.title).toContain(entityI18n.dungeonDisplayName('hollow_crypt'));
-    expect(japanese?.objectives[0].label).toBe(displayCore.mobDisplayName('sexton_marrow'));
+    expect(japanese?.title).not.toBe('The Sunken Bastion (Heroic)');
+    expect(japanese?.title).toContain(entityI18n.dungeonDisplayName('sunken_bastion'));
+    expect(japanese?.objectives[0].label).toBe(displayCore.mobDisplayName('knight_commander_olen'));
   });
 });
 

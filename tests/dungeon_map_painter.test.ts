@@ -98,7 +98,7 @@ describe('DungeonMapPainter', () => {
 
   afterEach(() => vi.unstubAllGlobals());
 
-  it.each(['hollow_crypt', 'sunken_bastion', IGNIVAR_MOLTEN_ASSEMBLY_ID])(
+  it.each(['drowned_temple', 'sunken_bastion', IGNIVAR_MOLTEN_ASSEMBLY_ID])(
     'paints %s on the minimap and M-map with its localized title and difficulty',
     (dungeonId) => {
       const painter = new DungeonMapPainter(
@@ -139,25 +139,25 @@ describe('DungeonMapPainter', () => {
     const label = {} as HTMLElement;
     painter.paintMinimap(
       minimap as unknown as CanvasRenderingContext2D,
-      worldIn('hollow_crypt', 'heroic'),
+      worldIn('sunken_bastion', 'heroic'),
       label,
       162,
       1,
     );
-    expect(setText).toHaveBeenCalledWith(label, `${dungeonDisplayName('hollow_crypt')} (Heroic)`);
+    expect(setText).toHaveBeenCalledWith(label, `${dungeonDisplayName('sunken_bastion')} (Heroic)`);
 
     const map = new RecordingContext();
     const result = painter.paintWorldMap(
       map as unknown as CanvasRenderingContext2D,
-      worldIn('hollow_crypt', 'heroic'),
+      worldIn('sunken_bastion', 'heroic'),
       560,
     );
-    expect(result?.title).toBe(`${dungeonDisplayName('hollow_crypt')} (Heroic)`);
+    expect(result?.title).toBe(`${dungeonDisplayName('sunken_bastion')} (Heroic)`);
   });
 
   it('keeps map titles on the active claim difficulty after selection changes', () => {
     expect(
-      dungeonTitleWithDifficulty('hollow_crypt', worldIn('hollow_crypt', 'heroic', 'normal')),
-    ).toBe(`${dungeonDisplayName('hollow_crypt')} (Normal)`);
+      dungeonTitleWithDifficulty('sunken_bastion', worldIn('sunken_bastion', 'heroic', 'normal')),
+    ).toBe(`${dungeonDisplayName('sunken_bastion')} (Normal)`);
   });
 });
