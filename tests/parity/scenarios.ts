@@ -119,6 +119,7 @@ import { WORLD_SEED } from '../../src/sim/world_seed';
 import { EBV2_INN } from '../helpers/ebv2_inn';
 import { runCraft } from '../helpers/enchant_family_cast';
 import { OPEN_FIELD } from '../helpers/open_field';
+import { VALE_MEADOW } from '../helpers/vale_meadow';
 import type { Recorder, Scenario } from './record';
 
 // ----- shared helpers ---------------------------------------------------------
@@ -5343,7 +5344,11 @@ function professionsGather(seed = 1): Scenario {
       // byte-identical, and what moved is this position, the state digests that
       // hash it, and the mirror_lake POI visit the old spot only earned by
       // being underwater. The two-draw-per-harvest contract is untouched.
-      teleport(sim, p, -59, 91); // herb_eastbrook_1
+      // Eastbrook Vale v2 stood the patch on the design's own herb node, 130 yd
+      // from that literal, and every cast became a "Too far away." denial
+      // (tests/parity/coverage_c.test.ts counts the harvests): the stand point
+      // is derived from the node now, like step 1's.
+      standOnNode(sim, p, 'herb_eastbrook_1');
       for (let i = 0; i < 100; i++) {
         meta.gatheringProficiency.herbalism = 0;
         // The retention filter keeps the three tools (ahead of the gate,
@@ -5624,7 +5629,12 @@ function priestCodex(seed = 2929): Scenario {
       const benison = sim.entities.get(benisonId) as AnyEntity;
       const benisonAlly = sim.entities.get(benisonAllyId) as AnyEntity;
       const vespers = sim.entities.get(vespersId) as AnyEntity;
-      const origin = doctrine.pos;
+      // The rig stands in the vale meadow (tests/helpers/vale_meadow.ts): the
+      // Eastbrook Vale v2 start sits among the south gate's solids, which cut
+      // the sight line to a dummy and dropped its Effigy Echo
+      // (tests/parity/coverage_c.test.ts expects both echo targets).
+      teleport(sim, doctrine, VALE_MEADOW.x, VALE_MEADOW.z);
+      const origin = { ...doctrine.pos };
       for (const [index, entity] of [
         doctrine,
         doctrineAlly,
@@ -6154,6 +6164,15 @@ function professionsFarmingSession(seed = 1): Scenario {
 
       // HUSK CONVERSION: the withered beat above paid exactly 2 husks, one
       // batch, so this trades them into exactly one compost. Zero draws.
+      // The trade asks for a farmer in reach (farmer_npcs.ts nearFarmerNpc):
+      // on Eastbrook Vale v2 the beds stepped off the design's building and
+      // Farmer Jessica keeps her own site 15 yd away, so the drive walks over
+      // to her first (a stand point derived from her live entity).
+      const farmer = [...(sim.entities as Map<number, AnyEntity>).values()].find(
+        (e) => e.kind === 'npc' && e.templateId === 'farmer_jessica',
+      );
+      if (!farmer) throw new Error('parity scenario: no farmer_jessica');
+      teleport(sim, p, farmer.pos.x + 1.5, farmer.pos.z);
       convertHusks(sim.ctx, p, meta);
       rec.snapshot('husks-converted');
 

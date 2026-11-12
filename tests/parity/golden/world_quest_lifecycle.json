@@ -376,7 +376,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1409,
-      "state": "c5acc8d2",
+      "state": "efa6485c",
       "events": "d7fac09b",
       "rng": {
         "draws": 0,
@@ -540,7 +540,7 @@
           "pos": {
             "x": -55,
             "y": 1.51,
-            "z": -75
+            "z": -74.5
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -571,7 +571,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1409,
-      "state": "5f258dc2",
+      "state": "3aef7e38",
       "events": "176f0885",
       "rng": {
         "draws": 0,
@@ -680,7 +680,7 @@
               {
                 "count": 1,
                 "creditedObjects": [
-                  "0@-55.0,-75.0"
+                  "0@-55.0,-74.5"
                 ],
                 "questId": "wq_eastbrook_bandits",
                 "state": "active"
@@ -713,7 +713,7 @@
           "critChance": 0.0695,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0695,
-          "fallStartY": -2.83,
+          "fallStartY": 1.29796,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 822,
@@ -729,9 +729,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -78,
-            "y": -2.83,
-            "z": -55
+            "x": -76.02,
+            "y": 1.29796,
+            "z": -66.8
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -762,7 +762,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1410,
-      "state": "81967674",
+      "state": "25140702",
       "events": "f8af05c1",
       "rng": {
         "draws": 0,
@@ -927,7 +927,7 @@
           "critChance": 0.0695,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0695,
-          "fallStartY": -2.83,
+          "fallStartY": 1.29796,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 822,
@@ -943,9 +943,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -78,
-            "y": -2.83,
-            "z": -55
+            "x": -76.02,
+            "y": 1.29796,
+            "z": -66.8
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
