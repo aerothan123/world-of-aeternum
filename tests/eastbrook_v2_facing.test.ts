@@ -68,4 +68,18 @@ describe('Eastbrook v2 facings', () => {
     const [x, z] = EBV2_ROADS[0].points[0];
     expect(ebv2FacingToRoad(x, z, 1.25)).toBe(1.25);
   });
+
+  it('turns the Merchant north to the market road on purpose, not by the centreline fallback', () => {
+    // His yaw comes out as exactly 0. Checked: he stands yards off every
+    // centreline and the nearest road point lies due north (+Z), so atan2
+    // gives a true 0; a different fallback would not move him.
+    const merchant = EASTBROOK_NPC_PLACEMENTS_BY_ID.the_merchant;
+    const { x, z } = merchant.position;
+    const road = ebv2NearestRoadPoint(x, z);
+    if (!road) throw new Error('the design lost its roads');
+    expect(Math.hypot(road.x - x, road.z - z)).toBeGreaterThan(1);
+    expect(road.z).toBeGreaterThan(z);
+    expect(ebv2FacingToRoad(x, z, 1.25)).toBe(ebv2FacingToRoad(x, z, -2));
+    expect(merchant.facing).toBeCloseTo(facingToward(merchant.position, road), 9);
+  });
 });
