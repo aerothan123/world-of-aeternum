@@ -2,13 +2,14 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { campSpawnOffset } from '../src/sim/camp_scatter';
-import { colliderInternalsForTest, isBlocked } from '../src/sim/colliders';
+import { bankerChestSpots, colliderInternalsForTest, isBlocked } from '../src/sim/colliders';
 import { HOUSE_LOTS } from '../src/sim/content/house_lots';
 import { LAKE } from '../src/sim/content/zone1';
 import {
   CAMPS,
   GATHER_NODES,
   GROUND_OBJECTS,
+  getActiveWorldContent,
   NPCS,
   PLAYER_START,
   ZONES,
@@ -64,7 +65,10 @@ describe('eastbrook v2: the import is the whole of the vale', () => {
     expect(EBV2_COLLIDERS.length).toBe(1071);
     expect(EBV2_POINTS.length).toBe(46);
     expect(EBV2_TREES.length).toBe(259);
-    expect(Object.keys(EBV2_SITES).length).toBe(125);
+    // 124, was 125: with the resite converged (it looks through the service bodies
+    // that move with their service), the Moonrest ferry bell keeps its own authored
+    // spot on the west cove bank and needs no site of its own
+    expect(Object.keys(EBV2_SITES).length).toBe(124);
   });
 
   it('resolves every design point the content is tied to', () => {
@@ -163,8 +167,21 @@ describe('eastbrook v2: solids and trees', () => {
     expect(new Set(crossing.map((c) => c.gate).filter(Boolean))).toEqual(
       new Set(['eastbrookNightbloom:0']),
     );
+    // ...and the town services' own bodies: the Ravenpost pillar on each mailbox row
+    // and the banker's strongbox on each resolved chest spot. Re-pinned for the v2
+    // port: like a vein's body these are content sited with their service on the
+    // design (sites.ts), not shipped props, and ebv2StandDown keeps them
+    // (eastbrook_v2/colliders.ts isServiceBody); every shipped prop still retires.
+    const serviceSpots = new Set([
+      ...(getActiveWorldContent().services?.mailboxes ?? []).map((m) => `${m.x},${m.z}`),
+      ...bankerChestSpots(S).map((c) => `${c.x},${c.z}`),
+    ]);
+    const service = (c: { type: string; x: number; z: number }) =>
+      c.type === 'obb' && serviceSpots.has(`${c.x},${c.z}`);
     expect(
-      onDesign.filter((c) => !nodeSpots.has(`${c.x},${c.z}`) && !crossing.includes(c)),
+      onDesign.filter(
+        (c) => !nodeSpots.has(`${c.x},${c.z}`) && !crossing.includes(c) && !service(c),
+      ),
     ).toEqual([]);
     // every vale vein keeps its solid body (the stand-down never takes one)
     const veins = GATHER_NODES.filter((n) => n.zoneId === 'eastbrook_vale' && n.type === 'ore');

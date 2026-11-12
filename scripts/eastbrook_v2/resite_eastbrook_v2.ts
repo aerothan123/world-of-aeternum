@@ -14,10 +14,19 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { campSpawnOffset } from '../../src/sim/camp_scatter';
-import { rotY } from '../../src/sim/collider_shapes';
-import { isBlocked } from '../../src/sim/colliders';
+import { type Collider, rotY } from '../../src/sim/collider_shapes';
+import { bankerChestSpots, isBlocked, queryOpenWorldColliders } from '../../src/sim/colliders';
 import { HOUSE_LOTS } from '../../src/sim/content/house_lots';
-import { CAMPS, GATHER_NODES, GROUND_OBJECTS, MOBS, NPCS, ZONES, zoneAt } from '../../src/sim/data';
+import {
+  CAMPS,
+  GATHER_NODES,
+  GROUND_OBJECTS,
+  getActiveWorldContent,
+  MOBS,
+  NPCS,
+  ZONES,
+  zoneAt,
+} from '../../src/sim/data';
 import { EASTBROOK_LAYOUT } from '../../src/sim/eastbrook_layout';
 import {
   ebv2Colliders,
@@ -76,6 +85,35 @@ const r2 = (v: number) => Math.round(v * 100) / 100;
 const dist = (a: P, b: P) => Math.hypot(a.x - b.x, a.z - b.z);
 const inVale = (x: number, z: number) => zoneAt(x, z)?.id === 'eastbrook_vale';
 
+// A town service's own body (the Ravenpost pillar on each mailbox row, the banker's
+// strongbox on each resolved chest spot; eastbrook_v2/colliders.ts isServiceBody)
+// stands where the CURRENT sites put its service, and moves with it. A search that
+// saw those bodies would chase its own last answer (the mailbox stepping off its own
+// pillar, then back, every run) and never converge, so every search here looks
+// through them; the mailbox front is held clear of the pillar at the mailbox's NEW
+// site instead (step 1).
+const serviceAt = new Set<string>([
+  ...(getActiveWorldContent().services?.mailboxes ?? []).map((m) => `${m.x},${m.z}`),
+  ...bankerChestSpots(S).map((c) => `${c.x},${c.z}`),
+]);
+const isServiceBody = (c: Collider) => c.type === 'obb' && serviceAt.has(`${c.x},${c.z}`);
+function overlaps(c: Collider, x: number, z: number, r: number): boolean {
+  if (c.type === 'circle') return Math.hypot(x - c.x, z - c.z) < c.r + r;
+  if (c.type === 'obb') {
+    const l = rotY(x - c.x, z - c.z, -c.rot);
+    return Math.hypot(Math.max(Math.abs(l.x) - c.hw, 0), Math.max(Math.abs(l.z) - c.hd, 0)) < r;
+  }
+  return true;
+}
+/** isBlocked, looking through service bodies: only when a service body overlaps the
+ *  spot is the verdict re-judged on the other colliders alone. */
+function blocked(x: number, z: number, r: number): boolean {
+  if (!isBlocked(S, x, z, r)) return false;
+  const near = queryOpenWorldColliders(S, x - r - 1, z - r - 1, x + r + 1, z + r + 1, []);
+  if (!near.some((c) => isServiceBody(c) && overlaps(c, x, z, r))) return true;
+  return near.some((c) => !isServiceBody(c) && overlaps(c, x, z, r));
+}
+
 function standable(x: number, z: number, r: number, maxSlope = 0.55): boolean {
   if (!inVale(x, z)) return false;
   const h = groundHeight(x, z, S);
@@ -83,7 +121,7 @@ function standable(x: number, z: number, r: number, maxSlope = 0.55): boolean {
   const w = waterLevelAt(x, z, S);
   if (w !== -Infinity && h < w + 0.5) return false;
   if (terrainSteepness(x, z, S) > maxSlope) return false;
-  return !isBlocked(S, x, z, r);
+  return !blocked(x, z, r);
 }
 
 // Distance to the nearest of the design's own solids, low obstacles included (the
@@ -166,10 +204,19 @@ sites['svc:noticeboardFront'] = need(
   spiral(board, 4, 0.5, () => true, 1.5),
 );
 const mailbox = sites['svc:mailbox'];
-sites['svc:mailboxFront'] = need(
-  'svc:mailboxFront',
-  spiral(mailbox, 4, 0.5, () => true, 1.1),
-);
+// the pillar as the live list has it at the current site, stood at the new one
+const mailboxNow = svcCurrent['svc:mailbox'];
+const pillar = queryOpenWorldColliders(
+  S,
+  mailboxNow.x - 1,
+  mailboxNow.z - 1,
+  mailboxNow.x + 1,
+  mailboxNow.z + 1,
+  [],
+).find((c) => isServiceBody(c) && c.x === mailboxNow.x && c.z === mailboxNow.z);
+const clearOfPillar = (q: P) =>
+  !pillar || !overlaps({ ...pillar, x: mailbox.x, z: mailbox.z }, q.x, q.z, 0.5);
+sites['svc:mailboxFront'] = need('svc:mailboxFront', spiral(mailbox, 4, 0.5, clearOfPillar, 1.1));
 const boardSpots: P[] = [board, sites['svc:noticeboardFront'], mailbox, sites['svc:mailboxFront']];
 
 // 2. Stations.

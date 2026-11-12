@@ -119,7 +119,6 @@ export const EBV2_SITES: Readonly<Record<string, Ebv2Site>> = {
   'obj:eastbrook_freight_crate@-50,-78': {"x":-50,"z":-77},
   'obj:eastbrook_freight_crate@-67,-62': {"x":-66.34,"z":-62.75},
   'obj:eastbrook_freight_wagon@-78,-57': {"x":-78,"z":-55},
-  'obj:ps_ferry_bell@-150,-93': {"x":-150,"z":-93.5},
   'obj:supply_crate@108,42': {"x":106,"z":46},
   'obj:supply_crate@112,50': {"x":110,"z":54},
   'obj:supply_crate@118,39': {"x":112.82,"z":44.45},
