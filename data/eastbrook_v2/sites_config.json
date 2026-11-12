@@ -100,7 +100,15 @@
     }
   ],
   "campFollowers": { "supply_crate": "vale_bandit" },
-  "searchRadius": { "npc": 16, "object": 8, "camp": 110, "station": 8, "service": 8, "node": 12 },
+  "searchRadius": {
+    "npc": 16,
+    "object": 14,
+    "camp": 110,
+    "station": 8,
+    "service": 8,
+    "node": 12,
+    "monument": 30
+  },
   "npcSpacing": 2.2,
   "boardClearance": 5.5,
   "hubSafeMargin": 60,

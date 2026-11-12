@@ -1642,12 +1642,16 @@ describe('layout clearance and service anchors', () => {
       ['foreman_odell', 1.25, -81.17, -1.5328398816065827, 'eastbrook_civic_square'],
       ['bursar_fernando', -42.4, -98.81, -0.21866894587394195, 'eastbrook_banker_chest'],
       ['card_master', -31.83, -90.4, 0.7853981633974481, 'eastbrook_bank'],
-      ['chronicler_saul', -14.03, -104.03, 0.5880026035475675, 'mailbox_eastbrook'],
+      // re-sited off the Realm Builder monument's cylinder, which he stood
+      // inside while the statue's collider stood down on design ground
+      ['chronicler_saul', -15.96, -98.28, 0.5880026035475675, 'mailbox_eastbrook'],
       ['forgemistress_darva', -1, -83.8, -1.5707963267948966, 'station_eastbrook_forge'],
       ['cook_marlow', -29.71, -89.3, -1.827402372878145, 'station_eastbrook_kitchens'],
       ['weaver_ottilie', -0.69, -77.26, -1.5707963267948966, 'station_eastbrook_loom'],
       ['tinker_gizzel', 1.82, -84.52, -1.5707963267948966, 'station_eastbrook_toolworks'],
-      ['fury', -14.2, -119.43, -2.0570389598824015, 'eastbrook_chapel'],
+      // faces the road from the guard post (keeperPost), not the old turn
+      // measured at his retired spot
+      ['fury', -14.2, -119.43, -2.530605592600772, 'eastbrook_chapel'],
       ['tanner_tamsin', -0.16, -74.6, -1.5707963267948966, 'station_eastbrook_tannery'],
     ]);
 

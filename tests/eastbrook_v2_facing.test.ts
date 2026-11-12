@@ -37,7 +37,7 @@ describe('Eastbrook v2 facings', () => {
     expect(ebv2FacingToRoad(at.x, at.z)).toBeCloseTo(facingToward(at, p), 12);
   });
 
-  it('turns the station masters, the Merchant and the bursar toward their road, kit-free', () => {
+  it('turns the station masters, the Merchant, the bursar and FURY toward their road, kit-free', () => {
     const keepers = [
       'forgemistress_darva',
       'cook_marlow',
@@ -46,6 +46,9 @@ describe('Eastbrook v2 facings', () => {
       'tanner_tamsin',
       'the_merchant',
       'bursar_fernando',
+      // FURY keeps the guard post; his turn is measured at that post, not at
+      // the retired spot he shipped on
+      'fury',
     ];
     for (const id of keepers) {
       const npc = EASTBROOK_NPC_PLACEMENTS_BY_ID[id];

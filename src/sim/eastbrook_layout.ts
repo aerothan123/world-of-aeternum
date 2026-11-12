@@ -946,7 +946,9 @@ const MONUMENT = {
   // equal by tests/realm_builder_monument.test.ts instead.
   templateId: 'realm_builder_monument',
   name: 'Realm Builder Monument',
-  position: CIVIC_FEATURE_CENTER,
+  // v2: the statue stands on its design-town site (svc:monument, the resite's
+  // nearest clear spot to the old square's centre), where its cylinder blocks.
+  position: ebv2SiteOr('svc:monument', CIVIC_FEATURE_CENTER),
   rotation: MONUMENT_ROTATION,
   radius: MONUMENT_RADIUS,
   height: MONUMENT_HEIGHT,
@@ -1348,8 +1350,11 @@ const SAUL_FACING = 0.5880026035475675;
 // Round 6b (owner): FURY is a service NPC (the honor quartermaster), so he
 // belongs on the town's edge rather than in the churchyard approach: a few
 // strides west of where the north road and the coast track leave the square
-// side by side.
-const FURY_POSITION = { x: 21, z: -83.5 } as const;
+// side by side. On the v2 design he keeps the guard post (his design site) and,
+// like the other keepers there, faces the road his customers come by
+// (keeperPost): the old turn toward the civic centre was measured from the
+// retired spot, so it pointed him the wrong way at the new one.
+const FURY_POST = keeperPost('fury');
 
 // Marshal stands beside the noticeboard, a full INTERACT_RANGE clear of
 // both the board's body and its posting point so a player posting a notice
@@ -1420,7 +1425,7 @@ const NPCS = [
   makeNpc('cook_marlow', COOK_POST.position, COOK_POST.facing, KITCHENS_STATION.id),
   makeNpc('weaver_ottilie', WEAVER_POST.position, WEAVER_POST.facing, LOOM_STATION.id),
   makeNpc('tinker_gizzel', TINKER_POST.position, TINKER_POST.facing, TOOLWORKS_STATION.id),
-  makeNpc('fury', FURY_POSITION, facingToward(FURY_POSITION, CIVIC_CENTER), 'eastbrook_chapel'),
+  makeNpc('fury', FURY_POST.position, FURY_POST.facing, 'eastbrook_chapel'),
   // APPENDED: the tannery master
   makeNpc('tanner_tamsin', TANNER_POST.position, TANNER_POST.facing, TANNERY_STATION.id),
 ] as const;
