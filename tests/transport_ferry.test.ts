@@ -642,11 +642,12 @@ describe('sailing (the real Sim)', () => {
     const p = sim.player;
     const spots: [number, number, number][] = [
       // just inland of the gangplank's foot on each pier (whoever stands on
-      // the plank, or the stage it rests on, is set down there at cast-off)
-      [DEPART_EAST - 0.5, -115, -54],
+      // the plank, or the stage it rests on, is set down there at cast-off);
+      // Eastbrook's is the west cove pier (its head at x -244, on z 97)
+      [DEPART_EAST - 0.5, -242, 97],
       [ARRIVE_FAR - 3, FAR.landing.x, FAR.landing.z],
       [DEPART_FAR - 0.5, FAR.landing.x, FAR.landing.z],
-      [CYCLE - 3, -115, -54],
+      [CYCLE - 3, -242, 97],
     ];
     for (const [clock, x, z] of spots) {
       setClock(sim, clock);
@@ -663,10 +664,11 @@ describe('sailing (the real Sim)', () => {
     // narrower than its beam there, and a body standing still on the pier planks past the
     // gangplank's foot is never aboard (the review's repro spots, the pier tip).
     const p = sim.player;
+    // (the west cove pier's tip, its head at x -244 on the pier axis z 97)
     for (const [x, z] of [
-      [-116.3, -54.5],
-      [-116.0, -53.5],
-      [-116.4, -55.5],
+      [-243.3, 96.5],
+      [-243.0, 97.5],
+      [-243.4, 95.5],
     ]) {
       setClock(sim, CYCLE - 8);
       const at = sim.ctx.groundPos(x, z);

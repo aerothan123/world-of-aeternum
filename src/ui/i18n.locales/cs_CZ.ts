@@ -25578,8 +25578,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Slaměnec',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Bobtnající dýně',
   'entities.mobs.gourdlight_thatchgrin.name': 'Starý Slamoškleb',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Dýně svítí a lucerny visí, takže nastal Svátek dýňových světel. Zaklepej na dveře obyvatel Eastbrooku, Fenbridge a Highwatche a řekni: koledu, nebo neplechu. Většina ti dá sladkost. Někteří tě napálí. Přines mi sladkosti k libovolnému z mých stánků a vyměním je za něco na sebe.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Dýňoknotová',
   'entities.npcs.gourdlight_keeper.title': 'Strážkyně dýňových světel',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -25591,12 +25589,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Každý Svátek dýňových světel plním košík sladkostí pro starého přítele v každém městě, ale kolena už neslouží jako dřív. Roznes je za mě, {playerName}: kuchaři Marlowovi v Eastbrooku, bylinkářce Yaře ve Fenbridge a kronikáři Caddisovi nahoře v Highwatchi.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Košíky pro sousedy',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Tři? Přes celé náměstí jsem slyšela, jak kuchař upustil pánev. Výborně. Tady je tvůj podíl.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Vystrašení obyvatelé',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Nikdo v těchhle městech se už rok pořádně nelekl, {playerName}, a Svátek dýňových světel bez leknutí je jen studená noc. Obleč si kostým, klidně kterýkoli můj, nebo tu dýňovou hlavu, pokud už ji máš. Pak se přikradni ke třem obyvatelům a pořádně nahlas zařvi BAF.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Baf!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Černá jako pole za bezměsíčné noci a už voní kouřem. To bude krásná vatra. Děkuji.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Vraní pera',
@@ -25609,42 +25601,16 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Slamošklebovo políčko za Kančí loukou se nadouvá dýněmi a polovina se odkutálela za jeho slámu, kde na ně opatrný člověk dosáhne. Přines mi jich pět, {playerName}. Samotnému starému strašákovi se vyhni obloukem. Počítá každou.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Dýně z políčka',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Tři města za jednu noc! Tuhle odměnu si zasloužily spíš tvoje boty než ty.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Zaklepání na dveře v Eastbrooku',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'Zaklepání na dveře ve Fenbridge',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'Zaklepání na dveře v Highwatchi',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Děti říkají, že pravý dýňový koledník zaklepe v každém městě, než skončí noc. Dej jim za pravdu, {playerName}. Koleduj u jedněch dveří v Eastbrooku, jedněch ve Fenbridge a jedněch v Highwatchi. Cestu ti osvětlí lucerny podél silnic.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Dveře v každém městě',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Šest zbytků, studených jako mráz. Kdo je zapálil, bude se muset snažit víc. Vezmi si tohle a umyj si ruce.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Zhasnuté prokleté svíčky',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Někdo staví k našim lampám svíčky se zeleným plamenem. Hoří, ale netají, a když se otočíš, šeptají. Zhasni mi jich šest, {playerName}, v kterémkoli z těch tří měst a přines mi zbytky.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Zlověstné knoty',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Pět dveří a pořád máš všechny prsty. Tady máš váček sladkostí na cestu domů. Vrať se zítra, dveře se zase otevřou.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Navštívené dveře',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Každý Svátek dýňových světel děti z údolí chodí koledovat a letos se k nim přidáš i ty, {playerName}. Zaklepej na pět dveří v našich městech, řekni ta slova a uvidíš, co dostaneš. Až skončíš, vrať se za mnou.',
-  'entities.quests.q_gourdlight_rounds.title': 'Dýňová koleda',
   'guide.interfacePage.framesGovernedPriest':
     'Úprava rámečků také umožňuje přesunout medailon stínového kněze s Desátkem temnoty a Desátkovou bombou.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Jednou za dvě hodiny, v okamžiku, který nikdo nedokáže předvídat, se celý realm dozví, že za patnáct minut v jedné ze severních oblastí vyroste kopec. Kruh, kde bude stát, se vyznačí na otevřeném prostranství. Kopec stojí třicet minut a pak zmizí. Každých pět minut dostane realm zprávu, kde je a které skupiny jej držely nejdéle. Družina s nejvíce hráči uvnitř bojuje o ovládnutí kopce a po třiceti sekundách převahy jej získá. Příchod soupeřící družiny odpočet pouze pozastaví, dokud tvá družina znovu nepovede; od začátku se počítá jen tehdy, když uvnitř nezůstane nikdo z tvé družiny naživu. Osamělý hráč se počítá jako jednočlenná družina a po vytvoření družiny si ovládaný kopec ponechá, ale členové nájezdu se nepočítají vůbec. Dokud družina kopec drží, každý její člen uvnitř získává každou minutu stejné množství cti bez ohledu na dobu držení. Plná družina držící kopec po celou dobu bez odporu tak získá přibližně tolik jako za dvě vítězství na bojišti. Když kopec zmizí a skupina, která jej držela celkově nejdéle, jej držela alespoň deset minut, každý, kdo pro ni stál uvnitř nejméně minutu a stále je jejím členem, získá jedno vítězství do PvP řádku Týdenního trezoru. Ukazatel nad polem zobrazuje držitele, počet tvých hráčů proti soupeřovým a časovač obsazování; příkaz /hill v chatu sdělí polohu.',
-  'seasonal.boo.already': '{name} už má dnes strašení dost.',
-  'seasonal.boo.flash': 'BAF! {name} se lekl!',
-  'seasonal.boo.frightenedHint':
-    '{name} je po tvém posledním vystrašení pořád nervózní. Najdi někoho jiného.',
-  'seasonal.boo.landed':
-    'Vyskočíš na {name} s výkřikem BAF! Vyděšeně vykřikne a málem všechno upustí.',
-  'seasonal.boo.needsCostume':
-    'Nejdřív si obleč kostým: použij kostýmový lektvar, netopýří nebo kostlivý žert, Talisman slaměnce, Vyřezanou dýňovou hlavu nebo doušek ze Zelenobublavého kotle pro gobliní podobu.',
-  'seasonal.boo.noCostume': 'Bez kostýmu se ti {name} jen směje. Nejdřív si nějaký obleč.',
-  'seasonal.boo.notOnErrand': 'Hester tě dnes neposlala nikoho strašit.',
-  'seasonal.boo.row': 'Baf!',
-  'seasonal.boo.rowAria': 'Vyskočit na {name} a zakřičet baf',
   'seasonal.boundItemGone':
     'Svátek dýňových světel skončil a tvůj předmět {item} se rozpadá zpátky na slámu.',
   'seasonal.costume': 'Vypiješ lektvar a proměníš se: {trick}!',
@@ -25667,8 +25633,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Starý Slamoškleb ti dá jeden každý den, kdy z něj vybereš kořist, dokud nezískáš Koště žhavých štětin. Hester Dýňoknotová jich {count} vymění za koště u svých stánků v Eastbrooku, Fenbridge a Highwatchi. Neutracené snopy zůstanou na další Svátek dýňových světel.',
   'seasonal.itemUse.strawlingCharm':
     'Použití: Na {seconds} sekund se proměníš v jednoho ze Slamošklebových slaměnců. Mimo boj. Nikdy se nespotřebuje. Pouze vzhled.',
-  'seasonal.itemUse.sweet':
-    'Získává se koledováním během Svátku dýňových světel. Hester Dýňoknotová je mění za kosmetické předměty u svých stánků v Eastbrooku, Fenbridge a Highwatchi.',
   'seasonal.itemUse.titleWrit':
     'Použití: Získáš pro tuto postavu titul {title}, který nasadíš v Knize skutků. Spotřebuje se. Pokud už titul máš, listina ti zůstane.',
   'seasonal.itemUse.toyBats':
@@ -25711,20 +25675,7 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} ti rozplácne dýni na hlavě! Sundej ji pravým kliknutím, nebo ji hrdě nos.',
   'seasonal.toy.prankedFlash': '{name} tě napálil!',
-  'seasonal.trickOrTreat.alreadyKnocked': 'U {name} jsi dnes už koledoval.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Tady už jsi dnes klepal. Dveře se znovu otevřou po denním resetu.',
-  'seasonal.trickOrTreat.notActive': 'Svátek dýňových světel právě neprobíhá.',
-  'seasonal.trickOrTreat.row': 'Koledu, nebo neplechu!',
-  'seasonal.trickOrTreat.rowAria': 'Říct {name}: koledu, nebo neplechu',
-  'seasonal.trickOrTreat.tooFar': 'Přistup blíž, abys mohl zaklepat.',
-  'seasonal.trickOrTreat.treat': '{name} ti podává sladkost.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Koleda! {count} dýňové sladkosti',
-  'seasonal.trickOrTreat.treatFlash.many': 'Koleda! {count} dýňových sladkostí',
-  'seasonal.trickOrTreat.treatFlash.one': 'Koleda! {count} dýňová sladkost',
-  'seasonal.trickOrTreat.treatFlash.other': 'Koleda! {count} dýňových sladkostí',
-  'seasonal.trickOrTreat.trick': '{name} tě napálí: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Neplecha! {trick}',
+  'seasonal.trickFlash': 'Neplecha! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Netopýří kostým',
   'seasonal.tricks.gourdlight_costume_ghost': 'Kostým ducha',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Kostým kostlivce',

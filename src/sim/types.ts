@@ -474,7 +474,7 @@ export type AuraKind =
   // burst (aoeAllyHaste with exhaust), so the effects can never be chained.
   | 'sated'
   // Seasonal cosmetics (src/sim/seasonal/): the worn pumpkin head and the
-  // trick-or-treat tricks. Pure presentation markers with NO sim effect at all:
+  // Jar of Mischief's tricks. Pure presentation markers with NO sim effect at all:
   // the client draws them (a head piece, a body swap, a smoke cloud), the sim
   // only times them out and strips them when the event closes.
   | 'seasonal_cosmetic'
@@ -9785,11 +9785,6 @@ export type SimEvent = { pid?: number } & (
   | {
       type: 'seasonal';
       what:
-        | 'treat'
-        | 'trick'
-        | 'alreadyKnocked'
-        | 'notActive'
-        | 'tooFar'
         | 'pumpkinOn'
         | 'pumpkinOff'
         | 'jarTrick'
@@ -9805,12 +9800,6 @@ export type SimEvent = { pid?: number } & (
         | 'boundItemGone'
         // a Haunted Pumpkin was found and lit for this player (count of total)
         | 'pumpkinFound'
-        // the Boo! daily (seasonal/gourdlight_dailies.ts): a costumed fright landed on
-        // `npc`, or was refused (no costume, already frightened today, not on the errand)
-        | 'boo'
-        | 'booNoCostume'
-        | 'booAlready'
-        | 'booNotOnErrand'
         // one of Hester's toys played (`trick` = the toy's item id; `who` = the prank's
         // target), the prank's splat landed on this player (`who` = the thrower), or a
         // toy was refused: the prank needs another player out of combat, or the user

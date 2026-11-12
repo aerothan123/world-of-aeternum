@@ -388,8 +388,10 @@ describe('Book of Deeds webp icons', () => {
     // Tree chopping's first-felling deed joins on the progression crest: 370 live.
     // Wyndlewood's three (the Bracken Circle pair and Chapter One's chronicle)
     // join the pending ledger after it: 373 live.
-    expect(DEED_ORDER, 'the merged live deed catalog').toHaveLength(373);
-    expect(DEED_IMAGE_IDS.size, 'every live deed but the pending set is painted').toBe(356);
+    // The owner removed trick-or-treat: its two painted Feats (Every Doorstep, Three
+    // Towns Startled) and their WebP crests left the catalog: 371 live, 354 painted.
+    expect(DEED_ORDER, 'the merged live deed catalog').toHaveLength(371);
+    expect(DEED_IMAGE_IDS.size, 'every live deed but the pending set is painted').toBe(354);
     expect(DEED_ART_PENDING_IDS).toHaveLength(17);
     expect(DEED_ART_PENDING_IDS.at(-1)).toBe('chr_shore_that_remembers');
     expect(DEED_ART_PENDING_IDS.slice(0, 7)).toEqual([

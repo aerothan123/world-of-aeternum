@@ -1,4 +1,4 @@
-// The seasonal cosmetic auras: the worn pumpkin head and the trick-or-treat
+// The seasonal cosmetic auras: the worn pumpkin head and the Jar of Mischief's
 // tricks. Every one is kind 'seasonal_cosmetic', which no sim rule reads: no stat
 // fold, no control, no damage. The client draws them (render: the head piece on
 // the head bone, the bat and skeleton through the polymorph slot's look, the

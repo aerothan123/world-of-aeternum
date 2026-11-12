@@ -23,6 +23,7 @@
 
 import {
   BOOTCAMP_COURSE_CHECKPOINTS,
+  isOnProvingShore,
   PROVING_SHORE_NPCS,
   PROVING_SHORE_OBJECTS,
   PROVING_SHORE_QUEST_ORDER,
@@ -525,7 +526,7 @@ export function coachKeycaps(
  *  ps_ferry_bell ground object), the final card's arrow target. */
 export const BELL_STEP_TARGET: { x: number; z: number } = (() => {
   const bell = PROVING_SHORE_OBJECTS.find((o) => o.itemId === 'ps_ferry_bell');
-  return bell?.positions.find((p) => p.x < -180) ?? { x: -279, z: -10 };
+  return bell?.positions.find((p) => isOnProvingShore(p.x, p.z)) ?? { x: -279, z: -10 };
 })();
 
 export interface BellCardPlan {

@@ -1,7 +1,8 @@
-// The ferry piers at the two far berths (content/transport_ships.ts): the
-// Moonrest ferry pier off the Nightbloom's sunset shore, and the Wyrmwatch
-// ferry pier below the Drakelands bank. Built from the same pieces as the
-// Eastbrook and Wickharbor ferry piers: level stilt decks (the GaleDeckDef
+// The ferry piers (content/transport_ships.ts): the Moonrest ferry pier off the
+// Nightbloom's sunset shore, the Wyrmwatch ferry pier below the Drakelands bank,
+// and Eastbrook's west cove pier, the Moonrest ferry's home berth since Eastbrook
+// Vale v2 (the old harbor cove's piers stand down, deck_surfaces.ts). Built from
+// the same pieces as the Wickharbor ferry piers: stilt decks (the GaleDeckDef
 // idiom of gale_harbor.ts, drawn by the shared plank-walkway builder
 // render/deck_render.ts through render/ferry_piers.ts) standing in the water,
 // their planks at Eastbrook's ferry-pier height so the gangplank lands on them
@@ -63,6 +64,38 @@ export const FERRY_PIERS: readonly (readonly GaleDeckDef[])[] = [
       farAboveWater: PIER,
     },
   ],
+  [
+    // Eastbrook: the Moonrest ferry's home berth in the west cove of Eastbrook Vale
+    // (the v2 design's dock, Eastbrook_Landmarks/FerryDock). From the cove shore
+    // (x -222, where the bank stands 1.1 above the water) straight out west to the
+    // berth, its end 8 yd from the ship's centre line like the other piers. The
+    // bank is low, so the planks ramp from 1.3 at the root up to the gangplank's
+    // height (the design's planks slope the same way), then run level over the
+    // last 3 yd: the gangplank's foot needs a level head to step off onto (a
+    // body walking off a rising slope onto the plank's tread is stopped there).
+    {
+      x: -231.5,
+      z: 97,
+      rot: -Math.PI / 2,
+      hl: 9.5,
+      hw: 2.2,
+      ax: -222,
+      az: 97,
+      nearAboveWater: 1.3,
+      farAboveWater: PIER,
+    },
+    {
+      x: -242.5,
+      z: 97,
+      rot: -Math.PI / 2,
+      hl: 1.5,
+      hw: 2.2,
+      ax: -241,
+      az: 97,
+      nearAboveWater: PIER,
+      farAboveWater: PIER,
+    },
+  ],
 ];
 
 /** Every walkable ferry pier deck, in one list (the surface query): the piers
@@ -76,11 +109,13 @@ export const FERRY_PIER_DECKS: readonly GaleDeckDef[] = [
 
 // Per-site bounding boxes for the cheap early-out (the berths are a world
 // apart, so one box would cover the whole east of the map): Moonrest's pier,
-// the Wyrmwatch pier with its cliff harbor, and the Wickharbor wharf.
+// the Wyrmwatch pier with its cliff harbor, the Wickharbor wharf, and Eastbrook's
+// west cove pier.
 const BOXES: readonly (readonly [number, number, number, number])[] = [
   [-514, 1502, -488, 1510],
   [486, 1880, 509, 1922],
   [451, 364, 484, 389],
+  [-246, 93, -220, 101],
 ];
 
 /** Whether (x, z) lies under a ferry pier's planks (nothing grows through).

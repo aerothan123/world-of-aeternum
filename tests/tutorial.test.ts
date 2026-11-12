@@ -122,7 +122,10 @@ describe('isOnProvingShore', () => {
     // Every OTHER zone sharing the island's x column (the Willowfen,
     // Palmreach, Nightbloom and Amberfall band) must read false at its
     // centre, or the tutorial rail leaks into live level 18 to 20 zones.
-    const neighbours = ZONES.filter((z) => z.id !== 'proving_shore' && z.xMax === island.xMax);
+    // The column is keyed on its shared WEST edge (x -540): Eastbrook Vale v2
+    // grew the vale west to x -270, so the island's east edge (-270) no longer
+    // matches the mainland zones' (-180), but the four still share its column.
+    const neighbours = ZONES.filter((z) => z.id !== 'proving_shore' && z.xMin === island.xMin);
     expect(neighbours.length).toBeGreaterThanOrEqual(4);
     for (const zone of neighbours) {
       const at = centre(zone);

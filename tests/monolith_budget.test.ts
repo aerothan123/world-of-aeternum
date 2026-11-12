@@ -1292,7 +1292,9 @@ const MONOLITHS: MonolithRow[] = [
     // hooks. wc -l. Exact count.
     // LOWERED 11396 -> 11395 with the save-position epoch: the save's pos and
     // facing fields moved into saved_pos_exit.ts savedPlacement. wc -l. Exact.
-    ceiling: 11395,
+    // LOWERED 11395 -> 11389 when the owner removed trick-or-treat: the knock
+    // getter and verb (trickOrTreatedToday, trickOrTreat) left with it. wc -l. Exact.
+    ceiling: 11389,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1855,7 +1857,9 @@ const MONOLITHS: MonolithRow[] = [
     // the Exchange.
     // LOWERED 9592 -> 9589 with the gathering tool belt: the unequip_item case and the
     // new unequip_gather_tool case moved into material_stack_wire.ts. wc -l. Exact count.
-    ceiling: 9589,
+    // LOWERED 9589 -> 9586 when the owner removed trick-or-treat: its command case
+    // left with it. wc -l. Exact count.
+    ceiling: 9586,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {
@@ -2123,7 +2127,11 @@ const MONOLITHS: MonolithRow[] = [
     // Merge of the four dungeon entrances (#4478): both parents' additions combine
     // (ours is the palm scatter's decoration exclusion check), exact merged count,
     // within the release/v0.45.0 ceiling the branch was held to.
-    ceiling: 5074,
+    // LOWERED 5074 -> 5061 by the Eastbrook Vale v2 port: the lake footprint
+    // constant and list moved out to water_bodies.ts, paying for the two one-line
+    // hooks into src/sim/eastbrook_v2/ (the design ground at the end of the pad
+    // chain, the design trees at the decoration anchor). Exact count, zero slack.
+    ceiling: 5061,
     seam: 'zone/terrain data as content records; logic as sim sibling modules',
   },
   {

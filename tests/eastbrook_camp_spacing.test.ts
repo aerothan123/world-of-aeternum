@@ -3,6 +3,7 @@ import { campSpawnOffset } from '../src/sim/camp_scatter';
 import { isBlocked } from '../src/sim/colliders';
 import { LAKE, ZONE1_CAMPS, ZONE1_ZONE } from '../src/sim/content/zone1';
 import { QUESTS } from '../src/sim/data';
+import { campSiteKey, ebv2Site } from '../src/sim/eastbrook_v2/sites';
 import { PLAYER_SWIM_DEPTH } from '../src/sim/pathfind';
 import { rideSteepnessAt } from '../src/sim/ride_height';
 import type { CampDef } from '../src/sim/types';
@@ -139,7 +140,15 @@ const SHIPPED_PLACEMENT: { x: number; z: number }[] = [
   { x: 84, z: 89 },
 ];
 
-const governed = () => GOVERNED_INDICES.map((i) => ZONE1_CAMPS[i]);
+// Eastbrook Vale v2: a camp whose authored slots no longer stand on the design's
+// ground spawns from its site (eastbrook_v2/sites.ts, applied to the live CAMPS at
+// data.ts load); the authored table keeps the position as written, so read the
+// live centre through the same site key.
+const live = (c: CampDef): CampDef => {
+  const s = ebv2Site(campSiteKey(c));
+  return s ? { ...c, center: { x: s.x, z: s.z } } : c;
+};
+const governed = () => GOVERNED_INDICES.map((i) => live(ZONE1_CAMPS[i]));
 const label = (c: CampDef) => `${c.mobId}@(${c.center.x},${c.center.z})`;
 
 // The ONE camp that cannot reach MIN_NEIGHBOUR_SPACING, and why. The murloc camp

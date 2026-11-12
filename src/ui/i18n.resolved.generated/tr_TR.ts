@@ -8609,23 +8609,7 @@ export const tr_TR: EnTranslations = {
         "name": "Kabak Işığı Gecesi"
       }
     },
-    "trickOrTreat": {
-      "row": "Şeker mi, şaka mı!",
-      "rowAria": "{name} adlı kişiye şeker mi, şaka mı de",
-      "knockedHint": "Bugün bu kapıyı zaten çaldın. Günlük sıfırlamadan sonra yeniden açılır.",
-      "treat": "{name} sana bir şeker verir.",
-      "trick": "{name} sana şaka yapar: {trick}!",
-      "alreadyKnocked": "Bugün {name} adlı kişiden zaten şeker ya da şaka istedin.",
-      "notActive": "Kabak Işığı Gecesi şu anda etkin değil.",
-      "tooFar": "Kapıyı çalmak için yaklaş.",
-      "treatFlash": {
-        "one": "Şeker! {count} Kabak Işığı Şekeri",
-        "few": "Şeker! {count} Kabak Işığı Şekeri",
-        "many": "Şeker! {count} Kabak Işığı Şekeri",
-        "other": "Şeker! {count} Kabak Işığı Şekeri"
-      },
-      "trickFlash": "Şaka! {trick}"
-    },
+    "trickFlash": "Şaka! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Yarasa Çılgınlığı",
       "gourdlight_trick_skeleton": "Takırdayan Kemikler",
@@ -8650,7 +8634,7 @@ export const tr_TR: EnTranslations = {
       "trickJar": "Kullanım: Birkaç saniyeliğine sana rastgele, zararsız bir şaka yapar. Kozmetiktir.",
       "pouch": "Kullanım: Açıp {count} Kabak Işığı Şekeri al.",
       "strawlingCharm": "Kullanım: {seconds} saniye boyunca Yaşlı Sırıtan Saman'ın samancıklarından birine dönüş. Dövüş dışında. Asla tüketilmez. Kozmetiktir.",
-      "sweet": "Kabak Işığı Gecesi boyunca şeker ya da şaka isteyerek kazanılır. Hester Kabakfitil, Doğudere, Bataklık Köprüsü ve Yüksek Gözcü'deki tezgâhlarında bunları kozmetiklerle takas eder.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Kullanım: {minutes} dakika boyunca takırdayan bir iskelete dönüş. Tüketilir. Dövüşte kullanılamaz; dövüşe girmek etkiyi sonlandırır. Kozmetiktir.",
       "costumeGhost": "Kullanım: {minutes} dakika boyunca süzülen bir hayalete dönüş. Tüketilir. Dövüşte kullanılamaz; dövüşe girmek etkiyi sonlandırır. Kozmetiktir.",
       "costumeBat": "Kullanım: {minutes} dakika boyunca kanat çırpan bir yarasaya dönüş. Tüketilir. Dövüşte kullanılamaz; dövüşe girmek etkiyi sonlandırır. Kozmetiktir.",
@@ -8677,17 +8661,6 @@ export const tr_TR: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Yaşlı Sırıtan Saman'dan, Yaban Domuzu Çayırı'nın ötesindeki kabak tarlasında, onu ilk yağmaladığında düşer. Hiçbir satıcı satmaz."
-    },
-    "boo": {
-      "row": "Böö!",
-      "rowAria": "{name} adlı kişinin önüne atılıp böö diye bağır",
-      "needsCostume": "Önce kostüm giy: kostüm iksiri, yarasa veya iskelet şakası, Samancık Tılsımı, Oyulmuş Kabak Başlığı ya da Yeşil Fokurtu Kazanı'ndan bir goblin yudumu.",
-      "frightenedHint": "{name} son korkutmandan beri hâlâ diken üstünde. Başka birini bul.",
-      "landed": "{name} adlı kişinin önüne atılıp BÖÖ diye bağırırsın! Çığlık atar ve elindekileri neredeyse düşürür.",
-      "flash": "BÖÖ! {name} korktu!",
-      "noCostume": "Kostümsüzken {name} sana yalnızca güler. Önce bir kostüm giy.",
-      "already": "{name} bugün yeterince korktu.",
-      "notOnErrand": "Hester bugün senden kimseyi korkutmanı istemedi."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const tr_TR: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Kabakfitil",
         "title": "Kabak Işığı Bekçisi",
-        "greeting": "Kabaklar yakıldı, fenerler asıldı; demek ki Kabak Işığı Gecesi geldi. Doğudere, Bataklık Köprüsü ve Yüksek Gözcü halkının kapısını çal ve şu sözleri söyle: şeker mi, şaka mı? Çoğu sana şeker verir. Birkaçı sana şaka yapar. Şekerleri tezgâhlarımdan herhangi birine getir; karşılığında giyecek bir şey veririm."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Vali Ottoline",
@@ -30948,16 +30921,6 @@ export const tr_TR: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Kabak Işığı Turu",
-        "text": "Her Kabak Işığı Gecesi Vadi'nin çocukları evleri dolaşır; bu yıl sen de onlara katılıyorsun, {playerName}. Kasabalarımızda beş kapıyı çal, gereken sözleri söyle ve sana ne verildiğine bak. İşin bitince bana dön.",
-        "completion": "Beş kapı; bütün parmakların hâlâ yerinde. Al, eve yürürken yemen için bir kese şeker. Yarın yine gel, kapılar yeniden açılır.",
-        "objectives": {
-          "0": {
-            "label": "Çalınan kapılar"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Tarladan Kabaklar",
         "text": "Yaşlı Sırıtan Saman'ın Yaban Domuzu Çayırı'nın ötesindeki tarlası kabak dolu; yarısı da samanlarının dışına, dikkatli birinin ulaşabileceği yerlere yuvarlanmış. Bana beş tane getir, {playerName}. Yaşlı korkuluğun kendisinden uzak dur. Her birini sayıyor.",
@@ -30968,16 +30931,6 @@ export const tr_TR: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Böö!",
-        "text": "Bu kasabalarda bir yıldır kimse doğru dürüst korkmadı, {playerName}; korkusuz bir Kabak Işığı Gecesi de yalnızca soğuk bir gecedir. Bir kostüm giy; benimkilerden herhangi biri olur, kazandıysan o kabak başlığı da olur. Sonra üç kasabalıya usulca yaklaş ve yüksek sesle BÖÖ diye bağır.",
-        "completion": "Üç kişi mi? Aşçının tava düşürdüğünü meydanın öbür ucundan duydum. Aferin. İşte payın.",
-        "objectives": {
-          "0": {
-            "label": "Korkutulan kasabalılar"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Uğursuz Fitiller",
         "text": "Biri lamba direklerimizin dibine yeşil alevli mumlar bırakıyor. Erimeden yanıyorlar; arkanı dönünce de fısıldıyorlar. Üç kasabadan herhangi birinde altısını söndür, {playerName}, ve kalıntılarını getir.",
@@ -30985,22 +30938,6 @@ export const tr_TR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Söndürülen lanetli mumlar"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Her Kasabada Bir Kapı",
-        "text": "Çocuklar, gerçek bir Kabak Işığı gezgininin gece bitmeden her kasabada kapı çaldığını söyler. Onları haklı çıkar, {playerName}. Doğudere'de bir, Bataklık Köprüsü'nde bir, Yüksek Gözcü'de bir kapıda şeker ya da şaka iste. Yollardaki fenerler sana ışık tutar.",
-        "completion": "Bir gecede üç kasaba! Bunu çizmelerin senden daha çok hak etti.",
-        "objectives": {
-          "0": {
-            "label": "Doğudere'de bir kapı çalındı"
-          },
-          "1": {
-            "label": "Bataklık Köprüsü'nde bir kapı çalındı"
-          },
-          "2": {
-            "label": "Yüksek Gözcü'de bir kapı çalındı"
           }
         }
       },

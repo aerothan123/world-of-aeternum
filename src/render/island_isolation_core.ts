@@ -48,7 +48,7 @@ export const ISLAND_VISTA_MARGIN_YD = 600;
  *  isOnProvingShore tests (proving_shore.ts PROVING_SHORE_RECT is private, and
  *  a render core must not import sim internals beyond the predicate).
  *  tests/island_isolation_core.test.ts pins these against the predicate. */
-export const ISLAND_RECT = { minX: -540, maxX: -180, minZ: -180, maxZ: 180 } as const;
+export const ISLAND_RECT = { minX: -540, maxX: -270, minZ: -180, maxZ: 180 } as const;
 
 /**
  * Does the client scope its streaming to the island right now?
@@ -125,12 +125,16 @@ export function islandVistaBounds(): {
  * ARE that distant. Nothing across the strait is remotely that far, which is
  * why the envelope band left it untouched.
  *
- * The near edge is measured, not chosen: the nearest dry mainland ground is
- * 133 units from the arrival, and the island's own ground reaches 203 units
- * along its northern spit, so no radius separates them cleanly. 130 puts
- * every piece of the far shore inside the band with a yard or two of margin,
- * and the island ground it also catches is that same northern spit, seen
- * across the same water, which wants the same aerial cue anyway. Everything
+ * The near edge is measured, not chosen: the island's own ground reaches 203
+ * units along its northern spit, so no radius separates it from the far shore
+ * cleanly. 130 sits a short stride past the aerial onset (HAZE_AERIAL_ONSET,
+ * where the field starts tinting the far shore's ground), and the island
+ * ground it also catches is that same northern spit, seen across the same
+ * water, which wants the same aerial cue anyway. Since Eastbrook Vale v2 the
+ * vale's west coast and ferry dock face the island across a strait a few
+ * dozen units wide, nearer than the onset, so near the strait neither the
+ * field nor the band tints that coast and its ground and trees read alike
+ * (before it, the nearest mainland was 133 units out). Everything
  * the coached run actually uses (the camp, the strand, the Gauntlet lanes,
  * the pearl cove) sits well inside 130 units of the arrival and is never
  * touched. tests/island_isolation_core.test.ts re-measures both distances

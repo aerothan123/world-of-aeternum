@@ -25,6 +25,7 @@
 // road, pending a balance pass. They are not classic-era figures.
 
 import { EASTBROOK_TOWN_KIT_BY_ID, townKitDoorPoint } from '../eastbrook_layout';
+import { ebv2Site } from '../eastbrook_v2/sites';
 import type { DungeonDef } from '../types';
 
 export interface HouseLotDef {
@@ -84,53 +85,77 @@ function kitLot(
   });
 }
 
-export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze([
-  Object.freeze({
-    id: 'eastbrook_quay_cottage',
-    name: 'Quay Cottage',
-    buildingId: 'eastbrook_quay_cottage',
-    zoneId: 'eastbrook_vale',
-    dungeonId: 'house_eastbrook_quay_cottage',
-    index: 15,
-    doorPos: Object.freeze({ x: -64.4, z: -56.46 }),
-    leaveOffset: Object.freeze({ x: -2.16, z: -2.09 }),
-    priceCopper: 10_00_00,
-  }),
-  Object.freeze({
-    id: 'fenbridge_warden_gatehouse',
-    name: "Warden's Gatehouse",
-    buildingId: 'fenbridge_warden_gatehouse',
-    zoneId: 'mirefen_marsh',
-    dungeonId: 'house_fenbridge_warden_gatehouse',
-    index: 16,
-    doorPos: Object.freeze({ x: 3.51, z: 276.56 }),
-    leaveOffset: Object.freeze({ x: -2.92, z: 0.71 }),
-    priceCopper: 25_00_00,
-  }),
-  Object.freeze({
-    id: 'highwatch_watch_house',
-    name: 'Watch House',
-    buildingId: 'highwatch_watch_house',
-    zoneId: 'thornpeak_heights',
-    dungeonId: 'house_highwatch_watch_house',
-    index: 17,
-    doorPos: Object.freeze({ x: 4.11, z: 636.24 }),
-    leaveOffset: Object.freeze({ x: -2.94, z: 0.6 }),
-    priceCopper: 50_00_00,
-  }),
-  // APPENDED (town kit phase 2): the Eastbrook housing streets. Ids and
-  // indexes are new and never reused, like every lot above. The terrace faces
-  // south toward the civic square, as it did on the harbour rise.
-  kitLot('eastbrook_terrace_west', 'West Terrace House', 'kit_house_a_terrace', 18, 8_00_00, 0),
-  kitLot('eastbrook_terrace_middle', 'Middle Terrace House', 'kit_house_a_terrace', 19, 8_00_00, 1),
-  kitLot('eastbrook_terrace_east', 'East Terrace House', 'kit_house_a_terrace', 20, 8_00_00, 2),
-  kitLot('eastbrook_slate_townhouse', 'Slate Townhouse', 'kit_house_b1', 21, 12_00_00),
-  kitLot('eastbrook_corner_house', 'Corner House', 'kit_house_b2', 22, 14_00_00),
-  kitLot('eastbrook_stone_cottage', 'Stone Cottage', 'kit_house_b3', 23, 10_00_00),
-  kitLot('eastbrook_red_roof_cottage', 'Red Roof Cottage', 'kit_house_b4', 24, 10_00_00),
-  kitLot('eastbrook_timber_house', 'Timber House', 'kit_house_b5', 25, 12_00_00),
-  kitLot('eastbrook_green_townhouse', 'Green Townhouse', 'kit_house_b6', 26, 12_00_00),
-]);
+export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze(
+  [
+    Object.freeze({
+      id: 'eastbrook_quay_cottage',
+      name: 'Quay Cottage',
+      buildingId: 'eastbrook_quay_cottage',
+      zoneId: 'eastbrook_vale',
+      dungeonId: 'house_eastbrook_quay_cottage',
+      index: 15,
+      doorPos: Object.freeze({ x: -64.4, z: -56.46 }),
+      leaveOffset: Object.freeze({ x: -2.16, z: -2.09 }),
+      priceCopper: 10_00_00,
+    }),
+    Object.freeze({
+      id: 'fenbridge_warden_gatehouse',
+      name: "Warden's Gatehouse",
+      buildingId: 'fenbridge_warden_gatehouse',
+      zoneId: 'mirefen_marsh',
+      dungeonId: 'house_fenbridge_warden_gatehouse',
+      index: 16,
+      doorPos: Object.freeze({ x: 3.51, z: 276.56 }),
+      leaveOffset: Object.freeze({ x: -2.92, z: 0.71 }),
+      priceCopper: 25_00_00,
+    }),
+    Object.freeze({
+      id: 'highwatch_watch_house',
+      name: 'Watch House',
+      buildingId: 'highwatch_watch_house',
+      zoneId: 'thornpeak_heights',
+      dungeonId: 'house_highwatch_watch_house',
+      index: 17,
+      doorPos: Object.freeze({ x: 4.11, z: 636.24 }),
+      leaveOffset: Object.freeze({ x: -2.94, z: 0.6 }),
+      priceCopper: 50_00_00,
+    }),
+    // APPENDED (town kit phase 2): the Eastbrook housing streets. Ids and
+    // indexes are new and never reused, like every lot above. The terrace faces
+    // south toward the civic square, as it did on the harbour rise.
+    kitLot('eastbrook_terrace_west', 'West Terrace House', 'kit_house_a_terrace', 18, 8_00_00, 0),
+    kitLot(
+      'eastbrook_terrace_middle',
+      'Middle Terrace House',
+      'kit_house_a_terrace',
+      19,
+      8_00_00,
+      1,
+    ),
+    kitLot('eastbrook_terrace_east', 'East Terrace House', 'kit_house_a_terrace', 20, 8_00_00, 2),
+    kitLot('eastbrook_slate_townhouse', 'Slate Townhouse', 'kit_house_b1', 21, 12_00_00),
+    kitLot('eastbrook_corner_house', 'Corner House', 'kit_house_b2', 22, 14_00_00),
+    kitLot('eastbrook_stone_cottage', 'Stone Cottage', 'kit_house_b3', 23, 10_00_00),
+    kitLot('eastbrook_red_roof_cottage', 'Red Roof Cottage', 'kit_house_b4', 24, 10_00_00),
+    kitLot('eastbrook_timber_house', 'Timber House', 'kit_house_b5', 25, 12_00_00),
+    kitLot('eastbrook_green_townhouse', 'Green Townhouse', 'kit_house_b6', 26, 12_00_00),
+  ].map(withEbv2Door),
+);
+
+/** Eastbrook Vale v2: a lot whose house stands in the imported design takes the
+ *  design's front door and the step out of it (eastbrook_v2/sites.ts `lot:<id>`). */
+function withEbv2Door(lot: HouseLotDef): HouseLotDef {
+  const site = ebv2Site(`lot:${lot.id}`);
+  if (!site) return lot;
+  return Object.freeze({
+    ...lot,
+    doorPos: Object.freeze({ x: site.x, z: site.z }),
+    leaveOffset: Object.freeze({
+      x: site.lx ?? lot.leaveOffset.x,
+      z: site.lz ?? lot.leaveOffset.z,
+    }),
+  });
+}
 
 /** Every persisted lot id (the load sanitizer's allowlist). */
 export const HOUSE_LOT_IDS: ReadonlySet<string> = new Set(HOUSE_LOTS.map((lot) => lot.id));

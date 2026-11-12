@@ -48,17 +48,14 @@ function turnInWorkOrder(sim: Sim): void {
   sim.turnInQuest(WORK_ORDER);
 }
 
-// Gourdlight Eve's rounds and its six rotating dailies, blocked while the event is closed
+// Gourdlight Eve's four rotating dailies, blocked while the event is closed
 // (src/sim/seasonal/seasonal_quests.ts): they ride the cprof blocked list beside any work
-// order, in id order.
+// order, in id order. (The rounds and two knock errands left with trick-or-treat.)
 const SEASONAL_CLOSED = [
   'q_gourdlight_daily_baskets',
-  'q_gourdlight_daily_boo',
   'q_gourdlight_daily_feathers',
   'q_gourdlight_daily_patch',
-  'q_gourdlight_daily_towns',
   'q_gourdlight_daily_wicks',
-  'q_gourdlight_rounds',
 ];
 
 describe('cadence.ts pure helpers', () => {

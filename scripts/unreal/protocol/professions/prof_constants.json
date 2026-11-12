@@ -2,9 +2,9 @@
  "worldSeed": 20061,
  "lattice": {
   "step": 10,
-  "xStart": -526,
-  "zStart": -886,
-  "zCount": 330
+  "xStart": -877,
+  "zStart": -1426,
+  "zCount": 384
  },
  "interactRange": 5,
  "stationRadius": 20,

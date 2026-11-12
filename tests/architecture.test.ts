@@ -409,7 +409,6 @@ const UI_PURE_CORES = [
   'src/ui/hud/action_bar/action_bar_item_core.ts',
   'src/ui/hud/quest/prof_intro_hint_core.ts',
   'src/ui/hud/quest/clue_step_row_view.ts',
-  'src/ui/hud/quest/trick_or_treat_row_view.ts',
   'src/ui/hud/pet_bar_core.ts',
   'src/ui/hud/shardpike/shardpike_bar_view.ts',
   'src/ui/hud/shardpike/shardpike_prompt_view.ts',

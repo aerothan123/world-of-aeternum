@@ -15,6 +15,7 @@
 
 import {
   BOOTCAMP_COURSE_CHECKPOINTS,
+  isOnProvingShore,
   PROVING_SHORE_ARRIVAL,
   PROVING_SHORE_NPCS,
   PROVING_SHORE_OBJECTS,
@@ -65,7 +66,7 @@ function cratePoints(): readonly { x: number; z: number }[] {
 
 function bellPoint(): { x: number; z: number } {
   const bell = PROVING_SHORE_OBJECTS.find((o) => o.itemId === 'ps_ferry_bell');
-  return bell?.positions.find((p) => p.x < -180) ?? { x: -279, z: -10 };
+  return bell?.positions.find((p) => isOnProvingShore(p.x, p.z)) ?? { x: -279, z: -10 };
 }
 
 /** Where each quest's ACTIVE leg ends (the hand-back leg starts there). */

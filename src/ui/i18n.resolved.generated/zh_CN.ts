@@ -8609,23 +8609,7 @@ export const zh_CN: EnTranslations = {
         "name": "南瓜灯之夜"
       }
     },
-    "trickOrTreat": {
-      "row": "不给糖就捣蛋！",
-      "rowAria": "对{name}说“不给糖就捣蛋”",
-      "knockedHint": "你今天已经敲过这扇门了。每日重置后这扇门会再次打开。",
-      "treat": "{name}递给你一份糖果。",
-      "trick": "{name}对你恶作剧：{trick}！",
-      "alreadyKnocked": "你今天已经向{name}讨过糖了。",
-      "notActive": "南瓜灯之夜现在没有举行。",
-      "tooFar": "走近一点再敲门。",
-      "treatFlash": {
-        "one": "糖果！{count}颗南瓜灯糖",
-        "few": "糖果！{count}颗南瓜灯糖",
-        "many": "糖果！{count}颗南瓜灯糖",
-        "other": "糖果！{count}颗南瓜灯糖"
-      },
-      "trickFlash": "捣蛋！{trick}"
-    },
+    "trickFlash": "捣蛋！{trick}",
     "tricks": {
       "gourdlight_trick_bat": "变成蝙蝠",
       "gourdlight_trick_skeleton": "骨头咔咔",
@@ -8650,7 +8634,7 @@ export const zh_CN: EnTranslations = {
       "trickJar": "使用：对你施加一个随机的无害恶作剧，持续数秒。仅在南瓜灯之夜期间可用。纯外观。",
       "pouch": "使用：打开后获得{count}颗南瓜灯糖。",
       "strawlingCharm": "使用：变成老稻草狞笑的稻草小人，持续{seconds}秒。战斗中无法使用，仅限南瓜灯之夜期间。不会消耗。仅外观。",
-      "sweet": "在南瓜灯之夜期间讨糖获得。东溪的赫丝特·葫芦芯会用外观物品交换它们。",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "使用：变成一具咔咔作响的骷髅，持续{minutes}分钟。使用后消耗。战斗中无法使用，进入战斗会结束效果。仅限南瓜灯之夜期间。纯外观。",
       "costumeGhost": "使用：变成一个飘荡的幽灵，持续{minutes}分钟。使用后消耗。战斗中无法使用，进入战斗会结束效果。仅限南瓜灯之夜期间。纯外观。",
       "costumeBat": "使用：变成一只扑腾的蝙蝠，持续{minutes}分钟。使用后消耗。战斗中无法使用，进入战斗会结束效果。仅限南瓜灯之夜期间。纯外观。",
@@ -8677,17 +8661,6 @@ export const zh_CN: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "首次拾取野猪草甸外南瓜田里老稻草狞笑的战利品时掉落。没有商人出售。"
-    },
-    "boo": {
-      "row": "哇！",
-      "rowAria": "跳到{name}面前大喊一声哇",
-      "needsCostume": "先穿上装扮：装扮药剂、蝙蝠或骷髅恶作剧、稻草小人护符，雕刻南瓜头，或咕嘟绿坩埚里一口变成地精的汤。",
-      "frightenedHint": "{name}还被你上次吓得心惊胆战。去找别人吧。",
-      "landed": "你跳到{name}面前大喊一声哇！对方尖叫一声，差点把东西全掉了。",
-      "flash": "哇！{name}被吓到了！",
-      "noCostume": "没穿装扮，{name}只是冲你笑。先换上一套吧。",
-      "already": "{name}今天已经被吓够了。",
-      "notOnErrand": "赫丝特今天没让你去吓唬谁。"
     },
     "tokenPrice": "{count}个{item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const zh_CN: EnTranslations = {
       "gourdlight_keeper": {
         "name": "赫丝特·葫芦芯",
         "title": "南瓜灯守护者",
-        "greeting": "南瓜点亮了，灯笼也挂起来了，那一定是南瓜灯之夜到了。去敲东溪、芬桥和高望城镇民的门，说出那句话：不给糖就捣蛋。大多数人会给你一颗糖，少数人会对你恶作剧。把糖带给我，我会跟你换些可以穿戴的东西。"
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "镇务官奥托琳",
@@ -30948,16 +30921,6 @@ export const zh_CN: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "南瓜灯巡游",
-        "text": "每到南瓜灯之夜，谷地的孩子们都会挨家挨户巡游，今年你也加入他们吧，{playerName}。在我们的城镇里敲五扇门，说出那句话，看看你会得到什么。完成后回来找我。",
-        "completion": "敲了五扇门，手指还都在。拿着，这袋糖果让你在回家路上吃。明天再来，门会再次打开。",
-        "objectives": {
-          "0": {
-            "label": "已敲的门"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "南瓜田里的南瓜",
         "text": "野猪草甸外，老稻草狞笑的南瓜田结满了南瓜，有一半都滚出了他的稻草圈，小心些就能够到。给我带五个来，{playerName}。离那个老稻草人远一点，他每一个都数着呢。",
@@ -30968,16 +30931,6 @@ export const zh_CN: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "哇！",
-        "text": "这几个镇子里，一整年都没人被好好吓过一回了，{playerName}。没有惊吓的南瓜灯之夜，不过是个冷夜罢了。穿上装扮，我的药剂哪种都行，要是你赢到了那颗南瓜头也可以。然后悄悄靠近三位镇民，冲他们大喊一声“哇！”",
-        "completion": "三个？我在广场另一头都听见厨子把锅掉地上了。干得好。这是你的那份。",
-        "objectives": {
-          "0": {
-            "label": "被吓到的镇民"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "邪恶的烛芯",
         "text": "有人在我们的路灯脚下放了燃着绿火的蜡烛。它们烧着却不融化，你一转身它们就低声细语。去掐灭六根吧，{playerName}，三个镇子哪里都行，把残头带回来给我。",
@@ -30985,22 +30938,6 @@ export const zh_CN: EnTranslations = {
         "objectives": {
           "0": {
             "label": "掐灭的诅咒蜡烛"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "每个镇子敲一扇门",
-        "text": "孩子们说，真正的南瓜灯行者会在天亮前把每个镇子的门都敲一遍。去证明他们说得对吧，{playerName}。在东溪、芬桥和高望各找一扇门说不给糖就捣蛋。路上的灯笼会为你照路。",
-        "completion": "一夜跑了三个镇子！这份奖励你的靴子比你更配得上。",
-        "objectives": {
-          "0": {
-            "label": "在东溪敲过的门"
-          },
-          "1": {
-            "label": "在芬桥敲过的门"
-          },
-          "2": {
-            "label": "在高望敲过的门"
           }
         }
       },

@@ -11,6 +11,7 @@ import {
   buildingRestPadding,
 } from '../building_layout';
 import { getActiveWorldContent, isBuiltinWorldActive } from '../data';
+import { ebv2OwnsBuiltin, ebv2RestsAt } from '../eastbrook_v2';
 import { KIT_BUILDINGS } from '../kit_buildings';
 import { tavernRestsAt } from '../mirefen_tavern';
 import type { PlayerMeta } from '../sim';
@@ -44,8 +45,12 @@ export function isResting(
   if (p.inCombat) return false;
   if (builtInRests && harborHouseRestsAt(p.pos.x, p.pos.y, p.pos.z)) return true;
   if (builtInRests && tavernRestsAt(p.pos.x, p.pos.y, p.pos.z)) return true;
+  // Eastbrook Vale v2: the design's inn rests a body (eastbrook_v2/rest.ts), and a
+  // shipped inn record standing on the design's ground rests nobody there
+  if (builtInRests && ebv2RestsAt(p.pos.x, p.pos.z)) return true;
   for (const b of buildings) {
     if (b.kind !== 'inn') continue;
+    if (builtInRests && ebv2OwnsBuiltin(b.x, b.z)) continue;
     if (buildingContainsRestPoint(b, p.pos.x, p.pos.z, buildingRestPadding(b))) return true;
   }
   // Editor-authored inns: an inn dropped as a world prop through the editor lives

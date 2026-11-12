@@ -25668,8 +25668,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Samancık',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Şişen Kabak',
   'entities.mobs.gourdlight_thatchgrin.name': 'Yaşlı Sırıtan Saman',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Kabaklar yakıldı, fenerler asıldı; demek ki Kabak Işığı Gecesi geldi. Doğudere, Bataklık Köprüsü ve Yüksek Gözcü halkının kapısını çal ve şu sözleri söyle: şeker mi, şaka mı? Çoğu sana şeker verir. Birkaçı sana şaka yapar. Şekerleri tezgâhlarımdan herhangi birine getir; karşılığında giyecek bir şey veririm.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Kabakfitil',
   'entities.npcs.gourdlight_keeper.title': 'Kabak Işığı Bekçisi',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -25681,12 +25679,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     "Her Kabak Işığı Gecesi, her kasabadaki eski bir dostum için şeker sepeti hazırlarım ama dizlerim eskisi gibi değil. Benim yerime götür, {playerName}: Doğudere'deki Aşçı Marlow'a, Bataklık Köprüsü'ndeki otacı Yara'ya ve yukarıda Yüksek Gözcü'deki İrfan Ustası Caddis'e.",
   'entities.quests.q_gourdlight_daily_baskets.title': 'Komşulara Sepetler',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Üç kişi mi? Aşçının tava düşürdüğünü meydanın öbür ucundan duydum. Aferin. İşte payın.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Korkutulan kasabalılar',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Bu kasabalarda bir yıldır kimse doğru dürüst korkmadı, {playerName}; korkusuz bir Kabak Işığı Gecesi de yalnızca soğuk bir gecedir. Bir kostüm giy; benimkilerden herhangi biri olur, kazandıysan o kabak başlığı da olur. Sonra üç kasabalıya usulca yaklaş ve yüksek sesle BÖÖ diye bağır.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Böö!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Aysız tarlalar kadar siyahlar ve şimdiden duman kokuyorlar. Şenlik ateşi görülmeye değer olacak. Teşekkür ederim.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Karga tüyleri',
@@ -25699,43 +25691,16 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     "Yaşlı Sırıtan Saman'ın Yaban Domuzu Çayırı'nın ötesindeki tarlası kabak dolu; yarısı da samanlarının dışına, dikkatli birinin ulaşabileceği yerlere yuvarlanmış. Bana beş tane getir, {playerName}. Yaşlı korkuluğun kendisinden uzak dur. Her birini sayıyor.",
   'entities.quests.q_gourdlight_daily_patch.title': 'Tarladan Kabaklar',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Bir gecede üç kasaba! Bunu çizmelerin senden daha çok hak etti.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': "Doğudere'de bir kapı çalındı",
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label':
-    "Bataklık Köprüsü'nde bir kapı çalındı",
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': "Yüksek Gözcü'de bir kapı çalındı",
-  'entities.quests.q_gourdlight_daily_towns.text':
-    "Çocuklar, gerçek bir Kabak Işığı gezgininin gece bitmeden her kasabada kapı çaldığını söyler. Onları haklı çıkar, {playerName}. Doğudere'de bir, Bataklık Köprüsü'nde bir, Yüksek Gözcü'de bir kapıda şeker ya da şaka iste. Yollardaki fenerler sana ışık tutar.",
-  'entities.quests.q_gourdlight_daily_towns.title': 'Her Kasabada Bir Kapı',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Altı kalıntı, kırağı kadar soğuk. Onları kim yaktıysa daha çok uğraşması gerekecek. Al bunu, sonra ellerini yıka.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Söndürülen lanetli mumlar',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Biri lamba direklerimizin dibine yeşil alevli mumlar bırakıyor. Erimeden yanıyorlar; arkanı dönünce de fısıldıyorlar. Üç kasabadan herhangi birinde altısını söndür, {playerName}, ve kalıntılarını getir.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Uğursuz Fitiller',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Beş kapı; bütün parmakların hâlâ yerinde. Al, eve yürürken yemen için bir kese şeker. Yarın yine gel, kapılar yeniden açılır.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Çalınan kapılar',
-  'entities.quests.q_gourdlight_rounds.text':
-    "Her Kabak Işığı Gecesi Vadi'nin çocukları evleri dolaşır; bu yıl sen de onlara katılıyorsun, {playerName}. Kasabalarımızda beş kapıyı çal, gereken sözleri söyle ve sana ne verildiğine bak. İşin bitince bana dön.",
-  'entities.quests.q_gourdlight_rounds.title': 'Kabak Işığı Turu',
   'guide.interfacePage.framesGovernedPriest':
     'Çerçeveleri Düzenle, Gölge rahibinin Kasvet Öşrü ve Öşür Bombası madalyonunu da taşımana izin verir.',
   'guide.worldPvpPage.hillBodyTwoHour':
     "İki saatte bir, kimsenin öngöremeyeceği bir anda, tüm diyara kuzey bölgelerinden birinde on beş dakika sonra bir tepenin yükseleceği bildirilir; tepenin duracağı çember açık arazide işaretlenir. Tepe yükselince otuz dakika kalır, sonra iner. Ayakta olduğu sürece her beş dakikada bir diyara konumu ve onu en uzun tutan gruplar bildirilir. İçeride en çok oyuncusu bulunan grup tepeyi ele geçirmek için yarışır ve otuz saniyelik sayısal üstünlüğün ardından tepe onların olur. Rakip bir grubun girmesi, senin grubun yeniden öne geçene kadar sayacı yalnızca duraklatır; sayaç ancak grubundan içeride kimse hayatta kalmadığında sıfırlanır. Tek başına oyuncu, tek kişilik grup sayılır ve grup kurduğunda tuttuğu tepeyi korur; baskın üyeleri ise hiç sayılmaz. Bir grup tepeyi tutarken içeride duran her üyesi, ne kadar süredir tuttuklarından bağımsız olarak her dakika aynı Onuru kazanır. Böylece tepeyi tüm süresi boyunca rakipsiz tutan tam grup, yaklaşık iki savaş alanı zaferi kadar kazanır. Tepe indiğinde, toplamda en uzun tutan grup onu en az on dakika tuttuysa, o grup için içeride en az bir dakika duran ve hâlâ grupta olan herkes Haftalık Kasa'nın PvP satırına bir zafer kazanır. Alanın üzerindeki çubuk tepenin sahibini, iki tarafın sayılarını ve ele geçirme sayacını gösterir; sohbette /hill konumunu bildirir.",
-  'seasonal.boo.already': '{name} bugün yeterince korktu.',
-  'seasonal.boo.flash': 'BÖÖ! {name} korktu!',
-  'seasonal.boo.frightenedHint':
-    '{name} son korkutmandan beri hâlâ diken üstünde. Başka birini bul.',
-  'seasonal.boo.landed':
-    '{name} adlı kişinin önüne atılıp BÖÖ diye bağırırsın! Çığlık atar ve elindekileri neredeyse düşürür.',
-  'seasonal.boo.needsCostume':
-    "Önce kostüm giy: kostüm iksiri, yarasa veya iskelet şakası, Samancık Tılsımı, Oyulmuş Kabak Başlığı ya da Yeşil Fokurtu Kazanı'ndan bir goblin yudumu.",
-  'seasonal.boo.noCostume': 'Kostümsüzken {name} sana yalnızca güler. Önce bir kostüm giy.',
-  'seasonal.boo.notOnErrand': 'Hester bugün senden kimseyi korkutmanı istemedi.',
-  'seasonal.boo.row': 'Böö!',
-  'seasonal.boo.rowAria': '{name} adlı kişinin önüne atılıp böö diye bağır',
   'seasonal.boundItemGone':
     'Kabak Işığı Gecesi bitti; {item} eşyan yeniden samana dönüşerek dağılıyor.',
   'seasonal.costume': 'İksiri içer ve dönüşürsün: {trick}!',
@@ -25758,8 +25723,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     "Yaşlı Sırıtan Saman, Köz Kıllı Süpürge'ye sahip olana kadar onu yağmaladığın her gün bir tane verir. Hester Kabakfitil, Doğudere, Bataklık Köprüsü ve Yüksek Gözcü'deki tezgâhlarında {count} demeti süpürgeyle takas eder. Harcanmayan demetler sonraki Kabak Işığı Gecesi için saklanır.",
   'seasonal.itemUse.strawlingCharm':
     "Kullanım: {seconds} saniye boyunca Yaşlı Sırıtan Saman'ın samancıklarından birine dönüş. Dövüş dışında. Asla tüketilmez. Kozmetiktir.",
-  'seasonal.itemUse.sweet':
-    "Kabak Işığı Gecesi boyunca şeker ya da şaka isteyerek kazanılır. Hester Kabakfitil, Doğudere, Bataklık Köprüsü ve Yüksek Gözcü'deki tezgâhlarında bunları kozmetiklerle takas eder.",
   'seasonal.itemUse.titleWrit':
     "Kullanım: Bu karakter için {title} unvanını kazan; Yiğitlikler Kitabı'ndan takılır. Tüketilir. Unvana zaten sahipsen ferman korunur.",
   'seasonal.itemUse.toyBats':
@@ -25804,21 +25767,7 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} kafana bir kabak patlatır! Sağ tıklayarak çıkar veya gururla taşı.',
   'seasonal.toy.prankedFlash': '{name} sana şaka yaptı!',
-  'seasonal.trickOrTreat.alreadyKnocked':
-    'Bugün {name} adlı kişiden zaten şeker ya da şaka istedin.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Bugün bu kapıyı zaten çaldın. Günlük sıfırlamadan sonra yeniden açılır.',
-  'seasonal.trickOrTreat.notActive': 'Kabak Işığı Gecesi şu anda etkin değil.',
-  'seasonal.trickOrTreat.row': 'Şeker mi, şaka mı!',
-  'seasonal.trickOrTreat.rowAria': '{name} adlı kişiye şeker mi, şaka mı de',
-  'seasonal.trickOrTreat.tooFar': 'Kapıyı çalmak için yaklaş.',
-  'seasonal.trickOrTreat.treat': '{name} sana bir şeker verir.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Şeker! {count} Kabak Işığı Şekeri',
-  'seasonal.trickOrTreat.treatFlash.many': 'Şeker! {count} Kabak Işığı Şekeri',
-  'seasonal.trickOrTreat.treatFlash.one': 'Şeker! {count} Kabak Işığı Şekeri',
-  'seasonal.trickOrTreat.treatFlash.other': 'Şeker! {count} Kabak Işığı Şekeri',
-  'seasonal.trickOrTreat.trick': '{name} sana şaka yapar: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Şaka! {trick}',
+  'seasonal.trickFlash': 'Şaka! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Yarasa Kostümü',
   'seasonal.tricks.gourdlight_costume_ghost': 'Hayalet Kostümü',
   'seasonal.tricks.gourdlight_costume_skeleton': 'İskelet Kostümü',

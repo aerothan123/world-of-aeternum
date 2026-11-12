@@ -8609,23 +8609,7 @@ export const es_ES: EnTranslations = {
         "name": "Noche de las Calabazas"
       }
     },
-    "trickOrTreat": {
-      "row": "¡Truco o trato!",
-      "rowAria": "Di truco o trato a {name}",
-      "knockedHint": "Hoy ya has llamado aquí. La puerta volverá a abrirse tras el reinicio diario.",
-      "treat": "{name} te da un dulce.",
-      "trick": "{name} te gasta una broma: ¡{trick}!",
-      "alreadyKnocked": "Hoy ya has pedido truco o trato a {name}.",
-      "notActive": "La Noche de las Calabazas no está activa ahora mismo.",
-      "tooFar": "Acércate para llamar.",
-      "treatFlash": {
-        "one": "¡Trato! {count} Dulce de la Noche de las Calabazas",
-        "few": "¡Trato! {count} Dulces de la Noche de las Calabazas",
-        "many": "¡Trato! {count} Dulces de la Noche de las Calabazas",
-        "other": "¡Trato! {count} Dulces de la Noche de las Calabazas"
-      },
-      "trickFlash": "¡Truco! {trick}"
-    },
+    "trickFlash": "¡Truco! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Aleteo alocado",
       "gourdlight_trick_skeleton": "Huesos traqueteantes",
@@ -8650,7 +8634,7 @@ export const es_ES: EnTranslations = {
       "trickJar": "Uso: Te gasta una broma aleatoria e inofensiva durante unos segundos. Cosmético.",
       "pouch": "Uso: Ábrela para recibir {count} Dulces de la Noche de las Calabazas.",
       "strawlingCharm": "Uso: Te convierte en uno de los seres de paja del Viejo Thatchgrin durante {seconds} segundos. No se puede usar en combate. Nunca se consume. Cosmético.",
-      "sweet": "Se obtiene pidiendo truco o trato durante la Noche de las Calabazas. Hester Gourdwick los cambia por cosméticos en sus puestos de Eastbrook, Fenbridge y Highwatch.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Uso: Te convierte en un esqueleto traqueteante durante {minutes} minutos. Se consume. No se puede usar en combate y entrar en combate termina el efecto. Cosmético.",
       "costumeGhost": "Uso: Te convierte en un fantasma flotante durante {minutes} minutos. Se consume. No se puede usar en combate y entrar en combate termina el efecto. Cosmético.",
       "costumeBat": "Uso: Te convierte en un murciélago que aletea durante {minutes} minutos. Se consume. No se puede usar en combate y entrar en combate termina el efecto. Cosmético.",
@@ -8677,17 +8661,6 @@ export const es_ES: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Lo deja caer el Viejo Thatchgrin, en su campo de calabazas más allá del Prado de jabalíes, la primera vez que lo saqueas. No lo vende ningún comerciante."
-    },
-    "boo": {
-      "row": "¡Bu!",
-      "rowAria": "Salta ante {name} y grita bu",
-      "needsCostume": "Ponte primero un disfraz: un brebaje de disfraz, una broma de murciélago o esqueleto, el Amuleto de ser de paja, la Cabeza de calabaza tallada o un sorbo de goblin del Caldero Verdeburbujeante.",
-      "frightenedHint": "{name} aún está nervioso por tu último susto. Busca a otra persona.",
-      "landed": "¡Saltas ante {name} con un BU! Suelta un chillido y casi se le cae todo.",
-      "flash": "¡BU! ¡Has asustado a {name}!",
-      "noCostume": "Sin disfraz, {name} solo se ríe de ti. Ponte uno primero.",
-      "already": "{name} ya ha tenido suficientes sustos por hoy.",
-      "notOnErrand": "Hester no te ha pedido que asustes a nadie hoy."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const es_ES: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Guardiana de la Noche de las Calabazas",
-        "greeting": "Las calabazas están encendidas y los faroles colgados, así que debe de ser la Noche de las Calabazas. Llama a las puertas de los vecinos de Eastbrook, Fenbridge y Highwatch, y di las palabras: truco o trato. La mayoría te dará un dulce. Algunos te gastarán una broma. Tráeme los dulces a cualquiera de mis puestos y te los cambiaré por algo que ponerte."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Alguacila Ottoline",
@@ -30948,16 +30921,6 @@ export const es_ES: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Ronda de la Noche de las Calabazas",
-        "text": "Cada Noche de las Calabazas, los niños del Valle hacen su ronda, y este año te unirás a ellos, {playerName}. Llama a cinco puertas de nuestros pueblos, di las palabras y mira qué te dan. Vuelve a verme cuando acabes.",
-        "completion": "Cinco puertas y aún conservas todos los dedos. Toma, una bolsa de dulces para la vuelta a casa. Vuelve mañana, las puertas abrirán de nuevo.",
-        "objectives": {
-          "0": {
-            "label": "Puertas a las que has llamado"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Calabazas del huerto",
         "text": "El huerto del Viejo Thatchgrin, más allá del Prado de jabalíes, rebosa de calabazas, y la mitad ha rodado más allá de su paja, donde alguien con cuidado puede alcanzarlas. Tráeme cinco, {playerName}. Mantente lejos del viejo espantapájaros. Las cuenta una por una.",
@@ -30968,16 +30931,6 @@ export const es_ES: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "¡Bu!",
-        "text": "Nadie en estos pueblos se ha llevado un buen susto en todo un año, {playerName}, y una Noche de las Calabazas sin sustos es solo una noche fría. Ponte un disfraz, cualquiera de los míos sirve, o esa cabeza de calabaza si te has ganado una. Luego acércate sigilosamente a tres vecinos y suéltales un buen ¡BU! bien fuerte.",
-        "completion": "¿Tres? He oído al cocinero dejar caer una sartén desde el otro lado de la plaza. Bien hecho. Aquí tienes tu parte.",
-        "objectives": {
-          "0": {
-            "label": "Vecinos asustados"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Mechas malvadas",
         "text": "Alguien ha estado colocando velas de llama verde al pie de nuestras farolas. Arden sin derretirse y susurran cuando les das la espalda. Apaga seis por mí, {playerName}, en cualquiera de los tres pueblos, y tráeme los cabos.",
@@ -30985,22 +30938,6 @@ export const es_ES: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Velas malditas apagadas"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Una puerta en cada pueblo",
-        "text": "Los niños dicen que un verdadero caminante de las Calabazas llama a las puertas de todos los pueblos antes de que termine la noche. Demuestra que tienen razón, {playerName}. Pide truco o trato en una puerta de Eastbrook, una de Fenbridge y una de Highwatch. Los faroles de los caminos te guiarán.",
-        "completion": "¡Tres pueblos en una noche! Tus botas se han ganado esto más que tú.",
-        "objectives": {
-          "0": {
-            "label": "Una puerta llamada en Eastbrook"
-          },
-          "1": {
-            "label": "Una puerta llamada en Fenbridge"
-          },
-          "2": {
-            "label": "Una puerta llamada en Highwatch"
           }
         }
       },

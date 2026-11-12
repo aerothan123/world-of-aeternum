@@ -5935,7 +5935,6 @@ const ALL_DELTA_KEYS = [
   'tfocus',
   'tfpend',
   'tmap',
-  'tot',
   'trade',
   'tslot',
   'udiff',
@@ -6089,7 +6088,6 @@ const TERSE_TO_IWORLD: Record<string, string> = {
   tfocus: 'townFocus',
   tfpend: 'townFocusPending',
   tmap: 'treasureMap',
-  tot: 'trickOrTreatedToday',
   tslot: 'toolEffectSlots',
   udiff: 'unappliedDungeonDifficulty',
   vault: 'vaultInfo',
@@ -6216,10 +6214,9 @@ function dirtyEveryDeltaField(): {
   meta.vault.upgrades = 2;
   // The weekly emissary's charge (wkq): held mid-week so the key rides non-null.
   meta.weeklyQuest = { questId: 'wk_dungeons', week: '2030-W01', count: 1, state: 'active' };
-  // Gourdlight Eve (season, tot): the event running and one knock on today's ledger.
+  // Gourdlight Eve (season, hpf): the event running and one pumpkin found. (The
+  // trick-or-treat `tot` knock key was removed with the feature.)
   sim.seasonal.devOverride = 'gourdlight_eve';
-  meta.seasonalDay = sim.resetDay;
-  meta.seasonalKnocked.add('gourdlight_keeper');
   meta.hauntedPumpkins.add(GOURDLIGHT_PUMPKINS[0].id);
   // `cvault`: craftVaultStockFor is gated on the craft-draw context predicate,
   // not the banker. This harness player carries a live DELVE RUN (the drun
@@ -7702,8 +7699,10 @@ describe('delta-key contract pins (anti-drift)', () => {
     // +1: player housing's house storage hst (Project H phase 3), for 138.
     // +1: tree chopping's felled set ftr (server/felled_trees_wire.ts), for 139.
     // +1: the gathering tool belt gtool (server/gathering_self_wire.ts), for 140.
-    expect(ALL_DELTA_KEYS).toHaveLength(140);
-    expect(new Set(ALL_DELTA_KEYS).size).toBe(140);
+    // -1: the trick-or-treat knock ledger tot, removed with the feature by the owner,
+    // for 139.
+    expect(ALL_DELTA_KEYS).toHaveLength(139);
+    expect(new Set(ALL_DELTA_KEYS).size).toBe(139);
     expect([...ALL_DELTA_KEYS]).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7887,8 +7886,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // Player housing's own house hse (Project H) makes 137, and its house
     // storage hst (phase 3, server/house_storage_wire.ts) 138. Tree chopping's
     // felled set ftr (server/felled_trees_wire.ts) makes 139, and the tool
-    // belt gtool (server/gathering_self_wire.ts) 140.
-    expect(scraped.size).toBe(140);
+    // belt gtool (server/gathering_self_wire.ts) 140. The trick-or-treat knock
+    // ledger tot left with the feature (owner removal): 139.
+    expect(scraped.size).toBe(139);
     expect([...scraped].sort()).toEqual([...ALL_DELTA_KEYS].sort());
   });
 

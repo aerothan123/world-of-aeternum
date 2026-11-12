@@ -1,7 +1,7 @@
 // Gourdlight Eve: the autumn seasonal event (data only). The rules live in
 // src/sim/seasonal/ (the reusable seasonal-event core); this file only says WHAT
-// the event offers: its keeper, the townsfolk who answer a trick-or-treat, the
-// treats and tricks, the small shop, and the daily rounds quest.
+// the event offers: its keeper, the sweets, the tricks the Jar of Mischief plays,
+// and the small shop. The rotating errands live in gourdlight_eve_dailies.ts.
 //
 // Almost everything here is cosmetic: looks, toys and titles. The one exception is
 // the candy shelf (GOURDLIGHT_CANDIES): five sweets that are ordinary Well Fed
@@ -13,7 +13,7 @@
 // authoritative server owns the window (server/seasonal_calendar.ts) and feeds the
 // active event id into the sim each tick; offline and headless worlds stay off
 // unless `/dev season on` opens it.
-import type { ItemDef, NpcDef, QuestDef } from '../types';
+import type { ItemDef, NpcDef } from '../types';
 
 export const GOURDLIGHT_EVE_ID = 'gourdlight_eve';
 
@@ -214,87 +214,34 @@ export function gourdlightToy(itemId: string): GourdlightToy | undefined {
 /** The worn head cosmetic's aura id (and the render key it draws by). */
 export const PUMPKIN_HEAD_AURA_ID = 'gourdlight_pumpkin_head';
 
-/** The daily rounds quest the keeper hands out. */
-export const GOURDLIGHT_ROUNDS_QUEST_ID = 'q_gourdlight_rounds';
 /** The rotating dailies (content/gourdlight_eve_dailies.ts holds their records; the ids
  *  live here so the keeper below can offer them without a circular import). */
 export const GOURDLIGHT_DAILY_PATCH_QUEST_ID = 'q_gourdlight_daily_patch';
-export const GOURDLIGHT_DAILY_BOO_QUEST_ID = 'q_gourdlight_daily_boo';
 export const GOURDLIGHT_DAILY_WICKS_QUEST_ID = 'q_gourdlight_daily_wicks';
-export const GOURDLIGHT_DAILY_TOWNS_QUEST_ID = 'q_gourdlight_daily_towns';
 export const GOURDLIGHT_DAILY_FEATHERS_QUEST_ID = 'q_gourdlight_daily_feathers';
 export const GOURDLIGHT_DAILY_BASKETS_QUEST_ID = 'q_gourdlight_daily_baskets';
 
 /** The rotation, in day order: day N of the realm calendar offers entry N mod length. */
 export const GOURDLIGHT_DAILY_POOL: readonly string[] = Object.freeze([
   GOURDLIGHT_DAILY_PATCH_QUEST_ID,
-  GOURDLIGHT_DAILY_BOO_QUEST_ID,
   GOURDLIGHT_DAILY_WICKS_QUEST_ID,
-  GOURDLIGHT_DAILY_TOWNS_QUEST_ID,
   GOURDLIGHT_DAILY_FEATHERS_QUEST_ID,
   GOURDLIGHT_DAILY_BASKETS_QUEST_ID,
 ]);
 
-/** The quest-event id a trick-or-treat credits (QuestObjective type 'event'). */
-export const TRICK_OR_TREAT_QUEST_EVENT = 'gourdlight_trick_or_treat';
-/** Doors the daily rounds ask for. */
-export const GOURDLIGHT_ROUNDS_DOORS = 5;
-/** Sweets the rounds pouch holds. */
+/** Sweets the errands' treat pouch holds. */
 export const GOURDLIGHT_POUCH_SWEETS = 6;
 
-/** The trick-or-treat outcome table. A treat hands over sweets; a trick plays a
- *  short harmless cosmetic transformation and still leaves one sweet in the
- *  bag, so a knock is never wasted. `treatChance` is the share of treats. */
-export const TRICK_OR_TREAT = Object.freeze({
-  treatChance: 0.65,
-  treatSweets: 2,
-  trickSweets: 1,
-  /** Reach to the townsfolk, the same as an ordinary talk. */
-  range: 7,
-});
-
-/** The tricks: each a short cosmetic aura (seconds). Ids are aura ids; the client
- *  draws bat and skeleton as a body swap (the polymorph slot's look, never its CC)
- *  and the fumes as a green smoke cloud. None has any effect in the sim. */
+/** The tricks the Jar of Mischief plays: each a short cosmetic aura (seconds). Ids are
+ *  aura ids; the client draws bat and skeleton as a body swap (the polymorph slot's
+ *  look, never its CC) and the fumes as a green smoke cloud. None has any effect in
+ *  the sim. */
 export const GOURDLIGHT_TRICKS = Object.freeze([
   { id: 'gourdlight_trick_bat', name: 'Batty', duration: 20 },
   { id: 'gourdlight_trick_skeleton', name: 'Rattled Bones', duration: 20 },
   { id: 'gourdlight_trick_fumes', name: 'Green Fumes', duration: 12 },
 ] as const);
 export type GourdlightTrickId = (typeof GOURDLIGHT_TRICKS)[number]['id'];
-
-/** The townsfolk who answer a knock, by main city. Ids are NPC template ids, so a
- *  rework that moves a building moves the NPC with it; tests/gourdlight_eve.test.ts
- *  pins that every id exists and still stands in its city. */
-export const TRICK_OR_TREAT_NPCS: Readonly<Record<string, readonly string[]>> = Object.freeze({
-  eastbrook_vale: [
-    'trader_wilkes',
-    'apothecary_lin',
-    'smith_haldren',
-    'fisherman_brandt',
-    'cook_marlow',
-    'farmer_jessica',
-  ],
-  mirefen_marsh: [
-    'provisioner_hale',
-    'herbalist_yara',
-    'tanner_hesk',
-    'farmer_teasel',
-    'warden_fenwick',
-  ],
-  thornpeak_heights: [
-    'quartermaster_bree',
-    'armorer_hode',
-    'alchemist_verane',
-    'loremaster_caddis',
-    'farmer_hollis',
-  ],
-});
-
-/** Every trick-or-treat NPC template id, flat. */
-export const TRICK_OR_TREAT_NPC_IDS: ReadonlySet<string> = new Set(
-  Object.values(TRICK_OR_TREAT_NPCS).flat(),
-);
 
 /** The keeper's reserved singleton entity ids (types.ts
  *  STATIC_WORLD_SERVICE_ENTITY_ID_MIN's note; pinned in
@@ -353,10 +300,10 @@ export const GOURDLIGHT_KEEPER_POSTS: readonly GourdlightKeeperPost[] = Object.f
 ]);
 
 /** The keeper's shop: price in sweets per purchase (ItemDef.priceItem). */
-// Daily income is about 25 to 30 sweets (the rounds pouch, the knocks, his sack, and since
-// round 8 the day's rotating errand's pouch, content/gourdlight_eve_dailies.ts), so a
-// draught is a third of a day and a title two to four days: the errands speed the
-// titles up on purpose, a reason to come back every day of the event.
+// Daily income is his sack plus the day's rotating errand's pouch
+// (content/gourdlight_eve_dailies.ts). The owner removed trick-or-treat (the rounds and
+// the knocks) when the new world started from the ground up, so these prices stand as
+// authored and the titles now take longer: a reason to come back every day of the event.
 // The Carved Pumpkin Head is not on the shelf: Old Thatchgrin's first-kill drop is its
 // only source (owner direction 2026-10-18, content/gourdlight_eve_scarecrow.ts loot).
 export const GOURDLIGHT_SHOP_PRICES: Readonly<Record<string, number>> = Object.freeze({
@@ -391,14 +338,13 @@ export const GOURDLIGHT_KEEPER_NPC: NpcDef = {
   pos: { x: -4.2, z: -110.5 },
   facing: -Math.PI / 2,
   color: 0xd9741c,
-  // the rounds, and the rotating dailies (only the day's one is ever open:
-  // seasonal/gourdlight_dailies.ts)
-  questIds: [GOURDLIGHT_ROUNDS_QUEST_ID, ...GOURDLIGHT_DAILY_POOL],
+  // the rotating dailies (only the day's one is ever open: seasonal/gourdlight_dailies.ts)
+  questIds: [...GOURDLIGHT_DAILY_POOL],
   vendorItems: [...GOURDLIGHT_SHOP_ITEMS],
   dynamic: true,
   seasonalKeeper: true,
   greeting:
-    'The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. Knock on the doors of the townsfolk in Eastbrook, Fenbridge and Highwatch, and say the words: trick or treat. Most will hand you a sweet. A few will play a trick on you. Bring the sweets to me, at any of my stalls, and I will trade you something to wear.',
+    'The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear.',
 };
 
 export const GOURDLIGHT_EVE_NPCS: Record<string, NpcDef> = {
@@ -561,44 +507,5 @@ export const GOURDLIGHT_EVE_ITEMS: Record<string, ItemDef> = {
     noVendorSell: true,
     noSalvage: true,
     sellValue: 0,
-  },
-};
-
-const ROUNDS_REWARD: QuestDef['itemRewards'] = {
-  warrior: GOURDLIGHT_TREAT_POUCH_ID,
-  paladin: GOURDLIGHT_TREAT_POUCH_ID,
-  hunter: GOURDLIGHT_TREAT_POUCH_ID,
-  rogue: GOURDLIGHT_TREAT_POUCH_ID,
-  priest: GOURDLIGHT_TREAT_POUCH_ID,
-  shaman: GOURDLIGHT_TREAT_POUCH_ID,
-  mage: GOURDLIGHT_TREAT_POUCH_ID,
-  warlock: GOURDLIGHT_TREAT_POUCH_ID,
-  druid: GOURDLIGHT_TREAT_POUCH_ID,
-};
-
-export const GOURDLIGHT_EVE_QUESTS: Record<string, QuestDef> = {
-  [GOURDLIGHT_ROUNDS_QUEST_ID]: {
-    id: GOURDLIGHT_ROUNDS_QUEST_ID,
-    name: 'Gourdlight Rounds',
-    giverNpcId: GOURDLIGHT_KEEPER_NPC_ID,
-    turnInNpcId: GOURDLIGHT_KEEPER_NPC_ID,
-    text: 'Every Gourdlight Eve the children of the Vale make their rounds, and this year you are joining them, $N. Knock on five doors in our towns, say the words, and see what you are given. Come back to me when you are done.',
-    completionText:
-      'Five doors and you still have all your fingers. Here, a pouch of sweets for the walk home. Come back tomorrow, the doors open again.',
-    objectives: [
-      {
-        type: 'event',
-        eventId: TRICK_OR_TREAT_QUEST_EVENT,
-        count: GOURDLIGHT_ROUNDS_DOORS,
-        label: 'Doors knocked on',
-      },
-    ],
-    xpReward: 0,
-    copperReward: 0,
-    itemRewards: ROUNDS_REWARD,
-    repeatable: true,
-    dailyReset: true,
-    seasonalEvent: GOURDLIGHT_EVE_ID,
-    shareable: false,
   },
 };

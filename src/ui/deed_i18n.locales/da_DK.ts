@@ -1358,21 +1358,12 @@ export const table: DeedLocaleTable = {
     desc: 'Find alle Hjemsøgte græskar, som er skjult rundt om i verden under Græskarlygternes aften.',
     title: 'den hule',
   },
-  feat_gourdlight_doorsteps: {
-    name: 'Hver eneste dørtærskel',
-    desc: 'Sig slik eller ballade til hver byboer, som åbner døren i Østbæk, Sumpbroen og Højvagten under Græskarlygternes aften.',
-  },
   feat_gourdlight_errands: {
     name: 'Til Hesters tjeneste',
     desc: 'Gennemfør hvert af Hester Græskarvæges skiftende ærinder under Græskarlygternes aften mindst én gang.',
   },
-  feat_gourdlight_frights: {
-    name: 'Tre forskrækkede byer',
-    desc: 'Under Hesters ærinde Bøh! skal du forskrække en byboer i hver af byerne Østbæk, Sumpbroen og Højvagten.',
-  },
   feat_gourdlight_eve_complete: {
     name: 'Græskarlygter fra start til slut',
-    desc: 'Gennemfør hele Græskarlygternes aften: besejr Gamle Halmgrin, find alle Hjemsøgte græskar, afslut alle Hesters ærinder, bank på alle døre, og forskræk en byboer i hver af de tre byer.',
     title: 'den græskarsvorne',
   },
 };

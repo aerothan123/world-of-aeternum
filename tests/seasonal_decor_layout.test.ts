@@ -112,8 +112,10 @@ describe('seasonal decor placement against the live world', () => {
       const garlands = layout.garlands.filter((g) => near(g.ax, g.az));
       expect(garlands.length, `${rule.zoneId} garlands`).toBeGreaterThanOrEqual(2);
       expect(lanterns.length, `${rule.zoneId} lanterns`).toBeGreaterThanOrEqual(3);
-      expect(ground.filter((p) => p.anchor.startsWith('npc:')).length).toBeGreaterThanOrEqual(3);
-      // the rest of the townsfolk and the lamp clusters dress the street beyond the doors
+      // The knocking-door pumpkins (`npc:` anchors) left with trick-or-treat, which the
+      // owner removed from the new world: every townsperson now takes the `folk:` pair.
+      expect(ground.filter((p) => p.anchor.startsWith('npc:'))).toEqual([]);
+      // the townsfolk and the lamp clusters dress the street
       expect(ground.filter((p) => p.anchor.startsWith('folk:')).length).toBeGreaterThanOrEqual(3);
       expect(ground.filter((p) => /^lamp:\d+:c$/.test(p.anchor)).length).toBeGreaterThanOrEqual(3);
       // the road shoulders between the lamps carry their own harvest pieces
@@ -149,11 +151,37 @@ describe('seasonal decor placement against the live world', () => {
     }
   });
 
+  // Owner decision (Eastbrook Vale v2 port): Eastbrook is not dressed for now, no
+  // garlands, lanterns or straw, until the v2 design carries its own dressing
+  // (content/gourdlight_eve_decor.ts). The tests above cover every city still
+  // configured; this one pins that Eastbrook has none at all.
+  it('dresses nothing in Eastbrook for now: no garlands, lanterns or straw', () => {
+    expect(GOURDLIGHT_DECOR_CITIES.some((rule) => rule.zoneId === 'eastbrook_vale')).toBe(false);
+    expect(GOURDLIGHT_DECOR_CITIES.length).toBeGreaterThanOrEqual(2);
+    const hub = getActiveWorldContent().zones.find((z) => z.id === 'eastbrook_vale')?.hub;
+    expect(hub).toBeDefined();
+    if (!hub) return;
+    const inTown = (x: number, z: number) => Math.hypot(x - hub.x, z - hub.z) <= 65;
+    expect(layout.garlands.filter((g) => inTown(g.ax, g.az) || inTown(g.bx, g.bz))).toEqual([]);
+    expect(layout.lanterns.filter((l) => inTown(l.x, l.z))).toEqual([]);
+    const straw = (k: string) => k === 'corn_shock' || k === 'hay_bale';
+    expect(layout.ground.filter((p) => inTown(p.x, p.z) && straw(p.kind))).toEqual([]);
+  });
+
   it('refuses a spot inside a collider, on the road and on an NPC (the resolver rule itself)', () => {
     const lamp = streetlampPlacements(WORLD_SEED)[0];
     expect(groundSpotProblem(WORLD_SEED, lamp.x, lamp.z, [], [])).toBe('collider');
-    const wilkes = NPCS.trader_wilkes.pos;
-    expect(groundSpotProblem(WORLD_SEED, wilkes.x, wilkes.z, [wilkes], [])).toBe('npc');
+    // Any townsman standing off the road, not Trader Wilkes by name: Eastbrook
+    // Vale v2 stood Wilkes on the old town's road line, where the road rule fires
+    // first, so the probe picks the first NPC clear of roads and colliders.
+    const folk = Object.values(NPCS).find(
+      (n) =>
+        roadDistance(n.pos.x, n.pos.z) > DECOR_ROAD_CLEARANCE + 1 &&
+        !isBlocked(WORLD_SEED, n.pos.x, n.pos.z, 0.6),
+    );
+    expect(folk).toBeDefined();
+    if (!folk) return;
+    expect(groundSpotProblem(WORLD_SEED, folk.pos.x, folk.pos.z, [folk.pos], [])).toBe('npc');
     // The keeper's own stand is never under a piece.
     const keeper = NPCS.gourdlight_keeper.pos;
     for (const p of layout.ground) {
@@ -296,7 +324,7 @@ describe('seasonal decor placement against the live world', () => {
   });
 
   // Owner note 2026-10-18: the straw read as litter. A broken anchor hash pinned every
-  // share to 0, so every lamp, knocking door and townsfolk took a bale or a shock.
+  // share to 0, so every lamp and townsperson took a bale or a shock.
   // The straw is now an accent: a ceiling per city, a minority of every city's pieces,
   // and the lamp clusters genuinely varied (some posts with straw, most without).
   it('keeps the straw an accent in every city, not litter', () => {
@@ -374,7 +402,9 @@ describe('seasonal decor placement against the live world', () => {
 
   it('refuses a garland strung across the road (the resolver rule itself)', () => {
     const lamps = streetlampPlacements(WORLD_SEED);
-    const hub = getActiveWorldContent().zones.find((z) => z.id === 'eastbrook_vale')?.hub;
+    // Fenbridge's lamps: Eastbrook is not dressed for now (owner decision, see
+    // content/gourdlight_eve_decor.ts), so the probe runs off a dressed city's post.
+    const hub = getActiveWorldContent().zones.find((z) => z.id === 'mirefen_marsh')?.hub;
     expect(hub).toBeDefined();
     if (!hub) return;
     const lamp = lamps.find(

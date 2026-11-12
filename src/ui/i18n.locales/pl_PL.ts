@@ -25913,8 +25913,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Słomiak',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Pęczniejąca dynia',
   'entities.mobs.gourdlight_thatchgrin.name': 'Stary Słomochichot',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Dynie świecą, latarnie wiszą, więc nadeszła Wigilia Dyniowych Świateł. Zapukaj do mieszkańców Eastbrook, na Moście na Trzęsawisku i w Wysokiej Strażnicy i powiedz: cukierek albo psikus. Większość da ci słodycz. Kilkoro spłata ci figla. Przynieś mi cukierki do dowolnego z moich straganów, a wymienię je na coś do ubrania.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Dynioknot',
   'entities.npcs.gourdlight_keeper.title': 'Strażniczka Dyniowych Świateł',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -25928,12 +25926,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'W każdą Wigilię Dyniowych Świateł szykuję koszyk słodyczy dla starego przyjaciela w każdym mieście, ale moje kolana już nie te. Roznieś je za mnie, {playerName}: kucharzowi Marlowowi w Eastbrook, zielarce Yarze na Moście na Trzęsawisku i Mistrzowi Wiedzy Caddisowi w Wysokiej Strażnicy.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Koszyki dla sąsiadów',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Troje? Przez cały plac usłyszałam, jak kucharz upuścił patelnię. Dobra robota. Oto twoja część.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Wystraszeni mieszkańcy',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Nikt w tych miastach od roku porządnie się nie przestraszył, {playerName}, a Wigilia Dyniowych Świateł bez strachu to tylko zimna noc. Załóż kostium, którykolwiek z moich, albo dyniową głowę, jeśli już ją masz. Potem podkradnij się do trojga mieszkańców i krzyknij głośno BU!',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Bu!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Czarne jak pole w bezksiężycową noc i już pachną dymem. Ognisko będzie wspaniałe. Dziękuję.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Wronie pióra',
@@ -25946,45 +25938,16 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Poletko Starego Słomochichota za Łąką Dzików pęka od dyń, a połowa wytoczyła się poza jego słomę, gdzie ostrożna osoba zdoła ich dosięgnąć. Przynieś mi pięć, {playerName}. Samego starego stracha omijaj szerokim łukiem. Liczy każdą sztukę.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Dynie z poletka',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Trzy miasta w jedną noc! Twoje buty zasłużyły na to bardziej niż ty.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Zapukano do drzwi w Eastbrook',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label':
-    'Zapukano do drzwi na Moście na Trzęsawisku',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label':
-    'Zapukano do drzwi w Wysokiej Strażnicy',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Dzieci mówią, że prawdziwy dyniowy wędrowiec zapuka w każdym mieście przed końcem nocy. Udowodnij im rację, {playerName}. Poproś o cukierek albo psikus przy jednych drzwiach w Eastbrook, jednych na Moście na Trzęsawisku i jednych w Wysokiej Strażnicy. Latarnie przy drogach rozświetlą ci trasę.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Drzwi w każdym mieście',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Sześć ogryzków, zimnych jak szron. Kto je zapalił, będzie musiał bardziej się postarać. Weź to i umyj ręce.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Zgaszone przeklęte świece',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Ktoś ustawia świece o zielonych płomieniach u stóp naszych latarni. Płoną, nie topiąc się, i szepczą, gdy odwrócisz wzrok. Zgaś dla mnie sześć, {playerName}, w dowolnym z trzech miast i przynieś mi ogryzki.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Nikczemne knoty',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Pięcioro drzwi, a wszystkie palce na miejscu. Oto sakiewka słodyczy na drogę do domu. Wróć jutro, drzwi znów się otworzą.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Drzwi, do których zapukano',
-  'entities.quests.q_gourdlight_rounds.text':
-    'W każdą Wigilię Dyniowych Świateł dzieci z Doliny obchodzą domy, a w tym roku do nich dołączysz, {playerName}. Zapukaj do pięciorga drzwi w naszych miastach, wypowiedz te słowa i zobacz, co dostaniesz. Wróć do mnie po wszystkim.',
-  'entities.quests.q_gourdlight_rounds.title': 'Dyniowy obchód',
   'guide.interfacePage.framesGovernedPriest':
     'Edycja ramek pozwala też przenieść medalion kapłana Cienia z Mroczną dziesięciną i Bombą dziesięciny.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Raz na dwie godziny, w chwili, której nikt nie potrafi przewidzieć, cały świat gry dowiaduje się, że za piętnaście minut w jednej z północnych stref wyrośnie wzgórze. Na otwartym terenie pojawia się krąg oznaczający jego miejsce. Wzgórze stoi przez trzydzieści minut, potem opada, a co pięć minut świat gry otrzymuje wiadomość o jego położeniu i grupach, które utrzymywały je najdłużej. Drużyna z największą liczbą graczy wewnątrz walczy o wzgórze i przejmuje je po trzydziestu sekundach przewagi. Wejście rywali tylko zatrzymuje licznik do odzyskania przewagi; odliczanie zaczyna się od nowa wyłącznie wtedy, gdy wewnątrz nie zostanie nikt żywy z twojej drużyny. Samotny gracz liczy się jako jednoosobowa drużyna i zachowuje wzgórze po utworzeniu drużyny, lecz członkowie rajdu w ogóle się nie liczą. Gdy drużyna utrzymuje wzgórze, każdy jej członek stojący wewnątrz zdobywa co minutę tyle samo Honoru niezależnie od czasu utrzymania. Pełna drużyna trzymająca wzgórze bez przeciwników przez cały czas zdobywa więc mniej więcej tyle, co za dwa zwycięstwa na polu bitwy. Kiedy wzgórze opada, jeśli grupa utrzymująca je łącznie najdłużej miała je przez co najmniej dziesięć minut, każdy, kto stał w nim dla tej grupy co najmniej minutę i nadal do niej należy, zdobywa jedno zwycięstwo do wiersza PvP Tygodniowego skarbca. Pasek nad polem pokazuje właściciela, liczebność obu stron i czas przejmowania; komenda /hill na czacie podaje położenie.',
-  'seasonal.boo.already': '{name} ma już dość strachu na dziś.',
-  'seasonal.boo.flash': 'BU! {name} się przestraszył!',
-  'seasonal.boo.frightenedHint':
-    '{name} wciąż podskakuje po twoim ostatnim straszeniu. Znajdź kogoś innego.',
-  'seasonal.boo.landed':
-    'Wyskakujesz przed {name} z okrzykiem BU! Rozlega się wrzask i niemal wszystko wypada mu z rąk.',
-  'seasonal.boo.needsCostume':
-    'Najpierw załóż kostium: użyj eliksiru przebrania, nietoperzego lub szkieletowego psikusa, Talizmanu słomiaka, Rzeźbionej dyniowej głowy albo goblińskiego łyku z Zielonobulgoczącego kotła.',
-  'seasonal.boo.noCostume':
-    'Bez kostiumu {name} tylko się z ciebie śmieje. Najpierw się przebierz.',
-  'seasonal.boo.notOnErrand': 'Hester nie poprosiła cię dziś o straszenie kogokolwiek.',
-  'seasonal.boo.row': 'Bu!',
-  'seasonal.boo.rowAria': 'Wyskocz przed {name} i krzyknij bu',
   'seasonal.boundItemGone':
     'Wigilia Dyniowych Świateł dobiegła końca i twój przedmiot {item} rozpada się z powrotem w słomę.',
   'seasonal.costume': 'Wypijasz eliksir i zmieniasz postać: {trick}!',
@@ -26007,8 +25970,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Stary Słomochichot daje jeden każdego dnia, kiedy zbierzesz z niego łup, dopóki nie zdobędziesz Miotły żarzącej szczeciny. Hester Dynioknot wymienia {count} na miotłę przy swoich straganach w Eastbrook, na Moście na Trzęsawisku i w Wysokiej Strażnicy. Niewydane snopy zostają na następną Wigilię Dyniowych Świateł.',
   'seasonal.itemUse.strawlingCharm':
     'Użycie: Zmieniasz się w jednego ze słomiaków Starego Słomochichota na {seconds} sekund. Poza walką. Nigdy się nie zużywa. Tylko wygląd.',
-  'seasonal.itemUse.sweet':
-    'Zdobywane za cukierek albo psikus podczas Wigilii Dyniowych Świateł. Hester Dynioknot wymienia je na przedmioty kosmetyczne przy swoich straganach w Eastbrook, na Moście na Trzęsawisku i w Wysokiej Strażnicy.',
   'seasonal.itemUse.titleWrit':
     'Użycie: Zdobywasz dla tej postaci tytuł {title}, zakładany w Księdze Czynów. Zużywa się. Jeśli masz już tytuł, zachowujesz akt.',
   'seasonal.itemUse.toyBats':
@@ -26053,20 +26014,7 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} rozbija ci dynię na głowie! Zdejmij ją prawym przyciskiem myszy albo noś z dumą.',
   'seasonal.toy.prankedFlash': 'Psikus od {name}!',
-  'seasonal.trickOrTreat.alreadyKnocked': 'Dziś już proszono {name} o cukierek albo psikus.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Dziś już tu pukano. Drzwi znów się otworzą po dziennym resecie.',
-  'seasonal.trickOrTreat.notActive': 'Wigilia Dyniowych Świateł obecnie nie trwa.',
-  'seasonal.trickOrTreat.row': 'Cukierek albo psikus!',
-  'seasonal.trickOrTreat.rowAria': 'Powiedz {name}: cukierek albo psikus',
-  'seasonal.trickOrTreat.tooFar': 'Podejdź bliżej, aby zapukać.',
-  'seasonal.trickOrTreat.treat': '{name} wręcza ci słodycz.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Cukierek! {count} dyniowe cukierki',
-  'seasonal.trickOrTreat.treatFlash.many': 'Cukierek! {count} dyniowych cukierków',
-  'seasonal.trickOrTreat.treatFlash.one': 'Cukierek! {count} dyniowy cukierek',
-  'seasonal.trickOrTreat.treatFlash.other': 'Cukierek! {count} dyniowego cukierka',
-  'seasonal.trickOrTreat.trick': '{name} płata ci figla: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Psikus! {trick}',
+  'seasonal.trickFlash': 'Psikus! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Kostium nietoperza',
   'seasonal.tricks.gourdlight_costume_ghost': 'Kostium ducha',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Kostium szkieletu',

@@ -26233,8 +26233,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Omino di paglia',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Zucca rigonfia',
   'entities.mobs.gourdlight_thatchgrin.name': 'Vecchio Thatchgrin',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Le zucche sono illuminate e le lanterne appese: dev’essere la Notte delle zucche. Bussa alle porte degli abitanti di Eastbrook, Fenbridge e Highwatch e pronuncia le parole: dolcetto o scherzetto. Quasi tutti ti daranno un dolce. Qualcuno ti farà uno scherzo. Portami i dolci a uno qualsiasi dei miei banchi e li scambierò con qualcosa da indossare.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Gourdwick',
   'entities.npcs.gourdlight_keeper.title': 'Custode della Notte delle zucche',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -26248,12 +26246,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Ogni Notte delle zucche riempio un cestino di dolci per un vecchio amico in ciascuna città, e le mie ginocchia non sono più quelle di una volta. Consegnali tu per me, {playerName}: al cuoco Marlow a Eastbrook, all’erborista Yara a Fenbridge e al maestro del sapere Caddis lassù a Highwatch.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Cestini per i vicini',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Tre? Ho sentito il cuoco far cadere una padella dall’altra parte della piazza. Ben fatto. Ecco la tua parte.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Abitanti spaventati',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Nessuno in queste città si prende un bello spavento da un anno, {playerName}, e una Notte delle zucche senza spaventi è solo una notte fredda. Mettiti un costume, uno qualsiasi dei miei andrà bene, oppure quella testa di zucca se te ne sei guadagnata una. Poi avvicinati di soppiatto a tre abitanti e fai loro un bel BU! a gran voce.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Bu!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Nere come un campo senza luna, e già odorano di fumo. Il falò sarà uno spettacolo. Grazie.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Piume di corvo',
@@ -26266,42 +26258,16 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'L’orto del Vecchio Thatchgrin oltre il Prato dei cinghiali trabocca di zucche, e metà sono rotolate oltre la portata della sua paglia, dove una persona prudente può raccoglierle. Portamene cinque, {playerName}. Stai alla larga dal vecchio spaventapasseri. Le conta tutte.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Zucche dall’orto',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Tre città in una notte! I tuoi stivali se lo sono meritato più di te.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Bussato a una porta di Eastbrook',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'Bussato a una porta di Fenbridge',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'Bussato a una porta di Highwatch',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'I bambini dicono che un vero viandante delle zucche bussa in ogni città prima che finisca la notte. Dimostra che hanno ragione, {playerName}. Chiedi dolcetto o scherzetto a una porta di Eastbrook, una di Fenbridge e una di Highwatch. Le lanterne sulle strade ti indicheranno il cammino.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Una porta in ogni città',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Sei mozziconi, freddi come la brina. Chi li ha accesi dovrà impegnarsi di più. Prendi questo e lavati le mani.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Candele maledette spente',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Qualcuno ha lasciato candele con fiamme verdi ai piedi dei nostri lampioni. Bruciano senza sciogliersi e sussurrano quando volti le spalle. Spegnine sei per me, {playerName}, in una qualsiasi delle tre città, e portami i mozziconi.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Stoppini sinistri',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Cinque porte e hai ancora tutte le dita. Tieni, un sacchetto di dolci per tornare a casa. Ripassa domani, le porte si apriranno di nuovo.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Porte a cui hai bussato',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Ogni Notte delle zucche i bambini della Valle fanno il loro giro, e quest’anno andrai con loro, {playerName}. Bussa a cinque porte nelle nostre città, pronuncia le parole e guarda cosa ti danno. Torna da me quando hai finito.',
-  'entities.quests.q_gourdlight_rounds.title': 'Il giro della Notte delle zucche',
   'guide.interfacePage.framesGovernedPriest':
     'Modifica riquadri permette anche di spostare il medaglione di Decima oscura e Bomba della decima del sacerdote Ombra.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Una volta ogni due ore, in un momento imprevedibile, tutto il reame viene avvisato che tra quindici minuti sorgerà una collina in una delle zone settentrionali, e il cerchio dove apparirà viene segnato in campo aperto. Rimane per trenta minuti, poi scompare. Mentre è presente, ogni cinque minuti il reame viene informato della sua posizione e dei gruppi che l’hanno controllata più a lungo. Il gruppo con più giocatori dentro il cerchio contende la collina e la conquista dopo trenta secondi di maggioranza. L’ingresso di un gruppo rivale mette solo in pausa il conteggio finché il tuo gruppo non torna in vantaggio; riparte da zero soltanto se non rimane nessun membro vivo del tuo gruppo all’interno. Un giocatore solo conta come un gruppo di una persona e mantiene la collina se forma un gruppo, ma i membri di un’incursione non contano affatto. Mentre un gruppo controlla la collina, ogni suo membro all’interno guadagna la stessa quantità di Onore ogni minuto, indipendentemente dalla durata del controllo. Un gruppo completo che la mantiene incontrastata per tutta la sua durata guadagna quindi circa quanto con due vittorie nei campi di battaglia. Quando scompare, se il gruppo che l’ha controllata più a lungo in totale l’ha tenuta per almeno dieci minuti, chiunque sia rimasto all’interno per quel gruppo per almeno un minuto e ne faccia ancora parte ottiene una vittoria per la riga PvP del forziere settimanale. Una barra sopra il campo mostra chi la controlla, i vostri numeri rispetto agli avversari e il tempo di contesa; /hill in chat ne indica la posizione.',
-  'seasonal.boo.already': '{name} ha avuto abbastanza spaventi per oggi.',
-  'seasonal.boo.flash': 'BU! {name} ha preso uno spavento!',
-  'seasonal.boo.frightenedHint':
-    '{name} sobbalza ancora per il tuo ultimo spavento. Cerca qualcun altro.',
-  'seasonal.boo.landed':
-    'Sbucando davanti a {name}, urli BU! Un grido squarcia l’aria e per poco non cade tutto.',
-  'seasonal.boo.needsCostume':
-    'Mettiti prima un costume: un intruglio da travestimento, uno scherzo da pipistrello o scheletro, l’Amuleto dell’omino di paglia, la Testa di zucca intagliata o un sorso da goblin dal Calderone Verdegorgoglio.',
-  'seasonal.boo.noCostume': 'Senza costume, {name} ti ride soltanto in faccia. Mettine uno prima.',
-  'seasonal.boo.notOnErrand': 'Hester non ti ha chiesto di spaventare nessuno oggi.',
-  'seasonal.boo.row': 'Bu!',
-  'seasonal.boo.rowAria': 'Sbuca davanti a {name} e urla bu',
   'seasonal.boundItemGone':
     'La Notte delle zucche è finita e il tuo oggetto {item} torna a sbriciolarsi in paglia.',
   'seasonal.costume': 'Bevi l’intruglio e ti trasformi: {trick}!',
@@ -26324,8 +26290,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
     'Il Vecchio Thatchgrin ne dà uno ogni giorno in cui lo depredi, finché non possiedi la Scopa dalle setole ardenti. Hester Gourdwick ne scambia {count} con la scopa ai suoi banchi di Eastbrook, Fenbridge e Highwatch. I covoni non spesi si conservano per la prossima Notte delle zucche.',
   'seasonal.itemUse.strawlingCharm':
     'Uso: ti trasforma in uno degli omini di paglia del Vecchio Thatchgrin per {seconds} secondi. Non utilizzabile in combattimento. Non si consuma mai. Cosmetico.',
-  'seasonal.itemUse.sweet':
-    'Si ottiene chiedendo dolcetto o scherzetto durante la Notte delle zucche. Hester Gourdwick li scambia con oggetti cosmetici ai suoi banchi di Eastbrook, Fenbridge e Highwatch.',
   'seasonal.itemUse.titleWrit':
     'Uso: ottieni il titolo {title} per questo personaggio, da indossare dal Libro delle Imprese. Si consuma. Si conserva se possiedi già il titolo.',
   'seasonal.itemUse.toyBats':
@@ -26371,20 +26335,7 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} ti spiaccica una zucca in testa! Toglila con un clic destro o indossala con orgoglio.',
   'seasonal.toy.prankedFlash': '{name} ti ha fatto uno scherzo!',
-  'seasonal.trickOrTreat.alreadyKnocked': 'Oggi hai già chiesto dolcetto o scherzetto a {name}.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Oggi hai già bussato qui. La porta si riapre dopo il ripristino giornaliero.',
-  'seasonal.trickOrTreat.notActive': 'La Notte delle zucche non è attiva al momento.',
-  'seasonal.trickOrTreat.row': 'Dolcetto o scherzetto!',
-  'seasonal.trickOrTreat.rowAria': 'Chiedi dolcetto o scherzetto a {name}',
-  'seasonal.trickOrTreat.tooFar': 'Avvicinati per bussare.',
-  'seasonal.trickOrTreat.treat': '{name} ti porge un dolcetto.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Dolcetto! {count} Dolcetti della Notte delle zucche',
-  'seasonal.trickOrTreat.treatFlash.many': 'Dolcetto! {count} Dolcetti della Notte delle zucche',
-  'seasonal.trickOrTreat.treatFlash.one': 'Dolcetto! {count} Dolcetto della Notte delle zucche',
-  'seasonal.trickOrTreat.treatFlash.other': 'Dolcetto! {count} Dolcetti della Notte delle zucche',
-  'seasonal.trickOrTreat.trick': '{name} ti fa uno scherzo: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Scherzetto! {trick}',
+  'seasonal.trickFlash': 'Scherzetto! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Costume da pipistrello',
   'seasonal.tricks.gourdlight_costume_ghost': 'Costume da fantasma',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Costume da scheletro',

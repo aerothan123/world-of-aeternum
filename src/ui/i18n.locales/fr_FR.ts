@@ -26347,8 +26347,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Créature de paille',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Courge gonflante',
   'entities.mobs.gourdlight_thatchgrin.name': 'Vieux Thatchgrin',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Les courges brillent et les lanternes sont suspendues : c’est donc la Veillée des courges. Frappez aux portes des habitants d’Eastbrook, de Fenbridge et de Highwatch, puis dites les mots : des bonbons ou un sort. La plupart vous donneront une friandise. Quelques-uns vous joueront un tour. Apportez-moi les friandises à n’importe lequel de mes étals et je vous les échangerai contre quelque chose à porter.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Gourdwick',
   'entities.npcs.gourdlight_keeper.title': 'Gardienne de la Veillée des courges',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -26362,12 +26360,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'À chaque Veillée des courges, je remplis une corbeille de friandises pour un vieil ami dans chaque ville, et mes genoux ne sont plus ce qu’ils étaient. Distribuez-les pour moi, {playerName} : au cuisinier Marlow à Eastbrook, à Yara l’herboriste à Fenbridge et au maître du savoir Caddis, là-haut à Highwatch.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Des corbeilles pour les voisins',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Trois ? J’ai entendu le cuisinier lâcher une poêle depuis l’autre bout de la place. Bien joué. Voici votre part.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Habitants effrayés',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Personne dans ces villes n’a eu une bonne frayeur depuis un an, {playerName}, et sans cela, la Veillée des courges n’est qu’une nuit froide. Enfilez un costume, n’importe lequel des miens fera l’affaire, ou cette tête de citrouille si vous en avez gagné une. Puis approchez-vous discrètement de trois habitants et poussez un bon gros BOUH !',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Bouh !',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Noires comme un champ sans lune, et elles sentent déjà la fumée. Le feu de joie sera splendide. Merci.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Plumes de corbeau',
@@ -26380,43 +26372,16 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Le potager du Vieux Thatchgrin, au-delà du Pré aux sangliers, regorge de citrouilles. La moitié ont roulé hors de portée de sa paille, là où une personne prudente peut les ramasser. Apportez-m’en cinq, {playerName}. Restez bien à l’écart du vieil épouvantail. Il les compte toutes.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Les citrouilles du potager',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Trois villes en une nuit ! Vos bottes ont davantage mérité ceci que vous.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'Une porte visitée à Eastbrook',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'Une porte visitée à Fenbridge',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'Une porte visitée à Highwatch',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Les enfants disent qu’un vrai promeneur des courges frappe aux portes de chaque ville avant la fin de la nuit. Donnez-leur raison, {playerName}. Demandez des bonbons ou un sort à une porte d’Eastbrook, une de Fenbridge et une de Highwatch. Les lanternes des routes éclaireront votre chemin.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'Une porte dans chaque ville',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Six bouts de chandelle, froids comme le givre. La personne qui les a allumés devra faire mieux que cela. Prenez ceci et lavez-vous les mains.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Chandelles maudites éteintes',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Quelqu’un dépose des chandelles aux flammes vertes au pied de nos réverbères. Elles brûlent sans fondre et murmurent dès qu’on leur tourne le dos. Éteignez-en six pour moi, {playerName}, dans n’importe laquelle des trois villes, et rapportez-moi les bouts.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Méchantes mèches',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Cinq portes, et vous avez encore tous vos doigts. Tenez, un sachet de friandises pour le retour. Revenez demain, les portes s’ouvriront à nouveau.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Portes auxquelles vous avez frappé',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Chaque Veillée des courges, les enfants de la vallée font leur tournée, et cette année vous les accompagnez, {playerName}. Frappez à cinq portes de nos villes, dites les mots et voyez ce qu’on vous offre. Revenez me voir une fois votre tournée terminée.',
-  'entities.quests.q_gourdlight_rounds.title': 'Tournée de la Veillée des courges',
   'guide.interfacePage.framesGovernedPriest':
     'Modifier les cadres permet aussi de déplacer le médaillon de Dîme sombre et de Bombe de dîme du prêtre Ombre.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'Une fois toutes les deux heures, à un instant imprévisible, tout le royaume apprend qu’une colline surgira dans l’une des zones du nord quinze minutes plus tard. Le cercle de son emplacement est alors marqué en terrain découvert. Elle reste trente minutes, puis disparaît. Tant qu’elle est présente, le royaume reçoit toutes les cinq minutes sa position et le nom des groupes qui l’ont contrôlée le plus longtemps. Le groupe comptant le plus de joueurs dans le cercle dispute la colline et la capture après trente secondes de majorité. L’arrivée d’un groupe rival ne fait que suspendre ce décompte jusqu’à ce que le vôtre reprenne l’avantage ; il ne repart de zéro que si aucun membre de votre groupe n’est encore vivant à l’intérieur. Un joueur seul compte comme un groupe d’une personne et conserve sa colline s’il crée un groupe, mais les membres d’un raid ne comptent pas. Tant qu’un groupe contrôle la colline, chacun de ses membres à l’intérieur gagne la même quantité d’Honneur chaque minute, quelle que soit la durée du contrôle. Un groupe complet qui la tient sans opposition pendant toute son apparition gagne ainsi environ autant qu’avec deux victoires en champ de bataille. Lorsqu’elle disparaît, si le groupe l’ayant contrôlée le plus longtemps au total l’a tenue au moins dix minutes, chaque personne restée à l’intérieur pour ce groupe pendant au moins une minute et en faisant toujours partie gagne une victoire pour la ligne JcJ du coffre hebdomadaire. Une barre au-dessus du terrain indique qui la contrôle, vos effectifs face aux leurs et le décompte de contestation ; /hill dans le chat indique sa position.',
-  'seasonal.boo.already': '{name} a eu assez de frayeurs pour aujourd’hui.',
-  'seasonal.boo.flash': 'BOUH ! {name} a peur !',
-  'seasonal.boo.frightenedHint':
-    '{name} sursaute encore depuis votre dernière farce. Trouvez quelqu’un d’autre.',
-  'seasonal.boo.landed':
-    'Vous bondissez devant {name} en criant BOUH ! Un hurlement retentit et tout manque de tomber.',
-  'seasonal.boo.needsCostume':
-    'Enfilez d’abord un costume : un breuvage de déguisement, un tour de chauve-souris ou de squelette, le Charme de créature de paille, la Tête de citrouille sculptée ou une gorgée de gobelin du Chaudron Vertglouglou.',
-  'seasonal.boo.noCostume':
-    'Sans costume, vous faites seulement rire {name}. Enfilez-en un d’abord.',
-  'seasonal.boo.notOnErrand': 'Hester ne vous a demandé d’effrayer personne aujourd’hui.',
-  'seasonal.boo.row': 'Bouh !',
-  'seasonal.boo.rowAria': 'Bondir devant {name} et crier bouh',
   'seasonal.boundItemGone':
     'La Veillée des courges est terminée et votre objet {item} retombe en paille.',
   'seasonal.costume': 'Vous buvez le breuvage et vous transformez : {trick} !',
@@ -26440,8 +26405,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
     'Le Vieux Thatchgrin vous en donne une chaque jour où vous le dépouillez, jusqu’à ce que vous possédiez le Balai aux brins de braise. Hester Gourdwick en échange {count} contre le balai à ses étals d’Eastbrook, de Fenbridge et de Highwatch. Les gerbes non dépensées sont conservées pour la prochaine Veillée des courges.',
   'seasonal.itemUse.strawlingCharm':
     'Utilisation : vous transforme en l’une des créatures de paille du Vieux Thatchgrin pendant {seconds} secondes. Inutilisable en combat. Jamais consommé. Cosmétique.',
-  'seasonal.itemUse.sweet':
-    'Obtenues en demandant des bonbons ou un sort pendant la Veillée des courges. Hester Gourdwick les échange contre des objets cosmétiques à ses étals d’Eastbrook, de Fenbridge et de Highwatch.',
   'seasonal.itemUse.titleWrit':
     'Utilisation : accorde le titre {title} à ce personnage, à porter depuis le Livre des hauts faits. Consommé à l’usage. Conservé si vous possédez déjà le titre.',
   'seasonal.itemUse.toyBats':
@@ -26487,25 +26450,7 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} vous écrase une citrouille sur la tête ! Retirez-la d’un clic droit ou portez-la fièrement.',
   'seasonal.toy.prankedFlash': '{name} vous a joué un tour !',
-  'seasonal.trickOrTreat.alreadyKnocked':
-    'Vous avez déjà demandé des bonbons ou un sort à {name} aujourd’hui.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Vous avez déjà frappé ici aujourd’hui. La porte rouvrira après la réinitialisation quotidienne.',
-  'seasonal.trickOrTreat.notActive': 'La Veillée des courges n’a pas lieu en ce moment.',
-  'seasonal.trickOrTreat.row': 'Des bonbons ou un sort !',
-  'seasonal.trickOrTreat.rowAria': 'Demander des bonbons ou un sort à {name}',
-  'seasonal.trickOrTreat.tooFar': 'Approchez-vous pour frapper.',
-  'seasonal.trickOrTreat.treat': '{name} vous tend une friandise.',
-  'seasonal.trickOrTreat.treatFlash.few':
-    'Des bonbons ! {count} Friandises de la Veillée des courges',
-  'seasonal.trickOrTreat.treatFlash.many':
-    'Des bonbons ! {count} Friandises de la Veillée des courges',
-  'seasonal.trickOrTreat.treatFlash.one':
-    'Des bonbons ! {count} Friandise de la Veillée des courges',
-  'seasonal.trickOrTreat.treatFlash.other':
-    'Des bonbons ! {count} Friandises de la Veillée des courges',
-  'seasonal.trickOrTreat.trick': '{name} vous joue un tour : {trick} !',
-  'seasonal.trickOrTreat.trickFlash': 'Un sort ! {trick}',
+  'seasonal.trickFlash': 'Un sort ! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Costume de chauve-souris',
   'seasonal.tricks.gourdlight_costume_ghost': 'Costume de fantôme',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Costume de squelette',

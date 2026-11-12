@@ -4,22 +4,28 @@
 // 1.5-level cap, kill-XP consumption (2x, kills only — not quests), the xp-bar
 // rested overlay fraction, and CharacterState persistence round-trip.
 import { describe, expect, it } from 'vitest';
+import { PROPS } from '../src/sim/data';
+import { ebv2OwnsBuiltin } from '../src/sim/eastbrook_v2';
 import { Sim } from '../src/sim/sim';
 import { DT, xpForLevel } from '../src/sim/types';
-import { PROPS } from '../src/sim/data';
-import { xpBarView } from '../src/ui/xp_bar';
 import { terrainHeight } from '../src/sim/world';
+import { xpBarView } from '../src/ui/xp_bar';
 
 function makeSim(): Sim {
   return new Sim({ seed: 42, playerClass: 'warrior', autoEquip: true });
 }
 
 function teleport(sim: Sim, e: any, x: number, z: number) {
-  e.pos.x = x; e.pos.z = z; e.pos.y = terrainHeight(x, z, sim.cfg.seed);
+  e.pos.x = x;
+  e.pos.z = z;
+  e.pos.y = terrainHeight(x, z, sim.cfg.seed);
   e.prevPos = { ...e.pos };
 }
 
-const inn = PROPS.buildings.find((b) => b.kind === 'inn')!;
+// The first authored inn record that still rests a body: Eastbrook's shipped inn
+// record stands on the Eastbrook Vale v2 design's ground, where the design's own
+// inn rests instead (sim/eastbrook_v2/rest.ts, pinned in the Eastbrook suites).
+const inn = PROPS.buildings.find((b) => b.kind === 'inn' && !ebv2OwnsBuiltin(b.x, b.z))!;
 
 describe('rested XP — accrual', () => {
   it('accrues while resting inside an inn footprint', () => {
@@ -113,14 +119,26 @@ describe('rested XP — consumption', () => {
 describe('rested XP — xp-bar overlay', () => {
   it('reports a rested overlay fraction ahead of the fill', () => {
     const need = xpForLevel(1);
-    const view = xpBarView({ level: 1, xp: need * 0.2, lifetimeXp: 0, restedXp: need * 0.3, showOverflow: false });
+    const view = xpBarView({
+      level: 1,
+      xp: need * 0.2,
+      lifetimeXp: 0,
+      restedXp: need * 0.3,
+      showOverflow: false,
+    });
     expect(view.fillFrac).toBeCloseTo(0.2, 5);
     expect(view.restedFrac).toBeCloseTo(0.3, 5);
   });
 
   it('clamps the overlay to the end of the bar', () => {
     const need = xpForLevel(1);
-    const view = xpBarView({ level: 1, xp: need * 0.8, lifetimeXp: 0, restedXp: need * 0.9, showOverflow: false });
+    const view = xpBarView({
+      level: 1,
+      xp: need * 0.8,
+      lifetimeXp: 0,
+      restedXp: need * 0.9,
+      showOverflow: false,
+    });
     expect(view.restedFrac).toBeCloseTo(0.2, 5); // 0.8 + 0.9 clamps to 1.0
   });
 

@@ -5,6 +5,7 @@
 // consumers are pinned by their own seam tests below.
 
 import { describe, expect, it } from 'vitest';
+import { HAZE_AERIAL_ONSET } from '../src/render/biome_haze_field_core';
 import { fogFarForBuiltGround } from '../src/render/chunk_residency_core';
 import { horizonHazePlan } from '../src/render/far_terrain_core';
 import {
@@ -19,7 +20,7 @@ import {
 import { MIN_OUTDOOR_FOG_FAR } from '../src/render/zone_streaming';
 import { isOnProvingShore, PROVING_SHORE_ARRIVAL } from '../src/sim/content/proving_shore';
 import { ZONES } from '../src/sim/data';
-import { terrainHeight, WATER_LEVEL } from '../src/sim/world';
+import { provingLandness, terrainHeight, WATER_LEVEL } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
 describe('islandIsolationActive', () => {
@@ -130,21 +131,29 @@ describe('the island horizon haze', () => {
       for (let z = az - 260; z <= az + 260; z++) {
         if (terrainHeight(x, z, WORLD_SEED) <= WATER_LEVEL) continue;
         const d = Math.hypot(x - ax, z - az);
-        if (isOnProvingShore(x, z)) furthestIsland = Math.max(furthestIsland, d);
+        // the island's own strand tips reach the zone edge (x -270), so its
+        // landness, not only its rectangle, says which landmass a sample is on
+        const island = isOnProvingShore(x, z) || provingLandness(x, z) > 0;
+        if (island) furthestIsland = Math.max(furthestIsland, d);
         else nearestMainland = Math.min(nearestMainland, d);
       }
     }
     return { nearestMainland, furthestIsland };
   }
 
-  it('starts the band inside the nearest dry mainland ground', () => {
+  it('starts the band just past the aerial onset, the vale coast across the strait nearer still', () => {
     const { nearestMainland, furthestIsland } = shoreDistances();
-    // Guards the premise: the far shore really is close enough that the
-    // envelope band would never reach it, and no radius separates the two
-    // landmasses, so the near edge is a judgement between them and not a
-    // clean split. If a content change ever moves either of these, the
-    // constant is the thing to re-derive.
-    expect(nearestMainland).toBeLessThan(200);
+    // Guards the premise: no radius separates the two landmasses, so the near
+    // edge is a judgement between them and not a clean split. If a content
+    // change ever moves either of these, the constant is the thing to
+    // re-derive. Re-derived 2026-11 for Eastbrook Vale v2, whose west coast
+    // and ferry dock now face the island across a strait a few dozen yards
+    // wide: that coast is nearer than the aerial haze field's onset, so near
+    // the strait neither the field nor the band tints it and its ground and
+    // trees read alike. The near edge cannot come in to that coast without
+    // hazing the coached run (pinned below), so it stays a short stride past
+    // the onset, where the field starts tinting the far shore's ground.
+    expect(nearestMainland).toBeLessThan(HAZE_AERIAL_ONSET);
     expect(furthestIsland).toBeGreaterThan(nearestMainland);
 
     const onIsland = horizonHazePlan(ENVELOPE, {
@@ -152,10 +161,10 @@ describe('the island horizon haze', () => {
       z: PROVING_SHORE_ARRIVAL.z,
     });
     expect(onIsland).toEqual(islandHorizonHaze());
-    // Every piece of the far shore is inside the band.
-    expect(onIsland.near).toBeLessThanOrEqual(nearestMainland);
-    // The envelope band would have missed all of it, which is the bug.
-    expect(horizonHazePlan(ENVELOPE).near).toBeGreaterThan(nearestMainland * 3);
+    expect(onIsland.near).toBeGreaterThanOrEqual(HAZE_AERIAL_ONSET);
+    expect(onIsland.near - HAZE_AERIAL_ONSET).toBeLessThanOrEqual(20);
+    // The envelope band would sit far out past the whole strait, which is the bug.
+    expect(horizonHazePlan(ENVELOPE).near).toBeGreaterThan(onIsland.near * 3);
   });
 
   it('leaves the whole coached run in front of the band', () => {

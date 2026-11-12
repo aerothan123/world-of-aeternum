@@ -877,25 +877,24 @@ describe('terrain covers the whole world, gaps between zone rectangles included'
       return x >= box.min.x && x <= box.max.x && z >= box.min.z && z <= box.max.z;
     });
 
-  it('meshes the ground at (-195, 161), west of Eastbrook Vale on the island strait', async () => {
+  it('meshes the seabed at (-258, 161), west of Eastbrook Vale on the island strait', async () => {
     vi.resetModules();
     mockEmptyAssetLoads();
     const { buildTerrain } = await import('../src/render/terrain');
     const { ZONES } = await import('../src/sim/data');
     const { terrainHeight, WATER_LEVEL } = await import('../src/sim/world');
 
-    // This column was a no-zone gap (dry walkable ground) before the Proving
-    // Shore: the tutorial island's zone rectangle now tiles it, and its coast
-    // recipe turns the spot into the open strait between the island and the
-    // vale. Pin the premise on the shipped world seed: honest seabed BELOW
-    // the water plane, which still needs a meshed chunk under it or a
-    // swimming player sees a hole where the sea floor should be.
-    expect(terrainHeight(-195, 161, WORLD_SEED)).toBeLessThan(WATER_LEVEL);
+    // The strait between the tutorial island and the vale. Eastbrook Vale v2
+    // grew the vale west to x -270 and carried its west shore out to about
+    // x -240, so the old probe (-195, 161) is dry vale ground now and the
+    // strait lies at x -270..-240. Pin the premise on the shipped world seed:
+    // honest seabed BELOW the water plane, which still needs a meshed chunk
+    // under it or a swimming player sees a hole where the sea floor should be.
+    expect(terrainHeight(-258, 161, WORLD_SEED)).toBeLessThan(WATER_LEVEL);
 
     const terrain = buildTerrain(WORLD_SEED);
-    // The cell belongs to the island's zone now, so its build is what meshes
-    // the spot; the vale-side neighbor builds alongside it the way the
-    // renderer's streaming horizon would approaching the strait.
+    // The strait cell sits on the island/vale seam, so both zone builds stream
+    // in, the way the renderer's streaming horizon would approaching the strait.
     for (const id of ['proving_shore', 'eastbrook_vale']) {
       const zone = ZONES.find((candidate) => candidate.id === id);
       if (!zone) throw new Error(`missing zone ${id}`);
@@ -904,7 +903,7 @@ describe('terrain covers the whole world, gaps between zone rectangles included'
       await task;
     }
 
-    expect(coversPoint(terrain.group, -195, 161)).toBe(true);
+    expect(coversPoint(terrain.group, -258, 161)).toBe(true);
     terrain.cancelStreaming();
   });
 

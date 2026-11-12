@@ -1,0 +1,108 @@
+{
+  "note": "Where each piece of Eastbrook content stands on the v2 design. scripts/eastbrook_v2/resite_eastbrook_v2.ts reads this and writes src/sim/eastbrook_v2/sites.generated.ts. `anchors` ties a content key to a design point (the content stands at the nearest clear, dry, walkable spot to it; `exact` keys stand on the point itself). Every other Eastbrook NPC, quest object and camp keeps its own position when that is still valid on the design ground, and otherwise moves to the nearest valid spot (searchRadius yards). `nodes` maps vale gather nodes onto the design's own nodes; the six Copper Dig veins are left out on purpose, so they keep their field round the Copper Dig landmark that q_prof_intro sends a miner to (the design's two in-slot veins lie 90 yd apart, far from it), stepping only as far as they must to clear the design's solids. Content standing on shipped ground (the edge band) never moves, and neither does a camp whose levelling disc already reaches past the slot edge, so no neighbour's ground changes. The first Vale Bandit camp anchors to the design's bandit camp muster ground (camp_banditcamp_muster: the compound moved inside the slot by pass 4, and the spot in it where the camp's whole spawn ring stands clear and every camp rule holds). An object group either follows a building onto a design point, or moves by an explicit from/to offset: the old quay's cargo and posts (the harbor cove is the design's mill ground now) gather on the bank behind the west cove's ferry dock.",
+  "exact": ["svc:noticeboard", "svc:playerStart"],
+  "anchors": {
+    "svc:playerStart": "player_spawn",
+    "svc:mailbox": "svc_mailbox",
+    "svc:noticeboard": "svc_noticeboard",
+    "svc:graveyard": "lm_graveyardknoll",
+    "station:station_eastbrook_forge": "station_forge",
+    "station:station_eastbrook_kitchens": "svc_inn",
+    "station:station_eastbrook_loom": "station_loom",
+    "station:station_eastbrook_apothecary": "station_alchemy",
+    "station:station_eastbrook_toolworks": "station_workbench",
+    "station:station_eastbrook_tannery": "station_tannery",
+    "npc:the_merchant": "svc_vendors",
+    "npc:trader_wilkes": "svc_vendors",
+    "npc:marshal_redbrook": "svc_noticeboard",
+    "npc:apothecary_lin": "station_alchemy",
+    "npc:herbalist_olvessa": "svc_apothecary",
+    "npc:brother_aldric": "svc_chapel",
+    "npc:npc_church_order_quartermaster": "svc_chapel",
+    "npc:historian_orwin": "svc_chapel",
+    "npc:smith_haldren": "svc_smithy",
+    "npc:fisherman_brandt": "gate_west",
+    "npc:foreman_odell": "svc_crafting",
+    "npc:carpenter_pella": "svc_crafting",
+    "npc:bursar_fernando": "svc_bank",
+    "npc:eastbrook_vault_keeper": "svc_bank",
+    "npc:card_master": "svc_inn",
+    "npc:innkeeper_jorren": "svc_inn",
+    "npc:chronicler_saul": "svc_mailbox",
+    "npc:forgemistress_darva": "station_forge",
+    "npc:cook_marlow": "svc_inn",
+    "npc:weaver_ottilie": "station_loom",
+    "npc:tinker_gizzel": "station_workbench",
+    "npc:tanner_tamsin": "station_tannery",
+    "npc:fury": "svc_guardpost",
+    "npc:gravekeeper_holven": "lm_graveyardknoll",
+    "camp:vale_bandit@79,25": "camp_banditcamp_muster"
+  },
+  "lots": {
+    "eastbrook_terrace_west": "lot_larkspur",
+    "eastbrook_terrace_middle": "lot_thimble",
+    "eastbrook_terrace_east": "lot_honeystone",
+    "eastbrook_slate_townhouse": "lot_plumtree",
+    "eastbrook_corner_house": "lot_bracken",
+    "eastbrook_stone_cottage": "lot_ashgrove",
+    "eastbrook_red_roof_cottage": "lot_marketrest",
+    "eastbrook_timber_house": "lot_reedbank",
+    "eastbrook_green_townhouse": "lot_fernhill",
+    "eastbrook_quay_cottage": "lot_cobbler"
+  },
+  "nodes": {
+    "herb_eastbrook_1": "herb",
+    "herb_eastbrook_2": "herb",
+    "herb_eastbrook_3": "herb",
+    "herb_eastbrook_4": "herb",
+    "herb_eastbrook_5": "herb",
+    "herb_eastbrook_6": "berry"
+  },
+  "objectGroups": [
+    {
+      "building": "eastbrook_inn",
+      "point": "svc_inn",
+      "items": [
+        "c1_tapping_wall_panel",
+        "c1_speaking_pipe",
+        "c1_nibbled_rent_notice",
+        "c1_bread_heel",
+        "c1_pantry_saucer",
+        "c1_covered_stew_bowl",
+        "c1_bread_bundle",
+        "c1_inn_hearth"
+      ]
+    },
+    {
+      "building": "eastbrook_chapel",
+      "point": "svc_chapel",
+      "items": [
+        "c1_founders_prayer_board",
+        "c1_founding_map",
+        "c1_reading_desk",
+        "c1_black_cloth_snag"
+      ]
+    },
+    {
+      "building": "eastbrook_chapel",
+      "point": "lm_graveyardknoll",
+      "items": ["c1_disturbed_grave"]
+    },
+    {
+      "from": { "x": 45.7, "z": -117.7 },
+      "to": { "x": 150, "z": -114 },
+      "items": ["c1_name_stone", "c1_unlit_grave_lamp"]
+    },
+    {
+      "from": { "x": -90, "z": -54 },
+      "to": { "x": -211, "z": 97 },
+      "items": ["c1_quay_inspection_post", "c2_dry_cargo_crate", "c2_cargo_mark", "c2_jetty_post"]
+    }
+  ],
+  "campFollowers": { "supply_crate": "vale_bandit" },
+  "searchRadius": { "npc": 16, "object": 8, "camp": 110, "station": 8, "service": 8, "node": 12 },
+  "npcSpacing": 2.2,
+  "boardClearance": 5.5,
+  "hubSafeMargin": 60,
+  "outskirtClearance": 25
+}

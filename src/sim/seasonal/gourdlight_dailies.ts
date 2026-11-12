@@ -9,36 +9,18 @@
 //
 // This module also owns the errands' world pieces (the stray patch pumpkins and the
 // cursed candles, raised while the event runs under reserved ids that never touch the
-// entity allocator or the rng) and the costumed fright: say BOO to a townsperson while
-// wearing a costume, and they start (a gesture everyone nearby sees) and the errand
-// counts them, once a day per townsperson. No rng anywhere here.
+// entity allocator or the rng). No rng anywhere here.
 
-import {
-  GOURDLIGHT_EVE_ID,
-  TRICK_OR_TREAT,
-  TRICK_OR_TREAT_NPC_IDS,
-  TRICK_OR_TREAT_NPCS,
-} from '../content/gourdlight_eve';
+import { GOURDLIGHT_EVE_ID } from '../content/gourdlight_eve';
 import {
   CURSED_CANDLE_ID,
-  GOURDLIGHT_BOO_COSTUME_AURAS,
-  GOURDLIGHT_BOO_LEDGER_PREFIX,
-  GOURDLIGHT_BOO_QUEST_EVENT,
-  GOURDLIGHT_BOO_STARTLE,
-  GOURDLIGHT_DAILY_BOO_QUEST_ID,
   GOURDLIGHT_DAILY_POOL,
-  GOURDLIGHT_TOWN_KNOCK_EVENTS,
   PATCH_PUMPKIN_ID,
 } from '../content/gourdlight_eve_dailies';
 import { createGroundObject } from '../entity';
-import { onQuestEventForQuests } from '../quests/quest_credit';
 import { gourdlightDailySites } from '../seasonal_daily_sites';
-import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
-import { dist2d } from '../types';
 import { civilDayNumber } from '../world_quest_rotation';
-import { markGourdlightFright } from './gourdlight_deed_marks';
-import { activeSeasonalEventOf, knockedToday } from './seasonal_state';
 
 // Reserved entity ids (the haunted pumpkins' scheme, haunted_pumpkins.ts -910000):
 // negative, below every allocator id, one block per errand.
@@ -102,90 +84,4 @@ export function updateGourdlightDailyObjects(ctx: SimContext, active: string | n
   const sites = gourdlightDailySites(ctx.cfg.seed);
   syncObjects(ctx, open, PATCH_ENTITY_BASE, PATCH_PUMPKIN_ID, 'Patch Pumpkin', sites.patch);
   syncObjects(ctx, open, CANDLE_ENTITY_BASE, CURSED_CANDLE_ID, 'Cursed Candle Stub', sites.candles);
-}
-
-/** The town a trick-or-treat townsperson lives in (zone id), or null. */
-export function trickOrTreatTownOf(templateId: string): string | null {
-  for (const [zoneId, ids] of Object.entries(TRICK_OR_TREAT_NPCS)) {
-    if (ids.includes(templateId)) return zoneId;
-  }
-  return null;
-}
-
-/** An accepted knock also counts for the towns errand (its town's own event). */
-export function creditTownKnock(ctx: SimContext, meta: PlayerMeta, npcTemplateId: string): void {
-  const town = trickOrTreatTownOf(npcTemplateId);
-  const eventId = town ? GOURDLIGHT_TOWN_KNOCK_EVENTS[town] : undefined;
-  if (eventId) onQuestEventForQuests(ctx, meta, eventId);
-}
-
-/** The ledger key a fright takes in the day's knock ledger. */
-export function booLedgerKey(npcTemplateId: string): string {
-  return `${GOURDLIGHT_BOO_LEDGER_PREFIX}${npcTemplateId}`;
-}
-
-/** Whether a body wears a look that counts as a costume for a fright. */
-export function wearsGourdlightCostume(auras: readonly { id: string }[]): boolean {
-  return auras.some((a) => GOURDLIGHT_BOO_COSTUME_AURAS.includes(a.id));
-}
-
-export type BooOutcome =
-  | 'frightened'
-  | 'notActive'
-  | 'notOnErrand'
-  | 'noCostume'
-  | 'alreadyFrightened'
-  | 'tooFar'
-  | 'invalid';
-
-/** Say BOO to NPC entity `npcId` as player `pid`. Every outcome draws no rng. */
-export function booTownsfolk(ctx: SimContext, npcId: number, pid?: number): BooOutcome {
-  const r = ctx.resolve(pid);
-  if (!r) return 'invalid';
-  const { meta, e: player } = r;
-  const npc = ctx.entities.get(npcId);
-  if (
-    !npc ||
-    npc.kind !== 'npc' ||
-    npc.dead ||
-    !TRICK_OR_TREAT_NPC_IDS.has(npc.templateId) ||
-    player.dead
-  )
-    return 'invalid';
-  const notice = (
-    what: 'notActive' | 'booNotOnErrand' | 'booNoCostume' | 'booAlready' | 'tooFar',
-  ) => ctx.emit({ type: 'seasonal', what, npc: npc.templateId, pid: meta.entityId });
-  if (activeSeasonalEventOf(ctx.seasonal) !== GOURDLIGHT_EVE_ID) {
-    notice('notActive');
-    return 'notActive';
-  }
-  if (meta.questLog.get(GOURDLIGHT_DAILY_BOO_QUEST_ID)?.state !== 'active') {
-    notice('booNotOnErrand');
-    return 'notOnErrand';
-  }
-  if (dist2d(player.pos, npc.pos) > TRICK_OR_TREAT.range) {
-    notice('tooFar');
-    return 'tooFar';
-  }
-  if (!wearsGourdlightCostume(player.auras)) {
-    notice('booNoCostume');
-    return 'noCostume';
-  }
-  const ledger = knockedToday(meta, ctx.resetDay);
-  const key = booLedgerKey(npc.templateId);
-  if (ledger.has(key)) {
-    notice('booAlready');
-    return 'alreadyFrightened';
-  }
-  ledger.add(key);
-  // the start: the townsperson throws up their hands where everyone nearby can see
-  npc.overheadEmoteId = GOURDLIGHT_BOO_STARTLE.gesture;
-  npc.overheadEmoteUntil = ctx.time + GOURDLIGHT_BOO_STARTLE.seconds;
-  npc.overheadEmoteSeq += 1;
-  ctx.emit({ type: 'seasonal', what: 'boo', npc: npc.templateId, pid: meta.entityId });
-  onQuestEventForQuests(ctx, meta, GOURDLIGHT_BOO_QUEST_EVENT);
-  // the whole-event checklist's town (Book of Deeds, gourdlight_deed_marks.ts)
-  markGourdlightFright(ctx, meta, npc.templateId);
-  meta.wireRev++;
-  return 'frightened';
 }

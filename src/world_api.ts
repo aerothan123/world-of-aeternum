@@ -57,7 +57,7 @@
 //   transport.ts        IWorldTransport      the scheduled ferry's phase, ship pose, passenger bit
 //   world_pvp.ts        IWorldWorldPvp       the /pvp flag: self readout + raise/lower command
 //   seating.ts          IWorldSeating        sit on a piece of furniture by its seat id
-//   seasonal.ts         IWorldSeasonal       the running seasonal event + trick-or-treat
+//   seasonal.ts         IWorldSeasonal       the running seasonal event + pumpkin finds
 //   housing.ts          IWorldHousing        player housing: the static lots and anchors, the
 //                                            caller's own house and house storage, and the
 //                                            buy / place / remove furniture and storage
@@ -1005,8 +1005,6 @@ export const COMMAND_NAMES = [
   // (IWorldQuests.buyGuildCosmetic; src/sim/guild_quartermaster.ts). Appended at the END
   // because wire tokens are never reordered.
   'guild_buy_cosmetic',
-  // Say trick or treat to an NPC (IWorldSeasonal.trickOrTreat; src/sim/seasonal/).
-  'trick_or_treat',
   // Player housing (Project H): buy the house on a lot (Sim.buyHouse via
   // src/sim/housing/ownership.ts). Carries the lot id only; the sim owns every
   // rule. Appended because wire tokens are never reordered.
@@ -1452,9 +1450,6 @@ export const COMMAND_FACETS = {
   dungeon_guide_answer: 'IWorldDungeons',
   // IWorldSeating: sit on a seat (the seats and who holds one are derived, untagged).
   sit_seat: 'IWorldSeating',
-  // IWorldSeasonal: the trick-or-treat knock (the event and the day's knocks are
-  // the `season` / `tot` self-delta mirrors, untagged).
-  trick_or_treat: 'IWorldSeasonal',
   // IWorldHousing: the purchase verb. houseLots (static content) and myHouse
   // (the `hse` self-delta mirror) carry no wire command and stay untagged.
   buy_house: 'IWorldHousing',

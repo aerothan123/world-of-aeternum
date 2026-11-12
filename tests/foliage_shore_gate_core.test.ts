@@ -16,11 +16,15 @@ describe('foliageShoreSkip', () => {
     expect(foliageShoreSkip(0, 0, WATER_LEVEL + 5, WORLD_SEED)).toBe(false);
   });
 
-  it('lets the Wolf Run basin grow: in-band height, but no water nearby', () => {
+  it('lets an inland basin grow: in-band height, but no water nearby', () => {
+    // Was the Wolf Run basin at (0,-16)..(24,0). Eastbrook Vale v2 lifted that
+    // ground out of the beach band and every in-band vale cell on the design
+    // now lies by water, so the same rule is pinned on the Chalkbarrow Coast's
+    // low inland plain: in-band, dry, and far from any water.
     for (const [x, z] of [
-      [0, -16],
-      [16, -8],
-      [24, 0],
+      [-390, -516],
+      [-384, -522],
+      [-396, -510],
     ] as const) {
       const h = terrainHeight(x, z, WORLD_SEED);
       expect(h, `(${x},${z}) should sit inside the beach band`).toBeGreaterThan(WATER_LEVEL);
@@ -29,10 +33,14 @@ describe('foliageShoreSkip', () => {
     }
   });
 
-  it("keeps the town's south strand and the cove rim bare", () => {
+  it("keeps the town's south strand and the lake rim bare", () => {
+    // Eastbrook Vale v2: the town's south strand runs along z -170 below the
+    // south gate (the old strand at (-14,-136) is inside the walled town now),
+    // and the old harbor cove rim (-99,-37) is mill ground; the Mirror Lake
+    // west rim stands in for it as the in-band rim beside water.
     for (const [x, z] of [
-      [-14, -136],
-      [-99, -37],
+      [-14, -170],
+      [-128, 90],
     ] as const) {
       const h = terrainHeight(x, z, WORLD_SEED);
       expect(h, `(${x},${z}) should sit inside the beach band`).toBeGreaterThan(WATER_LEVEL);

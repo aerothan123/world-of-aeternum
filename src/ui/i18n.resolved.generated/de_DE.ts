@@ -8609,23 +8609,7 @@ export const de_DE: EnTranslations = {
         "name": "Kürbislichtnacht"
       }
     },
-    "trickOrTreat": {
-      "row": "Süßes oder Saures!",
-      "rowAria": "Bei {name} Süßes oder Saures verlangen",
-      "knockedHint": "Du hast heute hier schon angeklopft. Nach der täglichen Zurücksetzung öffnet sich die Tür wieder.",
-      "treat": "{name} gibt dir eine Süßigkeit.",
-      "trick": "{name} spielt dir einen Streich: {trick}!",
-      "alreadyKnocked": "Du hast heute schon bei {name} Süßes oder Saures verlangt.",
-      "notActive": "Die Kürbislichtnacht findet gerade nicht statt.",
-      "tooFar": "Komm näher, um anzuklopfen.",
-      "treatFlash": {
-        "one": "Süßes! {count} Kürbislicht-Süßigkeit",
-        "few": "Süßes! {count} Kürbislicht-Süßigkeiten",
-        "many": "Süßes! {count} Kürbislicht-Süßigkeiten",
-        "other": "Süßes! {count} Kürbislicht-Süßigkeiten"
-      },
-      "trickFlash": "Saures! {trick}"
-    },
+    "trickFlash": "Saures! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Fledermausfieber",
       "gourdlight_trick_skeleton": "Klapperknochen",
@@ -8650,7 +8634,7 @@ export const de_DE: EnTranslations = {
       "trickJar": "Benutzen: Spielt dir für ein paar Sekunden einen zufälligen, harmlosen Streich. Kosmetisch.",
       "pouch": "Benutzen: Öffne ihn, um {count} Kürbislicht-Süßigkeiten zu erhalten.",
       "strawlingCharm": "Benutzen: Werde für {seconds} Sekunden zu einem Strohling des Alten Thatchgrin. Nicht im Kampf benutzbar. Wird niemals verbraucht. Kosmetisch.",
-      "sweet": "Durch Süßes oder Saures während der Kürbislichtnacht verdient. Hester Gourdwick tauscht sie an ihren Ständen in Eastbrook, Fenbridge und Highwatch gegen kosmetische Gegenstände.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Benutzen: Verwandle dich für {minutes} Minuten in ein klapperndes Skelett. Wird verbraucht. Im Kampf nicht benutzbar; der Kampfbeginn beendet den Effekt. Kosmetisch.",
       "costumeGhost": "Benutzen: Verwandle dich für {minutes} Minuten in einen schwebenden Geist. Wird verbraucht. Im Kampf nicht benutzbar; der Kampfbeginn beendet den Effekt. Kosmetisch.",
       "costumeBat": "Benutzen: Verwandle dich für {minutes} Minuten in eine flatternde Fledermaus. Wird verbraucht. Im Kampf nicht benutzbar; der Kampfbeginn beendet den Effekt. Kosmetisch.",
@@ -8677,17 +8661,6 @@ export const de_DE: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Beute vom Alten Thatchgrin auf seinem Kürbisfeld hinter der Eberwiese, wenn du ihn zum ersten Mal plünderst. Bei keinem Händler erhältlich."
-    },
-    "boo": {
-      "row": "Buh!",
-      "rowAria": "Vor {name} springen und Buh rufen",
-      "needsCostume": "Zieh zuerst ein Kostüm an: einen Kostümtrunk, einen Fledermaus- oder Skelettstreich, den Strohlingtalisman, den Geschnitzten Kürbiskopf oder einen Goblinschluck aus dem Grünblubberkessel.",
-      "frightenedHint": "{name} ist von deinem letzten Schrecken noch ganz schreckhaft. Suche jemand anderen.",
-      "landed": "Du springst vor {name} und rufst BUH! Ein Kreischen ertönt, und beinahe fällt alles zu Boden.",
-      "flash": "BUH! {name} ist erschrocken!",
-      "noCostume": "Ohne Kostüm lacht {name} dich nur aus. Zieh erst eines an.",
-      "already": "{name} hat für heute genug Schrecken erlebt.",
-      "notOnErrand": "Hester hat dich heute nicht gebeten, jemanden zu erschrecken."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const de_DE: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Hüterin des Kürbislichts",
-        "greeting": "Die Kürbisse leuchten und die Laternen hängen, also muss Kürbislichtnacht sein. Klopfe bei den Leuten in Eastbrook, Fenbridge und Highwatch an und sage die Worte: Süßes oder Saures. Die meisten geben dir eine Süßigkeit. Einige spielen dir einen Streich. Bring die Süßigkeiten zu einem meiner Stände, und ich tausche sie gegen etwas zum Anziehen."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Vogtin Ottoline",
@@ -30948,16 +30921,6 @@ export const de_DE: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Kürbislichtrunde",
-        "text": "Jede Kürbislichtnacht ziehen die Kinder des Tals ihre Runden, und dieses Jahr begleitest du sie, {playerName}. Klopfe an fünf Türen in unseren Städten, sage die Worte und sieh, was du bekommst. Komm zu mir zurück, wenn du fertig bist.",
-        "completion": "Fünf Türen und noch alle Finger dran. Hier, ein Beutel Süßigkeiten für den Heimweg. Komm morgen wieder, dann öffnen sich die Türen erneut.",
-        "objectives": {
-          "0": {
-            "label": "An Türen angeklopft"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Kürbisse vom Acker",
         "text": "Der Acker des Alten Thatchgrin hinter der Eberwiese ist voller Kürbisse. Die Hälfte ist außerhalb der Reichweite seines Strohs gerollt, wo vorsichtige Leute sie erreichen können. Bring mir fünf, {playerName}. Halte dich von der alten Vogelscheuche selbst fern. Er zählt jeden einzelnen.",
@@ -30968,16 +30931,6 @@ export const de_DE: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Buh!",
-        "text": "Seit einem Jahr hat sich in diesen Städten niemand mehr richtig erschreckt, {playerName}, und eine Kürbislichtnacht ohne Schrecken ist nur eine kalte Nacht. Zieh ein Kostüm an, irgendeines von meinen genügt, oder den Kürbiskopf, falls du dir einen verdient hast. Dann schleiche dich an drei Stadtbewohner heran und rufe ein ordentlich lautes BUH!",
-        "completion": "Drei? Ich habe quer über den Platz gehört, wie der Koch eine Pfanne fallen ließ. Gut gemacht. Hier ist dein Anteil.",
-        "objectives": {
-          "0": {
-            "label": "Stadtbewohner erschreckt"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Böse Dochte",
         "text": "Jemand stellt Kerzen mit grünen Flammen an den Fuß unserer Laternenpfähle. Sie brennen, ohne zu schmelzen, und flüstern, wenn man ihnen den Rücken zukehrt. Lösche sechs für mich, {playerName}, in einer beliebigen der drei Städte, und bring mir die Stummel.",
@@ -30985,22 +30938,6 @@ export const de_DE: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Verfluchte Kerzen gelöscht"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Eine Tür in jeder Stadt",
-        "text": "Die Kinder sagen, ein echter Kürbislichtwanderer klopft in jeder Stadt an, ehe die Nacht vorbei ist. Gib ihnen recht, {playerName}. Verlange Süßes oder Saures an je einer Tür in Eastbrook, Fenbridge und Highwatch. Die Laternen an den Straßen leuchten dir den Weg.",
-        "completion": "Drei Städte in einer Nacht! Deine Stiefel haben sich das mehr verdient als du.",
-        "objectives": {
-          "0": {
-            "label": "An einer Tür in Eastbrook angeklopft"
-          },
-          "1": {
-            "label": "An einer Tür in Fenbridge angeklopft"
-          },
-          "2": {
-            "label": "An einer Tür in Highwatch angeklopft"
           }
         }
       },

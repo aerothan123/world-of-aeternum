@@ -64,12 +64,21 @@ describe('the continent derives the right border set', () => {
     });
   });
 
-  it('has twelve horizontal borders and sixteen column edges', () => {
+  it('has thirteen horizontal borders and sixteen column edges', () => {
     // the Farshore adds a v-edge against the vale and an h-line under the
     // Galecrest: both are open-sea borders with no isthmus (ferry only); the
     // Proving Shore mirrors both on the east column (v-edge against the
-    // vale, h-line under the Willowfen), open sea with the ferry portal only
-    expect(edges.filter((e) => e.kind === 'h').length).toBe(12);
+    // vale, h-line under the Willowfen), open sea with the ferry portal only.
+    // Thirteen, not twelve: Eastbrook Vale v2 grew the vale west to x -270, so
+    // the line under the Willowfen splits in two (the island's x -540..-270 and
+    // the vale's x -270..-180), both open sea with no pass in their span.
+    expect(edges.filter((e) => e.kind === 'h').length).toBe(13);
+    const underWillowfen = edges.filter((e) => e.kind === 'h' && e.at === 180 && e.hi <= -180);
+    expect(underWillowfen.map((e) => [e.lo, e.hi]).sort((a, b) => a[0] - b[0])).toEqual([
+      [-540, -270],
+      [-270, -180],
+    ]);
+    for (const e of underWillowfen) expect(e.passAt < e.lo || e.passAt > e.hi).toBe(true);
     expect(edges.filter((e) => e.kind === 'v').length).toBe(16);
   });
 

@@ -8609,23 +8609,7 @@ export const nl_NL: EnTranslations = {
         "name": "Pompoenlichtavond"
       }
     },
-    "trickOrTreat": {
-      "row": "Snoep of een streek!",
-      "rowAria": "Vraag {name} om snoep of een streek",
-      "knockedHint": "Je hebt hier vandaag al aangeklopt. De deur opent weer na de dagelijkse reset.",
-      "treat": "{name} geeft je een snoepje.",
-      "trick": "{name} haalt een streek met je uit: {trick}!",
-      "alreadyKnocked": "Je hebt vandaag al om snoep of een streek gevraagd bij {name}.",
-      "notActive": "Pompoenlichtavond is momenteel niet actief.",
-      "tooFar": "Kom dichterbij om aan te kloppen.",
-      "treatFlash": {
-        "one": "Snoep! {count} Pompoenlichtsnoepje",
-        "few": "Snoep! {count} Pompoenlichtsnoepjes",
-        "many": "Snoep! {count} Pompoenlichtsnoepjes",
-        "other": "Snoep! {count} Pompoenlichtsnoepjes"
-      },
-      "trickFlash": "Een streek! {trick}"
-    },
+    "trickFlash": "Een streek! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Vleermuisgekte",
       "gourdlight_trick_skeleton": "Rammelende botten",
@@ -8650,7 +8634,7 @@ export const nl_NL: EnTranslations = {
       "trickJar": "Gebruik: haalt een paar seconden een willekeurige, onschuldige streek met je uit. Cosmetisch.",
       "pouch": "Gebruik: open het om {count} Pompoenlichtsnoepjes te ontvangen.",
       "strawlingCharm": "Gebruik: word {seconds} seconden een van de strolingen van Oude Thatchgrin. Niet bruikbaar in gevechten. Wordt nooit verbruikt. Cosmetisch.",
-      "sweet": "Verdiend door tijdens Pompoenlichtavond om snoep of een streek te vragen. Hester Gourdwick ruilt ze voor cosmetische voorwerpen bij haar kraampjes in Eastbrook, Fenbridge en Highwatch.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Gebruik: verander {minutes} minuten in een rammelend skelet. Wordt verbruikt. Niet bruikbaar in gevechten; een gevecht beginnen beëindigt het effect. Cosmetisch.",
       "costumeGhost": "Gebruik: verander {minutes} minuten in een zwevende geest. Wordt verbruikt. Niet bruikbaar in gevechten; een gevecht beginnen beëindigt het effect. Cosmetisch.",
       "costumeBat": "Gebruik: verander {minutes} minuten in een fladderende vleermuis. Wordt verbruikt. Niet bruikbaar in gevechten; een gevecht beginnen beëindigt het effect. Cosmetisch.",
@@ -8677,17 +8661,6 @@ export const nl_NL: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Buit van Oude Thatchgrin op zijn pompoenveld voorbij de Everweide, de eerste keer dat je hem plundert. Geen enkele verkoper verkoopt dit."
-    },
-    "boo": {
-      "row": "Boe!",
-      "rowAria": "Spring voor {name} tevoorschijn en roep boe",
-      "needsCostume": "Trek eerst een kostuum aan: een kostuumdrank, een vleermuis- of skeletstreek, het Strolingamulet, het Uitgesneden pompoenhoofd of een goblinslok uit de Groenborrelketel.",
-      "frightenedHint": "{name} is nog schrikachtig van je vorige grap. Zoek iemand anders.",
-      "landed": "Je springt voor {name} tevoorschijn en roept BOE! Er klinkt een gil en bijna alles valt op de grond.",
-      "flash": "BOE! {name} schrikt!",
-      "noCostume": "Zonder kostuum lacht {name} je alleen maar uit. Trek er eerst een aan.",
-      "already": "{name} is voor vandaag vaak genoeg geschrokken.",
-      "notOnErrand": "Hester heeft je vandaag niet gevraagd iemand te laten schrikken."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const nl_NL: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Hoedster van het Pompoenlicht",
-        "greeting": "De pompoenen branden en de lantaarns hangen, dus het moet Pompoenlichtavond zijn. Klop bij de inwoners van Eastbrook, Fenbridge en Highwatch aan en zeg de woorden: snoep of een streek. De meesten geven je een snoepje. Een paar halen een streek met je uit. Breng de snoepjes naar een van mijn kraampjes en ik ruil ze voor iets om te dragen."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Schout Ottoline",
@@ -30948,16 +30921,6 @@ export const nl_NL: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Pompoenlichtronde",
-        "text": "Elke Pompoenlichtavond doen de kinderen van de vallei hun ronde, en dit jaar ga jij mee, {playerName}. Klop bij vijf deuren in onze steden aan, zeg de woorden en kijk wat je krijgt. Kom terug als je klaar bent.",
-        "completion": "Vijf deuren en nog al je vingers. Hier, een zakje snoep voor de terugweg. Kom morgen terug, dan gaan de deuren weer open.",
-        "objectives": {
-          "0": {
-            "label": "Deuren waarbij aangeklopt is"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Pompoenen van de akker",
         "text": "De akker van Oude Thatchgrin voorbij de Everweide ligt vol pompoenen, en de helft is voorbij zijn stro gerold, waar iemand die voorzichtig is erbij kan. Breng me er vijf, {playerName}. Blijf ver van de oude vogelverschrikker zelf. Hij telt ze allemaal.",
@@ -30968,16 +30931,6 @@ export const nl_NL: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Boe!",
-        "text": "Niemand in deze steden is in een jaar echt geschrokken, {playerName}, en een Pompoenlichtavond zonder schrik is gewoon een koude nacht. Trek een kostuum aan, een van de mijne is prima, of dat pompoenhoofd als je er een hebt verdiend. Besluip dan drie inwoners en roep lekker hard BOE!",
-        "completion": "Drie? Ik hoorde de kok vanaf de andere kant van het plein een pan laten vallen. Goed gedaan. Hier is jouw deel.",
-        "objectives": {
-          "0": {
-            "label": "Inwoners laten schrikken"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Boosaardige pitten",
         "text": "Iemand zet kaarsen met groene vlammen onder aan onze lantaarnpalen. Ze branden zonder te smelten en fluisteren als je je omdraait. Doof er zes voor me, {playerName}, in een van de drie steden, en breng me de stompjes.",
@@ -30985,22 +30938,6 @@ export const nl_NL: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Vervloekte kaarsen gedoofd"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Een deur in elke stad",
-        "text": "De kinderen zeggen dat een echte Pompoenlichtwandelaar voor het einde van de nacht in elke stad aanklopt. Geef ze gelijk, {playerName}. Vraag om snoep of een streek bij één deur in Eastbrook, één in Fenbridge en één in Highwatch. De lantaarns langs de wegen wijzen je de weg.",
-        "completion": "Drie steden in één nacht! Je laarzen hebben dit meer verdiend dan jij.",
-        "objectives": {
-          "0": {
-            "label": "Bij een deur in Eastbrook aangeklopt"
-          },
-          "1": {
-            "label": "Bij een deur in Fenbridge aangeklopt"
-          },
-          "2": {
-            "label": "Bij een deur in Highwatch aangeklopt"
           }
         }
       },

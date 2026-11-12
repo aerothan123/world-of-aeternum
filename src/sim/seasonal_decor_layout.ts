@@ -4,7 +4,7 @@
 // ends up with a pumpkin inside it.
 //
 // Every piece is anchored to something that moves with the city (a streetlamp
-// from the sim's lamp plan, a trick-or-treat NPC, the event keeper and her
+// from the sim's lamp plan, a townsperson, the event keeper and her
 // stall, the town hub, the shoulders of the town's own roads) and then checked:
 //   - ground pieces (pumpkins, gourds) must stand clear of every static collider
 //     (`isBlocked`, the same query movement uses), off the painted road, off any
@@ -20,7 +20,7 @@
 // (tests/seasonal_decor_layout.test.ts) re-runs it against the shipped world and
 // fails on any overlap, so the gate catches a city change that breaks it.
 import { isBlocked, streetlampPlacements } from './colliders';
-import { GOURDLIGHT_KEEPER_NPC, TRICK_OR_TREAT_NPC_IDS } from './content/gourdlight_eve';
+import { GOURDLIGHT_KEEPER_NPC } from './content/gourdlight_eve';
 import {
   GOURDLIGHT_DECOR_CITIES,
   type SeasonalCityDecorRule,
@@ -117,13 +117,12 @@ const STREET_BAND: readonly [number, number] = [3.5, 4.7];
 /** A street piece keeps this far from a lamp (its own cluster dresses it). */
 const STREET_LAMP_GAP = 4.5;
 // How much straw (corn shocks, hay bales) the town dressing carries: the share of
-// lamp posts with a bale or a shock in their cluster, of knocking doors framed by
-// a shock, and of townsfolk with a bale at their side. Kept low so the cities read
+// lamp posts with a bale or a shock in their cluster, and of townsfolk with a bale
+// at their side. Kept low so the cities read
 // dressed, not littered (owner note 2026-10-18); pinned by the straw ceiling in
 // tests/seasonal_decor_layout.test.ts.
 const LAMP_BALE_SHARE = 0.18;
 const LAMP_SHOCK_SHARE = 0.15;
-const DOOR_SHOCK_SHARE = 0.5;
 const FOLK_BALE_SHARE = 0.1;
 /** Room kept round the keeper's stall for everything else (yards). */
 const STALL_MARGIN = 0.6;
@@ -527,41 +526,10 @@ function cityDecor(
       }
     }
   }
-  // A lit pumpkin at every knocking door in this town: the read for "knock here".
-  for (const id of [...TRICK_OR_TREAT_NPC_IDS].sort()) {
-    const npc = NPCS[id];
-    if (!npc || !inTown(npc.pos.x, npc.pos.z)) continue;
-    const a = npc.facing + Math.PI / 2;
-    seat(
-      probe,
-      layout.ground,
-      'pumpkin_small',
-      npc.pos.x + Math.sin(a) * 1.6,
-      npc.pos.z + Math.cos(a) * 1.6,
-      `npc:${id}`,
-      1,
-      npc.facing,
-    );
-    // ...and at about every other knocking door, a corn shock on its other side:
-    // the door is framed, the street never a wall of straw
-    if (anchorHash(id, 10) >= DOOR_SHOCK_SHARE) continue;
-    const b = npc.facing - Math.PI / 2;
-    seat(
-      probe,
-      layout.ground,
-      'corn_shock',
-      npc.pos.x + Math.sin(b) * 1.7,
-      npc.pos.z + Math.cos(b) * 1.7,
-      `npc:${id}:shock`,
-      0.95,
-      npc.facing,
-    );
-  }
-  // Every other townsfolk's stand gets a gourd pair at their side, so the whole
-  // street reads dressed, not only the doors to knock on.
-  const knockers = new Set<string>(TRICK_OR_TREAT_NPC_IDS);
+  // Every townsperson's stand gets a gourd pair (or now and then a bale) at their
+  // side, so the whole street reads dressed.
   for (const npc of Object.values(NPCS).sort((a, b) => (a.id < b.id ? -1 : 1))) {
-    if (knockers.has(npc.id) || npc.id === GOURDLIGHT_KEEPER_NPC.id) continue;
+    if (npc.id === GOURDLIGHT_KEEPER_NPC.id) continue;
     if (!inTown(npc.pos.x, npc.pos.z)) continue;
     const a = npc.facing - Math.PI / 2;
     const bale = anchorHash(npc.id, 6) < FOLK_BALE_SHARE;

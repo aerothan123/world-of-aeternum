@@ -1,5 +1,5 @@
-// The Gourdlight Eve tricks' bodies (src/sim/seasonal/: a trick-or-treat trick
-// or the Jar of Mischief): for a few seconds the player wears a bat's or a
+// The Gourdlight Eve tricks' bodies (src/sim/seasonal/: the Jar of Mischief's
+// tricks): for a few seconds the player wears a bat's or a
 // skeleton's body; a costume draught wears a skeleton's, a ghost's or a bat's for ten
 // minutes, and a drink from the Gurglegreen Cauldron the treasure goblin's for the toy's
 // duration (content/gourdlight_eve.ts). They ride the polymorph SLOT's look only (its lazy

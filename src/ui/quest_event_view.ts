@@ -189,7 +189,7 @@ export function questEventPresentation(event: SimEvent): QuestEventPresentation 
         }),
         sound: 'quest_ready',
       };
-    // Seasonal events (src/sim/seasonal/): the knock's treat or trick and the
+    // Seasonal events (src/sim/seasonal/): the pumpkin hunt, the tricks and the
     // toggles, composed in seasonal_event_view.ts.
     case 'seasonal':
       return seasonalEventPresentation(event);

@@ -42,6 +42,12 @@ const lanterns = seasonalRoadLanterns(WORLD_SEED);
 
 describe('the road lanterns between the Gourdlight Eve cities', () => {
   it('light every route, sparsely (a lantern every 30 to 50 yards, not a fence)', () => {
+    // Owner decision (Eastbrook Vale v2 port): Eastbrook is not dressed for now,
+    // so its field road (eastbrook_field, town to Old Thatchgrin's field) carries
+    // no lanterns; every other route is still lit (content/gourdlight_eve_decor.ts).
+    expect(GOURDLIGHT_ROAD_LANTERNS.routes.map((r) => r.id)).not.toContain('eastbrook_field');
+    expect(lanterns.filter((l) => l.route === 'eastbrook_field')).toEqual([]);
+    expect(GOURDLIGHT_ROAD_LANTERNS.routes.length).toBeGreaterThanOrEqual(2);
     for (const route of GOURDLIGHT_ROAD_LANTERNS.routes) {
       const own = lanterns.filter((l) => l.route === route.id);
       // the field road is short; the city-to-city roads are hundreds of yards

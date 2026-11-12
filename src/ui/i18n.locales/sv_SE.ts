@@ -25719,8 +25719,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gourdlight_strawling.name': 'Halmvätte',
   'entities.mobs.gourdlight_swelling_gourd.name': 'Svällande pumpa',
   'entities.mobs.gourdlight_thatchgrin.name': 'Gamle Halmflin',
-  'entities.npcs.gourdlight_keeper.greeting':
-    'Pumporna är tända och lyktorna upphängda, så det måste vara Pumplyktornas afton. Knacka på hos stadsborna i Östbäck, Kärrbron och Högvakten och säg orden: bus eller godis. De flesta ger dig en sötsak. Några busar med dig. Ta med godiset till mig vid något av mina stånd, så byter jag det mot något att ha på dig.',
   'entities.npcs.gourdlight_keeper.name': 'Hester Pumpveke',
   'entities.npcs.gourdlight_keeper.title': 'Pumplyktornas väktare',
   'entities.quests.q_gourdlight_daily_baskets.completion':
@@ -25733,12 +25731,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_baskets.text':
     'Varje Pumplyktornas afton fyller jag en godiskorg åt en gammal vän i varje stad, men knäna är inte vad de en gång var. Kör ut dem åt mig, {playerName}: till Kocken Marlow i Östbäck, örtkunniga Yara i Kärrbron och Läromästare Caddis uppe i Högvakten.',
   'entities.quests.q_gourdlight_daily_baskets.title': 'Korgar åt grannarna',
-  'entities.quests.q_gourdlight_daily_boo.completion':
-    'Tre stycken? Jag hörde kocken tappa en stekpanna tvärs över torget. Bra gjort. Här är din del.',
-  'entities.quests.q_gourdlight_daily_boo.objectives.0.label': 'Skrämda stadsbor',
-  'entities.quests.q_gourdlight_daily_boo.text':
-    'Ingen i de här städerna har blivit ordentligt skrämd på ett år, {playerName}, och Pumplyktornas afton utan en skrämsel är bara en kall natt. Ta på dig en dräkt, vilken som helst av mina duger, eller det där pumpahuvudet om du har förtjänat det. Smyg sedan fram till tre stadsbor och ropa ett riktigt högt BU.',
-  'entities.quests.q_gourdlight_daily_boo.title': 'Bu!',
   'entities.quests.q_gourdlight_daily_feathers.completion':
     'Svarta som ett månlöst fält, och de luktar redan rök. Det blir en ståtlig brasa. Tack.',
   'entities.quests.q_gourdlight_daily_feathers.objectives.0.label': 'Kråkfjädrar',
@@ -25751,42 +25743,16 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_gourdlight_daily_patch.text':
     'Gamle Halmflins åker bortom Vildsvinsängen är full av pumpor, och hälften har rullat bortom hans halm där en försiktig själ kan nå dem. Hämta fem åt mig, {playerName}. Håll dig långt från den gamle fågelskrämman själv. Han räknar varenda en.',
   'entities.quests.q_gourdlight_daily_patch.title': 'Pumpor från åkern',
-  'entities.quests.q_gourdlight_daily_towns.completion':
-    'Tre städer på en natt! Dina stövlar har förtjänat det här mer än du.',
-  'entities.quests.q_gourdlight_daily_towns.objectives.0.label': 'En dörr knackad på i Östbäck',
-  'entities.quests.q_gourdlight_daily_towns.objectives.1.label': 'En dörr knackad på i Kärrbron',
-  'entities.quests.q_gourdlight_daily_towns.objectives.2.label': 'En dörr knackad på i Högvakten',
-  'entities.quests.q_gourdlight_daily_towns.text':
-    'Barnen säger att en äkta pumplyktevandrare knackar på i varje stad innan natten är över. Visa att de har rätt, {playerName}. Gå bus eller godis vid en dörr i Östbäck, en i Kärrbron och en i Högvakten. Lyktorna längs vägarna lyser upp din väg.',
-  'entities.quests.q_gourdlight_daily_towns.title': 'En dörr i varje stad',
   'entities.quests.q_gourdlight_daily_wicks.completion':
     'Sex stumpar, kalla som frost. Den som tände dem får försöka lite hårdare. Ta det här och tvätta händerna.',
   'entities.quests.q_gourdlight_daily_wicks.objectives.0.label': 'Släckta förbannade ljus',
   'entities.quests.q_gourdlight_daily_wicks.text':
     'Någon ställer ljus med gröna lågor vid foten av våra lyktstolpar. De brinner utan att smälta och viskar när du vänder ryggen till. Släck sex åt mig, {playerName}, i någon av de tre städerna och ta med stumparna.',
   'entities.quests.q_gourdlight_daily_wicks.title': 'Onda vekar',
-  'entities.quests.q_gourdlight_rounds.completion':
-    'Fem dörrar, och du har alla fingrar kvar. Här, en godispåse till hemvägen. Kom tillbaka i morgon, då öppnas dörrarna igen.',
-  'entities.quests.q_gourdlight_rounds.objectives.0.label': 'Dörrar du knackat på',
-  'entities.quests.q_gourdlight_rounds.text':
-    'Varje Pumplyktornas afton går dalens barn sin runda, och i år följer du med, {playerName}. Knacka på fem dörrar i våra städer, säg orden och se vad du får. Kom tillbaka till mig när du är klar.',
-  'entities.quests.q_gourdlight_rounds.title': 'Pumplyktornas runda',
   'guide.interfacePage.framesGovernedPriest':
     'Redigera ramar låter dig också flytta skuggprästens medaljong för Skymningstionde och Tiondebomb.',
   'guide.worldPvpPage.hillBodyTwoHour':
     'En gång varannan timme, vid ett oförutsägbart ögonblick, får hela realmen veta att en kulle ska resa sig i en av de norra zonerna om femton minuter. Cirkeln där den ska stå markeras på öppen mark. När kullen reser sig står den i trettio minuter och sjunker sedan undan. Var femte minut medan den står får realmen veta var den finns och vilka grupper som hållit den längst. Gruppen med flest spelare inne i cirkeln tävlar om kullen, och efter trettio sekunders majoritet blir den deras. En rivaliserande grupp som går in pausar bara nedräkningen tills din grupp leder igen; den börjar om endast om ingen i din grupp längre är vid liv där inne. En ensam spelare räknas som en grupp på en och behåller sin kulle när en grupp bildas, men raidmedlemmar räknas inte alls. Medan en grupp håller kullen tjänar varje medlem som står inne lika mycket ära varje minut, oavsett hur länge de hållit den. En full grupp som håller kullen ostört under hela dess tid tjänar därför ungefär lika mycket som två segrar på slagfältet. När kullen sjunker undan får gruppen som hållit den längst sammanlagt en seger till PvP-raden i Veckovalvet, förutsatt att den hållit kullen i minst tio minuter. Segern går till alla som stått inne för den gruppen i minst en minut och fortfarande är med i den. En mätare över fältet visar vem som håller kullen, era antal mot deras och erövringstiden; /hill i chatten visar var den står.',
-  'seasonal.boo.already': '{name} har fått nog av skrämsel för i dag.',
-  'seasonal.boo.flash': 'BU! {name} blir rädd!',
-  'seasonal.boo.frightenedHint':
-    '{name} är fortfarande skärrad efter din förra skrämsel. Hitta någon annan.',
-  'seasonal.boo.landed':
-    'Du hoppar fram mot {name} och ropar BU! Ett skrik hörs och allt är nära att tappas.',
-  'seasonal.boo.needsCostume':
-    'Ta på dig en dräkt först: en dräktdryck, ett fladdermus- eller skelettbus, Halmvättens amulett, Snidat pumpahuvud eller en goblinklunk ur Grönbubbelkitteln.',
-  'seasonal.boo.noCostume': 'Utan dräkt skrattar {name} bara åt dig. Ta på dig en först.',
-  'seasonal.boo.notOnErrand': 'Hester har inte bett dig skrämma någon i dag.',
-  'seasonal.boo.row': 'Bu!',
-  'seasonal.boo.rowAria': 'Hoppa fram mot {name} och ropa bu',
   'seasonal.boundItemGone':
     'Pumplyktornas afton är över och din {item} faller sönder till halm igen.',
   'seasonal.costume': 'Du dricker drycken och förvandlas: {trick}!',
@@ -25809,8 +25775,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Gamle Halmflin ger en varje dag du plundrar honom, tills du äger Glödborstkvasten. Hester Pumpveke byter {count} mot kvasten vid sina stånd i Östbäck, Kärrbron och Högvakten. Oanvända kärvar sparas till nästa Pumplyktornas afton.',
   'seasonal.itemUse.strawlingCharm':
     'Använd: Bli en av Gamle Halmflins halmvättar i {seconds} sekunder. Inte i strid. Förbrukas aldrig. Kosmetiskt.',
-  'seasonal.itemUse.sweet':
-    'Fås genom bus eller godis under Pumplyktornas afton. Hester Pumpveke byter dem mot kosmetiska föremål vid sina stånd i Östbäck, Kärrbron och Högvakten.',
   'seasonal.itemUse.titleWrit':
     'Använd: Lås upp titeln {title} för den här karaktären. Den väljs i Bedrifternas bok. Förbrukas. Behålls om du redan har titeln.',
   'seasonal.itemUse.toyBats':
@@ -25854,20 +25818,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'seasonal.toy.pranked':
     '{name} smetar ut en pumpa på ditt huvud! Högerklicka för att ta av den, eller bär den stolt.',
   'seasonal.toy.prankedFlash': 'Busad med av {name}!',
-  'seasonal.trickOrTreat.alreadyKnocked': 'Du har redan gått bus eller godis hos {name} i dag.',
-  'seasonal.trickOrTreat.knockedHint':
-    'Du har redan knackat här i dag. Dörren öppnas igen efter den dagliga återställningen.',
-  'seasonal.trickOrTreat.notActive': 'Pumplyktornas afton pågår inte just nu.',
-  'seasonal.trickOrTreat.row': 'Bus eller godis!',
-  'seasonal.trickOrTreat.rowAria': 'Säg bus eller godis till {name}',
-  'seasonal.trickOrTreat.tooFar': 'Gå närmare för att knacka.',
-  'seasonal.trickOrTreat.treat': '{name} ger dig en sötsak.',
-  'seasonal.trickOrTreat.treatFlash.few': 'Godis! {count} Pumplyktegodisar',
-  'seasonal.trickOrTreat.treatFlash.many': 'Godis! {count} Pumplyktegodisar',
-  'seasonal.trickOrTreat.treatFlash.one': 'Godis! {count} Pumplyktegodis',
-  'seasonal.trickOrTreat.treatFlash.other': 'Godis! {count} Pumplyktegodisar',
-  'seasonal.trickOrTreat.trick': '{name} busar med dig: {trick}!',
-  'seasonal.trickOrTreat.trickFlash': 'Bus! {trick}',
+  'seasonal.trickFlash': 'Bus! {trick}',
   'seasonal.tricks.gourdlight_costume_bat': 'Fladdermusdräkt',
   'seasonal.tricks.gourdlight_costume_ghost': 'Spökdräkt',
   'seasonal.tricks.gourdlight_costume_skeleton': 'Skelettdräkt',

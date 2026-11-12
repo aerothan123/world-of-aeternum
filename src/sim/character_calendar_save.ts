@@ -13,8 +13,6 @@ export function savedCharacterCalendar(
     | 'wyrmfallDaily'
     | 'emberWeekAnchor'
     | 'craftDaily'
-    | 'seasonalDay'
-    | 'seasonalKnocked'
     | 'pumpkinHeadWorn'
     | 'hauntedPumpkins'
   >,

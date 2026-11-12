@@ -258,7 +258,7 @@ export const en = {
   apiError: apiErrorStrings,
   // Clue Scroll hunt titles and per-step riddles (src/ui/i18n.catalog/clues.ts).
   clues: clueStrings,
-  // Seasonal events: names, trick-or-treat lines, tricks (src/ui/i18n.catalog/seasonal.ts).
+  // Seasonal events: names, tricks, item lines (src/ui/i18n.catalog/seasonal.ts).
   seasonal: seasonalStrings,
   // The dungeon lore guides' lines and dialog (src/ui/i18n.catalog/dungeon_guides.ts).
   dungeonGuide: dungeonGuideStrings,

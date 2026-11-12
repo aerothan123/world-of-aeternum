@@ -707,16 +707,13 @@ describe('missing painted deed and Heroic weapon integration', () => {
     // missing crests: only the six, on the pending ledger, have no painting.
     // 370 with tree chopping's first felled tree (prog_first_felling), pending on
     // the progression crest.
-    expect(DEED_ORDER).toHaveLength(370);
+    // (373 until the owner removed trick-or-treat's two deeds, Every Doorstep and Three
+    // Towns Startled, with their art.)
+    expect(DEED_ORDER).toHaveLength(371);
     // Release adds Titan, five PvP streak titles and the Hard wisp maze (7), the
     // six guild contract deeds, and the first felled tree.
     expect(DEED_ART_PENDING.size).toBe(14);
-    for (const id of [
-      'feat_gourdlight_doorsteps',
-      'feat_gourdlight_errands',
-      'feat_gourdlight_frights',
-      'feat_gourdlight_eve_complete',
-    ]) {
+    for (const id of ['feat_gourdlight_errands', 'feat_gourdlight_eve_complete']) {
       expect(DEED_IMAGE_IDS.has(id), id).toBe(true);
       expect(DEED_ART_PENDING.has(id), id).toBe(false);
     }

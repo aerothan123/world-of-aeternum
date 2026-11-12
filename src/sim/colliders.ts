@@ -95,7 +95,7 @@ export { allocRiftCollisionToken, clearRiftRegion, setRiftRegion } from './rift_
 
 import { buildingRecordColliders } from './authored_town_buildings';
 import { promotedColliderProps } from './authored_town_dressing';
-import { builtStructureColliders } from './built_structure_colliders';
+import { builtStructureColliders, ebv2DropOwned, ebv2StandDown } from './built_structure_colliders';
 import { pushOut, resolveAgainst } from './collider_pushout';
 import {
   DAWNHOLD_PARAPET_HALF,
@@ -1115,7 +1115,7 @@ function staticWorldColliders(seed: number): Collider[] {
   // Without either the field is dropped, so the built-in world (and any plain
   // variant of it) builds exactly the release's collider records.
   if (!content.caves?.length && !content.holes?.length) for (const c of out) delete c.underY;
-  return out;
+  return ebv2StandDown(out, isBuiltinWorldContent(content), content, chestSpots); // v2 solids
 }
 
 /** A resolved banker-chest spot: where the strongbox stands and collides. */
@@ -1433,7 +1433,7 @@ function buildStreetlampPlacements(seed: number): PlacedStreetlamp[] {
       authoredClearMin: MAX_BODY_RADIUS + Math.max(...Object.values(STREETLAMP_COLLIDER_RADIUS)),
     },
   );
-  const styled = styleStreetlampSites(plan.sites, content.zones);
+  const styled = styleStreetlampSites(ebv2DropOwned(plan.sites, content), content.zones);
   // Remember the PRISTINE builtin plan for the editor's streetlamp promotion:
   // planned before any post stands, so nothing self-blocks. A plan computed
   // against a world that already carries lamps (as colliders or as promoted

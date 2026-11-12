@@ -8609,23 +8609,7 @@ export const pt_BR: EnTranslations = {
         "name": "Noite das Abóboras"
       }
     },
-    "trickOrTreat": {
-      "row": "Doces ou travessuras!",
-      "rowAria": "Peça doces ou travessuras a {name}",
-      "knockedHint": "Você já bateu aqui hoje. A porta abre novamente após a reinicialização diária.",
-      "treat": "{name} entrega um doce a você.",
-      "trick": "{name} faz uma travessura com você: {trick}!",
-      "alreadyKnocked": "Você já pediu doces ou travessuras a {name} hoje.",
-      "notActive": "A Noite das Abóboras não está acontecendo no momento.",
-      "tooFar": "Chegue mais perto para bater.",
-      "treatFlash": {
-        "one": "Doces! {count} Doce da Noite das Abóboras",
-        "few": "Doces! {count} Doces da Noite das Abóboras",
-        "many": "Doces! {count} Doces da Noite das Abóboras",
-        "other": "Doces! {count} Doces da Noite das Abóboras"
-      },
-      "trickFlash": "Travessura! {trick}"
-    },
+    "trickFlash": "Travessura! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Loucura de morcego",
       "gourdlight_trick_skeleton": "Ossos chocalhantes",
@@ -8650,7 +8634,7 @@ export const pt_BR: EnTranslations = {
       "trickJar": "Uso: faz uma travessura aleatória e inofensiva com você por alguns segundos. Cosmético.",
       "pouch": "Uso: abra para receber {count} Doces da Noite das Abóboras.",
       "strawlingCharm": "Uso: transforma você em um dos palhudos do Velho Thatchgrin por {seconds} segundos. Não pode ser usado em combate. Nunca é consumido. Cosmético.",
-      "sweet": "Obtido ao pedir doces ou travessuras durante a Noite das Abóboras. Hester Gourdwick os troca por cosméticos em suas barracas em Eastbrook, Fenbridge e Highwatch.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Uso: transforma você em um esqueleto chocalhante por {minutes} minutos. Consumida ao usar. Não pode ser usada em combate; entrar em combate encerra o efeito. Cosmética.",
       "costumeGhost": "Uso: transforma você em um fantasma flutuante por {minutes} minutos. Consumida ao usar. Não pode ser usada em combate; entrar em combate encerra o efeito. Cosmética.",
       "costumeBat": "Uso: transforma você em um morcego esvoaçante por {minutes} minutos. Consumida ao usar. Não pode ser usada em combate; entrar em combate encerra o efeito. Cosmética.",
@@ -8677,17 +8661,6 @@ export const pt_BR: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Deixada pelo Velho Thatchgrin, em sua plantação de abóboras além do Campo dos javalis, na primeira vez que você o saqueia. Nenhum vendedor a vende."
-    },
-    "boo": {
-      "row": "Bu!",
-      "rowAria": "Salte na frente de {name} e grite bu",
-      "needsCostume": "Vista uma fantasia primeiro: uma poção de fantasia, uma travessura de morcego ou esqueleto, o Amuleto do palhudo, a Cabeça de abóbora esculpida ou um gole de goblin do Caldeirão Borbulhaverde.",
-      "frightenedHint": "{name} ainda está assustado desde seu último susto. Procure outra pessoa.",
-      "landed": "Você salta na frente de {name} com um BU! Um grito ecoa e quase tudo vai ao chão.",
-      "flash": "BU! {name} levou um susto!",
-      "noCostume": "Sem fantasia, {name} só ri de você. Vista uma primeiro.",
-      "already": "{name} já levou sustos suficientes por hoje.",
-      "notOnErrand": "Hester não pediu para você assustar ninguém hoje."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const pt_BR: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Guardiã da Noite das Abóboras",
-        "greeting": "As abóboras estão acesas e as lanternas penduradas, então só pode ser a Noite das Abóboras. Bata às portas dos moradores de Eastbrook, Fenbridge e Highwatch e diga as palavras: doces ou travessuras. A maioria dará um doce. Alguns farão uma travessura com você. Traga os doces para mim, em qualquer uma das minhas barracas, e eu os trocarei por algo para vestir."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Prefeita Ottoline",
@@ -30948,16 +30921,6 @@ export const pt_BR: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Ronda da Noite das Abóboras",
-        "text": "Toda Noite das Abóboras as crianças do Vale fazem sua ronda, e este ano você vai com elas, {playerName}. Bata em cinco portas nas nossas cidades, diga as palavras e veja o que recebe. Volte para falar comigo quando terminar.",
-        "completion": "Cinco portas e você ainda tem todos os dedos. Tome, um saquinho de doces para a volta para casa. Volte amanhã, as portas abrirão de novo.",
-        "objectives": {
-          "0": {
-            "label": "Portas visitadas"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Abóboras da horta",
         "text": "A horta do Velho Thatchgrin além do Campo dos javalis está cheia de abóboras, e metade rolou para longe da palha dele, onde alguém cuidadoso pode alcançá-las. Traga cinco para mim, {playerName}. Mantenha distância do velho espantalho. Ele conta uma por uma.",
@@ -30968,16 +30931,6 @@ export const pt_BR: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Bu!",
-        "text": "Ninguém nestas cidades levou um bom susto em um ano, {playerName}, e uma Noite das Abóboras sem sustos é só uma noite fria. Vista uma fantasia, qualquer uma das minhas serve, ou aquela cabeça de abóbora se você ganhou uma. Depois se aproxime de fininho de três moradores e dê um belo BU! bem alto.",
-        "completion": "Três? Ouvi o cozinheiro derrubar uma frigideira do outro lado da praça. Muito bem. Aqui está sua parte.",
-        "objectives": {
-          "0": {
-            "label": "Moradores assustados"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Pavios perversos",
         "text": "Alguém anda colocando velas de chamas verdes aos pés dos nossos postes. Elas queimam sem derreter e sussurram quando você vira as costas. Apague seis para mim, {playerName}, em qualquer uma das três cidades, e traga os tocos.",
@@ -30985,22 +30938,6 @@ export const pt_BR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Velas amaldiçoadas apagadas"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Uma porta em cada cidade",
-        "text": "As crianças dizem que um verdadeiro andarilho das Abóboras bate às portas de todas as cidades antes do fim da noite. Prove que elas estão certas, {playerName}. Peça doces ou travessuras em uma porta de Eastbrook, uma de Fenbridge e uma de Highwatch. As lanternas nas estradas iluminarão seu caminho.",
-        "completion": "Três cidades em uma noite! Suas botas mereceram isto mais do que você.",
-        "objectives": {
-          "0": {
-            "label": "Uma porta visitada em Eastbrook"
-          },
-          "1": {
-            "label": "Uma porta visitada em Fenbridge"
-          },
-          "2": {
-            "label": "Uma porta visitada em Highwatch"
           }
         }
       },

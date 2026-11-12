@@ -1,9 +1,8 @@
 // Screenshot rig for Gourdlight Eve (the autumn seasonal event, src/sim/seasonal/):
 // boots an offline character, opens the event with /dev season on, and shoots
 // each dressed city by day and by night, the keeper's stall by day, dusk and
-// night, a street of lit pumpkins seen from behind, the trick-or-treat gossip
-// row and its answer, a trick, the keeper's shop and the worn pumpkin head on
-// several bodies.
+// night, a street of lit pumpkins seen from behind, a trick, the keeper's shop
+// and the worn pumpkin head on several bodies.
 //
 //   GAME_URL=http://localhost:5192 OUT=tmp/gourdlight [SHOTS=a,b] [PRESET=1] \
 //     node scripts/gourdlight_eve_shot.mjs
@@ -181,21 +180,6 @@ if (keeper) {
   await page.keyboard.press('Escape');
 }
 
-// Trick-or-treat at Trader Wilkes: the gossip row, then the answer.
-const wilkes = await page.evaluate(
-  `(()=>{const e=[...window.__game.sim.entities.values()].find(e=>e.templateId==='trader_wilkes');return e?{id:e.id,x:e.pos.x,z:e.pos.z}:null;})()`,
-);
-if (wilkes) {
-  await standAt(wilkes.x + 2.5, wilkes.z, -Math.PI / 2, 6, 0.22, Math.PI / 2);
-  await page.evaluate(
-    `(()=>{const g=window.__game;g.sim.targetEntity(${wilkes.id});g.hud.questDialog?.open?.(${wilkes.id});})()`,
-  );
-  await shot('trick_or_treat_dialog');
-  await page.evaluate(
-    `(()=>{const b=document.querySelector('[data-trick-or-treat]');b&&b.click();})()`,
-  );
-  await shot('trick_or_treat_answer');
-}
 // A trick, forced: each harmless body in turn.
 for (const trick of [
   'gourdlight_trick_bat',

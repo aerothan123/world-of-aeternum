@@ -1,0 +1,14 @@
+{
+  "note": "Settings for scripts/eastbrook_v2/import_eastbrook_v2.ts. openFrames are boxes the design exports as one block across a walkable opening (the town gate frames): each becomes its two end posts, openFramePost yards thick. serviceProps are boxes of a prop the server stands as its own entity with its own footprint (the notice board), dropped so the design box does not wall the server's board in. restBuildings are the boxes of the buildings a body rests in (the inn): their footprints become the rest areas (rested XP, src/sim/eastbrook_v2/rest.ts). The Unreal design (wt-aura WorldDesign/EastbrookVale) is authored in the server's x/z frame at 1 yard = 1 metre, with its sea at y 4.0; the server's sea is WATER_LEVEL -4.3, so every height lands yOffset lower. The field is clipped to the eastbrook_vale slot (x -270..180, z -180..180: the slot grew west over open sea to take the design's whole west coast). The design itself now ends on the slot: its pass 4 eases every edge into the server's own neighbour ground and cuts the road passes to Mirefen, the Farshore causeway and the Southway, so the edge band here is only a short seam and no corridor keeps shipped ground inside the slot. Design solids and trees stand only where the design owns the ground (blend weight 0.5 and up).",
+  "yOffset": -8.3,
+  "clip": { "xMin": -270, "xMax": 180, "zMin": -180, "zMax": 180 },
+  "edgeBand": 4,
+  "waterEdgeBlend": 6,
+  "overheadClearance": 2.2,
+  "flatTop": 0.35,
+  "openFrames": ["EBV_GateNorth_Frame", "EBV_GateSouth_Frame"],
+  "openFramePost": 0.35,
+  "serviceProps": ["EBV_NoticeBoard"],
+  "restBuildings": ["EBV_Inn_KettleAndCradle"],
+  "corridors": []
+}

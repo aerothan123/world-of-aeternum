@@ -8609,23 +8609,7 @@ export const sv_SE: EnTranslations = {
         "name": "Pumplyktornas afton"
       }
     },
-    "trickOrTreat": {
-      "row": "Bus eller godis!",
-      "rowAria": "Säg bus eller godis till {name}",
-      "knockedHint": "Du har redan knackat här i dag. Dörren öppnas igen efter den dagliga återställningen.",
-      "treat": "{name} ger dig en sötsak.",
-      "trick": "{name} busar med dig: {trick}!",
-      "alreadyKnocked": "Du har redan gått bus eller godis hos {name} i dag.",
-      "notActive": "Pumplyktornas afton pågår inte just nu.",
-      "tooFar": "Gå närmare för att knacka.",
-      "treatFlash": {
-        "one": "Godis! {count} Pumplyktegodis",
-        "few": "Godis! {count} Pumplyktegodisar",
-        "many": "Godis! {count} Pumplyktegodisar",
-        "other": "Godis! {count} Pumplyktegodisar"
-      },
-      "trickFlash": "Bus! {trick}"
-    },
+    "trickFlash": "Bus! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Fladdertokig",
       "gourdlight_trick_skeleton": "Rasslande ben",
@@ -8650,7 +8634,7 @@ export const sv_SE: EnTranslations = {
       "trickJar": "Använd: Utsätter dig för ett slumpmässigt, harmlöst bus i några sekunder. Kosmetiskt.",
       "pouch": "Använd: Öppna för att få {count} Pumplyktegodis.",
       "strawlingCharm": "Använd: Bli en av Gamle Halmflins halmvättar i {seconds} sekunder. Inte i strid. Förbrukas aldrig. Kosmetiskt.",
-      "sweet": "Fås genom bus eller godis under Pumplyktornas afton. Hester Pumpveke byter dem mot kosmetiska föremål vid sina stånd i Östbäck, Kärrbron och Högvakten.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Använd: Förvandlas till ett rasslande skelett i {minutes} minuter. Förbrukas. Kan inte användas i strid och avbryts när du går in i strid. Kosmetiskt.",
       "costumeGhost": "Använd: Förvandlas till ett svävande spöke i {minutes} minuter. Förbrukas. Kan inte användas i strid och avbryts när du går in i strid. Kosmetiskt.",
       "costumeBat": "Använd: Förvandlas till en flaxande fladdermus i {minutes} minuter. Förbrukas. Kan inte användas i strid och avbryts när du går in i strid. Kosmetiskt.",
@@ -8677,17 +8661,6 @@ export const sv_SE: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Släpps av Gamle Halmflin på hans pumpaåker bortom Vildsvinsängen första gången du plundrar honom. Ingen försäljare säljer det."
-    },
-    "boo": {
-      "row": "Bu!",
-      "rowAria": "Hoppa fram mot {name} och ropa bu",
-      "needsCostume": "Ta på dig en dräkt först: en dräktdryck, ett fladdermus- eller skelettbus, Halmvättens amulett, Snidat pumpahuvud eller en goblinklunk ur Grönbubbelkitteln.",
-      "frightenedHint": "{name} är fortfarande skärrad efter din förra skrämsel. Hitta någon annan.",
-      "landed": "Du hoppar fram mot {name} och ropar BU! Ett skrik hörs och allt är nära att tappas.",
-      "flash": "BU! {name} blir rädd!",
-      "noCostume": "Utan dräkt skrattar {name} bara åt dig. Ta på dig en först.",
-      "already": "{name} har fått nog av skrämsel för i dag.",
-      "notOnErrand": "Hester har inte bett dig skrämma någon i dag."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const sv_SE: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Pumpveke",
         "title": "Pumplyktornas väktare",
-        "greeting": "Pumporna är tända och lyktorna upphängda, så det måste vara Pumplyktornas afton. Knacka på hos stadsborna i Östbäck, Kärrbron och Högvakten och säg orden: bus eller godis. De flesta ger dig en sötsak. Några busar med dig. Ta med godiset till mig vid något av mina stånd, så byter jag det mot något att ha på dig."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Fogden Ottoline",
@@ -30948,16 +30921,6 @@ export const sv_SE: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Pumplyktornas runda",
-        "text": "Varje Pumplyktornas afton går dalens barn sin runda, och i år följer du med, {playerName}. Knacka på fem dörrar i våra städer, säg orden och se vad du får. Kom tillbaka till mig när du är klar.",
-        "completion": "Fem dörrar, och du har alla fingrar kvar. Här, en godispåse till hemvägen. Kom tillbaka i morgon, då öppnas dörrarna igen.",
-        "objectives": {
-          "0": {
-            "label": "Dörrar du knackat på"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Pumpor från åkern",
         "text": "Gamle Halmflins åker bortom Vildsvinsängen är full av pumpor, och hälften har rullat bortom hans halm där en försiktig själ kan nå dem. Hämta fem åt mig, {playerName}. Håll dig långt från den gamle fågelskrämman själv. Han räknar varenda en.",
@@ -30968,16 +30931,6 @@ export const sv_SE: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Bu!",
-        "text": "Ingen i de här städerna har blivit ordentligt skrämd på ett år, {playerName}, och Pumplyktornas afton utan en skrämsel är bara en kall natt. Ta på dig en dräkt, vilken som helst av mina duger, eller det där pumpahuvudet om du har förtjänat det. Smyg sedan fram till tre stadsbor och ropa ett riktigt högt BU.",
-        "completion": "Tre stycken? Jag hörde kocken tappa en stekpanna tvärs över torget. Bra gjort. Här är din del.",
-        "objectives": {
-          "0": {
-            "label": "Skrämda stadsbor"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Onda vekar",
         "text": "Någon ställer ljus med gröna lågor vid foten av våra lyktstolpar. De brinner utan att smälta och viskar när du vänder ryggen till. Släck sex åt mig, {playerName}, i någon av de tre städerna och ta med stumparna.",
@@ -30985,22 +30938,6 @@ export const sv_SE: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Släckta förbannade ljus"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "En dörr i varje stad",
-        "text": "Barnen säger att en äkta pumplyktevandrare knackar på i varje stad innan natten är över. Visa att de har rätt, {playerName}. Gå bus eller godis vid en dörr i Östbäck, en i Kärrbron och en i Högvakten. Lyktorna längs vägarna lyser upp din väg.",
-        "completion": "Tre städer på en natt! Dina stövlar har förtjänat det här mer än du.",
-        "objectives": {
-          "0": {
-            "label": "En dörr knackad på i Östbäck"
-          },
-          "1": {
-            "label": "En dörr knackad på i Kärrbron"
-          },
-          "2": {
-            "label": "En dörr knackad på i Högvakten"
           }
         }
       },

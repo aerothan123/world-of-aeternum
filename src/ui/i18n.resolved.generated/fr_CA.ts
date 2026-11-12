@@ -8609,23 +8609,7 @@ export const fr_CA: EnTranslations = {
         "name": "Veillée des courges"
       }
     },
-    "trickOrTreat": {
-      "row": "Des bonbons ou un sort !",
-      "rowAria": "Demander des bonbons ou un sort à {name}",
-      "knockedHint": "Vous avez déjà frappé ici aujourd’hui. La porte rouvrira après la réinitialisation quotidienne.",
-      "treat": "{name} vous tend une friandise.",
-      "trick": "{name} vous joue un tour : {trick} !",
-      "alreadyKnocked": "Vous avez déjà demandé des bonbons ou un sort à {name} aujourd’hui.",
-      "notActive": "La Veillée des courges n’a pas lieu en ce moment.",
-      "tooFar": "Approchez-vous pour frapper.",
-      "treatFlash": {
-        "one": "Des bonbons ! {count} Friandise de la Veillée des courges",
-        "few": "Des bonbons ! {count} Friandises de la Veillée des courges",
-        "many": "Des bonbons ! {count} Friandises de la Veillée des courges",
-        "other": "Des bonbons ! {count} Friandises de la Veillée des courges"
-      },
-      "trickFlash": "Un sort ! {trick}"
-    },
+    "trickFlash": "Un sort ! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Folie de chauve-souris",
       "gourdlight_trick_skeleton": "Os cliquetants",
@@ -8650,7 +8634,7 @@ export const fr_CA: EnTranslations = {
       "trickJar": "Utilisation : vous joue un tour aléatoire et inoffensif pendant quelques secondes. Cosmétique.",
       "pouch": "Utilisation : ouvrez-le pour recevoir {count} Friandises de la Veillée des courges.",
       "strawlingCharm": "Utilisation : vous transforme en l’une des créatures de paille du Vieux Thatchgrin pendant {seconds} secondes. Inutilisable en combat. Jamais consommé. Cosmétique.",
-      "sweet": "Obtenues en demandant des bonbons ou un sort pendant la Veillée des courges. Hester Gourdwick les échange contre des objets cosmétiques à ses étals d’Eastbrook, de Fenbridge et de Highwatch.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Utilisation : vous transforme en squelette cliquetant pendant {minutes} minutes. Consommé à l’usage. Inutilisable en combat ; entrer en combat met fin à l’effet. Cosmétique.",
       "costumeGhost": "Utilisation : vous transforme en fantôme flottant pendant {minutes} minutes. Consommé à l’usage. Inutilisable en combat ; entrer en combat met fin à l’effet. Cosmétique.",
       "costumeBat": "Utilisation : vous transforme en chauve-souris voletante pendant {minutes} minutes. Consommé à l’usage. Inutilisable en combat ; entrer en combat met fin à l’effet. Cosmétique.",
@@ -8677,17 +8661,6 @@ export const fr_CA: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Obtenue sur le Vieux Thatchgrin, dans son champ de citrouilles au-delà du Pré aux sangliers, la première fois que vous le dépouillez. Aucun marchand ne la vend."
-    },
-    "boo": {
-      "row": "Bouh !",
-      "rowAria": "Bondir devant {name} et crier bouh",
-      "needsCostume": "Enfilez d’abord un costume : un breuvage de déguisement, un tour de chauve-souris ou de squelette, le Charme de créature de paille, la Tête de citrouille sculptée ou une gorgée de gobelin du Chaudron Vertglouglou.",
-      "frightenedHint": "{name} sursaute encore depuis votre dernière farce. Trouvez quelqu’un d’autre.",
-      "landed": "Vous bondissez devant {name} en criant BOUH ! Un hurlement retentit et tout manque de tomber.",
-      "flash": "BOUH ! {name} a peur !",
-      "noCostume": "Sans costume, vous faites seulement rire {name}. Enfilez-en un d’abord.",
-      "already": "{name} a eu assez de frayeurs pour aujourd’hui.",
-      "notOnErrand": "Hester ne vous a demandé d’effrayer personne aujourd’hui."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const fr_CA: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Gourdwick",
         "title": "Gardienne de la Veillée des courges",
-        "greeting": "Les courges brillent et les lanternes sont suspendues : c’est donc la Veillée des courges. Frappez aux portes des habitants d’Eastbrook, de Fenbridge et de Highwatch, puis dites les mots : des bonbons ou un sort. La plupart vous donneront une friandise. Quelques-uns vous joueront un tour. Apportez-moi les friandises à n’importe lequel de mes étals et je vous les échangerai contre quelque chose à porter."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Prévôte Ottoline",
@@ -30948,16 +30921,6 @@ export const fr_CA: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Tournée de la Veillée des courges",
-        "text": "Chaque Veillée des courges, les enfants de la vallée font leur tournée, et cette année vous les accompagnez, {playerName}. Frappez à cinq portes de nos villes, dites les mots et voyez ce qu’on vous offre. Revenez me voir une fois votre tournée terminée.",
-        "completion": "Cinq portes, et vous avez encore tous vos doigts. Tenez, un sachet de friandises pour le retour. Revenez demain, les portes s’ouvriront à nouveau.",
-        "objectives": {
-          "0": {
-            "label": "Portes auxquelles vous avez frappé"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Les citrouilles du potager",
         "text": "Le potager du Vieux Thatchgrin, au-delà du Pré aux sangliers, regorge de citrouilles. La moitié ont roulé hors de portée de sa paille, là où une personne prudente peut les ramasser. Apportez-m’en cinq, {playerName}. Restez bien à l’écart du vieil épouvantail. Il les compte toutes.",
@@ -30968,16 +30931,6 @@ export const fr_CA: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Bouh !",
-        "text": "Personne dans ces villes n’a eu une bonne frayeur depuis un an, {playerName}, et sans cela, la Veillée des courges n’est qu’une nuit froide. Enfilez un costume, n’importe lequel des miens fera l’affaire, ou cette tête de citrouille si vous en avez gagné une. Puis approchez-vous discrètement de trois habitants et poussez un bon gros BOUH !",
-        "completion": "Trois ? J’ai entendu le cuisinier lâcher une poêle depuis l’autre bout de la place. Bien joué. Voici votre part.",
-        "objectives": {
-          "0": {
-            "label": "Habitants effrayés"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Méchantes mèches",
         "text": "Quelqu’un dépose des chandelles aux flammes vertes au pied de nos réverbères. Elles brûlent sans fondre et murmurent dès qu’on leur tourne le dos. Éteignez-en six pour moi, {playerName}, dans n’importe laquelle des trois villes, et rapportez-moi les bouts.",
@@ -30985,22 +30938,6 @@ export const fr_CA: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Chandelles maudites éteintes"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Une porte dans chaque ville",
-        "text": "Les enfants disent qu’un vrai promeneur des courges frappe aux portes de chaque ville avant la fin de la nuit. Donnez-leur raison, {playerName}. Demandez des bonbons ou un sort à une porte d’Eastbrook, une de Fenbridge et une de Highwatch. Les lanternes des routes éclaireront votre chemin.",
-        "completion": "Trois villes en une nuit ! Vos bottes ont davantage mérité ceci que vous.",
-        "objectives": {
-          "0": {
-            "label": "Une porte visitée à Eastbrook"
-          },
-          "1": {
-            "label": "Une porte visitée à Fenbridge"
-          },
-          "2": {
-            "label": "Une porte visitée à Highwatch"
           }
         }
       },

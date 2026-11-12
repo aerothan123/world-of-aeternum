@@ -22,21 +22,24 @@ event, e.g. `gourdlight_eve.ts`); this directory holds the rules. Public surface
 ## Modules
 | Module | Owns |
 |--------|------|
-| `seasonal_state.ts` | world state (host id, dev override, open/close edge), per-character ledger (`seasonalDay`, `seasonalKnocked`, `pumpkinHeadWorn`), save fragment + sanitizing restore, the day roll on `ctx.resetDay` |
+| `seasonal_state.ts` | world state (host id, dev override, open/close edge), per-character ledger (`pumpkinHeadWorn`, `hauntedPumpkins`), save fragment + sanitizing restore |
 | `seasonal_tick.ts` | `updateSeasonal`: raises / dismisses each event's keeper NPC (reserved singleton id), preserves earned cosmetics year-round, re-applies a worn pumpkin head. Zero rng |
 | `haunted_pumpkins.ts` | fixed event-only objects, personal once-per-edition discovery and cosmetic completion Feat; no RNG or entity allocator draws |
-| `trick_or_treat.ts` | the knock: once per NPC per reset day, treat (sweets) or trick (cosmetic aura + one sweet), credits the rounds quest's `event` objective. Draws world rng only on an accepted knock |
-| `seasonal_cosmetics.ts` | the `seasonal_cosmetic` auras (pumpkin head, tricks): no sim effect at all, `undispellable` so only their own item / timer removes them |
+| `seasonal_cosmetics.ts` | the `seasonal_cosmetic` auras (pumpkin head, the Jar of Mischief's tricks): no sim effect at all, `undispellable` so only their own item / timer removes them |
 | `seasonal_items.ts` | item use arms: pumpkin head toggle, Jar of Mischief, the treat pouch |
 | `seasonal_quests.ts` | seasonal quests close with their event through the shared repeat-blocked set; unfinished logs expire with temporary quest supplies |
 | `scarecrow.ts` (bedtime) | by day, the idle-mob throttle (mob/idle_tick_skip.ts) skips an awake, aura-less boss nobody is near, so `updateScarecrow` hands his bedtime to `settleUnwatchedSlumber` (mob/slumber.ts): idle, due and unwatched, he is put straight back on his pole, so nobody riding in can catch him awake by day. Cheap gates first, one boss per tick |
 | `scarecrow_field_ward.ts` | while Gourdlight Eve runs, idle wild mobs keep out of Old Thatchgrin's field (wander targets pushed onto its rim, crossings skirted). Zero rng, never touches Boar Meadow outside the event |
 | `seasonal_cancel.ts` | right-click cancel of a worn cosmetic (costume, trick, guise, pumpkin head) through the authoritative `cancelAura` (combat/aura_cancel_command.ts); clears the worn-head ledger flag |
 | `scarecrow_puppet.ts` | Thatchbound, Old Thatchgrin's mind control: victim choice (never his tank, never alone), the cast bar and marks, the puppet's walk (the player-movement hook) and its soft swing as HIS damage, the ways out. Rng only on a cast start and per landed swing |
-| `gourdlight_dailies.ts` | the rotating dailies (records: `content/gourdlight_eve_dailies.ts`): the day's errand from `ctx.resetDay` (civil day number mod the pool, never a clock), the off-day errands joining the shared blocked set (`seasonal_quests.ts`), the errands' world pieces (patch pumpkins, cursed candles; reserved negative ids, sites from `src/sim/seasonal_daily_sites.ts`), the per-town knock credit and the costumed BOO (ledger key `boo_<npc>` in the day's knock ledger). Zero rng |
-| `knock_or_boo.ts` | the one townsfolk verb (`IWorldSeasonal.trickOrTreat(npcId, boo?)`): a knock, or the Boo! daily's fright |
-| `gourdlight_deed_marks.ts` | the whole-event Book of Deeds checklist (round 12): writes the lifetime `gourdlight:*` visited marks (content/gourdlight_eve_deeds.ts) at a knock, a landed Boo! (per town), an errand turn-in and the pumpkin hunt's last find (the Thatchgrin kill marks in deeds.ts's world-boss hook), plus the silent join refill from proof (questsDone, the kill counter, the Pumpkin Hunter feat). Lifetime marks, so progress survives reset days and editions. Zero rng |
-| `seasonal_dev.ts` | `/dev season [on [event]|off|auto|knocks|daily [1-6|id|next|auto|reset]]` (ALLOW_DEV_COMMANDS only) |
+| `gourdlight_dailies.ts` | the rotating dailies (records: `content/gourdlight_eve_dailies.ts`): the day's errand from `ctx.resetDay` (civil day number mod the pool, never a clock), the off-day errands joining the shared blocked set (`seasonal_quests.ts`), the errands' world pieces (patch pumpkins, cursed candles; reserved negative ids, sites from `src/sim/seasonal_daily_sites.ts`). Zero rng |
+| `gourdlight_deed_marks.ts` | the whole-event Book of Deeds checklist (round 12): writes the lifetime `gourdlight:*` visited marks (content/gourdlight_eve_deeds.ts) at an errand turn-in and the pumpkin hunt's last find (the Thatchgrin kill marks in deeds.ts's world-boss hook), plus the silent join refill from proof (questsDone, the kill counter, the Pumpkin Hunter feat). Lifetime marks, so progress survives reset days and editions. Zero rng |
+| `seasonal_dev.ts` | `/dev season [on [event]|off|auto|daily [1-4|id|next|auto|reset]|eve [almost|clear]]` (ALLOW_DEV_COMMANDS only) |
+
+Trick-or-treat (the knock, the rounds quest, the Boo! and town-knock errands, their
+ledger, wire key, command and deeds) was removed outright when the new world started
+from the ground up (owner direction: "remove anything trick or treat"). Do not bring
+any of it back from the old map.
 
 Indoor pumpkins (purely decorative, never the hunt) are found inside the walk-in houses
 by `src/sim/seasonal_interior_pumpkins.ts` (on a furniture top that fits, or snug on the

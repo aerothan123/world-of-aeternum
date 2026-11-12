@@ -95,7 +95,9 @@ const lattice = (
 
 export const WORLD_SLOTS: readonly WorldSlot[] = [
   // chapter 0: the shipped world (frozen)
-  shipped('eastbrook_vale', -180, 180, -180, 180, [1, 7]),
+  // Eastbrook Vale v2 grew the vale west over the old strait to x -270 (its west
+  // coast and ferry pier); the island's slot gave up that empty sea strip
+  shipped('eastbrook_vale', -270, 180, -180, 180, [1, 7]),
   shipped('mirefen_marsh', -180, 180, 180, 540, [6, 13]),
   shipped('thornpeak_heights', -180, 180, 540, 900, [13, 20]),
   shipped('veiled_hollow', -180, 180, 900, 1440, [15, 20]),
@@ -105,7 +107,7 @@ export const WORLD_SLOTS: readonly WorldSlot[] = [
   shipped('evergarden', 180, 540, 700, 1260, [20, 20]),
   shipped('wraithwood', 180, 540, 1260, 1820, [20, 20]),
   shipped('drakelands', 180, 540, 1820, 2420, [16, 20]),
-  shipped('proving_shore', -540, -180, -180, 180, [1, 2]),
+  shipped('proving_shore', -540, -270, -180, 180, [1, 2]),
   shipped('willowfen', -540, -180, 180, 700, [19, 20]),
   shipped('palmreach', -540, -180, 700, 1260, [20, 20]),
   shipped('nightbloom', -540, -180, 1260, 1820, [20, 20]),

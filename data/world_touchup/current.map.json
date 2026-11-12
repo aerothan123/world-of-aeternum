@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad82-99827b52-cb6a5722-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4acf7-ea6e5151-998ab81-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad82-99827b52-cb6a5722",
+    "overworldBase": "4acf7-ea6e5151-998ab81",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -18,6 +18,8 @@
         "name": "Eastbrook Vale",
         "zMin": -180,
         "zMax": 180,
+        "xMin": -270,
+        "xMax": 180,
         "levelRange": [1, 7],
         "biome": "vale",
         "hub": {
@@ -27,8 +29,8 @@
           "name": "Eastbrook"
         },
         "graveyard": {
-          "x": 39.5,
-          "z": -99.3
+          "x": 148,
+          "z": -118
         },
         "lakes": [
           {
@@ -57,8 +59,8 @@
             "id": "boar_meadow"
           },
           {
-            "x": -88,
-            "z": 82,
+            "x": -56,
+            "z": 88,
             "label": "Mirror Lake",
             "id": "mirror_lake"
           },
@@ -112,8 +114,8 @@
             "id": "the_farshore_causeway"
           },
           {
-            "x": -101,
-            "z": -54,
+            "x": -228,
+            "z": 97,
             "label": "Eastbrook Docks",
             "id": "eastbrook_docks"
           }
@@ -1395,7 +1397,7 @@
         "worldPvp": "sanctuary",
         "name": "The Proving Shore",
         "xMin": -540,
-        "xMax": -180,
+        "xMax": -270,
         "zMin": -180,
         "zMax": 180,
         "levelRange": [1, 2],
@@ -1451,8 +1453,8 @@
       {
         "mobId": "forest_wolf",
         "center": {
-          "x": -22,
-          "z": 16
+          "x": -23,
+          "z": 17
         },
         "radius": 28.5,
         "count": 6
@@ -1514,8 +1516,8 @@
       {
         "mobId": "mudfin_murloc",
         "center": {
-          "x": -75,
-          "z": 57
+          "x": -68,
+          "z": 54
         },
         "radius": 15,
         "count": 5
@@ -1532,8 +1534,8 @@
       {
         "mobId": "vale_bandit",
         "center": {
-          "x": 79,
-          "z": 25
+          "x": 66,
+          "z": 26
         },
         "radius": 28.5,
         "count": 6
@@ -1541,8 +1543,8 @@
       {
         "mobId": "vale_bandit",
         "center": {
-          "x": 117,
-          "z": 44
+          "x": 115,
+          "z": 48
         },
         "radius": 16,
         "count": 5
@@ -1551,7 +1553,7 @@
         "mobId": "gorrak",
         "center": {
           "x": 120,
-          "z": 47
+          "z": 51
         },
         "radius": 2,
         "count": 1
@@ -3459,7 +3461,7 @@
         "mobId": "culvert_rat",
         "center": {
           "x": -109,
-          "z": -98
+          "z": -66
         },
         "radius": 7,
         "count": 5
@@ -3480,8 +3482,8 @@
         "name": "The Merchant",
         "title": "Keeper of the World Market",
         "pos": {
-          "x": -29,
-          "z": -103.79285714285714
+          "x": -4.4,
+          "z": -99.26
         },
         "facing": 0,
         "color": 13938487,
@@ -3494,8 +3496,8 @@
         "name": "Warden Corren Stoutvale",
         "title": "Lanternwarden Commander",
         "pos": {
-          "x": 1.5,
-          "z": -95.3
+          "x": -3.49,
+          "z": -106.72
         },
         "facing": -1.9787985229559204,
         "color": 12031243,
@@ -3521,8 +3523,8 @@
         "name": "Silven Brackett",
         "title": "Provisioner",
         "pos": {
-          "x": -25,
-          "z": -94
+          "x": -4.26,
+          "z": -96.82
         },
         "facing": 2.1995926132103296,
         "color": 1999945,
@@ -3565,10 +3567,10 @@
         "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "pos": {
-          "x": -16.471153846153847,
-          "z": -109.2
+          "x": 1.89,
+          "z": -76.47
         },
-        "facing": 0.33061826155045143,
+        "facing": -2.6391425759138585,
         "color": 8207512,
         "questIds": [
           "q_spiders",
@@ -3586,8 +3588,8 @@
         "name": "Brother Aldric",
         "title": "Priest of the Vale",
         "pos": {
-          "x": 15.011652086947231,
-          "z": -110.38541937474815
+          "x": -3.15,
+          "z": -57.45
         },
         "facing": -0.9599310885968813,
         "color": 16251385,
@@ -3622,8 +3624,8 @@
         "name": "Smith Haldren",
         "title": "Armorer & Weaponsmith",
         "pos": {
-          "x": -8.282374584867384,
-          "z": -81.85509712542417
+          "x": 1.8,
+          "z": -108.15
         },
         "facing": -2.7925268031909276,
         "color": 7371644,
@@ -3644,8 +3646,8 @@
         "name": "Fisherman Brandt",
         "title": "Old Salt",
         "pos": {
-          "x": -22.3,
-          "z": -104.6
+          "x": -111.42,
+          "z": -98.7
         },
         "facing": 1.2672255874712333,
         "color": 2388387,
@@ -3658,8 +3660,8 @@
         "name": "Foreman Odell",
         "title": "Mine Foreman",
         "pos": {
-          "x": 1.8,
-          "z": -102.6
+          "x": 1.25,
+          "z": -81.17
         },
         "facing": -1.5328398816065827,
         "color": 10502144,
@@ -3671,8 +3673,8 @@
         "name": "Vault Keeper",
         "title": "Weekly Rewards",
         "pos": {
-          "x": -64.46690116645624,
-          "z": -99.93517677218593
+          "x": -41.69,
+          "z": -100.98
         },
         "facing": 0.7853981633974483,
         "color": 13214247,
@@ -3685,8 +3687,8 @@
         "name": "Bursar Fernando",
         "title": "The Gilded Strongbox",
         "pos": {
-          "x": -41.6,
-          "z": -102.88933333333333
+          "x": -42.4,
+          "z": -98.81
         },
         "facing": 0,
         "color": 13214247,
@@ -3699,8 +3701,8 @@
         "name": "Card Master",
         "title": "Dealer of Chance",
         "pos": {
-          "x": -48.85195954108786,
-          "z": -111.55592057176676
+          "x": -32.23,
+          "z": -90.4
         },
         "facing": 0.7853981633974481,
         "color": 8007567,
@@ -3712,8 +3714,8 @@
         "name": "Saul the Chronicler",
         "title": "The Vale Chronicle",
         "pos": {
-          "x": 10.2,
-          "z": -87.5
+          "x": -14.03,
+          "z": -104.03
         },
         "facing": 0.5880026035475675,
         "color": 13666862,
@@ -3725,8 +3727,8 @@
         "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "pos": {
-          "x": -5.772222222222222,
-          "z": -113.8
+          "x": -1,
+          "z": -83.8
         },
         "facing": -1.5707963267948966,
         "color": 11883548,
@@ -3750,8 +3752,8 @@
         "name": "Cook Marlow",
         "title": "Master of the Kitchens",
         "pos": {
-          "x": -4.967368421052631,
-          "z": -108.5
+          "x": -30.11,
+          "z": -89.3
         },
         "facing": -1.5707963267948966,
         "color": 13208139,
@@ -3777,8 +3779,8 @@
         "name": "Weaver Ottilie",
         "title": "Master of the Loom",
         "pos": {
-          "x": -13.677777777777779,
-          "z": -116.6
+          "x": -0.69,
+          "z": -77.26
         },
         "facing": 1.5707963267948966,
         "color": 7430568,
@@ -3798,8 +3800,8 @@
         "name": "Tinker Gizzel",
         "title": "Master of the Toolworks",
         "pos": {
-          "x": -14.294166666666667,
-          "z": -125.6
+          "x": 1.82,
+          "z": -84.52
         },
         "facing": 1.5707963267948966,
         "color": 11570519,
@@ -3817,7 +3819,7 @@
         "title": "Allotment Keeper",
         "pos": {
           "x": -15.5,
-          "z": -81.5
+          "z": -80
         },
         "facing": -1.5707963267948966,
         "color": 11043898,
@@ -4394,8 +4396,8 @@
         "name": "FURY",
         "title": "Honor Quartermaster",
         "pos": {
-          "x": 21,
-          "z": -83.5
+          "x": -14.2,
+          "z": -119.43
         },
         "facing": -2.0570389598824015,
         "color": 11872810,
@@ -5262,8 +5264,8 @@
         "name": "Wayfarer Bryn",
         "title": "Harbor Guide",
         "pos": {
-          "x": -79.2,
-          "z": -52.1
+          "x": -77.83,
+          "z": -52.7
         },
         "facing": 0.7,
         "color": 9071258,
@@ -5455,10 +5457,10 @@
         "name": "Drillmaster Hale",
         "title": "Quay Sparring Master",
         "pos": {
-          "x": -88,
-          "z": -45
+          "x": -20,
+          "z": -166
         },
-        "facing": -2.71,
+        "facing": 0.46,
         "color": 8014410,
         "questIds": ["q_hub_know_your_numbers", "q_hub_healing_numbers"],
         "greeting": "That dummy behind me never swings back and never goes down, $C. What matters is the tally: your Damage Meters count every blow you land on it. Target it and open the meters, and I will walk you through the rest.",
@@ -5810,8 +5812,8 @@
         "name": "Captain Althea",
         "title": "Lanternwarden Quartermaster",
         "pos": {
-          "x": 13.29,
-          "z": -112.84
+          "x": -9.04,
+          "z": -56.99
         },
         "facing": -0.96,
         "color": 15521146,
@@ -5876,7 +5878,7 @@
         "title": "World Quest Taskmaster",
         "pos": {
           "x": -2.8,
-          "z": -96
+          "z": -91
         },
         "facing": -2.1,
         "color": 9071184,
@@ -6056,15 +6058,12 @@
         "facing": -1.5707963267948966,
         "color": 14251036,
         "questIds": [
-          "q_gourdlight_rounds",
           "q_gourdlight_daily_patch",
-          "q_gourdlight_daily_boo",
           "q_gourdlight_daily_wicks",
-          "q_gourdlight_daily_towns",
           "q_gourdlight_daily_feathers",
           "q_gourdlight_daily_baskets"
         ],
-        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. Knock on the doors of the townsfolk in Eastbrook, Fenbridge and Highwatch, and say the words: trick or treat. Most will hand you a sweet. A few will play a trick on you. Bring the sweets to me, at any of my stalls, and I will trade you something to wear.",
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear.",
         "vendorItems": [
           "jar_of_mischief",
           "prankers_pumpkin",
@@ -6113,8 +6112,8 @@
         "name": "Bertram Ashcombe",
         "title": "Gravekeeper",
         "pos": {
-          "x": 25,
-          "z": -106
+          "x": 146,
+          "z": -116.8
         },
         "facing": -1.5707963267948966,
         "color": 6116168,
@@ -6126,8 +6125,8 @@
         "name": "Jorren",
         "title": "Innkeeper",
         "pos": {
-          "x": -23.6,
-          "z": -72.4
+          "x": -34.43,
+          "z": -91.05
         },
         "facing": -2.72,
         "color": 10506797,
@@ -6147,8 +6146,8 @@
         "name": "Olvessa",
         "title": "Herb Terrace Keeper",
         "pos": {
-          "x": -38,
-          "z": -77
+          "x": -57.28,
+          "z": -93.06
         },
         "facing": 0,
         "color": 7048739,
@@ -6179,8 +6178,8 @@
         "name": "Wenna Nookwright",
         "title": "Carpenter",
         "pos": {
-          "x": -45,
-          "z": -87
+          "x": 1.01,
+          "z": -78.9
         },
         "facing": 1.5707963267948966,
         "color": 9136970,
@@ -6211,8 +6210,8 @@
         "name": "Tamsin Tanwick",
         "title": "Tanner of the Yard",
         "pos": {
-          "x": -13.844,
-          "z": -121.2
+          "x": -0.16,
+          "z": -74.6
         },
         "facing": 1.5707963267948966,
         "color": 9398844,
@@ -6314,8 +6313,8 @@
         "name": "Orwin Pellock",
         "title": "Historian",
         "pos": {
-          "x": 5,
-          "z": -101.5
+          "x": -3.15,
+          "z": -51.65
         },
         "facing": 1.5707963267948966,
         "color": 8019086,
@@ -6538,28 +6537,28 @@
         "name": "Stolen Supply Crate",
         "positions": [
           {
-            "x": 64,
-            "z": 33
+            "x": 50.06,
+            "z": 33.65
           },
           {
-            "x": 71,
-            "z": 25
+            "x": 58.5,
+            "z": 26
           },
           {
-            "x": 81,
-            "z": 32
+            "x": 67.65,
+            "z": 32.65
           },
           {
-            "x": 108,
-            "z": 42
+            "x": 106,
+            "z": 46
           },
           {
-            "x": 112,
-            "z": 50
+            "x": 110,
+            "z": 54
           },
           {
-            "x": 118,
-            "z": 39
+            "x": 112.82,
+            "z": 44.45
           }
         ]
       },
@@ -7362,8 +7361,8 @@
             "z": -10
           },
           {
-            "x": -95,
-            "z": -45
+            "x": -150,
+            "z": -98
           }
         ]
       },
@@ -7389,11 +7388,11 @@
           },
           {
             "x": -50,
-            "z": -78
+            "z": -77
           },
           {
-            "x": -67,
-            "z": -62
+            "x": -66.34,
+            "z": -62.75
           }
         ]
       },
@@ -7403,7 +7402,7 @@
         "positions": [
           {
             "x": -78,
-            "z": -57
+            "z": -55
           }
         ]
       },
@@ -7605,8 +7604,8 @@
         "name": "Soft Parcel",
         "positions": [
           {
-            "x": -27.5,
-            "z": -96.5
+            "x": -27.26,
+            "z": -97.47
           }
         ]
       },
@@ -7697,16 +7696,16 @@
         "name": "Freshly Disturbed Grave",
         "positions": [
           {
-            "x": 24,
-            "z": -116
+            "x": 141.8,
+            "z": -114.38
           },
           {
-            "x": 25.9,
-            "z": -113.1
+            "x": 143.7,
+            "z": -111.48
           },
           {
-            "x": 21,
-            "z": -120
+            "x": 138.8,
+            "z": -118.38
           }
         ]
       },
@@ -7715,8 +7714,8 @@
         "name": "Black Cloth Snag",
         "positions": [
           {
-            "x": 26,
-            "z": -104.5
+            "x": -8.2,
+            "z": -40.88
           }
         ]
       },
@@ -7725,12 +7724,12 @@
         "name": "Overturned Name Stone",
         "positions": [
           {
-            "x": 43,
-            "z": -119
+            "x": 147.3,
+            "z": -115.3
           },
           {
-            "x": 48,
-            "z": -115
+            "x": 147.8,
+            "z": -111.18
           }
         ]
       },
@@ -7739,8 +7738,8 @@
         "name": "Unlit Grave Lamp",
         "positions": [
           {
-            "x": 46,
-            "z": -119
+            "x": 147.8,
+            "z": -115.43
           }
         ]
       },
@@ -7750,7 +7749,7 @@
         "positions": [
           {
             "x": 10,
-            "z": -60
+            "z": -54.5
           },
           {
             "x": 0,
@@ -7758,7 +7757,7 @@
           },
           {
             "x": 6,
-            "z": -61
+            "z": -54
           }
         ]
       },
@@ -7771,8 +7770,8 @@
             "z": -52
           },
           {
-            "x": -2,
-            "z": -60
+            "x": -3.37,
+            "z": -60.6
           }
         ]
       },
@@ -7782,7 +7781,7 @@
         "positions": [
           {
             "x": -33.5,
-            "z": -78.5
+            "z": -76.5
           }
         ]
       },
@@ -7792,7 +7791,7 @@
         "positions": [
           {
             "x": -35.5,
-            "z": -70
+            "z": -69.5
           },
           {
             "x": -38.2,
@@ -7800,7 +7799,7 @@
           },
           {
             "x": -34.3,
-            "z": -70.3
+            "z": -70.8
           }
         ]
       },
@@ -7809,16 +7808,16 @@
         "name": "Tapping Wall Panel",
         "positions": [
           {
-            "x": -28.3,
-            "z": -69.1
+            "x": -31.23,
+            "z": -98.27
           },
           {
-            "x": -26.7,
-            "z": -69.8
+            "x": -29.63,
+            "z": -98.97
           },
           {
-            "x": -24.2,
-            "z": -67.6
+            "x": -27.13,
+            "z": -97.27
           }
         ]
       },
@@ -7827,8 +7826,8 @@
         "name": "Nibbled Rent Notice",
         "positions": [
           {
-            "x": -25.4,
-            "z": -70.9
+            "x": -28.33,
+            "z": -100.07
           }
         ]
       },
@@ -7837,8 +7836,8 @@
         "name": "Disused Speaking Pipe",
         "positions": [
           {
-            "x": -22.9,
-            "z": -68.2
+            "x": -25.59,
+            "z": -98.34
           }
         ]
       },
@@ -7847,8 +7846,8 @@
         "name": "Bread Heel",
         "positions": [
           {
-            "x": -23.9,
-            "z": -73.9
+            "x": -26.83,
+            "z": -103.07
           }
         ]
       },
@@ -7857,8 +7856,8 @@
         "name": "Empty Pantry Saucer",
         "positions": [
           {
-            "x": -21.6,
-            "z": -70.6
+            "x": -24.53,
+            "z": -99.77
           }
         ]
       },
@@ -7868,7 +7867,7 @@
         "positions": [
           {
             "x": -26.5,
-            "z": -95.5
+            "z": -95
           },
           {
             "x": -24.5,
@@ -7876,7 +7875,7 @@
           },
           {
             "x": -23,
-            "z": -97
+            "z": -96
           }
         ]
       },
@@ -7886,7 +7885,7 @@
         "positions": [
           {
             "x": -27,
-            "z": -97
+            "z": -97.5
           }
         ]
       },
@@ -7927,12 +7926,12 @@
         "name": "Founders' Prayer Board",
         "positions": [
           {
-            "x": 17.6,
-            "z": -113.6
+            "x": -16.6,
+            "z": -49.98
           },
           {
-            "x": 13.5,
-            "z": -112.5
+            "x": -20.7,
+            "z": -48.88
           }
         ]
       },
@@ -7941,8 +7940,8 @@
         "name": "Faded Founding Map",
         "positions": [
           {
-            "x": 17,
-            "z": -109
+            "x": -16.96,
+            "z": -46.35
           }
         ]
       },
@@ -7951,8 +7950,8 @@
         "name": "Reading Desk",
         "positions": [
           {
-            "x": 13,
-            "z": -108.5
+            "x": -21.2,
+            "z": -42.88
           }
         ]
       },
@@ -8021,16 +8020,16 @@
         "name": "Covered Stew Bowl",
         "positions": [
           {
-            "x": -21.9,
-            "z": -74.9
+            "x": -24.83,
+            "z": -104.07
           },
           {
-            "x": -21.2,
-            "z": -73.7
+            "x": -24.13,
+            "z": -102.87
           },
           {
-            "x": -22.6,
-            "z": -75.4
+            "x": -25.53,
+            "z": -104.57
           }
         ]
       },
@@ -8039,16 +8038,16 @@
         "name": "Bread Bundle",
         "positions": [
           {
-            "x": -27.3,
-            "z": -74.2
+            "x": -30.23,
+            "z": -103.37
           },
           {
-            "x": -28.6,
-            "z": -74
+            "x": -31.53,
+            "z": -103.17
           },
           {
-            "x": -27.9,
-            "z": -73
+            "x": -30.83,
+            "z": -102.17
           }
         ]
       },
@@ -8058,11 +8057,11 @@
         "positions": [
           {
             "x": -40.5,
-            "z": -77.5
+            "z": -76.5
           },
           {
             "x": -40.5,
-            "z": -78.7
+            "z": -76.7
           },
           {
             "x": -40.5,
@@ -8115,12 +8114,12 @@
             "z": -135
           },
           {
-            "x": -25,
-            "z": -141
+            "x": -27.42,
+            "z": -141.63
           },
           {
-            "x": -20,
-            "z": -125
+            "x": -18.55,
+            "z": -124.63
           }
         ]
       },
@@ -8129,16 +8128,16 @@
         "name": "Quay Inspection Post",
         "positions": [
           {
-            "x": -80,
-            "z": -60
+            "x": -201,
+            "z": 91
           },
           {
-            "x": -86,
-            "z": -54
+            "x": -207,
+            "z": 97
           },
           {
-            "x": -74,
-            "z": -66
+            "x": -195,
+            "z": 85
           }
         ]
       },
@@ -8151,12 +8150,12 @@
             "z": -67
           },
           {
-            "x": 5,
-            "z": -66
+            "x": 5.74,
+            "z": -70.44
           },
           {
-            "x": 14,
-            "z": -63.5
+            "x": 16.91,
+            "z": -62.76
           }
         ]
       },
@@ -8166,7 +8165,7 @@
         "positions": [
           {
             "x": -40,
-            "z": -70
+            "z": -69.5
           },
           {
             "x": -46,
@@ -8279,8 +8278,8 @@
         "name": "Wenna's Public Workbench",
         "positions": [
           {
-            "x": -46.5,
-            "z": -84
+            "x": -45.68,
+            "z": -83.43
           }
         ]
       },
@@ -8317,8 +8316,8 @@
             "z": -70.5
           },
           {
-            "x": -15.8,
-            "z": -74
+            "x": -15.45,
+            "z": -74.35
           }
         ]
       },
@@ -8327,8 +8326,8 @@
         "name": "The Inn's Public Hearth",
         "positions": [
           {
-            "x": -25.4,
-            "z": -74.4
+            "x": -28.33,
+            "z": -103.57
           }
         ]
       },
@@ -8337,20 +8336,20 @@
         "name": "Suspiciously Dry Cargo Crate",
         "positions": [
           {
-            "x": -90,
-            "z": -53
+            "x": -211,
+            "z": 98
           },
           {
-            "x": -96.5,
-            "z": -54.5
+            "x": -217.5,
+            "z": 96.5
           },
           {
-            "x": -88.5,
-            "z": -62
+            "x": -209.5,
+            "z": 89
           },
           {
-            "x": -99,
-            "z": -61
+            "x": -220,
+            "z": 90
           }
         ]
       },
@@ -8359,8 +8358,8 @@
         "name": "Stenciled Cargo Mark",
         "positions": [
           {
-            "x": -91.5,
-            "z": -50
+            "x": -212.5,
+            "z": 101
           }
         ]
       },
@@ -8369,8 +8368,8 @@
         "name": "Old Jetty Post",
         "positions": [
           {
-            "x": -92,
-            "z": -63
+            "x": -213,
+            "z": 88
           }
         ]
       },

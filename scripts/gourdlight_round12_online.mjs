@@ -1,7 +1,7 @@
 // ONLINE evidence for Gourdlight Eve round 12: two players (A and B) on a running local
 // authoritative server (ALLOW_DEV_COMMANDS=1, local only), each in its own browser on the
 // real GPU. Checks, each printed as a CHECK line and captured: B sees and drinks A's
-// Gurglegreen Cauldron and both see B's goblin; the goblin counts for Boo!; Old Thatchgrin
+// Gurglegreen Cauldron and both see B's goblin; Old Thatchgrin
 // wakes at `/dev servertime night` and is back on his pole at day with nobody near; the
 // broom rider's hands as the other client draws them; the whole-event meta deed progresses
 // and grants the Gourdsworn title online. Evidence tooling, not a repo test.
@@ -215,15 +215,13 @@ async function main() {
     const idA = await idOf(A);
     const idB = await idOf(B);
 
-    // ---- Eastbrook: the cauldron, the goblin, Boo! -------------------------------
+    // ---- Eastbrook: the cauldron and the goblin ------------------------------------
     if (SECTIONS.has('town')) {
       await A.chat('/dev town eastbrook', 4000);
       await B.chat('/dev town eastbrook', 4000);
       // B stands two yards beside A
       const posA = JSON.parse(await A.ev('JSON.stringify(window.__game.world.player.pos)'));
       await B.chat(`/dev tp ${(posA.x + 2).toFixed(1)} ${posA.z.toFixed(1)}`, 3000);
-      // B takes the Boo! errand from Hester
-      await B.chat('/dev season daily q_gourdlight_daily_boo', 1500);
       const hester = await B.ev(
         `(()=>{const w=window.__game.world;const h=[...w.entities.values()].find(e=>e.templateId==='gourdlight_keeper');return h?JSON.stringify({id:h.id,x:h.pos.x,z:h.pos.z}):null})()`,
       );
@@ -231,12 +229,8 @@ async function main() {
       if (hester) {
         const h = JSON.parse(hester);
         await B.chat(`/dev tp ${(h.x + 1.5).toFixed(1)} ${h.z.toFixed(1)}`, 3000);
-        await B.ev(`window.__game.world.acceptQuest('q_gourdlight_daily_boo')`);
-        await sleep(1500);
         await A.chat(`/dev tp ${(h.x + 3).toFixed(1)} ${(h.z + 2).toFixed(1)}`, 3000);
       }
-      const booState = await B.ev(`window.__game.world.questState('q_gourdlight_daily_boo')`);
-      check('B is on the Boo! errand', booState === 'active', booState);
       // A sets the cauldron down
       await A.chat('/dev give gurglegreen_cauldron', 1500);
       await A.ev(`window.__game.world.useItem('gurglegreen_cauldron')`);
@@ -274,27 +268,6 @@ async function main() {
       await B.ev('window.__game.input.camPitch=0.3;window.__game.input.camDist=3.2;');
       await sleep(800);
       await B.shot('online-r12-b-goblin-self');
-      // the goblin counts as a costume: a fright on an Eastbrook townsperson
-      const folk = await B.ev(
-        `(()=>{const w=window.__game.world;const n=[...w.entities.values()].find(e=>e.kind==='npc'&&e.templateId==='trader_wilkes');return n?JSON.stringify({id:n.id,x:n.pos.x,z:n.pos.z}):null})()`,
-      );
-      if (folk) {
-        const f = JSON.parse(folk);
-        await B.chat(`/dev tp ${(f.x + 1.5).toFixed(1)} ${f.z.toFixed(1)}`, 2500);
-        await B.ev(`window.__game.world.trickOrTreat(${f.id}, true)`);
-        await sleep(2000);
-      }
-      const booCount = await B.ev(
-        `(()=>{const q=window.__game.world.questLog.get('q_gourdlight_daily_boo');return q?q.counts[0]:-1})()`,
-      );
-      check('the goblin counts for Boo! (errand count 1)', booCount === 1, String(booCount));
-      const frightMark = await B.ev(
-        `window.__game.world.deedStats.visited.has('gourdlight:boo:eastbrook_vale')`,
-      );
-      check('the fright marks Eastbrook on the whole-event checklist', frightMark === true);
-      if (folk) await B.aimAt(JSON.parse(folk).id, 0.3, 4, Math.PI * 0.8);
-      await sleep(400);
-      await B.shot('online-r12-b-goblin-boo');
     }
 
     // ---- Old Thatchgrin: night wakes him, day with nobody near puts him back -------
@@ -372,7 +345,7 @@ async function main() {
 
     // ---- the whole-event meta deed, online ----------------------------------------
     if (SECTIONS.has('meta')) {
-      // the dev level-up fills the bags; a knock needs room for its sweets
+      // the dev level-up fills the bags; the errand's pouch needs room
       await A.ev(
         `(()=>{const w=window.__game.world;const ids=[...new Set(w.inventory.filter(s=>s&&s.itemId).map(s=>s.itemId))].slice(0,8);for(const id of ids)w.discardItem(id,999);})()`,
       );
@@ -382,28 +355,28 @@ async function main() {
       const progress = await A.ev(
         `(()=>{const w=window.__game.world;const d=w.deedStats.visited;return [...d].filter(m=>m.startsWith('gourdlight:')).length})()`,
       );
-      check(
-        'the checklist progress reaches the client (26 of 27)',
-        progress === 26,
-        String(progress),
-      );
+      check('the checklist progress reaches the client (5 of 6)', progress === 5, String(progress));
       await A.book();
       await A.shot('online-r12-a-book-progress');
       await A.ev(`window.__game.hud.deedsWindow.close()`);
-      const wilkes = await A.ev(
-        `(()=>{const w=window.__game.world;const n=[...w.entities.values()].find(e=>e.kind==='npc'&&e.templateId==='trader_wilkes');return n?JSON.stringify({id:n.id,x:n.pos.x,z:n.pos.z}):null})()`,
+      // the last leaf: one real turn-in of the patch errand at Hester
+      await A.chat('/dev season daily q_gourdlight_daily_patch', 1500);
+      const keeper = await A.ev(
+        `(()=>{const w=window.__game.world;const h=[...w.entities.values()].find(e=>e.templateId==='gourdlight_keeper');return h?JSON.stringify({id:h.id,x:h.pos.x,z:h.pos.z}):null})()`,
       );
-      if (wilkes) {
-        const f = JSON.parse(wilkes);
-        await A.chat('/dev season knocks', 800);
-        await A.chat(`/dev tp ${(f.x + 1.5).toFixed(1)} ${f.z.toFixed(1)}`, 2500);
-        await A.ev(`window.__game.world.trickOrTreat(${f.id})`);
+      if (keeper) {
+        const h = JSON.parse(keeper);
+        await A.chat(`/dev tp ${(h.x + 1.5).toFixed(1)} ${h.z.toFixed(1)}`, 2500);
+        await A.ev(`window.__game.world.acceptQuest('q_gourdlight_daily_patch')`);
+        await sleep(1500);
+        for (let i = 0; i < 5; i++) await A.chat('/dev give thatchgrin_patch_pumpkin', 600);
+        await A.ev(`window.__game.world.turnInQuest('q_gourdlight_daily_patch')`);
         await sleep(3000);
       }
       const earned = await A.ev(
         `window.__game.world.deedsEarned.has('feat_gourdlight_eve_complete')`,
       );
-      check('one real knock grants the meta online', earned === true);
+      check('one real errand turn-in grants the meta online', earned === true);
       await A.ev(`window.__game.world.setActiveTitle('feat_gourdlight_eve_complete')`);
       await sleep(2000);
       await B.chat('/dev town eastbrook', 3500);

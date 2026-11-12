@@ -8609,23 +8609,7 @@ export const da_DK: EnTranslations = {
         "name": "Græskarlygternes aften"
       }
     },
-    "trickOrTreat": {
-      "row": "Slik eller ballade!",
-      "rowAria": "Sig slik eller ballade til {name}",
-      "knockedHint": "Du har allerede banket på her i dag. Døren åbner igen efter den daglige nulstilling.",
-      "treat": "{name} giver dig noget sødt.",
-      "trick": "{name} laver løjer med dig: {trick}!",
-      "alreadyKnocked": "Du har allerede sagt slik eller ballade til {name} i dag.",
-      "notActive": "Græskarlygternes aften er ikke i gang lige nu.",
-      "tooFar": "Gå nærmere for at banke på.",
-      "treatFlash": {
-        "one": "Slik! {count} Græskarlygteslik",
-        "few": "Slik! {count} Græskarlygteslik",
-        "many": "Slik! {count} Græskarlygteslik",
-        "other": "Slik! {count} Græskarlygteslik"
-      },
-      "trickFlash": "Ballade! {trick}"
-    },
+    "trickFlash": "Ballade! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Flagermustosset",
       "gourdlight_trick_skeleton": "Raslende knogler",
@@ -8650,7 +8634,7 @@ export const da_DK: EnTranslations = {
       "trickJar": "Brug: Udsætter dig for et tilfældigt, harmløst trick i nogle sekunder. Kosmetisk.",
       "pouch": "Brug: Åbn for at få {count} Græskarlygteslik.",
       "strawlingCharm": "Brug: Bliv en af Gamle Halmgrins halmvætter i {seconds} sekunder. Ikke i kamp. Forbruges aldrig. Kosmetisk.",
-      "sweet": "Optjenes ved slik eller ballade under Græskarlygternes aften. Hester Græskarvæge bytter dem for kosmetiske genstande ved sine boder i Østbæk, Sumpbroen og Højvagten.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Brug: Bliv til et raslende skelet i {minutes} minutter. Forbruges. Kan ikke bruges i kamp, og effekten slutter, når du går i kamp. Kosmetisk.",
       "costumeGhost": "Brug: Bliv til et svævende spøgelse i {minutes} minutter. Forbruges. Kan ikke bruges i kamp, og effekten slutter, når du går i kamp. Kosmetisk.",
       "costumeBat": "Brug: Bliv til en flagrende flagermus i {minutes} minutter. Forbruges. Kan ikke bruges i kamp, og effekten slutter, når du går i kamp. Kosmetisk.",
@@ -8677,17 +8661,6 @@ export const da_DK: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Tabes af Gamle Halmgrin på hans græskarmark forbi Vildsvineengen, første gang du plyndrer ham. Ingen forhandler sælger det."
-    },
-    "boo": {
-      "row": "Bøh!",
-      "rowAria": "Spring frem mod {name}, og råb bøh",
-      "needsCostume": "Tag først et kostume på: en kostumedrik, et flagermus- eller skelettrick, Halmvættens amulet, Udskåret græskarhoved eller en goblinslurk fra Grønboblekedlen.",
-      "frightenedHint": "{name} er stadig nervøs efter din sidste forskrækkelse. Find en anden.",
-      "landed": "Du springer frem mod {name} med et BØH! Der lyder et skrig, og alt er lige ved at blive tabt.",
-      "flash": "BØH! {name} bliver forskrækket!",
-      "noCostume": "Uden kostume griner {name} bare af dig. Tag et på først.",
-      "already": "{name} er blevet forskrækket nok for i dag.",
-      "notOnErrand": "Hester har ikke bedt dig forskrække nogen i dag."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const da_DK: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Græskarvæge",
         "title": "Græskarlygternes vogter",
-        "greeting": "Græskarrene er tændt og lygterne hængt op, så det må være Græskarlygternes aften. Bank på hos byboerne i Østbæk, Sumpbroen og Højvagten, og sig ordene: slik eller ballade. De fleste giver dig noget sødt. Nogle få laver løjer med dig. Bring slikket til mig ved en af mine boder, så bytter jeg det for noget at tage på."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Foged Ottoline",
@@ -30948,16 +30921,6 @@ export const da_DK: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Græskarlygternes runde",
-        "text": "Hver Græskarlygternes aften går Dalens børn deres runde, og i år er du med, {playerName}. Bank på fem døre i vores byer, sig ordene, og se, hvad du får. Kom tilbage til mig, når du er færdig.",
-        "completion": "Fem døre, og du har stadig alle fingrene. Her er en slikpose til turen hjem. Kom igen i morgen, så åbner dørene igen.",
-        "objectives": {
-          "0": {
-            "label": "Døre banket på"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Græskar fra marken",
         "text": "Gamle Halmgrins mark forbi Vildsvineengen bugner af græskar, og halvdelen er rullet uden for hans halm, hvor en forsigtig sjæl kan nå dem. Bring mig fem, {playerName}. Hold dig langt fra selve det gamle fugleskræmsel. Han tæller hver eneste.",
@@ -30968,16 +30931,6 @@ export const da_DK: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Bøh!",
-        "text": "Ingen i disse byer er blevet ordentligt forskrækket i et år, {playerName}, og Græskarlygternes aften uden et gys er bare en kold nat. Tag et kostume på, et hvilket som helst af mine duer, eller det græskarhoved, hvis du har fortjent et. Snig dig så ind på tre byboere, og råb et ordentligt højt BØH.",
-        "completion": "Tre? Jeg hørte kokken tabe en pande helt ovre fra den anden side af pladsen. Godt klaret. Her er din andel.",
-        "objectives": {
-          "0": {
-            "label": "Forskrækkede byboere"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Onde væger",
         "text": "Nogen sætter lys med grønne flammer ved foden af vores lygtepæle. De brænder uden at smelte og hvisker, når du vender ryggen til. Sluk seks for mig, {playerName}, i hvilken som helst af de tre byer, og bring mig stumperne.",
@@ -30985,22 +30938,6 @@ export const da_DK: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Slukkede forbandede lys"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "En dør i hver by",
-        "text": "Børnene siger, at en ægte græskarlygtevandrer banker på i hver by, før natten er omme. Vis dem, at de har ret, {playerName}. Sig slik eller ballade ved én dør i Østbæk, én i Sumpbroen og én i Højvagten. Lygterne langs vejene lyser for dig.",
-        "completion": "Tre byer på én nat! Dine støvler har fortjent det her mere end dig.",
-        "objectives": {
-          "0": {
-            "label": "En dør banket på i Østbæk"
-          },
-          "1": {
-            "label": "En dør banket på i Sumpbroen"
-          },
-          "2": {
-            "label": "En dør banket på i Højvagten"
           }
         }
       },

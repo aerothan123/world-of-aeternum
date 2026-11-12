@@ -194,11 +194,7 @@ import {
   GALECREST_ZONE,
 } from './content/galecrest';
 import { GATHER_NODES as GATHER_NODES_CONTENT } from './content/gather_nodes';
-import {
-  GOURDLIGHT_EVE_ITEMS,
-  GOURDLIGHT_EVE_NPCS,
-  GOURDLIGHT_EVE_QUESTS,
-} from './content/gourdlight_eve';
+import { GOURDLIGHT_EVE_ITEMS, GOURDLIGHT_EVE_NPCS } from './content/gourdlight_eve';
 import { GOURDLIGHT_DAILY_ITEMS, GOURDLIGHT_DAILY_QUESTS } from './content/gourdlight_eve_dailies';
 import {
   GOURDLIGHT_SCARECROW_ITEMS,
@@ -414,6 +410,7 @@ import {
 } from './content/zone3';
 import { DUNGEON_WALL_HW, DUNGEON_WALL_X } from './dungeon_layout';
 import { EASTBROOK_LAYOUT } from './eastbrook_layout';
+import { applyEbv2Sites } from './eastbrook_v2/sites';
 import { FENBRIDGE_LAYOUT } from './fenbridge_layout';
 import { spreadFrontierContent } from './frontier/spread';
 import { HIGHWATCH_LAYOUT } from './highwatch_layout';
@@ -703,7 +700,6 @@ export const QUESTS: Record<string, QuestDef> = {
   ...PROVING_SHORE_QUESTS,
   ...IGNIVAR_RAID_LORE_QUESTS,
   ...HUB_PRACTICE_QUESTS,
-  ...GOURDLIGHT_EVE_QUESTS,
   ...GOURDLIGHT_DAILY_QUESTS,
   // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).
   ...CHAPTER_ONE_QUESTS,
@@ -750,7 +746,6 @@ export const QUEST_ORDER: string[] = [
   ...IGNIVAR_RAID_LORE_QUEST_ORDER,
   ...HUB_PRACTICE_QUEST_ORDER,
   // the seasonal events' quests (open only while their event runs)
-  ...Object.keys(GOURDLIGHT_EVE_QUESTS),
   ...Object.keys(GOURDLIGHT_DAILY_QUESTS),
   // Wyndlewood Chapter One and the Eastbrook quest board, appended last.
   ...Object.keys(CHAPTER_ONE_QUESTS),
@@ -1220,6 +1215,9 @@ spreadFrontierContent([
   MUSTER_BOARDS,
   CHAPTER_TWO_GATED_CATCH_SPOTS,
 ]);
+// Eastbrook Vale v2 (src/sim/eastbrook_v2/sites.ts): the vale's NPCs, camps and
+// quest objects stand on their sites in the imported design, by stable key.
+applyEbv2Sites({ npcs: NPCS, camps: CAMPS, objects: GROUND_OBJECTS });
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
 // A zone without an explicit x-range spans the original strip column.

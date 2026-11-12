@@ -332,17 +332,19 @@ export const TRANSPORT_SHIP_HULLS: Readonly<Record<string, ShipHullLayout>> = {
 // deck is a kinematic platform that moves with the ship.
 // ---------------------------------------------------------------------------
 
-/** The Eastbrook berth: broadside across the ferry pier's T-head, bow north
- *  (+z), the port gangway square to the pier's end (world z -54) so the
- *  gangplank drops onto the pier deck (Phase 1's mooring, unchanged). */
+/** The Eastbrook berth: in the west cove of Eastbrook Vale (the v2 design's
+ *  ferry dock; the old harbor cove is the design's mill ground now), broadside
+ *  across the end of the cove pier (sim/ferry_piers.ts), bow north (+z), the port
+ *  gangway square to the pier's end (world z 97) so the gangplank drops onto the
+ *  pier deck, the same relation to its pier as every other berth. */
 const EASTBROOK_BERTH: TransportBerthDef = {
   id: 'eastbrook',
   poi: 'poi:eastbrook_vale:eastbrook',
-  x: -125,
-  z: -54.8,
+  x: -252,
+  z: 96.2,
   rot: 0,
-  // the ferry pier's T-head, facing back up the pier toward the quay
-  landing: { x: -113.5, z: -54, facing: Math.PI / 2 },
+  // on the pier near its end, facing back up it toward the shore
+  landing: { x: -240.5, z: 97, facing: Math.PI / 2 },
 };
 
 /** The Wickharbor berth: broadside across the berth head of the Wickharbor ferry wharf
@@ -397,36 +399,26 @@ function sternPivot(sx: number, sz: number, rot: number): TransportWaypoint {
 
 /**
  * The sea lane Eastbrook to the Nightbloom. The only water that joins them
- * runs up the far west of the world: out of the cove and north up the deep
- * western strait, west along the deep channel south of the Willowfen, then
- * north up the long western shallows past the Palmreach and into the
- * Nightbloom's deep western strait, straight in onto the berth. Authored
- * against the heightfield and the colliders, pinned by
- * tests/transport_lanes.test.ts (the waterline hull afloat, clear of every
- * pier, post and moored hull; the shallows are the known keel-in-sand
- * stretch the owner accepted).
+ * runs up the far west of the world: out of Eastbrook's west cove and north
+ * up its dredged fairway along the vale's coast to the deep channel south of
+ * the Willowfen, west along it, then north up the long western shallows past
+ * the Palmreach and into the Nightbloom's deep western strait, straight in
+ * onto the berth. Authored against the heightfield and the colliders, pinned
+ * by tests/transport_lanes.test.ts (the waterline hull afloat, clear of every
+ * pier, post and moored hull; the shallows are the known keel-in-sand stretch
+ * the owner accepted).
  *
- * The cove is barely longer than the ship, so it casts off by swinging its
- * bow west about its stern (clear of the piers behind it) before it gathers
- * way, then turns north out of the cove mouth.
+ * The ship lies bow north at the cove pier, so it casts off straight up the
+ * fairway and turns west where the fairway meets the open channel.
  */
 const EASTBROOK_TO_NIGHTBLOOM: readonly TransportWaypoint[] = [
   { x: EASTBROOK_BERTH.x, z: EASTBROOK_BERTH.z, rot: EASTBROOK_BERTH.rot },
-  sternPivot(-125, -70.3, -0.3),
-  sternPivot(-125, -70.3, -0.75),
-  sternPivot(-125, -70.3, -1.2),
-  sternPivot(-125, -70.3, -Math.PI / 2),
-  { x: -152, z: -70.6 },
-  { x: -166, z: -72 },
-  { x: -179, z: -68 },
-  { x: -186, z: -52 },
-  { x: -187, z: -20 },
-  { x: -186, z: 20 },
-  { x: -186, z: 60 },
-  { x: -186, z: 100 },
-  { x: -193, z: 138 },
-  { x: -212, z: 158 },
-  { x: -245, z: 165 },
+  { x: -252.5, z: 112 },
+  { x: -254.5, z: 132 },
+  { x: -256, z: 150 },
+  { x: -257, z: 163 },
+  { x: -264, z: 172 },
+  { x: -280, z: 172 },
   { x: -300, z: 165 },
   { x: -360, z: 165 },
   { x: -420, z: 165 },
@@ -465,9 +457,10 @@ const EASTBROOK_TO_NIGHTBLOOM: readonly TransportWaypoint[] = [
  * The sea lane the Nightbloom to Eastbrook: the same sea road the other way.
  * The berth faces north up the strait, so it casts off by swinging its bow
  * west, away from the pier, about its stern until it points south, then runs
- * the western shallows south, east along the channel, down the western
- * strait, and into the cove, where it swings north onto the berth along an
- * arc that keeps its bow clear of the ferry pier's T-head.
+ * the western shallows south, east along the channel, and down Eastbrook's
+ * fairway into the west cove. It passes well west of the cove pier heading
+ * south, swings east round a wide loop in the open water south of the pier
+ * (gentle enough for its turn rate), and runs north onto the berth.
  */
 const NIGHTBLOOM_TO_EASTBROOK: readonly TransportWaypoint[] = [
   { x: NIGHTBLOOM_BERTH.x, z: NIGHTBLOOM_BERTH.z, rot: NIGHTBLOOM_BERTH.rot },
@@ -507,21 +500,17 @@ const NIGHTBLOOM_TO_EASTBROOK: readonly TransportWaypoint[] = [
   { x: -420, z: 165 },
   { x: -360, z: 165 },
   { x: -300, z: 165 },
-  { x: -245, z: 165 },
-  { x: -212, z: 158 },
-  { x: -193, z: 138 },
-  { x: -186, z: 100 },
-  { x: -186, z: 60 },
-  { x: -186, z: 20 },
-  { x: -187, z: -20 },
-  { x: -187, z: -50 },
-  { x: -182, z: -70 },
-  { x: -171, z: -77.5 },
-  { x: -159, z: -75 },
-  { x: -145, z: -74.8 },
-  { x: -137.35, z: -73.28 },
-  { x: -130.86, z: -68.94 },
-  { x: -126.52, z: -62.45 },
+  { x: -280, z: 171 },
+  { x: -264, z: 170 },
+  { x: -262, z: 160 },
+  { x: -263, z: 140 },
+  { x: -265, z: 120 },
+  { x: -267, z: 104 },
+  { x: -266, z: 90 },
+  { x: -262, z: 80 },
+  { x: -256, z: 77 },
+  { x: -251.5, z: 82 },
+  { x: -251.8, z: 89, rot: 0 },
   { x: EASTBROOK_BERTH.x, z: EASTBROOK_BERTH.z, rot: EASTBROOK_BERTH.rot },
 ];
 

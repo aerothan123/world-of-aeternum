@@ -3,29 +3,29 @@
   "id": "station_eastbrook_forge",
   "type": "forge",
   "zoneId": "eastbrook_vale",
-  "x": -4.1722222222222225,
-  "z": -113.8
+  "x": -1,
+  "z": -85
  },
  {
   "id": "station_eastbrook_kitchens",
   "type": "kitchens",
   "zoneId": "eastbrook_vale",
-  "x": -3.367368421052632,
-  "z": -108.5
+  "x": -33.27,
+  "z": -89.8
  },
  {
   "id": "station_eastbrook_loom",
   "type": "loom",
   "zoneId": "eastbrook_vale",
-  "x": -15.277777777777779,
-  "z": -116.6
+  "x": 2.45,
+  "z": -78.85
  },
  {
   "id": "station_eastbrook_toolworks",
   "type": "toolworks",
   "zoneId": "eastbrook_vale",
-  "x": -15.894166666666667,
-  "z": -125.6
+  "x": 1.43,
+  "z": -82.6
  },
  {
   "id": "station_fenbridge_tannery",
@@ -45,14 +45,14 @@
   "id": "station_eastbrook_apothecary",
   "type": "apothecary",
   "zoneId": "eastbrook_vale",
-  "x": -15.971153846153847,
-  "z": -112
+  "x": 2.6,
+  "z": -75.5
  },
  {
   "id": "station_eastbrook_tannery",
   "type": "tannery",
   "zoneId": "eastbrook_vale",
-  "x": -15.443999999999999,
-  "z": -121.2
+  "x": -1.2,
+  "z": -74
  }
 ]

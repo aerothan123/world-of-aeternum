@@ -8609,23 +8609,7 @@ export const ko_KR: EnTranslations = {
         "name": "고드라이트 축제의 밤"
       }
     },
-    "trickOrTreat": {
-      "row": "과자 안 주면 장난칠 거야!",
-      "rowAria": "{name}에게 \"과자 안 주면 장난칠 거야\"라고 말하기",
-      "knockedHint": "오늘은 이미 이 문을 두드렸습니다. 일일 초기화 후 다시 열립니다.",
-      "treat": "{name}이(가) 과자를 건네줍니다.",
-      "trick": "{name}이(가) 당신에게 장난을 칩니다: {trick}!",
-      "alreadyKnocked": "오늘은 이미 {name}에게 과자를 받았습니다.",
-      "notActive": "지금은 고드라이트 축제의 밤이 열리지 않습니다.",
-      "tooFar": "문을 두드리려면 더 가까이 가세요.",
-      "treatFlash": {
-        "one": "과자! 고드라이트 사탕 {count}개",
-        "few": "과자! 고드라이트 사탕 {count}개",
-        "many": "과자! 고드라이트 사탕 {count}개",
-        "other": "과자! 고드라이트 사탕 {count}개"
-      },
-      "trickFlash": "장난! {trick}"
-    },
+    "trickFlash": "장난! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "박쥐 변신",
       "gourdlight_trick_skeleton": "덜그럭 뼈다귀",
@@ -8650,7 +8634,7 @@ export const ko_KR: EnTranslations = {
       "trickJar": "사용: 몇 초 동안 무해한 장난을 무작위로 자신에게 겁니다. 고드라이트 축제의 밤 동안에만. 외형 전용.",
       "pouch": "사용: 열면 고드라이트 사탕 {count}개를 받습니다.",
       "strawlingCharm": "사용: {seconds}초 동안 올드 대치그린의 짚인형으로 변합니다. 전투 중에는 사용할 수 없으며 고드라이트 축제의 밤 동안에만 사용할 수 있습니다. 소모되지 않습니다. 외형 전용.",
-      "sweet": "고드라이트 축제의 밤 동안 과자를 얻으러 다니며 받습니다. 이스트브룩의 헤스터 고드윅이 외형 아이템과 교환해 줍니다.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "사용: {minutes}분 동안 덜그럭거리는 해골로 변신합니다. 사용 시 소모됩니다. 전투 중에는 사용할 수 없으며 전투에 들어가면 해제됩니다. 고드라이트 축제의 밤 기간에만 사용 가능. 외형 전용.",
       "costumeGhost": "사용: {minutes}분 동안 떠도는 유령으로 변신합니다. 사용 시 소모됩니다. 전투 중에는 사용할 수 없으며 전투에 들어가면 해제됩니다. 고드라이트 축제의 밤 기간에만 사용 가능. 외형 전용.",
       "costumeBat": "사용: {minutes}분 동안 날갯짓하는 박쥐로 변신합니다. 사용 시 소모됩니다. 전투 중에는 사용할 수 없으며 전투에 들어가면 해제됩니다. 고드라이트 축제의 밤 기간에만 사용 가능. 외형 전용.",
@@ -8677,17 +8661,6 @@ export const ko_KR: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "보어 메도 너머 호박밭의 올드 대치그린에게서 처음 전리품을 챙길 때 얻습니다. 상인은 팔지 않습니다."
-    },
-    "boo": {
-      "row": "워!",
-      "rowAria": "{name} 앞으로 뛰어나가 워 하고 외치기",
-      "needsCostume": "먼저 분장을 하세요: 분장 물약, 박쥐나 해골 장난, 짚인형 부적, 조각한 호박 머리, 또는 보글초록 가마솥의 고블린이 되는 한 모금.",
-      "frightenedHint": "{name}은(는) 지난번 놀람에 아직도 움찔거립니다. 다른 사람을 찾아보세요.",
-      "landed": "{name} 앞으로 뛰어나가 워! 하고 외쳤습니다. 비명을 지르며 들고 있던 걸 떨어뜨릴 뻔했습니다.",
-      "flash": "워! {name}이(가) 놀랐습니다!",
-      "noCostume": "분장 없이는 {name}이(가) 웃기만 합니다. 먼저 분장을 하세요.",
-      "already": "{name}은(는) 오늘 이미 충분히 놀랐습니다.",
-      "notOnErrand": "헤스터는 오늘 누구를 놀래 주라고 부탁하지 않았습니다."
     },
     "tokenPrice": "{item} {count}개",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const ko_KR: EnTranslations = {
       "gourdlight_keeper": {
         "name": "헤스터 고드윅",
         "title": "고드라이트 관리인",
-        "greeting": "호박에 불이 켜지고 등불이 걸렸으니 고드라이트 축제의 밤이 온 게 틀림없어요. 이스트브룩, 펜브리지, 하이워치 마을 사람들의 문을 두드리고 그 말을 해 보세요. 과자 안 주면 장난칠 거야. 대부분은 사탕을 주겠지만, 몇몇은 장난을 칠 거예요. 사탕을 가져오면 몸에 걸칠 것과 바꿔 드릴게요."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "촌장 오톨린",
@@ -30948,16 +30921,6 @@ export const ko_KR: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "고드라이트 순회",
-        "text": "고드라이트 축제의 밤마다 골짜기의 아이들이 집집마다 돌아다녀요. 올해는 당신도 함께해요, {playerName}. 우리 마을에서 문 다섯 개를 두드리고 그 말을 한 다음 무엇을 받는지 보세요. 끝나면 저에게 돌아오세요.",
-        "completion": "문 다섯 개를 두드렸는데 손가락도 다 멀쩡하네요. 자, 집에 가는 길에 먹을 과자 주머니예요. 내일 또 오세요. 문은 다시 열리니까요.",
-        "objectives": {
-          "0": {
-            "label": "두드린 문"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "밭에서 굴러온 호박",
         "text": "보어 메도 너머 올드 대치그린의 밭은 호박으로 가득한데, 절반은 그의 짚 울타리 밖으로 굴러 나와 조심하면 손이 닿아요. 다섯 개만 가져다줘요, {playerName}. 그 늙은 허수아비한테는 가까이 가지 말고요. 하나하나 다 세고 있거든요.",
@@ -30968,16 +30931,6 @@ export const ko_KR: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "워!",
-        "text": "이 마을들에선 일 년 내내 제대로 놀란 사람이 없어요, {playerName}. 깜짝 놀랄 일 없는 고드라이트 축제의 밤은 그냥 추운 밤일 뿐이죠. 분장을 해요. 내 물약이면 아무거나 되고, 그 호박 머리를 얻었다면 그것도 좋아요. 그리고 마을 사람 셋에게 몰래 다가가서 크게 워 하고 놀래 주세요.",
-        "completion": "셋이나요? 광장 건너편에서 요리사가 냄비 떨어뜨리는 소리가 들렸어요. 잘했어요. 이건 당신 몫이에요.",
-        "objectives": {
-          "0": {
-            "label": "놀란 마을 사람"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "사악한 심지",
         "text": "누군가 가로등 발치에 초록 불꽃 양초를 놓고 다녀요. 녹지도 않고 타면서, 등을 돌리면 속삭인답니다. 세 마을 어디서든 여섯 개를 꺼 주고 토막을 가져다줘요, {playerName}.",
@@ -30985,22 +30938,6 @@ export const ko_KR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "꺼 버린 저주받은 양초"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "마을마다 문 하나씩",
-        "text": "아이들 말로는 진짜 고드라이트 순례자는 밤이 가기 전에 모든 마을에서 문을 두드린대요. 그 말이 맞다는 걸 보여줘요, {playerName}. 이스트브룩, 펜브리지, 하이워치에서 문 하나씩 두드리며 사탕을 달라고 외쳐요. 길가의 등불이 길을 밝혀 줄 거예요.",
-        "completion": "하룻밤에 세 마을이라니! 이건 당신보다 당신 장화가 더 받을 자격이 있네요.",
-        "objectives": {
-          "0": {
-            "label": "이스트브룩에서 두드린 문"
-          },
-          "1": {
-            "label": "펜브리지에서 두드린 문"
-          },
-          "2": {
-            "label": "하이워치에서 두드린 문"
           }
         }
       },

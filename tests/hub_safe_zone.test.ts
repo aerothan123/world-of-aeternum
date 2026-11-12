@@ -7,6 +7,7 @@ import {
   PRACTICE_DUMMY_CAMPS,
 } from '../src/sim/content/practice_dummies';
 import { CAMPS, NPCS, ZONES, zoneAt } from '../src/sim/data';
+import { ebv2Site } from '../src/sim/eastbrook_v2/sites';
 import type { CampDef } from '../src/sim/types';
 import { groundHeight, waterLevel, waterLevelAt } from '../src/sim/world';
 
@@ -95,6 +96,13 @@ const RELOCATED = [
   'veiled_rite_tender@107,-41',
   'culvert_rat@-109,-98',
 ];
+// Eastbrook Vale v2: a pinned camp whose slots left usable ground on the design
+// stands on its site now (eastbrook_v2/sites.ts `camp:<mobId>@<x>,<z>`, keyed by
+// the authored spot above), and is checked there.
+const RELOCATED_LIVE = RELOCATED.map((k) => {
+  const s = ebv2Site(`camp:${k}`);
+  return s ? `${k.slice(0, k.indexOf('@'))}@${s.x},${s.z}` : k;
+});
 
 const inVale = (x: number, z: number) => zoneAt(x, z)?.id === 'eastbrook_vale';
 const valeCamps = CAMPS.filter((c) => !isPractice(c.mobId) && inVale(c.center.x, c.center.z));
@@ -153,7 +161,7 @@ describe('hub safe zones', () => {
 
   it('puts every relocated vale camp slot on ground a mob can spawn on', () => {
     const relocated = valeCamps.filter((c) =>
-      RELOCATED.includes(`${c.mobId}@${c.center.x},${c.center.z}`),
+      RELOCATED_LIVE.includes(`${c.mobId}@${c.center.x},${c.center.z}`),
     );
     expect(relocated.length, 'every relocated camp is still placed where pinned').toBe(
       RELOCATED.length,

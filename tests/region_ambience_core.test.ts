@@ -58,23 +58,26 @@ describe('region_ambience_core', () => {
     expect(REGION_BED_KEYS[zoneBedIndex(PROVING_SHORE_ZONE)]).toBe('amb_bed_shore');
     expect(REGION_BED_KEYS[zoneBedIndex(ZONE1_ZONE)]).toBe('amb_bed_meadow');
     expect(REGION_BED_KEYS[zoneBedIndex(zoneAt(0, 300))]).toBe('amb_bed_marsh');
-    // the Proving Shore island plays the surf at its camp
+    // the Proving Shore island plays the surf at its camp. Eastbrook Vale v2 grew
+    // the vale west to x -270, so the island's east seam now lies 30 yd from the
+    // camp (-300, 50), inside the ZONE_BLEND_YARDS crossfade: the surf still leads
+    // at the camp itself and plays whole a few yards west, past the crossfade.
     const camp = PROVING_SHORE_ZONE.hub;
     expect(camp).toBeDefined();
-    const r = sampleRegionAmbienceInto(
-      createRegionAmbience(),
-      {
-        x: camp?.x ?? 0,
-        z: camp?.z ?? 0,
-        inDungeon: false,
-        dungeonInterior: null,
-        dayWeight: 1,
-        forestDensity: 0,
-      },
-      zoneAt,
-      () => undefined,
-    );
-    expect(weight(r, 'amb_bed_shore')).toBeCloseTo(1, 5);
+    const shoreAt = (x: number, z: number) =>
+      weight(
+        sampleRegionAmbienceInto(
+          createRegionAmbience(),
+          { x, z, inDungeon: false, dungeonInterior: null, dayWeight: 1, forestDensity: 0 },
+          zoneAt,
+          () => undefined,
+        ),
+        'amb_bed_shore',
+      );
+    const cx = camp?.x ?? 0;
+    const cz = camp?.z ?? 0;
+    expect(shoreAt(cx, cz)).toBeGreaterThanOrEqual(0.9);
+    expect(shoreAt(cx - 4, cz)).toBeCloseTo(1, 5);
   });
 
   it('plays the zone bed whole away from borders and towns', () => {

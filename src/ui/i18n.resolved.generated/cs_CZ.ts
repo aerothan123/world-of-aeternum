@@ -8609,23 +8609,7 @@ export const cs_CZ: EnTranslations = {
         "name": "Svátek dýňových světel"
       }
     },
-    "trickOrTreat": {
-      "row": "Koledu, nebo neplechu!",
-      "rowAria": "Říct {name}: koledu, nebo neplechu",
-      "knockedHint": "Tady už jsi dnes klepal. Dveře se znovu otevřou po denním resetu.",
-      "treat": "{name} ti podává sladkost.",
-      "trick": "{name} tě napálí: {trick}!",
-      "alreadyKnocked": "U {name} jsi dnes už koledoval.",
-      "notActive": "Svátek dýňových světel právě neprobíhá.",
-      "tooFar": "Přistup blíž, abys mohl zaklepat.",
-      "treatFlash": {
-        "one": "Koleda! {count} dýňová sladkost",
-        "few": "Koleda! {count} dýňové sladkosti",
-        "many": "Koleda! {count} dýňových sladkostí",
-        "other": "Koleda! {count} dýňových sladkostí"
-      },
-      "trickFlash": "Neplecha! {trick}"
-    },
+    "trickFlash": "Neplecha! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Netopýří poblouznění",
       "gourdlight_trick_skeleton": "Chrastící kosti",
@@ -8650,7 +8634,7 @@ export const cs_CZ: EnTranslations = {
       "trickJar": "Použití: Na několik sekund na tobě provede náhodný neškodný žert. Pouze vzhled.",
       "pouch": "Použití: Otevři a získej {count} dýňových sladkostí.",
       "strawlingCharm": "Použití: Na {seconds} sekund se proměníš v jednoho ze Slamošklebových slaměnců. Mimo boj. Nikdy se nespotřebuje. Pouze vzhled.",
-      "sweet": "Získává se koledováním během Svátku dýňových světel. Hester Dýňoknotová je mění za kosmetické předměty u svých stánků v Eastbrooku, Fenbridge a Highwatchi.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Použití: Na {minutes} minut se proměníš v chrastícího kostlivce. Spotřebuje se. Nelze použít v boji a vstup do boje účinek ukončí. Pouze vzhled.",
       "costumeGhost": "Použití: Na {minutes} minut se proměníš v plujícího ducha. Spotřebuje se. Nelze použít v boji a vstup do boje účinek ukončí. Pouze vzhled.",
       "costumeBat": "Použití: Na {minutes} minut se proměníš v mávajícího netopýra. Spotřebuje se. Nelze použít v boji a vstup do boje účinek ukončí. Pouze vzhled.",
@@ -8677,17 +8661,6 @@ export const cs_CZ: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Padá ze Starého Slamoškleba na jeho dýňovém poli za Kančí loukou při prvním vybrání kořisti. Žádný obchodník ji neprodává."
-    },
-    "boo": {
-      "row": "Baf!",
-      "rowAria": "Vyskočit na {name} a zakřičet baf",
-      "needsCostume": "Nejdřív si obleč kostým: použij kostýmový lektvar, netopýří nebo kostlivý žert, Talisman slaměnce, Vyřezanou dýňovou hlavu nebo doušek ze Zelenobublavého kotle pro gobliní podobu.",
-      "frightenedHint": "{name} je po tvém posledním vystrašení pořád nervózní. Najdi někoho jiného.",
-      "landed": "Vyskočíš na {name} s výkřikem BAF! Vyděšeně vykřikne a málem všechno upustí.",
-      "flash": "BAF! {name} se lekl!",
-      "noCostume": "Bez kostýmu se ti {name} jen směje. Nejdřív si nějaký obleč.",
-      "already": "{name} už má dnes strašení dost.",
-      "notOnErrand": "Hester tě dnes neposlala nikoho strašit."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const cs_CZ: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Dýňoknotová",
         "title": "Strážkyně dýňových světel",
-        "greeting": "Dýně svítí a lucerny visí, takže nastal Svátek dýňových světel. Zaklepej na dveře obyvatel Eastbrooku, Fenbridge a Highwatche a řekni: koledu, nebo neplechu. Většina ti dá sladkost. Někteří tě napálí. Přines mi sladkosti k libovolnému z mých stánků a vyměním je za něco na sebe."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Rychtářka Ottoline",
@@ -30948,16 +30921,6 @@ export const cs_CZ: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Dýňová koleda",
-        "text": "Každý Svátek dýňových světel děti z údolí chodí koledovat a letos se k nim přidáš i ty, {playerName}. Zaklepej na pět dveří v našich městech, řekni ta slova a uvidíš, co dostaneš. Až skončíš, vrať se za mnou.",
-        "completion": "Pět dveří a pořád máš všechny prsty. Tady máš váček sladkostí na cestu domů. Vrať se zítra, dveře se zase otevřou.",
-        "objectives": {
-          "0": {
-            "label": "Navštívené dveře"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Dýně z políčka",
         "text": "Slamošklebovo políčko za Kančí loukou se nadouvá dýněmi a polovina se odkutálela za jeho slámu, kde na ně opatrný člověk dosáhne. Přines mi jich pět, {playerName}. Samotnému starému strašákovi se vyhni obloukem. Počítá každou.",
@@ -30968,16 +30931,6 @@ export const cs_CZ: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Baf!",
-        "text": "Nikdo v těchhle městech se už rok pořádně nelekl, {playerName}, a Svátek dýňových světel bez leknutí je jen studená noc. Obleč si kostým, klidně kterýkoli můj, nebo tu dýňovou hlavu, pokud už ji máš. Pak se přikradni ke třem obyvatelům a pořádně nahlas zařvi BAF.",
-        "completion": "Tři? Přes celé náměstí jsem slyšela, jak kuchař upustil pánev. Výborně. Tady je tvůj podíl.",
-        "objectives": {
-          "0": {
-            "label": "Vystrašení obyvatelé"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Zlověstné knoty",
         "text": "Někdo staví k našim lampám svíčky se zeleným plamenem. Hoří, ale netají, a když se otočíš, šeptají. Zhasni mi jich šest, {playerName}, v kterémkoli z těch tří měst a přines mi zbytky.",
@@ -30985,22 +30938,6 @@ export const cs_CZ: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Zhasnuté prokleté svíčky"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Dveře v každém městě",
-        "text": "Děti říkají, že pravý dýňový koledník zaklepe v každém městě, než skončí noc. Dej jim za pravdu, {playerName}. Koleduj u jedněch dveří v Eastbrooku, jedněch ve Fenbridge a jedněch v Highwatchi. Cestu ti osvětlí lucerny podél silnic.",
-        "completion": "Tři města za jednu noc! Tuhle odměnu si zasloužily spíš tvoje boty než ty.",
-        "objectives": {
-          "0": {
-            "label": "Zaklepání na dveře v Eastbrooku"
-          },
-          "1": {
-            "label": "Zaklepání na dveře ve Fenbridge"
-          },
-          "2": {
-            "label": "Zaklepání na dveře v Highwatchi"
           }
         }
       },

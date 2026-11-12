@@ -22,6 +22,7 @@ import { BUILTIN_WORLD, PLAYER_START, setActiveWorldContent } from '../src/sim/d
 import { isExcludedDecoration, isExcludedStreetlamp } from '../src/sim/decoration_exclusions';
 import { EASTBROOK_LAYOUT, localToWorld, type Obb2 } from '../src/sim/eastbrook_layout';
 import { eastbrookTownRecordBoxes } from '../src/sim/eastbrook_town_footprints';
+import { ebv2FieldHeight, ebv2Owns, ebv2Weight, ebv2Xz } from '../src/sim/eastbrook_v2';
 import { HIGHWATCH_LAYOUT } from '../src/sim/highwatch_layout';
 import { PAINTED_TOWNS } from '../src/sim/painted_towns';
 import { PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
@@ -46,6 +47,14 @@ import { WORLD_SEED } from '../src/sim/world_seed';
 const ROOT = path.join(__dirname, '..');
 const BUILDINGS = EASTBROOK_LAYOUT.buildings;
 type Building = (typeof BUILDINGS)[number];
+// Eastbrook Vale v2 (src/sim/eastbrook_v2/): in the built-in world the design's own
+// town stands on the design's ground, so a placed building there gives up its walls,
+// its pads and its ground to the design (tests/eastbrook_v2_world.test.ts holds the
+// design side). The world checks below hold for the buildings still standing on
+// shipped ground; the layout and draw checks hold for all six, which a Studio map
+// or a custom world still places.
+const ON_V2 = (b: Building) => ebv2Owns(b.placement.x, b.placement.z);
+const STANDING = BUILDINGS.filter((b) => !ON_V2(b));
 
 interface MapPlacement {
   assetId: string;
@@ -596,7 +605,10 @@ describe('placed building collision in the built-in world', () => {
   });
 
   it('blocks inside every town box, leaves each door step free, and nothing blocks where no wall is drawn', () => {
-    for (const building of BUILDINGS) {
+    // the v2 design's terrace carries the whole town today; a building off it
+    // still answers for its own boxes
+    expect(BUILDINGS.filter(ON_V2).length + STANDING.length).toBe(BUILDINGS.length);
+    for (const building of STANDING) {
       const boxes = eastbrookTownRecordBoxes(recordOf(building));
       if (!boxes) throw new Error(`${building.id} has no town boxes`);
       for (const box of boxes) {
@@ -637,6 +649,11 @@ describe('placed building collision in the built-in world', () => {
     const reach = rectOf(chapel, chapel.reach);
     const local = toModelAxes(chapel, open);
     expect(local.x).toBeLessThan(reach.x1);
+    // on the v2 design ground the chapel's own walls stand down with it
+    if (ON_V2(chapel)) {
+      expect(ebv2Owns(open.x, open.z)).toBe(true);
+      return;
+    }
     expect(isBlocked(WORLD_SEED, open.x, open.z)).toBe(false);
   });
 });
@@ -774,7 +791,8 @@ describe('the ground under the placed buildings', () => {
   });
 
   it('is level under each building, across its whole reach', () => {
-    for (const building of BUILDINGS) {
+    // a building on the v2 design ground stands on the design's own terrace
+    for (const building of STANDING) {
       const seat = terrainHeight(building.placement.x, building.placement.z, WORLD_SEED);
       const box = building.reach;
       let low = Infinity;
@@ -796,8 +814,18 @@ describe('the ground under the placed buildings', () => {
   });
 
   it('leaves the quay and the ground a new character first stands on exactly as they were', () => {
-    expect(PLAYER_START).toEqual({ x: -94, z: -58 });
-    expect(terrainHeight(PLAYER_START.x, PLAYER_START.z, WORLD_SEED)).toBe(-2);
+    // Eastbrook Vale v2: a new character starts at the design's spawn, on the
+    // design's own ground (the quay keeps its shipped ground in the harbor cove)
+    // (the spawn sits in the field's southern edge band, so its ground is mostly
+    // the design's, eased toward the Southway's shipped ground)
+    expect(PLAYER_START).toEqual(ebv2Xz('player_spawn'));
+    expect(ebv2Owns(PLAYER_START.x, PLAYER_START.z)).toBe(true);
+    expect(
+      Math.abs(
+        terrainHeight(PLAYER_START.x, PLAYER_START.z, WORLD_SEED) -
+          ebv2FieldHeight(PLAYER_START.x, PLAYER_START.z),
+      ),
+    ).toBeLessThan(0.5);
     for (const pad of EASTBROOK_BUILDING_PAD_TERRAIN_EDITS) {
       expect(
         Math.hypot(pad.x - PLAYER_START.x, pad.z - PLAYER_START.z),
@@ -816,6 +844,8 @@ describe('the ground under the placed buildings', () => {
     const pads = new Set<unknown>(EASTBROOK_BUILDING_PAD_TERRAIN_EDITS);
     setActiveWorldContent({
       ...BUILTIN_WORLD,
+      // still the built-in world (the v2 design ground stays laid in), less the pads
+      liveWorldPreview: true,
       terrainEdits: (BUILTIN_WORLD.terrainEdits ?? []).filter((edit) => !pads.has(edit)),
     });
     try {
@@ -845,6 +875,8 @@ describe('the ground under the placed buildings', () => {
     const pads = new Set<unknown>(EASTBROOK_BUILDING_PAD_TERRAIN_EDITS);
     setActiveWorldContent({
       ...BUILTIN_WORLD,
+      // still the built-in world (the v2 design ground stays laid in), less the pads
+      liveWorldPreview: true,
       terrainEdits: (BUILTIN_WORLD.terrainEdits ?? []).filter((edit) => !pads.has(edit)),
     });
     let withoutPads: number[];
@@ -853,12 +885,18 @@ describe('the ground under the placed buildings', () => {
     } finally {
       setActiveWorldContent(null);
     }
-    // the pads do move this ground (positive control), just never across the surface
+    // the pads do move this ground (positive control), just never across the surface.
+    // Eastbrook Vale v2: only on the shipped ground (blend weight 0); where the design's
+    // field eases in, its own waterline is the design's (tests/eastbrook_v2_import.test.ts)
+    const shipped: boolean[] = [];
+    for (let x = box.minX; x <= box.maxX; x += 1) {
+      for (let z = box.minZ; z <= box.maxZ; z += 1) shipped.push(ebv2Weight(x, z) === 0);
+    }
     let moved = 0;
     let crossed = 0;
     withPads.forEach((y, index) => {
       if (y !== withoutPads[index]) moved++;
-      if (y > WATER_LEVEL !== withoutPads[index] > WATER_LEVEL) crossed++;
+      if (shipped[index] && y > WATER_LEVEL !== withoutPads[index] > WATER_LEVEL) crossed++;
     });
     expect(moved).toBeGreaterThan(1000);
     expect(crossed).toBe(0);
@@ -893,6 +931,8 @@ describe('the ground under the placed buildings', () => {
     const pads = new Set<unknown>(EASTBROOK_BUILDING_PAD_TERRAIN_EDITS);
     setActiveWorldContent({
       ...BUILTIN_WORLD,
+      // still the built-in world (the v2 design ground stays laid in), less the pads
+      liveWorldPreview: true,
       terrainEdits: (BUILTIN_WORLD.terrainEdits ?? []).filter((edit) => !pads.has(edit)),
     });
     const tooSteep: string[] = [];
@@ -909,7 +949,9 @@ describe('the ground under the placed buildings', () => {
     } finally {
       setActiveWorldContent(null);
     }
-    expect(shaped).toBeGreaterThan(1000);
+    // Eastbrook Vale v2: the design's own ground carries most of the town, so the pads
+    // shape only the eased edge of it and the harbor cove
+    expect(shaped).toBeGreaterThan(500);
     if (process.env.PRINT_STEEP) console.log(tooSteep.join(' | '));
     expect(tooSteep).toEqual([]);
   });
@@ -925,9 +967,12 @@ describe('the ground under the placed buildings', () => {
       minZ: -150,
       maxZ: -20,
     });
-    expect(scatter.length).toBeGreaterThan(20);
+    // the v2 design's town carries few trees of its own (its gardens are not
+    // scatter), so the box holds a handful of design trees and the shipped
+    // scatter round its edge
+    expect(scatter.length).toBeGreaterThan(5);
     for (const decoration of scatter) {
-      for (const building of BUILDINGS) {
+      for (const building of STANDING) {
         const local = toModelAxes(building, decoration);
         const reach = rectOf(building, building.reach);
         const within =
@@ -948,7 +993,12 @@ describe('the ground under the placed buildings', () => {
     // again now the smithy stands north of the square.
     expect(isExcludedStreetlamp(-33.44783716157823, -103.6111100755925)).toBe(false);
     const lamps = streetlampPlacements(WORLD_SEED);
-    expect(lamps.some((lamp) => Math.hypot(lamp.x + 33.448, lamp.z + 103.611) < 0.01)).toBe(true);
+    // Eastbrook Vale v2: the design draws its own lamps on its own ground, so a
+    // server post there stands down (eastbrook_v2/colliders.ts ebv2DropOwned)
+    expect(lamps.some((lamp) => Math.hypot(lamp.x + 33.448, lamp.z + 103.611) < 0.01)).toBe(
+      !ebv2Owns(-33.448, -103.611),
+    );
+    for (const lamp of lamps) expect(ebv2Owns(lamp.x, lamp.z), `lamp at ${lamp.x}`).toBe(false);
     const vault = EASTBROOK_LAYOUT.weeklyVault;
     for (const lamp of lamps) {
       const fromVault = {
@@ -959,7 +1009,7 @@ describe('the ground under the placed buildings', () => {
         Math.abs(fromVault.x) > vault.w / 2 + 0.5 || Math.abs(fromVault.z) > vault.d / 2 + 0.5,
         `lamp at ${lamp.x.toFixed(2)}, ${lamp.z.toFixed(2)} in the vault`,
       ).toBe(true);
-      for (const building of BUILDINGS) {
+      for (const building of STANDING) {
         expect(
           Math.hypot(
             lamp.x - building.frontStandingPoint.x,

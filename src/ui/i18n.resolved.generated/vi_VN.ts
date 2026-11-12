@@ -8609,23 +8609,7 @@ export const vi_VN: EnTranslations = {
         "name": "Đêm Đèn Bí Ngô"
       }
     },
-    "trickOrTreat": {
-      "row": "Cho kẹo hay bị ghẹo!",
-      "rowAria": "Nói cho kẹo hay bị ghẹo với {name}",
-      "knockedHint": "Hôm nay bạn đã gõ cửa này. Cửa mở lại sau lần đặt lại hằng ngày.",
-      "treat": "{name} đưa bạn một món kẹo.",
-      "trick": "{name} trêu bạn: {trick}!",
-      "alreadyKnocked": "Hôm nay bạn đã xin kẹo hoặc ghẹo {name} rồi.",
-      "notActive": "Đêm Đèn Bí Ngô hiện chưa diễn ra.",
-      "tooFar": "Đến gần hơn để gõ cửa.",
-      "treatFlash": {
-        "one": "Kẹo! {count} Kẹo Đèn Bí Ngô",
-        "few": "Kẹo! {count} Kẹo Đèn Bí Ngô",
-        "many": "Kẹo! {count} Kẹo Đèn Bí Ngô",
-        "other": "Kẹo! {count} Kẹo Đèn Bí Ngô"
-      },
-      "trickFlash": "Ghẹo! {trick}"
-    },
+    "trickFlash": "Ghẹo! {trick}",
     "tricks": {
       "gourdlight_trick_bat": "Dơi Tinh Nghịch",
       "gourdlight_trick_skeleton": "Xương Lạch Cạch",
@@ -8650,7 +8634,7 @@ export const vi_VN: EnTranslations = {
       "trickJar": "Dùng: Gây một trò nghịch vô hại ngẫu nhiên lên bạn trong vài giây. Chỉ thay đổi ngoại hình.",
       "pouch": "Dùng: Mở để nhận {count} Kẹo Đèn Bí Ngô.",
       "strawlingCharm": "Dùng: Biến thành một người rơm nhỏ của Lão Rơm Cười trong {seconds} giây. Ngoài chiến đấu. Không bao giờ bị tiêu hao. Chỉ thay đổi ngoại hình.",
-      "sweet": "Kiếm được bằng trò cho kẹo hay bị ghẹo trong Đêm Đèn Bí Ngô. Hester Bấc Bí Ngô đổi chúng lấy vật phẩm ngoại hình tại các quầy ở Đông Khê, Cầu Đầm và Vọng Đài Cao.",
+      "sweet": "Earned during Gourdlight Eve from Hester Gourdwick's daily errands, Old Thatchgrin and the Haunted Pumpkins. Hester trades cosmetics for them at her stalls in Eastbrook, Fenbridge and Highwatch.",
       "costumeSkeleton": "Dùng: Biến thành bộ xương lạch cạch trong {minutes} phút. Bị tiêu hao. Không dùng được trong chiến đấu, vào chiến đấu sẽ kết thúc hiệu ứng. Chỉ thay đổi ngoại hình.",
       "costumeGhost": "Dùng: Biến thành bóng ma lơ lửng trong {minutes} phút. Bị tiêu hao. Không dùng được trong chiến đấu, vào chiến đấu sẽ kết thúc hiệu ứng. Chỉ thay đổi ngoại hình.",
       "costumeBat": "Dùng: Biến thành dơi vỗ cánh trong {minutes} phút. Bị tiêu hao. Không dùng được trong chiến đấu, vào chiến đấu sẽ kết thúc hiệu ứng. Chỉ thay đổi ngoại hình.",
@@ -8677,17 +8661,6 @@ export const vi_VN: EnTranslations = {
     },
     "itemSource": {
       "pumpkinHead": "Rơi từ Lão Rơm Cười ở ruộng bí bên kia Đồng Cỏ Lợn Lòi trong lần đầu bạn lấy chiến lợi phẩm từ lão. Không có người bán nào bán vật này."
-    },
-    "boo": {
-      "row": "Hù!",
-      "rowAria": "Nhảy ra trước {name} và hét hù",
-      "needsCostume": "Hãy hóa trang trước: dùng thuốc hóa trang, trò dơi hoặc bộ xương, Bùa Người Rơm, Đầu Bí Ngô Chạm Khắc, hoặc uống một ngụm biến yêu tinh từ Vạc Xanh Sủi Bọt.",
-      "frightenedHint": "{name} vẫn còn giật mình sau lần dọa trước. Hãy tìm người khác.",
-      "landed": "Bạn nhảy ra trước {name} và hét HÙ! Họ thét lên, suýt làm rơi mọi thứ.",
-      "flash": "HÙ! {name} hoảng sợ!",
-      "noCostume": "Không có hóa trang, {name} chỉ cười bạn. Hãy mặc một bộ trước.",
-      "already": "{name} đã bị dọa đủ hôm nay rồi.",
-      "notOnErrand": "Hester chưa nhờ bạn dọa ai hôm nay."
     },
     "tokenPrice": "{count} {item}",
     "thatchgrin": {
@@ -28237,7 +28210,7 @@ export const vi_VN: EnTranslations = {
       "gourdlight_keeper": {
         "name": "Hester Bấc Bí Ngô",
         "title": "Người Giữ Đèn Bí Ngô",
-        "greeting": "Bí ngô đã thắp sáng, đèn lồng đã treo lên, vậy là Đêm Đèn Bí Ngô đến rồi. Hãy gõ cửa người dân Đông Khê, Cầu Đầm và Vọng Đài Cao, rồi nói: cho kẹo hay bị ghẹo. Phần lớn sẽ cho con kẹo. Một vài người sẽ trêu con. Mang kẹo đến cho ta ở bất kỳ quầy nào của ta, ta sẽ đổi cho con thứ để mặc."
+        "greeting": "The gourds are lit and the lanterns are up, so it must be Gourdlight Eve. I have an errand for you every day of it, in Eastbrook, Fenbridge and Highwatch. Do it and I will pay you in sweets. Bring the sweets to me, at any of my stalls, and I will trade you something to wear."
       },
       "reeve_ottoline": {
         "name": "Xã Trưởng Ottoline",
@@ -30948,16 +30921,6 @@ export const vi_VN: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_rounds": {
-        "title": "Vòng Quanh Đèn Bí Ngô",
-        "text": "Mỗi Đêm Đèn Bí Ngô, trẻ em Thung Lũng lại đi quanh xin kẹo, và năm nay con sẽ đi cùng, {playerName}. Gõ năm cánh cửa trong các thị trấn, nói câu ấy rồi xem con được gì. Xong thì quay về gặp ta.",
-        "completion": "Năm cánh cửa mà các ngón tay vẫn còn nguyên. Đây, túi kẹo ăn trên đường về. Mai quay lại nhé, cửa sẽ mở lần nữa.",
-        "objectives": {
-          "0": {
-            "label": "Cửa đã gõ"
-          }
-        }
-      },
       "q_gourdlight_daily_patch": {
         "title": "Bí Ngô Từ Ruộng",
         "text": "Ruộng của Lão Rơm Cười bên kia Đồng Cỏ Lợn Lòi đầy bí ngô, một nửa đã lăn ra ngoài đám rơm, nơi người cẩn thận có thể lấy được. Mang cho ta năm quả, {playerName}. Tránh xa lão bù nhìn. Lão đếm từng quả đấy.",
@@ -30968,16 +30931,6 @@ export const vi_VN: EnTranslations = {
           }
         }
       },
-      "q_gourdlight_daily_boo": {
-        "title": "Hù!",
-        "text": "Cả năm rồi không ai ở các thị trấn này được một phen sợ ra hồn, {playerName}, mà Đêm Đèn Bí Ngô không có trò dọa thì chỉ là đêm lạnh. Mặc bộ hóa trang vào, bộ nào của ta cũng được, hoặc đầu bí ngô nếu con đã kiếm được. Rồi lẻn đến ba người dân và hét thật to HÙ.",
-        "completion": "Ba người ư? Ta nghe tiếng đầu bếp làm rơi chảo từ bên kia quảng trường. Giỏi lắm. Đây là phần của con.",
-        "objectives": {
-          "0": {
-            "label": "Người dân bị dọa"
-          }
-        }
-      },
       "q_gourdlight_daily_wicks": {
         "title": "Bấc Nến Hiểm Ác",
         "text": "Có kẻ đặt nến lửa xanh dưới chân cột đèn của chúng ta. Chúng cháy mà không chảy, lại thì thầm khi con quay lưng. Dập sáu cây giúp ta, {playerName}, ở bất kỳ thị trấn nào trong ba nơi, rồi mang mẩu nến về.",
@@ -30985,22 +30938,6 @@ export const vi_VN: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Nến nguyền rủa đã dập"
-          }
-        }
-      },
-      "q_gourdlight_daily_towns": {
-        "title": "Một Cánh Cửa Mỗi Thị Trấn",
-        "text": "Trẻ con bảo người đi Đèn Bí Ngô đích thực phải gõ cửa ở mọi thị trấn trước khi hết đêm. Chứng minh chúng nói đúng đi, {playerName}. Xin kẹo ở một cửa tại Đông Khê, một ở Cầu Đầm và một ở Vọng Đài Cao. Đèn lồng ven đường sẽ soi lối cho con.",
-        "completion": "Ba thị trấn trong một đêm! Đôi giày của con xứng đáng nhận phần này hơn cả con.",
-        "objectives": {
-          "0": {
-            "label": "Đã gõ cửa ở Đông Khê"
-          },
-          "1": {
-            "label": "Đã gõ cửa ở Cầu Đầm"
-          },
-          "2": {
-            "label": "Đã gõ cửa ở Vọng Đài Cao"
           }
         }
       },

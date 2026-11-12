@@ -175,6 +175,12 @@ export const ZONE1_ZONE: ZoneDef = {
   name: 'Eastbrook Vale',
   zMin: -180,
   zMax: 180,
+  // Grown west over open sea to x -270 so the Eastbrook Vale v2 design's whole west
+  // coast (its beach, the ferry cove and the Moonrest ferry dock) lies in the vale;
+  // the Proving Shore gives up that empty strip (proving_shore.ts PROVING_SHORE_RECT).
+  // Still a strip zone: it spans the whole strip, so terrain shaping is unchanged.
+  xMin: -270,
+  xMax: 180,
   levelRange: [1, 7],
   biome: 'vale',
   hub: { x: -14, z: -100, radius: TOWN_RADIUS, name: 'Eastbrook' },
@@ -188,7 +194,9 @@ export const ZONE1_ZONE: ZoneDef = {
     // world map drew them on the same line, overlapping
     // and again with the hub safe zone pass (2026-11) to the far west downs
     { x: 114, z: -66, label: 'Boar Meadow', id: 'boar_meadow' },
-    { x: -88, z: 82, label: 'Mirror Lake', id: 'mirror_lake' },
+    // on the lake's east shore (Eastbrook Vale v2: the design's lake keeps its
+    // place and size, so the label stands on the dry bank a visitor reaches)
+    { x: -56, z: 88, label: 'Mirror Lake', id: 'mirror_lake' },
     { x: -60, z: 4, label: 'Sableweb', id: 'sableweb' },
     { x: -34, z: 142, label: 'Copper Dig', id: 'copper_dig' },
     // stays with Gorrak's camp, which did not move in the round 6 swap
@@ -204,7 +212,9 @@ export const ZONE1_ZONE: ZoneDef = {
     { x: 150, z: -46, label: 'The Farshore Causeway', id: 'the_farshore_causeway' },
     // APPENDED, never inserted: poi labels resolve through positional locale
     // keys, so a mid-list insert renumbers every later landmark's translation.
-    { x: -101, z: -54, label: 'Eastbrook Docks', id: 'eastbrook_docks' },
+    // the ferry dock in the west cove, where the Moonrest ferry berths (Eastbrook
+    // Vale v2: the old harbor cove is the design's mill ground now)
+    { x: -228, z: 97, label: 'Eastbrook Docks', id: 'eastbrook_docks' },
   ],
   welcome: 'Find Warden Corren in town - he has work for you.',
   welcomeQuestId: 'q_wolves',
