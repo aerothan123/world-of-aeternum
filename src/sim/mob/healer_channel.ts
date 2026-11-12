@@ -9,7 +9,6 @@ import type { Aura } from '../types';
 import { VARKHUL_CINDER_REPAIR_CAST_ID } from '../varkhul_cinder_artificer';
 import { IGNIVAR_CINDER_LANCE_CAST_ID } from './ignivar_trash_automata';
 import { BASTION_KIT_CAST_SCHOOLS } from './trash_kit/bastion_cast_ids';
-import { TRASH_KIT_CAST_SCHOOLS } from './trash_kit/cast_ids';
 import { TRASH_DEMO_CAST_SCHOOLS } from './trash_kit/engine_demo';
 import { SANCTUM_KIT_CAST_SCHOOLS } from './trash_kit/sanctum_cast_ids';
 import { TEMPLE_KIT_CAST_SCHOOLS } from './trash_kit/temple_cast_ids';
@@ -37,8 +36,6 @@ export const SCRIPTED_INTERRUPTIBLE_CHANNELS: Record<string, { school: Aura['sch
   ...HOARD_CONTROL_CAST_SCHOOLS,
   ...HOARD_LIGHTNING_STRIKE_CAST_SCHOOL,
   ...HOARD_ADD_CAST_SCHOOLS,
-  // The dungeon trash kit's bolts, raises, calls and shrieks (mob/trash_kit).
-  ...TRASH_KIT_CAST_SCHOOLS,
   // The Sunken Bastion's heals and shields (mob/trash_kit/bastion_cast_ids.ts).
   ...BASTION_KIT_CAST_SCHOOLS,
   // The Drowned Temple's lullaby, tide call and coil (mob/trash_kit/temple_cast_ids.ts).

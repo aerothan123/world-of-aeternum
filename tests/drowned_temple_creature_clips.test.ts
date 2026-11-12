@@ -43,7 +43,6 @@ import {
 } from '../src/sim/encounters/drowned_temple';
 import { updateBossMechanics } from '../src/sim/mob/boss_mechanics';
 import { BASTION_LOOSE_ON_MY_MARK } from '../src/sim/mob/trash_kit/bastion_cast_ids';
-import { CRYPT_GRAVESPARK_VOLLEY } from '../src/sim/mob/trash_kit/cast_ids';
 import {
   TEMPLE_CALL_OF_THE_SHALLOWS,
   TEMPLE_CALL_THE_TIDE,
@@ -838,11 +837,7 @@ describe('the pilgrim frenzy cue rides the real enrage', () => {
 });
 
 describe('the trash pass second wave plays on the casters own clips', () => {
-  it('the volley, the shout and the song each have their clip', () => {
-    const adept = VISUALS.crypt_skel_adept.clips;
-    // the adept's own art-guide body: Volley is authored at the 3 s bar, played at rate 1
-    expect(adept.castByAbility?.[CRYPT_GRAVESPARK_VOLLEY]).toBe('Volley');
-    expect(adept.castTimeScaleByAbility?.[CRYPT_GRAVESPARK_VOLLEY] ?? 1).toBe(1);
+  it('the shout and the song each have their clip', () => {
     expect(VISUALS.bastion_skel_sergeant.clips.castByAbility?.[BASTION_LOOSE_ON_MY_MARK]).toBe(
       'Rally',
     );

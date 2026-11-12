@@ -50,22 +50,8 @@ import {
 } from './bastion_kit';
 import { brandReady, landBrand, stepQuench } from './brand';
 import { holdAreaCast } from './cast_hold';
-import { CRYPT_PERCH_DIVE, CRYPT_SKY_LANDING, CRYPT_TORN_TENDON } from './cast_ids';
+import { CRYPT_PERCH_DIVE, CRYPT_SKY_LANDING } from './cast_ids';
 import { stepCombatWall, syncCombatWallCollision } from './combat_walls';
-import {
-  armReleap,
-  dropRupture,
-  endCryptPull,
-  faceRupture,
-  judgeReassemble,
-  landEye,
-  landRupture,
-  lockRupture,
-  pickEyeTarget,
-  pickRuptureCorpse,
-  stepBonePile,
-  stepCryptKit,
-} from './crypt_kit';
 import { stepDeathBurst } from './death_burst';
 import { callDownLastFlier } from './flier_call';
 import { applyFreezeStack } from './freeze_stacks';
@@ -119,8 +105,6 @@ const CAST_KEYS = [
   'walker',
   'goad',
   'brand',
-  'rupture',
-  'eye',
   'column',
   'fogBank',
   'screech',
@@ -415,14 +399,6 @@ function castReady(
       const victim = pickTossTarget(players, mob, kit);
       return victim ? { ok: true, target: victim } : no;
     }
-    case 'rupture': {
-      const corpse = kit.rupture ? pickRuptureCorpse(ctx, inst, mob, kit.rupture.range) : null;
-      return corpse ? { ok: true, target: corpse } : no;
-    }
-    case 'eye': {
-      const victim = pickEyeTarget(ctx, inst, mob, kit, st, players);
-      return victim ? { ok: true, target: victim } : no;
-    }
     case 'column': {
       const victim = pickColumnTarget(mob, kit, st, players);
       return victim ? { ok: true, target: victim } : no;
@@ -513,12 +489,6 @@ function landCast(
       return;
     case 'toss':
       landToss(ctx, inst, mob, kit, st, players);
-      return;
-    case 'rupture':
-      landRupture(ctx, inst, mob, kit, st, players);
-      return;
-    case 'eye':
-      landEye(ctx, inst, mob, kit, targetId);
       return;
     case 'column':
       endColumn(ctx, mob, kit, st, true);
@@ -672,7 +642,6 @@ function dropCast(
   clearCast(mob, castId);
   st.cast = null;
   if (key === 'toss') dropToss(ctx, inst, st);
-  if (key === 'rupture') dropRupture(ctx, inst, st);
   if (key === 'column') endColumn(ctx, mob, kit, st, false);
   if (key === 'fogBank') dropUnlaidFog(st);
   if (key === 'hook') st.aim = undefined;
@@ -730,7 +699,6 @@ function stepCast(
   if (ext?.hold?.(mob, key, st)) {
     // The extension holds its own aim (a locked lane).
   } else if (key === 'line' || key === 'hook') holdLineAim(mob, st);
-  else if (key === 'rupture') faceRupture(mob, st);
   else if (key === 'toss' && st.toss)
     mob.facing = angleTo(mob.pos, { x: st.toss.x, y: 0, z: st.toss.z });
   else if (target && !target.dead && key !== 'cone') mob.facing = angleTo(mob.pos, target.pos);
@@ -812,7 +780,6 @@ function tryStartCast(
     if (key === 'line' || key === 'hook') lockLineAim(mob, st, target);
     else if (target) mob.facing = angleTo(mob.pos, target.pos);
     if (key === 'toss') lockToss(ctx, inst, mob, kit, st, target);
-    if (key === 'rupture') lockRupture(ctx, inst, kit, st, target);
     if (key === 'column') lockColumn(ctx, mob, kit, st, target);
     if (key === 'fogBank') lockFog(st, target);
     ext?.started?.(ctx, inst, mob, key, st, target);
@@ -884,20 +851,6 @@ function stepLeap(
       school: 'physical',
     });
   }
-  // The Ossuary Cutthroat's Torn Tendon: the victim cannot run from it alone.
-  if (def.slow) {
-    ctx.applyAura(target, {
-      id: CRYPT_TORN_TENDON,
-      name: def.slow.name,
-      kind: 'slow',
-      remaining: def.slow.seconds,
-      duration: def.slow.seconds,
-      value: def.slow.mult,
-      sourceId: mob.id,
-      school: 'physical',
-    });
-  }
-  armReleap(kit, st, target);
   if (def.stun) {
     ctx.applyAura(target, {
       id: 'trash_kit_leap_stun',
@@ -977,7 +930,6 @@ function endPull(ctx: SimContext, inst: InstanceSlot, mob: Entity): void {
     dropToss(ctx, inst, st);
     for (const ext of EXTENSIONS) ext.endPull?.(ctx, inst, mob, st);
   }
-  endCryptPull(ctx, inst, mob);
   endBastionPull(ctx, inst, mob, MOBS[mob.templateId]?.trashKit);
   endTrashKit(mob);
 }
@@ -993,11 +945,8 @@ function stepMob(
   // Its brands still burning are put out in a quench zone (brand.ts): only a
   // caster that branded someone carries the list, so nothing else pays.
   if (mob.kitBranded) stepQuench(ctx, inst, mob);
-  // A bone pile (crypt_kit.ts) never fights: it counts down or crumbles.
-  if (stepBonePile(ctx, inst, mob, kit)) return;
   if (mob.dead || mob.hp <= 0) {
     if (mob.trashKit) endPull(ctx, inst, mob);
-    if (kit?.reassemble) judgeReassemble(ctx, inst, mob, kit);
     if (kit?.deathBurst) stepDeathBurst(ctx, inst, mob, kit, players());
     if (kit?.deathCloud) stepDeathCloud(ctx, inst, mob, kit, players());
     // A walker launched by its death leaves once (kit_walker.ts).
@@ -1049,7 +998,6 @@ function stepMob(
   stepSplit(ctx, inst, mob, kit, st);
   const list = players();
   if (kit.detonate && stepDetonate(ctx, mob, kit, list, summonersOf(ctx, inst, mob))) return;
-  stepCryptKit(ctx, inst, mob, kit, st, list);
   // A leap back in flight owns the mob's position (bastion_kit.ts).
   if (stepBastionKit(ctx, inst, mob, kit, st, list)) return;
   if (stepCast(ctx, inst, mob, kit, st, list)) return;

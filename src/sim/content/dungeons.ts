@@ -25,7 +25,6 @@ import {
   BASTION_THROATLIGHT,
   BASTION_THROATLIGHT_ORB,
 } from '../mob/trash_kit/bastion_cast_ids';
-import { CRYPT_RIMESILK_SPIT } from '../mob/trash_kit/cast_ids';
 import {
   SANCTUM_BOILING_MELTWATER,
   SANCTUM_CINDER_BREATH,

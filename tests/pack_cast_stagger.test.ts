@@ -2,7 +2,7 @@
 // no longer raises every same-type cast bar on the same tick. The first cast of
 // each ability spreads over one interval in pull order; the cadence and a lone
 // mob's timing are unchanged. Driven through the real trash kit driver and the
-// real breath-cone seeding inside a claimed Hollow Crypt.
+// real breath-cone seeding inside a claimed Drowned Temple.
 
 import { describe, expect, it } from 'vitest';
 import { DUNGEONS, instanceOrigin, MOBS } from '../src/sim/data';
@@ -14,7 +14,8 @@ import {
   packPeerRank,
   packStaggerOffset,
 } from '../src/sim/mob/pack_cast_stagger';
-import { CRYPT_GRAVE_BOLT, tickTrashKits } from '../src/sim/mob/trash_kit';
+import { tickTrashKits } from '../src/sim/mob/trash_kit';
+import { TEMPLE_GLIMMER_VENOM } from '../src/sim/mob/trash_kit/temple_cast_ids';
 import type { InstanceSlot } from '../src/sim/sim';
 import { Sim } from '../src/sim/sim';
 import { DT, type Entity } from '../src/sim/types';
@@ -28,14 +29,16 @@ interface Room {
 function room(): Room {
   const sim = new Sim({ seed: 91, playerClass: 'warrior', autoEquip: false, devCommands: true });
   sim.chat('/dev level 20', sim.player.id);
-  sim.chat('/dev crypt enter', sim.player.id);
+  // The Drowned Temple's lurker pair at g3 (the Hollow Crypt bench retired
+  // with the dungeon): open causeway floor with room for a pack of three.
+  sim.chat('/dev temple enter', sim.player.id);
   const inst = claimedInstanceAt(sim.ctx, sim.player.pos);
-  if (!inst) throw new Error('no crypt claim');
+  if (!inst) throw new Error('no temple claim');
   const me = sim.player;
   me.maxHp = 1e6;
   me.hp = 1e6;
-  const o = instanceOrigin(DUNGEONS.hollow_crypt.index, inst.slot);
-  me.pos = sim.ctx.groundPos(o.x + 20, o.z - 10);
+  const o = instanceOrigin(DUNGEONS.drowned_temple.index, inst.slot);
+  me.pos = sim.ctx.groundPos(o.x + 5, o.z - 104);
   me.prevPos = { ...me.pos };
   sim.drainEvents();
   return { sim, inst, me };
@@ -45,24 +48,23 @@ function engage(r: Room, templateId: string, dx: number, dz = 0): Entity {
   const mob = createMob(r.sim.ctx.nextId++, MOBS[templateId], MOBS[templateId].minLevel, {
     ...r.sim.ctx.groundPos(r.me.pos.x + dx, r.me.pos.z + dz),
   });
-  applyDungeonMobTuning(mob, 'hollow_crypt', r.inst.difficulty);
+  applyDungeonMobTuning(mob, 'drowned_temple', r.inst.difficulty);
   r.sim.ctx.addEntity(mob);
   r.inst.mobIds.push(mob.id);
   mob.inCombat = true;
   mob.aiState = 'attack';
   mob.aggroTargetId = r.me.id;
-  // The adepts fight with their Grave Bolt alone: the bolt is heroic only and
-  // shares the bar with a Gravespark Volley since the trash pass's second
-  // wave, so the stagger is read on a lent bolt-only kit (Entity.devTrashKit,
-  // the same record minus the heroic gate).
-  const bolt = MOBS.crypt_gravecaller_adept.trashKit?.bolt;
-  if (templateId === 'crypt_gravecaller_adept' && bolt)
+  // The lurkers fight with their Glimmer Venom alone: the bolt shares the bar
+  // with Pounce and the Dazzle, so the stagger is read on a lent bolt-only kit
+  // (Entity.devTrashKit, the same bolt record).
+  const bolt = MOBS.glimmerscale_lurker.trashKit?.bolt;
+  if (templateId === 'glimmerscale_lurker' && bolt)
     mob.devTrashKit = { bolt: { ...bolt, heroicOnly: undefined } };
   return mob;
 }
 
 /** Tick only the kit for `seconds`, recording the sim time each mob starts a
- *  Grave Bolt bar. */
+ *  Glimmer Venom bar. */
 function boltStarts(r: Room, mobs: Entity[], seconds: number): Map<number, number[]> {
   const starts = new Map<number, number[]>(mobs.map((m) => [m.id, []]));
   const was = new Map<number, string | null>();
@@ -76,7 +78,7 @@ function boltStarts(r: Room, mobs: Entity[], seconds: number): Map<number, numbe
     tickTrashKits(r.sim.ctx);
     r.sim.drainEvents();
     for (const m of mobs) {
-      if (m.castingAbility === CRYPT_GRAVE_BOLT && was.get(m.id) !== CRYPT_GRAVE_BOLT)
+      if (m.castingAbility === TEMPLE_GLIMMER_VENOM && was.get(m.id) !== TEMPLE_GLIMMER_VENOM)
         starts.get(m.id)?.push(Math.round((t + DT) * 100) / 100);
       was.set(m.id, m.castingAbility);
     }
@@ -102,9 +104,9 @@ describe('pack cast stagger: the pure offsets', () => {
 
   it('ranks by peers of the same template that already began their pull', () => {
     const r = room();
-    const a = engage(r, 'crypt_gravecaller_adept', 8);
-    const b = engage(r, 'crypt_gravecaller_adept', 10);
-    const other = engage(r, 'crypt_ossuary_warrior', 12);
+    const a = engage(r, 'glimmerscale_lurker', 8);
+    const b = engage(r, 'glimmerscale_lurker', 10);
+    const other = engage(r, 'lagoon_snapper', 12);
     const roster = r.inst.mobIds.map((id) => r.sim.ctx.entities.get(id));
     const none = () => false;
     expect(packPeerRank(roster, a, none)).toEqual({ rank: 0, size: 2 });
@@ -118,13 +120,13 @@ describe('pack cast stagger: the pure offsets', () => {
 });
 
 describe('pack cast stagger: the trash kit', () => {
-  it('a pack of three adepts pulled together bolts one after another, never together', () => {
+  it('a pack of three lurkers pulled together spits one after another, never together', () => {
     const r = room();
-    const adepts = [8, 10, 12].map((dx) => engage(r, 'crypt_gravecaller_adept', dx));
-    const def = MOBS.crypt_gravecaller_adept.trashKit?.bolt;
-    if (!def) throw new Error('adept bolt');
-    const starts = boltStarts(r, adepts, 40);
-    const firsts = adepts.map((m) => starts.get(m.id)?.[0] ?? -1);
+    const lurkers = [8, 10, 12].map((dx) => engage(r, 'glimmerscale_lurker', dx));
+    const def = MOBS.glimmerscale_lurker.trashKit?.bolt;
+    if (!def) throw new Error('lurker bolt');
+    const starts = boltStarts(r, lurkers, 40);
+    const firsts = lurkers.map((m) => starts.get(m.id)?.[0] ?? -1);
     // First bars at first, first + every/3, first + 2*every/3: alternating.
     near(firsts[0], def.first);
     near(firsts[1], def.first + def.every / 3);
@@ -133,43 +135,43 @@ describe('pack cast stagger: the trash kit', () => {
     const all = [...starts.values()].flat().sort((x, y) => x - y);
     for (let i = 1; i < all.length; i++) expect(all[i] - all[i - 1]).toBeGreaterThan(DT);
     // Same cadence as before: every mob recasts exactly `every + castTime` later.
-    for (const m of adepts) {
+    for (const m of lurkers) {
       const s = starts.get(m.id) ?? [];
       expect(s.length).toBeGreaterThanOrEqual(2);
       near(s[1] - s[0], def.every + def.castTime);
     }
   });
 
-  it('a lone adept keeps its authored first bolt', () => {
+  it('a lone lurker keeps its authored first bolt', () => {
     const r = room();
-    const adept = engage(r, 'crypt_gravecaller_adept', 8);
-    const def = MOBS.crypt_gravecaller_adept.trashKit?.bolt;
-    if (!def) throw new Error('adept bolt');
-    const s = boltStarts(r, [adept], 20).get(adept.id) ?? [];
+    const lurker = engage(r, 'glimmerscale_lurker', 8);
+    const def = MOBS.glimmerscale_lurker.trashKit?.bolt;
+    if (!def) throw new Error('lurker bolt');
+    const s = boltStarts(r, [lurker], 20).get(lurker.id) ?? [];
     near(s[0], def.first);
   });
 
   it('staggers the same way on every run (deterministic)', () => {
     const once = () => {
       const r = room();
-      const adepts = [8, 10].map((dx) => engage(r, 'crypt_gravecaller_adept', dx));
-      return [...boltStarts(r, adepts, 30).values()];
+      const lurkers = [8, 10].map((dx) => engage(r, 'glimmerscale_lurker', dx));
+      return [...boltStarts(r, lurkers, 30).values()];
     };
     expect(once()).toEqual(once());
   });
 });
 
 describe('pack cast stagger: the breath cone', () => {
-  it('offsets a claim pack of cleavers and leaves an open-world mob untouched', () => {
+  it('offsets a claim pack of snappers and leaves an open-world mob untouched', () => {
     const r = room();
-    const every = MOBS.crypt_ossuary_warrior.breathCone?.every ?? 0;
-    const a = engage(r, 'crypt_ossuary_warrior', 8);
-    const b = engage(r, 'crypt_ossuary_warrior', 10);
+    const every = MOBS.lagoon_snapper.breathCone?.every ?? 0;
+    const a = engage(r, 'lagoon_snapper', 8);
+    const b = engage(r, 'lagoon_snapper', 10);
     expect(packBreathStagger(r.sim.ctx, a, every)).toBe(0);
     a.breathTimer = every;
     expect(packBreathStagger(r.sim.ctx, b, every)).toBe(every / 2);
     // Outside any claim: no offset.
-    const wild = createMob(r.sim.ctx.nextId++, MOBS.crypt_ossuary_warrior, 8, { x: 0, y: 0, z: 0 });
+    const wild = createMob(r.sim.ctx.nextId++, MOBS.lagoon_snapper, 8, { x: 0, y: 0, z: 0 });
     r.sim.ctx.addEntity(wild);
     wild.inCombat = true;
     wild.aggroTargetId = r.me.id;

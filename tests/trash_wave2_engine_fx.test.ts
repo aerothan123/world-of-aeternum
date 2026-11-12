@@ -20,7 +20,6 @@ import {
   BASTION_THROATLIGHT,
   BASTION_THROATLIGHT_ORB,
 } from '../src/sim/mob/trash_kit/bastion_cast_ids';
-import { CRYPT_GRAVESPARK_VOLLEY } from '../src/sim/mob/trash_kit/cast_ids';
 import {
   TEMPLE_HEARTPEARL,
   TEMPLE_HEARTPEARL_ORB,
@@ -30,10 +29,6 @@ import {
 
 describe('the second wave in the engine catalog', () => {
   const c = engineCatalog();
-
-  it('the adept volley is an engine nova (sight field, kick glyph)', () => {
-    expect(c.novas.get(CRYPT_GRAVESPARK_VOLLEY)).toBe(MOBS.crypt_gravecaller_adept.trashKit?.nova);
-  });
 
   it('both orbs are engine walkers keyed by template and launch', () => {
     expect(c.walkers.get(BASTION_THROATLIGHT_ORB)).toBe(MOBS.bastion_revenant.trashKit?.walker);

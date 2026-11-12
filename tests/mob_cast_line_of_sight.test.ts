@@ -38,7 +38,6 @@ import {
 import { mobCombatProfile } from '../src/sim/mob/combat_profile';
 import { CHASE_STALL_TIMEOUT } from '../src/sim/mob/reachability';
 import { BASTION_KIT_EXTENSION } from '../src/sim/mob/trash_kit/bastion_extension';
-import { CRYPT_GRAVE_BOLT, CRYPT_GRAVESPARK_VOLLEY } from '../src/sim/mob/trash_kit/cast_ids';
 import {
   KIT_SIGHT_KEYS,
   KIT_SIGHT_REDRAWS,

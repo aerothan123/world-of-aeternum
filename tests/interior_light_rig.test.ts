@@ -29,7 +29,6 @@ describe('isOpenAirFogState', () => {
       'lastkeep',
       'dawnhold',
       'wildheartBasin',
-      'hollowCrypt',
       'drownedTemple',
       'gravewyrmSanctum',
     ];
