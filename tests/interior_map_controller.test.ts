@@ -72,7 +72,7 @@ function worldAtInterior(interior: string): IWorld {
 }
 
 describe('InteriorMapController', () => {
-  it.each(['hollow_crypt', IGNIVAR_MOLTEN_ASSEMBLY_ID])(
+  it.each(['sunken_bastion', IGNIVAR_MOLTEN_ASSEMBLY_ID])(
     'routes generic interior %s through the dungeon painter',
     (dungeonId) => {
       const controller = new InteriorMapController({} as never, () => '#fff');
@@ -93,10 +93,10 @@ describe('InteriorMapController', () => {
   it('draws the dungeon a PARTY MEMBER stands in when the anchor is theirs, not the viewer', () => {
     const controller = new InteriorMapController({} as never, () => '#fff');
     const ctx = {} as CanvasRenderingContext2D;
-    const outside = worldIn('hollow_crypt');
+    const outside = worldIn('sunken_bastion');
     (outside.player as { pos: { x: number; y: number; z: number } }).pos = { x: 0, y: 0, z: 0 };
     expect(controller.paintWorldMap(ctx, outside, 560)).toBeNull();
-    const origin = instanceOrigin(DUNGEONS.hollow_crypt.index, 3);
+    const origin = instanceOrigin(DUNGEONS.sunken_bastion.index, 3);
     const anchor = { x: origin.x + 2, z: origin.z - 1 };
     expect(controller.paintWorldMap(ctx, outside, 560, anchor)).toEqual({
       model: { markers: [] },

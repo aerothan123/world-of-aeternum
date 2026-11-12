@@ -37,8 +37,12 @@ function addTrashMob(sim: Sim, id = 9100): Entity {
 
 function addBossMob(sim: Sim, id = 9200): Entity {
   const p = sim.player;
-  expect(MOBS.morthen.boss).toBe(true); // the pin the whole boss-scope arm rests on
-  const boss = createMob(id, MOBS.morthen, 20, { x: p.pos.x + 10, y: p.pos.y, z: p.pos.z });
+  expect(MOBS.vael_the_mistcaller.boss).toBe(true); // the pin the whole boss-scope arm rests on
+  const boss = createMob(id, MOBS.vael_the_mistcaller, 20, {
+    x: p.pos.x + 10,
+    y: p.pos.y,
+    z: p.pos.z,
+  });
   boss.hostile = true;
   addEntity(sim, boss);
   return boss;

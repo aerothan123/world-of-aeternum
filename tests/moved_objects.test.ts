@@ -91,7 +91,7 @@ describe('moved objects: the record', () => {
         'farmBed:bed_x': { x: Number.NaN, z: 1 },
         'farmBed:bed_y': { x: 1 },
         'farmBed:bed_z': { x: 99_999, z: 0 },
-        'dungeonDoor:hollow_crypt': 'nope',
+        'dungeonDoor:sunken_bastion': 'nope',
       },
       10_000,
     );
@@ -159,7 +159,7 @@ describe('moved objects: the built-in world cannot drift', () => {
     expect(farmPatchesFor(undefined, FARM_PATCHES)).toBe(FARM_PATCHES);
     expect(gatherNodesFor(undefined, GATHER_NODES)).toBe(GATHER_NODES);
     // Moves of OTHER kinds leave a kind's table untouched by reference.
-    const doorOnly = freezeObjectMoves({ 'dungeonDoor:hollow_crypt': { x: 1, z: 1 } });
+    const doorOnly = freezeObjectMoves({ 'dungeonDoor:sunken_bastion': { x: 1, z: 1 } });
     expect(farmPatchesFor(doorOnly, FARM_PATCHES)).toBe(FARM_PATCHES);
     expect(gatherNodesFor(doorOnly, GATHER_NODES)).toBe(GATHER_NODES);
     const bed = farmBedById(BED);
@@ -167,8 +167,8 @@ describe('moved objects: the built-in world cannot drift', () => {
     expect(practiceDummyPos(undefined, HUB_TRAINING_DUMMY_ID, HUB_TRAINING_DUMMY_POS)).toBe(
       HUB_TRAINING_DUMMY_POS,
     );
-    const crypt = DUNGEONS.hollow_crypt;
-    expect(dungeonDoorPos(undefined, crypt)).toBe(crypt.doorPos);
+    const bastion = DUNGEONS.sunken_bastion;
+    expect(dungeonDoorPos(undefined, bastion)).toBe(bastion.doorPos);
   });
 
   it('the base world Sim and the active base world read the shipped tables', () => {
@@ -375,8 +375,8 @@ describe('moved objects: gather nodes', () => {
 });
 
 describe('moved objects: dungeon doors', () => {
-  const crypt = DUNGEON_LIST.find((d) => d.id === 'hollow_crypt');
-  if (!crypt) throw new Error('no hollow crypt');
+  const crypt = DUNGEON_LIST.find((d) => d.id === 'sunken_bastion');
+  if (!crypt) throw new Error('no sunken bastion');
   const target = { x: crypt.doorPos.x + 40, z: crypt.doorPos.z - 25 };
   const world = movedWorld({ [objectMoveKey('dungeonDoor', crypt.id)]: target });
 
@@ -417,7 +417,7 @@ describe('moved objects: dungeon doors', () => {
     expect(jambAt(moved, keepTarget.x + DOOR_ARCH_JAMB_X, keepTarget.z)).toBe(true);
     expect(jambAt(moved, keepTarget.x - DOOR_ARCH_JAMB_X, keepTarget.z)).toBe(true);
     expect(jambAt(moved, keep.doorPos.x + DOOR_ARCH_JAMB_X, keep.doorPos.z)).toBe(false);
-    // The Hollow Crypt's chapel colliders travel with its door.
+    // The Sunken Bastion's gate tower colliders travel with its door.
     expect(near(shipped, crypt.doorPos)).toBeGreaterThan(0);
     expect(near(moved, crypt.doorPos)).toBe(0);
     expect(near(moved, target)).toBe(near(shipped, crypt.doorPos));

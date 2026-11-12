@@ -105,7 +105,7 @@ describe('knockbacks x roofs', () => {
 
 describe('client predictor parity in dungeons', () => {
   it('client-dep kernel walks the dais rim and mantles a coffin bit-for-bit', () => {
-    const o = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
+    const o = instanceOrigin(DUNGEONS.nythraxis_crypt.index, 0);
     const d = CRYPT_LAYOUT.dais;
 
     // Live Sim side.
@@ -215,7 +215,7 @@ describe('climb vetoes', () => {
   });
 
   it('strafe-past inside the crypt never grabs a coffin sideways', () => {
-    const o = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
+    const o = instanceOrigin(DUNGEONS.nythraxis_crypt.index, 0);
     const t = CRYPT_LAYOUT.tombs[0];
     // Moving along +z past the coffin's aisle face, facing it: velocity wins,
     // so no grab.
@@ -265,7 +265,7 @@ describe('charge and chase', () => {
 
   it('a mob chases the player up onto the dais and back down', () => {
     const sim = makeSim();
-    const o = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
+    const o = instanceOrigin(DUNGEONS.nythraxis_crypt.index, 0);
     const d = CRYPT_LAYOUT.dais;
     teleport(sim, o.x + d.x, o.z + d.z - d.r - 3, 0);
     const p = sim.player;

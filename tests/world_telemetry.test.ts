@@ -27,8 +27,8 @@ describe('telemetry zone id', () => {
     // is 99_400, so upstream's hard-coded plane x lands in the overworld here.
     // Derived from the band helper, never a literal x: the atlas-grid world
     // moved every instance band far east of the old single-strip coordinates.
-    const crypt = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
-    expect(telemetryZoneId(crypt.x, crypt.z)).toBe('dungeon:hollow_crypt');
+    const bastion = instanceOrigin(DUNGEONS.sunken_bastion.index, 0);
+    expect(telemetryZoneId(bastion.x, bastion.z)).toBe('dungeon:sunken_bastion');
   });
 
   it('reports a bounded delve-scoped id inside a delve band', () => {

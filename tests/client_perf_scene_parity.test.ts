@@ -34,7 +34,7 @@ describe('client perf scene parity', () => {
     // band helpers, never literal coordinates.
     const cases: Array<[x: number, z: number, expected: string]> = [
       [0, 0, 'overworld'],
-      [instanceOrigin(DUNGEONS.hollow_crypt.index, 0).x, 0, 'dungeon'],
+      [instanceOrigin(DUNGEONS.sunken_bastion.index, 0).x, 0, 'dungeon'],
       [delveOrigin(0, 0).x, delveOrigin(0, 0).z, 'delve'],
       // The unmapped-slot fallback still carries the delve: prefix.
       [delveOrigin(1, 0).x + 300, 0, 'delve'],
@@ -54,7 +54,7 @@ describe('client perf scene parity', () => {
     // a REAL zone token landing there means the classifier lost a signal.
     const tokens = [
       telemetryZoneId(0, 0),
-      telemetryZoneId(instanceOrigin(DUNGEONS.hollow_crypt.index, 0).x, 0),
+      telemetryZoneId(instanceOrigin(DUNGEONS.sunken_bastion.index, 0).x, 0),
       telemetryZoneId(delveOrigin(0, 0).x, delveOrigin(0, 0).z),
       telemetryZoneId(ARENA_X_MIN + 10, 0),
       telemetryZoneId(YUMI_BAND_X_MIN + 10, 0),

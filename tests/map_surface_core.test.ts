@@ -101,7 +101,7 @@ describe('map surface: the toggle cycle outside', () => {
 });
 
 describe('map surface: from-outside anchor from the party roster', () => {
-  const crypt = instanceOrigin(DUNGEONS.hollow_crypt.index, 1);
+  const crypt = instanceOrigin(DUNGEONS.sunken_bastion.index, 1);
   const keep = instanceOrigin(DUNGEONS.the_last_keep.index, 0);
 
   it('recognises dungeon and castle interiors as drawable, the overworld and rift bands as not', () => {

@@ -1777,7 +1777,7 @@ describe('vaultDrawBlocked: the geometry fast path precedes the pool scans', () 
     // claimed west slot through the real Sim).
     const QA_ID = '__craft_gate_qa_west_dungeon';
     (DUNGEONS as Record<string, (typeof DUNGEONS)[string]>)[QA_ID] = {
-      ...DUNGEONS.hollow_crypt,
+      ...DUNGEONS.sunken_bastion,
       id: QA_ID,
       index: -100,
       spawns: [],

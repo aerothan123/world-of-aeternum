@@ -24,7 +24,6 @@ import { type InstanceSlot, Sim } from '../src/sim/sim';
 import type { DungeonDifficulty, Entity } from '../src/sim/types';
 
 const GROUP_DUNGEONS = [
-  'hollow_crypt',
   'sunken_bastion',
   'drowned_temple',
   'gravewyrm_sanctum',
@@ -69,7 +68,7 @@ function kill(sim: Sim, inst: InstanceSlot, mobId: string): void {
 const rows = (sim: Sim) => sim.dungeonRun?.bosses.map((b) => [b.mobId, b.defeated]);
 
 describe('dungeon run plan (content)', () => {
-  it('tracks exactly the five group dungeons, on both difficulties', () => {
+  it('tracks exactly the four group dungeons, on both difficulties', () => {
     const tracked = FINDER_ACTIVITIES.filter(
       (a) => dungeonRunPlan(a.dungeonId, a.difficulty) !== null,
     ).map((a) => a.id);
@@ -94,12 +93,6 @@ describe('dungeon run plan (content)', () => {
   });
 
   it('lists the catalogue encounters in route order, the same bosses on both difficulties', () => {
-    expect(dungeonRunPlan('hollow_crypt', 'normal')?.map((r) => r.mobId)).toEqual([
-      'sexton_marrow',
-      'rimeweb',
-      'cantor_ilvane',
-      'morthen',
-    ]);
     expect(dungeonRunPlan('sunken_bastion', 'normal')?.map((r) => r.mobId)).toEqual([
       'knight_commander_olen',
       'gaol_turnkey',
@@ -172,17 +165,17 @@ describe('dungeon run plan (content)', () => {
     );
   });
 
-  it('gives a finale only to the Hollow Crypt, on its final boss, naming a summoned body', () => {
+  it('gives no live dungeon a finale: every row ends on its own placed bodies', () => {
+    // The Hollow Crypt's Knellwyrm was the one summoned finale; it retired
+    // with the dungeon, so every row is settled by the bodies it names.
     const finales = GROUP_DUNGEONS.flatMap((id) =>
-      (dungeonRunPlan(id, 'normal') ?? [])
-        .filter((row) => row.finaleId !== null)
-        .map((row) => `${id}:${row.mobId}>${row.finaleId}`),
+      (['normal', 'heroic'] as const).flatMap((difficulty) =>
+        (dungeonRunPlan(id, difficulty) ?? [])
+          .filter((row) => row.finaleId !== null)
+          .map((row) => `${id}:${row.mobId}>${row.finaleId}`),
+      ),
     );
-    expect(finales).toEqual(['hollow_crypt:morthen>crypt_knellwyrm']);
-    // The finale is what the far exit portal waits on, and it is never placed.
-    expect(DUNGEONS.hollow_crypt.bossExitPortal?.after).toBe('crypt_knellwyrm');
-    expect(DUNGEONS.hollow_crypt.spawns.some((s) => s.mobId === 'crypt_knellwyrm')).toBe(false);
-    expect(MOBS.crypt_knellwyrm).toBeDefined();
+    expect(finales).toEqual([]);
   });
 
   it('every boss a gate seals an arena for has a row (the Wildheart jaguar rides its master)', () => {
@@ -200,42 +193,43 @@ describe('dungeon run (live claim)', () => {
   it('is null in the open world and appears on entry with every boss standing', () => {
     const sim = makeSim();
     expect(sim.dungeonRun).toBeNull();
-    enter(sim, 'hollow_crypt');
+    enter(sim, 'sunken_bastion');
     expect(sim.dungeonRun).toEqual({
-      dungeonId: 'hollow_crypt',
+      dungeonId: 'sunken_bastion',
       difficulty: 'normal',
       bosses: [
-        { mobId: 'sexton_marrow', defeated: false },
-        { mobId: 'rimeweb', defeated: false },
-        { mobId: 'cantor_ilvane', defeated: false },
-        { mobId: 'morthen', defeated: false },
+        { mobId: 'knight_commander_olen', defeated: false },
+        { mobId: 'gaol_turnkey', defeated: false },
+        { mobId: 'gaoler_ossick', defeated: false },
+        { mobId: 'vael_the_mistcaller', defeated: false },
       ],
     });
   });
 
   it('ticks a row the moment its boss dies, and trash never moves it', () => {
     const sim = makeSim();
-    const inst = enter(sim, 'hollow_crypt');
+    const inst = enter(sim, 'sunken_bastion');
     const before = sim.dungeonRun;
     // A trash pack falls: nothing changes, and the view is the same object.
-    const trash = DUNGEONS.hollow_crypt.spawns.findIndex((s) => s.packId === 'c1');
+    const trash = DUNGEONS.sunken_bastion.spawns.findIndex((s) => s.packId === 'f1');
+    expect(trash).toBeGreaterThanOrEqual(0);
     sim.ctx.handleDeath(sim.ctx.entities.get(inst.mobIds[trash]) as Entity, sim.player);
     expect(sim.dungeonRun).toBe(before);
-    kill(sim, inst, 'sexton_marrow');
+    kill(sim, inst, 'knight_commander_olen');
     // No tick in between: the read is derived, not stored.
     expect(rows(sim)).toEqual([
-      ['sexton_marrow', true],
-      ['rimeweb', false],
-      ['cantor_ilvane', false],
-      ['morthen', false],
+      ['knight_commander_olen', true],
+      ['gaol_turnkey', false],
+      ['gaoler_ossick', false],
+      ['vael_the_mistcaller', false],
     ]);
     expect(sim.dungeonRun).not.toBe(before);
-    kill(sim, inst, 'cantor_ilvane');
+    kill(sim, inst, 'gaoler_ossick');
     expect(
       rows(sim)
         ?.filter(([, done]) => done)
         .map(([id]) => id),
-    ).toEqual(['sexton_marrow', 'cantor_ilvane']);
+    ).toEqual(['knight_commander_olen', 'gaoler_ossick']);
   });
 
   it('hands back the SAME frozen view until the run changes', () => {
@@ -258,7 +252,7 @@ describe('dungeon run (live claim)', () => {
 
   it('reports the difficulty the CLAIM runs on, not the selector', () => {
     const sim = makeSim();
-    enter(sim, 'hollow_crypt', 'heroic');
+    enter(sim, 'sunken_bastion', 'heroic');
     expect(sim.dungeonRun?.difficulty).toBe('heroic');
     // The leader flips the selector for the next run while standing inside.
     sim.setDungeonDifficulty('normal', sim.player.id);
@@ -299,7 +293,7 @@ describe('dungeon run (live claim)', () => {
     ]);
   });
 
-  it.each(GROUP_DUNGEONS.filter((id) => id !== 'hollow_crypt'))(
+  it.each(GROUP_DUNGEONS)(
     '%s reads complete once every boss is dead, in any order',
     (dungeonId) => {
       const sim = makeSim();
@@ -344,99 +338,16 @@ describe('dungeon run (live claim)', () => {
   it('draws no rng: a run that is read every tick stays identical to one never read', () => {
     const play = (read: boolean): string => {
       const sim = makeSim(91);
-      const inst = enter(sim, 'hollow_crypt');
+      const inst = enter(sim, 'sunken_bastion');
       const draws: number[] = [];
       sim.ctx.rng.setObserver((value) => draws.push(value));
       for (let i = 0; i < 60; i++) {
-        if (i === 20) kill(sim, inst, 'rimeweb');
+        if (i === 20) kill(sim, inst, 'gaol_turnkey');
         if (read) void sim.dungeonRun;
         sim.tick();
       }
       return JSON.stringify(draws);
     };
     expect(play(true)).toBe(play(false));
-  });
-});
-
-describe("dungeon run: the Hollow Crypt's finale belongs to Morthen's row", () => {
-  function atTheFinale(difficulty: DungeonDifficulty = 'normal') {
-    const sim = makeSim();
-    const inst = enter(sim, 'hollow_crypt', difficulty);
-    for (const boss of ['sexton_marrow', 'rimeweb', 'cantor_ilvane']) kill(sim, inst, boss);
-    // The dev shortcut a playtest uses: skip his entrance, then slay him, which
-    // is the only way he can die (he is immune until he lands).
-    sim.chat('/dev crypt wyrm', sim.player.id);
-    const morthen = placed(sim, inst, 'morthen')[0];
-    expect(morthen.dead).toBe(true);
-    const wyrm = () =>
-      inst.mobIds
-        .map((id) => sim.ctx.entities.get(id))
-        .find((e): e is Entity => e?.templateId === 'crypt_knellwyrm');
-    return { sim, inst, wyrm };
-  }
-
-  it('stays open while Morthen is dead and the Knellwyrm is not yet summoned', () => {
-    const { sim, wyrm } = atTheFinale();
-    expect(wyrm()).toBeUndefined();
-    expect(rows(sim)?.[3]).toEqual(['morthen', false]);
-  });
-
-  it.each(['normal', 'heroic'] as const)(
-    'stays open through the whole %s finale and closes when the Knellwyrm dies',
-    (difficulty) => {
-      const { sim, wyrm } = atTheFinale(difficulty);
-      expect(sim.dungeonRun?.difficulty).toBe(difficulty);
-      for (let i = 0; i < 20 * 3 && !wyrm(); i++) sim.tick();
-      const body = wyrm();
-      expect(body, 'the encounter summoned the Knellwyrm').toBeDefined();
-      expect(body?.dead).toBe(false);
-      const during = sim.dungeonRun;
-      expect(rows(sim)).toEqual([
-        ['sexton_marrow', true],
-        ['rimeweb', true],
-        ['cantor_ilvane', true],
-        ['morthen', false],
-      ]);
-      for (let i = 0; i < 20 * 5; i++) sim.tick();
-      expect(sim.dungeonRun).toBe(during);
-      sim.ctx.handleDeath(body as Entity, sim.player);
-      expect(sim.dungeonRun?.bosses.every((b) => b.defeated)).toBe(true);
-    },
-  );
-
-  it('never answers for a finale body that is gone: a re-summoned one is read afresh', () => {
-    // No encounter drops and re-summons the Knellwyrm today, but one that did
-    // must not leave the row answering for the body it remembered.
-    const { sim, inst, wyrm } = atTheFinale();
-    for (let i = 0; i < 20 * 3 && !wyrm(); i++) sim.tick();
-    const first = wyrm() as Entity;
-    expect(rows(sim)?.[3]).toEqual(['morthen', false]);
-    // The first body leaves the world alive (never a kill).
-    inst.mobIds.splice(inst.mobIds.indexOf(first.id), 1);
-    sim.ctx.dropEntity(first.id);
-    expect(rows(sim)?.[3]).toEqual(['morthen', false]);
-    // A second one is summoned in its place and then really dies.
-    const second = createMob(sim.ctx.nextId++, MOBS.crypt_knellwyrm, 10, { ...first.pos });
-    sim.ctx.addEntity(second);
-    inst.mobIds.push(second.id);
-    expect(rows(sim)?.[3]).toEqual(['morthen', false]);
-    sim.ctx.handleDeath(second, sim.player);
-    expect(rows(sim)?.[3]).toEqual(['morthen', true]);
-  });
-
-  it('a new claim never reads the last run`s dead Knellwyrm', () => {
-    const { sim, inst, wyrm } = atTheFinale();
-    for (let i = 0; i < 20 * 3 && !wyrm(); i++) sim.tick();
-    sim.ctx.handleDeath(wyrm() as Entity, sim.player);
-    expect(rows(sim)?.[3]).toEqual(['morthen', true]);
-    leaveDungeon(sim.ctx, sim.player.id);
-    freeInstance(sim.ctx, inst);
-    const fresh = enter(sim, 'hollow_crypt');
-    expect(fresh.slot).toBe(inst.slot);
-    expect(sim.dungeonRun?.bosses.some((b) => b.defeated)).toBe(false);
-    for (const boss of ['sexton_marrow', 'rimeweb', 'cantor_ilvane']) kill(sim, fresh, boss);
-    sim.chat('/dev crypt wyrm', sim.player.id);
-    // Morthen is dead again, and the old wyrm's memo must not answer for the new one.
-    expect(rows(sim)?.[3]).toEqual(['morthen', false]);
   });
 });

@@ -92,7 +92,7 @@ describe('vaultDrawBlocked: the six instanced contexts each refuse', () => {
 
     const placement = placeInDungeon(sim, pid);
 
-    expect(placement.dungeonId).toBe('hollow_crypt'); // the placement really claimed a slot
+    expect(placement.dungeonId).toBe('sunken_bastion'); // the placement really claimed a slot
     expect(vaultDrawBlocked(sim.ctx, pid)).toBe(true);
   });
 
@@ -326,7 +326,7 @@ describe('vaultDrawBlocked: the footprint arms decide on their own', () => {
 
   beforeAll(() => {
     (DUNGEONS as Record<string, DungeonDef>)[QA_WEST_DUNGEON] = {
-      ...DUNGEONS.hollow_crypt,
+      ...DUNGEONS.sunken_bastion,
       id: QA_WEST_DUNGEON,
       index: QA_WEST_INDEX,
       spawns: [],

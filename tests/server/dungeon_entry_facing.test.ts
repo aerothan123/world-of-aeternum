@@ -107,11 +107,11 @@ describe('server dungeon entry facing fence', () => {
     const entity = server.sim.entities.get(session.pid);
     const meta = server.sim.meta(session.pid);
     if (!entity || !meta) throw new Error('joined player missing');
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
     broadcast(server);
     expect(lastSnap(client.sent).self.de).toBe(0);
-    entity.pos = { ...entity.pos, x: origin.x + crypt.entry.x, z: origin.z + crypt.entry.z };
+    entity.pos = { ...entity.pos, x: origin.x + bastion.entry.x, z: origin.z + bastion.entry.z };
     entity.prevPos = { ...entity.pos };
     entity.facing = 0;
     entity.dungeonEntrySeq = 1;
@@ -173,9 +173,9 @@ describe('server dungeon entry facing fence', () => {
     const entity = server.sim.entities.get(session.pid);
     const meta = server.sim.meta(session.pid);
     if (!entity || !meta) throw new Error('joined player missing');
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
-    entity.pos = { ...entity.pos, x: origin.x + crypt.entry.x, z: origin.z + crypt.entry.z };
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
+    entity.pos = { ...entity.pos, x: origin.x + bastion.entry.x, z: origin.z + bastion.entry.z };
     entity.dungeonEntrySeq = 1;
 
     server.handleMessage(
@@ -197,9 +197,9 @@ describe('server dungeon entry facing fence', () => {
     const entity = server.sim.entities.get(session.pid);
     const meta = server.sim.meta(session.pid);
     if (!entity || !meta) throw new Error('joined player missing');
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
-    entity.pos = { ...entity.pos, x: origin.x + crypt.entry.x, z: origin.z + crypt.entry.z };
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
+    entity.pos = { ...entity.pos, x: origin.x + bastion.entry.x, z: origin.z + bastion.entry.z };
     entity.dungeonEntrySeq = 1;
     server.handleMessage(
       session,
@@ -208,7 +208,7 @@ describe('server dungeon entry facing fence', () => {
     expect(session.dungeonEntryFacing.requiredEntrySeq).toBe(1);
     expect(meta.moveInput.turnRight).toBe(false);
 
-    entity.pos = { ...entity.pos, x: crypt.doorPos.x, z: crypt.doorPos.z };
+    entity.pos = { ...entity.pos, x: bastion.doorPos.x, z: bastion.doorPos.z };
     server.handleMessage(
       session,
       JSON.stringify({ t: 'input', seq: 2, mi: { tr: 1 }, facing: Math.PI }),
@@ -227,9 +227,9 @@ describe('server dungeon entry facing fence', () => {
     const entity = server.sim.entities.get(session.pid);
     const meta = server.sim.meta(session.pid);
     if (!entity || !meta) throw new Error('joined player missing');
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
-    entity.pos = { ...entity.pos, x: origin.x + crypt.entry.x, z: origin.z + crypt.entry.z };
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
+    entity.pos = { ...entity.pos, x: origin.x + bastion.entry.x, z: origin.z + bastion.entry.z };
     entity.dungeonEntrySeq = 1;
     server.handleMessage(
       session,
@@ -270,9 +270,9 @@ describe('server dungeon entry facing fence', () => {
     const entity = server.sim.entities.get(session.pid);
     const meta = server.sim.meta(session.pid);
     if (!entity || !meta) throw new Error('joined player missing');
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
-    entity.pos = { ...entity.pos, x: origin.x + crypt.entry.x, z: origin.z + crypt.entry.z };
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
+    entity.pos = { ...entity.pos, x: origin.x + bastion.entry.x, z: origin.z + bastion.entry.z };
     entity.dungeonEntrySeq = 1;
 
     session.linkdead = true;
