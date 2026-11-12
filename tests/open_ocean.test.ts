@@ -18,10 +18,13 @@ const INLAND_WATER = [
   { x: 344, z: 1776 },
   { x: 432, z: 1360 },
 ];
-// Genuine open ocean off the starter coast and beyond.
+// Genuine open ocean off the starter coast and beyond. The west point sits in
+// the strait off the vale's west coast: Eastbrook Vale v2 made (-200, 0) dry
+// land (the design's west shore runs near x -240), so the open sea there now
+// starts further out.
 const OPEN_OCEAN = [
   { x: 0, z: -200 },
-  { x: -200, z: 0 },
+  { x: -255, z: -100 },
   { x: 250, z: 100 },
   { x: -300, z: -150 },
 ];

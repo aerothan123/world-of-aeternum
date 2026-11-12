@@ -100,7 +100,9 @@ describe('the Ferrywalk: a walk-in causeway, no teleport', () => {
 describe('the vale meets the sea with an organic coast', () => {
   it('east, south, and west edges are water, not rim mountains', () => {
     // clearly offshore in the vale's bays
-    expect(terrainHeight(-192, 25, SEED)).toBeLessThan(WATER_LEVEL); // the west bay
+    // the west bay: Eastbrook Vale v2 carries the vale's west shore out to about
+    // x -240 (the slot grew to x -270), so the bay sits further west than -192
+    expect(terrainHeight(-255, 25, SEED)).toBeLessThan(WATER_LEVEL);
     expect(terrainHeight(30, -196, SEED)).toBeLessThan(WATER_LEVEL); // the south bay
     expect(terrainHeight(196, 104, SEED)).toBeLessThan(WATER_LEVEL); // the east bay
     // no old rim-range heights left in the shore band

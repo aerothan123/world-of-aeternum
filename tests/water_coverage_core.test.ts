@@ -101,7 +101,9 @@ describe('water sheet coverage', () => {
     const island = zoneRects().find((r) => r.id === 'proving_shore');
     expect(island).toBeDefined();
     expect(island?.xMin).toBe(-540);
-    expect(island?.xMax).toBe(-180);
+    // -270, not -180: Eastbrook Vale v2 took the empty sea strip x -270..-180
+    // (the vale's west coast); the island still owns the whole cell's coast.
+    expect(island?.xMax).toBe(-270);
     expect(island?.zMin).toBe(-180);
     expect(island?.zMax).toBe(180);
   });

@@ -152,11 +152,13 @@ describe('shoreWaterGate', () => {
     };
     // The Eastbrook -> Mirefen pass north of the Copper Dig plat (its phase
     // 0b level stamp grades the approach below z~170 above the band): inside
-    // the band the whole way, dry.
+    // the band the whole way, dry. Sampled at x 3, not 0: Eastbrook Vale v2's
+    // ground at the slot's north edge sits the pass floor a few yards east
+    // (its z 175 band runs x 2..11), the same pass, still dry.
     for (const z of [175, 180, 185, 190, 195, 200]) {
-      expect(inBand(0, z), `pass floor at z=${z} should sit in the beach band`).toBe(true);
+      expect(inBand(3, z), `pass floor at z=${z} should sit in the beach band`).toBe(true);
       expect(
-        shoreWaterGate(0, z, terrainHeight(0, z, WORLD_SEED), WATER_LEVEL, probe),
+        shoreWaterGate(3, z, terrainHeight(3, z, WORLD_SEED), WATER_LEVEL, probe),
       ).toBeLessThan(0.05);
     }
     // Real Mirefen lake shores keep every bit of their beach.
