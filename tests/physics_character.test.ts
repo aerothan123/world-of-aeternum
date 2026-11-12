@@ -9,12 +9,12 @@ import {
   supportHeightAt,
 } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
-import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import {
   ROCK_COLLIDER_MIN_SCALE,
   ROCK_HEIGHT_PER_SCALE,
   rockHeight,
 } from '../src/sim/decoration_dims';
+import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import { PLAYER_BODY_RADIUS, PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
 import {
   type CharacterMoveParams,
