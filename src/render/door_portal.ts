@@ -999,10 +999,6 @@ export function doorArchAuthoredElsewhere(
   // the door: its inner arch frames the walk-in lane and the flooded passage
   // it draws behind the arch is the portal look.
   if (dungeonId === 'sunken_bastion') return true;
-  // The Hollow Crypt's Fallen Chapel (hollow_crypt_entrance.ts) is the door:
-  // its stair-house portal frames the walk-in lane and the stair it draws
-  // behind the arch is the portal look.
-  if (dungeonId === 'hollow_crypt') return true;
   // The Drowned Temple's Moon Stair (drowned_temple_entrance.ts) is the door:
   // its moongate ring frames the walk-in lane and the film of cold moonlight
   // it draws in the ring is the portal look.

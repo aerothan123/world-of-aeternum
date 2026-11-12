@@ -106,9 +106,6 @@ describe('rift death zone core: visual plan', () => {
     expect(resolveEncounterFxScope(500)).toBeNull();
     expect(resolveEncounterFxScope(0, true)).toBe('rift');
     expect(resolveEncounterFxScope(RIFT_X_MIN)).toBe('rift');
-    expect(resolveEncounterFxScope(instanceOrigin(DUNGEONS.hollow_crypt.index, 0).x)).toBe(
-      'hollow_crypt',
-    );
     expect(resolveEncounterFxScope(instanceOrigin(DUNGEONS.sunken_bastion.index, 0).x)).toBe(
       'sunken_bastion',
     );
