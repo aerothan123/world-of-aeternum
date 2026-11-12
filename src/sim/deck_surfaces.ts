@@ -7,6 +7,7 @@
 // level and the dock list are passed in, so no world.ts import and no cycle.
 import { dockLocalPoint, dockSectionAtLocal, dockSurfaceLine, dockSurfaceYAt } from './dock_layout';
 import { eastbrookDeckSurface } from './eastbrook_harbor';
+import { ebv2BridgeSurface } from './eastbrook_v2/bridge';
 import { ebv2OwnsBuiltin } from './eastbrook_v2/ground';
 import { ferryPierSurface } from './ferry_piers';
 import { galeDeckSurface } from './gale_harbor';
@@ -37,6 +38,8 @@ export function dockSurfaceHeight(
   surface = Math.max(surface, gliderWharfSurface(x, z, terrainAt, waterLevel));
   // ...and the ferry piers at the far berths, the same idiom
   surface = Math.max(surface, ferryPierSurface(x, z, terrainAt, waterLevel));
+  // ...and the Eastbrook Vale v2 brook bridge (the design's north road crossing)
+  surface = Math.max(surface, ebv2BridgeSurface(x, z));
   for (const dock of docks) {
     const local = dockLocalPoint(dock, x, z);
     if (dockSectionAtLocal(local.x, local.z) < 0) continue;
@@ -58,6 +61,7 @@ export function onHarborPlanks(
   return (
     galeDeckSurface(x, z, terrainAt, waterLevel) !== -Infinity ||
     (!ebv2OwnsBuiltin(x, z) && eastbrookDeckSurface(x, z, terrainAt, waterLevel) !== -Infinity) ||
-    ferryPierSurface(x, z, terrainAt, waterLevel) !== -Infinity
+    ferryPierSurface(x, z, terrainAt, waterLevel) !== -Infinity ||
+    ebv2BridgeSurface(x, z) !== -Infinity
   );
 }

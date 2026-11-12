@@ -469,9 +469,12 @@ describe('Eastbrook authored gameplay data integration', () => {
   // the design. The old town streets and exterior tracks (EASTBROOK_LAYOUT.roads,
   // their authored prefixes and end points pinned here before) retired with the
   // old town, and the design has no wall, so no road carries a gate crossing.
+  // Re-pinned 14 -> 15 for the brook bridge: the north road now stops at the bridge's
+  // south end and a second lane (north_road_n, appended last so no older road moves)
+  // runs on from its north end; the deck between them is eastbrook_v2/bridge.ts.
   it('lays the vale roads exactly on the v2 design roads', () => {
     expect(ZONE1_ROADS).toHaveLength(EBV2_ROADS.length);
-    expect(EBV2_ROADS).toHaveLength(14);
+    expect(EBV2_ROADS).toHaveLength(15);
     EBV2_ROADS.forEach((road, index) => {
       expect(ZONE1_ROADS[index]).toEqual(road.points.map(([x, z]) => ({ x, z })));
     });
