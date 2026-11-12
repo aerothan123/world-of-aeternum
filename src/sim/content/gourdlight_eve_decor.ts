@@ -31,13 +31,12 @@ export interface SeasonalCityDecorRule {
   street?: { max: number; spacing: number };
 }
 
+// Eastbrook is not dressed for now (owner decision, Eastbrook Vale v2 port): the
+// v2 town is the Unreal design's, and its lamps and streets are not yet anchors
+// the resolver can hang garlands, lanterns or straw on, so the vale gets none
+// until the design carries its own dressing. tests/seasonal_decor_layout.test.ts
+// and tests/seasonal_road_lanterns.test.ts pin that Eastbrook has none.
 export const GOURDLIGHT_DECOR_CITIES: readonly SeasonalCityDecorRule[] = Object.freeze([
-  {
-    zoneId: 'eastbrook_vale',
-    radius: 62,
-    square: { count: 8, ring: 6.5 },
-    street: { max: 11, spacing: 11 },
-  },
   {
     zoneId: 'mirefen_marsh',
     radius: 62,
@@ -81,7 +80,8 @@ export const GOURDLIGHT_ROAD_LANTERNS = Object.freeze({
       from: { zoneId: 'mirefen_marsh' },
       to: { zoneId: 'thornpeak_heights' },
     },
-    { id: 'eastbrook_field', from: { zoneId: 'eastbrook_vale' }, to: { scarecrowField: true } },
+    // The eastbrook_field route (Eastbrook down to Old Thatchgrin's field) is off
+    // with the rest of Eastbrook's dressing (see GOURDLIGHT_DECOR_CITIES above).
   ] as readonly SeasonalRoadLanternRoute[]),
   /** The gap between two lanterns along the road (yards, min and max). */
   spacing: Object.freeze([32, 46] as const),

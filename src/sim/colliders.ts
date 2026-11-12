@@ -1115,7 +1115,7 @@ function staticWorldColliders(seed: number): Collider[] {
   // Without either the field is dropped, so the built-in world (and any plain
   // variant of it) builds exactly the release's collider records.
   if (!content.caves?.length && !content.holes?.length) for (const c of out) delete c.underY;
-  return ebv2StandDown(out, isBuiltinWorldContent(content)); // Eastbrook v2: design solids only
+  return ebv2StandDown(out, isBuiltinWorldContent(content), content, chestSpots); // v2 solids
 }
 
 /** A resolved banker-chest spot: where the strongbox stands and collides. */

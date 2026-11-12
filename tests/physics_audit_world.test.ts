@@ -228,9 +228,13 @@ describe('interactable landmarks are solid (the v0.31 walk-through sweep)', () =
     // (5, -89) on the south civic/Armoury transition, its public face toward
     // the square. The shaft is a full-height OBB and the clear probe is the
     // authored front standing point (3.8446, -89.7906), rounded.
-    expect(isBlocked(SEED, 5, -89, 0.5)).toBe(true);
-    expect(isBlocked(SEED, 3.84, -89.79, 0.5)).toBe(false);
-    expect(supportHeightAt(SEED, 5, -89, 0.5, 1e9)).toBe(Number.NEGATIVE_INFINITY);
+    // Re-pinned for Eastbrook Vale v2: the perch stands on the design's svc_mailbox
+    // point (-10, -100) and its posting spot is the design's mailbox front
+    // (-10, -98.9) (eastbrook_v2/sites.generated.ts svc:mailbox, svc:mailboxFront);
+    // the pillar is a service body, so it keeps blocking on design ground.
+    expect(isBlocked(SEED, -10, -100, 0.5)).toBe(true);
+    expect(isBlocked(SEED, -10, -98.9, 0.5)).toBe(false);
+    expect(supportHeightAt(SEED, -10, -100, 0.5, 1e9)).toBe(Number.NEGATIVE_INFINITY);
   });
 
   it("the banker's strongbox blocks and is standable at its drawn 1.3 lid", () => {

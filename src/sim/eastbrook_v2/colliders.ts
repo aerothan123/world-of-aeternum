@@ -100,9 +100,31 @@ export function ebv2RetiresShippedCollider(c: Collider): boolean {
   return ebv2Owns(c.x, c.z);
 }
 
-/** The static collider list with every shipped prop on design ground removed. */
-export function ebv2StandDown(out: Collider[], builtIn: boolean): Collider[] {
-  return builtIn ? out.filter((c) => !ebv2RetiresShippedCollider(c)) : out;
+/** True when a collider is a town service's own body: the Ravenpost pillar
+ *  (one per services.mailboxes row, centred on it) or the banker's strongbox
+ *  (centred on a resolved chest spot). Like a gather node's body these are
+ *  content, sited with their service on the design (sites.ts), not shipped
+ *  props, so they keep blocking on design ground. */
+function isServiceBody(
+  c: Collider,
+  content: WorldContent | undefined,
+  chests: readonly { x: number; z: number }[],
+): boolean {
+  if (c.type !== 'obb') return false;
+  const at = (p: { x: number; z: number }) => p.x === c.x && p.z === c.z;
+  return (content?.services?.mailboxes ?? []).some(at) || chests.some(at);
+}
+
+/** The static collider list with every shipped prop on design ground removed
+ *  (service bodies of `content` and the resolved `chests` stay). */
+export function ebv2StandDown(
+  out: Collider[],
+  builtIn: boolean,
+  content?: WorldContent,
+  chests: readonly { x: number; z: number }[] = [],
+): Collider[] {
+  if (!builtIn) return out;
+  return out.filter((c) => isServiceBody(c, content, chests) || !ebv2RetiresShippedCollider(c));
 }
 
 /** True when the design owns the ground at (x, z) in `content` (the built-in world

@@ -194,7 +194,9 @@ export const ZONE1_ZONE: ZoneDef = {
     // world map drew them on the same line, overlapping
     // and again with the hub safe zone pass (2026-11) to the far west downs
     { x: 114, z: -66, label: 'Boar Meadow', id: 'boar_meadow' },
-    { x: -88, z: 82, label: 'Mirror Lake', id: 'mirror_lake' },
+    // on the lake's east shore (Eastbrook Vale v2: the design's lake keeps its
+    // place and size, so the label stands on the dry bank a visitor reaches)
+    { x: -56, z: 88, label: 'Mirror Lake', id: 'mirror_lake' },
     { x: -60, z: 4, label: 'Sableweb', id: 'sableweb' },
     { x: -34, z: 142, label: 'Copper Dig', id: 'copper_dig' },
     // stays with Gorrak's camp, which did not move in the round 6 swap

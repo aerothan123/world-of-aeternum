@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad76-a8426e3e-b775544e-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4ad76-3569995e-2a3be70e-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad76-a8426e3e-b775544e",
+    "overworldBase": "4ad76-3569995e-2a3be70e",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -59,8 +59,8 @@
             "id": "boar_meadow"
           },
           {
-            "x": -88,
-            "z": 82,
+            "x": -56,
+            "z": 88,
             "label": "Mirror Lake",
             "id": "mirror_lake"
           },
@@ -5457,10 +5457,10 @@
         "name": "Drillmaster Hale",
         "title": "Quay Sparring Master",
         "pos": {
-          "x": -88,
-          "z": -45
+          "x": -20,
+          "z": -166
         },
-        "facing": -2.71,
+        "facing": 0.46,
         "color": 8014410,
         "questIds": ["q_hub_know_your_numbers", "q_hub_healing_numbers"],
         "greeting": "That dummy behind me never swings back and never goes down, $C. What matters is the tally: your Damage Meters count every blow you land on it. Target it and open the meters, and I will walk you through the rest.",

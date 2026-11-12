@@ -263,26 +263,27 @@ export const PRACTICE_ROW_CAMPFIRE: [number, number] = [
 ];
 
 // The Eastbrook hub dummy: a second `training_dummy` (zone3.ts owns the
-// template) on the quay pad where every new character first stands, eleven
-// yards inland of the player start (eastbrook_layout.ts services.playerStart,
-// (-94, -58)). The Highwatch row is a level-20 measuring station; this one is
-// the hub's, so a player can test a build, a new piece of gear or a rotation
-// the moment they respec in town instead of riding to the hill above Highwatch.
+// template) on the south strand where every new character first stands, nine
+// yards south-west of the player start (Eastbrook Vale v2 moved the start to
+// the design's player_spawn, (-16, -158), below the town's south gate; the old
+// quay pad at (-86, -50) is the design's mill water now). The Highwatch row is
+// a level-20 measuring station; this one is the hub's, so a player can test a
+// build, a new piece of gear or a rotation the moment they respec in town
+// instead of riding to the hill above Highwatch.
 //
-// The mark sits on the dock's levelled shelf (zone1.ts levels it flat), six
-// yards east of the quay-walk road centreline (x -92, halfWidth 1.5), clear of
-// Fisherman Brandt (-95, -50), Foreman Odell (-84, -63) and the watchtower and
-// crate colliders on the pad's north edge, so findSafePos never has to move it
-// (tests/training_dummy.test.ts pins that it lands on its authored mark).
-export const HUB_TRAINING_DUMMY_POS = { x: -86, z: -50 } as const;
+// The mark sits on the dry strand between the south gate and the shoreline
+// (water from z -172), west of the gate lane (x -18..-14) so it never stands
+// in the walk into town, clear of the gate walls (z -155 and north) and the
+// road checkposts, so findSafePos never has to move it
+// (tests/hub_training_dummy.test.ts pins that it lands on its authored mark).
+export const HUB_TRAINING_DUMMY_POS = { x: -24, z: -163 } as const;
 
 // East of Hale, mirroring the damage dummy on his other side: a few yards
-// off, clear of the quay road (centreline x -92, halfWidth 1.5), Fisherman
-// Brandt (-95, -50) and the pad's watchtower/crate cluster to the north (the
-// same clearance rule as HUB_TRAINING_DUMMY_POS above).
+// off, on the same dry strand south of the gate (the same clearance rule as
+// HUB_TRAINING_DUMMY_POS above).
 // tests/hub_healing_dummy.test.ts pins the clearance and that findSafePos
 // leaves it exactly here.
-export const HUB_HEALING_DUMMY_POS = { x: -85, z: -44 } as const;
+export const HUB_HEALING_DUMMY_POS = { x: -15, z: -167 } as const;
 
 // NOT a CAMPS entry: the hub yard (both dummies + sparring master) spawns
 // after the player in sim/hub_practice.ts so it consumes only trailing entity
@@ -298,14 +299,13 @@ export const HUB_PRACTICE_DUMMY_CAMPS: CampDef[] = [
 // meters keybind, Shift+H by default) is the least discoverable window in the
 // HUD: nothing in the world names it. Hale's greeting and his one quest do.
 //
-// Placed a few yards SOUTH of the dummy (north is the pad's watchtower and
-// crate edge), east of the quay-walk road (centreline x -92, halfWidth 1.5)
-// and clear of Fisherman Brandt (-95, -50), facing the player arrival
-// point at (-94, -58) so newcomers see his face rather than his back.
+// Placed a few yards south-east of the dummy, between the two dummies on the
+// south strand, facing the player arrival point at (-16, -158) so newcomers
+// see his face rather than his back.
 // tests/hub_dummy_drill.test.ts pins that findSafePos leaves him on his
 // mark and that nothing else stands within arm's reach.
 export const HUB_SPARRING_MASTER_ID = 'drillmaster_hale';
-export const HUB_SPARRING_MASTER_POS = { x: -88, z: -45 } as const;
+export const HUB_SPARRING_MASTER_POS = { x: -20, z: -166 } as const;
 
 export const HUB_PRACTICE_NPCS: Record<string, NpcDef> = {
   [HUB_SPARRING_MASTER_ID]: {
@@ -313,7 +313,7 @@ export const HUB_PRACTICE_NPCS: Record<string, NpcDef> = {
     name: 'Drillmaster Hale',
     title: 'Quay Sparring Master',
     pos: { ...HUB_SPARRING_MASTER_POS },
-    facing: -2.71, // atan2(dx, dz) toward the quay arrival point
+    facing: 0.46, // atan2(dx, dz) toward the player arrival point (-16, -158)
     color: 0x7a4a4a,
     questIds: ['q_hub_know_your_numbers', 'q_hub_healing_numbers'],
     // Spawned by sim/hub_practice.ts after the player (trailing ids), not by

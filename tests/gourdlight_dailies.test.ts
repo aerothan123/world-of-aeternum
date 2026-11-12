@@ -17,6 +17,7 @@ import {
 import {
   CROW_FEATHER_ID,
   CURSED_CANDLE_ID,
+  CURSED_CANDLES_WANTED,
   GOURDLIGHT_BASKET_NPCS,
   GOURDLIGHT_DAILY_BASKETS_QUEST_ID,
   GOURDLIGHT_DAILY_BOO_QUEST_ID,
@@ -260,10 +261,16 @@ describe('Boo!', () => {
 });
 
 describe('Wicked Wicks', () => {
-  it('sets five candles in each event town, off the road, clear of the dressing and chapels', () => {
+  it('sets five candles in each dressed town, off the road, clear of the dressing and chapels', () => {
     const candles = gourdlightDailySites(WORLD_SEED).candles;
-    expect(candles).toHaveLength(15);
-    for (const zone of ['eastbrook_vale', 'mirefen_marsh', 'thornpeak_heights']) {
+    // Owner decision (Eastbrook Vale v2 port): Eastbrook is not dressed for now
+    // (content/gourdlight_eve_decor.ts), and the candles stand at the dressed towns'
+    // lamp posts, so Eastbrook sets none. The two dressed towns still set five each,
+    // more than the six stubs the errand wants.
+    expect(candles).toHaveLength(10);
+    expect(candles.length).toBeGreaterThanOrEqual(CURSED_CANDLES_WANTED);
+    expect(candles.filter((c) => c.anchor.startsWith('candle:eastbrook_vale:'))).toEqual([]);
+    for (const zone of ['mirefen_marsh', 'thornpeak_heights']) {
       expect(
         candles.filter((c) => c.anchor.startsWith(`candle:${zone}:`)),
         zone,
