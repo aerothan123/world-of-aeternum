@@ -21,7 +21,7 @@
 // mobSwing, spawnDelveModule), never reaching into not-yet-extracted internals
 // in a way the sim itself does not already expose.
 
-import { supportHeightAt } from '../../src/sim/colliders';
+import { STALL_CANOPY_TOP, supportHeightAt } from '../../src/sim/colliders';
 import { CORPSE_DURATION } from '../../src/sim/combat/damage';
 import {
   arenaOrigin,
@@ -37,7 +37,6 @@ import {
   STATIONS,
   WORLD_QUESTS_BY_ID,
 } from '../../src/sim/data';
-import { EASTBROOK_LAYOUT } from '../../src/sim/eastbrook_layout';
 import {
   IGNIVAR_BRAND_AURA_ID,
   IGNIVAR_ROTATING_RAYS_ANGULAR_SPEED,
@@ -6959,15 +6958,22 @@ function riftClearRewards(baseLevel = 25, seed = 4332): Scenario {
 
 // The entity-aware open-world LOS policy must use real supported feet while
 // continuing to reject an airborne source whose lifted ray clears ordinary
-// cover. Both arms run in the shipping world seed so the positive arm uses the
-// exact Eastbrook stall and the negative arm stays on the same deterministic
+// cover. Both arms run in the shipping world seed so the positive arm uses a
+// real shipped stall and the negative arm stays on the same deterministic
 // collider set.
+// Re-sited for Eastbrook Vale v2: the positive arms stood on the Eastbrook
+// World Market stall's flat 2.7 canopy (EASTBROOK_LAYOUT.market.stalls[0]),
+// which stands down on v2 design ground, and v2 has no standable roof tall
+// enough to lift the eye over a plain sight line. They now stand on the
+// generic Evergarden market stall at (326, 802), whose gabled canopy ridge
+// (STALL_CANOPY_TOP) is the same kind of standable support
+// (tests/line_of_sight_elevation.test.ts uses the same stall).
 function supportedElevationLineOfSight(): Scenario {
   return {
     name: 'supported_elevation_line_of_sight',
     coverage: [
-      'Eastbrook standable canopy supplies grounded player eye elevation for a completed heal',
-      'Eastbrook standable canopy keeps a jumping target visible without granting jump height',
+      'standable market canopy supplies grounded player eye elevation for a completed heal',
+      'standable market canopy keeps a jumping target visible without granting jump height',
       'airborne player elevation is rejected behind ordinary open-world cover',
       'shared Sim cast entry point and completion LOS recheck',
     ],
@@ -6979,7 +6985,10 @@ function supportedElevationLineOfSight(): Scenario {
       const allyId = sim.addPlayer('warrior', 'SightAlly') as number;
       const healer = requireEntity(sim, healerId, 'elevated healer');
       const ally = requireEntity(sim, allyId, 'line-of-sight ally');
-      const stall = EASTBROOK_LAYOUT.market.stalls[0];
+      const stallSpot = { x: 326, z: 802 };
+      if (!PROPS.stalls.some((s) => s.x === stallSpot.x && s.z === stallSpot.z))
+        throw new Error('the Evergarden market stall fixture moved');
+      const stall = { position: stallSpot, height: STALL_CANOPY_TOP };
       const terrainY = groundHeight(stall.position.x, stall.position.z, WORLD_SEED);
       const canopyY = supportHeightAt(
         WORLD_SEED,
@@ -7045,8 +7054,13 @@ function supportedElevationLineOfSight(): Scenario {
       rec.tick(40);
       rec.snapshot('canopy-jump-heal-complete');
 
-      const from = { x: -224, z: 200 };
-      const to = { x: -224, z: 224 };
+      // Re-sited for Eastbrook Vale v2 with the stall arms: on the v2 world the
+      // grounded ray from (-224, 200) to (-224, 224) no longer meets cover, so
+      // the cast started. (154, 194) to (172, 194), just
+      // north of the v2 field, keeps the contract on this seed: the grounded
+      // ray blocked, the lifted eye clear, no camp near.
+      const from = { x: 154, z: 194 };
+      const to = { x: 172, z: 194 };
       place(
         healer,
         {
