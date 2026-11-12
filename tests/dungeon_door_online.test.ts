@@ -47,9 +47,9 @@ describe('online dungeon door command', () => {
     const player = server.sim.entities.get(session.pid);
     if (!player) throw new Error('Online player did not spawn');
     const firstDoor = [...server.sim.entities.values()].find(
-      (entity) => entity.templateId === 'dungeon_door' && entity.dungeonId === 'hollow_crypt',
+      (entity) => entity.templateId === 'dungeon_door' && entity.dungeonId === 'sunken_bastion',
     );
-    if (!firstDoor) throw new Error('Hollow Crypt door did not spawn');
+    if (!firstDoor) throw new Error('Sunken Bastion door did not spawn');
     expect(
       Math.hypot(player.pos.x - firstDoor.pos.x, player.pos.z - firstDoor.pos.z),
     ).toBeGreaterThan(8);
@@ -58,15 +58,15 @@ describe('online dungeon door command', () => {
       ...player.pos,
     });
     nearbyDoor.templateId = 'dungeon_door';
-    nearbyDoor.dungeonId = 'hollow_crypt';
+    nearbyDoor.dungeonId = 'sunken_bastion';
     nearbyDoor.objectItemId = null;
     server.sim.addEntity(nearbyDoor);
 
     server.handleMessage(
       session,
-      JSON.stringify({ t: 'cmd', cmd: 'enter_dungeon', dungeon: 'hollow_crypt' }),
+      JSON.stringify({ t: 'cmd', cmd: 'enter_dungeon', dungeon: 'sunken_bastion' }),
     );
 
-    expect(server.sim.instanceInfoAt(player.pos)?.dungeonId).toBe('hollow_crypt');
+    expect(server.sim.instanceInfoAt(player.pos)?.dungeonId).toBe('sunken_bastion');
   });
 });

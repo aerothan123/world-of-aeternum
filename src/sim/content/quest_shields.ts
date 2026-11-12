@@ -4,7 +4,9 @@
 // shamans, so each quest lists warrior only).
 // Each piece is paid by a quest that previously granted no item at all, so no
 // existing reward is displaced:
-//   - lychgate_buckler          q_bones         (Eastbrook Vale, level 5)
+//   - lychgate_buckler          q_bones         (Eastbrook Vale, level 5; the
+//                               quest was retired with the Hollow Crypt, the
+//                               shield keeps its tier: hollow_crypt_retired.ts)
 //   - bastion_kite_shield       q_bastion_door  (Mirefen Marsh, level 12)
 //   - barrowfield_tower_shield  q_revenants     (Thornpeak Heights, level 18)
 //

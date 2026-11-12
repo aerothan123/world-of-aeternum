@@ -84,7 +84,6 @@ const ENEMY_BODIES: Record<string, string> = {
   edda_reedhand: 'player_druid_female',
   acolyte_tessa: 'player_priest_female',
   rift_pact_acolyte: 'player_warlock_female',
-  crypt_crow_caller: 'player_rogue',
   hedge_knight: 'player_paladin',
   the_wreck_warden: 'player_warrior',
   veiled_rite_tender: 'player_priest',
@@ -338,18 +337,13 @@ describe('npc looks roster', () => {
       expect(VISUALS[visualKeyFor(e)].wocCharacter, e.templateId).toBeDefined();
   });
 
-  it('keeps mob-kind Sexton Marrow on the mob visual while the NPC wears his look', () => {
+  it('keeps the NPC Sexton Marrow on his look and never lends it to a mob', () => {
+    // The Hollow Crypt boss of the same id retired with the crypt (2026-11-11);
+    // the chapter NPC keeps his composed look, and no mob-kind look exists.
     const npcLook = npcLookFor('sexton_marrow', 'npc');
     expect(npcLook).not.toBeNull();
     expect(npcLookFor('sexton_marrow')).toBe(npcLook);
     expect(npcLookFor('sexton_marrow', 'mob')).toBeNull();
-    // The Hollow Crypt rework gave the boss his own body (the art guide's stooped
-    // skeletal gravedigger with his spade and lantern), still a mob visual and
-    // never the composed NPC look.
-    const mobKey = visualKeyFor({ kind: 'mob', templateId: 'sexton_marrow' } as never);
-    expect(mobKey).toBe('crypt_skel_sexton');
-    expect(VISUALS[mobKey].url).toMatch(/creatures\/woc_crypt_sexton_marrow\.glb$/);
-    expect(VISUALS[mobKey].modular).toBeFalsy();
   });
 
   it('recurring characters share one look across their hub ids', () => {

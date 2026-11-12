@@ -573,7 +573,7 @@ function bossCueSuite(): ParitySuite {
     'pale_accord_warden',
   ];
   for (const templateId of [...new Set(templates)])
-    for (const instanceId of ['', 'nythraxis_boss_arena', 'hollow_crypt'])
+    for (const instanceId of ['', 'nythraxis_boss_arena', 'sunken_bastion'])
       for (const paleAccord of [false, true]) {
         const track =
           templateId && Object.hasOwn(BOSS_TRACK_URLS, templateId)

@@ -15,8 +15,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "92e3041b",
+      "nextId": 1402,
+      "state": "cf470738",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -65,7 +65,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -131,7 +131,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -141,11 +141,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -157,16 +157,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -189,9 +189,9 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 1200,
-      "state": "6c9e3205",
-      "events": "8773b1e1",
+      "nextId": 1404,
+      "state": "d45c4b50",
+      "events": "b5a3a27f",
       "rng": {
         "draws": 15,
         "digest": "d60aed87"
@@ -200,9 +200,9 @@
     {
       "tick": 40,
       "time": 2,
-      "nextId": 1200,
-      "state": "a4fbdb8c",
-      "events": "3b9d36c1",
+      "nextId": 1404,
+      "state": "dd5c8918",
+      "events": "77636825",
       "rng": {
         "draws": 29,
         "digest": "492e0874"
@@ -211,9 +211,9 @@
     {
       "tick": 50,
       "time": 2.5,
-      "nextId": 1200,
-      "state": "b24bccd1",
-      "events": "bd870819",
+      "nextId": 1404,
+      "state": "4f47c30b",
+      "events": "85f11c05",
       "rng": {
         "draws": 104,
         "digest": "795cead3"
@@ -262,9 +262,6 @@
               "eastbrook_buckler",
               "recruit_tunic",
               "worn_sword"
-            ],
-            "visited": [
-              "poi:eastbrook_vale:eastbrook_docks"
             ]
           },
           "deedsEarned": [
@@ -283,7 +280,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -351,7 +348,7 @@
               "name": "Battle Stance",
               "remaining": 3597.5,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             },
             {
               "duration": 9,
@@ -360,7 +357,7 @@
               "name": "Rending Claws",
               "remaining": 8.5,
               "school": "physical",
-              "sourceId": 1199,
+              "sourceId": 1403,
               "tickInterval": 3,
               "tickTimer": 2.5,
               "value": 5
@@ -378,11 +375,15 @@
           "critChance": 0.066,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.066,
-          "fallStartY": -2,
+          "durabilityWear": {
+            "dealt": 5,
+            "taken": 7
+          },
+          "fallStartY": 0.41,
           "fiveSecondRule": 101.5,
           "healPower": 5,
           "hp": 375,
-          "id": 1190,
+          "id": 1390,
           "inCombat": true,
           "kind": "player",
           "level": 13,
@@ -395,17 +396,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -93.5,
-            "y": -2,
-            "z": -58
+            "x": -15.5,
+            "y": 0.41,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 19.969231,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -416,7 +417,7 @@
             "sta": 47,
             "str": 47
           },
-          "targetId": 1198,
+          "targetId": 1402,
           "templateId": "warrior",
           "weapon": {
             "max": 5,
@@ -425,7 +426,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1390,
           "aiState": "attack",
           "auras": [
             {
@@ -435,32 +436,32 @@
               "name": "Blood Frenzy",
               "remaining": 7.5,
               "school": "physical",
-              "sourceId": 1198,
+              "sourceId": 1402,
               "value": 1.3
             }
           ],
           "autoAttack": true,
           "bossDamagers": [
-            1190
+            1390
           ],
           "comboUntil": -1,
           "critChance": 0.05,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": -1.570796,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
-          "forcedTargetId": 1190,
+          "forcedTargetId": 1390,
           "forcedTargetTimer": 3,
           "hostile": true,
           "hp": 59800,
-          "id": 1198,
+          "id": 1402,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "level": 4,
           "lootFfaTimer": "Infinity",
@@ -470,26 +471,26 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "stats": {
             "armor": 48
           },
           "swingTimer": 0.334615,
-          "tappedById": 1190,
-          "targetId": 1190,
+          "tappedById": 1390,
+          "targetId": 1390,
           "templateId": "old_greyjaw",
           "threat": [
             [
-              1190,
+              1390,
               200
             ]
           ],
@@ -500,7 +501,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1390,
           "aiState": "attack",
           "autoAttack": true,
           "combatTimer": 0.5,
@@ -509,11 +510,11 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": 1.570796,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 60000,
-          "id": 1199,
+          "id": 1403,
           "inCombat": true,
           "kind": "mob",
           "level": 13,
@@ -524,21 +525,21 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -96,
-            "y": -2,
-            "z": -58
+            "x": -18,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -96,
-            "y": -2,
-            "z": -58
+            "x": -18,
+            "y": 0.39,
+            "z": -158
           },
           "stats": {
             "armor": 168
           },
           "swingTimer": 1.35,
-          "targetId": 1190,
+          "targetId": 1390,
           "templateId": "ridge_stalker",
           "weapon": {
             "max": 50,
@@ -551,8 +552,8 @@
     {
       "tick": 54,
       "time": 2.7,
-      "nextId": 1200,
-      "state": "58d72708",
+      "nextId": 1404,
+      "state": "530da02c",
       "events": "741638a5",
       "rng": {
         "draws": 134,
@@ -602,9 +603,6 @@
               "eastbrook_buckler",
               "recruit_tunic",
               "worn_sword"
-            ],
-            "visited": [
-              "poi:eastbrook_vale:eastbrook_docks"
             ]
           },
           "deedsEarned": [
@@ -623,7 +621,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -691,7 +689,7 @@
               "name": "Battle Stance",
               "remaining": 3597.3,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             },
             {
               "duration": 9,
@@ -700,7 +698,7 @@
               "name": "Rending Claws",
               "remaining": 8.3,
               "school": "physical",
-              "sourceId": 1199,
+              "sourceId": 1403,
               "tickInterval": 3,
               "tickTimer": 2.3,
               "value": 5
@@ -719,11 +717,15 @@
           "critChance": 0.066,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.066,
-          "fallStartY": -2,
+          "durabilityWear": {
+            "dealt": 5,
+            "taken": 7
+          },
+          "fallStartY": 0.41,
           "fiveSecondRule": 101.7,
           "healPower": 5,
           "hp": 375,
-          "id": 1190,
+          "id": 1390,
           "inCombat": true,
           "kind": "player",
           "level": 13,
@@ -736,17 +738,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -93.5,
-            "y": -2,
-            "z": -58
+            "x": -15.5,
+            "y": 0.41,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 19.969231,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -757,7 +759,7 @@
             "sta": 47,
             "str": 47
           },
-          "targetId": 1198,
+          "targetId": 1402,
           "templateId": "warrior",
           "weapon": {
             "max": 5,
@@ -766,7 +768,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1390,
           "aiState": "attack",
           "auras": [
             {
@@ -776,13 +778,13 @@
               "name": "Blood Frenzy",
               "remaining": 7.3,
               "school": "physical",
-              "sourceId": 1198,
+              "sourceId": 1402,
               "value": 1.3
             }
           ],
           "autoAttack": true,
           "bossDamagers": [
-            1190
+            1390
           ],
           "combatTimer": 0.2,
           "comboUntil": -1,
@@ -790,19 +792,19 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": -1.570796,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
-          "forcedTargetId": 1190,
+          "forcedTargetId": 1390,
           "forcedTargetTimer": 2.8,
           "hostile": true,
           "hp": 59800,
-          "id": 1198,
+          "id": 1402,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "level": 4,
           "lootFfaTimer": "Infinity",
@@ -812,26 +814,26 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "stats": {
             "armor": 48
           },
           "swingTimer": 0.134615,
-          "tappedById": 1190,
-          "targetId": 1190,
+          "tappedById": 1390,
+          "targetId": 1390,
           "templateId": "old_greyjaw",
           "threat": [
             [
-              1190,
+              1390,
               200
             ]
           ],
@@ -842,7 +844,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1390,
           "aiState": "attack",
           "autoAttack": true,
           "combatTimer": 0.7,
@@ -851,11 +853,11 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": 1.570796,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 60000,
-          "id": 1199,
+          "id": 1403,
           "inCombat": true,
           "kind": "mob",
           "level": 13,
@@ -866,21 +868,21 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -96,
-            "y": -2,
-            "z": -58
+            "x": -18,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -96,
-            "y": -2,
-            "z": -58
+            "x": -18,
+            "y": 0.39,
+            "z": -158
           },
           "stats": {
             "armor": 168
           },
           "swingTimer": 1.15,
-          "targetId": 1190,
+          "targetId": 1390,
           "templateId": "ridge_stalker",
           "weapon": {
             "max": 50,

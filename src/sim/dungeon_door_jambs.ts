@@ -4,9 +4,8 @@
 // share one doorway, so dedupe by position. A door whose facade is a built
 // set piece hands that set piece's own colliders instead of the jambs: the
 // Gravewyrm Sanctum's Seal Gate (sanctum_seal_gate.ts), whose pylons ARE the
-// jambs, and the four built entrances, each its own door: the Sunken
-// Bastion's Drowned Gate Tower, the Hollow Crypt's Fallen Chapel, the Drowned
-// Temple's Moon Stair and the Wildheart Basin's Jaguar Maw (the
+// jambs, and the three built entrances, each its own door: the Sunken
+// Bastion's Drowned Gate Tower, the Drowned Temple's Moon Stair and the Wildheart Basin's Jaguar Maw (the
 // *_entrance.ts modules beside this one). Extracted from colliders.ts under
 // the monolith ratchet; the caller passes its camera-top resolver.
 import type { Collider } from './colliders';
@@ -15,10 +14,6 @@ import {
   DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID,
   drownedTempleEntranceColliders,
 } from './drowned_temple_entrance';
-import {
-  HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID,
-  hollowCryptEntranceColliders,
-} from './hollow_crypt_entrance';
 import { dungeonDoorPos, objectRemoved } from './moved_objects';
 import {
   DOOR_ARCH_HEIGHT,
@@ -60,10 +55,6 @@ export function dungeonDoorJambColliders(
     }
     if (dungeon.id === SUNKEN_BASTION_ENTRANCE_DUNGEON_ID) {
       out.push(...sunkenBastionEntranceColliders(seed, doorPos));
-      continue;
-    }
-    if (dungeon.id === HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID) {
-      out.push(...hollowCryptEntranceColliders(seed, doorPos));
       continue;
     }
     if (dungeon.id === DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID) {

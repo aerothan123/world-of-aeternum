@@ -45,12 +45,12 @@ import {
 import type { Sim } from '../src/sim/sim';
 import { bareClient } from './helpers/bare_client';
 
-/** Catalogued Hollow Crypt unique used across Reliquary pin tests. */
-const CATALOGUE_RELIC = 'cryptbone_helm';
-const PAGE_ID = 'conquerors_hollow_crypt';
-/** The Hollow Crypt page's item relics, read off the live page; used for
+/** Catalogued Sunken Bastion unique used across Reliquary pin tests. */
+const CATALOGUE_RELIC = 'tideguard_greaves';
+const PAGE_ID = 'conquerors_sunken_bastion';
+/** The Sunken Bastion page's item relics, read off the live page; used for
  *  Illumination + absolute totals. */
-const HOLLOW_CRYPT_RELICS = (RELIQUARY_PAGES_BY_ID[PAGE_ID]?.relics ?? []).flatMap((relic) =>
+const BASTION_RELICS = (RELIQUARY_PAGES_BY_ID[PAGE_ID]?.relics ?? []).flatMap((relic) =>
   relic.kind === 'item' ? [relic.itemId] : [],
 );
 /** Authored profession mark id (Phase 7 field note) for sparse marks[] wire pins. */
@@ -88,10 +88,10 @@ function routeEvents(server: GameServer, events: unknown[]): void {
 
 function scriptedReliquaryState(sim: Sim, pid: number): void {
   const meta = sim.players.get(pid)!;
-  meta.deedStats.dungeonClears.hollow_crypt = 4;
+  meta.deedStats.dungeonClears.sunken_bastion = 4;
   markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
   // A second catalogued unique so recent is multi-entry and completion is partial.
-  markItemDiscovered(sim.ctx, meta, 'cryptbone_greaves');
+  markItemDiscovered(sim.ctx, meta, 'eelscale_leggings');
   // One real hub grant so the folded obtain tally rides the wire for exactly
   // ONE of the two entries: the other stays sparse, which is what proves the
   // fold is per entry rather than a blanket field.
@@ -126,9 +126,9 @@ describe('Reliquary wire thrift', () => {
     // Phase 17 wire shape: pageId is gone from the entry and the obtain tally
     // rides folded onto it as `count`, never as a fourth top-level key.
     expect(reliq.firstFind[CATALOGUE_RELIC]).toEqual({ clears: 4, count: 1 });
-    expect(reliq.firstFind.cryptbone_greaves).toEqual({ clears: 4 });
+    expect(reliq.firstFind.eelscale_leggings).toEqual({ clears: 4 });
     expect(reliq.marks).toEqual([SEEDED_MARK_ID]);
-    expect(reliq.recent).toEqual([CATALOGUE_RELIC, 'cryptbone_greaves', SEEDED_MARK_ID]);
+    expect(reliq.recent).toEqual([CATALOGUE_RELIC, 'eelscale_leggings', SEEDED_MARK_ID]);
 
     // Payload thrift: the sparse blob is far smaller than re-shipping dstats discovery.
     const reliqBytes = JSON.stringify(reliq).length;
@@ -156,7 +156,7 @@ describe('Reliquary wire thrift', () => {
     expect(quiet.self).not.toHaveProperty('reliq');
     expect(quiet.self).not.toHaveProperty('dstats');
 
-    meta.deedStats.dungeonClears.hollow_crypt = 1;
+    meta.deedStats.dungeonClears.sunken_bastion = 1;
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
     // routeEvents marks HEAVY_SELF_EVENTS (reliquaryUnlock) so the next snapshot
     // re-diffs sparse reliq without waiting on the staggered backstop.
@@ -248,7 +248,7 @@ describe('Reliquary wire thrift', () => {
     // otherwise the staggered refresh, not the memo, would be doing the work.
     (server as any).heavySelfGate = false;
 
-    meta.deedStats.dungeonClears.hollow_crypt = 2;
+    meta.deedStats.dungeonClears.sunken_bastion = 2;
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
     routeEvents(server, sim.drainEvents());
     (server as any).broadcastSnapshots();
@@ -286,7 +286,7 @@ describe('Reliquary wire thrift', () => {
     const sim = server.sim as Sim;
     const meta = sim.players.get(session.pid)!;
 
-    meta.deedStats.dungeonClears.hollow_crypt = 2;
+    meta.deedStats.dungeonClears.sunken_bastion = 2;
     fw.sent.length = 0;
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
     const events = sim.drainEvents();
@@ -319,14 +319,14 @@ describe('Reliquary wire thrift', () => {
     const sim = server.sim as Sim;
     const meta = sim.players.get(session.pid)!;
 
-    meta.deedStats.dungeonClears.hollow_crypt = 3;
-    // Pre-own all but the last Hollow Crypt relic so the final discover illuminates.
-    for (const id of HOLLOW_CRYPT_RELICS.slice(0, -1)) {
+    meta.deedStats.dungeonClears.sunken_bastion = 3;
+    // Pre-own all but the last Sunken Bastion relic so the final discover illuminates.
+    for (const id of BASTION_RELICS.slice(0, -1)) {
       markItemDiscovered(sim.ctx, meta, id);
     }
     sim.drainEvents();
     fw.sent.length = 0;
-    const lastRelic = HOLLOW_CRYPT_RELICS[HOLLOW_CRYPT_RELICS.length - 1]!;
+    const lastRelic = BASTION_RELICS[BASTION_RELICS.length - 1]!;
     markItemDiscovered(sim.ctx, meta, lastRelic);
     const events = sim.drainEvents();
     routeEvents(server, events);
@@ -381,7 +381,7 @@ describe('Reliquary movement flag on the server-only grant paths', () => {
     const session = joinAt(server, fw, 20, 'RelicRestore');
     const sim = server.sim as Sim;
     const meta = sim.players.get(session.pid)!;
-    meta.deedStats.dungeonClears.hollow_crypt = 5;
+    meta.deedStats.dungeonClears.sunken_bastion = 5;
 
     // The real admin entry point, resolved by characterId exactly as the
     // support handler resolves it.
@@ -462,14 +462,14 @@ describe('Reliquary online / offline parity for scripted state', () => {
 
     // Ownership for completion still rides deedStats discovery, mirrored via dstats.
     expect(client.deedStats.itemsDiscovered.has(CATALOGUE_RELIC)).toBe(true);
-    expect(client.deedStats.itemsDiscovered.has('cryptbone_greaves')).toBe(true);
+    expect(client.deedStats.itemsDiscovered.has('eelscale_leggings')).toBe(true);
 
     const offlinePage = sim.reliquaryPageCompletion(PAGE_ID);
     const onlinePage = client.reliquaryPageCompletion(PAGE_ID);
     expect(onlinePage).toEqual(offlinePage);
     expect(onlinePage).not.toBeNull();
     expect(onlinePage!.owned).toBe(2);
-    expect(onlinePage!.total).toBe(HOLLOW_CRYPT_RELICS.length);
+    expect(onlinePage!.total).toBe(BASTION_RELICS.length);
     expect(onlinePage!.total).toBe(RELIQUARY_PAGES_BY_ID[PAGE_ID]!.relics.length);
     expect(onlinePage!.complete).toBe(false);
 

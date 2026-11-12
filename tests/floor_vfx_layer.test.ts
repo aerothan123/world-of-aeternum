@@ -115,9 +115,6 @@ const FLOOR_VFX_LAYERED_MODULES: readonly FloorVfxModule[] = [
   // The Drowned Gate Tower's marsh fog and gate sprites at the Sunken
   // Bastion's door: the world's own marks, under every telegraph.
   { file: 'src/render/sunken_bastion_entrance.ts', layer: 'ground', strict: true },
-  // The Fallen Chapel's grave mist and spirit sprites at the Hollow Crypt's
-  // door: the world's own marks, under every telegraph.
-  { file: 'src/render/hollow_crypt_entrance.ts', layer: 'ground', strict: true },
   // The Moon Stair's liquid moonlight, mist and moonrise sprites at the
   // Drowned Temple's door: the world's own marks, under every telegraph.
   { file: 'src/render/drowned_temple_entrance.ts', layer: 'ground', strict: true },
@@ -127,11 +124,6 @@ const FLOOR_VFX_LAYERED_MODULES: readonly FloorVfxModule[] = [
   // A Buried Hoard boss room's additive floor light under its kit props, kept on
   // the order it shipped with (2, the ground band's second rung).
   { file: 'src/render/hoard_room_kit.ts', layer: 'ground', strict: true },
-  // The Hollow Crypt's torch pools and the soul column's floor pool: the world's
-  // own light on the ring floor, under every telegraph Morthen will paint.
-  { file: 'src/render/hollow_crypt/crypt_lights.ts', layer: 'ground', strict: true },
-  // The engraved rite circle and cloister rosette: dim world marks on the floor.
-  { file: 'src/render/hollow_crypt/crypt_floor_marks.ts', layer: 'ground', strict: true },
   // The Sunken Bastion's lantern and brazier pools on its floors.
   { file: 'src/render/sunken_bastion/bastion_lights.ts', layer: 'ground', strict: true },
   // The Bastion's storm rain: its splash rings lie on the floor under every
@@ -298,24 +290,6 @@ const FLOOR_VFX_LAYERED_MODULES: readonly FloorVfxModule[] = [
   // Olen's brine, Sentence column and bubble; Vael's staging pillar; the
   // Mooring Post lamps' safe rings (their lamplight pool sits on the ground rung).
   { file: 'src/render/sunken_bastion/bastion_olen_fx.ts', layer: 'encounter', strict: true },
-  // The Hollow Crypt wing bosses' host and painters (crypt_boss_fx.ts).
-  { file: 'src/render/hollow_crypt/crypt_boss_fx.ts', layer: 'encounter', strict: true },
-  { file: 'src/render/hollow_crypt/marrow_fx.ts', layer: 'encounter', strict: true },
-  { file: 'src/render/hollow_crypt/lady_fx.ts', layer: 'encounter', strict: true },
-  // Cantor Ilvane: her painter (ilvane_fx.ts) lays only the shared kit's
-  // glyph and lanes now; her Dirge's sight field and its shadow wedges, the
-  // rings under the players, the shock of sound and its curtain, her aura, the
-  // organ's pipes, the beams, notes and silence marks ride the encounter band.
-  { file: 'src/render/hollow_crypt/ilvane_dirge_fx.ts', layer: 'encounter', strict: true },
-  // Morthen's fight on the Rite Ring and the Knellwyrm's Burning Knell
-  // (morthen_rite_fx.ts, the host): Grave Chill's mist under every telegraph
-  // rung, the scorch and rune circle on the floor rungs, the telegraphs on the
-  // kit's rungs, the ward, columns, beams and flashes above them.
-  { file: 'src/render/hollow_crypt/morthen_rite_fx.ts', layer: 'encounter', strict: true },
-  { file: 'src/render/hollow_crypt/morthen_attack_fx.ts', layer: 'encounter', strict: true },
-  { file: 'src/render/hollow_crypt/morthen_ward_fx.ts', layer: 'encounter', strict: true },
-  { file: 'src/render/hollow_crypt/morthen_candle_fx.ts', layer: 'encounter', strict: true },
-  { file: 'src/render/hollow_crypt/knell_fx.ts', layer: 'encounter', strict: true },
   {
     file: 'src/render/sunken_bastion/bastion_vael_stage_fx.ts',
     layer: 'encounter',
@@ -330,13 +304,6 @@ const FLOOR_VFX_LAYERED_MODULES: readonly FloorVfxModule[] = [
   // The shared dungeon floor telegraph (the crypt's and the Bastion's cones,
   // rings, lanes and kick glyphs, and their edge curtains).
   { file: 'src/render/floor_telegraph/telegraph_kit.ts', layer: 'encounter', strict: true },
-  // The Hollow Crypt trash mechanics pass's hero effects: the bone pile's glow,
-  // the rupture crater and pool, the crush crack, the web net and the burning
-  // embers (floor bodies under the telegraph rungs), their shockwaves, and the
-  // particles, glyphs and tethers over them. The host owns every rung
-  // (KIT_STEPS); its parts, crypt_bone_fx.ts and crypt_mark_fx.ts, build their
-  // pieces through it and set no order of their own.
-  { file: 'src/render/hollow_crypt/crypt_trash_kit_fx.ts', layer: 'encounter', strict: true },
   { file: 'src/render/ignivar_forge_wave.ts', layer: 'encounter', strict: true },
   { file: 'src/render/ignivar_frontal_telegraph.ts', layer: 'encounter', strict: true },
   { file: 'src/render/ignivar_soak_telegraph.ts', layer: 'encounter', strict: true },
@@ -470,10 +437,6 @@ const FLOOR_VFX_OUT_OF_SCOPE: readonly string[] = [
   'src/render/ship_wake.ts',
   'src/render/underwater.ts',
   'src/render/weather.ts',
-  // The Hollow Crypt's sky and air: the mist sea far below every terrace, the
-  // vertical soul column, wisps, dust and moonbeams (no floor mark; its floor
-  // pool lives in crypt_lights.ts on the ground rung).
-  'src/render/hollow_crypt/crypt_atmosphere.ts',
   // The Sunken Bastion's sky, sea, fog banks, rain and gulls; the Fogbeacon's
   // beam and fog streams; the surf off the cliff feet; the standing water (on
   // the water surface order 0, under the whole ladder); and the gates' fog

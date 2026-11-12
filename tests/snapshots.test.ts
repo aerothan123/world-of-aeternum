@@ -2712,7 +2712,7 @@ describe('dungeon difficulty wire', () => {
     const server = new GameServer();
     const fc = fakeWs();
     const session = joinServer(server, fc, 1, 'Hero');
-    expect(enterDungeon(server.sim.ctx, 'hollow_crypt', session.pid)).toBe(true);
+    expect(enterDungeon(server.sim.ctx, 'sunken_bastion', session.pid)).toBe(true);
     server.sim.setDungeonDifficulty('heroic', session.pid);
 
     broadcast(server);
@@ -2730,10 +2730,10 @@ describe('dungeon difficulty wire', () => {
     const server = new GameServer();
     const fc = fakeWs();
     const session = joinServer(server, fc, 1, 'Hero');
-    expect(enterDungeon(server.sim.ctx, 'hollow_crypt', session.pid)).toBe(true);
+    expect(enterDungeon(server.sim.ctx, 'sunken_bastion', session.pid)).toBe(true);
     server.sim.leaveDungeon(session.pid);
     const inst = server.sim.instances.find(
-      (i) => i.partyKey !== null && i.dungeonId === 'hollow_crypt',
+      (i) => i.partyKey !== null && i.dungeonId === 'sunken_bastion',
     )!;
     const client = bareClient(session.pid);
     broadcast(server);
@@ -6431,7 +6431,7 @@ function dirtyEveryDeltaField(): {
   meta.deedStats.counters.kills = 7;
   meta.deedStats.itemsDiscovered.add('wolf_fang');
   meta.deedStats.visited.add('npc:chronicler_saul');
-  meta.deedStats.dungeonClears.hollow_crypt = 2;
+  meta.deedStats.dungeonClears.sunken_bastion = 2;
   meta.renown = 15;
   meta.activeTitle = 'prog_veteran';
   meta.activeBorder = 'prog_prestige_10';
@@ -6448,8 +6448,8 @@ function dirtyEveryDeltaField(): {
   // silently stop reaching the wire. tests/reliquary_wire.test.ts made the same
   // move for the same reason. (The clear meter feeding the stamp is the
   // dungeonClears assignment in the deed-stats block above.)
-  noteRelicItemFind(meta, 'cryptbone_helm');
-  noteRelicObtain(meta, 'cryptbone_helm', 3);
+  noteRelicItemFind(meta, 'tideguard_greaves');
+  noteRelicObtain(meta, 'tideguard_greaves', 3);
   meta.talentMods.spec = 'arms';
   meta.loadouts = [{ name: 'PvP', alloc: { spec: 'arms', rows: {} }, bar: [] }];
   meta.activeLoadout = 0;
@@ -7115,7 +7115,7 @@ describe('full self-state snapshot delta fixture', () => {
     expect(client.deedStats.counters.kills).toBe(7);
     expect(client.deedStats.itemsDiscovered.has('wolf_fang')).toBe(true);
     expect(client.deedStats.visited.has('npc:chronicler_saul')).toBe(true);
-    expect(client.deedStats.dungeonClears).toEqual({ hollow_crypt: 2 });
+    expect(client.deedStats.dungeonClears).toEqual({ sunken_bastion: 2 });
     expect(client.renown).toBe(15); // renown (same name both sides, no rename)
     expect(client.activeTitle).toBe('prog_veteran'); // atitle -> activeTitle
     expect(client.activeBorder).toBe('prog_prestige_10'); // aborder -> activeBorder
@@ -7124,9 +7124,9 @@ describe('full self-state snapshot delta fixture', () => {
     // Phase 17 wire shape change: pageId dropped from the entry, the obtain
     // tally folded onto it. The mirror splits `count` back out into
     // reliquaryObtainCounts, so the entry itself carries clears alone.
-    expect(client.reliquaryFirstFind.cryptbone_helm).toEqual({ clears: 2 });
-    expect(client.reliquaryObtainCounts).toEqual({ cryptbone_helm: 3 });
-    expect(client.reliquaryRecent).toEqual(['cryptbone_helm']);
+    expect(client.reliquaryFirstFind.tideguard_greaves).toEqual({ clears: 2 });
+    expect(client.reliquaryObtainCounts).toEqual({ tideguard_greaves: 3 });
+    expect(client.reliquaryRecent).toEqual(['tideguard_greaves']);
     // tal -> talents / talentSpec / loadouts / activeLoadout
     expect(client.talents).toEqual({ spec: 'arms', rows: {} });
     expect(client.talentSpec).toBe('arms');
@@ -8028,9 +8028,9 @@ describe('dfb realm-readout memo (shared board bytes, per-session cadence)', () 
     const sa = joinServer(server, fcA, 61, 'BoardOne');
     const sb = joinServer(server, fcB, 62, 'BoardTwo');
     // A real premade listing so the shared board is non-empty and its bytes are
-    // meaningful (hollow_crypt_normal accepts a solo level-8 leader).
-    server.sim.setPlayerLevel(8, sa.pid);
-    server.sim.dungeonFinderListingCreate('hollow_crypt_normal', ['first_run'], sa.pid);
+    // meaningful (sunken_bastion_normal accepts a solo level-12 leader).
+    server.sim.setPlayerLevel(12, sa.pid);
+    server.sim.dungeonFinderListingCreate('sunken_bastion_normal', ['first_run'], sa.pid);
     return { server, fcA, fcB, sa, sb };
   }
 
@@ -8063,8 +8063,8 @@ describe('dfb realm-readout memo (shared board bytes, per-session cadence)', () 
       ws: { readyState: 1, send: (p: string) => raw.push(p) },
     };
     const sa = joinServer(server, fcRaw as any, 61, 'BoardOne');
-    server.sim.setPlayerLevel(8, sa.pid);
-    server.sim.dungeonFinderListingCreate('hollow_crypt_normal', ['first_run'], sa.pid);
+    server.sim.setPlayerLevel(12, sa.pid);
+    server.sim.dungeonFinderListingCreate('sunken_bastion_normal', ['first_run'], sa.pid);
     broadcast(server);
     const memo = (server as any).dfBoardReadout;
     // Same tick, so the finder's own boardRev/tickBucket cache is untouched: the
@@ -8103,8 +8103,8 @@ describe('dfb realm-readout memo (shared board bytes, per-session cadence)', () 
     // their next due pass: the memo re-keys on the pass tick and re-stringifies
     // the grown board. A memo that never invalidated (a constant tick key)
     // would keep serving the stale one-listing string and red the length pin.
-    server.sim.setPlayerLevel(8, sb.pid);
-    server.sim.dungeonFinderListingCreate('hollow_crypt_normal', [], sb.pid);
+    server.sim.setPlayerLevel(12, sb.pid);
+    server.sim.dungeonFinderListingCreate('sunken_bastion_normal', [], sb.pid);
     const changedA = fcA.sent.length;
     const changedB = fcB.sent.length;
     for (let i = 0; i < DF_WIRE_INTERVAL_TICKS; i++) server.sim.tick();
@@ -8126,8 +8126,8 @@ describe('dfb realm-readout memo (shared board bytes, per-session cadence)', () 
     const server = new GameServer();
     const fcA = fakeWs();
     const sa = joinServer(server, fcA, 63, 'StagOne');
-    server.sim.setPlayerLevel(8, sa.pid);
-    server.sim.dungeonFinderListingCreate('hollow_crypt_normal', ['first_run'], sa.pid);
+    server.sim.setPlayerLevel(12, sa.pid);
+    server.sim.dungeonFinderListingCreate('sunken_bastion_normal', ['first_run'], sa.pid);
     broadcast(server); // tick 0: A ships the one-listing board; A's gate anchors at 0
     // five ticks later a SECOND session joins: its fresh-join pass anchors its
     // gate at tick 5, so the two sessions stay offset by 5 ticks forever
@@ -8137,8 +8137,8 @@ describe('dfb realm-readout memo (shared board bytes, per-session cadence)', () 
     broadcast(server); // tick 5: B (fresh) ships the board; A is mid-interval, elided
     expect(lastSnap(fcB.sent).self.dfb).toHaveLength(1);
     // the board changes while BOTH gates are closed
-    server.sim.setPlayerLevel(8, sb.pid);
-    server.sim.dungeonFinderListingCreate('hollow_crypt_normal', [], sb.pid);
+    server.sim.setPlayerLevel(12, sb.pid);
+    server.sim.dungeonFinderListingCreate('sunken_bastion_normal', [], sb.pid);
     const dfbSnaps = (sent: any[], from: number): any[] =>
       sent.slice(from).filter((m) => m.t === 'snap' && m.self && 'dfb' in m.self);
     const aFrom = fcA.sent.length;
@@ -10899,7 +10899,7 @@ describe('World PvP played-time pause wire round-trip', () => {
       sim.players.get(session.pid)!.worldPvp!.rewardTicks = 73 * 60 * 20 + 19;
       const client = bareClient(session.pid);
       if (pause === 'dead') player.dead = true;
-      else expect(sim.enterDungeon('hollow_crypt', session.pid)).toBe(true);
+      else expect(sim.enterDungeon('sunken_bastion', session.pid)).toBe(true);
       broadcast(server);
       const snap = lastSnap(fc.sent);
       expect(snap.self.wpvp).toMatchObject({

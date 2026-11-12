@@ -609,59 +609,6 @@ const mergeStringsEn = {
       hoard_cast_mimic_bite: 'Voracious Bite',
       hoard_cast_mimic_leap: 'Crushing Leap',
       hoard_cast_coin_spit: 'Cursed Coins',
-      // The Hollow Crypt trash kit (src/sim/mob/trash_kit/cast_ids.ts). The bolt,
-      // the raise, the call and the shriek can be kicked; the rest are dodged.
-      crypt_grave_bolt: 'Grave Bolt',
-      crypt_raise_bones: 'Raise Bones',
-      crypt_murder_call: 'Murder Call',
-      crypt_stone_shriek: 'Stone Shriek',
-      crypt_grave_cleave: 'Grave Cleave',
-      crypt_barrowflame_breath: 'Barrowflame Breath',
-      crypt_tail_lash: 'Tail Lash',
-      crypt_wing_gust: 'Wing Gust',
-      // The crypt trash mechanics pass (trash_kit/crypt_kit.ts): the rupture and
-      // the eye can be kicked; the crush and the web are dodged.
-      crypt_grave_rupture: 'Grave Rupture',
-      crypt_carrion_eye: 'Carrion Eye',
-      crypt_marrow_crush: 'Marrow Crush',
-      crypt_rimesilk_spit: 'Rimesilk Spit',
-      // The trash pass's second wave: the adept's volley can be kicked.
-      crypt_gravespark_volley: 'Gravespark Volley',
-      // The Hollow Crypt finale (encounters/hollow_crypt/ids.ts): Morthen's
-      // entrance at the Rite Ring and the Knellwyrm. None can be kicked.
-      crypt_morthen_rite_wakes: 'The Rite Wakes',
-      crypt_morthen_rise: 'Rise of the Gravecaller',
-      crypt_morthen_proclaim: 'Grave Proclamation',
-      crypt_morthen_descend: 'Descent',
-      crypt_knellwyrm_arrive: 'Descending from the Sky',
-      crypt_knellwyrm_pyre_strafe: 'Pyre Strafe',
-      crypt_knellwyrm_strafe_run: 'Strafing Run',
-      crypt_knellwyrm_dread_bellow: 'Dread Bellow',
-      // The Hollow Crypt's wing bosses (encounters/hollow_crypt). The Dirge can
-      // be kicked; the Unbroken Verse (heroic) and the rest cannot.
-      crypt_marrow_shovelful: 'Shovelful',
-      crypt_marrow_measure: 'Measured for the Grave',
-      crypt_marrow_burial_toll: 'Burial Toll',
-      crypt_marrow_gravediggers_blow: "Gravedigger's Blow",
-      crypt_lady_brides_lament: "Bride's Lament",
-      crypt_lady_frozen_embrace: 'Frozen Embrace',
-      crypt_lady_embrace_hold: 'Frozen Embrace',
-      crypt_lady_bridal_freeze: 'Bridal Freeze',
-      crypt_ilvane_dirge: 'Dirge of the Hollow',
-      crypt_ilvane_unbroken_dirge: 'Unbroken Verse',
-      crypt_ilvane_bone_organ: 'Bone Organ',
-      // Morthen the Gravecaller's bars (encounters/hollow_crypt/morthen_ids.ts),
-      // the players' own relight bar on a Remembrance Candle, and the
-      // Knellwyrm's heroic Burning Knell flight (every phase reads as the
-      // mechanic). None can be kicked.
-      crypt_morthen_shadow_pulse: 'Shadow Pulse',
-      crypt_morthen_rite_of_the_unquiet: 'Rite of the Unquiet',
-      crypt_morthen_reap_the_unquiet: 'Reap the Unquiet',
-      kituse_crypt_relight_candle: 'Relight the Candle',
-      crypt_knellwyrm_knell_rise: 'Burning Knell',
-      crypt_knellwyrm_knell_mark: 'Burning Knell',
-      crypt_knellwyrm_knell_breath: 'Burning Knell',
-      crypt_knellwyrm_knell_land: 'Burning Knell',
       // The Sunken Bastion trash kit and boss casts (trash_kit/bastion_cast_ids.ts,
       // encounters/sunken_bastion/ids.ts). The Mend and the Ward can be kicked.
       bastion_brine_mend: 'Brine Mend',

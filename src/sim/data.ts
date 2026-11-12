@@ -213,9 +213,7 @@ import {
 import { GROUND_PICKUP_LINES } from './content/ground_pickup_lines';
 import { HEALING_TRAINING_MOBS } from './content/healing_training';
 import { HOARD_ITEMS } from './content/hoard_loot';
-import { HOLLOW_CRYPT_MOBS } from './content/hollow_crypt';
 import { HOLLOW_CRYPT_ITEMS } from './content/hollow_crypt_items';
-import { HOLLOW_CRYPT_TRASH_MOBS } from './content/hollow_crypt_trash';
 import { HOUSE_LOT_DUNGEON_DEFS } from './content/house_lots';
 import {
   IGNIVAR_RAID_LORE_NPCS,
@@ -569,8 +567,6 @@ export const MOBS: Record<string, MobTemplate> = {
   ...REALM_MOBS,
   ...DRAKELANDS_MOBS,
   ...WILDHEART_MOBS,
-  ...HOLLOW_CRYPT_MOBS,
-  ...HOLLOW_CRYPT_TRASH_MOBS,
   ...SUNKEN_BASTION_MOBS,
   ...DROWNED_TEMPLE_MOBS,
   ...GRAVEWYRM_SANCTUM_MOBS,
@@ -1839,10 +1835,6 @@ export function migrateLegacyInstancePos(
   const dungeon = dungeonByIndex(Math.round((pos.x - 900) / 600)) ?? DUNGEON_LIST[0];
   return { x: dungeon.doorPos.x, z: dungeon.doorPos.z - 4 };
 }
-
-// Legacy aliases for the Hollow Crypt (tests reference these).
-export const CRYPT_DOOR_POS = DUNGEONS.hollow_crypt.doorPos;
-export const CRYPT_SPAWNS = DUNGEONS.hollow_crypt.spawns;
 
 // ---------------------------------------------------------------------------
 // Delves, private party instances past the arena x-band (see docs/prd/delves.md).

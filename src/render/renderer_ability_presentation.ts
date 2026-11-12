@@ -14,7 +14,6 @@ import type { CastVfxReadiness } from './cast_vfx_readiness_core';
 import type { CharacterVisual } from './characters/visual';
 import { createOnrushArrivalHandler } from './characters/warrior_rush_pose';
 import type { GlacialFrontVisual } from './glacial_front_visual';
-import { paintsOwnBreath } from './hollow_crypt/crypt_creature_fx_core';
 import { impactContact } from './impact_contact';
 import type { LightPulses } from './light_pulses';
 import type { EntityView } from './renderer';
@@ -199,7 +198,7 @@ export function presentEmpoweredCone(
 ): boolean {
   if (ev.fx !== 'frostCone' && ev.fx !== 'fireCone') return false;
   // A creature that paints its own breath (the crypt drake) skips the generic cone.
-  if (source && !paintsOwnBreath(source.templateId)) {
+  if (source) {
     visual.spawn(
       source.pos.x,
       groundHeight(source.pos.x, source.pos.z, seed),

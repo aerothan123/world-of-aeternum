@@ -277,10 +277,6 @@ export const table: DeedLocaleTable = {
     name: 'Sacúdete el polvo',
     desc: 'Muere por primera vez; le pasa hasta a los mejores.',
   },
-  dgn_hollow_crypt: {
-    name: 'Quiebracriptas',
-    desc: 'Derrota a Morthen el Gravecaller en la Cripta Hueca.',
-  },
   dgn_sunken_bastion: {
     name: 'El Fogbinder desatado',
     desc: 'Derrota a Vael el Fogbinder en el Bastión Sumergido.',
@@ -292,10 +288,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'El wyrm de las profundidades',
     desc: 'Derrota a Korzul el Gravewyrm en el Santuario del Gravewyrm.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroico: La Cripta Hueca',
-    desc: 'Derrota a Morthen el Gravecaller en la Cripta Hueca en dificultad heroica.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroico: El Bastión Sumergido',
@@ -332,14 +324,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Cincuenta puertas más abajo',
     desc: 'Derrota a 50 jefes finales de mazmorra.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Sin dejarse los huesos',
-    desc: 'Derrota a Morthen el Gravecaller en dificultad heroica sin que muera ningún miembro del grupo.',
-  },
-  dgn_morthen_trio: {
-    name: 'Tres contra la tumba',
-    desc: 'Derrota a Morthen el Gravecaller con tres jugadores o menos.',
   },
   dgn_olen_arc: {
     name: 'Esquiva al segador',
@@ -1329,11 +1313,6 @@ export const table: DeedLocaleTable = {
     desc: 'Mata a las tres cabezas de la Hidra de la Laguna con una diferencia máxima de 10 segundos entre ellas.',
   },
 
-  dgn_crypt_knellwyrm: {
-    name: 'Ni un pelo chamuscado',
-    desc: 'Derrota al Vermis del Doblar sin que nadie se queme con su Pasada de fuego de pira.',
-  },
-
   dgn_turnkey_cage: {
     name: 'Ninguna jaula nos retiene',
     desc: 'Derrota al Alcaide de la Prisión sin que nadie sea aplastado en una Jaula de hierro.',
@@ -1388,26 +1367,6 @@ export const table: DeedLocaleTable = {
     name: 'El último verso',
     desc: 'Derrota a Ysolei, Avatar de la Luna Ahogada, con el Último Cantor del Coro Pálido a tu lado.',
     title: 'Testigo del Coro',
-  },
-
-  dgn_marrow_tidy: {
-    name: 'Un camposanto ordenado',
-    desc: 'Derrota al Sacristán Marrow colocando cada Tumba abierta en el borde del Patio de la Campana.',
-  },
-
-  dgn_lady_nobody_hanging: {
-    name: 'Nadie queda colgando',
-    desc: 'Derrota a la Dama del Frío de Huesos sin que deje caer a nadie desde su Abrazo helado.',
-  },
-
-  dgn_ilvane_hush: {
-    name: 'Silencio ya',
-    desc: 'Derrota al Cantor Ilvane sin que su Canto fúnebre de la oquedad golpee a nadie.',
-  },
-
-  dgn_morthen_candlelight: {
-    name: 'Todas las velas encendidas',
-    desc: 'Derrota a Morthen el Gravecaller tras reencender las cuatro Velas del Recuerdo en los 20 segundos siguientes a la aparición de su Resguardo inquieto.',
   },
 
   dgn_guild_first_contract: {

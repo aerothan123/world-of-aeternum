@@ -1412,7 +1412,7 @@ export const TARGETS = [
         const sim = window.__game?.sim;
         if (!sim?.instances || !sim.ctx) return false;
         const inst = sim.instances.find(
-          (i) => i.dungeonId === 'hollow_crypt' && i.partyKey === null,
+          (i) => i.dungeonId === 'sunken_bastion' && i.partyKey === null,
         );
         if (!inst) return false;
         inst.partyKey = sim.ctx.instanceKeyFor(sim.playerId);
@@ -7928,7 +7928,7 @@ export const TARGETS = [
     when: ['map_surface_core', 'interior_map_controller'],
     variants: [{ key: 'desktop' }, ...(presses === 1 ? [{ key: 'mobile', mobile: true }] : [])],
     async capture(page) {
-      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('hollow_crypt'));
+      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('sunken_bastion'));
       await wait(1500); // let the instance teleport and its zone stream settle
       await awaitWorldPainted(page);
       await dismissTutorialGreeting(page);
@@ -7956,7 +7956,7 @@ export const TARGETS = [
     when: ['map_pinch_zoom_core', 'map_pan_core'],
     variants: [{ key: 'desktop' }, { key: 'mobile', mobile: true }],
     async capture(page) {
-      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('hollow_crypt'));
+      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('sunken_bastion'));
       await wait(1500);
       await awaitWorldPainted(page);
       await dismissTutorialGreeting(page);
@@ -7984,7 +7984,7 @@ export const TARGETS = [
       await page.evaluate(() => {
         const sim = window.__game?.sim;
         if (!sim) return;
-        sim.enterDungeon?.('hollow_crypt');
+        sim.enterDungeon?.('sunken_bastion');
         const inside = { x: sim.player.pos.x + 6, z: sim.player.pos.z - 4 };
         // A raw position write back to the meadow (like the world-map target),
         // not leaveDungeon: the exit teleport raises the loading curtain again.
@@ -10865,51 +10865,6 @@ export const TARGETS = [
     },
   },
   {
-    key: 'reliquary-clears-heroic',
-    label: 'The Reliquary: Hollow Crypt page meter after four Heroic clears',
-    when: ['sim/content/reliquary', 'sim/reliquary'],
-    variants: [
-      { key: 'desktop', beforeLoad: seedLowGraphicsPreset },
-      { key: 'mobile', mobile: true, beforeLoad: seedLowGraphicsPreset },
-    ],
-    async capture(page) {
-      // The player report: a Heroic-farmed five-man page whose relics all
-      // drop on Heroic. Seed four Heroic clears and no Normal clear, plus
-      // four of the five relics, then open the page so the "N clears" meter
-      // is the shot. BEFORE reads 0 (the Normal-only filter); AFTER reads 4.
-      await page.evaluate(() => {
-        document.querySelector('#gpu-notice')?.remove();
-        document.querySelector('.camera-prompt-confirm')?.click();
-        const game = window.__game;
-        const sim = game?.sim;
-        const meta = sim?.primary;
-        if (meta?.deedStats) {
-          meta.deedStats.dungeonClears['hollow_crypt:heroic'] = 4;
-          for (const id of [
-            'cryptbone_greaves',
-            'cryptbone_pauldrons',
-            'greyjaw_hide_boots',
-            'gravewoven_bag',
-          ]) {
-            meta.deedStats.itemsDiscovered.add(id);
-          }
-        }
-        game?.hud?.openReliquary?.();
-      });
-      const opened = await pollForSize(page, '#reliquary-window');
-      if (!opened) throw new Error('reliquary window did not open');
-      await page.evaluate(() => {
-        document.querySelector('#reliquary-window [data-nav="conquerors"]')?.click();
-      });
-      await wait(300);
-      await page.evaluate(() => {
-        document.querySelector('#reliquary-window [data-page="conquerors_hollow_crypt"]')?.click();
-      });
-      await wait(400);
-      return { clip: '#reliquary-window' };
-    },
-  },
-  {
     key: 'reliquary-overview-fresh',
     label: 'The Reliquary: fresh-character Overview (strip hints + shelf cards)',
     when: ['ui/reliquary_view', 'ui/reliquary_window'],
@@ -10942,8 +10897,8 @@ export const TARGETS = [
     async capture(page) {
       await page.evaluate(() => document.getElementById('tutorial-greeting')?.remove());
       const pageIds = await openReliquaryConquerorsShelf(page);
-      const target = pageIds.includes('conquerors_hollow_crypt')
-        ? 'conquerors_hollow_crypt'
+      const target = pageIds.includes('conquerors_sunken_bastion')
+        ? 'conquerors_sunken_bastion'
         : pageIds[0];
       if (!target) throw new Error('reliquary shelf listed no pages');
       // Illuminate ONE page by reading its own cells (never a hard-coded relic
@@ -19896,88 +19851,6 @@ export const TARGETS = [
       });
       await wait(800);
       return { clip: '#ui' };
-    },
-  },
-  {
-    key: 'dungeon-objectives-tracker',
-    label:
-      'Dungeon objectives tracker: the plate and boss rows at the top of the right tracker ' +
-      'stack inside the Hollow Crypt (on entry, with one boss down, and a finished heroic ' +
-      'run), plus the same run as a page of the quest strip on a landscape phone',
-    // The tracker pair (dungeon_tracker_view.ts + dungeon_tracker_painter.ts) and the sim
-    // read behind it. Three quests are tracked in every arm so the frame also shows the
-    // tracker sharing the stack with the quest tracker.
-    when: ['ui/hud/dungeon/dungeon_tracker', 'sim/instances/dungeon_run'],
-    variants: [
-      { key: 'entry', beforeLoad: lowGraphicsSeed },
-      { key: 'boss-down', beforeLoad: lowGraphicsSeed, kills: ['marrow'] },
-      { key: 'heroic-complete', beforeLoad: lowGraphicsSeed, heroic: true, complete: true },
-      // On touch the plate stands down and the run is a quest strip page.
-      { key: 'mobile', mobile: true, beforeLoad: lowGraphicsSeed, heroic: true, kills: ['marrow'] },
-    ],
-    async capture(page, variant) {
-      await awaitWorldPainted(page);
-      await dismissArrivalGreeting(page);
-      const staged = await page.evaluate((heroic) => {
-        document.querySelector('.camera-prompt-confirm')?.click();
-        document.querySelector('.tut-skip')?.click();
-        const sim = window.__game?.sim;
-        if (!sim?.player) return { ok: false, reason: 'offline world is unavailable' };
-        for (const id of ['q_wolves', 'q_af_goldmelt_road', 'q_dk_ash_on_the_wind'])
-          sim.questLog.set(id, { questId: id, counts: [0, 0, 0], state: 'active' });
-        sim.chat('/dev level 20');
-        sim.chat('/dev god');
-        sim.chat(heroic ? '/dev crypt enter heroic' : '/dev crypt enter');
-        return { ok: true };
-      }, variant?.heroic === true);
-      if (!staged.ok) throw new Error(staged.reason);
-      // The run is the sim's own read: wait for it rather than for a fixed delay.
-      await page.waitForFunction(() => window.__game.sim.dungeonRun?.dungeonId === 'hollow_crypt', {
-        timeout: 60000,
-        polling: 250,
-      });
-      await awaitWorldPainted(page);
-      const kills = variant?.complete ? ['marrow', 'rimeweb', 'ilvane'] : (variant?.kills ?? []);
-      for (const boss of kills) {
-        await page.evaluate((line) => window.__game.sim.chat(line), `/dev crypt kill ${boss}`);
-        await wait(400);
-      }
-      if (variant?.complete) {
-        // The last row belongs to Morthen AND the finale his dying rite summons:
-        // slay him the way a group must (risen), then the Knellwyrm it calls down.
-        await page.evaluate(() => window.__game.sim.chat('/dev crypt wyrm'));
-        await page.waitForFunction(
-          () => {
-            const sim = window.__game.sim;
-            for (const e of sim.entities.values()) {
-              if (e.templateId !== 'crypt_knellwyrm' || e.dead) continue;
-              sim.ctx.handleDeath(e, sim.player);
-              return true;
-            }
-            return false;
-          },
-          { timeout: 60000, polling: 250 },
-        );
-        await page.waitForFunction(
-          () => window.__game.sim.dungeonRun?.bosses.every((boss) => boss.defeated) === true,
-          { timeout: 30000, polling: 250 },
-        );
-      }
-      if (variant?.mobile) {
-        // The strip page is the touch presentation; the plate must be gone.
-        if (!(await pollForSize(page, '#quest-strip'))) throw new Error('quest strip not shown');
-      } else if (!(await pollForSize(page, '#dungeon-tracker .dgt-plate'))) {
-        throw new Error('dungeon tracker plate not shown');
-      }
-      // Past the kill highlight and the banner a boss death raises.
-      await wait(4500);
-      await page.evaluate(() => {
-        for (const id of ['tutorial-greeting', 'profession-tutorial'])
-          document.getElementById(id)?.remove();
-      });
-      // Full frame on every arm: the tracker's place in the whole HUD is the
-      // evidence, and a clipped capture resizes the page under the chat frame.
-      return {};
     },
   },
   {

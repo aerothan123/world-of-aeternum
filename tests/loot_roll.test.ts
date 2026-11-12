@@ -784,9 +784,9 @@ describe('loot_roll: heroic-append cross-group dedup arm', () => {
   // boss id, engineered to collide by construction, so the SAME code path
   // rollLoot runs against real content is proven to fall forward here too.
   it('falls forward inside the heroic-append branch on a forced collision', () => {
-    const template = MOBS.morthen;
-    const original = HEROIC_BOSS_LOOT.morthen;
-    HEROIC_BOSS_LOOT.morthen = [
+    const template = MOBS.vael_the_mistcaller;
+    const original = HEROIC_BOSS_LOOT.vael_the_mistcaller;
+    HEROIC_BOSS_LOOT.vael_the_mistcaller = [
       { itemId: 'collision_item', chance: 1, rollGroup: 'heroic_test_1' },
       { itemId: 'collision_item', chance: 0.5, rollGroup: 'heroic_test_2' },
       { itemId: 'other_item', chance: 0.5, rollGroup: 'heroic_test_2' },
@@ -798,7 +798,7 @@ describe('loot_roll: heroic-append cross-group dedup arm', () => {
       const mob = createMob(-1, template, template.minLevel, { x: 0, y: 0, z: 0 });
       sim.ctx.instances.push({
         id: -1,
-        dungeonId: 'hollow_crypt',
+        dungeonId: 'sunken_bastion',
         difficulty: 'heroic',
         partyKey: 'test-party',
         mobIds: [mob.id],
@@ -813,7 +813,7 @@ describe('loot_roll: heroic-append cross-group dedup arm', () => {
       expect(ids.filter((id) => id === 'collision_item').length).toBe(1);
       expect(ids).toContain('other_item');
     } finally {
-      HEROIC_BOSS_LOOT.morthen = original;
+      HEROIC_BOSS_LOOT.vael_the_mistcaller = original;
     }
   });
 });
@@ -948,19 +948,19 @@ describe('loot_roll: normalOnly rows (a Heroic slot REPLACES a Normal slot)', ()
     { itemId: 'normal_single', chance: 1, normalOnly },
   ];
 
-  function rollMorthen(loot: LootEntry[], heroic: boolean) {
-    const original = MOBS.morthen.loot;
-    MOBS.morthen.loot = loot;
+  function rollVael(loot: LootEntry[], heroic: boolean) {
+    const original = MOBS.vael_the_mistcaller.loot;
+    MOBS.vael_the_mistcaller.loot = loot;
     try {
       const sim = makeSim(5);
       const pid = sim.addPlayer('warrior', 'Looter');
       const meta = playerMeta(sim, pid);
-      const template = MOBS.morthen;
+      const template = MOBS.vael_the_mistcaller;
       const mob = createMob(-1, template, template.minLevel, { x: 0, y: 0, z: 0 });
       if (heroic) {
         sim.ctx.instances.push({
           id: -1,
-          dungeonId: 'hollow_crypt',
+          dungeonId: 'sunken_bastion',
           difficulty: 'heroic',
           partyKey: 'test-party',
           mobIds: [mob.id],
@@ -974,13 +974,13 @@ describe('loot_roll: normalOnly rows (a Heroic slot REPLACES a Normal slot)', ()
       chanceSpy.mockRestore();
       return { ids: (mob.loot?.items ?? []).map((s) => s.itemId), draws };
     } finally {
-      MOBS.morthen.loot = original;
+      MOBS.vael_the_mistcaller.loot = original;
     }
   }
 
   it('rolls every normalOnly row on a Normal kill exactly like an unflagged row', () => {
-    const flagged = rollMorthen(synthetic(true), false);
-    const plain = rollMorthen(synthetic(undefined), false);
+    const flagged = rollVael(synthetic(true), false);
+    const plain = rollVael(synthetic(undefined), false);
     expect(flagged.ids).toEqual(plain.ids);
     expect(flagged.draws).toEqual(plain.draws);
     expect(flagged.ids).toContain('always_item');
@@ -989,8 +989,8 @@ describe('loot_roll: normalOnly rows (a Heroic slot REPLACES a Normal slot)', ()
   });
 
   it('skips every normalOnly row on a heroic claim and draws no rng for it', () => {
-    const flagged = rollMorthen(synthetic(true), true);
-    const plain = rollMorthen(synthetic(undefined), true);
+    const flagged = rollVael(synthetic(true), true);
+    const plain = rollVael(synthetic(undefined), true);
     expect(flagged.ids).toContain('always_item');
     expect(flagged.ids).not.toContain('normal_item_a');
     expect(flagged.ids).not.toContain('normal_item_b');

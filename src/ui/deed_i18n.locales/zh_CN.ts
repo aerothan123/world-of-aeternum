@@ -51,10 +51,6 @@ export const table: DeedLocaleTable = {
     name: '三首俱灭',
     desc: '在 10 秒的时间差内杀死湖泊九头蛇的全部三个头颅。',
   },
-  dgn_crypt_knellwyrm: {
-    name: '毫发未焦',
-    desc: '击败丧钟巨龙，且无人被它的火葬扫射烧伤。',
-  },
   dgn_turnkey_cage: {
     name: '牢笼困不住我们',
     desc: '击败牢狱钥匙官，且无人被铁笼碾压。',
@@ -99,22 +95,6 @@ export const table: DeedLocaleTable = {
     name: '最后的诗节',
     desc: '在苍白唱诗班最后的领唱陪伴下，击败伊索蕾，溺月化身。',
     title: '唱诗班的见证者',
-  },
-  dgn_marrow_tidy: {
-    name: '整洁的教堂墓园',
-    desc: '击败司事马罗，且每个敞开之墓均放置在钟庭边缘。',
-  },
-  dgn_lady_nobody_hanging: {
-    name: '无人悬而未决',
-    desc: '击败寒骨夫人，且她从未从冰封之拥中摔落任何人。',
-  },
-  dgn_ilvane_hush: {
-    name: '归于寂静',
-    desc: '击败领唱者伊尔凡，且她的空洞挽歌从未击中任何人。',
-  },
-  dgn_morthen_candlelight: {
-    name: '烛火长明',
-    desc: '击败唤墓者莫森，并在其不息护盾出现后 20 秒内重新点燃全部四支追思蜡烛。',
   },
   exp_arcane_calligraphy: {
     name: '稳健的笔触',
@@ -319,14 +299,9 @@ export const table: DeedLocaleTable = {
   cmb_critical_eye: { name: '致命慧眼', desc: '打出500次致命一击。' },
   cmb_giantslayer: { name: '屠巨者', desc: '对一个至少比你高出五级的敌人打出最后一击。' },
   cmb_first_fall: { name: '掸土再战', desc: '迎来你的第一次死亡；再强的英雄也难免此劫。' },
-  dgn_hollow_crypt: { name: '破墓者', desc: '在空洞墓穴中击败唤墓者莫森。' },
   dgn_sunken_bastion: { name: '雾散缚解', desc: '在沉没堡垒中击败缚雾者维尔。' },
   dgn_drowned_temple: { name: '月沉水底', desc: '在溺亡神殿中击败“伊索蕾，溺月化身”。' },
   dgn_gravewyrm_sanctum: { name: '地底之龙', desc: '在墓龙圣所中击败墓龙科祖尔。' },
-  dgn_hollow_crypt_heroic: {
-    name: '英雄：空洞墓穴',
-    desc: '在英雄难度的空洞墓穴中击败唤墓者莫森。',
-  },
   dgn_sunken_bastion_heroic: {
     name: '英雄：沉没堡垒',
     desc: '在英雄难度的沉没堡垒中击败缚雾者维尔。',
@@ -348,11 +323,6 @@ export const table: DeedLocaleTable = {
   dgn_deepward: { name: '深境尽守', desc: '在英雄难度下征服每一座地下城、团队副本以及两处探秘。' },
   dgn_mark_circuit: { name: '全线贯通', desc: '在同一天内从全部四座英雄难度地下城赢得英雄徽记。' },
   dgn_boss_clears_50: { name: '五十重门', desc: '击败50个地下城最终首领。' },
-  dgn_morthen_flawless: {
-    name: '尸骨无存',
-    desc: '在英雄难度下击败唤墓者莫森，全程无一名队友死亡。',
-  },
-  dgn_morthen_trio: { name: '三人敌墓', desc: '以三名或更少的玩家击败唤墓者莫森。' },
   dgn_olen_arc: {
     name: '侧身避镰',
     desc: '击败骑士指挥官奥伦，且他的收割弧斩从未击中当前目标以外的任何人。',

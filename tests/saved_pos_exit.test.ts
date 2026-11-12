@@ -20,10 +20,10 @@ import { resolveSavedPosExit, savedPlacement, savedZoneId } from '../src/sim/sav
 import { type CharacterState, Sim } from '../src/sim/sim';
 
 // Derived from the band constants so the next instance-plane move keeps these
-// honest: dungeon 0 (Hollow Crypt) sits 700 yd past the plane base, the delve
+// honest: dungeon 1 (Sunken Bastion) sits 1300 yd past the plane base, the delve
 // origin is delve 1 (Drowned Litany), and the legacy plane is the pre-move
 // literal layout migrateLegacyInstancePos freezes.
-const INSIDE_HOLLOW_CRYPT = { x: INSTANCE_X_BASE + 700, z: 0 };
+const INSIDE_SUNKEN_BASTION = { x: INSTANCE_X_BASE + 1300, z: 0 };
 const INSIDE_DROWNED_LITANY = { x: delveOrigin(1, 0).x + 23, z: 0 };
 const INSIDE_BATTLEGROUND = { x: BG_BAND_X_MIN + 10, z: 0 };
 const INSTANCE_PLANE_STRIP = { x: INSTANCE_X_BASE + 100, z: 0 };
@@ -74,8 +74,8 @@ describe('resolveSavedPosExit', () => {
   });
 
   it('ejects a dungeon save to that dungeon door', () => {
-    expect(resolveSavedPosExit(INSIDE_HOLLOW_CRYPT)).toEqual({
-      pos: door(dungeon('hollow_crypt')),
+    expect(resolveSavedPosExit(INSIDE_SUNKEN_BASTION)).toEqual({
+      pos: door(dungeon('sunken_bastion')),
       instanceExit: true,
     });
   });
@@ -113,7 +113,7 @@ describe('savedZoneId', () => {
   });
 
   it('is the door zone for an instance save (the character is not "in" a dungeon)', () => {
-    expect(savedZoneId(INSIDE_HOLLOW_CRYPT)).toBe('eastbrook_vale');
+    expect(savedZoneId(INSIDE_SUNKEN_BASTION)).toBe('mirefen_marsh');
     expect(savedZoneId(INSIDE_DROWNED_LITANY)).toBe('mirefen_marsh');
     expect(savedZoneId(LEGACY_SUNKEN_BASTION)).toBe('mirefen_marsh');
   });
@@ -146,7 +146,7 @@ describe('savedZoneId agrees with where Sim.addPlayer lands the character', () =
     const base = baseState();
     const cases = [
       OVERWORLD,
-      INSIDE_HOLLOW_CRYPT,
+      INSIDE_SUNKEN_BASTION,
       INSIDE_DROWNED_LITANY,
       INSIDE_BATTLEGROUND,
       LEGACY_SUNKEN_BASTION,
@@ -229,7 +229,7 @@ describe('save-position epoch', () => {
   });
 
   it('leaves the real instance bands to their own rules whatever the stamp', () => {
-    for (const p of [INSIDE_HOLLOW_CRYPT, INSIDE_DROWNED_LITANY, INSIDE_BATTLEGROUND]) {
+    for (const p of [INSIDE_SUNKEN_BASTION, INSIDE_DROWNED_LITANY, INSIDE_BATTLEGROUND]) {
       expect(resolveSavedPosExit(p, SAVE_POS_EPOCH)).toEqual(resolveSavedPosExit(p));
     }
   });

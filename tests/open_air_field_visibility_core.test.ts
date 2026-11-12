@@ -23,13 +23,7 @@ function statements(source: string): string[] {
 
 // The interiors built as open-air fields (the OPEN_AIR_FIELDS table, pinned
 // to its source below so a new field joins every sweep here).
-const OPEN_AIR_INTERIORS = [
-  'wildheart',
-  'hollow_crypt',
-  'sunken_bastion',
-  'drowned_temple',
-  'gravewyrm_sanctum',
-];
+const OPEN_AIR_INTERIORS = ['wildheart', 'sunken_bastion', 'drowned_temple', 'gravewyrm_sanctum'];
 
 const dungeonOf = (interior: string) => {
   const dungeon = Object.values(DUNGEONS).find((d) => d.interior === interior);
@@ -161,12 +155,12 @@ describe('openAirFieldAt (which built open-air field a position stands in)', () 
         }
       }
     }
-    // The sweep really crossed every dungeon's cells (one alone holds a fifth
+    // The sweep really crossed every dungeon's cells (one alone holds a quarter
     // of these), the closed bands, and points lying exactly on a cell's edge.
-    expect(held).toBeGreaterThan(30000);
+    expect(held).toBeGreaterThan(25000);
     expect(unheld).toBeGreaterThan(1000);
     expect(heldOnSlotEdge).toBeGreaterThan(500);
-    expect(heldOnBandEdge).toBeGreaterThan(2000);
+    expect(heldOnBandEdge).toBeGreaterThan(1500);
   });
 });
 

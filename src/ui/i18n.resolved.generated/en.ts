@@ -62,6 +62,7 @@ export const en: EnTranslations = {
     "earned": "Earned",
     "redeemed": "Redeemed",
     "emptyStamp": "Not yet earned",
+    "retiredStamp": "No longer available",
     "stamping": "Stamping your card...",
     "redeem": "Redeem reward",
     "previous": "Redeem earlier stamps first.",
@@ -4824,30 +4825,6 @@ export const en: EnTranslations = {
         "snappedFetters": "Its chains are broken. It no longer fights, cannot be harmed, and soon leaves.",
         "anchored": "Chained to the Drowned Anchor: you can move, but never farther from the winch, which reels you toward the Drowning Pit. Reach within {reach} yd of a lit mooring post at least {run} yd from where you were hooked to moor the chain (that post goes dark for {dark} sec), or have your group break it with {links} hits ({linksHeroic} on Heroic). The pit takes {pit}% of your maximum health ({pitHeroic}% on Heroic)."
       },
-      "crypt": {
-        "carrionEye": "Every crow in the fight hunts you for {seconds} sec. Run to your tank so the flock can be cut down together.",
-        "graniteSkin": "Takes {pct}% less damage, and the stone thickens every {every} sec, up to {max} layers. A stun shatters it and leaves it taking {cracked}% more damage for {seconds} sec.",
-        "measured": "When this ends, an Open Grave caves in where you stand: {min} to {max} damage ({heroicMin} to {heroicMax} on Heroic) to everyone within {radius} yd. The grave stays for the rest of the fight, so carry the mark to the edge of the yard, away from the group.",
-        "graveDirt": "Standing in an Open Grave: movement speed reduced by {slow}% and {damage} Shadow damage every second ({heroic} on Heroic). On Heroic, lingering {linger} sec in a grave raises a Restless Bones. Step out of the grave.",
-        "dirtInEyes": "Reduces movement speed by {pct}%. Shovelful hits everyone in front of Sexton Marrow: stand behind him.",
-        "blow": "Increases damage taken by {pct}%: {per}% for each stack, {stacks} of {max} now. Each Gravedigger's Blow adds a stack and resets the duration to {seconds} sec.",
-        "graveVigor": "Attacks {pct}% faster while he stands in an Open Grave. Keep him out of the graves.",
-        "tolling": "Immune to damage while he strides to the bell rope and rings the Burial Bell. When the ringing ends, the Toll deals {min} to {max} Shadow damage ({heroicMin} to {heroicMax} on Heroic) to everyone, and every Open Grave gives up a Restless Bones.",
-        "embraced": "Held aloft in the Lady's arms: unable to act, taking {tick} Frost damage every second ({tickHeroic} on Heroic). If your group deals {share}% of her maximum health ({shareHeroic}% on Heroic) she sets you down gently; if she holds you {hold} sec at the top she drops you onto the ice for {min} to {max} damage ({heroicMin} to {heroicMax} on Heroic).",
-        "lament": "When Bride's Lament ends, it deals {min} to {max} Frost damage ({heroicMin} to {heroicMax} on Heroic) to everyone not within {radius} yd of a lit grave lantern. A lantern shelters the {cap} players nearest it, then goes dark and misses the next Lament.",
-        "lingering": "Your next Bride's Lament deals {pct}% more damage: {per}% for each stack, up to {max} stacks. Take the next one in a lantern's light.",
-        "slippery": "On slick ice: your speed changes by at most {grip} yd/sec each second, so you are slow to get going, slide on when you stop, and swing wide when you turn. Step off the ice to get your footing back.",
-        "harmony": "Takes {pct}% less damage: {per}% for each of her living Choristers. Kill the Choristers first.",
-        "crescendo": "Sings faster: the Dirge of the Hollow takes {cast} sec instead of {castNormal} sec and comes every {every} sec instead of {everyNormal} sec, and the Bone Organ plays {waves} waves of notes instead of {wavesNormal}.",
-        "gorged": "Deals {pct}% more damage: {per}% for each Bound Soul that reached him, {stacks} of {max} now, for the rest of the fight. Each soul that reaches him also heals him for {heal}% of his maximum health. Step into a soul's path to take it instead.",
-        "unquietWard": "Immune to damage while he channels the Rite of the Unquiet at the altar: {lit} of {total} Remembrance Candles relit. Relighting one is a {channel} sec channel that drains {drain}% of the lighter's maximum health every second ({drainHeroic}% on Heroic); hits do not break it, a step or a stun does. The last candle shatters the ward. On Heroic, light them in the order the Ledger names: a wrong candle snuffs the last one lit and deals {wrongMin} to {wrongMax} Shadow damage to the lighter.",
-        "riteBroken": "Stunned: the shattered ward leaves him unable to act for {seconds} sec.",
-        "shatteredWard": "Takes {pct}% more damage for {seconds} sec: the relit candles broke his ward. Spend your strongest attacks now.",
-        "graveChill": "Takes {bite} Shadow damage every second ({biteHeroic} on Heroic) while the Rite of the Unquiet holds, rising by {step} ({stepHeroic} on Heroic) every {every} sec. Relight the Remembrance Candles to end it.",
-        "graspMark": "Hands erupt from the ring under you in {fuse} sec: everyone within {radius} yd of where it was laid is rooted for {root} sec and takes {min} to {max} Shadow damage. Step out of the ring.",
-        "graspRoot": "Held by the grave's hands: unable to move for {seconds} sec.",
-        "knellAirborne": "On the wing over the Rite Ring, out of reach. It marks half of the ring for {mark} sec, then pours ghost fire over that half: {min} to {max} Fire damage to everyone in it. It burns {breaths} halves each flight, then lands."
-      },
       "sanctum": {
         "lockbound": "Takes {pct}% less damage: {per}% for each of his chains that still holds. Break a Seal Shackle to drop its chain.",
         "enrage": "Deals {pct}% more damage.",
@@ -7169,25 +7146,6 @@ export const en: EnTranslations = {
       },
       "mech": {
         "shadow_pulse": "Shadow Pulse (pulsing area damage)",
-        "crypt_shovelful": "Shovelful (every 11 seconds he flings grave dirt over an 8 yard cone in front of him: one and a half times his swing and 50 percent slower movement for 6 seconds, so stand behind him)",
-        "crypt_measured_for_the_grave": "Measured for the Grave (every 15 seconds he marks a player other than the tank; 4 seconds later an Open Grave caves in under them, 42 to 52 damage within 3 yards on normal, and the pit stays for the fight: 9 damage a second and 40 percent slower movement inside, so lay the graves at the edge of the yard)",
-        "crypt_burial_toll": "Burial Toll (at 66 and 33 percent health he strides to the bell rope, immune to damage, and rings for 3 seconds: 30 to 38 shadow damage to everyone on normal, and every Open Grave raises a Restless Bones)",
-        "crypt_marrow_heroic": "Heroic: Gravedigger's Blow every 9 seconds on the tank (each stack makes them take 6 percent more damage for 20 seconds, up to 6 stacks), Grave Vigor (he swings 30 percent faster while he stands in a grave) and Unquiet Earth (anyone who stays 2 seconds in a grave raises a Restless Bones there)",
-        "crypt_brides_lament": "Bride's Lament (every 22 seconds a 3 second wail: 60 to 75 frost damage on normal to everyone outside the light of a lit grave lantern, half again for every Lingering Lament stack from the Laments you already took. A lantern shelters two players at most and goes dark for 28 seconds after it shelters anyone, so split up and take turns)",
-        "crypt_frozen_embrace": "Frozen Embrace (every 30 seconds she seizes a player other than the tank and rises 5 yards into the air with them, 6 frost damage a second: deal 6 percent of her health within 8 seconds and she sets them down, otherwise she drops them for 150 to 180 damage on normal)",
-        "crypt_rime_path": "Rime Path (she leaves slippery rime where she drifts for 25 seconds: on it you gather speed slowly and slide on when you stop or turn)",
-        "crypt_bridal_freeze": "Bridal Freeze (at half health the whole ravine floor freezes over: slippery ice for the rest of the fight)",
-        "crypt_lady_heroic": "Heroic: every lit lantern also burns out on its own after 30 seconds and stays dark for 10, and the Frozen Embrace takes two players and lets go at 4.4 percent of her health",
-        "crypt_dirge_of_the_hollow": "Dirge of the Hollow (every 16 seconds a 2.5 second song you can interrupt: if she finishes it, 105 to 125 shadow damage on normal and a 4 second silence to everyone within 45 yards who can see her, so interrupt it or hide behind a choir pillar)",
-        "crypt_harmony": "Harmony (each living Chorister makes her take 30 percent less damage: kill the Choristers first)",
-        "crypt_bone_organ": "Bone Organ (every 26 seconds she plays the Bone Organ: two waves of shadow notes burst down lanes of the loft, 100 to 115 damage on normal in a lane, the second wave filling the first one's gaps)",
-        "crypt_crescendo": "Crescendo (below 30 percent health her Dirge takes 1.8 seconds and comes every 11 seconds, and the organ plays a third wave)",
-        "crypt_ilvane_heroic": "Heroic: Encore (a Chorister that lies dead for 10 seconds while the other still stands rises again, so kill them together) and Unbroken Verse (every third Dirge cannot be interrupted: hide from it)",
-        "crypt_morthen_shadow_pulse": "Shadow Pulse (every 12 seconds a 2 second cast, then 24 to 30 shadow damage on normal to everyone within 12 yards of him, so step away; every 9 seconds in his Last Rites)",
-        "crypt_gravecall": "Gravecall (every 15 seconds a Bound Soul drifts from the next sarcophagus alcove toward him; when it reaches him he is Gorged on the Dead, 10 percent more damage for each soul up to 10 stacks, and heals 3 percent of his health. A player in its path takes it instead: 12 to 16 shadow damage on normal)",
-        "crypt_rite_of_the_unquiet": "Rite of the Unquiet (at 65 percent health he returns to the altar, immune inside the Unquiet Ward, while Grave Chill deals 3 shadow damage a second to everyone, rising by 1 every 5 seconds, and 2 Restless Bones climb out of the alcoves. Relight the 4 Remembrance Candles: each is a 4 second channel that drains 6 percent of the lighter's maximum health every second, which hits do not break but a step or a stun does. The last candle breaks the Rite: he is stunned for 8 seconds and takes 25 percent more damage)",
-        "crypt_reap_the_unquiet": "Reap the Unquiet (below 35 percent health the souls stop; every 14 seconds he sweeps his scythe after a 2 second cast: 55 to 65 shadow damage on normal to everyone in a 120 degree arc 14 yards in front of him. Shadow Pulse then comes every 9 seconds)",
-        "crypt_morthen_heroic": "Heroic: Name the Dead (the Ledger names the order of the candles: a wrong candle snuffs the last one lit and deals 252 to 288 shadow damage to the lighter, and each relight drains 8 percent a second), Grasp of the Grave (every 16 seconds 2 players get a 4 yard ring; 1.5 seconds later hands erupt in it: a 3 second root and 162 to 198 shadow damage) and the Knellwyrm's Burning Knell (it takes flight and marks half of the ring for 4.5 seconds, then pours ghost fire over that half for 1,000 to 1,120 fire damage, 3 halves each flight)",
         "reaping_arc": "Reaping Arc (splash around the tank)",
         "hallowed_brine": "Hallowed Brine (a 9 yard pool of dark holy water, 10 on heroic: 18 damage a second to anyone in it, 26 on heroic, and he takes 40 percent less damage while he stands in it, so drag him out)",
         "rebounding_bulwark": "Rebounding Bulwark (his shield rebounds to the nearest player within 10 yards of the last one hit, up to 3 players, 4 on heroic: spread out)",
@@ -7410,33 +7368,6 @@ export const en: EnTranslations = {
       "rimeLine": "Leave the whelps' breath to avoid freezing solid at full stacks: Creeping Rime {stacks}/{max}",
       "slabTitle": "Ice Slab",
       "slabLine": "Put the ice slab between you and enemy casters to block their line of sight"
-    },
-    "cryptAlert": {
-      "measuredTitle": "Measured for the Grave!",
-      "measuredLine": "Move to the yard's edge before the mark ends to keep the damaging grave away from your group",
-      "embracedTitle": "Frozen Embrace!",
-      "embracedLine": "Your group must damage the Lady of the Bonechill to free you from her grip",
-      "lamentTitle": "Bride's Lament!",
-      "lamentShelteredLine": "Stay in this lit lantern's light to avoid the wail damage: you have a shelter spot",
-      "lamentOpenLine": "Move into a lit lantern's light to avoid the wail damage: only two players fit per lantern",
-      "graveTitle": "In an Open Grave!",
-      "graveLine": "The grave dirt burns and slows you: step out of it",
-      "tollTitle": "Burial Toll!",
-      "tollLine": "Prepare to fight the skeletons raised from open graves: Marrow is immune while ringing the bell",
-      "harmonyTitle": "Harmony",
-      "harmonyLine": "Kill the Choristers to remove Ilvane's {pct}% damage reduction",
-      "knellTitle": "Burning Knell!",
-      "knellLine": "Ghost fire pours over this half of the ring when the bar runs out: get to the other half",
-      "graspTitle": "Grasp of the Grave!",
-      "graspLine": "Leave the marked ring before the hands erupt to avoid damage and being rooted",
-      "reapTitle": "Reap the Unquiet!",
-      "reapLine": "Move behind Morthen to avoid the scythe striking everyone in front",
-      "riteTitle": "Rite of the Unquiet",
-      "riteLine": "Relight all Remembrance Candles to break Morthen's immunity: {lit} of {total} lit",
-      "riteNamedLine": "Relight candles in the Ledger's order to break Morthen's immunity: a wrong candle undoes progress ({lit}/{total})",
-      "soulTitle": "Bound Soul",
-      "soulLine": "Intercept the drifting soul to stop it healing Morthen and increasing his damage. Catching it hurts you",
-      "timeAria": "{seconds} seconds left"
     },
     "kitUse": {
       "toppleLine": "Topple the brazier onto nearby enemies to burn them with the spill",
@@ -8091,7 +8022,7 @@ export const en: EnTranslations = {
       "kinds": {
         "dungeons": {
           "category": "Dungeons",
-          "lore": "The depths of the realm never rest: the Derelict Mech stirs again and the Hollow Crypt wakes. Gather your allies and cleanse the dungeons of their corruption.",
+          "lore": "The depths of the realm never rest: the Derelict Mech stirs again and the drowned garrison of the Sunken Bastion wakes. Gather your allies and cleanse the dungeons of their corruption.",
           "goal": "Complete {count} dungeons on any difficulty.",
           "goalLabel": "Dungeons completed"
         },
@@ -10783,7 +10714,6 @@ export const en: EnTranslations = {
       "bastionName": "The Sunken Bastion",
       "templeName": "The Drowned Temple",
       "sanctumName": "Gravewyrm Sanctum",
-      "hollowBody": "A grave-robbed chapel crypt where the newly dead refuse to rest. The first real test of a new party.",
       "bastionBody": "A flooded fortress lost to the marsh, held by drowned defenders and the rising tide itself.",
       "templeBody": "A moonlit shrine sunk beneath a glowing tarn high in the peaks, reached through a gate of cold light. A drowned cult still sings down there in its rotted vestments, and the warnings carved on the shore say something below only sleeps. A self-contained mystery, set apart from the main story, for the curious and the well-prepared.",
       "sanctumBody": "A hidden glacier high on Thornpeak, where a dragon lies frozen in the ice and the cult burns stolen souls to thaw it. Descend from the high pass past ice towers, the Smith's broken chains and the cult's fires to the frozen lake at the glacier's foot.",
@@ -17014,46 +16944,6 @@ export const en: EnTranslations = {
       "hoard_cast_mimic_bite": "Voracious Bite",
       "hoard_cast_mimic_leap": "Crushing Leap",
       "hoard_cast_coin_spit": "Cursed Coins",
-      "crypt_grave_bolt": "Grave Bolt",
-      "crypt_raise_bones": "Raise Bones",
-      "crypt_murder_call": "Murder Call",
-      "crypt_stone_shriek": "Stone Shriek",
-      "crypt_grave_cleave": "Grave Cleave",
-      "crypt_barrowflame_breath": "Barrowflame Breath",
-      "crypt_tail_lash": "Tail Lash",
-      "crypt_wing_gust": "Wing Gust",
-      "crypt_grave_rupture": "Grave Rupture",
-      "crypt_carrion_eye": "Carrion Eye",
-      "crypt_marrow_crush": "Marrow Crush",
-      "crypt_rimesilk_spit": "Rimesilk Spit",
-      "crypt_gravespark_volley": "Gravespark Volley",
-      "crypt_morthen_rite_wakes": "The Rite Wakes",
-      "crypt_morthen_rise": "Rise of the Gravecaller",
-      "crypt_morthen_proclaim": "Grave Proclamation",
-      "crypt_morthen_descend": "Descent",
-      "crypt_knellwyrm_arrive": "Descending from the Sky",
-      "crypt_knellwyrm_pyre_strafe": "Pyre Strafe",
-      "crypt_knellwyrm_strafe_run": "Strafing Run",
-      "crypt_knellwyrm_dread_bellow": "Dread Bellow",
-      "crypt_marrow_shovelful": "Shovelful",
-      "crypt_marrow_measure": "Measured for the Grave",
-      "crypt_marrow_burial_toll": "Burial Toll",
-      "crypt_marrow_gravediggers_blow": "Gravedigger's Blow",
-      "crypt_lady_brides_lament": "Bride's Lament",
-      "crypt_lady_frozen_embrace": "Frozen Embrace",
-      "crypt_lady_embrace_hold": "Frozen Embrace",
-      "crypt_lady_bridal_freeze": "Bridal Freeze",
-      "crypt_ilvane_dirge": "Dirge of the Hollow",
-      "crypt_ilvane_unbroken_dirge": "Unbroken Verse",
-      "crypt_ilvane_bone_organ": "Bone Organ",
-      "crypt_morthen_shadow_pulse": "Shadow Pulse",
-      "crypt_morthen_rite_of_the_unquiet": "Rite of the Unquiet",
-      "crypt_morthen_reap_the_unquiet": "Reap the Unquiet",
-      "kituse_crypt_relight_candle": "Relight the Candle",
-      "crypt_knellwyrm_knell_rise": "Burning Knell",
-      "crypt_knellwyrm_knell_mark": "Burning Knell",
-      "crypt_knellwyrm_knell_breath": "Burning Knell",
-      "crypt_knellwyrm_knell_land": "Burning Knell",
       "bastion_brine_mend": "Brine Mend",
       "bastion_fog_ward": "Fog Ward",
       "bastion_halberd_sweep": "Halberd Sweep",
@@ -26563,9 +26453,6 @@ export const en: EnTranslations = {
       "restless_bones": {
         "name": "Restless Bones"
       },
-      "marrow_restless_bones": {
-        "name": "Restless Bones"
-      },
       "gorrak": {
         "name": "Gorrak the Ruthless"
       },
@@ -26667,90 +26554,6 @@ export const en: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Boneclad Revenant"
-      },
-      "crypt_shambler": {
-        "name": "Crypt Shambler"
-      },
-      "hollow_acolyte": {
-        "name": "Hollow Acolyte"
-      },
-      "bonechill_widow": {
-        "name": "Bonechill Widow"
-      },
-      "sexton_marrow": {
-        "name": "Sexton Marrow"
-      },
-      "morthen": {
-        "name": "Morthen the Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Ossuary Sentinel"
-      },
-      "hollow_gravedigger": {
-        "name": "Hollow Gravedigger"
-      },
-      "rime_egg_sac": {
-        "name": "Rime Egg Sac"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rimeweb Hatchling"
-      },
-      "rimeweb_spinner": {
-        "name": "Rimeweb Spinner"
-      },
-      "candlewright_acolyte": {
-        "name": "Candlewright Acolyte"
-      },
-      "hollow_chorister": {
-        "name": "Hollow Chorister"
-      },
-      "bound_soul": {
-        "name": "Bound Soul"
-      },
-      "rimeweb": {
-        "name": "Lady of the Bonechill"
-      },
-      "cantor_ilvane": {
-        "name": "Cantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Ossuary Warrior"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravecaller Adept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Ossuary Cutthroat"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravecaller Necromancer"
-      },
-      "crypt_bone_minion": {
-        "name": "Bone Minion"
-      },
-      "crypt_bone_brute": {
-        "name": "Bone Brute"
-      },
-      "crypt_bone_pile": {
-        "name": "Stirring Bones"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Chapel Gargoyle"
-      },
-      "crypt_crow_caller": {
-        "name": "Crow Caller"
-      },
-      "crypt_carrion_crow": {
-        "name": "Carrion Crow"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Ossuary Drake"
-      },
-      "crypt_knellwyrm": {
-        "name": "Knellwyrm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Remembrance Candle"
       },
       "bastion_revenant": {
         "name": "Bastion Revenant"
@@ -28700,16 +28503,6 @@ export const en: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "The Restless Dead",
-        "text": "The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, {playerName}, eight in all, so I may speak the rites over them and grant the peace they were denied.",
-        "completion": "May they rest now, and may the Light forgive whatever woke them.",
-        "objectives": {
-          "0": {
-            "label": "Restless Skulls recovered"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Stolen Supplies",
         "text": "Those bandits hit my last wagon and made off with four crates of goods: tools, salt, good Eastbrook linen. The crates are stacked around their camp in the northwest hills. Steal them back for me, would you?",
@@ -28720,26 +28513,6 @@ export const en: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Whispers Below",
-        "text": "You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.",
-        "completion": "This sigil... it bears the mark of the Gravecallers, a cell of the Pale Accord, the order that still keeps faith with Vauldren Sere, whom the old verses name the Oathless King. I had prayed they were gone. This is worse than I feared, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravecaller's Sigil"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "The Names of the Dead",
-        "text": "If the Gravecallers raised our dead, I must know whose graves they robbed. The chapel sexton kept a burial ledger, and the wind has scattered its pages across the chapel yard. Gather 3 of them for me, {playerName}. The dead deserve to be called by their names.",
-        "completion": "These poor souls... and look here. Sexton Marrow, the chapel's own living caretaker, his grave the first disturbed. Morthen began with the very man who buried Eastbrook's dead.",
-        "objectives": {
-          "0": {
-            "label": "Weathered Ledger Page"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Silence the Call",
         "text": "Every name in that ledger is a soul Morthen means to drag from the earth, and the chapel yard already crawls with those he has called. Return 12 Restless Bones to their graves, {playerName}, before the Gravecaller's whisper swells into a chorus.",
@@ -28747,49 +28520,6 @@ export const en: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Restless Bones silenced"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "The Binding Rite",
-        "text": "The crypt beneath the chapel must be unsealed if we are to stop the Gravecaller, but only a binding rite will let the living pass. I need 4 lumps of Blessed Tallow (the mine's burrowers hoard tallow by the crate) and 6 Ghostly Essences from the restless dead.",
-        "completion": "It is done. The way below stands open... and may the Light forgive me for opening it. Gather your strongest companions before you descend, {playerName}. No one should face the Hollow alone.",
-        "objectives": {
-          "0": {
-            "label": "Blessed Tallow"
-          },
-          "1": {
-            "label": "Ghostly Essence"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Into the Hollow",
-        "text": "The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.",
-        "completion": "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, {playerName}, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
-        "objectives": {
-          "0": {
-            "label": "Morthen the Gravecaller slain"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "The Sexton's Bell",
-        "text": "The ledger named him and the crypt holds him: Sexton Marrow, the chapel's caretaker, the first man Morthen raised, guarding his master's door in death as faithfully as he kept the chapel in life. Take four companions into the Hollow Crypt and grant the old sexton the rest he was robbed of, {playerName}.",
-        "completion": "So Marrow is free at last. Ring no bell for him: he heard enough of them in life.",
-        "objectives": {
-          "0": {
-            "label": "Sexton Marrow laid to rest"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "The Gravecaller's Trail",
-        "text": "Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, {playerName}.",
-        "completion": "Morthen wrote to a 'Fogbinder' in the northern fen. The Pale Accord is not dead, {playerName}. It has merely been patient.",
-        "objectives": {
-          "0": {
-            "label": "Morthen's Grimoire"
           }
         }
       },
@@ -29081,7 +28811,7 @@ export const en: EnTranslations = {
       "q_bastion_door": {
         "title": "The Sunken Bastion",
         "text": "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal.",
-        "completion": "The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.",
+        "completion": "The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.",
         "objectives": {
           "0": {
             "label": "Bastion Ward Stone"
@@ -29281,7 +29011,7 @@ export const en: EnTranslations = {
       "q_cult_orders": {
         "title": "Orders from Below",
         "text": "The zealots move with purpose now, watches set and supplies counted, like soldiers before a siege. Cultists who organize are cultists taking orders, {playerName}. One of them is carrying written orders from below. Find the zealot who has them and bring the orders to me: I would know the hand that commands them.",
-        "completion": "This script... I last saw its like in Morthen's grimoire, in Eastbrook. The same hand has guided every grave we have fought over, {playerName}.",
+        "completion": "This script... I last saw its like in Eastbrook. The same hand has guided every grave we have fought over, {playerName}.",
         "objectives": {
           "0": {
             "label": "Orders from Below"
@@ -32720,11 +32450,6 @@ export const en: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "The Hollow Crypt",
-        "enterText": "You descend into the Hollow Crypt...",
-        "leaveText": "You climb back into daylight."
-      },
       "sunken_bastion": {
         "name": "The Sunken Bastion",
         "enterText": "You wade down into the Sunken Bastion...",
@@ -32833,11 +32558,6 @@ export const en: EnTranslations = {
         "sender": "Warden Corren",
         "subject": "Old Greyjaw, at last",
         "body": "Word travels fast in a town this small. The herders drank to your health last night, and Silven swears the wolf was the size of a cart. Let them embellish: you earned it.\n\nShare a meal on the watch.\n- Warden Corren"
-      },
-      "letter_q_hollow": {
-        "sender": "Brother Aldric",
-        "subject": "What you did in the dark",
-        "body": "Few will ever know what was buried in that hollow, and fewer still would believe it. I know, and I will not forget.\n\nMay your road stay lit.\n- Brother Aldric"
       },
       "heroic_marks_reward": {
         "sender": "The Heroic Quartermaster",

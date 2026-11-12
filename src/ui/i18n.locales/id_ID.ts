@@ -8408,9 +8408,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.dungeons.gravewyrm_sanctum.leaveText':
     'Kau terhuyung kembali ke dalam angin pegunungan.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Sanktum Gravewyrm',
-  'entities.dungeons.hollow_crypt.enterText': 'Kau menuruni Kripta Berongga...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Kau memanjat kembali ke siang hari.',
-  'entities.dungeons.hollow_crypt.name': 'Kripta Berongga',
   'entities.dungeons.nythraxis_boss_arena.enterText': 'Kau melewati pintu kerajaan yang tersegel.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Kau kembali ke udara dingin Thornpeak.',
   'entities.dungeons.nythraxis_boss_arena.name': 'Arena Raid Nythraxis',
@@ -8830,14 +8827,12 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolit Tessa',
   'entities.mobs.bastion_revenant.name': 'Arwah Benteng',
   'entities.mobs.bog_bloat.name': 'Kembung Rawa',
-  'entities.mobs.bonechill_widow.name': 'Janda Beku Tulang',
   'entities.mobs.boneclad_revenant.name': 'Revenant Berbalut Tulang',
   'entities.mobs.bound_guardian.name': 'Sang Penjaga Terbelenggu',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Penghancur Tengkorak',
   'entities.mobs.captain_verlan.name': 'Kapten Verlan',
   'entities.mobs.choirmother_selthe.name': 'Ibu Paduan Suara Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Pendeta Tercemar Malric',
-  'entities.mobs.crypt_shambler.name': 'Penyaruk Kripta',
   'entities.mobs.deacon_varric.name': 'Diaken Vandric',
   'entities.mobs.deacon_voss.name': 'Diaken Voss',
   'entities.mobs.deathstalker_voss.name': 'Pembayang Maut Voss',
@@ -8859,7 +8854,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Penyeru Pemanggil Kubur',
   'entities.mobs.grix_the_tunnelking.name': 'Grix sang Raja Terowongan',
   'entities.mobs.grubjaw.name': 'Grubjaw si Rakus',
-  'entities.mobs.hollow_acolyte.name': 'Akolit Berongga',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Raksasa Pyre',
   'entities.mobs.ironvein_foreman.name': 'Mandor Ironvein',
@@ -8876,7 +8870,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Antek Mogger',
   'entities.mobs.moonspawn.name': 'Anak Bulan',
-  'entities.mobs.morthen.name': 'Morthen sang Pemanggil Kubur',
   'entities.mobs.mudfin_murloc.name': 'Penyelinap Mudfin',
   'entities.mobs.nhalia_mourner.name': 'Pelayat Nhalia',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Hierofan Nirmaut',
@@ -8900,7 +8893,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Pengawal Tulang Sanktum',
   'entities.mobs.sanctum_drakonid.name': 'Penjaga Sisik Sanktum',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael sang Lingkar Pucat',
-  'entities.mobs.sexton_marrow.name': 'Koster Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Tuan Serpihan Kazzix',
   'entities.mobs.sister_nhalia.name': 'Suster Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtooth sang Tenggelam',
@@ -9044,12 +9036,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Kulit babi hutan membuat ransel perjalanan terbaik, dan padang rumput di barat laut kota dipenuhi binatang itu. Bawakan padaku 5 Kulit Babi Hutan Berbulu Kasar dan akan kubuat waktumu sepadan.',
   'entities.quests.q_boars.title': 'Kulit Babi Hutan Berbulu Kasar',
-  'entities.quests.q_bones.completion':
-    'Semoga mereka beristirahat kini, dan semoga Sang Cahaya mengampuni apa pun yang membangunkan mereka.',
-  'entities.quests.q_bones.objectives.0.label': 'Tulang Gelisah dibaringkan',
-  'entities.quests.q_bones.text':
-    'Reruntuhan tua di bukit barat laut dahulu adalah kapel, dan halamannya tempat peristirahatan. Sesuatu telah membangunkan yang mati dari tidur mereka. Berikan mereka kedamaian, {playerName}, kembalikan 8 Tulang Gelisah ke tanah.',
-  'entities.quests.q_bones.title': 'Mayat yang Gelisah',
   'entities.quests.q_breaking_the_seal.completion':
     'Mereka menyala biru dan bersih, gunung mengingat sumpah lamanya. Dengan ini aku bisa melepaskan ikatan gerbang itu untuk kita sendiri.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Bara Terberkati',
@@ -9160,12 +9146,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis menunjukkan padaku sebongkah lilin yang diambil dari salah satu penggali itu, lilinnya berpendar, {playerName}, dan hangat bagai detak jantung. Ia ingin lebih banyak untuk diteliti, dan aku ingin itu lenyap dari daftar permintaanku. Bawa kembali enam bongkah lilin berpendar itu.',
   'entities.quests.q_glowing_wax.title': 'Lilin Aneh',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen menulis surat kepada seorang 'Fogbinder' di rawa utara. Sekte itu belum mati, {playerName}, ia hanya bersabar.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimoir Morthen',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen telah mati, namun satu pertanyaan menggerogotiku: sekte yang bersembunyi seabad tak menghabiskan dirinya pada satu kapel desa. Ia menyimpan grimoir, ritusnya, surat-menyuratnya. Jika ada yang tersisa, ia ada di ruang busana kapel runtuh di atas kripta. Geledah reruntuhan itu dan bawakan padaku apa pun yang tersisa dari tulisannya, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Jejak Sang Gravecaller',
   'entities.quests.q_gravewyrm.completion':
     'Semua berakhir. Para mayat dari tiga negeri boleh beristirahat, gunung tidur tanpa gangguan, dan namamu, {playerName}, yang dibunyikan setiap lonceng dari sini hingga Eastbrook malam ini.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Sang Gravewyrm terbunuh',
@@ -9190,12 +9170,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Kata-kata terakhir Vael tak meninggalkanku, {playerName}: Sang Wyrm bergolak di bawah puncak-puncak. Kapten Thessaly memimpin tembok di Highwatch, di kepala jalan gunung utara. Sebuah panggilan terpasang di gerbangnya, ambillah, dan katakan padanya Bruder Aldric mendaki gunung di belakangmu.',
   'entities.quests.q_highwatch_summons.title': 'Pengawal di Puncak',
-  'entities.quests.q_hollow.completion':
-    'Bisikan-bisikan telah berhenti. Kau telah melakukan apa yang seluruh Lembah tak mampu, {playerName}, para mayat tidur, dan Eastbrook berutang segala yang ia punya padamu.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Sang Gravecaller terbunuh',
-  'entities.quests.q_hollow.text':
-    'Morthen Sang Gravecaller menanti di dasar Kripta Berongga, dikelilingi para mayat elite yang ia bangkitkan. Ia jauh melampaui satu pahlawan mana pun, bawa empat rekan, tak kurang. Akhiri dia, dan para mayat Lembah akhirnya akan tidur.',
-  'entities.quests.q_hollow.title': 'Menuju Kripta Berongga',
   'entities.quests.q_idols.completion':
     'Karya Gravecaller, lebih tua dari Morthen, lebih tua dariku. Sekte itu tidak bermula di Eastbrook, {playerName}. Ia bermula di sini, dan danau telah menyimpan rahasianya.',
   'entities.quests.q_idols.objectives.0.label': 'Berhala Basah Kuyup',
@@ -9244,12 +9218,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Dua puluh tahun aku memancing di Danau Mirror, dan tak pernah kehilangan jala sampai manusia-ikan menggeram itu merangkak keluar dari perairan dangkal. Usir si Mudfin kembali - bunuh 8 dari mereka. Dan waspadalah: di mana ada satu Mudfin, di situ ada lima.',
   'entities.quests.q_murlocs.title': 'Masalah di Danau',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Jiwa-jiwa malang ini... dan lihat di sini. Koster Marrow - sang penjaga hidup kapel itu sendiri - makamnyalah yang pertama diganggu. Morthen memulai dengan orang yang justru menguburkan para mati Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Lembar Buku Besar Lapuk',
-  'entities.quests.q_names_of_the_dead.text':
-    'Jika para Gravecaller membangkitkan para mati kita, aku harus tahu makam siapa yang mereka rampok. Sang sexton kapel menyimpan buku besar pemakaman, dan angin telah menyebarkan halaman-halamannya ke seluruh pelataran kapel. Kumpulkan 3 lembar untukku, {playerName} - para mati layak dipanggil dengan nama mereka.',
-  'entities.quests.q_names_of_the_dead.title': 'Nama-Nama Para Mati',
   'entities.quests.q_necromancers.completion':
     'Semoga Cahaya mengampuni kita. Ini menampung para mati dari Lembah dan rawa - setiap mayat yang pernah dibangkitkan para Gravecaller, dipanen. Mereka tidak pernah membangun pasukan, {playerName}. Mereka sedang mengumpulkan upeti.',
   'entities.quests.q_necromancers.objectives.0.label': 'Necromancer Broodsworn dibunuh',
@@ -9357,25 +9325,12 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Para bandit menjawab pada satu orang: Gorrak sang Bengis. Penggal kepalanya dan tubuhnya akan tercerai-berai. Ia bersembunyi di jantung kemah mereka. Akhiri riwayatnya, {playerName}.',
   'entities.quests.q_ringleader.title': 'Sang Biang Kerok',
-  'entities.quests.q_rite.completion':
-    'Selesai sudah. Jalan ke bawah kini terbuka... dan semoga Cahaya mengampuniku karena membukanya. Kumpulkan rekan-rekanmu yang terkuat sebelum kau turun, {playerName}. Tak seorang pun seharusnya menghadapi sang Hollow sendirian.',
-  'entities.quests.q_rite.objectives.0.label': 'Lilin Lemak Terberkati',
-  'entities.quests.q_rite.objectives.1.label': 'Esensi Hantu',
-  'entities.quests.q_rite.text':
-    'Kripta di bawah kapel harus dibuka segelnya jika kita ingin menghentikan sang Gravecaller - tapi hanya ritus pengikatan yang akan mengizinkan yang hidup lewat. Aku butuh 4 bongkah Lemak Terberkati - para penggali liang tambang menimbun lemak per peti - dan 6 Esensi Hantu dari para mati yang gelisah.',
-  'entities.quests.q_rite.title': 'Ritus Pengikatan',
   'entities.quests.q_sanctum_gate.completion':
     'Serpihan-serpihan itu duduk pas... dan gerbang mengenali kuncinya. Jalan ke bawah kini terbuka, {playerName}. Kumpulkan rekan-rekan terkuat yang bisa kau temukan - apa yang menanti, tak seorang pun seharusnya hadapi sendirian.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Serpihan Kunci Sanktum',
   'entities.quests.q_sanctum_gate.text':
     'Ini ambang terakhir, {playerName}. Gerbang Sanktum Gravewyrm dikunci dengan sebuah batu kunci, dan sekte itu memecahnya menjadi serpihan-serpihan alih-alih melihatnya berbalik melawan mereka. Serpihan-serpihan itu tersebar di pelataran gerbang, di bawah pengawasan para mati berzirah tulang. Bawakan aku tiga, dan aku akan membuka jalan sebagaimana yang dikehendaki Cahaya - dengan diam-diam.',
   'entities.quests.q_sanctum_gate.title': 'Gerbang Sanktum',
-  'entities.quests.q_sexton.completion':
-    'Maka Marrow akhirnya bebas. Jangan bunyikan lonceng untuknya - ia sudah cukup mendengarnya semasa hidup.',
-  'entities.quests.q_sexton.objectives.0.label': 'Koster Marrow diistirahatkan',
-  'entities.quests.q_sexton.text':
-    'Buku besar itu menyebut namanya dan kripta menampungnya: Koster Marrow, penjaga kapel, orang pertama yang dibangkitkan Morthen - menjaga pintu tuannya dalam kematian sesetia ia merawat kapel semasa hidup. Bawa empat rekan ke Kripta Berongga dan berikan sang sexton tua ketenangan yang dirampas darinya, {playerName}.',
-  'entities.quests.q_sexton.title': 'Lonceng Sang Sexton',
   'entities.quests.q_shard_cores.completion':
     'Setiap inti condong ke arah yang sama, seperti serbuk besi pada magnet. Mereka menunjuk ke selatan, {playerName}. Ke Sanktum.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Inti Badai',
@@ -9460,12 +9415,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Tadi malam seluruh perkemahan kultus berlutut serentak, {playerName}, setiap fanatik, setiap necromancer, semua menghadap Sanktum. Korzul kini berbicara kepada mereka dalam tidur; Vael mendengar suara yang sama di rawa, dan Morthen sebelumnya. Tumpas jemaah itu, sepuluh fanatik, enam necromancer, sebelum suara itu punya tangan yang cukup untuk membuka gerbang itu sendiri.',
   'entities.quests.q_voice_below.title': 'Suara dari Bawah',
-  'entities.quests.q_whispers.completion':
-    'Sigil ini... membawa tanda para Gravecaller, sekte yang kuharap telah punah. Ini lebih buruk daripada yang kutakutkan, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sigil Gravecaller',
-  'entities.quests.q_whispers.text':
-    'Kau telah membaringkan para mati untuk beristirahat, tapi mereka tak mau tetap beristirahat, sesuatu memanggil mereka kembali. Geledah reruntuhan kapel untuk jejak siapa pun yang melakukan panggilan itu. Jika kau menemukan sigil atau segel, bawakan padaku tanpa disentuh.',
-  'entities.quests.q_whispers.title': 'Bisikan dari Bawah',
   'entities.quests.q_widows.completion':
     'Kantong utuh, semuanya. Tanganmu lebih mantap daripada separuh ahli bedah di selatan, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Janda Mirefen terbunuh',
@@ -10823,8 +10772,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'guide.dungeonsPage.cryptLeadTitle':
     'Pintu yang seharusnya dijaga tetap tertutup oleh orang mati',
   'guide.dungeonsPage.heading': 'Ruang Bawah Tanah dan Raid',
-  'guide.dungeonsPage.hollowBody':
-    'Kripta kapel yang dijarah kuburannya, tempat orang yang baru mati menolak untuk beristirahat. Ujian sejati pertama bagi sebuah kelompok baru.',
   'guide.dungeonsPage.hollowName': 'Kripta Berongga',
   'guide.dungeonsPage.intro':
     'Saat dunia terbuka tidak lagi cukup, kumpulkan sebuah kelompok dan masuki sebuah instans: salinan pribadi dari sebuah ruang bawah tanah yang dibuat khusus untuk kelompokmu.',
@@ -13690,10 +13637,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Si Tua Rahang Kelabu, akhirnya',
   'entities.letters.letter_q_greyjaw.body':
     'Kabar cepat menyebar di kota sekecil ini. Semalam para gembala bersulang untuk kesehatanmu, dan Wilkes bersumpah serigala itu sebesar gerobak. Biarkan mereka melebih-lebihkan: kau pantas mendapatkannya.\n\nNikmati makan atas nama penjaga.\n- Marsekal Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Bruder Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Apa yang kaulakukan dalam gelap',
-  'entities.letters.letter_q_hollow.body':
-    'Hanya segelintir yang akan tahu apa yang terkubur di lembah itu, dan lebih sedikit lagi yang akan percaya. Aku tahu, dan aku tidak akan melupakannya.\n\nSemoga jalanmu tetap terang.\n- Bruder Aldric',
   'hudChrome.enchanting.disenchantConfirmBody':
     'Ini menghancurkan {item} dan menghasilkan bahan arkan. Tindakan ini tidak dapat dibatalkan.',
   'hudChrome.enchanting.disenchantConfirmBodySpecial':
@@ -20398,49 +20341,9 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Kabut Mengumpul',
   'abilityUi.cast.bastion_veil_rise': 'Selubung Kabut',
   'abilityUi.cast.cantor_last_verse': 'Bait Terakhir',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Napas Api Makam',
-  'abilityUi.cast.crypt_carrion_eye': 'Mata Bangkai',
-  'abilityUi.cast.crypt_grave_bolt': 'Proyektil Makam',
-  'abilityUi.cast.crypt_grave_cleave': 'Belahan Makam',
-  'abilityUi.cast.crypt_grave_rupture': 'Retakan Makam',
-  'abilityUi.cast.crypt_gravespark_volley': 'Rentetan Percikan Makam',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Organ Tulang',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Ratapan Kehampaan',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Bait Tak Terputus',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Turun dari Langit',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Raungan Kengerian',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Lonceng Kematian Membara',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Lonceng Kematian Membara',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Lonceng Kematian Membara',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Lonceng Kematian Membara',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Sapuan Api Unggun',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Serangan Menyapu',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Kebekuan Pengantin',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Ratapan Pengantin',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Pelukan Beku',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Pelukan Beku',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Dentang Pemakaman',
-  'abilityUi.cast.crypt_marrow_crush': 'Remukan Sumsum',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Pukulan Penggali Kubur',
-  'abilityUi.cast.crypt_marrow_measure': 'Diukur untuk Kuburan',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Sekop Penuh',
-  'abilityUi.cast.crypt_morthen_descend': 'Penurunan',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Proklamasi Makam',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Tuai Arwah Gelisah',
-  'abilityUi.cast.crypt_morthen_rise': 'Kebangkitan Pemanggil Makam',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Ritual Arwah Gelisah',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Ritual Terbangun',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Denyut Bayangan',
-  'abilityUi.cast.crypt_murder_call': 'Panggilan Kawanan Gagak',
-  'abilityUi.cast.crypt_raise_bones': 'Bangkitkan Tulang',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Ludahan Sutra Embun Beku',
-  'abilityUi.cast.crypt_stone_shriek': 'Jeritan Batu',
-  'abilityUi.cast.crypt_tail_lash': 'Cambuk Ekor',
-  'abilityUi.cast.crypt_wing_gust': 'Hembusan Sayap',
   'abilityUi.cast.ghost_captain_anchor': 'Jangkar Terkutuk',
   'abilityUi.cast.ghost_captain_boarding': 'Penyergapan Hantu',
   'abilityUi.cast.ghost_captain_broadside': 'Rentetan Meriam Hantu',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Nyalakan Kembali Lilin',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Robohkan Anglo',
   'abilityUi.cast.sanctum_branding_iron': 'Besi Cap',
   'abilityUi.cast.sanctum_cinder_breath': 'Napas Bara',
@@ -21207,7 +21110,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Jangkar Tenggelam',
   'entities.mobs.bastion_gaol_cage.name': 'Kurungan Besi',
   'entities.mobs.bastion_warhound.name': 'Anjing Perang Benteng',
-  'entities.mobs.bound_soul.name': 'Jiwa Terikat',
   'entities.mobs.broodsworn_goadsmith.name': 'Pandai Pacu Bersumpah Kawanan',
   'entities.mobs.broodsworn_pyre_tender.name': 'Penjaga Unggun Bersumpah Kawanan',
   'entities.mobs.broodsworn_thawcaller.name': 'Pemanggil Pencairan Bersumpah Kawanan',
@@ -21241,21 +21143,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Muka Troll',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Babi Hutan Tanduk Gading',
-  'entities.mobs.candlewright_acolyte.name': 'Akolit Pembuat Lilin',
-  'entities.mobs.cantor_ilvane.name': 'Kantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Raksasa Tulang',
-  'entities.mobs.crypt_bone_minion.name': 'Anak Buah Tulang',
-  'entities.mobs.crypt_bone_pile.name': 'Tulang Bergerak',
-  'entities.mobs.crypt_carrion_crow.name': 'Gagak Bangkai',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gargoyle Kapel',
-  'entities.mobs.crypt_crow_caller.name': 'Pemanggil Gagak',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adep Pemanggil Makam',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nekromancer Pemanggil Makam',
-  'entities.mobs.crypt_knellwyrm.name': 'Wyrm Lonceng Kematian',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Pembunuh Rumah Tulang',
-  'entities.mobs.crypt_ossuary_drake.name': 'Drake Rumah Tulang',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Prajurit Rumah Tulang',
-  'entities.mobs.crypt_remembrance_candle.name': 'Lilin Kenangan',
   'entities.mobs.drowned_pilgrim.name': 'Peziarah Tenggelam',
   'entities.mobs.drowned_sergeant.name': 'Sersan Tenggelam',
   'entities.mobs.drowned_watchman.name': 'Penjaga Tenggelam',
@@ -21265,12 +21152,9 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Sipir Ossick',
   'entities.mobs.glacier_splinter.name': 'Serpihan Gletser',
   'entities.mobs.great_saurian.name': 'Kadal Raksasa',
-  'entities.mobs.hollow_chorister.name': 'Penyanyi Paduan Suara Hampa',
-  'entities.mobs.hollow_gravedigger.name': 'Penggali Kubur Hampa',
   'entities.mobs.howdah_hexcaller.name': 'Pemanggil Kutukan Tandu',
   'entities.mobs.ice_wraith.name': 'Arwah Es',
   'entities.mobs.lagoon_snapper.name': 'Penyu Penggigit Laguna',
-  'entities.mobs.marrow_restless_bones.name': 'Tulang Gelisah',
   'entities.mobs.mere_hydra_head_center.name': 'Hidra Danau',
   'entities.mobs.mere_hydra_head_left.name': 'Hidra Danau',
   'entities.mobs.mere_hydra_head_right.name': 'Hidra Danau',
@@ -21282,12 +21166,7 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Prajurit Infanteri Pengerahan',
   'entities.mobs.muster_sergeant.name': 'Sersan Pengerahan',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogre Penarik Kereta Luncur',
-  'entities.mobs.ossuary_sentinel.name': 'Penjaga Rumah Tulang',
-  'entities.mobs.rime_egg_sac.name': 'Kantung Telur Embun Beku',
   'entities.mobs.rime_whelp.name': 'Anak Naga Embun Beku',
-  'entities.mobs.rimeweb.name': 'Nyonya Dingin Tulang',
-  'entities.mobs.rimeweb_hatchling.name': 'Anak Jaring Embun Beku',
-  'entities.mobs.rimeweb_spinner.name': 'Pemintal Jaring Embun Beku',
   'entities.mobs.sanctum_shackle_anvil.name': 'Belenggu Landasan',
   'entities.mobs.sanctum_shackle_bellows.name': 'Belenggu Pengembus',
   'entities.mobs.sanctum_shackle_hammer.name': 'Belenggu Palu',
@@ -23223,50 +23102,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Menerima {pct}% lebih sedikit kerusakan selama Penjaga Tenggelam lain berada dalam {radius} yard. Pisahkan mereka.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Rantainya putus. Ia tidak lagi bertarung, tidak dapat dilukai, dan segera pergi.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Meningkatkan kerusakan diterima sebesar {pct}%: {per}% per tumpukan, kini {stacks} dari {max}. Setiap Pukulan Penggali Kubur menambah tumpukan dan mengatur ulang durasi menjadi {seconds} dtk.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Setiap gagak dalam pertempuran memburumu selama {seconds} dtk. Berlarilah ke tank agar kawanan bisa dibasmi bersama.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Bernyanyi lebih cepat: Ratapan Kehampaan memerlukan {cast} dtk alih-alih {castNormal} dtk dan muncul setiap {every} dtk alih-alih {everyNormal} dtk, serta Organ Tulang memainkan {waves} gelombang nada alih-alih {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Mengurangi kecepatan gerak sebesar {pct}%. Sekop Penuh menghantam semua orang di depan Koster Marrow: berdirilah di belakangnya.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Diangkat dalam pelukan sang Lady: tidak dapat bertindak, menerima {tick} kerusakan Es setiap detik ({tickHeroic} pada Heroik). Jika kelompokmu memberikan kerusakan sebesar {share}% kesehatan maksimumnya ({shareHeroic}% pada Heroik), ia menurunkanmu perlahan; jika menahanmu di atas selama {hold} dtk, ia menjatuhkanmu ke es dengan {min} hingga {max} kerusakan ({heroicMin} hingga {heroicMax} pada Heroik).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Memberikan {pct}% lebih banyak kerusakan: {per}% untuk setiap Jiwa Terikat yang mencapainya, kini {stacks} dari {max}, selama sisa pertempuran. Setiap jiwa yang mencapainya juga memulihkan {heal}% kesehatan maksimumnya. Hadang jalur jiwa untuk menerimanya sebagai gantinya.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Menerima {pct}% lebih sedikit kerusakan, dan batu menebal setiap {every} dtk hingga {max} lapisan. Pelumpuhan memecahkannya dan membuatnya menerima {cracked}% lebih banyak kerusakan selama {seconds} dtk.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Tangan muncul dari lingkaran di bawahmu dalam {fuse} dtk: semua orang dalam {radius} yard dari tempat lingkaran diletakkan terjerat selama {root} dtk dan menerima {min} hingga {max} kerusakan Bayangan. Keluar dari lingkaran.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Ditahan tangan kubur: tidak dapat bergerak selama {seconds} dtk.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Menerima {bite} kerusakan Bayangan setiap detik ({biteHeroic} pada Heroik) selama Ritual Arwah Gelisah berlangsung, meningkat {step} ({stepHeroic} pada Heroik) setiap {every} dtk. Nyalakan kembali Lilin Kenangan untuk mengakhirinya.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Berdiri dalam Kubur Terbuka: kecepatan gerak berkurang {slow}% dan menerima {damage} kerusakan Bayangan setiap detik ({heroic} pada Heroik). Pada Heroik, berdiam {linger} dtk dalam kubur membangkitkan Tulang Gelisah. Keluar dari kubur.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Menyerang {pct}% lebih cepat selama berdiri dalam Kubur Terbuka. Jauhkan dia dari kubur.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Menerima {pct}% lebih sedikit kerusakan: {per}% untuk setiap Penyanyi Paduan Suara yang masih hidup. Bunuh para penyanyi dahulu.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Terbang di atas Lingkar Ritus, di luar jangkauan. Ia menandai separuh lingkaran selama {mark} dtk, lalu menyiram separuh itu dengan api arwah: {min} hingga {max} kerusakan Api kepada semua orang di dalamnya. Ia membakar {breaths} bagian setiap penerbangan, lalu mendarat.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Saat Ratapan Pengantin berakhir, memberikan {min} hingga {max} kerusakan Es ({heroicMin} hingga {heroicMax} pada Heroik) kepada semua orang di luar {radius} yard dari lentera kubur menyala. Lentera melindungi {cap} pemain terdekat, lalu padam dan melewatkan Ratapan berikutnya.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Ratapan Pengantin berikutnya memberikan {pct}% lebih banyak kerusakan kepadamu: {per}% per tumpukan, hingga {max} tumpukan. Hadapi yang berikutnya dalam cahaya lentera.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Saat berakhir, Kubur Terbuka ambruk di tempatmu berdiri: {min} hingga {max} kerusakan ({heroicMin} hingga {heroicMax} pada Heroik) kepada semua orang dalam {radius} yard. Kubur bertahan selama sisa pertempuran, jadi bawa tanda ke tepi halaman, jauh dari kelompok.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Lumpuh: pelindung yang hancur membuatnya tidak dapat bertindak selama {seconds} dtk.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Menerima {pct}% lebih banyak kerusakan selama {seconds} dtk: lilin yang dinyalakan kembali mematahkan pelindungnya. Gunakan serangan terkuatmu sekarang.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'Di atas es licin: kecepatanmu berubah paling banyak {grip} yard/dtk setiap detik, sehingga kamu lambat mulai bergerak, terus meluncur saat berhenti, dan berbelok melebar. Keluar dari es untuk kembali berpijak mantap.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Kebal kerusakan saat berjalan ke tali lonceng dan membunyikan Lonceng Pemakaman. Saat bunyi berakhir, Dentang memberikan {min} hingga {max} kerusakan Bayangan ({heroicMin} hingga {heroicMax} pada Heroik) kepada semua orang, dan setiap Kubur Terbuka mengeluarkan Tulang Gelisah.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Kebal kerusakan saat menyalurkan Ritual Arwah Gelisah di altar: {lit} dari {total} Lilin Kenangan dinyalakan kembali. Menyalakan lilin memerlukan penyaluran {channel} dtk yang menguras {drain}% kesehatan maksimum penyala setiap detik ({drainHeroic}% pada Heroik); hantaman tidak menghentikannya, langkah atau pelumpuhan menghentikannya. Lilin terakhir menghancurkan pelindung. Pada Heroik, nyalakan sesuai urutan yang disebut Buku Catatan: lilin yang salah memadamkan lilin terakhir dan memberikan {wrongMin} hingga {wrongMax} kerusakan Bayangan kepada penyala.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Lentera Mandor Jerami padam bagimu: seranganmu dan peliharaanmu mengabaikan Kulit Papannya dan mengenai dengan kekuatan penuh',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -23505,43 +23340,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Kurir',
   'hudChrome.courier.unavailable': 'Panggil kurirmu untuk merencanakan pengiriman.',
   'hudChrome.courier.waiting': 'Menunggu untuk mengembalikan barangmu',
-  'hudChrome.cryptAlert.embracedLine':
-    'Kelompokmu harus melukai Nyonya Dingin Tulang untuk membebaskanmu dari genggamannya',
-  'hudChrome.cryptAlert.embracedTitle': 'Pelukan Beku!',
-  'hudChrome.cryptAlert.graspLine':
-    'Tinggalkan lingkaran bertanda sebelum tangan muncul agar tidak terluka dan terjerat',
-  'hudChrome.cryptAlert.graspTitle': 'Genggaman Kubur!',
-  'hudChrome.cryptAlert.graveLine': 'Tanah kubur membakar dan memperlambatmu: keluar darinya',
-  'hudChrome.cryptAlert.graveTitle': 'Di dalam Kubur Terbuka!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Bunuh Penyanyi Paduan Suara untuk menghapus pengurangan kerusakan Ilvane sebesar {pct}%',
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmoni',
-  'hudChrome.cryptAlert.knellLine':
-    'Api arwah menyiram separuh lingkaran ini saat bilah habis: pergilah ke separuh lainnya',
-  'hudChrome.cryptAlert.knellTitle': 'Lonceng Kematian Membara!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Masuk ke cahaya lentera menyala untuk menghindari kerusakan ratapan: setiap lentera hanya memuat dua pemain',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Tetap dalam cahaya lentera menyala ini untuk menghindari kerusakan ratapan: kamu mendapat tempat berlindung',
-  'hudChrome.cryptAlert.lamentTitle': 'Ratapan Pengantin!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Pergilah ke tepi halaman sebelum tanda berakhir agar kubur yang menyakitkan jauh dari kelompokmu',
-  'hudChrome.cryptAlert.measuredTitle': 'Diukur untuk Kuburan!',
-  'hudChrome.cryptAlert.reapLine':
-    'Bergerak ke belakang Morthen untuk menghindari sabit yang menghantam semua orang di depan',
-  'hudChrome.cryptAlert.reapTitle': 'Tuai Arwah Gelisah!',
-  'hudChrome.cryptAlert.riteLine':
-    'Nyalakan kembali semua Lilin Kenangan untuk mematahkan kekebalan Morthen: {lit} dari {total} menyala',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Nyalakan lilin sesuai urutan Buku Catatan untuk mematahkan kekebalan Morthen: lilin salah mengurangi kemajuan ({lit}/{total})',
-  'hudChrome.cryptAlert.riteTitle': 'Ritual Arwah Gelisah',
-  'hudChrome.cryptAlert.soulLine':
-    'Hadang jiwa melayang agar tidak menyembuhkan Morthen dan meningkatkan kerusakannya. Menangkapnya melukaimu',
-  'hudChrome.cryptAlert.soulTitle': 'Jiwa Terikat',
-  'hudChrome.cryptAlert.timeAria': 'Tersisa {seconds} detik',
-  'hudChrome.cryptAlert.tollLine':
-    'Bersiap melawan kerangka yang bangkit dari kubur terbuka: Marrow kebal saat membunyikan lonceng',
-  'hudChrome.cryptAlert.tollTitle': 'Dentang Pemakaman!',
   'hudChrome.deeds.buddiesEmpty': 'Kumpulkan teman untuk memanggilnya dari rak ini.',
   'hudChrome.deeds.buddiesNone': 'Tanpa Teman',
   'hudChrome.deeds.buddiesSection': 'Teman',
@@ -23661,44 +23459,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Pengerahan Tenaga (menjauh dari setiap pilar yang rantainya masih utuh)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Paduan Suara dan Solo (berkumpul pada satu tanda, berpencar dari tanda lainnya)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Organ Tulang (setiap 26 detik ia memainkan Organ Tulang: dua gelombang nada bayangan meluncur di jalur balkon, 100 hingga 115 kerusakan pada normal jika berada di jalur, gelombang kedua mengisi celah gelombang pertama)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Kebekuan Pengantin (pada separuh kesehatan seluruh lantai jurang membeku: es licin selama sisa pertempuran)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Ratapan Pengantin (setiap 22 detik ratapan 3 detik: 60 hingga 75 kerusakan es pada normal kepada semua orang di luar cahaya lentera kubur menyala, bertambah separuh untuk setiap tumpukan Ratapan Tertinggal dari Ratapan yang sudah diterima. Lentera melindungi maksimal dua pemain dan padam selama 28 detik setelah melindungi siapa pun, jadi berpencarlah dan bergantian)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Dentang Pemakaman (pada kesehatan 66 dan 33 persen ia berjalan ke tali lonceng, kebal kerusakan, dan membunyikannya selama 3 detik: 30 hingga 38 kerusakan bayangan kepada semua orang pada normal, dan setiap Kubur Terbuka membangkitkan Tulang Gelisah)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Kresendo (di bawah 30 persen kesehatan, Ratapannya memerlukan 1,8 detik dan muncul setiap 11 detik, serta organ memainkan gelombang ketiga)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Ratapan Kehampaan (setiap 16 detik lagu 2,5 detik yang bisa diinterupsi: jika selesai, 105 hingga 125 kerusakan bayangan pada normal dan pembisuan 4 detik kepada semua orang dalam 45 yard yang dapat melihatnya, jadi interupsi atau bersembunyi di belakang pilar paduan suara)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Pelukan Beku (setiap 30 detik ia meraih pemain selain tank dan naik 5 yard ke udara bersamanya, 6 kerusakan es per detik: berikan kerusakan sebesar 6 persen kesehatannya dalam 8 detik agar ia menurunkannya, jika tidak ia menjatuhkannya dengan 150 hingga 180 kerusakan pada normal)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Panggilan Kubur (setiap 15 detik Jiwa Terikat melayang dari ceruk sarkofagus berikutnya menuju dirinya; saat mencapainya ia Kenyang oleh Kematian, 10 persen lebih banyak kerusakan per jiwa hingga 10 tumpukan, dan memulihkan 3 persen kesehatannya. Pemain di jalurnya menerima jiwa sebagai gantinya: 12 hingga 16 kerusakan bayangan pada normal)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmoni (setiap Penyanyi Paduan Suara yang hidup membuatnya menerima 30 persen lebih sedikit kerusakan: bunuh para penyanyi dahulu)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroik: Ulangan (Penyanyi Paduan Suara yang mati selama 10 detik saat rekannya masih berdiri akan bangkit lagi, jadi bunuh bersamaan) dan Bait Tak Terputus (setiap Ratapan ketiga tidak dapat diinterupsi: bersembunyi darinya)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroik: setiap lentera menyala juga padam sendiri setelah 30 detik dan tetap gelap selama 10 detik, serta Pelukan Beku meraih dua pemain dan melepaskan pada kerusakan sebesar 4,4 persen kesehatannya',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroik: Pukulan Penggali Kubur setiap 9 detik pada tank (setiap tumpukan meningkatkan kerusakan diterima 6 persen selama 20 detik, hingga 6 tumpukan), Semangat Kubur (ia mengayun 30 persen lebih cepat saat berdiri dalam kubur) dan Tanah Gelisah (siapa pun yang bertahan 2 detik dalam kubur membangkitkan Tulang Gelisah di sana)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Diukur untuk Kuburan (setiap 15 detik ia menandai pemain selain tank; 4 detik kemudian Kubur Terbuka ambruk di bawahnya, 42 hingga 52 kerusakan dalam 3 yard pada normal, dan lubang bertahan selama pertempuran: 9 kerusakan per detik dan gerakan 40 persen lebih lambat di dalamnya, jadi letakkan kubur di tepi halaman)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroik: Sebut Nama yang Mati (Buku Catatan menyebut urutan lilin: lilin salah memadamkan lilin terakhir dan memberi 252 hingga 288 kerusakan bayangan kepada penyala, serta setiap penyalaan menguras 8 persen per detik), Genggaman Kubur (setiap 16 detik 2 pemain mendapat lingkaran 4 yard; 1,5 detik kemudian tangan muncul: jeratan 3 detik dan 162 hingga 198 kerusakan bayangan) serta Lonceng Kematian Membara Wyrm Lonceng Kematian (terbang dan menandai separuh lingkaran selama 4,5 detik, lalu menyiram separuh itu dengan api arwah sebesar 1.000 hingga 1.120 kerusakan api, 3 bagian setiap penerbangan)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Denyut Bayangan (setiap 12 detik rapalan 2 detik, lalu 24 hingga 30 kerusakan bayangan pada normal kepada semua orang dalam 12 yard darinya, jadi menjauh; setiap 9 detik saat Ritus Terakhir)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Tuai Arwah Gelisah (di bawah 35 persen kesehatan, jiwa berhenti; setiap 14 detik ia menyapu sabit setelah rapalan 2 detik: 55 hingga 65 kerusakan bayangan pada normal kepada semua orang dalam busur 120 derajat sejauh 14 yard di depannya. Denyut Bayangan kemudian muncul setiap 9 detik)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Jalur Embun Beku (ia meninggalkan embun beku licin di jalur layangnya selama 25 detik: di atasnya kamu menambah kecepatan perlahan dan terus meluncur saat berhenti atau berbelok)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Ritual Arwah Gelisah (pada 65 persen kesehatan ia kembali ke altar, kebal di dalam Pelindung Arwah Gelisah, sementara Dingin Kubur memberi 3 kerusakan bayangan per detik kepada semua orang, bertambah 1 setiap 5 detik, dan 2 Tulang Gelisah memanjat keluar dari ceruk. Nyalakan kembali 4 Lilin Kenangan: masing-masing memerlukan penyaluran 4 detik yang menguras 6 persen kesehatan maksimum penyala setiap detik, tidak terputus oleh hantaman tetapi terputus oleh langkah atau pelumpuhan. Lilin terakhir mematahkan Ritus: ia lumpuh selama 8 detik dan menerima 25 persen lebih banyak kerusakan)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Sekop Penuh (setiap 11 detik ia melempar tanah kubur dalam kerucut 8 yard di depannya: satu setengah kali ayunannya dan gerakan 50 persen lebih lambat selama 6 detik, jadi berdiri di belakangnya)',
   'hudChrome.finder.mech.drowned_anchor':
     'Jangkar Tenggelam (korbannya ditarik ke lubang: lari hingga dalam 3 yard dari tiang tambat menyala untuk menambatkan rantai, tiang kemudian padam selama 30 detik, atau putus rantai dengan 12 hantaman, 16 pada Heroik)',
   'hudChrome.finder.mech.fog_veil':

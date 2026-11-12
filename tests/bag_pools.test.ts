@@ -17,6 +17,7 @@ import {
   totalPoolCapacity,
 } from '../src/sim/bag_pools';
 import type { CharacterState } from '../src/sim/character_state';
+import { HOLLOW_CRYPT_RETIRED_SOURCE_LEVELS } from '../src/sim/content/hollow_crypt_retired';
 import { ALL_RECIPES, ITEMS, MOBS, NPCS } from '../src/sim/data';
 import { MARKET_HOUSE_STOCK } from '../src/sim/market';
 import { grantReferralReward } from '../src/sim/referral_rewards';
@@ -559,6 +560,12 @@ describe('acquisition census: every phase 05 bag stays reachable in play', () =>
     expect(bagDefs.length).toBeGreaterThan(Object.keys(PHASE05_BAG_CHANNELS).length);
     for (const def of bagDefs) {
       const found = CHANNELS.filter((c) => index[c].has(def.id));
+      // A bag retired with the Hollow Crypt (the Gravewoven Bag, Morthen's drop)
+      // is a kept save-compat def with no route left, and must stay routeless.
+      if (def.id in HOLLOW_CRYPT_RETIRED_SOURCE_LEVELS) {
+        expect(found, `${def.id}: a retired bag regained a route`).toEqual([]);
+        continue;
+      }
       expect(
         found.length > 0 || def.id in PHASE05_BAG_CHANNELS,
         `${def.id}: no loot, market, recipe, referral reward, or vendor row anywhere in the content`,

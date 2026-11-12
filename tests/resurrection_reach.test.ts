@@ -232,7 +232,7 @@ describe('lockout bypass via resurrection is closed', () => {
     const fallen = addToGroup(sim, mage, 'Locked Out');
     killAt(fallen, mage.pos.x + 3, mage.pos.z);
 
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', mage.id)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', mage.id)).toBe(true);
     expect(instanceInfoAt(sim.ctx, mage.pos)).not.toBeNull();
     expect(dist2d(mage.pos, fallen.corpsePos ?? fallen.pos)).toBeGreaterThan(RESURRECTION_RANGE);
 
@@ -260,7 +260,7 @@ describe('lockout bypass via resurrection is closed', () => {
     expect(sim.pendingResurrections.has(fallen.id)).toBe(true);
 
     // The caster walks into the instance during the 30 s offer window.
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', mage.id)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', mage.id)).toBe(true);
     sim.respondToResurrection(true, fallen.id);
 
     expect(fallen.dead).toBe(false);
@@ -273,7 +273,11 @@ describe('lockout bypass via resurrection is closed', () => {
   it('an accept still arrives at a caster who stayed within reach of the body', () => {
     const { sim, mage } = chronomancer();
     const fallen = addToGroup(sim, mage, 'Chained');
-    killAt(fallen, mage.pos.x + 3, mage.pos.z);
+    // Staged in the collider-free corridor (x = 2, z in [38, 117]) so only
+    // reach decides: the Eastbrook v2 start area has props in sight lines.
+    mage.pos = { x: 2, y: mage.pos.y, z: 40 };
+    mage.prevPos = { ...mage.pos };
+    killAt(fallen, 2, 43);
 
     sim.castAbilityOn(SINGLE_REZ, fallen.id);
     for (let tick = 0; tick < 60 && mage.castingAbility; tick++) sim.tick();
@@ -281,7 +285,7 @@ describe('lockout bypass via resurrection is closed', () => {
 
     // The caster drifts a few yards but stays within reach: the live caster
     // remains the arrival anchor, exactly as before.
-    mage.pos = { x: mage.pos.x + 10, y: mage.pos.y, z: mage.pos.z + 5 };
+    mage.pos = { x: 2, y: mage.pos.y, z: 51 };
     mage.prevPos = { ...mage.pos };
     sim.respondToResurrection(true, fallen.id);
 

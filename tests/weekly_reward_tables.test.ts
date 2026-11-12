@@ -158,14 +158,14 @@ describe('weekly boss-table eligibility', () => {
   });
 
   it.each([0, 3, 1.5, -1, 99, '2', null])('rejects invalid boss unlock tier %j', (tier) => {
-    expect(sanitizeWeeklyBossUnlocks({ morthen: tier })).toEqual({});
+    expect(sanitizeWeeklyBossUnlocks({ vael_the_mistcaller: tier })).toEqual({});
   });
   it('registers named mid-bosses, actual raid rooms and no trash tables', () => {
-    expect(weeklyBossTable('sexton_marrow')?.dungeonId).toBe('hollow_crypt');
+    expect(weeklyBossTable('knight_commander_olen')?.dungeonId).toBe('sunken_bastion');
     expect(weeklyBossTable('varkhul_forgefather_of_the_last_flame')?.dungeonId).toBe(
       'ignivar_inner_crucible',
     );
-    expect(weeklyBossTable('crypt_skeleton')).toBeUndefined();
+    expect(weeklyBossTable('tidebound_acolyte')).toBeUndefined();
     for (const id of ['wildheart_stalker', 'wildheart_ravager', 'wildheart_hexcaller'])
       expect(weeklyBossTable(id)).toBeUndefined();
     expect(weeklyBossTable('wildheart_beastmaster')).toBeDefined();
@@ -179,12 +179,12 @@ describe('weekly boss-table eligibility', () => {
   it('sanitizes only known own-property IDs and valid difficulty tiers', () => {
     expect(sanitizeWeeklyBossUnlocks(undefined)).toBeUndefined();
     expect(sanitizeWeeklyBossUnlocks({})).toEqual({});
-    const raw = Object.assign(Object.create({ morthen: 2 }), {
-      sexton_marrow: 1,
+    const raw = Object.assign(Object.create({ vael_the_mistcaller: 2 }), {
+      knight_commander_olen: 1,
       ysolei: 99,
       fake: 2,
     });
-    expect(sanitizeWeeklyBossUnlocks(raw)).toEqual({ sexton_marrow: 1 });
+    expect(sanitizeWeeklyBossUnlocks(raw)).toEqual({ knight_commander_olen: 1 });
     expect(weeklyBossTable('__proto__')).toBeUndefined();
     expect(weeklyBossTable('x'.repeat(129))).toBeUndefined();
   });
@@ -208,7 +208,7 @@ describe('weekly boss-table eligibility', () => {
     const { sim, pid, batch } = setup();
     const pick = vi.spyOn(sim.ctx.rng, 'pick');
     for (const [key, table] of [
-      ['1000:0', 'morthen'],
+      ['1000:0', 'korzul_the_gravewyrm'],
       ['1000:1', 'vael_the_mistcaller'],
       ['1000:0', 'nythraxis_scourge_of_thornpeak'],
       ['1000:0', '__proto__'],
@@ -244,12 +244,12 @@ describe('weekly boss-table eligibility', () => {
 
   it('freezes new weeks independently of subsequent clears', () => {
     const state = emptyWeeklyRewards(1000);
-    state.bossUnlocks = { morthen: 1 };
+    state.bossUnlocks = { korzul_the_gravewyrm: 1 };
     state.dungeons = [1];
     advanceWeeklyRewards(state, 2000, () => 604800000);
-    state.bossUnlocks.morthen = 2;
+    state.bossUnlocks.korzul_the_gravewyrm = 2;
     state.bossUnlocks.ysolei = 2;
-    expect(state.vaults[0].bossUnlocks).toEqual({ morthen: 1 });
+    expect(state.vaults[0].bossUnlocks).toEqual({ korzul_the_gravewyrm: 1 });
   });
 
   it('limits raid and dungeon batches to bosses killed in the earned week', () => {
@@ -261,7 +261,7 @@ describe('weekly boss-table eligibility', () => {
       bossUnlocks: {
         ignivar_herald_of_the_last_flame: 2,
         nythraxis_scourge_of_thornpeak: 2,
-        morthen: 2,
+        korzul_the_gravewyrm: 2,
         ysolei: 2,
       },
       weeklyBossUnlocks: { nythraxis_scourge_of_thornpeak: 2, ysolei: 2 },
@@ -286,7 +286,7 @@ describe('weekly boss-table eligibility', () => {
       ),
     ).toBeNull();
     expect(
-      prepareWeeklyRewardOpen(sim.ctx, '1000:1', meta.entityId, undefined, 'hollow_crypt'),
+      prepareWeeklyRewardOpen(sim.ctx, '1000:1', meta.entityId, undefined, 'gravewyrm_sanctum'),
     ).toBeNull();
     const saved = sim.serializeCharacter(meta.entityId)!;
     expect(saved.weeklyRewards?.weeklyBossUnlocks).toEqual({});
@@ -297,21 +297,23 @@ describe('weekly boss-table eligibility', () => {
     const state = sanitizeWeeklyRewards({
       ...emptyWeeklyRewards(1000),
       dungeons: [1],
-      bossUnlocks: { morthen: 1 },
+      bossUnlocks: { korzul_the_gravewyrm: 1 },
     })!;
     meta.weeklyRewards = state;
     state.resetAtMs = 604800000;
     stateFor(sim.ctx, meta);
-    expect(state.weeklyBossUnlocks).toEqual({ morthen: 1 });
+    expect(state.weeklyBossUnlocks).toEqual({ korzul_the_gravewyrm: 1 });
     const saved = sim.serializeCharacter(meta.entityId)!;
     const restoredPid = sim.addPlayer('mage', 'AfterDeploySave', { state: saved });
-    expect(sim.players.get(restoredPid)?.weeklyRewards?.weeklyBossUnlocks).toEqual({ morthen: 1 });
+    expect(sim.players.get(restoredPid)?.weeklyRewards?.weeklyBossUnlocks).toEqual({
+      korzul_the_gravewyrm: 1,
+    });
     state.resetAtMs = 1000;
     stateFor(sim.ctx, meta);
     expect(state.vaults[0].choices).toEqual([{ pool: 'dungeon' }]);
-    expect(state.vaults[0].bossUnlocks).toEqual({ morthen: 1 });
+    expect(state.vaults[0].bossUnlocks).toEqual({ korzul_the_gravewyrm: 1 });
     expect(state.weeklyBossUnlocks).toEqual({});
-    expect(state.bossUnlocks).toEqual({ morthen: 1 });
+    expect(state.bossUnlocks).toEqual({ korzul_the_gravewyrm: 1 });
     expect(sanitizeWeeklyRewards(JSON.parse(JSON.stringify(state)))?.weeklyBossUnlocks).toEqual({});
     stateFor(sim.ctx, meta);
     expect(state.weeklyBossUnlocks).toEqual({});
@@ -324,9 +326,9 @@ describe('weekly boss-table eligibility', () => {
   it('migrates only proven final bosses and preserves empty snapshots and legacy fixed items', () => {
     const { sim, meta, state } = setup();
     delete state.bossUnlocks;
-    meta.deedStats.dungeonClears = { hollow_crypt: 3, 'sunken_bastion:heroic': 1 };
+    meta.deedStats.dungeonClears = { gravewyrm_sanctum: 3, 'sunken_bastion:heroic': 1 };
     stateFor(sim.ctx, meta);
-    expect(state.bossUnlocks).toEqual({ morthen: 1, vael_the_mistcaller: 2 });
+    expect(state.bossUnlocks).toEqual({ korzul_the_gravewyrm: 1, vael_the_mistcaller: 2 });
     const fixed = weeklyBossLootPool('ysolei', 'dungeon', 'mage')[0];
     state.vaults = [
       { resetAtMs: 1000, bossUnlocks: {}, choices: [{ pool: 'dungeon', itemId: fixed }] },
@@ -338,13 +340,15 @@ describe('weekly boss-table eligibility', () => {
 
   it('records intermediate encounters without awarding an extra dungeon completion', () => {
     const { sim, pid, meta, state } = setup();
-    const inst = freshInstanceSlot('hollow_crypt', 1);
+    const inst = freshInstanceSlot('sunken_bastion', 1);
     inst.difficulty = 'heroic';
-    const boss = createMob(90001, MOBS.sexton_marrow, 20, { x: 0, y: 0, z: 0 });
+    const boss = createMob(90001, MOBS.knight_commander_olen, 20, { x: 0, y: 0, z: 0 });
     recordWeeklyBossKill(sim.ctx, boss, [meta], inst);
-    expect(state.bossUnlocks!.sexton_marrow).toBe(2);
-    expect(state.weeklyBossUnlocks!.sexton_marrow).toBe(2);
-    expect(weeklyRewardInfoFor(sim.ctx, pid)?.state.weeklyBossUnlocks?.sexton_marrow).toBe(2);
+    expect(state.bossUnlocks!.knight_commander_olen).toBe(2);
+    expect(state.weeklyBossUnlocks!.knight_commander_olen).toBe(2);
+    expect(weeklyRewardInfoFor(sim.ctx, pid)?.state.weeklyBossUnlocks?.knight_commander_olen).toBe(
+      2,
+    );
     expect(state.dungeons).toEqual([]);
     expect(sim.players.has(pid)).toBe(true);
   });
@@ -366,28 +370,30 @@ describe('weekly boss-table eligibility', () => {
 
   it('credits a real mid-boss death at its cleared difficulty without a final-boss milestone', () => {
     const { sim, pid, state } = setup();
-    enterDungeon(sim.ctx, 'hollow_crypt', pid);
+    enterDungeon(sim.ctx, 'sunken_bastion', pid);
     const inst = sim.instances.find(
-      (slot) => slot.dungeonId === 'hollow_crypt' && slot.partyKey !== null,
+      (slot) => slot.dungeonId === 'sunken_bastion' && slot.partyKey !== null,
     )!;
     const boss = inst.mobIds
       .map((id) => sim.entities.get(id)!)
-      .find((entity) => entity.templateId === 'sexton_marrow')!;
+      .find((entity) => entity.templateId === 'knight_commander_olen')!;
     const player = sim.entities.get(pid)!;
     player.pos = { ...boss.pos };
     sim.ctx.rebucket(player);
     sim.ctx.dealDamage(player, boss, boss.hp * 100, false, 'physical', null, 'hit');
-    expect(state.bossUnlocks!.sexton_marrow).toBe(1);
+    expect(state.bossUnlocks!.knight_commander_olen).toBe(1);
     expect(state.dungeons).toEqual([]);
   });
 
-  it('keeps normal Hollow Crypt rewards usable, including migrated unopened weeks', () => {
+  it('keeps normal Sunken Bastion rewards usable, including migrated unopened weeks', () => {
     const { sim, pid, meta, state } = setup();
     delete state.bossUnlocks;
     state.vaults = [{ resetAtMs: 1000, choices: [{ pool: 'dungeon' }] }];
-    meta.deedStats.dungeonClears = { hollow_crypt: 1 };
-    const opening = prepareWeeklyRewardOpen(sim.ctx, '1000:0', pid, undefined, 'hollow_crypt')!;
-    expect(ITEMS[opening.itemId].quality).toBe('uncommon');
+    meta.deedStats.dungeonClears = { sunken_bastion: 1 };
+    const opening = prepareWeeklyRewardOpen(sim.ctx, '1000:0', pid, undefined, 'sunken_bastion')!;
+    // the normal (not the Heroic) table: drawn from Vael's normal pool
+    expect(weeklyBossLootPool('vael_the_mistcaller', 'dungeon', 'mage')).toContain(opening.itemId);
+    expect(ITEMS[opening.itemId]).toBeDefined();
     finishWeeklyRewardOpen(opening, true);
     const restored = sanitizeWeeklyRewards(sim.serializeCharacter(pid)!.weeklyRewards)!;
     expect(restored.vaults[0].choices[0].itemId).toBe(opening.itemId);
@@ -540,14 +546,14 @@ describe('weekly boss table of a several-bodied boss (the Mere Hydra)', () => {
   it('an ordinary boss with nobody to credit still unlocks nothing', () => {
     // The early return this change reordered: single-bodied bosses keep it.
     const { sim, meta, state } = setup();
-    const inst = freshInstanceSlot('hollow_crypt', 1);
+    const inst = freshInstanceSlot('sunken_bastion', 1);
     inst.enteredBy.add(meta.entityId);
     const before = { ...state.bossUnlocks };
-    const marrow = createMob(90001, MOBS.sexton_marrow, 20, { x: 0, y: 0, z: 0 });
-    recordWeeklyBossKill(sim.ctx, marrow, [], inst);
+    const olen = createMob(90001, MOBS.knight_commander_olen, 20, { x: 0, y: 0, z: 0 });
+    recordWeeklyBossKill(sim.ctx, olen, [], inst);
     expect(state.bossUnlocks).toEqual(before);
     // And with a recipient it is credited as before.
-    recordWeeklyBossKill(sim.ctx, marrow, [meta], inst);
-    expect(state.bossUnlocks?.sexton_marrow).toBe(1);
+    recordWeeklyBossKill(sim.ctx, olen, [meta], inst);
+    expect(state.bossUnlocks?.knight_commander_olen).toBe(1);
   });
 });

@@ -14,7 +14,6 @@ import * as THREE from 'three';
 import { DUNGEONS, instanceOrigin, instanceSlotForZ } from '../sim/data';
 import { TEMPLE_OBJECT_TEMPLATES } from '../sim/encounters/drowned_temple/ids';
 import { SANCTUM_OBJECT_TEMPLATES } from '../sim/encounters/gravewyrm_sanctum/ids';
-import { CRYPT_OBJECT_TEMPLATES } from '../sim/encounters/hollow_crypt/ids';
 import { BASTION_OBJECT_TEMPLATES } from '../sim/encounters/sunken_bastion/ids';
 import { dungeonGateAt, dungeonGateStateOf } from '../sim/instances/dungeon_gates';
 import { DEATH_BURST_RING } from '../sim/mob/trash_kit/death_burst';
@@ -58,7 +57,6 @@ export function gateObjectPlan(e: GateEntityLike): GateObjectPlan | null {
   if (raid) return raid;
   if (BASTION_OBJECT_TEMPLATES.has(e.templateId)) return { encounterAnchor: true, height: 4 };
   if (TEMPLE_OBJECT_TEMPLATES.has(e.templateId)) return { encounterAnchor: true, height: 2 };
-  if (CRYPT_OBJECT_TEMPLATES.has(e.templateId)) return { encounterAnchor: true, height: 2 };
   // A trash-kit death burst's ring: drawn from the world (death_burst_fx.ts).
   if (e.templateId === DEATH_BURST_RING) return { encounterAnchor: true, height: 2 };
   // The trash engine's objects (hazard pools, combat walls, walker orbs): drawn

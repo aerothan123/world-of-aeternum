@@ -343,7 +343,7 @@ const QUESTS: Record<string, QuestDef> = {
     C2_IVARA_RING,
     C2_IVARA_RING,
     'bracken_circle',
-    'Brother Aldric sent me the fragment you carried out of the Hollow Crypt, and it has been warm in my hand all the way across the moor. These stones are older than any kingdom: the folk who raised them lit the first hearths. Touch each stone so they know you, then set the fragment on the hearth stone at the centre. The woods are listening, $N. So are the stones. Be polite.',
+    'Brother Aldric sent me this fragment, and it has been warm in my hand all the way across the moor. These stones are older than any kingdom: the folk who raised them lit the first hearths. Touch each stone so they know you, then set the fragment on the hearth stone at the centre. The woods are listening, $N. So are the stones. Be polite.',
     'Did you feel it? The fragment answered the hearth, the way a child answers its name. The Hearthpins were made from fires like this one. Whatever is pulling them apart, it has to pull against something very old.',
     [
       inspect('c2_standing_stone', 5, 'Ring standing stone touched'),
@@ -357,7 +357,13 @@ const QUESTS: Record<string, QuestDef> = {
         },
       ),
     ],
-    { requiresQuest: 'q_hollow', requiredItems: ['c2_hearthpin_fragment'], shareable: false },
+    // Re-gated on the Ring hub's own opener when the Hollow Crypt (and its
+    // q_hollow) was retired (2026-11-11); the fragment is granted on accept.
+    {
+      requiresQuest: 'c2_15_moor_hounds',
+      requiredItems: ['c2_hearthpin_fragment'],
+      shareable: false,
+    },
   ),
   c2_20_ash_before_kingdom: quest(
     'c2_20_ash_before_kingdom',

@@ -2134,8 +2134,6 @@ export const guideStrings = {
     bastionName: 'The Sunken Bastion',
     templeName: 'The Drowned Temple',
     sanctumName: 'Gravewyrm Sanctum',
-    hollowBody:
-      'A grave-robbed chapel crypt where the newly dead refuse to rest. The first real test of a new party.',
     bastionBody:
       'A flooded fortress lost to the marsh, held by drowned defenders and the rising tide itself.',
     templeBody:

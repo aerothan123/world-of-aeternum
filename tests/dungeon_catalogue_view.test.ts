@@ -80,7 +80,7 @@ describe('adventure catalogue', () => {
   it('allows in-level adventures and class roles without a committed specialization', () => {
     const guide = view({ specRole: null });
     expect(guide.rows.filter((r) => r.kind === 'delve').every((r) => r.eligible)).toBe(true);
-    expect(guide.rows.find((row) => row.id === 'hollow_crypt_heroic')?.eligible).toBe(true);
+    expect(guide.rows.find((row) => row.id === 'sunken_bastion_heroic')?.eligible).toBe(true);
     expect(guide.queue.roles.filter((role) => role.eligible).map((role) => role.role)).toEqual([
       'tank',
       'dps',

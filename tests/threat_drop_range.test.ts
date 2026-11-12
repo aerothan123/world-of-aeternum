@@ -172,7 +172,7 @@ describe('hate-table reach: out-of-range attackers drop off the table', () => {
   it('a raider who steps through an instance door mid-fight is released next tick', () => {
     // The reported hazard: a mob the group keeps engaged never leashes, so
     // without the reach rule the member who zoned would stay in combat inside.
-    const dungeon = expectDefined(DUNGEONS.hollow_crypt);
+    const dungeon = expectDefined(DUNGEONS.sunken_bastion);
     const door = dungeon.doorPos;
     const { sim, wolf, tank, dps } = wolfFight(door.x + 12, door.z);
     formParty(sim, tank, [dps]);

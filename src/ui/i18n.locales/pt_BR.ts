@@ -10062,11 +10062,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.stormcrag_elemental.name': 'Elemental de Stormcrag',
   'entities.mobs.shardlord_kazzix.name': 'Senhor dos fragmentos Kazzix',
   'entities.mobs.boneclad_revenant.name': 'Revenante encouraçado de ossos',
-  'entities.mobs.crypt_shambler.name': 'Cambaleante da cripta',
-  'entities.mobs.hollow_acolyte.name': 'Acólito do Vazio',
-  'entities.mobs.bonechill_widow.name': 'Viúva Frio-osso',
-  'entities.mobs.sexton_marrow.name': 'Sacristão Marrow',
-  'entities.mobs.morthen.name': 'Morthen o Gravecaller',
   'entities.mobs.bastion_revenant.name': 'Revenante do Bastião',
   'entities.mobs.tidebound_acolyte.name': 'Acólito preso à maré',
   'entities.mobs.drowned_thrall.name': 'Servo afogado',
@@ -10229,61 +10224,18 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_mine.completion':
     'Ha! De volta ao trabalho, rapazes! Você tem meu agradecimento e meu pagamento.',
   'entities.quests.q_mine.objectives.0.label': 'Escavador de Deeprock abatido',
-  'entities.quests.q_bones.title': 'Os mortos inquietos',
-  'entities.quests.q_bones.text':
-    'A velha capela era lugar de descanso até algo acordar seus mortos. Devolva 8 ossos inquietos à terra, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Que descansem agora, e que a Luz perdoe quem os despertou.',
-  'entities.quests.q_bones.objectives.0.label': 'Ossos inquietos devolvido ao descanso',
   'entities.quests.q_supplies.title': 'Suprimentos roubados',
   'entities.quests.q_supplies.text':
     'Os bandidos levaram minha última carroça: ferramentas, sal e bom linho de Eastbrook. Recupere 4 caixas no acampamento noroeste.',
   'entities.quests.q_supplies.completion':
     'Minhas caixas! Quase sem arranhões. Você é uma maravilha.',
   'entities.quests.q_supplies.objectives.0.label': 'Caixa de suprimentos roubada',
-  'entities.quests.q_whispers.title': 'Sussurros no subsolo',
-  'entities.quests.q_whispers.text':
-    'Os mortos se levantam porque algo os chama. Procure na capela um selo ou sinal do chamador e traga intacto.',
-  'entities.quests.q_whispers.completion':
-    'Este sigilo traz a marca dos Gravecallers. Eu rezava para que essa seita estivesse extinta, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sigilo Gravecaller',
-  'entities.quests.q_names_of_the_dead.title': 'Os nomes dos mortos',
-  'entities.quests.q_names_of_the_dead.text':
-    'Se os Gravecallers roubaram nossos túmulos, preciso saber quem foi tomado. Reúna 3 páginas do registro funerário, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Pobres almas... e veja: o sacristão Marrow foi o primeiro. Morthen começou pelo homem que enterrava Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Página de registro gasta',
   'entities.quests.q_silence_the_call.title': 'Silenciar o chamado',
   'entities.quests.q_silence_the_call.text':
     'Cada nome do registro é uma alma que Morthen quer arrancar da terra. Silencie 12 ossos inquietos, {playerName}, antes que o sussurro vire coro.',
   'entities.quests.q_silence_the_call.completion':
     'O pátio está mais quieto, mas o chamado agora sobe da cripta, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label': 'Ossos inquietos silenciado',
-  'entities.quests.q_rite.title': 'O rito de vínculo',
-  'entities.quests.q_rite.text':
-    'A cripta sob a capela precisa ser aberta se quisermos deter o Gravecaller, mas apenas um rito de vínculo deixará os vivos passarem. Preciso de 4 pedaços de Sebo Abençoado (os escavadores da mina acumulam sebo aos caixotes) e 6 Essências Espectrais dos mortos inquietos.',
-  'entities.quests.q_rite.completion':
-    'Está feito. O caminho abaixo se abre... reúna seus companheiros mais fortes, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': 'Sebo abençoado',
-  'entities.quests.q_rite.objectives.1.label': 'Essência espectral',
-  'entities.quests.q_hollow.title': 'Para o Vazio',
-  'entities.quests.q_hollow.text':
-    'Morthen espera no fundo da Cripta Vazia, cercado pelos mortos de elite que ergueu. Leve quatro companheiros e acabe com ele.',
-  'entities.quests.q_hollow.completion':
-    'Os sussurros pararam. Os mortos dormem, {playerName}, e Eastbrook lhe deve tudo.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen o Gravecaller abatido',
-  'entities.quests.q_sexton.title': 'O sino do sacristão',
-  'entities.quests.q_sexton.text':
-    'O registro nomeia o sacristão Marrow, primeiro guardião erguido por Morthen. Desça com quatro companheiros e devolva o repouso roubado, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Marrow enfim está livre. Não toquem sinos por ele; ouviu sinos demais em vida.',
-  'entities.quests.q_sexton.objectives.0.label': 'Sacristão Marrow devolvido ao descanso',
-  'entities.quests.q_gravecallers_trail.title': 'A trilha do Gravecaller',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen está morto, mas sua seita não gastaria um século de silêncio por uma só capela. Procure o grimório nas ruínas, {playerName}.',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen escrevia a um 'Fogbinder' no brejo ao norte. A seita não morreu, {playerName}; apenas foi paciente.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimório de Morthen',
   'entities.quests.q_bandits.title': 'Bandidos do Vale',
   'entities.quests.q_bandits.text':
     'Um bando de degoladores acampou nas colinas noroeste. Três carroças foram roubadas esta semana. Mate 10 bandidos do Vale.',
@@ -10650,9 +10602,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.zones.thornpeak_heights.pois.6.label': 'O Glimmermere',
   'entities.zones.thornpeak_heights.pois.8.label': 'Campos de revenantes',
   'entities.zones.thornpeak_heights.pois.9.label': 'Santuário do Gravewyrm',
-  'entities.dungeons.hollow_crypt.name': 'A Cripta Vazia',
-  'entities.dungeons.hollow_crypt.enterText': 'Você desce para a Cripta Vazia...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Você volta à luz do dia.',
   'entities.dungeons.sunken_bastion.name': 'O Bastião Submerso',
   'entities.dungeons.sunken_bastion.enterText':
     'Você avança pela água até as profundezas do Bastião Submerso...',
@@ -11375,8 +11324,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
     'Uma fortaleza inundada perdida para o pântano, mantida por defensores afogados e pela própria maré crescente.',
   'guide.dungeonsPage.bastionName': 'O Bastião Submerso',
   'guide.dungeonsPage.heading': 'Masmorras e Raides',
-  'guide.dungeonsPage.hollowBody':
-    'Uma cripta de capela saqueada, onde os recém-mortos se recusam a descansar. O primeiro teste de verdade de um grupo novo.',
   'guide.dungeonsPage.hollowName': 'A Cripta Vazia',
   'guide.dungeonsPage.intro':
     'Quando o mundo aberto não basta, reúna um grupo e entre em uma instância: uma cópia privada de uma masmorra feita só para o seu grupo.',
@@ -13221,10 +13168,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'O velho Mandíbula Cinzenta, enfim',
   'entities.letters.letter_q_greyjaw.body':
     'As notícias correm depressa numa cidade tão pequena. Ontem à noite os pastores brindaram à sua saúde, e Wilkes jura que o lobo era do tamanho de uma carroça. Deixe que aumentem a história: você mereceu.\n\nFaça uma refeição por conta da guarda.\n- Marechal Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Irmão Aldric',
-  'entities.letters.letter_q_hollow.subject': 'O que você fez na escuridão',
-  'entities.letters.letter_q_hollow.body':
-    'Poucos saberão o que estava enterrado naquela baixada, e menos ainda acreditariam. Eu sei, e não vou esquecer.\n\nQue seu caminho continue iluminado.\n- Irmão Aldric',
   'hudChrome.gathering.herbalism': 'Herborismo',
   'hudChrome.gathering.logging': 'Lenharia',
   'hudChrome.gathering.mining': 'Mineração',
@@ -20445,38 +20388,9 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_shell_slam': 'Golpe de casco',
   'abilityUi.cast.bastion_tide_sentence': 'Sentença da maré',
   'abilityUi.cast.bastion_veil_rise': 'Véu de névoa',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Sopro de chama tumular',
-  'abilityUi.cast.crypt_carrion_eye': 'Olho carniceiro',
-  'abilityUi.cast.crypt_grave_bolt': 'Descarga sepulcral',
-  'abilityUi.cast.crypt_grave_cleave': 'Talho sepulcral',
-  'abilityUi.cast.crypt_grave_rupture': 'Ruptura sepulcral',
-  'abilityUi.cast.crypt_gravespark_volley': 'Salva de centelhas sepulcrais',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Órgão de ossos',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Canto fúnebre do vazio',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Berro de pavor',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Dobre ardente',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Dobre ardente',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Dobre ardente',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Dobre ardente',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Passagem de fogo da pira',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Lamento da noiva',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Abraço congelado',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Abraço congelado',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Toque fúnebre',
-  'abilityUi.cast.crypt_marrow_crush': 'Esmagamento de medula',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Golpe do coveiro',
-  'abilityUi.cast.crypt_marrow_measure': 'Medido para a cova',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Pazada',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Ceifar os inquietos',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Pulso de sombras',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Cuspe de seda congelada',
-  'abilityUi.cast.crypt_stone_shriek': 'Grito de pedra',
-  'abilityUi.cast.crypt_tail_lash': 'Chicotada de cauda',
-  'abilityUi.cast.crypt_wing_gust': 'Rajada de asas',
   'abilityUi.cast.ghost_captain_anchor': 'Âncora amaldiçoada',
   'abilityUi.cast.ghost_captain_boarding': 'Abordagem fantasma',
   'abilityUi.cast.ghost_captain_broadside': 'Salva espectral',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Reacender a vela',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Tombar braseiro',
   'abilityUi.cast.sanctum_branding_iron': 'Ferro de marcar',
   'abilityUi.cast.sanctum_cinder_breath': 'Sopro de cinzas',
@@ -20547,8 +20461,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.wildheart_toad_hex': 'Feitiço de sapo',
   'abilityUi.cast.wildheart_war_roar': 'Rugido de guerra',
   'abilityUi.cast.wildheart_zulgar_pulse': 'Pulso do Coração Selvagem',
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmonia',
-  'hudChrome.cryptAlert.soulTitle': 'Alma presa',
   'hudChrome.sanctumAlert.lockboundTitle': 'Preso ao selo',
   'hudChrome.sanctumAlert.slabTitle': 'Laje de gelo',
   'hudChrome.wildheartAlert.bondTitle': 'Vínculo da matilha',
@@ -20583,8 +20495,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'bossJournal.wildheart.bloom.spitName': 'Cuspe floral',
   'entities.mobs.bastion_drowned_anchor.name': 'Âncora afogada',
   'entities.mobs.bastion_gaol_cage.name': 'Jaula de ferro',
-  'entities.mobs.bound_soul.name': 'Alma presa',
-  'entities.mobs.crypt_remembrance_candle.name': 'Vela da lembrança',
   'entities.mobs.muster_footman.name': 'Infante da convocação',
   'entities.mobs.muster_sergeant.name': 'Sargento da convocação',
   'abilityUi.cast.bastion_brine_mend': 'Restauração de salmoura',
@@ -20593,17 +20503,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_vael_sink': 'Para dentro da névoa',
   'abilityUi.cast.bastion_veil_gather': 'Névoa se formando',
   'abilityUi.cast.cantor_last_verse': 'O último verso',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Verso ininterrupto',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Descendo do céu',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Passagem de ataque',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Congelamento nupcial',
-  'abilityUi.cast.crypt_morthen_descend': 'Descida',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Proclamação sepulcral',
-  'abilityUi.cast.crypt_morthen_rise': 'Ascensão do Gravecaller',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Rito dos inquietos',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'O rito desperta',
-  'abilityUi.cast.crypt_murder_call': 'Chamado da revoada',
-  'abilityUi.cast.crypt_raise_bones': 'Erguer ossos',
   'abilityUi.cast.sanctum_goadsmith_rerivet': 'Rebitar novamente',
   'abilityUi.cast.sanctum_korgath_stomp': 'Pisada estremecedora',
   'abilityUi.cast.sanctum_korzul_break_free': 'Libertar-se',
@@ -20744,7 +20643,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'character.emptySlot': 'Espaço de personagem disponível',
   'character.lockoutWeeklyQuests': 'Missões semanais',
   'character.membershipSlots': 'Desbloqueie espaços com uma assinatura',
-  'hudChrome.cryptAlert.riteTitle': 'Rito dos inquietos',
   'bossJournal.bastion.captain.anchorResponse': 'Saia da faixa antes de disparar.',
   'bossJournal.bastion.captain.boardingResponse': 'Afaste-se para o lado da faixa.',
   'bossJournal.bastion.captain.phaseName': 'O Fosso',
@@ -22549,7 +22447,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.buddyMenu.rename': 'Renomear companheiro',
   'hudChrome.collections.actions.dismiss': 'Dispensar',
   'hudChrome.collections.state.owned': 'Coletado',
-  'hudChrome.cryptAlert.timeAria': 'Restam {seconds} segundos',
   'hudChrome.expeditions.dismiss': 'Dispensar',
   'hudChrome.kitUse.timeAria': 'Restam {seconds} segundos',
   'hudChrome.nameplate.npcRole.innkeeper': 'Estalajadeiro',
@@ -22603,20 +22500,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Javali Presa Cornuda',
-  'entities.mobs.candlewright_acolyte.name': 'Acólito Fabricante de Velas',
-  'entities.mobs.cantor_ilvane.name': 'Cantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Bruto de Ossos',
-  'entities.mobs.crypt_bone_minion.name': 'Lacaio de Ossos',
-  'entities.mobs.crypt_bone_pile.name': 'Ossos Agitados',
-  'entities.mobs.crypt_carrion_crow.name': 'Corvo Carniceiro',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gárgula da Capela',
-  'entities.mobs.crypt_crow_caller.name': 'Invocador de Corvos',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adepto Gravecaller',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Necromante Gravecaller',
-  'entities.mobs.crypt_knellwyrm.name': 'Serpe do Dobre',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Degolador do Ossuário',
-  'entities.mobs.crypt_ossuary_drake.name': 'Draco do Ossuário',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Guerreiro do Ossuário',
   'entities.mobs.drowned_pilgrim.name': 'Peregrino Afogado',
   'entities.mobs.drowned_sergeant.name': 'Sargento Afogado',
   'entities.mobs.drowned_watchman.name': 'Vigia Afogado',
@@ -22626,12 +22509,9 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Carcereiro Ossick',
   'entities.mobs.glacier_splinter.name': 'Estilhaço de Geleira',
   'entities.mobs.great_saurian.name': 'Grande Sauriano',
-  'entities.mobs.hollow_chorister.name': 'Corista Vazio',
-  'entities.mobs.hollow_gravedigger.name': 'Coveiro Vazio',
   'entities.mobs.howdah_hexcaller.name': 'Invocador de Feitiços da Plataforma',
   'entities.mobs.ice_wraith.name': 'Espectro de Gelo',
   'entities.mobs.lagoon_snapper.name': 'Tartaruga Mordedora da Lagoa',
-  'entities.mobs.marrow_restless_bones.name': 'Ossos Inquietos',
   'entities.mobs.mere_hydra_head_center.name': 'Hidra da Lagoa',
   'entities.mobs.mere_hydra_head_left.name': 'Hidra da Lagoa',
   'entities.mobs.mere_hydra_head_right.name': 'Hidra da Lagoa',
@@ -22641,12 +22521,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_drillmaster.name': 'Instrutor da Convocação',
   'entities.mobs.muster_effigy.name': 'Capataz de Palha',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogro Puxador de Trenó',
-  'entities.mobs.ossuary_sentinel.name': 'Sentinela do Ossuário',
-  'entities.mobs.rime_egg_sac.name': 'Saco de Ovos de Geada',
   'entities.mobs.rime_whelp.name': 'Filhote de Geada',
-  'entities.mobs.rimeweb.name': 'Dama do Frio nos Ossos',
-  'entities.mobs.rimeweb_hatchling.name': 'Filhote de Teia de Geada',
-  'entities.mobs.rimeweb_spinner.name': 'Tecelã de Teia de Geada',
   'entities.mobs.sanctum_shackle_anvil.name': 'Grilhão da Bigorna',
   'entities.mobs.sanctum_shackle_bellows.name': 'Grilhão do Fole',
   'entities.mobs.sanctum_shackle_hammer.name': 'Grilhão do Martelo',
@@ -22735,14 +22610,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.selectedItem': 'Desmarcar {item}, {count}',
   'hudChrome.courier.send': 'Enviar mensageiro',
   'hudChrome.courier.waiting': 'Esperando para devolver seus itens',
-  'hudChrome.cryptAlert.embracedTitle': 'Abraço congelado!',
-  'hudChrome.cryptAlert.graspTitle': 'Agarrão da cova!',
-  'hudChrome.cryptAlert.graveTitle': 'Em uma Cova aberta!',
-  'hudChrome.cryptAlert.knellTitle': 'Dobre ardente!',
-  'hudChrome.cryptAlert.lamentTitle': 'Lamento da noiva!',
-  'hudChrome.cryptAlert.measuredTitle': 'Medido para a cova!',
-  'hudChrome.cryptAlert.reapTitle': 'Ceifar os inquietos!',
-  'hudChrome.cryptAlert.tollTitle': 'Toque fúnebre!',
   'hudChrome.deeds.buddiesNone': 'Sem companheiro',
   'hudChrome.deeds.buddiesSection': 'Companheiros',
   'hudChrome.deeds.buddyDragHint': 'Arraste para sua barra de ações',
@@ -24036,50 +23903,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
     'Recebe {pct}% menos dano enquanto outro Vigia Afogado está a menos de {radius} jardas. Separe-os.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'As correntes foram rompidas. Não luta mais, não pode ser ferido e logo vai embora.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Aumenta o dano recebido em {pct}%: {per}% por acúmulo, agora {stacks} de {max}. Cada Golpe do coveiro adiciona um acúmulo e reinicia a duração em {seconds} s.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Todos os corvos da luta perseguem você por {seconds} s. Corra até o tanque para eliminar a revoada toda junta.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Canta mais rápido: Canto fúnebre do vazio leva {cast} s em vez de {castNormal} s e chega a cada {every} s em vez de {everyNormal} s; o Órgão de ossos toca {waves} ondas de notas em vez de {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Reduz a velocidade de movimento em {pct}%. Pazada atinge todos à frente do Sacristão Marrow: fique atrás dele.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Erguido nos braços da Dama: não pode agir e recebe {tick} de dano de Gelo por segundo ({tickHeroic} no heroico). Se o grupo causar dano equivalente a {share}% da vida máxima dela ({shareHeroic}% no heroico), ela coloca você no chão com cuidado; se segurar você por {hold} s no alto, deixa cair no gelo por de {min} a {max} de dano (de {heroicMin} a {heroicMax} no heroico).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Causa {pct}% mais dano: {per}% por Alma presa que o alcançou, agora {stacks} de {max}, pelo resto da luta. Cada alma que o alcança também cura {heal}% da vida máxima dele. Entre no caminho de uma alma para recebê-la no lugar dele.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Recebe {pct}% menos dano, e a pedra engrossa a cada {every} s, até {max} camadas. Um atordoamento a estilhaça e faz receber {cracked}% mais dano por {seconds} s.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Mãos irrompem do círculo sob você em {fuse} s: todos a menos de {radius} jardas de onde ele foi colocado ficam enraizados por {root} s e recebem de {min} a {max} de dano de Sombra. Saia do círculo.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Preso pelas mãos da cova: não pode se mover por {seconds} s.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Recebe {bite} de dano de Sombra por segundo ({biteHeroic} no heroico) enquanto o Rito dos inquietos dura, aumentando em {step} ({stepHeroic} no heroico) a cada {every} s. Reacenda as Velas da Lembrança para terminar.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Dentro de uma Cova aberta: velocidade de movimento reduzida em {slow}% e {damage} de dano de Sombra por segundo ({heroic} no heroico). No heroico, permanecer {linger} s em uma cova ergue Ossos Inquietos. Saia da cova.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Ataca {pct}% mais rápido enquanto está em uma Cova aberta. Mantenha-o fora das covas.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Recebe {pct}% menos dano: {per}% por corista vivo dela. Mate os coristas primeiro.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Voa sobre o Círculo Ritual, fora de alcance. Marca metade do círculo por {mark} s e despeja fogo fantasma nessa metade: de {min} a {max} de dano de Fogo a todos nela. Queima {breaths} metades por voo e depois pousa.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Quando Lamento da noiva termina, causa de {min} a {max} de dano de Gelo (de {heroicMin} a {heroicMax} no heroico) a quem não estiver a menos de {radius} jardas de uma lanterna sepulcral acesa. A lanterna protege os {cap} jogadores mais próximos, depois apaga e não serve no próximo Lamento.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Seu próximo Lamento da noiva causa {pct}% mais dano: {per}% por acúmulo, até {max}. Receba o próximo sob a luz de uma lanterna.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Quando termina, uma Cova aberta se abre onde você estiver: de {min} a {max} de dano (de {heroicMin} a {heroicMax} no heroico) a todos a menos de {radius} jardas. A cova fica pelo resto da luta; leve a marca à borda do pátio, longe do grupo.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Atordoado: a proteção estilhaçada o impede de agir por {seconds} s.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Recebe {pct}% mais dano por {seconds} s: as velas reacendidas romperam sua proteção. Use seus ataques mais fortes agora.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'No gelo escorregadio: sua velocidade muda no máximo {grip} jardas/s a cada segundo, então você demora a arrancar, continua deslizando ao parar e faz curvas amplas ao virar. Saia do gelo para recuperar a firmeza.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Imune a dano enquanto vai até a corda e toca o Sino Funerário. Ao terminar, o Toque causa de {min} a {max} de dano de Sombra (de {heroicMin} a {heroicMax} no heroico) a todos, e cada Cova aberta libera Ossos Inquietos.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Imune a dano enquanto canaliza o Rito dos inquietos no altar: {lit} de {total} Velas da Lembrança reacendidas. Reacender uma exige canalizar {channel} s e drena {drain}% da vida máxima de quem acende por segundo ({drainHeroic}% no heroico); golpes não interrompem, mas um passo ou atordoamento sim. A última vela rompe a proteção. No heroico, acenda na ordem do Livro: uma vela errada apaga a última acesa e causa de {wrongMin} a {wrongMax} de dano de Sombra a quem acende.',
   'hudChrome.auraEffect.effigyLanternOut':
     'A lanterna do Capataz de Palha está apagada para você: seus golpes e os do seu mascote ignoram a Couraça de tábuas e causam dano completo',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -24255,31 +24078,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.membership': 'Renove sua assinatura para iniciar outra viagem.',
   'hudChrome.courier.selected': '{count} / {limit} pilhas selecionadas',
   'hudChrome.courier.unavailable': 'Invoque seu mensageiro para planejar uma entrega.',
-  'hudChrome.cryptAlert.embracedLine':
-    'Seu grupo precisa causar dano à Dama do Frio nos Ossos para soltar você do agarrão',
-  'hudChrome.cryptAlert.graspLine':
-    'Saia do círculo marcado antes de as mãos surgirem para evitar dano e enraizamento',
-  'hudChrome.cryptAlert.graveLine': 'A terra da cova queima e deixa você lento: saia dela',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Mate os coristas para remover a redução de dano de {pct}% de Ilvane',
-  'hudChrome.cryptAlert.knellLine':
-    'Fogo fantasma cobre esta metade do círculo quando a barra acaba: vá para a outra metade',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Entre na luz de uma lanterna acesa para evitar o dano do lamento: cabem apenas dois jogadores por lanterna',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Fique na luz desta lanterna acesa para evitar o dano do lamento: você tem uma vaga protegida',
-  'hudChrome.cryptAlert.measuredLine':
-    'Vá à borda do pátio antes de a marca terminar para manter a cova danosa longe do grupo',
-  'hudChrome.cryptAlert.reapLine':
-    'Vá para trás de Morthen para evitar a foice que atinge todos à frente',
-  'hudChrome.cryptAlert.riteLine':
-    'Reacenda todas as Velas da Lembrança para romper a imunidade de Morthen: {lit} de {total} acesas',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Reacenda as velas na ordem do Livro para romper a imunidade de Morthen: uma vela errada desfaz progresso ({lit}/{total})',
-  'hudChrome.cryptAlert.soulLine':
-    'Intercepte a alma para impedir que cure Morthen e aumente seu dano. Recebê-la causa dano em você',
-  'hudChrome.cryptAlert.tollLine':
-    'Prepare-se para lutar contra os esqueletos erguidos das covas abertas: Marrow fica imune enquanto toca o sino',
   'hudChrome.deeds.buddiesEmpty': 'Colete um companheiro para invocá-lo desta prateleira.',
   'hudChrome.deeds.looksEmpty': 'Este companheiro ainda não tem aparências desbloqueadas.',
   'hudChrome.deeds.looksNoBuddy': 'Invoque um companheiro para escolher sua aparência aqui.',
@@ -24331,44 +24129,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
     'Tensão (afaste-se de cada pilar cuja corrente ainda está intacta)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Coro e Solo (agrupem-se em uma marca e espalhem-se da outra)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Órgão de ossos (a cada 26 segundos ela toca: duas ondas de notas de sombra explodem em faixas da galeria, de 100 a 115 de dano no normal dentro de uma faixa; a segunda onda preenche as brechas da primeira)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Congelamento nupcial (com metade da vida, todo o piso da ravina congela: gelo escorregadio pelo resto da luta)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Lamento da noiva (a cada 22 segundos, um lamento de 3 segundos: de 60 a 75 de dano de gelo no normal a quem está fora da luz de uma lanterna sepulcral acesa, com mais metade desse dano por acúmulo de Lamento persistente dos Lamentos já recebidos. Uma lanterna protege no máximo dois jogadores e apaga por 28 segundos após proteger alguém; dividam-se e revezem)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Toque fúnebre (com 66 e 33 por cento de vida, vai à corda do sino, imune a dano, e toca por 3 segundos: de 30 a 38 de dano de sombra a todos no normal, e cada Cova aberta ergue Ossos Inquietos)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Crescendo musical (abaixo de 30 por cento de vida, o Canto fúnebre leva 1,8 segundo e chega a cada 11 segundos, e o órgão toca uma terceira onda)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Canto fúnebre do vazio (a cada 16 segundos, um canto de 2,5 segundos que pode ser interrompido: se terminar, de 105 a 125 de dano de sombra no normal e silêncio de 4 segundos em todos a menos de 45 jardas que possam vê-la; interrompa ou se esconda atrás de um pilar do coro)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Abraço congelado (a cada 30 segundos, pega um jogador que não seja o tanque e sobe 5 jardas com ele, causando 6 de dano de gelo por segundo: cause dano equivalente a 6 por cento da vida dela em 8 segundos para colocá-lo no chão; senão, deixa cair por de 150 a 180 de dano no normal)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Chamado sepulcral (a cada 15 segundos, uma Alma presa vem da próxima alcova de sarcófago até ele; ao alcançá-lo, fica Empanturrado de mortos, com 10 por cento mais dano por alma até 10 acúmulos, e cura 3 por cento da vida. Um jogador no caminho recebe no lugar dele: de 12 a 16 de dano de sombra no normal)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmonia (cada corista vivo faz ela receber 30 por cento menos dano: mate os coristas primeiro)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroico: Mais uma estrofe (um corista morto por 10 segundos enquanto o outro vive se ergue de novo; matem os dois juntos) e Verso ininterrupto (cada terceiro Canto fúnebre não pode ser interrompido: esconda-se)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroico: toda lanterna acesa também apaga sozinha após 30 segundos e fica apagada por 10; Abraço congelado pega dois jogadores e solta ao receber dano equivalente a 4,4 por cento da vida dela',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroico: Golpe do coveiro a cada 9 segundos no tanque (cada acúmulo faz receber 6 por cento mais dano por 20 segundos, até 6 acúmulos), Vigor sepulcral (ataca 30 por cento mais rápido dentro de uma cova) e Terra inquieta (quem fica 2 segundos numa cova ergue Ossos Inquietos ali)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Medido para a cova (a cada 15 segundos marca um jogador que não seja o tanque; 4 segundos depois uma Cova aberta surge embaixo, de 42 a 52 de dano a menos de 3 jardas no normal; o fosso fica pela luta: 9 de dano por segundo e movimento 40 por cento mais lento dentro. Coloque as covas na borda do pátio)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroico: Nomear os mortos (o Livro indica a ordem das velas: uma errada apaga a última acesa e causa de 252 a 288 de dano de sombra a quem acende; cada reacendimento drena 8 por cento por segundo), Agarrão da cova (a cada 16 segundos, 2 jogadores recebem um círculo de 4 jardas; após 1,5 segundo, mãos surgem: enraizamento de 3 segundos e de 162 a 198 de dano de sombra) e Dobre ardente da Serpe do Dobre (levanta voo e marca metade do círculo por 4,5 segundos, depois despeja fogo fantasma nessa metade por de 1.000 a 1.120 de dano de fogo, 3 metades por voo)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Pulso de sombras (a cada 12 segundos, um lançamento de 2 segundos e de 24 a 30 de dano de sombra no normal a todos a menos de 12 jardas dele; afaste-se. A cada 9 segundos nos Últimos ritos)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Ceifar os inquietos (abaixo de 35 por cento de vida, as almas param; a cada 14 segundos varre com a foice após um lançamento de 2 segundos: de 55 a 65 de dano de sombra no normal num arco de 120 graus, 14 jardas à frente. Pulso de sombras passa a chegar a cada 9 segundos)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Caminho de geada (deixa geada escorregadia por onde passa por 25 segundos: nela você acelera devagar e continua deslizando ao parar ou virar)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Rito dos inquietos (com 65 por cento de vida, volta ao altar, imune dentro da Proteção inquieta; Frio sepulcral causa 3 de dano de sombra por segundo a todos, aumentando em 1 a cada 5 segundos, e 2 Ossos Inquietos saem das alcovas. Reacenda as 4 Velas da Lembrança: cada uma exige canalizar 4 segundos e drena 6 por cento da vida máxima de quem acende por segundo; golpes não interrompem, mas um passo ou atordoamento sim. A última vela rompe o Rito: ele fica atordoado por 8 segundos e recebe 25 por cento mais dano)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Pazada (a cada 11 segundos arremessa terra de cova num cone de 8 jardas à frente: uma vez e meia seu golpe e movimento 50 por cento mais lento por 6 segundos; fique atrás dele)',
   'hudChrome.finder.mech.drowned_anchor':
     'Âncora afogada (a vítima é puxada ao fosso: corra a menos de 3 jardas de um poste de amarração aceso para prender a corrente; o poste apaga por 30 segundos, ou rompa a corrente com 12 golpes, 16 no heroico)',
   'hudChrome.finder.mech.fog_veil':

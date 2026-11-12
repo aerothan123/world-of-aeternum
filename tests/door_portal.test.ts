@@ -110,21 +110,6 @@ describe('buildDoorBody: the Sunken Bastion Drowned Gate Tower', () => {
   });
 });
 
-describe('buildDoorBody: the Hollow Crypt Fallen Chapel', () => {
-  it('the entering Crypt door is only the invisible click box: the chapel draws the portal', () => {
-    expect(doorArchAuthoredElsewhere('hollow_crypt')).toBe(true);
-    const { body, portal } = buildDoorBody(true, 'hollow_crypt', false);
-    expect(portal).toBeUndefined();
-    let count = 0;
-    body.traverse((o) => {
-      if ((o as THREE.Mesh).isMesh) count++;
-    });
-    expect(count).toBe(1);
-    // the exit inside the instance keeps the generic arch and its swirl
-    expect(buildDoorBody(false, 'hollow_crypt', false).portal).toBeDefined();
-  });
-});
-
 describe('buildDoorBody: the Drowned Temple Moon Stair', () => {
   it('the entering Temple door is only the invisible click box: the moongate draws the portal', () => {
     expect(doorArchAuthoredElsewhere('drowned_temple')).toBe(true);

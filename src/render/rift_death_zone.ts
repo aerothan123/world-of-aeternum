@@ -40,12 +40,6 @@ import { HoardOrbitalLightning } from './hoard_orbital_lightning';
 import { HoardPulsarFx } from './hoard_pulsars';
 import { HoardSpellFx } from './hoard_spell_fx';
 import { HoardTentaclesFx } from './hoard_tentacles';
-import { CryptBossFx } from './hollow_crypt/crypt_boss_fx';
-import { CryptCreatureFx } from './hollow_crypt/crypt_creature_fx';
-import { CryptFinaleFx } from './hollow_crypt/crypt_finale_fx';
-import { CryptTrashFx } from './hollow_crypt/crypt_trash_fx';
-import { MorthenFx } from './hollow_crypt/morthen_fx';
-import { MorthenRiteFx } from './hollow_crypt/morthen_rite_fx';
 import {
   deathZonePlan,
   deathZonePulseSpeed,
@@ -82,16 +76,10 @@ const NOOP_FX = Object.freeze({
   HoardCocoonFx &
   HoardGoblinCoinsFx &
   HoardMimicCoinsFx &
-  CryptTrashFx &
   BastionFx &
   TempleFx &
   DeathBurstFx &
   WildheartFx &
-  CryptCreatureFx &
-  CryptFinaleFx &
-  MorthenFx &
-  MorthenRiteFx &
-  CryptBossFx &
   SanctumFx &
   SanctumBossFx &
   TrashEngineFx;
@@ -144,8 +132,6 @@ export class RiftDeathZoneVisuals {
   private hoardCocoon: HoardCocoonFx = NOOP_FX;
   private hoardGoblinCoins: HoardGoblinCoinsFx = NOOP_FX;
   private hoardMimicCoins: HoardMimicCoinsFx = NOOP_FX;
-  // Dungeon trash telegraphs (the Hollow Crypt's cleaves, breaths, rings, bursts).
-  private cryptTrash: CryptTrashFx = NOOP_FX;
   // The Sunken Bastion's trash and boss floor telegraphs.
   private bastionFx: BastionFx = NOOP_FX;
   // The Drowned Temple's trash and boss telegraphs, and the Mere Hydra's body.
@@ -154,17 +140,6 @@ export class RiftDeathZoneVisuals {
   private deathBursts: DeathBurstFx = NOOP_FX;
   // The Wildheart Basin's telegraphs and creature effects (the Saurian, the trash).
   private wildheartFx: WildheartFx = NOOP_FX;
-  private cryptCreatures: CryptCreatureFx = NOOP_FX;
-  // The Hollow Crypt finale: Morthen's entrance and the Knellwyrm.
-  private cryptFinale: CryptFinaleFx = NOOP_FX;
-  // Morthen the Lich Bishop's own body effects and his stance gestures.
-  private morthenFx: MorthenFx = NOOP_FX;
-  // Morthen's fight on the Rite Ring (telegraphs, ward, candles, souls, the
-  // Grasp) and the Knellwyrm's heroic Burning Knell.
-  private morthenRite: MorthenRiteFx = NOOP_FX;
-  // The Hollow Crypt's wing bosses: Sexton Marrow, the Lady of the Bonechill,
-  // Cantor Ilvane (their telegraphs, hazards and spell effects).
-  private cryptBosses: CryptBossFx = NOOP_FX;
   // The Gravewyrm Sanctum's telegraphs and creature effects (the Sledge
   // Tusker and its sledge, the trash).
   private sanctumFx: SanctumFx = NOOP_FX;
@@ -206,16 +181,10 @@ export class RiftDeathZoneVisuals {
     this.hoardCocoon.dispose();
     this.hoardGoblinCoins.dispose();
     this.hoardMimicCoins.dispose();
-    this.cryptTrash.dispose();
     this.bastionFx.dispose();
     this.templeFx.dispose();
     this.deathBursts.dispose();
     this.wildheartFx.dispose();
-    this.cryptCreatures.dispose();
-    this.cryptFinale.dispose();
-    this.cryptBosses.dispose();
-    this.morthenFx.dispose();
-    this.morthenRite.dispose();
     this.sanctumFx.dispose();
     this.sanctumBosses.dispose();
     this.trashEngine.dispose();
@@ -233,16 +202,10 @@ export class RiftDeathZoneVisuals {
     this.hoardCocoon = NOOP_FX;
     this.hoardGoblinCoins = NOOP_FX;
     this.hoardMimicCoins = NOOP_FX;
-    this.cryptTrash = NOOP_FX;
     this.bastionFx = NOOP_FX;
     this.templeFx = NOOP_FX;
     this.deathBursts = NOOP_FX;
     this.wildheartFx = NOOP_FX;
-    this.cryptCreatures = NOOP_FX;
-    this.cryptFinale = NOOP_FX;
-    this.cryptBosses = NOOP_FX;
-    this.morthenFx = NOOP_FX;
-    this.morthenRite = NOOP_FX;
     this.sanctumFx = NOOP_FX;
     this.sanctumBosses = NOOP_FX;
     this.trashEngine = NOOP_FX;
@@ -326,59 +289,6 @@ export class RiftDeathZoneVisuals {
     this.deathBursts = new DeathBurstFx(scene, groundY, world, compileGate);
     this.trashEngine = new TrashEngineFx(scene, groundY, world, compileGate, reducedMotion, shake);
     switch (nextScope) {
-      case 'hollow_crypt':
-        this.cryptTrash = new CryptTrashFx(
-          scene,
-          groundY,
-          world,
-          compileGate,
-          reducedMotion,
-          shake,
-        );
-        this.cryptCreatures = new CryptCreatureFx(
-          scene,
-          groundY,
-          world,
-          compileGate,
-          reducedMotion,
-          shake,
-        );
-        this.cryptFinale = new CryptFinaleFx(
-          scene,
-          groundY,
-          world,
-          compileGate,
-          reducedMotion,
-          shake,
-        );
-        this.cryptBosses = new CryptBossFx(
-          scene,
-          groundY,
-          world,
-          compileGate,
-          reducedMotion,
-          shake,
-          playGesture,
-        );
-        this.morthenFx = new MorthenFx(
-          scene,
-          groundY,
-          world,
-          compileGate,
-          reducedMotion,
-          shake,
-          playGesture,
-        );
-        this.morthenRite = new MorthenRiteFx(
-          scene,
-          groundY,
-          world,
-          compileGate,
-          reducedMotion,
-          shake,
-          playGesture,
-        );
-        break;
       case 'sunken_bastion':
         this.bastionFx = new BastionFx(
           scene,
@@ -500,16 +410,10 @@ export class RiftDeathZoneVisuals {
     this.hoardCocoon.update(dt);
     this.hoardGoblinCoins.update(dt);
     this.hoardMimicCoins.update(dt);
-    this.cryptTrash.update(dt);
     this.bastionFx.update(dt);
     this.templeFx.update(dt);
     this.deathBursts.update(dt);
     this.wildheartFx.update(dt);
-    this.cryptCreatures.update(dt);
-    this.cryptFinale.update(dt);
-    this.cryptBosses.update(dt);
-    this.morthenFx.update(dt);
-    this.morthenRite.update(dt);
     this.sanctumFx.update(dt);
     this.sanctumBosses.update(dt);
     this.trashEngine.update(dt);
@@ -547,27 +451,13 @@ export class RiftDeathZoneVisuals {
   handleEvent(event: SimEvent): boolean {
     this.syncScope(this.world?.player?.pos.x, this.zones.size > 0);
     this.hoardPresentation.handleEvent(event);
-    const crypt = this.cryptTrash.handleEvent(event);
-    this.cryptCreatures.handleEvent(event);
-    this.cryptFinale.handleEvent(event);
-    this.cryptBosses.handleEvent(event);
-    this.morthenFx.handleEvent(event);
-    this.morthenRite.handleEvent(event);
     const temple = this.templeFx.handleEvent(event);
     const basin = this.wildheartFx.handleEvent(event);
     const sanctum = this.sanctumFx.handleEvent(event);
     const sanctumBoss = this.sanctumBosses.handleEvent(event);
     const engine = this.trashEngine.handleEvent(event);
     this.summonRise.handleEvent(event);
-    return (
-      this.bastionFx.handleEvent(event) ||
-      temple ||
-      basin ||
-      sanctum ||
-      sanctumBoss ||
-      engine ||
-      crypt
-    );
+    return this.bastionFx.handleEvent(event) || temple || basin || sanctum || sanctumBoss || engine;
   }
 
   private create(key: string, zone: RiftBossDeathZoneView): void {

@@ -182,15 +182,15 @@ describe('trigger kinds grant once, with negatives', () => {
   it('dungeonClears: a normal clear never satisfies the heroic deed', () => {
     const sim = makeSim();
     const { meta } = primary(sim);
-    meta.deedStats.dungeonClears.hollow_crypt = 1;
+    meta.deedStats.dungeonClears.sunken_bastion = 1;
     sim.ctx.markDeedsDirty(meta.entityId);
     sim.tick();
-    expect(meta.deedsEarned.has('dgn_hollow_crypt')).toBe(true);
-    expect(meta.deedsEarned.has('dgn_hollow_crypt_heroic')).toBe(false);
-    meta.deedStats.dungeonClears['hollow_crypt:heroic'] = 1;
+    expect(meta.deedsEarned.has('dgn_sunken_bastion')).toBe(true);
+    expect(meta.deedsEarned.has('dgn_sunken_bastion_heroic')).toBe(false);
+    meta.deedStats.dungeonClears['sunken_bastion:heroic'] = 1;
     sim.ctx.markDeedsDirty(meta.entityId);
     sim.tick();
-    expect(meta.deedsEarned.has('dgn_hollow_crypt_heroic')).toBe(true);
+    expect(meta.deedsEarned.has('dgn_sunken_bastion_heroic')).toBe(true);
   });
 
   it('delveClears: the all-delves total sums every key; the per-delve heroic tier filters', () => {
@@ -417,7 +417,7 @@ describe('trigger kinds grant once, with negatives', () => {
     e.level = MAX_LEVEL;
     sim.ctx.markDeedsDirty(meta.entityId);
     sim.tick();
-    for (const id of ['cmb_giantslayer', 'hid_fall_death', 'dgn_morthen_flawless']) {
+    for (const id of ['cmb_giantslayer', 'hid_fall_death', 'dgn_ysolei_flawless']) {
       expect(meta.deedsEarned.has(id), id).toBe(false);
       expect(DEEDS[id].trigger.kind).toBe('manual');
     }
@@ -491,7 +491,6 @@ describe('grant path', () => {
     const sim = makeSim();
     const { meta } = primary(sim);
     for (const id of [
-      'dgn_hollow_crypt_heroic',
       'dgn_sunken_bastion_heroic',
       'dgn_drowned_temple_heroic',
       'dgn_gravewyrm_sanctum_heroic',
@@ -502,7 +501,7 @@ describe('grant path', () => {
     }
     sim.tick();
     expect(meta.deedsEarned.has('dgn_deepward')).toBe(false);
-    grantDeed(sim.ctx, meta, 'dlv_litany_heroic'); // the seventh requirement
+    grantDeed(sim.ctx, meta, 'dlv_litany_heroic'); // the sixth requirement
     sim.tick();
     expect(meta.deedsEarned.has('dgn_deepward')).toBe(true);
   });
@@ -1864,13 +1863,13 @@ describe('site wiring (real modules, not direct bumps)', () => {
       sim.partyAccept(pid);
     }
     const metas = [a, ...others].map((pid) => sim.players.get(pid)!);
-    const boss = { templateId: 'morthen' } as Entity;
+    const boss = { templateId: 'vael_the_mistcaller' } as Entity;
 
     // Four members parked out of XP range: the roster is five but the
     // participating snapshot is one, so the full-party stat must not bump.
     onDungeonFinalBossKilledForDeeds(sim.ctx, boss, undefined, [metas[0]]);
     expect(metas[0].deedStats.counters.fullPartyDungeonClears).toBe(0);
-    expect(metas[0].deedStats.dungeonClears.hollow_crypt).toBe(1); // the clear itself counts
+    expect(metas[0].deedStats.dungeonClears.sunken_bastion).toBe(1); // the clear itself counts
 
     // All five in the snapshot: every member records the full-party clear.
     onDungeonFinalBossKilledForDeeds(sim.ctx, boss, undefined, metas);

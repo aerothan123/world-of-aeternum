@@ -757,17 +757,17 @@ describe('GameServer sessions', () => {
     server.sim.partyInvite(stayer.pid, leaver.pid);
     server.sim.partyAccept(stayer.pid);
     server.sim.setDungeonDifficulty('heroic', leaver.pid);
-    server.sim.enterDungeon('hollow_crypt', leaver.pid);
-    server.sim.enterDungeon('hollow_crypt', stayer.pid);
+    server.sim.enterDungeon('sunken_bastion', leaver.pid);
+    server.sim.enterDungeon('sunken_bastion', stayer.pid);
 
     const inst = server.sim.ctx.instances.find(
-      (slot) => slot.partyKey !== null && slot.dungeonId === 'hollow_crypt',
+      (slot) => slot.partyKey !== null && slot.dungeonId === 'sunken_bastion',
     );
     if (!inst) throw new Error('expected claimed heroic instance');
     expect(inst.difficulty).toBe('heroic');
     const boss = inst.mobIds
       .map((id) => server.sim.entities.get(id))
-      .find((entity) => entity?.templateId === 'morthen');
+      .find((entity) => entity?.templateId === 'vael_the_mistcaller');
     const leaverEntity = server.sim.entities.get(leaver.pid);
     const stayerEntity = server.sim.entities.get(stayer.pid);
     if (!boss || !leaverEntity || !stayerEntity) throw new Error('expected heroic actors');
@@ -810,8 +810,8 @@ describe('GameServer sessions', () => {
     expect({
       stayerMarks: server.sim.meta(stayer.pid)!.heroicMarks,
       leaverMarks: server.sim.meta(leaver.pid)!.heroicMarks,
-      stayerLocked: server.sim.meta(stayer.pid)?.raidLockouts.has('hollow_crypt:heroic'),
-      leaverLocked: server.sim.meta(leaver.pid)?.raidLockouts.has('hollow_crypt:heroic'),
+      stayerLocked: server.sim.meta(stayer.pid)?.raidLockouts.has('sunken_bastion:heroic'),
+      leaverLocked: server.sim.meta(leaver.pid)?.raidLockouts.has('sunken_bastion:heroic'),
     }).toEqual({
       stayerMarks: 1,
       leaverMarks: 0,
@@ -830,16 +830,16 @@ describe('GameServer sessions', () => {
     server.sim.partyInvite(stayer.pid, leaver.pid);
     server.sim.partyAccept(stayer.pid);
     server.sim.setDungeonDifficulty('heroic', leaver.pid);
-    server.sim.enterDungeon('hollow_crypt', leaver.pid);
-    server.sim.enterDungeon('hollow_crypt', stayer.pid);
+    server.sim.enterDungeon('sunken_bastion', leaver.pid);
+    server.sim.enterDungeon('sunken_bastion', stayer.pid);
 
     const inst = server.sim.ctx.instances.find(
-      (slot) => slot.partyKey !== null && slot.dungeonId === 'hollow_crypt',
+      (slot) => slot.partyKey !== null && slot.dungeonId === 'sunken_bastion',
     );
     if (!inst) throw new Error('expected claimed heroic instance');
     const boss = inst.mobIds
       .map((id) => server.sim.entities.get(id))
-      .find((entity) => entity?.templateId === 'morthen');
+      .find((entity) => entity?.templateId === 'vael_the_mistcaller');
     const leaverEntity = server.sim.entities.get(leaver.pid);
     const stayerEntity = server.sim.entities.get(stayer.pid);
     if (!boss || !leaverEntity || !stayerEntity) throw new Error('expected heroic actors');
@@ -877,8 +877,8 @@ describe('GameServer sessions', () => {
       recipients: boss.lootRecipientIds,
       stayerMarks: server.sim.meta(stayer.pid)!.heroicMarks,
       leaverMarks: server.sim.meta(leaver.pid)!.heroicMarks,
-      stayerLocked: server.sim.meta(stayer.pid)?.raidLockouts.has('hollow_crypt:heroic'),
-      leaverLocked: server.sim.meta(leaver.pid)?.raidLockouts.has('hollow_crypt:heroic'),
+      stayerLocked: server.sim.meta(stayer.pid)?.raidLockouts.has('sunken_bastion:heroic'),
+      leaverLocked: server.sim.meta(leaver.pid)?.raidLockouts.has('sunken_bastion:heroic'),
     };
 
     resolveSave();

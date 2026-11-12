@@ -406,8 +406,6 @@ describe('the density model covers the shipped world', () => {
     expect(noXp).toEqual([
       'bastion_drowned_anchor',
       'bastion_gaol_cage',
-      'crypt_bone_pile',
-      'crypt_remembrance_candle',
       'dragonkin_egg',
       'gourdlight_swelling_gourd',
       'hoard_abyssal_tentacle',
@@ -424,7 +422,6 @@ describe('the density model covers the shipped world', () => {
       'muster_footman',
       'muster_sergeant',
       'nythraxis_bone_spike',
-      'rime_egg_sac',
       'sanctum_shackle_anvil',
       'sanctum_shackle_bellows',
       'sanctum_shackle_hammer',
@@ -456,15 +453,12 @@ describe('the density model covers the shipped world', () => {
     // so no camp cluster can ever hold those and the density model never sees them.
     // The five-dungeon rework's no-XP templates are instance-only the same way:
     // the Sunken Bastion's Drowned Anchor and Iron Cage and Vael's fog shades
-    // (encounters/sunken_bastion), the Hollow Crypt's rime egg sacs (its
-    // DungeonDef spawn list), the Gravewyrm Sanctum's four Seal Shackles
+    // (encounters/sunken_bastion), the Gravewyrm Sanctum's four Seal Shackles
     // (encounters/gravewyrm_sanctum/korgath.ts), the Wildheart Basin's Thorn
     // Sprout (encounters/wildheart_basin/gorgebloom.ts) and the Drowned
-    // Temple's Tideglass Reflections (encounters/drowned_temple/tideglass_colossus.ts),
-    // and the Hollow Crypt trash pass's Stirring Bones (a fallen Ossuary
-    // Warrior's bone pile, laid by mob/trash_kit/crypt_kit.ts), plus the
-    // Hollow Crypt's Remembrance Candle (Morthen's rite, 04d15bb863f, in the
-    // same rework). The Mirefen world boss (PR 4259, merged at e2c3a155551)
+    // Temple's Tideglass Reflections (encounters/drowned_temple/tideglass_colossus.ts).
+    // (The Hollow Crypt's rime egg sacs, Stirring Bones and Remembrance Candle
+    // left with the dungeon when the owner retired it, 2026-11-11.) The Mirefen world boss (PR 4259, merged at e2c3a155551)
     // adds five more that no camp places: Balgath's muster squads (footman,
     // chaplain, sergeant, drillmaster; content/mirefen_muster.ts posts them at
     // the command camp and warpath pickets) and muster_effigy, the Straw
@@ -489,13 +483,12 @@ describe('the density model covers the shipped world', () => {
       .filter((t) => t.broodEgg)
       .map((t) => t.id)
       .sort();
-    // The second clutch family is the Hollow Crypt rework's rime_egg_sac, a
-    // dungeon spawn-list shell (content/hollow_crypt.ts) with no CAMPS row (the
-    // camped no-XP pin above holds only the Drakemaw shell and spider_egg), so
-    // the belt exemption, keyed by DENSE_BY_DESIGN_SHELL's id, never sees it.
-    expect(shells).toEqual([DENSE_BY_DESIGN_SHELL, 'rime_egg_sac']);
+    // The Hollow Crypt rework's rime_egg_sac was the second clutch family; it
+    // left with the dungeon (retired 2026-11-11), so the Drakemaw shell is the
+    // only one again.
+    expect(shells).toEqual([DENSE_BY_DESIGN_SHELL]);
     // ...and each shell is counted as a hatchling that is genuinely
-    // farmable: guaranteed coin and real kill XP (the rimeweb_hatchling too).
+    // farmable: guaranteed coin and real kill XP.
     // A shell whose hatchling paid nothing would be the only case where
     // skipping it were honest, and the world has none.
     for (const id of shells) {

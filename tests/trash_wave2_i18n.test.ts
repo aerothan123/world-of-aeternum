@@ -2,9 +2,10 @@
 // name the five mechanics splice into the aura bar, the combat log, the meters,
 // the death recap and an engine orb's nameplate resolves through the client
 // matcher (sim_i18n.ts localizeSimAuraName, kit_object_name.ts), and each of
-// the three new bars reads as its name on the cast bars, translated in the
+// the new bars reads as its name on the cast bars, translated in the
 // non-Latin locales (the M16 rule). Read off the content, so a renamed record
-// reds here until its rows follow.
+// reds here until its rows follow. (The Gravecaller Adept's Gravespark Volley
+// left with the retired Hollow Crypt.)
 
 import { beforeAll, describe, expect, it } from 'vitest';
 import { MOBS } from '../src/sim/data';
@@ -21,7 +22,6 @@ import { localizeSimAuraName } from '../src/ui/sim_i18n';
 
 const NON_LATIN: SupportedLanguage[] = ['zh_CN', 'zh_TW', 'ja_JP', 'ko_KR', 'ru_RU'];
 
-const adept = MOBS.crypt_gravecaller_adept.trashKit?.nova;
 const order = MOBS.drowned_sergeant.trashKit?.bastion?.order;
 const throat = MOBS.bastion_revenant.trashKit?.walker;
 const lure = MOBS.moonlit_siren.trashKit?.temple?.lure;
@@ -33,13 +33,12 @@ describe('the trash pass second wave localizes', () => {
   });
 
   it('finds every record (the derivation is not vacuous)', () => {
-    for (const r of [adept, order, throat, lure, pearl]) expect(r).toBeDefined();
+    for (const r of [order, throat, lure, pearl]) expect(r).toBeDefined();
   });
 
   it('every name the sim splices resolves through the client matcher', () => {
     setLanguage('en');
     const names = [
-      adept?.name,
       order?.boltName,
       throat?.name,
       throat?.empower.name,
@@ -63,8 +62,8 @@ describe('the trash pass second wave localizes', () => {
     }
   });
 
-  it('the three bars read as their names, translated in the non-Latin locales', () => {
-    for (const def of [adept, order, lure]) {
+  it('the bars read as their names, translated in the non-Latin locales', () => {
+    for (const def of [order, lure]) {
       if (!def) throw new Error('cast');
       const id = def.castId;
       setLanguage('en');

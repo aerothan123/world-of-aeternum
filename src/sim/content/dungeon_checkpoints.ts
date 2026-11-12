@@ -13,7 +13,6 @@
 // real colliders: the listed gates reach the point, and none of them is spare.
 import { DROWNED_TEMPLE_ANCHORS } from './drowned_temple_layout';
 import { GRAVEWYRM_SANCTUM_ANCHORS } from './gravewyrm_sanctum_layout';
-import { HOLLOW_CRYPT_ANCHORS } from './hollow_crypt_layout';
 import { SUNKEN_BASTION_ANCHORS } from './sunken_bastion_layout';
 import { WILDHEART_BASIN_ANCHORS } from './wildheart_basin_layout';
 
@@ -28,28 +27,6 @@ export interface DungeonCheckpoint {
 const DROWNING_YARD_SOUTH_OF_WINCH = 12;
 
 export const DUNGEON_CHECKPOINTS: Readonly<Record<string, readonly DungeonCheckpoint[]>> = {
-  hollow_crypt: [
-    {
-      bosses: ['sexton_marrow'],
-      gates: ['grille', 'yard_barrier'],
-      pos: HOLLOW_CRYPT_ANCHORS.bellYard,
-    },
-    // Through the Frost-Web Curtain, the wing's own pack gate. The Webbed
-    // Causeway is the arena's second way in, but it falls with Rimeweb herself,
-    // so it would prove nothing a dead Rimeweb does not.
-    {
-      bosses: ['rimeweb'],
-      gates: ['grille', 'web_curtain'],
-      pos: HOLLOW_CRYPT_ANCHORS.greatWeb,
-    },
-    {
-      bosses: ['sexton_marrow', 'rimeweb', 'cantor_ilvane'],
-      gates: ['grille', 'twin_seals'],
-      pos: HOLLOW_CRYPT_ANCHORS.loft,
-    },
-    // Morthen's death begins the Knellwyrm finale, so the loft stays the
-    // recovery point throughout that encounter rather than its Rite Ring.
-  ],
   drowned_temple: [
     {
       bosses: ['choirmother_selthe'],

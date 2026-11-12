@@ -1,4 +1,4 @@
-// Dungeons: party-instanced elite content (the Hollow Crypt and friends).
+// Dungeons: party-instanced elite content (the Sunken Bastion and friends).
 //
 // Session I1 MOVES this slice verbatim out of the `Sim` monolith behind the
 // `SimContext` seam: door-trigger teleports, dungeon entry/exit, the per-dungeon
@@ -10,7 +10,7 @@
 // (I2*) and are untouched.
 //
 // Sim keeps same-named thin delegates (enterDungeon/leaveDungeon/instanceKeyFor/
-// instanceOriginOf/enterCrypt/leaveCrypt/updateDoorTriggers/updateInstances/
+// instanceOriginOf/leaveCrypt/updateDoorTriggers/updateInstances/
 // instanceSlotAt/instanceInfoAt) so every foreign `this.X` call site resolves unchanged,
 // and the seam exposes instanceKeyFor/instanceOriginOf/enterDungeon/leaveDungeon for
 // the N1/quest/delve code that reaches them through `ctx`.
@@ -33,7 +33,6 @@ import { tickDungeonGuides } from '../dungeon_guide';
 import { grantEarnedHeroicMarks } from '../earned_heroic_marks';
 import { tickTempleEncounters } from '../encounters/drowned_temple';
 import { tickSanctumEncounters } from '../encounters/gravewyrm_sanctum';
-import { tickCryptEncounters } from '../encounters/hollow_crypt';
 import { clearIgnivarEncounterAuras } from '../encounters/ignivar';
 import { tickBastionEncounters } from '../encounters/sunken_bastion';
 import { clearVarkhulEncounterAuras } from '../encounters/varkhul';
@@ -1041,11 +1040,8 @@ function scrubInstanceThreat(ctx: SimContext, inst: InstanceSlot, pid: number): 
   }
 }
 
-// Legacy single-dungeon entry points (tests + scripts use these).
-export function enterCrypt(ctx: SimContext, pid?: number): void {
-  enterDungeon(ctx, 'hollow_crypt', pid);
-}
-
+// Legacy single-dungeon exit (tests + scripts use it; its enterCrypt twin
+// went with the Hollow Crypt, 2026-11-11).
 export function leaveCrypt(ctx: SimContext, pid?: number): void {
   leaveDungeon(ctx, pid);
 }
@@ -1661,7 +1657,6 @@ export function updateInstances(ctx: SimContext): void {
   tickSanctumEncounters(ctx);
   // The Hollow Crypt's finale (encounters/hollow_crypt): Morthen's entrance
   // and the Knellwyrm, same slot.
-  tickCryptEncounters(ctx);
   // The optional lore guides (dungeon_guide): after every encounter, so a boss
   // pulled or killed this tick already reads as such. Draws no shared rng.
   tickDungeonGuides(ctx);

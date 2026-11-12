@@ -154,7 +154,7 @@ describe('charselectLockoutsHtml', () => {
         online: false,
         raidLockouts: {
           nythraxis_boss_arena: NOW + 2 * DAY + 3 * HOUR,
-          'hollow_crypt:heroic': NOW + 5 * HOUR,
+          'sunken_bastion:heroic': NOW + 5 * HOUR,
           'worldboss:thunzharr_waking_peak': NOW + 40 * MIN,
         },
       },
@@ -167,8 +167,8 @@ describe('charselectLockoutsHtml', () => {
         '<span class="char-lockout-name">Nythraxis Raid Arena</span> ' +
         '<span class="char-lockout-time ui-num">2d 3h</span></span></span>' +
         '<span class="char-lockout-group" data-kind="dungeon"><span class="char-lockout-group-name">Dungeons</span>' +
-        '<span class="char-lockout-item" title="You are locked to Heroic The Hollow Crypt. Unlocks in 5h 0m.">' +
-        '<span class="char-lockout-name">Heroic The Hollow Crypt</span> ' +
+        '<span class="char-lockout-item" title="You are locked to Heroic The Sunken Bastion. Unlocks in 5h 0m.">' +
+        '<span class="char-lockout-name">Heroic The Sunken Bastion</span> ' +
         '<span class="char-lockout-time ui-num">5h 0m</span></span></span>' +
         '<span class="char-lockout-group" data-kind="worldBoss"><span class="char-lockout-group-name">World bosses</span>' +
         '<span class="char-lockout-item" title="You are locked to Thunzharr, the Waking Peak. Unlocks in 40m.">' +

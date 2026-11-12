@@ -9,13 +9,13 @@
     "augment wave: fiestaPickOffers + arenaAugmentPick (fiestaAugments on meta + augmentOffer/Chosen events)",
     "multi-player meta"
   ],
-  "draws": 1177,
-  "drawDigest": "201250fe",
+  "draws": 1179,
+  "drawDigest": "97e6e506",
   "frames": [
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1197,
+      "nextId": 1401,
       "state": "5bc471b0",
       "events": "741638a5",
       "rng": {
@@ -29,9 +29,9 @@
     {
       "tick": 25,
       "time": 1.25,
-      "nextId": 1201,
-      "state": "0e5ebf05",
-      "events": "80da052b",
+      "nextId": 1405,
+      "state": "71fff3ab",
+      "events": "a8901c93",
       "rng": {
         "draws": 0,
         "digest": "811c9dc5"
@@ -40,9 +40,9 @@
     {
       "tick": 50,
       "time": 2.5,
-      "nextId": 1201,
-      "state": "e469bb2c",
-      "events": "426d4ef3",
+      "nextId": 1405,
+      "state": "4b1ae35e",
+      "events": "db8e02ed",
       "rng": {
         "draws": 66,
         "digest": "383a5306"
@@ -51,9 +51,9 @@
     {
       "tick": 75,
       "time": 3.75,
-      "nextId": 1201,
-      "state": "945ed702",
-      "events": "1ca05467",
+      "nextId": 1405,
+      "state": "2953cdfc",
+      "events": "24c984a5",
       "rng": {
         "draws": 246,
         "digest": "8266846b"
@@ -62,45 +62,45 @@
     {
       "tick": 100,
       "time": 5,
-      "nextId": 1201,
-      "state": "007af85d",
-      "events": "a713dc73",
+      "nextId": 1405,
+      "state": "eba1887f",
+      "events": "c0f0d609",
       "rng": {
-        "draws": 482,
-        "digest": "1bf852d5"
+        "draws": 481,
+        "digest": "69d505fe"
       }
     },
     {
       "tick": 125,
       "time": 6.25,
-      "nextId": 1201,
-      "state": "c51d9c6a",
-      "events": "0ec1dfe6",
+      "nextId": 1405,
+      "state": "f672430c",
+      "events": "88b08b16",
       "rng": {
-        "draws": 757,
-        "digest": "c785d863"
+        "draws": 768,
+        "digest": "dd6938a4"
       }
     },
     {
       "tick": 150,
       "time": 7.5,
-      "nextId": 1201,
-      "state": "40ad780d",
+      "nextId": 1405,
+      "state": "d260a0b3",
       "events": "741638a5",
       "rng": {
-        "draws": 1028,
-        "digest": "b0a85b51"
+        "draws": 1031,
+        "digest": "6cf85ced"
       }
     },
     {
       "tick": 163,
       "time": 8.15,
-      "nextId": 1201,
-      "state": "354cdd4f",
-      "events": "dcad17dc",
+      "nextId": 1405,
+      "state": "79da628d",
+      "events": "39beeef8",
       "rng": {
-        "draws": 1177,
-        "digest": "201250fe"
+        "draws": 1179,
+        "digest": "97e6e506"
       },
       "label": "final",
       "players": [
@@ -148,7 +148,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1197,
+          "entityId": 1401,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -257,7 +257,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1198,
+          "entityId": 1402,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -368,7 +368,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1199,
+          "entityId": 1403,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_dagger",
@@ -477,7 +477,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1200,
+          "entityId": 1404,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_hatchet"
@@ -556,7 +556,7 @@
               "name": "Battle Stance",
               "remaining": 3591.9,
               "school": "physical",
-              "sourceId": 1197
+              "sourceId": 1401
             }
           ],
           "blockChance": 0.05,
@@ -569,7 +569,7 @@
           "fiveSecondRule": 107.15,
           "healPower": 5,
           "hp": 822,
-          "id": 1197,
+          "id": 1401,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -587,9 +587,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -618,7 +618,7 @@
           "fiveSecondRule": 107.15,
           "healPower": 41,
           "hp": 665,
-          "id": 1198,
+          "id": 1402,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -636,9 +636,9 @@
           "resource": 1581,
           "resourceType": "mana",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 41,
           "stats": {
@@ -669,7 +669,7 @@
           "fiveSecondRule": 107.15,
           "healPower": 6,
           "hp": 700,
-          "id": 1199,
+          "id": 1403,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -694,9 +694,9 @@
           "resource": 100,
           "resourceType": "energy",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 6,
           "stats": {
@@ -727,7 +727,7 @@
           "fiveSecondRule": 107.15,
           "healPower": 16,
           "hp": 783,
-          "id": 1200,
+          "id": 1404,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -746,9 +746,9 @@
           "resource": 100,
           "resourceType": "focus",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 16,
           "stats": {

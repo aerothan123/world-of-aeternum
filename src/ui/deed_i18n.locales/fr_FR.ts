@@ -226,10 +226,6 @@ export const table: DeedLocaleTable = {
     name: 'On se relève',
     desc: 'Mourez pour la première fois ; cela arrive même aux meilleurs.',
   },
-  dgn_hollow_crypt: {
-    name: 'Brise-crypte',
-    desc: 'Vainquez Morthen le Gravecaller dans la Crypte creuse.',
-  },
   dgn_sunken_bastion: {
     name: 'Le Fogbinder délié',
     desc: 'Vainquez Vael le Fogbinder dans le Bastion englouti.',
@@ -241,10 +237,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Le wyrm des profondeurs',
     desc: 'Vainquez Korzul le Gravewyrm dans le Sanctuaire du Gravewyrm.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Héroïque : la Crypte creuse',
-    desc: 'Vainquez Morthen le Gravecaller dans la Crypte creuse en difficulté héroïque.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Héroïque : le Bastion englouti',
@@ -281,14 +273,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Cinquante portes plus bas',
     desc: 'Vainquez 50 boss de fin de donjon.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Sans tomber sur un os',
-    desc: "Vainquez Morthen le Gravecaller en difficulté héroïque sans qu'aucun membre du groupe ne meure.",
-  },
-  dgn_morthen_trio: {
-    name: 'Trois contre la tombe',
-    desc: 'Vainquez Morthen le Gravecaller à trois joueurs ou moins.',
   },
   dgn_olen_arc: {
     name: 'Esquiver la faucheuse',
@@ -1349,10 +1333,6 @@ export const table: DeedLocaleTable = {
     name: 'Toutes les têtes à terre',
     desc: "Tuez les trois têtes de l'Hydre du lac à moins de 10 secondes d'intervalle.",
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Pas un cheveu roussi',
-    desc: 'Vainquez le Knellwyrm sans que personne soit brûlé par son Mitraillage du bûcher.',
-  },
   dgn_turnkey_cage: {
     name: 'Aucune cage ne nous retient',
     desc: 'Vainquez le Porte-clefs de la prison sans que personne soit écrasé dans une Cage de fer.',
@@ -1397,22 +1377,6 @@ export const table: DeedLocaleTable = {
     name: 'Le dernier couplet',
     desc: 'Vainquez Ysolei, Avatar de la Lune noyée, avec le Dernier chantre du Chœur pâle à vos côtés.',
     title: 'Témoin du Chœur',
-  },
-  dgn_marrow_tidy: {
-    name: 'Un cimetière bien rangé',
-    desc: 'Vainquez le Sacristain Marrow en plaçant chaque Tombe ouverte au bord de la Cour de la cloche.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Personne ne reste suspendu',
-    desc: "Vainquez la Dame du Froid d'Os sans qu'elle lâche personne de son Étreinte glacée.",
-  },
-  dgn_ilvane_hush: {
-    name: 'Silence, maintenant',
-    desc: 'Vainquez le Chantre Ilvane sans que sa Complainte du creux touche qui que ce soit.',
-  },
-  dgn_morthen_candlelight: {
-    name: 'Toutes les bougies allumées',
-    desc: "Vainquez Morthen le Gravecaller après avoir rallumé les quatre Bougies du souvenir dans les 20 secondes suivant l'apparition de sa Protection des tourmentés.",
   },
   dgn_guild_first_contract: {
     name: 'Contrat signé',

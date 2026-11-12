@@ -1,6 +1,6 @@
 // Zone 1 — Eastbrook Vale (levels 1-7). The starter zone: town of Eastbrook,
-// wolves and boars, the bandit camp, and Brother Aldric's Gravecaller chain
-// leading to the Hollow Crypt.
+// wolves and boars, the bandit camp, and Brother Aldric's chapel-yard quests
+// (his Hollow Crypt chain was retired on 2026-11-11).
 
 import {
   EASTBROOK_LAYOUT,
@@ -487,7 +487,6 @@ export const ZONE1_MOBS: Record<string, MobTemplate> = {
     loot: [
       { copper: 22, chance: 1 },
       { itemId: 'tallow_candle', chance: 0.6 },
-      { itemId: 'blessed_wax', chance: 0.45, questId: 'q_rite' },
       { itemId: 'linen_scrap', chance: 0.25 },
       { itemId: 'mossy_handwraps', chance: 0.01 },
       { itemId: 'thornling_grips', chance: 0.01 },
@@ -595,8 +594,6 @@ export const ZONE1_MOBS: Record<string, MobTemplate> = {
     loot: [
       { copper: 30, chance: 1 },
       { itemId: 'bone_fragments', chance: 0.6 },
-      { itemId: 'ghostly_essence', chance: 0.55, questId: 'q_rite' },
-      { itemId: 'restless_skull', chance: 1, questId: 'q_bones' },
     ],
     scale: 1.0,
     color: 0xd5dbdb,
@@ -799,18 +796,7 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.brother_aldric.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.brother_aldric.facing,
     color: 0xf7f9f9,
-    questIds: [
-      'q_bones',
-      'q_whispers',
-      'q_names_of_the_dead',
-      'q_silence_the_call',
-      'q_rite',
-      'q_sexton',
-      'q_hollow',
-      'q_gravecallers_trail',
-      'q_divine_tome',
-      'q_fenbridge_muster',
-    ],
+    questIds: ['q_silence_the_call', 'q_divine_tome', 'q_fenbridge_muster'],
     greeting: 'The Light keep you. Even the dead find no rest here of late.',
   },
   smith_haldren: {
@@ -1237,27 +1223,6 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     itemRewards: {},
     minLevel: 4,
   },
-  q_bones: {
-    id: 'q_bones',
-    rev: 1, // objective rework (zones 1-3 dedupe): pre-rework in-flight runs reset on restore
-    name: 'The Restless Dead',
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: 'The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, $N, eight in all, so I may speak the rites over them and grant the peace they were denied.',
-    completionText: 'May they rest now, and may the Light forgive whatever woke them.',
-    objectives: [
-      {
-        type: 'collect',
-        itemId: 'restless_skull',
-        count: 8,
-        label: 'Restless Skulls recovered',
-      },
-    ],
-    xpReward: 700,
-    copperReward: 260,
-    itemRewards: { warrior: 'lychgate_buckler' },
-    minLevel: 5,
-  },
   q_supplies: {
     id: 'q_supplies',
     name: 'Stolen Supplies',
@@ -1273,42 +1238,6 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     itemRewards: {},
     minLevel: 3,
   },
-  q_whispers: {
-    id: 'q_whispers',
-    name: 'Whispers Below',
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: 'You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.',
-    completionText: `This sigil... it bears the mark of the Gravecallers, a cell of ${PALE_ACCORD_NAME}, the order that still keeps faith with Vauldren Sere, whom the old verses name ${OATHLESS_KING_TITLE}. I had prayed they were gone. This is worse than I feared, $N.`,
-    objectives: [
-      { type: 'collect', itemId: 'gravecaller_sigil', count: 1, label: "Gravecaller's Sigil" },
-    ],
-    xpReward: 400,
-    copperReward: 150,
-    itemRewards: {},
-    requiresQuest: 'q_bones',
-  },
-  q_names_of_the_dead: {
-    id: 'q_names_of_the_dead',
-    name: 'The Names of the Dead',
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: 'If the Gravecallers raised our dead, I must know whose graves they robbed. The chapel sexton kept a burial ledger, and the wind has scattered its pages across the chapel yard. Gather 3 of them for me, $N. The dead deserve to be called by their names.',
-    completionText:
-      "These poor souls... and look here. Sexton Marrow, the chapel's own living caretaker, his grave the first disturbed. Morthen began with the very man who buried Eastbrook's dead.",
-    objectives: [
-      {
-        type: 'collect',
-        itemId: 'weathered_ledger_page',
-        count: 3,
-        label: 'Weathered Ledger Page',
-      },
-    ],
-    xpReward: 600,
-    copperReward: 250,
-    itemRewards: {},
-    requiresQuest: 'q_whispers',
-  },
   q_silence_the_call: {
     id: 'q_silence_the_call',
     name: 'Silence the Call',
@@ -1323,81 +1252,9 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     xpReward: 750,
     copperReward: 300,
     itemRewards: {},
-    requiresQuest: 'q_names_of_the_dead',
-  },
-  q_rite: {
-    id: 'q_rite',
-    name: 'The Binding Rite',
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: "The crypt beneath the chapel must be unsealed if we are to stop the Gravecaller, but only a binding rite will let the living pass. I need 4 lumps of Blessed Tallow (the mine's burrowers hoard tallow by the crate) and 6 Ghostly Essences from the restless dead.",
-    completionText:
-      'It is done. The way below stands open... and may the Light forgive me for opening it. Gather your strongest companions before you descend, $N. No one should face the Hollow alone.',
-    objectives: [
-      { type: 'collect', itemId: 'blessed_wax', count: 4, label: 'Blessed Tallow' },
-      { type: 'collect', itemId: 'ghostly_essence', count: 6, label: 'Ghostly Essence' },
-    ],
-    xpReward: 700,
-    copperReward: 500,
-    itemRewards: {},
-    requiresQuest: 'q_whispers',
-  },
-  q_hollow: {
-    id: 'q_hollow',
-    name: 'Into the Hollow',
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: 'The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.',
-    completionText:
-      "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, $N, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
-    objectives: [
-      { type: 'kill', targetMobId: 'morthen', count: 1, label: 'Morthen the Gravecaller slain' },
-    ],
-    xpReward: 1080,
-    copperReward: 10000,
-    itemRewards: {
-      warrior: 'gravecaller_blade',
-      rogue: 'widowfang_dirk',
-      mage: 'gravecaller_staff',
-    },
-    requiresQuest: 'q_rite',
-    suggestedPlayers: 5,
-  },
-  q_sexton: {
-    id: 'q_sexton',
-    name: "The Sexton's Bell",
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: "The ledger named him and the crypt holds him: Sexton Marrow, the chapel's caretaker, the first man Morthen raised, guarding his master's door in death as faithfully as he kept the chapel in life. Take four companions into the Hollow Crypt and grant the old sexton the rest he was robbed of, $N.",
-    completionText:
-      'So Marrow is free at last. Ring no bell for him: he heard enough of them in life.',
-    objectives: [
-      { type: 'kill', targetMobId: 'sexton_marrow', count: 1, label: 'Sexton Marrow laid to rest' },
-    ],
-    xpReward: 1000,
-    copperReward: 600,
-    itemRewards: {
-      warrior: 'marrowtread_boots',
-      mage: 'sextons_slippers',
-      rogue: 'gravewalker_softboots',
-    },
-    requiresQuest: 'q_rite',
-    suggestedPlayers: 5,
-  },
-  q_gravecallers_trail: {
-    id: 'q_gravecallers_trail',
-    name: "The Gravecaller's Trail",
-    giverNpcId: 'brother_aldric',
-    turnInNpcId: 'brother_aldric',
-    text: 'Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, $N.',
-    completionText: `Morthen wrote to a 'Fogbinder' in the northern fen. ${PALE_ACCORD_NAME.charAt(0).toUpperCase()}${PALE_ACCORD_NAME.slice(1)} is not dead, $N. It has merely been patient.`,
-    objectives: [
-      { type: 'collect', itemId: 'morthen_grimoire', count: 1, label: "Morthen's Grimoire" },
-    ],
-    xpReward: 900,
-    copperReward: 400,
-    itemRewards: {},
-    requiresQuest: 'q_hollow',
+    // Re-gated on level when the Hollow Crypt chain it followed was retired
+    // (2026-11-11); q_bones once opened it at level 5.
+    minLevel: 5,
   },
   // --- Paladin-only Dawnbound Tome chain (learn Recall the Fallen). Step 1 with Brother
   // Aldric in the Vale opens the rite and sends you after him; the rite itself is
@@ -1423,7 +1280,7 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     copperReward: 200,
     itemRewards: {},
     requiredClass: ['paladin'],
-    requiresQuest: 'q_bones',
+    // Gated on level alone since q_bones was retired with the Hollow Crypt.
     minLevel: 6,
   },
   q_bandits: {
@@ -1473,7 +1330,9 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
       mage: 'sableweb_slippers',
       rogue: 'moggers_stomper_boots',
     },
-    requiresQuest: 'q_gravecallers_trail',
+    // Follows the Marshal's own bandit chain now that the Gravecaller's Trail
+    // was retired with the Hollow Crypt (2026-11-11).
+    requiresQuest: 'q_ringleader',
     minLevel: 6,
     suggestedPlayers: 3,
   },
@@ -1824,15 +1683,8 @@ export const ZONE1_QUEST_ORDER = [
   'q_supplies',
   'q_bandits',
   'q_mine',
-  'q_bones',
   'q_ringleader',
-  'q_whispers',
-  'q_names_of_the_dead',
   'q_silence_the_call',
-  'q_rite',
-  'q_sexton',
-  'q_hollow',
-  'q_gravecallers_trail',
   'q_divine_tome',
   'q_mogger',
   'q_prof_attune_smith',
@@ -1994,28 +1846,6 @@ export const ZONE1_OBJECTS: GroundObjectDef[] = [
       { x: 112, z: 50 },
       { x: 118, z: 39 },
     ],
-  },
-  {
-    itemId: 'gravecaller_sigil',
-    name: "Gravecaller's Sigil",
-    positions: [
-      { x: 84, z: 88 },
-      { x: 76, z: 92 },
-    ],
-  },
-  {
-    itemId: 'weathered_ledger_page',
-    name: 'Weathered Ledger Page',
-    positions: [
-      { x: 78, z: 84 },
-      { x: 83, z: 88 },
-      { x: 86, z: 92 },
-    ],
-  },
-  {
-    itemId: 'morthen_grimoire',
-    name: "Morthen's Grimoire",
-    positions: [{ x: 78, z: 86 }],
   },
 ];
 
@@ -2271,9 +2101,9 @@ export const ZONE1_PROPS: ZonePropsDef = {
   ],
   marshReeds: [],
   ruinRings: [
-    // The Fallen Chapel stands on this ring's site (the Hollow Crypt's world
-    // entrance, src/sim/hollow_crypt_entrance.ts) and brings its own nave piers,
-    // so the ring is bare: it keeps only its terrain pad and clearings.
+    // The Fallen Chapel (the Hollow Crypt's world entrance) stood on this ring's
+    // site until both were retired (2026-11-11). The ring stays bare, keeping
+    // only its terrain pad and clearings, until the rebuilt Eastbrook claims it.
     { x: 80, z: 78, ringR: 7, columns: 7, bare: true },
     // The chapel-rise ruin (-5, -60) is gone: the smithy's eaves reach over
     // its south column. The World of ClaudeCraft Studio map takes down the

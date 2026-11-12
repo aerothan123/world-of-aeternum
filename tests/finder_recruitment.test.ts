@@ -6,7 +6,7 @@ import { EMPTY_TEST_WORLD } from './sim_shared';
 
 const recruit: ExpeditionSettings = {
   kind: 'recruit',
-  activityId: 'hollow_crypt_normal',
+  activityId: 'sunken_bastion_normal',
   role: 'tank',
   details: { purpose: 'first_time', note: '  Learning together  ' },
 };
@@ -17,7 +17,7 @@ function setup() {
     noPlayer: true,
     world: EMPTY_TEST_WORLD,
   });
-  const add = (cls: PlayerClass = 'warrior', level = 8) => {
+  const add = (cls: PlayerClass = 'warrior', level = 12) => {
     const pid = sim.addPlayer(cls, `Player${sim.players.size}`);
     sim.setPlayerLevel(level, pid);
     sim.dungeonFinderSetRoles(['dps'], pid);
@@ -38,7 +38,7 @@ describe('atomic compact recruitment', () => {
       roles: ['tank'],
       myListing: {
         id: 1,
-        activityId: 'hollow_crypt_normal',
+        activityId: 'sunken_bastion_normal',
         tags: [],
         details: { purpose: 'first_time', note: 'Learning together' },
       },
@@ -107,7 +107,7 @@ describe('atomic compact recruitment', () => {
         join(sim, leader, target);
       }
       if (guard === 'capacity') for (let i = 0; i < 4; i++) join(sim, leader, add());
-      if (guard === 'level') join(sim, leader, add('warrior', 6));
+      if (guard === 'level') join(sim, leader, add('warrior', 11));
       if (guard === 'leaving') {
         const mate = add();
         join(sim, leader, mate);
@@ -124,8 +124,8 @@ describe('atomic compact recruitment', () => {
     (guard) => {
       const { sim, add, leader } = setup();
       if (guard === 'listing')
-        sim.dungeonFinderListingCreate('hollow_crypt_normal', ['learning'], leader);
-      if (guard === 'queue') sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], leader);
+        sim.dungeonFinderListingCreate('sunken_bastion_normal', ['learning'], leader);
+      if (guard === 'queue') sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], leader);
       if (guard === 'proposal') {
         const tank = add();
         const healer = add('priest');
@@ -133,17 +133,17 @@ describe('atomic compact recruitment', () => {
         sim.dungeonFinderSetRoles(['tank'], tank);
         sim.dungeonFinderSetRoles(['healer'], healer);
         for (const pid of [tank, healer, ...dps])
-          sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+          sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
         sim.tick();
         expect(sim.dungeonFinderInfoFor(leader)?.proposal).not.toBeNull();
       }
       if (guard === 'application') {
         const other = add();
-        sim.dungeonFinderListingCreate('hollow_crypt_normal', [], other);
+        sim.dungeonFinderListingCreate('sunken_bastion_normal', [], other);
         sim.dungeonFinderApply(sim.dungeonFinderBoardView()[0].id, leader);
       }
       if (guard === 'expedition' || guard === 'current_expedition') {
-        sim.enterDungeon('hollow_crypt', leader);
+        sim.enterDungeon('sunken_bastion', leader);
         if (guard === 'expedition') sim.dungeonFinderExpeditionOpen(leader);
       }
       const before = sim.dungeonFinderInfoFor(leader);
@@ -156,7 +156,7 @@ describe('atomic compact recruitment', () => {
 
   it('allows pre-entry recruitment after leaving a previous unlisted run', () => {
     const { sim, leader } = setup();
-    sim.enterDungeon('hollow_crypt', leader);
+    sim.enterDungeon('sunken_bastion', leader);
     sim.leaveDungeon(leader);
     sim.dungeonFinderExpeditionConfigure(recruit, leader);
     expect(sim.dungeonFinderInfoFor(leader)?.myListing?.details?.purpose).toBe('first_time');
@@ -176,11 +176,11 @@ describe('atomic compact recruitment', () => {
           sim.dungeonFinderSetRoles(['healer'], healer);
           queued.push(tank, healer, add('mage'), add('rogue'));
         }
-        for (const pid of queued) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+        for (const pid of queued) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
         if (state === 'proposal') sim.tick();
       }
       join(sim, leader, mate);
-      if (state === 'current_expedition') sim.enterDungeon('hollow_crypt', mate);
+      if (state === 'current_expedition') sim.enterDungeon('sunken_bastion', mate);
       const beforeLeader = sim.dungeonFinderInfoFor(leader);
       const beforeMate = sim.dungeonFinderInfoFor(mate);
       expect(beforeLeader?.queue).toBeNull();
@@ -202,7 +202,7 @@ describe('atomic compact recruitment', () => {
     const { sim, add, leader } = setup();
     const mate = add();
     const otherLeader = add();
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], otherLeader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], otherLeader);
     const unrelated = sim.dungeonFinderBoardView()[0];
     sim.dungeonFinderApply(unrelated.id, mate);
     expect(sim.dungeonFinderInfoFor(mate)?.myApplication?.listingId).toBe(unrelated.id);
@@ -291,7 +291,7 @@ describe('ordinary listing applications with one chosen role', () => {
         const meta = sim.players.get(applicant);
         if (!meta) throw new Error('missing applicant');
         meta.cls = 'warrior';
-      } else sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], applicant);
+      } else sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], applicant);
       sim.dungeonFinderApplicationRespond(applicant, true, leader);
       expect(sim.partyOf(applicant)).toBeNull();
       expect(sim.dungeonFinderInfoFor(applicant)?.roles).toEqual(['dps']);
@@ -312,7 +312,7 @@ describe('ordinary listing applications with one chosen role', () => {
         sim.dungeonFinderSetRoles(['tank'], tank);
         queued.push(tank, add('mage'), add('rogue'), add('hunter'));
       }
-      for (const pid of queued) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+      for (const pid of queued) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
       if (state === 'proposal') sim.tick();
       const before = sim.dungeonFinderInfoFor(applicant);
       sim.dungeonFinderExpeditionApply(sim.dungeonFinderBoardView()[0].id, 'healer', applicant);

@@ -215,10 +215,6 @@ export const table: DeedLocaleTable = {
     name: 'Phủi Bụi Đứng Dậy',
     desc: 'Chết lần đầu tiên; đến những người giỏi nhất cũng từng như thế.',
   },
-  dgn_hollow_crypt: {
-    name: 'Kẻ Phá Hầm Mộ',
-    desc: 'Đánh bại Morthen Kẻ Gọi Mộ trong Hầm Mộ Rỗng.',
-  },
   dgn_sunken_bastion: {
     name: 'Màn Sương Cởi Trói',
     desc: 'Đánh bại Vael Fogbinder trong Pháo Đài Chìm.',
@@ -230,10 +226,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Cự Long Bên Dưới',
     desc: 'Đánh bại Korzul Mộ Long trong Thánh Đường Mộ Long.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Anh Hùng: Hầm Mộ Rỗng',
-    desc: 'Đánh bại Morthen Kẻ Gọi Mộ trong Hầm Mộ Rỗng ở độ khó Anh Hùng.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Anh Hùng: Pháo Đài Chìm',
@@ -268,14 +260,6 @@ export const table: DeedLocaleTable = {
     desc: 'Kiếm Dấu Ấn Anh Hùng từ cả bốn hầm ngục Anh Hùng trong cùng một ngày.',
   },
   dgn_boss_clears_50: { name: 'Năm Mươi Cánh Cửa Sâu', desc: 'Đánh bại 50 trùm cuối hầm ngục.' },
-  dgn_morthen_flawless: {
-    name: 'Không Ai Bỏ Xương Lại',
-    desc: 'Đánh bại Morthen Kẻ Gọi Mộ ở độ khó Anh Hùng mà không một thành viên tổ đội nào tử trận.',
-  },
-  dgn_morthen_trio: {
-    name: 'Ba Người Chống Nấm Mồ',
-    desc: 'Đánh bại Morthen Kẻ Gọi Mộ với ba người chơi trở xuống.',
-  },
   dgn_olen_arc: {
     name: 'Né Bước Tử Thần',
     desc: 'Đánh bại Hiệp Sĩ Chỉ Huy Olen mà Vòng Chém Gặt của hắn không đánh trúng ai ngoài mục tiêu hiện tại của hắn.',
@@ -1331,10 +1315,6 @@ export const table: DeedLocaleTable = {
     name: 'Mọi Đầu Đều Gục',
     desc: 'Giết cả ba đầu của Hydra Hồ trong vòng 10 giây tính từ đầu tiên đến đầu cuối.',
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Không Cháy Một Sợi Tóc',
-    desc: 'Hạ Rồng Chuông Tử mà không ai bị đốt bởi Lướt Phun Lửa Thiêu của nó.',
-  },
   dgn_turnkey_cage: {
     name: 'Không Lồng Nào Giam Được Ta',
     desc: 'Hạ Kẻ Giữ Chìa Nhà Lao mà không ai bị nghiền trong Lồng Sắt.',
@@ -1379,22 +1359,6 @@ export const table: DeedLocaleTable = {
     name: 'Khổ Ca Cuối',
     desc: 'Hạ Ysolei, Hóa Thân Nguyệt Chết Chìm, với Người Lĩnh Xướng Cuối của Ca Đoàn Nhợt Nhạt bên cạnh.',
     title: 'Nhân Chứng Ca Đoàn',
-  },
-  dgn_marrow_tidy: {
-    name: 'Nghĩa Địa Gọn Gàng',
-    desc: 'Hạ Quản Mộ Marrow với mọi Mộ Mở đều được đặt ở rìa Sân Chuông.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Không Ai Bị Bỏ Treo',
-    desc: 'Hạ Phu Nhân Lạnh Xương mà không để cô ta làm rơi ai khỏi Vòng Ôm Băng Giá.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Im Nào',
-    desc: 'Hạ Người Lĩnh Xướng Ilvane mà không để Khúc Tang Rỗng của cô ta trúng bất kỳ ai.',
-  },
-  dgn_morthen_candlelight: {
-    name: 'Mọi Ngọn Nến Đều Sáng',
-    desc: 'Hạ Morthen Kẻ Gọi Mộ sau khi thắp lại cả bốn Nến Tưởng Niệm trong vòng 20 giây kể từ khi Kết Giới Bất An của hắn xuất hiện.',
   },
   dgn_guild_first_contract: {
     name: 'Khế Ước Đã Ký',

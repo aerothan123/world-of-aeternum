@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4acf7-ea6e5151-998ab81-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4ab52-b0ecb867-edad09f7-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4acf7-ea6e5151-998ab81",
+    "overworldBase": "4ab52-b0ecb867-edad09f7",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3594,14 +3594,7 @@
         "facing": -0.9599310885968813,
         "color": 16251385,
         "questIds": [
-          "q_bones",
-          "q_whispers",
-          "q_names_of_the_dead",
           "q_silence_the_call",
-          "q_rite",
-          "q_sexton",
-          "q_hollow",
-          "q_gravecallers_trail",
           "q_divine_tome",
           "q_fenbridge_muster",
           "c1_07_across",
@@ -6559,48 +6552,6 @@
           {
             "x": 112.82,
             "z": 44.45
-          }
-        ]
-      },
-      {
-        "itemId": "gravecaller_sigil",
-        "name": "Gravecaller's Sigil",
-        "positions": [
-          {
-            "x": 84,
-            "z": 88
-          },
-          {
-            "x": 76,
-            "z": 92
-          }
-        ]
-      },
-      {
-        "itemId": "weathered_ledger_page",
-        "name": "Weathered Ledger Page",
-        "positions": [
-          {
-            "x": 78,
-            "z": 84
-          },
-          {
-            "x": 83,
-            "z": 88
-          },
-          {
-            "x": 86,
-            "z": 92
-          }
-        ]
-      },
-      {
-        "itemId": "morthen_grimoire",
-        "name": "Morthen's Grimoire",
-        "positions": [
-          {
-            "x": 78,
-            "z": 86
           }
         ]
       },

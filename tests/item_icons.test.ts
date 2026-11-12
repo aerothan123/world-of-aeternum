@@ -423,8 +423,8 @@ describe('item webp icons', () => {
     }
     // The Hollow Crypt rework's per-boss loot left the ledger when its wave
     // (hollow-crypt-icons-2026-10-03) painted every non-weapon piece and the
-    // generated Heroic Hymnal: HOLLOW_CRYPT_ART_PENDING_ITEM_IDS is declared
-    // empty in content/hollow_crypt_items.ts.
+    // generated Heroic Hymnal; its empty seam left with the retired dungeon
+    // (2026-11-11).
     // Player housing furniture left the ledger when its render batch
     // (furniture-renders-2026-11-04) gave every piece an icon:
     // FURNITURE_ART_PENDING_ITEM_IDS is declared empty in content/furniture.ts.

@@ -11376,9 +11376,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.dungeons.gravewyrm_sanctum.enterText': 'Vzduch zchladne. Něco obrovského dole dýchá...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Vypotácíš se zpět do horského větru.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Svatyně Hrobodraka',
-  'entities.dungeons.hollow_crypt.enterText': 'Sestupuješ do Duté krypty...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Šplháš zpět na denní světlo.',
-  'entities.dungeons.hollow_crypt.name': 'Dutá krypta',
   'entities.dungeons.nythraxis_boss_arena.enterText': 'Procházíš zapečetěnými královskými dveřmi.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Vracíš se do chladného vzduchu Thornpeaku.',
   'entities.dungeons.nythraxis_boss_arena.name': 'Raidová aréna Nythraxis',
@@ -11409,10 +11406,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Zprávy se v tak malém městě šíří rychle. Pastevci včera pili na tvé zdraví a Wilkes přísahá, že ten vlk byl velký jako vůz. Ať přehánějí: zasloužil sis to.\n\nPřijď se najíst na hlídku.\n- Maršál Redbrook',
   'entities.letters.letter_q_greyjaw.sender': 'Maršál Redbrook',
   'entities.letters.letter_q_greyjaw.subject': 'Starý Šedočelista, konečně',
-  'entities.letters.letter_q_hollow.body':
-    'Jen málokdo se kdy dozví, co bylo pohřbeno v té dutině, a ještě méně by tomu věřilo. Já to vím a nezapomenu.\n\nAť je tvá cesta osvětlena.\n- Bratr Aldric',
-  'entities.letters.letter_q_hollow.sender': 'Bratr Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Tvůj čin v temnotě',
   'entities.letters.letter_q_wolves.body':
     'Pastevci mohou pro jednou spát s oběma očima zavřenýma, a to díky tobě. Řekl jsem Havraní poště, aby ti z fondu hlídky přinesla malou odměnu.\n\nUdržuj čepel naolejovanou.\n- Maršál Redbrook',
   'entities.letters.letter_q_wolves.sender': 'Maršál Redbrook',
@@ -11532,7 +11525,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolytka Tessa',
   'entities.mobs.bastion_revenant.name': 'Revenant bašty',
   'entities.mobs.bog_bloat.name': 'Bahenní nadmutec',
-  'entities.mobs.bonechill_widow.name': 'Kostimrazá vdova',
   'entities.mobs.boneclad_revenant.name': 'Kostmi obrněný revenant',
   'entities.mobs.bound_guardian.name': 'Spoutaný strážce',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Drtič lebek',
@@ -11540,7 +11532,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.choir_thrall.name': 'Bažinný otrok',
   'entities.mobs.choirmother_selthe.name': 'Matka sboru Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Zkažený kněz Malric',
-  'entities.mobs.crypt_shambler.name': 'Belhavec z krypty',
   'entities.mobs.deacon_varric.name': 'Diákon Vandric',
   'entities.mobs.deacon_voss.name': 'Diákon Voss',
   'entities.mobs.deathstalker_voss.name': 'Smrtostopař Voss',
@@ -11567,7 +11558,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Vyvolávač Hrobovolajících',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Tunelový král',
   'entities.mobs.grubjaw.name': 'Grubjaw Nenasytný',
-  'entities.mobs.hollow_acolyte.name': 'Akolyta Dutiny',
   'entities.mobs.ironvein_foreman.name': 'Předák Železné žíly',
   'entities.mobs.ironvein_sapper.name': 'Podkopník Železné žíly',
   'entities.mobs.knight_commander_olen.name': 'Rytířský velitel Olen',
@@ -11583,7 +11573,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Moggerův poskok',
   'entities.mobs.moonspawn.name': 'Měsíční plémě',
-  'entities.mobs.morthen.name': 'Morthen Hrobovolající',
   'entities.mobs.mudfin_murloc.name': 'Bahennoploutvý plíživec',
   'entities.mobs.nhalia_mourner.name': 'Nhaliin truchlící',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, nesmrtelný hierofant',
@@ -11609,7 +11598,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Kostěná stráž svatyně',
   'entities.mobs.sanctum_drakonid.name': 'Šupinná stráž svatyně',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Bledá spirála',
-  'entities.mobs.sexton_marrow.name': 'Kostelník Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Pán střepů Kazzix',
   'entities.mobs.sister_nhalia.name': 'Sestra Nhalia',
   'entities.mobs.sister_nhalia_drowned_canticle.name': 'Sestra Nhalia, Utopený chvalozpěv',
@@ -11663,12 +11651,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Z kančí kůže jsou nejlepší cestovní vaky a louky severozápadně od města se těmi zvířaty jen hemží. Přines mi 5 štětinatých kančích kůží a vyplatí se ti to.',
   'entities.quests.q_boars.title': 'Štětinaté kančí kůže',
-  'entities.quests.q_bones.completion':
-    'Ať teď odpočívají a ať Světlo odpustí tomu, co je probudilo.',
-  'entities.quests.q_bones.objectives.0.label': 'Neklidné kosti uloženy ke klidu',
-  'entities.quests.q_bones.text':
-    'Stará ruina na severozápadním kopci bývala kaplí a její dvůr místem odpočinku. Něco vytrhlo mrtvé ze spánku. Dopřej jim pokoj, {playerName}, vrať 8 neklidných kostí do země.',
-  'entities.quests.q_bones.title': 'Neklidní mrtví',
   'entities.quests.q_breaking_the_seal.completion':
     'Hoří modře a čistě, hora si pamatuje svou starou přísahu. S nimi dokážu rozvázat bránu jen pro nás.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Požehnané uhlíky',
@@ -11777,12 +11759,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis mi ukázal hrudku vosku sebranou z jednoho z těch tunelářů. Září, {playerName}, a je teplá jako tlukot srdce. Chce další ke studiu a já to chci pryč ze seznamu požadavků. Přines šest hrudek zářícího vosku.',
   'entities.quests.q_glowing_wax.title': 'Podivný vosk',
-  'entities.quests.q_gravecallers_trail.completion':
-    'Morthen psal Mlhovazači v severním močálu. Sekta není mrtvá, {playerName}, jen byla trpělivá.',
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthenův grimoár',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen je mrtvý, ale hryže mě otázka: sekta, která se skrývala celé století, se nevyčerpá na jedné vesnické kapli. Měl grimoár, své rituály a korespondenci. Pokud z toho něco přežilo, leží to v sakristii zničené kaple nad kryptou. Prohledej ruinu a přines mi, co z jeho spisů zůstalo, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Stopa Hrobovolajícího',
   'entities.quests.q_gravewyrm.completion':
     'Je konec. Mrtví tří zemí mohou odpočívat, hora spí bez přízraků, a dnes v noci zní každý zvon odtud po Eastbrook tvým jménem, {playerName}.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Hrobodrak zabit',
@@ -11807,12 +11783,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Vaelova poslední slova mě neopouštějí, {playerName}: drak se hýbe pod štíty. Kapitánka Thessaly velí zdi v Highwatchi, na začátku horské cesty na sever. U její brány visí svolání, vezmi ho a řekni jí, že bratr Aldric stoupá na horu za tebou.',
   'entities.quests.q_highwatch_summons.title': 'Hlídka na štítech',
-  'entities.quests.q_hollow.completion':
-    'Šepot utichl. Dokázal jsi, co celé údolí nedokázalo, {playerName}: mrtví spí a Eastbrook ti dluží všechno, co má.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Hrobovolající zabit',
-  'entities.quests.q_hollow.text':
-    'Morthen Hrobovolající čeká na dně Duté krypty, obklopen elitními mrtvými, které vztyčil. Je daleko nad síly jednoho hrdiny, vezmi čtyři společníky, ne méně. Skoncuj s ním a mrtví údolí konečně usnou.',
-  'entities.quests.q_hollow.title': 'Do Dutiny',
   'entities.quests.q_idols.completion':
     'Práce Hrobovolajících, starší než Morthen, starší než já. Sekta nezačala v Eastbrooku, {playerName}. Začala tady a jezero si drželo svá tajemství.',
   'entities.quests.q_idols.objectives.0.label': 'Vodou nasáklý idol',
@@ -11859,12 +11829,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'Dvacet let rybařím na Zrcadlovém jezeře a nikdy jsem nepřišel o síť, dokud z mělčin nevylezli ti bublající rybolidé. Zažeň Bahenní ploutve zpátky, zabij jich 8. A dávej na sebe pozor: kde je jedna bahenní ploutev, tam je jich pět.',
   'entities.quests.q_murlocs.title': 'Potíže u jezera',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Ubohé duše... a podívej sem. Kostelník Marrow, vlastní živý správce kaple, jeho hrob byl narušen jako první. Morthen začal s mužem, který pohřbíval mrtvé Eastbrooku.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Ošlehaná stránka účetní knihy',
-  'entities.quests.q_names_of_the_dead.text':
-    'Pokud Hrobovolající vztyčili naše mrtvé, musím vědět, čí hroby vyloupili. Kostelník kaple vedl pohřební knihu a vítr její stránky rozházel po hřbitově. Sesbírej mi 3, {playerName}, mrtví si zaslouží být voláni svými jmény.',
-  'entities.quests.q_names_of_the_dead.title': 'Jména mrtvých',
   'entities.quests.q_necromancers.completion':
     'Světlo nám odpusť. Tohle drží mrtvé údolí i močálu, každou mrtvolu, kterou kdy Hrobovolající vztyčili, sklizenou. Nikdy nebudovali armádu, {playerName}. Shromažďovali desátek.',
   'entities.quests.q_necromancers.objectives.0.label': 'Nekromant kultu draka zabit',
@@ -11976,25 +11940,12 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Bandité poslouchají jednoho muže: Gorraka Nemilosrdného. Usekni hlavu a tělo se rozprchne. Číhá v srdci jejich tábora. Ukonči ho, {playerName}.',
   'entities.quests.q_ringleader.title': 'Vůdce bandy',
-  'entities.quests.q_rite.completion':
-    'Je hotovo. Cesta dolů stojí otevřená... a ať mi Světlo odpustí, že jsem ji otevřel. Než sestoupíš, shromáždi své nejsilnější společníky, {playerName}. Nikdo by neměl čelit Dutině sám.',
-  'entities.quests.q_rite.objectives.0.label': 'Požehnaný lůj',
-  'entities.quests.q_rite.objectives.1.label': 'Přízračná esence',
-  'entities.quests.q_rite.text':
-    'Krypta pod kaplí musí být odpečetěna, máme-li zastavit Hrobovolajícího, ale jen poutací rituál dovolí živým projít. Potřebuji 4 kusy požehnaného loje, norníci v dole hromadí lůj po bednách, a 6 přízračných esencí z neklidných mrtvých.',
-  'entities.quests.q_rite.title': 'Poutací rituál',
   'entities.quests.q_sanctum_gate.completion':
     'Střepy sedí správně... a brána poznává svůj klíč. Cesta dolů stojí otevřená, {playerName}. Shromáždi nejsilnější společníky, které najdeš, tomu, co přijde, by nikdo neměl čelit sám.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Střep klíče od svatyně',
   'entities.quests.q_sanctum_gate.text':
     'Tohle je poslední práh, {playerName}. Brána Svatyně Hrobodraka byla zamčena klíčovým kamenem a kult ho roztříštil na střepy, aby se neobrátil proti nim. Střepy leží roztroušené na náměstí brány, pod očima kostmi obrněných mrtvých. Přines mi tři a otevřu cestu tak, jak Světlo zamýšlelo: tiše.',
   'entities.quests.q_sanctum_gate.title': 'Brána svatyně',
-  'entities.quests.q_sexton.completion':
-    'Tak je Marrow konečně svobodný. Nezvoňte mu, za života jich slyšel dost.',
-  'entities.quests.q_sexton.objectives.0.label': 'Kostelník Marrow uložen ke klidu',
-  'entities.quests.q_sexton.text':
-    'Kniha ho jmenovala a krypta ho drží: kostelník Marrow, správce kaple, první muž, kterého Morthen vztyčil. Ve smrti střežil dveře svého pána tak věrně, jako za života střežil kapli. Vezmi čtyři společníky do Duté krypty a dopřej starému kostelníkovi odpočinek, o který byl oloupen, {playerName}.',
-  'entities.quests.q_sexton.title': 'Kostelníkův zvon',
   'entities.quests.q_shard_cores.completion':
     'Každé jádro se sklání stejným směrem, jako železné piliny k magnetovci. Ukazují na jih, {playerName}. Ke svatyni.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Jádro bouře',
@@ -12088,12 +12039,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'Včera v noci si celý tábor kultu najednou klekl, {playerName}, každý fanatik, každý nekromant, všichni čelem ke svatyni. Korzul k nim teď mluví ve spánku; Vael slyšel stejný hlas v močálu a Morthen před ním. Skol shromáždění, deset fanatiků, šest nekromantů, dřív než ten hlas bude mít dost rukou, aby sám otevřel bránu.',
   'entities.quests.q_voice_below.title': 'Hlas zdola',
-  'entities.quests.q_whispers.completion':
-    'Tahle pečeť... nese značku Hrobovolajících, sekty, o které jsem se modlil, aby vyhynula. Je to horší, než jsem se bál, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Pečeť Hrobovolajícího',
-  'entities.quests.q_whispers.text':
-    'Uložil jsi mrtvé ke klidu, ale oni v klidu nezůstávají, něco je volá zpátky. Prohledej ruinu kaple a najdi jakoukoli stopu toho, kdo volá. Pokud najdeš jakoukoli pečeť nebo značku, přines mi ji nedotčenou.',
-  'entities.quests.q_whispers.title': 'Šepoty zdola',
   'entities.quests.q_widows.completion':
     'Všechny váčky celé. Máš jistější ruce než polovina chirurgů na jihu, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Vdova z Mirefenu zabita',
@@ -12823,8 +12768,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'guide.dungeonsPage.partySize': '{n} hráčů',
   'guide.dungeonsPage.raidSize': 'Deset hráčů, úroveň {n}',
   'guide.dungeonsPage.hollowName': 'Dutá krypta',
-  'guide.dungeonsPage.hollowBody':
-    'Vykradená krypta kaple, kde čerství mrtví odmítají odpočívat. První skutečná zkouška nové party.',
   'guide.dungeonsPage.bastionName': 'Potopená bašta',
   'guide.dungeonsPage.bastionBody':
     'Zaplavená pevnost ztracená v močálu, držená utopenými obránci a samotným stoupajícím přílivem.',
@@ -20086,49 +20029,9 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Houstnoucí mlha',
   'abilityUi.cast.bastion_veil_rise': 'Mlžný závoj',
   'abilityUi.cast.cantor_last_verse': 'Poslední sloka',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Dech mohylového plamene',
-  'abilityUi.cast.crypt_carrion_eye': 'Oko mršiny',
-  'abilityUi.cast.crypt_grave_bolt': 'Hrobová střela',
-  'abilityUi.cast.crypt_grave_cleave': 'Hrobové rozetnutí',
-  'abilityUi.cast.crypt_grave_rupture': 'Hrobová trhlina',
-  'abilityUi.cast.crypt_gravespark_volley': 'Salva hrobových jisker',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Kostěné varhany',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Žalozpěv prázdnoty',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Nepřerušená sloka',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Sestup z nebe',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Děsivý řev',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Hořící umíráček',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Hořící umíráček',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Hořící umíráček',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Hořící umíráček',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Přelet s pohřebním ohněm',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Útočný přelet',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Svatební mráz',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Nářek nevěsty',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Ledové objetí',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Ledové objetí',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Pohřební zvonění',
-  'abilityUi.cast.crypt_marrow_crush': 'Drcení morku',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Hrobníkův úder',
-  'abilityUi.cast.crypt_marrow_measure': 'Míra pro hrob',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Plná lopata',
-  'abilityUi.cast.crypt_morthen_descend': 'Sestup',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Hrobové prohlášení',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Skliď neklidné',
-  'abilityUi.cast.crypt_morthen_rise': 'Vzestup Vyvolávače hrobů',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Obřad neklidných',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Obřad se probouzí',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Stínový pulz',
-  'abilityUi.cast.crypt_murder_call': 'Volání hejna vran',
-  'abilityUi.cast.crypt_raise_bones': 'Oživení kostí',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Plivnutí jinovatného hedvábí',
-  'abilityUi.cast.crypt_stone_shriek': 'Kamenný skřek',
-  'abilityUi.cast.crypt_tail_lash': 'Švih ocasem',
-  'abilityUi.cast.crypt_wing_gust': 'Poryv křídel',
   'abilityUi.cast.ghost_captain_anchor': 'Prokletá kotva',
   'abilityUi.cast.ghost_captain_boarding': 'Přízračná abordáž',
   'abilityUi.cast.ghost_captain_broadside': 'Přízračná boční salva',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Znovu zapal svíčku',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Převrhni pánev s ohněm',
   'abilityUi.cast.sanctum_branding_iron': 'Vypalovací železo',
   'abilityUi.cast.sanctum_cinder_breath': 'Dech žhavých uhlíků',
@@ -20354,7 +20257,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'editor.tunnel.digAlpha.round': 'Kulaté',
   'entities.mobs.bastion_drowned_anchor.name': 'Utopená kotva',
   'entities.mobs.bastion_gaol_cage.name': 'Železná klec',
-  'hudChrome.cryptAlert.riteTitle': 'Obřad neklidných',
   'mode.playLoading': 'Načítání',
   'mode.playStarting': 'Spouštění',
   'questUi.detail.chooseReward': 'Vyber si odměnu:',
@@ -20494,7 +20396,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'bossJournal.wildheart.beast.wardName': 'Ochrana tlusté kůže',
   'entities.mobs.muster_footman.name': 'Odvedený pěšák',
   'entities.mobs.muster_sergeant.name': 'Odvodní seržant',
-  'hudChrome.cryptAlert.harmonyTitle': 'Souzvuk',
   'hudChrome.sanctumAlert.lockboundTitle': 'Spoutaný zámky',
   'hudChrome.wildheartAlert.bondTitle': 'Pouto smečky',
   'bossJournal.bastion.vael.fogburstName': 'Výbuch mlhy',
@@ -20511,9 +20412,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'bossJournal.temple.ysolei.phaseTideName': 'Stoupající příliv',
   'bossJournal.temple.ysolei.tideName': 'Stoupající příliv',
   'bossJournal.wildheart.bloom.spitName': 'Květový plivanec',
-  'entities.mobs.bound_soul.name': 'Spoutaná duše',
-  'entities.mobs.crypt_remembrance_candle.name': 'Vzpomínková svíčka',
-  'hudChrome.cryptAlert.soulTitle': 'Spoutaná duše',
   'hudChrome.sanctumAlert.slabTitle': 'Ledová deska',
   'editor.entityTool.titleField': 'Titul',
   'hudChrome.adventureGuide.allSpecs': 'Všechny specializace',
@@ -23038,20 +22936,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Kanec Tesákoroh',
-  'entities.mobs.candlewright_acolyte.name': 'Akolyta Svíčkaře',
-  'entities.mobs.cantor_ilvane.name': 'Kantorka Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Kostěný rváč',
-  'entities.mobs.crypt_bone_minion.name': 'Kostěný služebník',
-  'entities.mobs.crypt_bone_pile.name': 'Hýbající se kosti',
-  'entities.mobs.crypt_carrion_crow.name': 'Mrchožravá vrána',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Chrlič Kaple',
-  'entities.mobs.crypt_crow_caller.name': 'Vyvolávač vran',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adept Hrobovolajícího',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nekromant Hrobovolajícího',
-  'entities.mobs.crypt_knellwyrm.name': 'Drak umíráčku',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Hrdlořez z Kostnice',
-  'entities.mobs.crypt_ossuary_drake.name': 'Dráček z Kostnice',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Válečník z Kostnice',
   'entities.mobs.drowned_pilgrim.name': 'Utopený poutník',
   'entities.mobs.drowned_sergeant.name': 'Utopený seržant',
   'entities.mobs.drowned_watchman.name': 'Utopený hlídač',
@@ -23061,12 +22945,9 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Žalářník Ossick',
   'entities.mobs.glacier_splinter.name': 'Ledovcový úlomek',
   'entities.mobs.great_saurian.name': 'Velký ještěr',
-  'entities.mobs.hollow_chorister.name': 'Prázdný sborista',
-  'entities.mobs.hollow_gravedigger.name': 'Prázdný hrobník',
   'entities.mobs.howdah_hexcaller.name': 'Zaklínač z plošiny',
   'entities.mobs.ice_wraith.name': 'Ledový přízrak',
   'entities.mobs.lagoon_snapper.name': 'Lagunní kajmanka',
-  'entities.mobs.marrow_restless_bones.name': 'Neklidné kosti',
   'entities.mobs.mere_hydra_head_center.name': 'Jezerní hydra',
   'entities.mobs.mere_hydra_head_left.name': 'Jezerní hydra',
   'entities.mobs.mere_hydra_head_right.name': 'Jezerní hydra',
@@ -23076,12 +22957,7 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_drillmaster.name': 'Odvodní cvičitel',
   'entities.mobs.muster_effigy.name': 'Slaměný předák',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogr Tahoun saní',
-  'entities.mobs.ossuary_sentinel.name': 'Strážce Kostnice',
-  'entities.mobs.rime_egg_sac.name': 'Jinovatný vak vajec',
   'entities.mobs.rime_whelp.name': 'Jinovatné mládě',
-  'entities.mobs.rimeweb.name': 'Paní kostního chladu',
-  'entities.mobs.rimeweb_hatchling.name': 'Mládě Jinovatné sítě',
-  'entities.mobs.rimeweb_spinner.name': 'Přadlena Jinovatné sítě',
   'entities.mobs.sanctum_shackle_anvil.name': 'Pouto Kovadliny',
   'entities.mobs.sanctum_shackle_bellows.name': 'Pouto Měchu',
   'entities.mobs.sanctum_shackle_hammer.name': 'Pouto Kladiva',
@@ -23518,11 +23394,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Ve Hradbě mlhy utrpí o {pct}% méně poškození. Vytáhni jej z mlhy.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Jeho řetězy jsou zlomené. Už nebojuje, nelze jej zranit a brzy odejde.',
-  'hudChrome.auraEffect.crypt.graspRoot': 'Držen rukama hrobu: nemůže se pohybovat {seconds} s.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'V Otevřeném hrobě útočí o {pct}% rychleji. Drž jej mimo hroby.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Omráčený: roztříštěná ochrana mu brání jednat {seconds} s.',
   'hudChrome.auraEffect.effigyPlankHide':
     'Odvrací {pct}% každého úderu, dokud výpad Střepovou píkou nezhasne lucernu v jeho oku',
   'hudChrome.auraEffect.sanctum.doused':
@@ -23638,7 +23509,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.collections.presenceDefault': 'Cítíš přítomnost, která tě sleduje.',
   'hudChrome.collections.revealed': '{name} se rozhodl tě následovat.',
   'hudChrome.collections.state.owned': 'Získáno',
-  'hudChrome.cryptAlert.timeAria': 'Zbývá {seconds} sekund',
   'hudChrome.kitUse.timeAria': 'Zbývá {seconds} sekund',
   'hudChrome.sanctumAlert.timeAria': 'Zbývá {seconds} sekund',
   'hudChrome.wildheartAlert.timeAria': 'Zbývá {seconds} sekund',
@@ -23651,44 +23521,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Nasycen mrtvými ({stacks} z {max}): každá vrstva rozšiřuje jeho Uvolnění duše o {radius} yardů a zesiluje je o {pct}%.',
   'hudChrome.auraEffect.bastion.halberdWall':
     'Utrpí o {pct}% méně poškození, dokud stojí další Utopený hlídač do {radius} yardů. Odtáhněte je od sebe.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Zvyšuje utrpěné poškození o {pct}%: {per}% za každou vrstvu, nyní {stacks} z {max}. Každý Hrobníkův úder přidá vrstvu a obnoví trvání na {seconds} s.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Všechny vrány v boji tě {seconds} s pronásledují. Běž ke svému tankovi, aby šlo celé hejno pobít najednou.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Zpívá rychleji: Žalozpěv prázdnoty trvá {cast} s místo {castNormal} s a přichází každých {every} s místo {everyNormal} s. Kostěné varhany hrají {waves} vln tónů místo {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Snižuje rychlost pohybu o {pct}%. Plná lopata zasáhne všechny před Kostelníkem Marrowem: stůj za ním.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Vyzdvižen v náručí Paní: nemůžeš jednat a každou sekundu utrpíš {tick} mrazivého poškození ({tickHeroic} na hrdinskou). Pokud skupina způsobí poškození ve výši {share}% jejího maximálního zdraví ({shareHeroic}% na hrdinskou), jemně tě položí. Pokud tě nahoře drží {hold} s, upustí tě na led za {min} až {max} poškození ({heroicMin} až {heroicMax} na hrdinskou).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Do konce boje způsobuje o {pct}% více poškození: {per}% za každou Spoutanou duši, která k němu dorazila, nyní {stacks} z {max}. Každá taková duše mu také obnoví {heal}% maximálního zdraví. Vstup duši do cesty a zachyť ji místo něj.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Utrpí o {pct}% méně poškození a kámen každých {every} s zesílí až na {max} vrstev. Omráčení ho rozbije a na {seconds} s zvýší utrpěné poškození o {cracked}%.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Za {fuse} s vyrazí z kruhu pod tebou ruce: všichni do {radius} yardů od místa jeho položení budou na {root} s znehybněni a utrpí {min} až {max} stínového poškození. Vyjdi z kruhu.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Dokud trvá Obřad neklidných, každou sekundu utrpí {bite} stínového poškození ({biteHeroic} na hrdinskou). Každých {every} s se zvýší o {step} ({stepHeroic} na hrdinskou). Ukončete ho opětovným zapálením Pamětních svící.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Stojíš v Otevřeném hrobě: rychlost pohybu snížena o {slow}% a každou sekundu utrpíš {damage} stínového poškození ({heroic} na hrdinskou). Na hrdinskou pobyt v hrobě po dobu {linger} s vyvolá Neklidné kosti. Vyjdi z hrobu.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Utrpí o {pct}% méně poškození: {per}% za každého jejího živého Sboristu. Nejprve zabijte Sboristy.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Létá nad Obřadním kruhem mimo dosah. Na {mark} s označí polovinu kruhu a pak ji zalije přízračným ohněm: všichni v ní utrpí {min} až {max} ohnivého poškození. Při každém letu spálí {breaths} polovin a potom přistane.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Když skončí Nářek nevěsty, všichni mimo okruh {radius} yardů od rozsvícené hrobové lucerny utrpí {min} až {max} mrazivého poškození ({heroicMin} až {heroicMax} na hrdinskou). Lucerna ochrání {cap} nejbližších hráčů, pak zhasne a příští Nářek vynechá.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Příští Nářek nevěsty ti způsobí o {pct}% více poškození: {per}% za vrstvu, nejvýše {max} vrstev. Příští nářek přečkej ve světle lucerny.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Po skončení se pod tebou propadne Otevřený hrob: všichni do {radius} yardů utrpí {min} až {max} poškození ({heroicMin} až {heroicMax} na hrdinskou). Hrob zůstane do konce boje, proto odnes značku na okraj hřbitova, daleko od skupiny.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Utrpí o {pct}% více poškození po dobu {seconds} s: znovu zapálené svíce prolomily jeho ochranu. Použijte teď nejsilnější útoky.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'Na kluzkém ledu: rychlost se každou sekundu změní nejvýše o {grip} yardů/s, takže se pomalu rozbíháš, při zastavení kloužeš dál a zatáčíš širokým obloukem. Sejdi z ledu a znovu získáš pevný krok.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Je nezranitelný, zatímco kráčí k provazu a rozeznívá Pohřební zvon. Po skončení zvonění všichni utrpí {min} až {max} stínového poškození ({heroicMin} až {heroicMax} na hrdinskou) a každý Otevřený hrob vydá Neklidné kosti.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Při sesílání Obřadu neklidných u oltáře je nezranitelný: znovu zapáleno {lit} z {total} Pamětních svící. Zapálení vyžaduje {channel} s usměrňování a každou sekundu odčerpá {drain}% maximálního zdraví zapalujícího ({drainHeroic}% na hrdinskou). Zásahy ho nepřeruší, krok nebo omráčení ano. Poslední svíce rozbije ochranu. Na hrdinskou je zapalujte v pořadí uvedeném v Knize: chybná svíce zhasne tu poslední a zapalujícímu způsobí {wrongMin} až {wrongMax} stínového poškození.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Lucerna Slaměného předáka pro tebe zhasla: tvé údery i údery tvého mazlíčka ignorují jeho Prkennou kůži a zasahují plnou silou',
   'hudChrome.auraEffect.sanctum.airborne':
@@ -23758,39 +23590,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.send': 'Vyslat kurýra',
   'hudChrome.courier.unavailable': 'Přivolej kurýra a naplánuj doručení.',
   'hudChrome.courier.waiting': 'Čeká na vrácení tvých předmětů',
-  'hudChrome.cryptAlert.embracedLine':
-    'Skupina musí zranit Paní kostního chladu, aby tě osvobodila z jejího sevření',
-  'hudChrome.cryptAlert.embracedTitle': 'Ledové objetí!',
-  'hudChrome.cryptAlert.graspLine':
-    'Opusť označený kruh, než vyrazí ruce, a vyhni se poškození i znehybnění',
-  'hudChrome.cryptAlert.graspTitle': 'Sevření hrobu!',
-  'hudChrome.cryptAlert.graveLine': 'Hrobová hlína pálí a zpomaluje: vyjdi z ní',
-  'hudChrome.cryptAlert.graveTitle': 'V Otevřeném hrobě!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Zabijte Sboristy a zrušte Ilvanino snížení utrpěného poškození o {pct}%',
-  'hudChrome.cryptAlert.knellLine':
-    'Až ukazatel doběhne, tuto polovinu kruhu zalije přízračný oheň: přesuň se na druhou polovinu',
-  'hudChrome.cryptAlert.knellTitle': 'Hořící umíráček!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Vstup do světla rozsvícené lucerny a vyhni se poškození nářkem: ke každé se vejdou jen dva hráči',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Zůstaň ve světle této lucerny a vyhni se poškození nářkem: máš místo v úkrytu',
-  'hudChrome.cryptAlert.lamentTitle': 'Nářek nevěsty!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Než značka skončí, přesuň se k okraji hřbitova, aby zraňující hrob vznikl daleko od skupiny',
-  'hudChrome.cryptAlert.measuredTitle': 'Míra pro hrob!',
-  'hudChrome.cryptAlert.reapLine':
-    'Přesuň se za Morthena a vyhni se kose zasahující všechny před ním',
-  'hudChrome.cryptAlert.reapTitle': 'Skliď neklidné!',
-  'hudChrome.cryptAlert.riteLine':
-    'Znovu zapalte všechny Pamětní svíce a zrušte Morthenovu nezranitelnost: hoří {lit} z {total}',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Zapalujte svíce v pořadí z Knihy a zrušte Morthenovu nezranitelnost: chybná svíce vrátí postup zpět ({lit}/{total})',
-  'hudChrome.cryptAlert.soulLine':
-    'Zachyť bloudící duši, aby Morthena nevyléčila a nezvýšila jeho poškození. Zachycení tě zraní',
-  'hudChrome.cryptAlert.tollLine':
-    'Připravte se na kostlivce z otevřených hrobů: Marrow je při zvonění nezranitelný',
-  'hudChrome.cryptAlert.tollTitle': 'Pohřební zvonění!',
   'hudChrome.deeds.buddiesEmpty': 'Získej společníka a budeš ho moci přivolat z této police.',
   'hudChrome.deeds.buddiesNone': 'Žádný společník',
   'hudChrome.deeds.buddiesSection': 'Společníci',
@@ -23902,44 +23701,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Napětí (odstupte od každého sloupu, jehož řetěz dosud drží)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Sbor a Sólo (na jedné značce se shlukněte, od druhé se rozestupte)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Kostěné varhany (každých 26 sekund zahraje na Kostěné varhany: uličkami ochozu vyrazí dvě vlny stínových tónů, na normální obtížnost za 100 až 115 poškození v uličce. Druhá vlna vyplní mezery první)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Svatební mráz (při polovině zdraví zamrzne celé dno rokle: kluzký led zůstane do konce boje)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Nářek nevěsty (každých 22 sekund nářek trvající 3 sekundy: na normální obtížnost 60 až 75 mrazivého poškození všem mimo světlo rozsvícené hrobové lucerny, o polovinu více za každou vrstvu Doznívajícího nářku z již utrpěných Nářků. Lucerna ochrání nejvýše dva hráče a po ochraně kohokoli na 28 sekund zhasne, proto se rozdělte a střídejte)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Pohřební zvonění (při 66 a 33 procentech zdraví dojde nezranitelný k provazu a 3 sekundy zvoní: na normální obtížnost 30 až 38 stínového poškození všem a každý Otevřený hrob vyvolá Neklidné kosti)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Crescendo (pod 30 procenty zdraví trvá její Žalozpěv 1.8 sekundy a přichází každých 11 sekund, varhany hrají třetí vlnu)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Žalozpěv prázdnoty (každých 16 sekund přerušitelná píseň trvající 2.5 sekundy: při dokončení na normální obtížnost 105 až 125 stínového poškození a 4 sekundy umlčení všem do 45 yardů, kteří na ni vidí. Přerušte ji nebo se schovejte za sloup sboru)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Ledové objetí (každých 30 sekund popadne jiného hráče než tanka a vznese se s ním 5 yardů vysoko, 6 mrazivého poškození za sekundu. Způsobte během 8 sekund poškození ve výši 6 procent jejího zdraví a položí ho, jinak ho upustí za 150 až 180 poškození na normální obtížnost)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Volání hrobu (každých 15 sekund k němu z dalšího výklenku sarkofágu pluje Spoutaná duše. Pokud dorazí, nasytí se mrtvými, získá o 10 procent vyšší poškození za duši až do 10 vrstev a obnoví si 3 procenta zdraví. Hráč v cestě ji zachytí místo něj: na normální obtížnost 12 až 16 stínového poškození)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmonie (každý živý Sborista snižuje její utrpěné poškození o 30 procent: nejprve zabijte Sboristy)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Hrdinská: Přídavek (Sborista mrtvý 10 sekund opět povstane, pokud druhý stále žije, proto je zabijte současně) a Nepřerušená sloka (každý třetí Žalozpěv nelze přerušit: schovejte se)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Hrdinská: každá rozsvícená lucerna také sama po 30 sekundách zhasne na 10 sekund. Ledové objetí bere dva hráče a pustí je při poškození ve výši 4.4 procenta jejího zdraví',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Hrdinská: Hrobníkův úder každých 9 sekund do tanka (každá vrstva na 20 sekund zvyšuje utrpěné poškození o 6 procent, nejvýše 6 vrstev), Hrobová síla (v hrobě útočí o 30 procent rychleji) a Neklidná země (kdo zůstane v hrobě 2 sekundy, vyvolá tam Neklidné kosti)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Míra pro hrob (každých 15 sekund označí hráče kromě tanka. Za 4 sekundy se pod ním propadne Otevřený hrob, na normální obtížnost za 42 až 52 poškození do 3 yardů. Jáma zůstane do konce boje: uvnitř 9 poškození za sekundu a o 40 procent pomalejší pohyb, proto umisťujte hroby na okraj hřbitova)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Hrdinská: Jména mrtvých (Kniha určuje pořadí svící. Chybná svíce zhasne tu poslední a zapalujícímu způsobí 252 až 288 stínového poškození. Každé zapalování odčerpává 8 procent za sekundu), Sevření hrobu (každých 16 sekund dostanou 2 hráči kruh o poloměru 4 yardy. Za 1.5 sekundy z něj vyrazí ruce: 3 sekundy znehybnění a 162 až 198 stínového poškození) a Hořící umíráček zvonodraka (vzletí a na 4.5 sekundy označí polovinu kruhu, pak ji zalije přízračným ohněm za 1,000 až 1,120 ohnivého poškození, 3 poloviny při každém letu)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Stínový pulz (každých 12 sekund sesílá 2 sekundy a pak na normální obtížnost způsobí 24 až 30 stínového poškození všem do 12 yardů, proto odstupte. Při Posledních obřadech každých 9 sekund)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Skliď neklidné (pod 35 procenty zdraví přestanou přicházet duše. Každých 14 sekund po 2 sekundách sesílání máchne kosou: na normální obtížnost 55 až 65 stínového poškození všem ve 120stupňové výseči do 14 yardů před ním. Stínový pulz pak přichází každých 9 sekund)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Stezka jinovatky (za sebou zanechává na 25 sekund kluzkou jinovatku: pomalu na ní nabíráš rychlost a při zastavení či zatáčení kloužeš dál)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'Obřad neklidných (při 65 procentech zdraví se vrátí k oltáři, nezranitelný v Neklidné ochraně. Hrobový chlad všem způsobuje 3 stínového poškození za sekundu, každých 5 sekund o 1 více, a z výklenků vylezou 2 Neklidné kosti. Znovu zapalte 4 Pamětní svíce: každá vyžaduje 4 sekundy usměrňování a odčerpává 6 procent maximálního zdraví zapalujícího za sekundu. Zásahy ho nepřeruší, krok nebo omráčení ano. Poslední svíce obřad prolomí: je na 8 sekund omráčen a utrpí o 25 procent více poškození)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Plná lopata (každých 11 sekund vrhne hrobovou hlínu do kužele 8 yardů před sebe: jedenapůlnásobek jeho úderu a o 50 procent pomalejší pohyb na 6 sekund. Stůjte za ním)',
   'hudChrome.finder.mech.drowned_anchor':
     'Utopená kotva (naviják stahuje oběť k jámě: běž na 3 yardy k rozsvícenému úvaznému sloupu a upevni řetěz. Sloup pak na 30 sekund zhasne. Nebo řetěz rozbijte 12 zásahy, 16 na hrdinskou)',
   'hudChrome.finder.mech.fog_veil':

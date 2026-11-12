@@ -250,8 +250,9 @@ describe('arena: queue + matchmaking', () => {
   it('cannot queue from inside an instance or while dead', () => {
     const sim = makeWorld();
     const a = sim.addPlayer('warrior', 'Aleph');
-    teleport(sim, a, 80, 88);
-    sim.enterCrypt(a); // now standing in a far-off instance
+    // Any dungeon instance works; the Sunken Bastion replaced the retired Hollow Crypt.
+    teleport(sim, a, 45, 511);
+    sim.enterDungeon('sunken_bastion', a); // now standing in a far-off instance
     sim.arenaQueueJoin(a);
     expect(sim.arenaQueue1v1).not.toContain(a);
   });
@@ -317,8 +318,8 @@ describe('arena: queue auto-prune notifies survivors', () => {
     expect(sim.arenaQueue1v1).toContain(a);
     sim.drainEvents();
 
-    teleport(sim, a, 80, 88);
-    sim.enterCrypt(a); // walks into an instance while still queued
+    teleport(sim, a, 45, 511);
+    sim.enterDungeon('sunken_bastion', a); // walks into an instance while still queued
     const events = sim.tick(); // matchmakeArena1v1's prune drops them
 
     expect(sim.arenaQueue1v1).not.toContain(a);

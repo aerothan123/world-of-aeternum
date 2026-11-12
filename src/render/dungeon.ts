@@ -1320,8 +1320,8 @@ export class DungeonInteriors {
     }
   }
 
-  // Hollow Crypt and Sunken Bastion share interior 'crypt'; the origin x-band
-  // (instanceOrigin in sim/data.ts: 900 + index*600) says which dungeon.
+  // The Sunken Bastion rides interior 'crypt' (the CRYPT_LAYOUT shell); the
+  // origin x-band (instanceOrigin in sim/data.ts: 900 + index*600) says which.
   private variantFor(interior: string, ox: number, oz: number): Variant {
     // Arena slots host fixed maps by parity (EVEN = Coliseum, ODD = Drowned
     // Court). The map id comes from the SAME arenaMapForSlot the sim's

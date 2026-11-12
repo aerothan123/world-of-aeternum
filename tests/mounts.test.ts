@@ -268,7 +268,10 @@ describe('mount reins items (the collection: owning the item is owning the mount
       reins_drakemaw_raptor: ['balgath_cyclops'],
     };
     const FIVE_MAN_SOURCES: Record<string, readonly string[]> = {
-      reins_stormfeather_griffin: ['morthen'],
+      // Its five-man path left with the Hollow Crypt's Morthen (2026-11-11) and
+      // was re-homed on Vael, the lowest live five-man's final boss (owner call,
+      // 2026-11-12), at the same heroic green rate.
+      reins_stormfeather_griffin: ['vael_the_mistcaller'],
       reins_shadowjump_toad: ['vael_the_mistcaller'],
       reins_grag_bear: ['wildheart_high_priest', 'ysolei'],
       reins_stalkglider_snail: ['korzul_the_gravewyrm', 'wildheart_high_priest'],

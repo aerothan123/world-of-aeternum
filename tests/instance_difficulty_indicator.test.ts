@@ -33,14 +33,14 @@ function mockWorld(
 
 describe('instance difficulty indicator', () => {
   it('formats zone label with Normal and Heroic difficulty in dungeon titles', () => {
-    const normalWorld = mockWorld('hollow_crypt', 'normal');
-    expect(dungeonTitleWithDifficulty('hollow_crypt', normalWorld)).toBe(
-      `${dungeonDisplayName('hollow_crypt')} (Normal)`,
+    const normalWorld = mockWorld('sunken_bastion', 'normal');
+    expect(dungeonTitleWithDifficulty('sunken_bastion', normalWorld)).toBe(
+      `${dungeonDisplayName('sunken_bastion')} (Normal)`,
     );
 
-    const heroicWorld = mockWorld('hollow_crypt', 'heroic');
-    expect(dungeonTitleWithDifficulty('hollow_crypt', heroicWorld)).toBe(
-      `${dungeonDisplayName('hollow_crypt')} (Heroic)`,
+    const heroicWorld = mockWorld('sunken_bastion', 'heroic');
+    expect(dungeonTitleWithDifficulty('sunken_bastion', heroicWorld)).toBe(
+      `${dungeonDisplayName('sunken_bastion')} (Heroic)`,
     );
   });
 
@@ -57,9 +57,9 @@ describe('instance difficulty indicator', () => {
   });
 
   it('keeps titles on the active claim difficulty after selection changes', () => {
-    const world = mockWorld('hollow_crypt', 'heroic', 'normal');
-    expect(dungeonTitleWithDifficulty('hollow_crypt', world)).toBe(
-      `${dungeonDisplayName('hollow_crypt')} (Normal)`,
+    const world = mockWorld('sunken_bastion', 'heroic', 'normal');
+    expect(dungeonTitleWithDifficulty('sunken_bastion', world)).toBe(
+      `${dungeonDisplayName('sunken_bastion')} (Normal)`,
     );
   });
 

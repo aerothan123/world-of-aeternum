@@ -29,7 +29,7 @@ function finderInfoWith(proposal: DungeonFinderInfo['proposal']): DungeonFinderI
 
 const OFFER: DungeonFinderInfo['proposal'] = {
   id: 1,
-  activityId: 'hollow_crypt_normal',
+  activityId: 'sunken_bastion_normal',
   role: 'dps',
   size: 5,
   accepted: 0,

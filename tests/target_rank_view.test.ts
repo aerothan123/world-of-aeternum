@@ -7,7 +7,7 @@ import { targetRankView, targetUsesEliteFrame } from '../src/ui/target_rank_view
 describe('targetRankView', () => {
   it('keeps the numeric level for normal and elite targets', () => {
     const normal = targetRankView(MOBS.forest_wolf);
-    const elite = targetRankView(MOBS.crypt_shambler);
+    const elite = targetRankView(MOBS.bastion_revenant);
     expect(normal).toBe('normal');
     expect(elite).toBe('elite');
     expect(targetUsesEliteFrame(normal)).toBe(false);
@@ -15,7 +15,7 @@ describe('targetRankView', () => {
   });
 
   it('gives boss rank precedence and keeps the Elite frame family', () => {
-    const rank = targetRankView(MOBS.morthen);
+    const rank = targetRankView(MOBS.vael_the_mistcaller);
     expect(rank).toBe('boss');
     expect(targetUsesEliteFrame(rank)).toBe(true);
   });

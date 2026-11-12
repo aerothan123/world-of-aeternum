@@ -1019,7 +1019,9 @@ const MONOLITHS: MonolithRow[] = [
     // Exact count.
     // First-person camera integration extracts the spatial-audio listener.
     // Keep the release branch ceiling ratcheted down by the same eight lines.
-    ceiling: 12193,
+    // Lowered at the Hollow Crypt retirement (2026-11-11): the file shrank
+    // from 12192 to 12191 lines (wc -l) with the crypt's code removed.
+    ceiling: 12191,
     seam: 'a new src/render/<thing>.ts module the renderer calls (src/render/CLAUDE.md)',
   },
   {
@@ -1294,7 +1296,9 @@ const MONOLITHS: MonolithRow[] = [
     // facing fields moved into saved_pos_exit.ts savedPlacement. wc -l. Exact.
     // LOWERED 11395 -> 11389 when the owner removed trick-or-treat: the knock
     // getter and verb (trickOrTreatedToday, trickOrTreat) left with it. wc -l. Exact.
-    ceiling: 11389,
+    // Lowered at the Hollow Crypt retirement (2026-11-11): the crypt's code left
+    // too, 11389 -> 11384 on the merged tree (wc -l). Exact.
+    ceiling: 11384,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -2066,7 +2070,9 @@ const MONOLITHS: MonolithRow[] = [
     // Down 5177 -> 5175 at the crypto removal: the wallet REST type re-exports left.
     // Merged with tree chopping (+1, the felled-tree mirror import): 5176, still under
     // the pre-crypto 5177. wc -l. Exact.
-    ceiling: 5176,
+    // Lowered at the Hollow Crypt retirement (2026-11-11): the file shrank
+    // from 5176 to 5173 lines (wc -l) with the crypt's code removed.
+    ceiling: 5173,
     seam: 'a src/net sibling module (the refactor/net-online split is the template)',
   },
   {

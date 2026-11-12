@@ -63,9 +63,9 @@ describe('adventure guide window', () => {
   });
   it('shows the level range once and a distinct unavailable status for an out-of-range adventure', () => {
     const { root } = setup();
-    const row = control(root, '[data-row="hollow_crypt_normal"]');
-    expect(row.querySelector('.df-row-meta')?.textContent).toContain('7 to 10');
-    expect(row.textContent?.match(/7 to 10/g)).toHaveLength(1);
+    const row = control(root, '[data-row="sunken_bastion_normal"]');
+    expect(row.querySelector('.df-row-meta')?.textContent).toContain('12 to 13');
+    expect(row.textContent?.match(/12 to 13/g)).toHaveLength(1);
     expect(row.querySelector('.df-blocked')?.textContent).toBe('Outside your level range');
   });
   it('keeps boss guides collapsed until requested and preserves them across loot-filter rebuilds', () => {
@@ -161,7 +161,7 @@ describe('adventure guide window', () => {
     };
     const listing = {
       id: 1,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
       applicants: [applicant],
     };

@@ -17,7 +17,7 @@ function overlappingDoors(sim: Sim, height = 0) {
   // Isolate the real automatic trigger from authored doors at other locations.
   const ids: number[] = [];
   for (const [dungeonId, x, y] of [
-    ['hollow_crypt', 0, height],
+    ['drowned_temple', 0, height],
     ['sunken_bastion', 1, 0],
   ] as const) {
     const door = createGroundObject(sim.nextId++, '', 'Test door', { x, y, z: 0 });
@@ -81,8 +81,8 @@ describe('overlapping dungeon door selection', () => {
     releaseIn(sim, 'sunken_bastion');
     const corpse = { ...sim.player.corpsePos! };
     const claimId = sim.player.corpseInstanceId;
-    sim.enterDungeon('hollow_crypt');
-    expect(sim.instanceInfoAt(sim.player.pos)?.dungeonId).toBe('hollow_crypt');
+    sim.enterDungeon('drowned_temple');
+    expect(sim.instanceInfoAt(sim.player.pos)?.dungeonId).toBe('drowned_temple');
     expect(sim.player.ghost).toBe(true);
     expect(sim.player.dead).toBe(true);
     expect(sim.player.corpsePos).toEqual(corpse);
@@ -107,7 +107,7 @@ describe('overlapping dungeon door selection', () => {
 
   it('preserves normal single-door entry', () => {
     const sim = makeSim();
-    const dungeon = DUNGEONS.hollow_crypt;
+    const dungeon = DUNGEONS.drowned_temple;
     sim.player.pos = sim.groundPos(dungeon.doorPos.x, dungeon.doorPos.z);
     updateDoorTriggers(sim.ctx, sim.player);
     expect(sim.instanceInfoAt(sim.player.pos)?.dungeonId).toBe(dungeon.id);

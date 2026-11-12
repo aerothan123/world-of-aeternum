@@ -509,37 +509,37 @@ describe('heroic vendor shop view (pure)', () => {
 describe('heroic mark reward persistence', () => {
   const DAY_MS = 24 * 60 * 60 * 1000;
 
-  function killHeroicMorthen(sim: AnySim, pid: number): AnyEntity {
+  function killHeroicVael(sim: AnySim, pid: number): AnyEntity {
     sim.setDungeonDifficulty('heroic', pid);
-    enterDungeon(sim.ctx, 'hollow_crypt', pid);
+    enterDungeon(sim.ctx, 'sunken_bastion', pid);
     const inst = (sim.instances as any[]).find(
-      (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+      (i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null,
     );
-    const morthen = inst.mobIds
+    const vael = inst.mobIds
       .map((id: number) => sim.entities.get(id))
-      .find((e: AnyEntity | undefined) => e?.templateId === 'morthen') as AnyEntity;
+      .find((e: AnyEntity | undefined) => e?.templateId === 'vael_the_mistcaller') as AnyEntity;
     const p = sim.entities.get(pid) as AnyEntity;
-    teleport(sim, p, morthen.pos.x + 1, morthen.pos.z);
-    sim.dealDamage(p, morthen, morthen.hp + 10, false, 'physical', null, 'hit');
-    expect(morthen.dead).toBe(true);
-    return morthen;
+    teleport(sim, p, vael.pos.x + 1, vael.pos.z);
+    sim.dealDamage(p, vael, vael.hp + 10, false, 'physical', null, 'hit');
+    expect(vael.dead).toBe(true);
+    return vael;
   }
 
   it('persists a kill-time mark and its deed telemetry without depending on the corpse', () => {
     const sim = makeSim(21);
     sim.utcDay = '2026-07-07';
     const pid = sim.addPlayer('warrior', 'Daily');
-    const morthen = killHeroicMorthen(sim, pid);
+    const vael = killHeroicVael(sim, pid);
     expect(sim.meta(pid)!.heroicMarks).toBe(1);
     expect(
-      ((morthen.loot?.items ?? []) as any[]).some((s) => s.itemId === HEROIC_MARK_CURRENCY_ID),
+      ((vael.loot?.items ?? []) as any[]).some((s) => s.itemId === HEROIC_MARK_CURRENCY_ID),
     ).toBe(false);
 
     const state = sim.serializeCharacter(pid);
     expect(state?.heroicMarks).toBe(1);
     expect(state?.inventory.some((s) => s.itemId === HEROIC_MARK_CURRENCY_ID)).toBe(false);
     // Deed telemetry persists beside the mark but never gates mark income.
-    expect(state?.heroicDaily).toEqual({ date: 'reset:1', marked: ['hollow_crypt'] });
+    expect(state?.heroicDaily).toEqual({ date: 'reset:1', marked: ['sunken_bastion'] });
   });
 
   it('resets deed telemetry at the next authoritative reset even within one UTC day', () => {
@@ -555,19 +555,19 @@ describe('heroic mark reward persistence', () => {
     }) as AnySim;
     sim.utcDay = '2026-07-07';
     const pid = sim.addPlayer('warrior', 'Resetter');
-    const morthen = killHeroicMorthen(sim, pid);
+    const vael = killHeroicVael(sim, pid);
     const meta = sim.players.get(pid)!;
-    meta.heroicDaily.marked.add('sunken_bastion');
+    meta.heroicDaily.marked.add('drowned_temple');
     expect(meta.heroicDaily.date).toBe('reset:1');
 
     now = nextReset;
     nextReset += DAY_MS;
-    sim.awardHeroicMarks(morthen, [meta]);
+    sim.awardHeroicMarks(vael, [meta]);
 
     expect(sim.utcDay).toBe('2026-07-07');
     expect(sim.meta(pid)!.heroicMarks).toBe(2);
     expect(meta.heroicDaily.date).toBe('reset:2');
-    expect([...meta.heroicDaily.marked]).toEqual(['hollow_crypt']);
+    expect([...meta.heroicDaily.marked]).toEqual(['sunken_bastion']);
   });
 
   it('unlocks the Full Circuit deed from four distinct rewards in one reset window', () => {
@@ -575,10 +575,10 @@ describe('heroic mark reward persistence', () => {
     const pid = sim.addPlayer('warrior', 'Circuit');
     const meta = sim.players.get(pid)!;
     const circuit = [
-      'hollow_crypt',
       'sunken_bastion',
       'drowned_temple',
       'gravewyrm_sanctum',
+      'wildheart_basin',
     ] as const;
 
     sim.setDungeonDifficulty('heroic', pid);

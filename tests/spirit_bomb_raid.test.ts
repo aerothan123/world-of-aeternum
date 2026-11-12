@@ -112,10 +112,10 @@ describe('Spirit Bomb raid pull banks', () => {
 
   it('preserves progress on ordinary dungeon pulls', () => {
     const sim = new Sim({ seed: 42, playerClass: 'priest', devCommands: true });
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', sim.player.id, true)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', sim.player.id, true)).toBe(true);
     bank(sim.player, 19);
     const slot = sim.instances.find(
-      (entry) => entry.dungeonId === 'hollow_crypt' && entry.partyKey !== null,
+      (entry) => entry.dungeonId === 'sunken_bastion' && entry.partyKey !== null,
     )!;
     const boss = slot.mobIds
       .map((id) => sim.entities.get(id)!)

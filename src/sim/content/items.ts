@@ -2615,8 +2615,9 @@ export const BASE_ITEMS: Record<string, ItemDef> = {
   },
   // --- Hollow Crypt rewards (rare/blue) ---
   // Item-level showcase: these rares are NORMALIZED to the stat budget their item
-  // level earns (see src/sim/item_level.ts). The three weapons are the q_hollow
-  // reward for felling Morthen (level 10), so item level 13 (rare +3) -> a 7-point
+  // level earns (see src/sim/item_level.ts). The three weapons were the q_hollow
+  // reward for felling Morthen (level 10; the crypt is retired and
+  // hollow_crypt_retired.ts keeps that tier), so item level 13 (rare +3) -> a 7-point
   // primary-stat budget; each keeps its own stat identity (str/sta, agi/sta,
   // int/spi) at the same total. The three archetype chests drop from the level-7
   // chapel elites, so item level 10 -> a 6-point budget. tests/item_level.test.ts
@@ -2921,28 +2922,32 @@ export const BASE_ITEMS: Record<string, ItemDef> = {
     name: "Gravecaller's Sigil",
     kind: 'quest',
     sellValue: 0,
-    questId: 'q_whispers',
+    // Retired with the Hollow Crypt chain (2026-11-11): no acquisition path,
+    // the def stays so saved copies still resolve.
   },
   blessed_wax: {
     id: 'blessed_wax',
     name: 'Blessed Tallow',
     kind: 'quest',
     sellValue: 0,
-    questId: 'q_rite',
+    // Retired with the Hollow Crypt chain (2026-11-11): no acquisition path,
+    // the def stays so saved copies still resolve.
   },
   ghostly_essence: {
     id: 'ghostly_essence',
     name: 'Ghostly Essence',
     kind: 'quest',
     sellValue: 0,
-    questId: 'q_rite',
+    // Retired with the Hollow Crypt chain (2026-11-11): no acquisition path,
+    // the def stays so saved copies still resolve.
   },
   restless_skull: {
     id: 'restless_skull',
     name: 'Restless Skull',
     kind: 'quest',
     sellValue: 0,
-    questId: 'q_bones',
+    // Retired with the Hollow Crypt chain (2026-11-11): no acquisition path,
+    // the def stays so saved copies still resolve.
   },
   webwood_silk: {
     id: 'webwood_silk',
@@ -2980,14 +2985,16 @@ export const BASE_ITEMS: Record<string, ItemDef> = {
     name: 'Weathered Ledger Page',
     kind: 'quest',
     sellValue: 0,
-    questId: 'q_names_of_the_dead',
+    // Retired with the Hollow Crypt chain (2026-11-11): no acquisition path,
+    // the def stays so saved copies still resolve.
   },
   morthen_grimoire: {
     id: 'morthen_grimoire',
     name: "Morthen's Grimoire",
     kind: 'quest',
     sellValue: 0,
-    questId: 'q_gravecallers_trail',
+    // Retired with the Hollow Crypt chain (2026-11-11): no acquisition path,
+    // the def stays so saved copies still resolve.
   },
   // --- Brightwood Glade wildlife pack ---
   soft_down: {

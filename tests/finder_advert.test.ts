@@ -24,7 +24,7 @@ const errorsFor = (events: SimEvent[], pid: number) =>
 function leaderSim() {
   const sim = new Sim({ seed: 3, playerClass: 'warrior', noPlayer: true, world: EMPTY_TEST_WORLD });
   const leader = sim.addPlayer('warrior', 'Leader');
-  sim.setPlayerLevel(8, leader);
+  sim.setPlayerLevel(12, leader);
   sim.dungeonFinderSetRoles(['tank'], leader);
   return { sim, leader };
 }
@@ -45,13 +45,13 @@ describe('finderAdvertText: the LFM line', () => {
   it('says any role when roles are not enforced, and flags a Guild Party', () => {
     expect(
       finderAdvertText({
-        activityId: 'hollow_crypt_normal',
+        activityId: 'sunken_bastion_normal',
         size: 1,
         capacity: 5,
         needed: null,
         guildOnly: true,
       }),
-    ).toBe('LFM - The Hollow Crypt - Normal - 1/5 - Any role needed - Guild only');
+    ).toBe('LFM - The Sunken Bastion - Normal - 1/5 - Any role needed - Guild only');
     expect(
       finderAdvertText({
         activityId: 'no_such_activity',
@@ -82,10 +82,10 @@ describe('FinderAdvertCooldowns', () => {
 describe('offline Sim advert (the Groups window buttons)', () => {
   it('exposes the sim-built line on my listing and posts it to General once per cooldown', () => {
     const { sim, leader } = leaderSim();
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     const info = sim.dungeonFinderInfoFor(leader);
     expect(info?.myListing?.advertText).toBe(
-      'LFM - The Hollow Crypt - Normal - 1/5 - Healer/DPS needed',
+      'LFM - The Sunken Bastion - Normal - 1/5 - Healer/DPS needed',
     );
     expect(info?.advert).toEqual({ general: 0, discord: 0, discordAvailable: false });
 
@@ -96,7 +96,7 @@ describe('offline Sim advert (the Groups window buttons)', () => {
         type: 'chat',
         channel: 'general',
         fromPid: leader,
-        text: 'LFM - The Hollow Crypt - Normal - 1/5 - Healer/DPS needed',
+        text: 'LFM - The Sunken Bastion - Normal - 1/5 - Healer/DPS needed',
       }),
     );
     expect(sim.dungeonFinderInfoFor(leader)?.advert?.general).toBe(5);
@@ -113,7 +113,7 @@ describe('offline Sim advert (the Groups window buttons)', () => {
     const { sim, leader } = leaderSim();
     sim.dungeonFinderExpeditionConfigure({ kind: 'advertise', target: 'general' }, leader);
     expect(errorsFor(sim.tick(), leader)).toContain('You do not lead a group listing.');
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     sim.dungeonFinderExpeditionConfigure({ kind: 'advertise', target: 'discord' }, leader);
     expect(errorsFor(sim.tick(), leader)).toContain(
       'Posting to Discord is only available in online play.',
@@ -123,7 +123,7 @@ describe('offline Sim advert (the Groups window buttons)', () => {
   it('flags a Guild Party in the line', () => {
     const { sim, leader } = leaderSim();
     sim.setPlayerGuild(leader, 'Nightwatch');
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [FINDER_GUILD_TAG], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [FINDER_GUILD_TAG], leader);
     expect(sim.dungeonFinderInfoFor(leader)?.myListing?.advertText).toMatch(/ - Guild only$/);
   });
 });
@@ -131,7 +131,7 @@ describe('offline Sim advert (the Groups window buttons)', () => {
 describe('online advert: server-owned, per account', () => {
   it('never forwards an advertise command to the Sim; the server hook receives it', () => {
     const { sim, leader } = leaderSim();
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     const hook = vi.fn();
     const settings = { kind: 'advertise', target: 'discord' };
     dispatchDungeonFinderCommand(
@@ -172,7 +172,7 @@ describe('online advert: server-owned, per account', () => {
     });
     const alt = { accountId: 9, pid: 2, name: 'Alt' };
     const main = { accountId: 9, pid: 1, name: 'Main' };
-    const line = 'LFM - The Hollow Crypt - Normal - 1/5 - Healer/DPS needed';
+    const line = 'LFM - The Sunken Bastion - Normal - 1/5 - Healer/DPS needed';
     relay.advertise(main, 'discord', line, open);
     expect(drainRelay()).toMatchObject([
       { commandId: 'lfg', characterName: 'Main', message: line },

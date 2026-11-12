@@ -729,8 +729,6 @@ const UI_PURE_CORES = [
   // The Hollow Crypt's alert (the grave mark, the Embrace, the Lament, the
   // Open Grave, Morthen's Rite Ring, the Knell's half, the Toll and Harmony
   // readouts) and its scene scan.
-  'src/ui/hud/dungeon/crypt_alert_view.ts',
-  'src/ui/hud/dungeon/crypt_alert_scene_core.ts',
   // The trash engine's use prompt (a Soul Brazier to topple) and its scene scan.
   'src/ui/hud/dungeon/kit_use_prompt_view.ts',
   // Which dungeon prompt the "Dungeon mechanic hints" setting governs, and who
@@ -978,15 +976,10 @@ const RENDER_PURE_CORES = [
   // The rig / frozen-far-mesh handoff with hysteresis (the far-LOD flicker fix).
   'src/render/far_lod_latch_core.ts',
   // The Hollow Crypt finale's effect plan (Morthen's entrance, the Knellwyrm).
-  'src/render/hollow_crypt/crypt_boss_fx_core.ts',
   // Cantor Ilvane's Dirge plan (swell, voices, the shock of sound, the marks).
-  'src/render/hollow_crypt/ilvane_dirge_fx_core.ts',
-  'src/render/hollow_crypt/crypt_finale_fx_core.ts',
   // Morthen the Lich Bishop's stance latch, body anchors and effect timings.
-  'src/render/hollow_crypt/morthen_fx_core.ts',
   // Morthen's Rite and the Knellwyrm's Burning Knell: telegraph shapes, candle
   // looks, the ward's cracks, the Grasp's hands.
-  'src/render/hollow_crypt/morthen_rite_fx_core.ts',
   // The Gravewyrm Sanctum bosses' Blender bodies, measured, and their gestures.
   'src/render/gravewyrm_sanctum_bosses/boss_model_core.ts',
   'src/render/gravewyrm_sanctum_bosses/boss_fx_core.ts',
@@ -995,13 +988,7 @@ const RENDER_PURE_CORES = [
   'src/render/authored_field/field_mesh_core.ts',
   'src/render/authored_field/field_clip_core.ts',
   'src/render/authored_field/field_skirt_core.ts',
-  'src/render/hollow_crypt/crypt_plan_core.ts',
-  'src/render/hollow_crypt/crypt_kit_plan_core.ts',
-  'src/render/hollow_crypt/crypt_trash_fx_core.ts',
   // The crypt trash mechanics pass's hero effects (bone pile, rupture, granite, marks).
-  'src/render/hollow_crypt/crypt_trash_kit_fx_core.ts',
-  'src/render/hollow_crypt/crypt_creature_fx_core.ts',
-  'src/render/hollow_crypt/crypt_set_dressing_core.ts',
   'src/render/hollow_crypt/crypt_gate_state_core.ts',
   // The Sunken Bastion's dressing, kit placement and headland rock cores.
   'src/render/sunken_bastion/bastion_plan_core.ts',
@@ -1175,7 +1162,6 @@ const RENDER_PURE_CORES = [
   'src/render/set_piece_occluders_core.ts',
   // The Hollow Crypt's Fallen Chapel: the virtual stair trace, the grave
   // mist's puffs and the spirit sprites (flames, motes, wisps, rose glow).
-  'src/render/hollow_crypt_entrance_core.ts',
   // The Drowned Temple's Moon Stair: the moonrise's clock, the pool's moon and
   // its parallax, the mirror's sight of the gate, the mist and the sprites.
   'src/render/drowned_temple_entrance_core.ts',

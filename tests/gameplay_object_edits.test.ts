@@ -76,7 +76,7 @@ describe('object edits: the shared record', () => {
       {
         'farmBed:bed_eastbrook_1': { x: 1, z: 2, rotY: Math.PI * 3, scale: 99 },
         'practiceDummy:training_dummy': { x: 1, z: 2, rotY: 0.5, scale: 2 },
-        'dungeonDoor:hollow_crypt': { x: 1, z: 2, rotY: 1, scale: 2, removed: true },
+        'dungeonDoor:sunken_bastion': { x: 1, z: 2, rotY: 1, scale: 2, removed: true },
         'gatherNode:node_x': { x: 1, z: 2, rotY: 0, scale: 1, removed: false },
       },
       10_000,
@@ -90,7 +90,7 @@ describe('object edits: the shared record', () => {
     // A dummy turns but keeps its template's size; a door neither turns nor
     // resizes, but can be deleted.
     expect(clean?.['practiceDummy:training_dummy']).toEqual({ x: 1, z: 2, rotY: 0.5 });
-    expect(clean?.['dungeonDoor:hollow_crypt']).toEqual({ x: 1, z: 2, removed: true });
+    expect(clean?.['dungeonDoor:sunken_bastion']).toEqual({ x: 1, z: 2, removed: true });
     // A size of 1 and removed: false are dropped; a turn of 0 is kept, since
     // for an object that faces elsewhere by default it is a real turn.
     expect(clean?.['gatherNode:node_x']).toEqual({ x: 1, z: 2, rotY: 0 });
@@ -199,31 +199,32 @@ describe('object edits: entities keep their ids', () => {
   });
 
   it('a deleted door spawns no entity, keeps every later id, and drops its walls and ring', () => {
-    const crypt = DUNGEON_LIST.find((d) => d.id === 'hollow_crypt');
-    if (!crypt) throw new Error('no hollow crypt');
+    const bastion = DUNGEON_LIST.find((d) => d.id === 'sunken_bastion');
+    if (!bastion) throw new Error('no sunken bastion');
     const world = editedWorld({
-      [objectMoveKey('dungeonDoor', crypt.id)]: { ...crypt.doorPos, removed: true },
+      [objectMoveKey('dungeonDoor', bastion.id)]: { ...bastion.doorPos, removed: true },
     });
     const shipped = new Sim({ seed: 3, playerClass: 'warrior', world: { ...BUILTIN_WORLD } });
     const edited = new Sim({ seed: 3, playerClass: 'warrior', world });
     const shippedIds = ids(shipped);
     const door = shippedIds.find(
-      ([id, t]) => t === 'dungeon_door' && shipped.entities.get(id)?.dungeonId === crypt.id,
+      ([id, t]) => t === 'dungeon_door' && shipped.entities.get(id)?.dungeonId === bastion.id,
     );
     expect(door).toBeDefined();
     expect(ids(edited)).toEqual(shippedIds.filter((row) => row !== door));
     const near = (cs: Collider[]) =>
-      cs.filter((c) => 'x' in c && Math.hypot(c.x - crypt.doorPos.x, c.z - crypt.doorPos.z) < 12)
-        .length;
+      cs.filter(
+        (c) => 'x' in c && Math.hypot(c.x - bastion.doorPos.x, c.z - bastion.doorPos.z) < 12,
+      ).length;
     const topY = () => 3;
     expect(near(dungeonDoorJambColliders(20061, topY))).toBeGreaterThan(0);
     setActiveWorldContent(world);
     expect(near(dungeonDoorJambColliders(20061, topY))).toBe(0);
-    const inside = { x: crypt.doorPos.x + 1, z: crypt.doorPos.z };
+    const inside = { x: bastion.doorPos.x + 1, z: bastion.doorPos.z };
     expect(projectOutsideDungeonDoors(inside.x, inside.z, world.objectMoves)).toEqual(inside);
     // No map pin for the deleted door; the others keep theirs.
     const pins = overworldDungeonPortals(DUNGEON_LIST, -1e9, 1e9).map((p) => p.id);
-    expect(pins).not.toContain(crypt.id);
+    expect(pins).not.toContain(bastion.id);
     expect(pins.length).toBeGreaterThan(0);
   });
 });
@@ -369,9 +370,9 @@ describe('object edits: the live preview', () => {
   it('hides and restores a door set piece', () => {
     const scene = new THREE.Scene();
     const piece = new THREE.Group();
-    piece.name = 'hollowCryptEntrance';
+    piece.name = 'sunkenBastionEntrance';
     scene.add(piece);
-    const target = { kind: 'dungeonDoor' as const, dungeonId: 'hollow_crypt' };
+    const target = { kind: 'dungeonDoor' as const, dungeonId: 'sunken_bastion' };
     const at = { x: 0, z: 0 };
     shiftMovedObjectInScene(scene, target, at, { ...at, removed: true }, ground);
     expect(piece.scale.x).toBe(0);

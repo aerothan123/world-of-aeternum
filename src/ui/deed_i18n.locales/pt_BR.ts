@@ -316,10 +316,6 @@ export const table: DeedLocaleTable = {
     name: 'Levanta, Sacode a Poeira',
     desc: 'Morra pela primeira vez; acontece até com os melhores.',
   },
-  dgn_hollow_crypt: {
-    name: 'Quebra-Criptas',
-    desc: 'Derrote Morthen o Gravecaller na Cripta Vazia.',
-  },
   dgn_sunken_bastion: {
     name: 'Fogbinder Desatado',
     desc: 'Derrote Vael, o Fogbinder, no Bastião Submerso.',
@@ -331,10 +327,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'O Wyrm Lá Embaixo',
     desc: 'Derrote Korzul o Gravewyrm no Santuário do Gravewyrm.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroico: A Cripta Vazia',
-    desc: 'Derrote Morthen o Gravecaller na Cripta Vazia na dificuldade Heroica.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroico: O Bastião Submerso',
@@ -371,14 +363,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Cinquenta Portas Depois',
     desc: 'Derrote 50 chefes finais de masmorra.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Nenhum Osso Fora do Lugar',
-    desc: 'Derrote Morthen o Gravecaller na dificuldade Heroica sem que nenhum membro do grupo morra.',
-  },
-  dgn_morthen_trio: {
-    name: 'Três Contra a Cova',
-    desc: 'Derrote Morthen o Gravecaller com três jogadores ou menos.',
   },
   dgn_olen_arc: {
     name: 'Desvie do Ceifador',
@@ -1411,11 +1395,6 @@ export const table: DeedLocaleTable = {
     desc: 'Mate as três cabeças da Hidra da Lagoa com no máximo 10 segundos de diferença entre elas.',
   },
 
-  dgn_crypt_knellwyrm: {
-    name: 'Nem um fio chamuscado',
-    desc: 'Derrote a Serpe do Dobre sem ninguém ser queimado pela Passagem de fogo da pira.',
-  },
-
   dgn_turnkey_cage: {
     name: 'Nenhuma jaula nos segura',
     desc: 'Derrote o Carcereiro da Prisão sem ninguém ser esmagado numa Jaula de ferro.',
@@ -1470,26 +1449,6 @@ export const table: DeedLocaleTable = {
     name: 'O último verso',
     desc: 'Derrote Ysolei, Avatar da Lua Afogada, com o Último Cantor do Coro Pálido ao seu lado.',
     title: 'Testemunha do Coro',
-  },
-
-  dgn_marrow_tidy: {
-    name: 'Um cemitério arrumado',
-    desc: 'Derrote o Sacristão Marrow com toda Cova aberta colocada na borda do Pátio do Sino.',
-  },
-
-  dgn_lady_nobody_hanging: {
-    name: 'Ninguém fica pendurado',
-    desc: 'Derrote a Dama do Frio nos Ossos sem deixar ninguém cair do Abraço congelado.',
-  },
-
-  dgn_ilvane_hush: {
-    name: 'Silêncio agora',
-    desc: 'Derrote Cantor Ilvane sem que Canto fúnebre do vazio atinja ninguém.',
-  },
-
-  dgn_morthen_candlelight: {
-    name: 'Todas as velas acesas',
-    desc: 'Derrote Morthen o Gravecaller após reacender as quatro Velas da Lembrança em até 20 segundos após surgir a Proteção inquieta.',
   },
 
   dgn_guild_first_contract: {

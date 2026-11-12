@@ -36,9 +36,9 @@ describe('presenceOf zone resolution', () => {
 
   it('names the dungeon and reports "dungeon" status when dungeonId is set', () => {
     const { server, session, entity } = makeServerWithPlayer();
-    entity.dungeonId = 'hollow_crypt';
+    entity.dungeonId = 'sunken_bastion';
     const presence = server.presenceOf(session);
-    expect(presence.zone).toBe('The Hollow Crypt');
+    expect(presence.zone).toBe('The Sunken Bastion');
     expect(presence.status).toBe('dungeon');
   });
 
@@ -47,11 +47,11 @@ describe('presenceOf zone resolution', () => {
     // Players moved into a dungeon get their position set to the instance origin
     // but never get e.dungeonId assigned, so the position must resolve the zone.
     entity.dungeonId = null;
-    const origin = instanceOrigin(0, 0); // hollow_crypt is index 0
+    const origin = instanceOrigin(1, 0); // sunken_bastion is index 1
     entity.pos.x = origin.x;
     entity.pos.z = origin.z;
     const presence = server.presenceOf(session);
-    expect(presence.zone).toBe('The Hollow Crypt');
+    expect(presence.zone).toBe('The Sunken Bastion');
     expect(presence.status).toBe('dungeon');
   });
 
@@ -86,7 +86,7 @@ describe('presenceOf zone resolution', () => {
     expect(server.presenceOf(session).status).toBe('dead');
     entity.dead = false;
 
-    entity.dungeonId = 'hollow_crypt';
+    entity.dungeonId = 'sunken_bastion';
     expect(server.presenceOf(session).status).toBe('dungeon');
     entity.dungeonId = null;
 

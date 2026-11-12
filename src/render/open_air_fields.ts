@@ -11,7 +11,6 @@
 import type * as THREE from 'three';
 import { buildDrownedTempleInterior } from './drowned_temple';
 import { buildGravewyrmSanctumInterior } from './gravewyrm_sanctum';
-import { buildHollowCryptInterior } from './hollow_crypt';
 import type { FireLightSink } from './point_light_budget';
 import { buildSunkenBastionInterior } from './sunken_bastion';
 import { buildWildheartBasinInterior } from './wildheart_basin';
@@ -31,7 +30,6 @@ export const OPEN_AIR_FIELDS: Readonly<
   >
 > = {
   wildheart: buildWildheartBasinInterior,
-  hollow_crypt: buildHollowCryptInterior,
   sunken_bastion: buildSunkenBastionInterior,
   drowned_temple: buildDrownedTempleInterior,
   gravewyrm_sanctum: buildGravewyrmSanctumInterior,

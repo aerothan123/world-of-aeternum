@@ -38,8 +38,13 @@ import {
 import { DELVE_SHOPS } from '../src/sim/content/delves';
 import { drownedLitanyChestItemsForTier } from '../src/sim/content/delves/drowned_litany_loot';
 import { delveChestItemsForTier } from '../src/sim/content/delves/lockpick_tiers';
+import { FINDER_ACTIVITIES } from '../src/sim/content/dungeon_finder';
 import { ENCHANTS } from '../src/sim/content/enchants';
 import { FACTION_VENDOR_NPCS, FACTION_VENDOR_STOCK } from '../src/sim/content/faction_vendors';
+import {
+  GATHER_NODE_SITES_AS_SHIPPED,
+  RETIRED_WOOD_NODE_SITES,
+} from '../src/sim/content/gather_nodes';
 import { FARM_HEROIC_PATTERN_GROUP, HEROIC_BOSS_LOOT } from '../src/sim/content/heroic_loot';
 import { HEROIC_VENDOR_NPC_ID, HEROIC_VENDOR_STOCK } from '../src/sim/content/heroic_vendor';
 import { CRUCIBLE_VENDOR_NPC_ID, CRUCIBLE_VENDOR_STOCK } from '../src/sim/content/ignivar_loot';
@@ -492,8 +497,21 @@ describe('the no-fourth-channel sweep (masterwrought R8: three pillars, no fourt
     expect(entriesWalked).toBeGreaterThanOrEqual(58);
     expect(leaks).toEqual([]);
     // The skip is not a hole: the sanctioned group must actually be present,
-    // or this arm would be sweeping a surface the channel silently left.
-    expect(sanctioned, 'the sanctioned farm group must really be on these tables').toBe(10);
+    // or this arm would be sweeping a surface the channel silently left. The
+    // count is derived, not listed: one row per rung-75 drop pattern on every
+    // heroic five-man the finder serves (eight since the Hollow Crypt retired:
+    // four heroic five-mans times two patterns).
+    const heroicFiveMans = FINDER_ACTIVITIES.filter(
+      (a) => a.difficulty === 'heroic' && a.kind === 'dungeon' && a.size === 5,
+    ).length;
+    const rung75DropPatterns = FARM_RECIPES.filter(
+      (r) => r.acquisition?.includes('drop') && r.skillReq === 75,
+    ).length;
+    expect(heroicFiveMans, 'live heroic five-mans').toBeGreaterThan(0);
+    expect(rung75DropPatterns, 'the rung-75 drop patterns').toBe(2);
+    expect(sanctioned, 'the sanctioned farm group must really be on these tables').toBe(
+      heroicFiveMans * rung75DropPatterns,
+    );
   });
 
   it('the rift clear pools carry no pattern id (patterns have no slot, so they cannot enter)', () => {
@@ -588,7 +606,13 @@ describe('the no-fourth-channel sweep (masterwrought R8: three pillars, no fourt
   });
 
   it('no gather node material resolves to a pattern id', () => {
-    expect(GATHER_NODES.length).toBeGreaterThanOrEqual(156);
+    // The 156-site shipped roster less the 52 wood stands retired to tree
+    // chopping (content/gather_nodes.ts RETIRED_WOOD_NODE_SITES): 104 live.
+    expect(GATHER_NODE_SITES_AS_SHIPPED.length).toBeGreaterThanOrEqual(156);
+    expect(GATHER_NODES.length).toBe(
+      GATHER_NODE_SITES_AS_SHIPPED.length - RETIRED_WOOD_NODE_SITES.length,
+    );
+    expect(GATHER_NODES.length).toBeGreaterThanOrEqual(104);
     const leaks: string[] = [];
     for (const node of GATHER_NODES) {
       const material = nodeMaterialFor(node.type, node.zoneId).itemId;

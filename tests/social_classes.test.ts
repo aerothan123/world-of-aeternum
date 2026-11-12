@@ -303,14 +303,14 @@ describe('elite mobs', () => {
   it('elites scale like vanilla elites (~2.3x hp, 1.5x damage, 2x xp)', () => {
     const sim = makeWorld();
     const pid = sim.addPlayer('warrior', 'Tank');
-    sim.enterCrypt(pid);
-    const origin = instanceOrigin(0, 0);
-    // The Ossuary Warrior is the rework's plain melee crypt elite, the role
-    // the Crypt Shambler (no longer spawned) held before it
-    // (src/sim/content/hollow_crypt_trash.ts).
-    const warrior = nearestMob(sim, 'crypt_ossuary_warrior', origin);
+    // Moved off the retired Hollow Crypt's Ossuary Warrior (2026-11-11) onto
+    // the Sunken Bastion's Bastion Revenant, a plain melee elite with no
+    // per-template scaling, so the vanilla elite multipliers still hold.
+    sim.enterDungeon('sunken_bastion', pid);
+    const origin = instanceOrigin(1, 0);
+    const warrior = nearestMob(sim, 'bastion_revenant', origin);
     expect(warrior).toBeTruthy();
-    const t = MOBS.crypt_ossuary_warrior;
+    const t = MOBS.bastion_revenant;
     expect(t.elite).toBe(true);
     const normalHp = t.hpBase + t.hpPerLevel * (warrior.level - 1);
     expect(warrior.maxHp).toBe(Math.round(normalHp * 2.3));

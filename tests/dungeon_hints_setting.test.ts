@@ -207,7 +207,6 @@ describe('the hints setting is independent of the graphics preset', () => {
       'src/ui/hud/dungeon/bastion_alert_view.ts',
       'src/ui/hud/dungeon/wildheart_alert_view.ts',
       'src/ui/hud/dungeon/sanctum_alert_view.ts',
-      'src/ui/hud/dungeon/crypt_alert_view.ts',
     ]) {
       const source = read(rel);
       // Every place a view sets the field, it sets it false (and none passes

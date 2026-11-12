@@ -127,38 +127,50 @@ describe('patrol routing along the loop (mob/patrol_route.ts)', () => {
 function claim(seed: number): { sim: Sim; pid: number; inst: InstanceSlot } {
   const sim = new Sim({ seed, playerClass: 'warrior', noPlayer: true, world: WORLD });
   const pid = sim.addPlayer('warrior', 'Watcher');
-  expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+  expect(enterDungeon(sim.ctx, 'sunken_bastion', pid)).toBe(true);
   const inst = sim.ctx.instances.find(
-    (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+    (i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null,
   ) as InstanceSlot;
   return { sim, pid, inst };
 }
 
 function p2(sim: Sim, inst: InstanceSlot): Entity[] {
-  return DUNGEONS.hollow_crypt.spawns
-    .map((s, i) => (s.packId === 'c2' ? (sim.ctx.entities.get(inst.mobIds[i]) as Entity) : null))
+  return DUNGEONS.sunken_bastion.spawns
+    .map((s, i) => (s.packId === 'gd' ? (sim.ctx.entities.get(inst.mobIds[i]) as Entity) : null))
     .filter((e): e is Entity => e !== null);
 }
 
-describe('the monument patrol (c2) in a live claim', () => {
-  it('walks the monument loop while idle and stays on it', () => {
+// The gaol yard's round (gd): the authored loop, read from the content so the
+// pins follow it. Its centre and half-extents in instance-local yards.
+const GD_LOOP = (() => {
+  const spawn = DUNGEONS.sunken_bastion.spawns.find((s) => s.packId === 'gd' && s.patrol);
+  if (!spawn?.patrol) throw new Error('no gd patrol in the Sunken Bastion');
+  const xs = spawn.patrol.points.map((p) => p.x);
+  const zs = spawn.patrol.points.map((p) => p.z);
+  const [x0, x1, z0, z1] = [Math.min(...xs), Math.max(...xs), Math.min(...zs), Math.max(...zs)];
+  return { cx: (x0 + x1) / 2, cz: (z0 + z1) / 2, hx: (x1 - x0) / 2, hz: (z1 - z0) / 2 };
+})();
+
+describe('the gaol yard patrol (gd) in a live claim', () => {
+  it('walks the yard loop while idle and stays on it', () => {
     const { sim, inst } = claim(5);
     const [lead] = p2(sim, inst);
     expect(lead.dungeonPatrol?.points.length).toBe(4);
-    const o = instanceOrigin(DUNGEONS.hollow_crypt.index, inst.slot);
+    const o = instanceOrigin(DUNGEONS.sunken_bastion.index, inst.slot);
     const seen = new Set<string>();
     for (let t = 0; t < 20 * 40; t++) {
       sim.tick();
       if (t % 20 === 0) {
-        const lx = lead.pos.x - o.x;
-        const lz = lead.pos.z - o.z;
-        seen.add(`${Math.sign(Math.round(lx / 8))},${Math.sign(Math.round((lz + 30) / 8))}`);
-        // Never strays far from the square loop around the monument.
-        expect(Math.max(Math.abs(lx), Math.abs(lz + 30))).toBeLessThan(20);
+        const lx = lead.pos.x - o.x - GD_LOOP.cx;
+        const lz = lead.pos.z - o.z - GD_LOOP.cz;
+        seen.add(`${Math.sign(Math.round(lx / 8))},${Math.sign(Math.round(lz / 8))}`);
+        // Never strays more than 4 yd outside the loop's own rectangle.
+        expect(Math.abs(lx)).toBeLessThan(GD_LOOP.hx + 4);
+        expect(Math.abs(lz)).toBeLessThan(GD_LOOP.hz + 4);
       }
     }
     expect(lead.aiState).toBe('idle');
-    // It visited more than one side of the monument.
+    // It visited more than one side of the yard.
     expect(seen.size).toBeGreaterThanOrEqual(3);
   });
 
@@ -166,9 +178,9 @@ describe('the monument patrol (c2) in a live claim', () => {
     const sim = new Sim({ seed: 8, playerClass: 'warrior', noPlayer: true, world: WORLD });
     (sim as unknown as { time: number }).time = 7777.7;
     const pid = sim.addPlayer('warrior', 'Late');
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', pid)).toBe(true);
     const inst = sim.ctx.instances.find(
-      (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+      (i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null,
     ) as InstanceSlot;
     const walkers = p2(sim, inst);
     expect(walkers.length).toBeGreaterThan(1);

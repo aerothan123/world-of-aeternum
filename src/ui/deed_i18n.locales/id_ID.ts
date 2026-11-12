@@ -212,10 +212,6 @@ export const table: DeedLocaleTable = {
     name: 'Tepis Debu, Bangkit Lagi',
     desc: 'Mati untuk pertama kalinya; itu terjadi pada yang terbaik sekalipun.',
   },
-  dgn_hollow_crypt: {
-    name: 'Pendobrak Kripta',
-    desc: 'Kalahkan Morthen sang Pemanggil Kubur di Kripta Berongga.',
-  },
   dgn_sunken_bastion: {
     name: 'Ikatan Kabut Terurai',
     desc: 'Kalahkan Vael sang Fogbinder di Benteng Karam.',
@@ -227,10 +223,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Wyrm di Kedalaman',
     desc: 'Kalahkan Korzul sang Gravewyrm di Sanktum Gravewyrm.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroik: Kripta Berongga',
-    desc: 'Kalahkan Morthen sang Pemanggil Kubur di Kripta Berongga pada tingkat kesulitan Heroik.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroik: Benteng Karam',
@@ -267,14 +259,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Lima Puluh Gerbang Tumbang',
     desc: 'Kalahkan 50 bos pamungkas dungeon.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Tak Sebatang Tulang Patah',
-    desc: 'Kalahkan Morthen sang Pemanggil Kubur pada tingkat kesulitan Heroik tanpa satu pun anggota party yang mati.',
-  },
-  dgn_morthen_trio: {
-    name: 'Bertiga Melawan Kubur',
-    desc: 'Kalahkan Morthen sang Pemanggil Kubur dengan tiga pemain atau kurang.',
   },
   dgn_olen_arc: {
     name: 'Mengelak dari Sang Penuai',
@@ -1271,22 +1255,6 @@ export const table: DeedLocaleTable = {
     desc: 'Pertahankan PvP Dunia tetap aktif selama 7 hari waktu bermain ketika masih hidup di dunia terbuka atau pertandingan PvP. Suaka, instans PvE, kematian, dan keluar menjeda kemajuan; menonaktifkannya mengatur ulang kemajuan. Gelar yang diperoleh bersifat permanen.',
     title: 'Tak Tertaklukkan',
   },
-  dgn_morthen_candlelight: {
-    name: 'Semua Lilin Menyala',
-    desc: 'Kalahkan Morthen Pemanggil Makam setelah menyalakan kembali keempat Lilin Kenangan dalam 20 detik setelah Perisai Arwah Gelisahnya muncul.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Diamlah Kini',
-    desc: 'Kalahkan Kantor Ilvane tanpa Ratapan Kehampaannya pernah mengenai siapa pun.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Tak Ada yang Dibiarkan Menggantung',
-    desc: 'Kalahkan Nyonya Dingin Tulang tanpa ia pernah menjatuhkan siapa pun dari Pelukan Bekunya.',
-  },
-  dgn_marrow_tidy: {
-    name: 'Halaman Gereja yang Rapi',
-    desc: 'Kalahkan Pengurus Makam Marrow dengan setiap Makam Terbuka ditempatkan di tepi Halaman Lonceng.',
-  },
   dgn_drowned_temple_cantor: {
     name: 'Bait Terakhir',
     desc: 'Kalahkan Ysolei, Avatar Bulan Tenggelam, dengan Kantor Terakhir Paduan Suara Pucat di sisimu.',
@@ -1331,10 +1299,6 @@ export const table: DeedLocaleTable = {
   dgn_turnkey_cage: {
     name: 'Tak Ada Kurungan yang Menahan Kami',
     desc: 'Kalahkan Sipir Penjara tanpa siapa pun diremukkan di dalam Kurungan Besi.',
-  },
-  dgn_crypt_knellwyrm: {
-    name: 'Tak Sehelai Rambut Hangus',
-    desc: 'Kalahkan Wyrm Lonceng Kematian tanpa siapa pun terbakar Sapuan Api Unggunnya.',
   },
   dgn_mere_hydra: {
     name: 'Semua Kepala Tumbang',

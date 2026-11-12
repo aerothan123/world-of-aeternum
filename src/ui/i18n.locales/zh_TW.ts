@@ -8232,7 +8232,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.willowfen_remedy_caravan.name': '柳澤沼地藥品商隊',
   'entities.mobs.frostveil_supply_caravan.name': '霜幕之境補給商隊',
   'entities.mobs.restless_bones.name': '不寧骸骨',
-  'entities.mobs.marrow_restless_bones.name': '不寧骸骨',
   'entities.mobs.gorrak.name': '無情者戈拉克',
   'entities.mobs.mire_prowler.name': '泥沼潛伏獸',
   'entities.mobs.deepfen_murloc.name': '深沼鉗咬魚人',
@@ -8274,11 +8273,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.wyrmcult_zealot.name': '龍誓狂熱者',
   'entities.mobs.wyrmcult_necromancer.name': '龍誓死靈法師',
   'entities.mobs.boneclad_revenant.name': '骨甲亡魂',
-  'entities.mobs.crypt_shambler.name': '墓穴蹣跚者',
-  'entities.mobs.hollow_acolyte.name': '空洞侍僧',
-  'entities.mobs.bonechill_widow.name': '寒骨寡婦蛛',
-  'entities.mobs.sexton_marrow.name': '司事馬羅',
-  'entities.mobs.morthen.name': '喚墓者莫森',
   'entities.mobs.bastion_revenant.name': '堡壘亡魂',
   'entities.mobs.tidebound_acolyte.name': '潮縛侍僧',
   'entities.mobs.drowned_thrall.name': '溺亡奴僕',
@@ -8537,57 +8531,17 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '我們挖到了一條上好的銅礦脈，接著那些掘地害蟲就從山坡裡湧了出來。在礦坑清理乾淨之前，我的工班絕不會踏進去半步。放倒 10 隻深岩掘地者。',
   'entities.quests.q_mine.completion': '哈！回去幹活吧，夥計們！這是我的謝意和酬勞。',
   'entities.quests.q_mine.objectives.0.label': '擊敗深岩掘地者',
-  'entities.quests.q_bones.title': '不寧的死者',
-  'entities.quests.q_bones.text':
-    '舊禮拜堂曾是安息之地，如今有東西喚醒了死者。讓8具不寧骸骨歸土，{playerName}。',
-  'entities.quests.q_bones.completion': '願他們從此安息，也願聖光寬恕喚醒他們之物。',
-  'entities.quests.q_bones.objectives.0.label': '讓不寧骸骨安息',
   'entities.quests.q_supplies.title': '被盜的補給',
   'entities.quests.q_supplies.text':
     '強盜搶走了我的最後一輛貨車，工具、鹽和東溪亞麻都在裡面。去西北山丘的營地奪回4個補給箱。',
   'entities.quests.q_supplies.completion': '我的箱子！幾乎沒有刮痕。你真讓人驚喜。',
   'entities.quests.q_supplies.objectives.0.label': '被盜補給箱',
-  'entities.quests.q_whispers.title': '地下低語',
-  'entities.quests.q_whispers.text':
-    '死者又爬起來，因為有什麼在召喚他們。搜尋禮拜堂遺址，把召喚者留下的徽記完整帶給我。',
-  'entities.quests.q_whispers.completion':
-    '這枚徽記有喚墓者的印記。我曾祈禱這個教派早已滅絕，{playerName}。',
-  'entities.quests.q_whispers.objectives.0.label': '喚墓者徽記',
-  'entities.quests.q_names_of_the_dead.title': '死者之名',
-  'entities.quests.q_names_of_the_dead.text':
-    '如果喚墓者盜用了我們的墓地，我必須知道他們偷走了誰。收集3頁葬冊殘頁，{playerName}。',
-  'entities.quests.q_names_of_the_dead.completion':
-    '可憐的亡魂...看這裡，司事馬羅是第一個。莫森從埋葬東溪死者的人開始。',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': '風化帳頁',
   'entities.quests.q_silence_the_call.title': '讓呼喚沉寂',
   'entities.quests.q_silence_the_call.text':
     '名冊上的每個名字都是莫森想拖出泥土的靈魂。{playerName}，在低語變成合唱前，讓12具不寧骸骨沉寂。',
   'entities.quests.q_silence_the_call.completion':
     '墓園安靜了些，可召喚如今從墓穴下方升起，{playerName}。',
   'entities.quests.q_silence_the_call.objectives.0.label': '使不寧骸骨沉寂',
-  'entities.quests.q_rite.title': '束縛儀式',
-  'entities.quests.q_rite.text':
-    '若要阻止喚墓者，就必須解開禮拜堂下方墓穴的封印，但只有束縛儀式才能讓生者通過。我需要 4 塊祝福獸脂，礦坑裡的掘地怪整箱整箱地囤積獸脂，還需要 6 份取自不安亡者的幽魂精華。',
-  'entities.quests.q_rite.completion':
-    '完成了。下方的路已經打開...召集最強的同伴再下去，{playerName}。',
-  'entities.quests.q_rite.objectives.0.label': '祝福油脂',
-  'entities.quests.q_rite.objectives.1.label': '幽魂精華',
-  'entities.quests.q_hollow.title': '進入空洞',
-  'entities.quests.q_hollow.text':
-    '莫森在空洞墓穴底部等著，身邊是他喚起的精英亡者。帶上四名同伴，終結他。',
-  'entities.quests.q_hollow.completion': '低語停了。死者終於沉睡，{playerName}，東溪欠你一切。',
-  'entities.quests.q_hollow.objectives.0.label': '擊敗喚墓者莫森',
-  'entities.quests.q_sexton.title': '司事的鐘',
-  'entities.quests.q_sexton.text':
-    '葬冊寫著司事馬羅的名字，他是莫森喚起的第一個守門人。{playerName}，帶四名同伴下墓穴，還給他被奪走的安息。',
-  'entities.quests.q_sexton.completion': '馬羅終於自由了。別為他敲鐘，他生前聽得夠多了。',
-  'entities.quests.q_sexton.objectives.0.label': '讓司事馬羅安息',
-  'entities.quests.q_gravecallers_trail.title': '喚墓者的蹤跡',
-  'entities.quests.q_gravecallers_trail.text':
-    '莫森死了，但潛伏百年的教派不會只為一座村莊禮拜堂現身。去廢墟裡找他的魔典，{playerName}。',
-  'entities.quests.q_gravecallers_trail.completion':
-    '莫森曾寫信給北方濕地的一名「縛霧者」。這個教派並未死去，{playerName}，它只是一直在耐心等待。',
-  'entities.quests.q_gravecallers_trail.objectives.0.label': '莫森的魔典',
   'entities.quests.q_bandits.title': '谷地強盜',
   'entities.quests.q_bandits.text':
     '一群割喉強盜在西北山丘紮營，本週已經搶了三輛貨車。擊殺10名谷地強盜。',
@@ -9282,9 +9236,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_seal_restored.completion':
     '我在這裡感覺到它合攏了，溫柔如暮色。幽谷會記得它的朋友，{playerName}。無論你走多遠，大樹下總會為你留一盞燈。',
   'entities.quests.q_seal_restored.objectives.0.label': '封印已放回封印石',
-  'entities.dungeons.hollow_crypt.name': '空洞墓穴',
-  'entities.dungeons.hollow_crypt.enterText': '你走下空洞墓穴...',
-  'entities.dungeons.hollow_crypt.leaveText': '你重新爬回日光之下。',
   'entities.dungeons.sunken_bastion.name': '沉沒堡壘',
   'entities.dungeons.sunken_bastion.enterText': '你涉水進入沉沒堡壘深處...',
   'entities.dungeons.sunken_bastion.leaveText': '你爬出溺水般的黑暗。',
@@ -11160,8 +11111,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'guide.dungeonsPage.levelExact': '{n} 級',
   'guide.dungeonsPage.raidSize': '十名玩家，{n} 級',
   'guide.dungeonsPage.hollowName': '空墓地穴',
-  'guide.dungeonsPage.hollowBody':
-    '一座被盜墓洗劫的禮拜堂地穴，新死的亡者拒絕安息。新隊伍的第一個真正考驗。',
   'guide.dungeonsPage.bastionName': '沉沒堡壘',
   'guide.dungeonsPage.bastionBody':
     '一座沉入沼澤、被遺忘的要塞，由溺亡的守軍與不斷上漲的潮水本身所據守。',
@@ -13906,10 +13855,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': '老灰顎，終於倒下了',
   'entities.letters.letter_q_greyjaw.body':
     '小鎮裡消息傳得快。牧人們昨晚為你的健康乾杯，威爾克斯發誓那頭狼有馬車那麼大。讓他們添油加醋去吧：這是你應得的。\n\n請代守備隊享用一頓好飯。\n- 雷德布魯克元帥',
-  'entities.letters.letter_q_hollow.sender': '奧德里克修士',
-  'entities.letters.letter_q_hollow.subject': '你在黑暗中所做的一切',
-  'entities.letters.letter_q_hollow.body':
-    '很少有人會知道那處窪地裡埋葬著什麼，願意相信的人更少。但我知道，而且我不會忘記。\n\n願你的道路常明。\n- 奧德里克修士',
   'entities.letters.heroic_marks_reward.sender': '英勇軍需官',
   'entities.letters.heroic_marks_reward.subject': '你的英勇印記',
   'entities.letters.heroic_marks_reward.body':
@@ -15236,34 +15181,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.finder.partyMemberMeta': '{level}級{cls}',
   'hudChrome.finder.difficultyHeading': '難度',
   'hudChrome.finder.mech.shadow_pulse': '暗影脈衝（週期性範圍傷害）',
-  'hudChrome.finder.mech.crypt_shovelful':
-    '一鏟墳土（每11秒他向身前8碼錐形區域揚起墳土：造成他普通攻擊1.5倍的傷害，並使移動速度降低50%，持續6秒，所以站到他身後）',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    '量身定墓（每15秒他標記一名非坦克玩家；4秒後腳下塌出一座敞開的墳墓，普通難度下對3碼內造成42到52點傷害，坑會在整場戰鬥中保留：在其中每秒受到9點傷害且移動速度降低40%，所以把墳墓留在墓園邊緣）',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    '葬禮喪鐘（生命值降到66%和33%時，他大步走向鐘繩，免疫傷害，搖鐘3秒：普通難度下對所有人造成30到38點暗影傷害，並且每座敞開的墳墓都會爬出一具不安之骨）',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    '英雄：掘墓人重擊，每9秒打擊坦克（每層使其受到的傷害提高6%，持續20秒，最多6層）；墳墓之力（他站在墳墓裡時攻擊速度提高30%）；不寧之土（任何人在墳墓裡停留2秒，就會在那裡爬出一具不安之骨）',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    '新娘的哀歌（每22秒一次3秒的哀嚎：普通難度下對所有不在點亮的墓燈光芒中的人造成60到75點冰霜傷害，你已承受的每層縈繞哀歌再提高一半。每盞燈最多庇護兩名玩家，庇護過任何人後會熄滅28秒，所以分散開輪流使用）',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    '冰封之擁（每30秒她抓住一名非坦克玩家，帶著對方升到空中5碼高，每秒造成6點冰霜傷害：在8秒內打掉她6%的生命值她就會把人放下，否則她會把人扔下，普通難度下造成150到180點傷害）',
-  'hudChrome.finder.mech.crypt_rime_path':
-    '霜徑（她飄過的地方會留下光滑的白霜，持續25秒：在上面你加速緩慢，停下或轉向時會繼續滑行）',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    '新娘冰封（生命值降到一半時，整個峽谷地面都會凍結：在戰鬥剩餘時間裡都是光滑的冰面）',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    '英雄：每盞點亮的墓燈在30秒後也會自行熄滅10秒，冰封之擁會同時抓住兩名玩家',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    '空洞輓歌（每16秒一首可打斷的2.5秒歌曲：如果她唱完，普通難度下對45碼內所有能看見她的人造成105到125點暗影傷害並沉默4秒，所以打斷它或躲到唱詩柱後面）',
-  'hudChrome.finder.mech.crypt_harmony':
-    '和聲（每名存活的唱詩者都使她受到的傷害降低30%：先殺唱詩者）',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    '骨管風琴（每26秒她彈奏骨管風琴：兩波暗影音符沿著唱詩樓的通道爆發，普通難度下通道內造成100到115點傷害，第二波會填滿第一波的空隙）',
-  'hudChrome.finder.mech.crypt_crescendo':
-    '漸強（生命值低於30%時，她的輓歌只需1.8秒且每11秒一次，風琴還會多奏一波）',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    '英雄：安可（一名唱詩者倒下10秒而另一名仍站著時，它會再次站起，所以同時殺掉它們）以及不斷之詩（每第三首輓歌無法被打斷：躲開它）',
   'hudChrome.finder.mech.reaping_arc': '收割之弧（正面順劈）',
   'hudChrome.finder.mech.mist_surge': '迷霧湧動（週期性範圍傷害）',
   'hudChrome.finder.mech.summons_adds': '召喚增援',
@@ -22403,29 +22320,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '用鎖鏈將 {range} 碼內的目標束縛在原地，持續 {duration} 秒。免疫控制的生物（例如首領）改為移動速度降低 {slow}%，除非它也免疫緩速。',
   'hudChrome.auraEffect.trinket.shackle': '被鎖鏈束縛：無法移動。',
   'hudChrome.auraEffect.trinket.shackleSlow': '鎖鏈纏身：移動速度降低 {pct}%。',
-  'entities.mobs.ossuary_sentinel.name': '骨堂哨兵',
-  'entities.mobs.hollow_gravedigger.name': '空洞掘墓人',
-  'entities.mobs.rimeweb_hatchling.name': '霜網幼蛛',
-  'entities.mobs.rimeweb_spinner.name': '霜網織絲蛛',
-  'entities.mobs.candlewright_acolyte.name': '燭匠侍僧',
-  'entities.mobs.hollow_chorister.name': '空洞唱詩者',
-  'entities.mobs.bound_soul.name': '縛魂',
-  'entities.mobs.rimeweb.name': '寒骨夫人',
-  'entities.mobs.cantor_ilvane.name': '領唱者伊爾凡',
-  'entities.mobs.rime_egg_sac.name': '霜卵囊',
-  // The Hollow Crypt trash (M16 non-Latin fills for its new names).
-  'abilityUi.cast.crypt_grave_bolt': '墓穴之箭',
-  'abilityUi.cast.crypt_raise_bones': '喚起骸骨',
-  'abilityUi.cast.crypt_murder_call': '鴉群召喚',
-  'abilityUi.cast.crypt_stone_shriek': '石之尖嘯',
-  'abilityUi.cast.crypt_grave_cleave': '墓穴橫掃',
-  'abilityUi.cast.crypt_barrowflame_breath': '塚焰吐息',
-  'abilityUi.cast.crypt_tail_lash': '尾鞭',
-  'abilityUi.cast.crypt_wing_gust': '翼風',
-  'abilityUi.cast.crypt_grave_rupture': '墓穴崩裂',
-  'abilityUi.cast.crypt_carrion_eye': '腐鴉之眼',
-  'abilityUi.cast.crypt_marrow_crush': '碎髓重擊',
-  'abilityUi.cast.crypt_rimesilk_spit': '霜絲噴吐',
   'abilityUi.cast.bastion_brine_mend': '鹽水癒合',
   'abilityUi.cast.bastion_fog_ward': '霧之護佑',
   'abilityUi.cast.bastion_halberd_sweep': '戟之橫掃',
@@ -22472,42 +22366,8 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.temple_ysolei_wrath': '溺亡之怒',
   'abilityUi.cast.temple_prism_glare': '稜鏡凝視',
   'abilityUi.cast.temple_arcing_spark': '弧光火花',
-  'abilityUi.cast.crypt_gravespark_volley': '墓火齊射',
   'abilityUi.cast.bastion_loose_on_my_mark': '聽我號令放箭',
   'abilityUi.cast.temple_call_of_the_shallows': '淺灘的呼喚',
-  'entities.mobs.crypt_ossuary_warrior.name': '骨堂戰士',
-  'entities.mobs.crypt_gravecaller_adept.name': '喚墓者學徒',
-  'entities.mobs.crypt_ossuary_cutthroat.name': '骨堂割喉者',
-  'entities.mobs.crypt_gravecaller_necromancer.name': '喚墓者死靈法師',
-  'entities.mobs.crypt_bone_minion.name': '骸骨僕從',
-  'entities.mobs.crypt_bone_brute.name': '骸骨蠻兵',
-  'entities.mobs.crypt_bone_pile.name': '蠢動的骸骨',
-  'entities.mobs.crypt_chapel_gargoyle.name': '禮拜堂石像鬼',
-  'entities.mobs.crypt_crow_caller.name': '喚鴉者',
-  'entities.mobs.crypt_carrion_crow.name': '食腐烏鴉',
-  'entities.mobs.crypt_ossuary_drake.name': '骨堂骨龍',
-  // The Hollow Crypt finale (M16 non-Latin fills for its new names).
-  'abilityUi.cast.crypt_morthen_rite_wakes': '儀式甦醒',
-  'abilityUi.cast.crypt_morthen_rise': '喚墓者升起',
-  'abilityUi.cast.crypt_morthen_proclaim': '墓之宣告',
-  'abilityUi.cast.crypt_morthen_descend': '降臨',
-  'abilityUi.cast.crypt_knellwyrm_arrive': '自天而降',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': '火葬掃射',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': '俯衝掃射',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': '恐懼咆哮',
-  'abilityUi.cast.crypt_marrow_shovelful': '一鏟墳土',
-  'abilityUi.cast.crypt_marrow_measure': '量身定墓',
-  'abilityUi.cast.crypt_marrow_burial_toll': '葬禮喪鐘',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': '掘墓人重擊',
-  'abilityUi.cast.crypt_lady_brides_lament': '新娘的哀歌',
-  'abilityUi.cast.crypt_lady_frozen_embrace': '冰封之擁',
-  'abilityUi.cast.crypt_lady_embrace_hold': '冰封之擁',
-  'abilityUi.cast.crypt_lady_bridal_freeze': '新娘冰封',
-  'abilityUi.cast.crypt_ilvane_dirge': '空洞輓歌',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': '不斷之詩',
-  'abilityUi.cast.crypt_ilvane_bone_organ': '骨管風琴',
-  'entities.mobs.crypt_knellwyrm.name': '喪鐘巨龍',
-  // The Sunken Bastion fifth pass (M16 non-Latin fills for its new names).
   'abilityUi.cast.bastion_iron_cage': '鐵籠',
   'abilityUi.cast.bastion_drowned_anchor_cast': '溺亡之錨',
   'abilityUi.cast.bastion_shackle_pair': '雙人鐐銬',
@@ -22566,10 +22426,6 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '吞噬死者（{stacks}/{max}層）：每層使靈魂釋放的範圍擴大{radius}碼，傷害提高{pct}%。',
   'hudChrome.auraEffect.bastion.snappedFetters':
     '它的鎖鏈已斷。它不再戰鬥，無法被傷害，並很快離開。',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    '戰鬥中的所有烏鴉都會追獵你，持續{seconds}秒。跑向你的坦克，讓隊伍一起消滅鴉群。',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    '受到的傷害降低{pct}%，石層每{every}秒增厚一次，最多{max}層。擊暈會將其擊碎，使其在{seconds}秒內受到的傷害提高{cracked}%。',
   'hudChrome.bastionChain.shackledTitle': '與 {name} 鎖在一起',
   'hudChrome.bastionChain.shackledLine': '彼此保持在 {range} 碼以內（目前相距 {dist} 碼）',
   'hudChrome.bastionChain.strainedLine': '離得太遠！鎖鏈會傷害你們兩人：靠近到 {range} 碼以內',
@@ -22897,90 +22753,8 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'entities.npcs.cantor_laverock.title': '蒼白唱詩班最後的領唱',
   'entities.npcs.cantor_laverock.greeting':
     '我曾是蒼白唱詩班裡最年輕的聲音。儀式那夜，我沒有喝，我逃了。從那以後，每逢滿月，我都聽見他們在水下歌唱。我必須在死前親眼見到她。讓我跟在你們身後吧。我不會戰鬥，也不會拖累你們。',
-  'hudChrome.cryptAlert.measuredTitle': '量身定墓！',
-  'hudChrome.cryptAlert.measuredLine': '計時條走完時，墳墓會在你腳下塌陷：把它帶到墓園邊緣',
-  'hudChrome.cryptAlert.embracedTitle': '冰封之擁！',
-  'hudChrome.cryptAlert.embracedLine': '她把你舉在半空：你的隊伍必須傷害她，她才會把你放下',
-  'hudChrome.cryptAlert.lamentTitle': '新娘的哀歌！',
-  'hudChrome.cryptAlert.lamentShelteredLine': '你站在點亮的墓燈光芒中，燈下還有你的位置：保持不動',
-  'hudChrome.cryptAlert.lamentOpenLine': '在哀嚎落下前進入點亮的墓燈光芒中：每盞燈兩人',
-  'hudChrome.cryptAlert.graveTitle': '你在敞開的墳墓裡！',
-  'hudChrome.cryptAlert.graveLine': '墳土會灼燒你並讓你減速：離開墳墓',
-  'hudChrome.cryptAlert.tollTitle': '葬禮喪鐘！',
-  'hudChrome.cryptAlert.tollLine': '他搖鐘時無法受到傷害：準備承受喪鐘和它喚起的亡者',
-  'hudChrome.cryptAlert.harmonyTitle': '和聲',
-  'hudChrome.cryptAlert.harmonyLine': '她的唱詩者使她受到的傷害降低{pct}%：先殺死它們',
-  'hudChrome.cryptAlert.timeAria': '剩餘{seconds}秒',
-  'hudChrome.auraEffect.crypt.measured':
-    '此效果結束時，一座敞開的墳墓會在你所站之處塌陷：對{radius}碼內的所有人造成{min}到{max}點傷害（英雄難度{heroicMin}到{heroicMax}點）。墳墓會在整場戰鬥中保留，所以把印記帶到墓園邊緣，遠離隊伍。',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    '站在敞開的墳墓中：移動速度降低{slow}%，每秒受到{damage}點暗影傷害（英雄難度{heroic}點）。英雄難度下，在墳墓中停留{linger}秒會喚起一具不安之骨。離開墳墓。',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    '移動速度降低{pct}%。一鏟墳土會擊中司事馬羅身前的所有人：站到他身後。',
-  'hudChrome.auraEffect.crypt.blow':
-    '受到的傷害提高{pct}%：每層{per}%，目前{stacks}/{max}層。每次掘墓人重擊都會增加一層，並將持續時間重置為{seconds}秒。',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    '站在敞開的墳墓中時攻擊速度提高{pct}%。別讓他待在墳墓裡。',
-  'hudChrome.auraEffect.crypt.tolling':
-    '他大步走向鐘繩並敲響葬鐘時免疫傷害。鐘聲結束時，喪鐘對所有人造成{min}到{max}點暗影傷害（英雄難度{heroicMin}到{heroicMax}點），並且每座敞開的墳墓都會爬出一具不安之骨。',
-  'hudChrome.auraEffect.crypt.embraced':
-    '被夫人舉在半空：無法行動，每秒受到{tick}點冰霜傷害（英雄難度{tickHeroic}點）。如果你的隊伍打掉她{share}%的最大生命值（英雄難度{shareHeroic}%），她會把你輕輕放下；如果她在高處抓住你{hold}秒，就會把你扔到冰面上，造成{min}到{max}點傷害（英雄難度{heroicMin}到{heroicMax}點）。',
-  'hudChrome.auraEffect.crypt.lament':
-    '新娘的哀歌結束時，對所有不在點亮的墓燈{radius}碼內的人造成{min}到{max}點冰霜傷害（英雄難度{heroicMin}到{heroicMax}點）。每盞燈只庇護離它最近的{cap}名玩家，然後熄滅並錯過下一次哀歌。',
-  'hudChrome.auraEffect.crypt.lingering':
-    '你承受的下一次新娘的哀歌傷害提高{pct}%：每層{per}%，最多{max}層。下一次請在墓燈光芒中承受。',
-  'hudChrome.auraEffect.crypt.slippery':
-    '在光滑的冰面上：你的速度每秒最多改變{grip}碼/秒，所以起步緩慢，停下時會繼續滑行，轉向時會甩出大弧線。離開冰面就能重新站穩。',
-  'hudChrome.auraEffect.crypt.harmony':
-    '受到的傷害降低{pct}%：她每有一名存活的唱詩者就降低{per}%。先殺死唱詩者。',
-  'hudChrome.auraEffect.crypt.crescendo':
-    '唱得更快：空洞輓歌只需{cast}秒（原為{castNormal}秒），每{every}秒一次（原為{everyNormal}秒），骨管風琴會奏出{waves}波音符（原為{wavesNormal}波）。',
   // Morthen the Gravecaller's Rite and the Knellwyrm's heroic Burning Knell
   // (M16 non-Latin fills for their new strings).
-  'abilityUi.cast.crypt_morthen_shadow_pulse': '暗影脈衝',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': '不寧者儀式',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': '收割不寧者',
-  'abilityUi.cast.kituse_crypt_relight_candle': '重燃蠟燭',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': '燃燒喪鐘',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': '燃燒喪鐘',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': '燃燒喪鐘',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': '燃燒喪鐘',
-  'entities.mobs.crypt_remembrance_candle.name': '追思蠟燭',
-  'hudChrome.auraEffect.crypt.gorged':
-    '造成的傷害提高{pct}%：每個抵達他身邊的縛魂提高{per}%，目前{stacks}/{max}層，持續到戰鬥結束。每個抵達的靈魂還會為他恢復{heal}%的最大生命值。站到靈魂的路徑上，就能由你代為承受。',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    '他在祭壇引導不寧者儀式時免疫傷害：已重燃{lit}/{total}根追思蠟燭。重燃一根需要引導{channel}秒，期間每秒吸取點燃者{drain}%的最大生命值（英雄難度{drainHeroic}%）；受到攻擊不會打斷，移動或昏迷會打斷。最後一根蠟燭會擊碎結界。英雄難度下，須按名冊點出的順序點燃：點錯蠟燭會熄滅最後點燃的那根，並對點燃者造成{wrongMin}到{wrongMax}點暗影傷害。',
-  'hudChrome.auraEffect.crypt.riteBroken': '昏迷：破碎的結界讓他{seconds}秒內無法行動。',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    '{seconds}秒內受到的傷害提高{pct}%：重燃的蠟燭擊碎了他的結界。現在就打出最強的攻擊。',
-  'hudChrome.auraEffect.crypt.graveChill':
-    '不寧者儀式持續期間，每秒受到{bite}點暗影傷害（英雄難度{biteHeroic}點），每{every}秒提高{step}點（英雄難度{stepHeroic}點）。重燃追思蠟燭來終結它。',
-  'hudChrome.auraEffect.crypt.graspMark':
-    '{fuse}秒後，你腳下的法環中會伸出鬼手：法環落下處{radius}碼內的所有人被定身{root}秒，並受到{min}到{max}點暗影傷害。離開法環。',
-  'hudChrome.auraEffect.crypt.graspRoot': '被墳墓之手抓住：{seconds}秒內無法移動。',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    '在儀式之環上空飛行，無法觸及。它會標記半個法環{mark}秒，然後向那一半傾瀉幽魂之火：對其中所有人造成{min}到{max}點火焰傷害。每次飛行焚燒{breaths}個半區，然後降落。',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    '暗影脈衝（每12秒施法2秒，然後在普通難度下對他周圍12碼內所有人造成24到30點暗影傷害，所以要走開；在他的終末儀式中每9秒一次）',
-  'hudChrome.finder.mech.crypt_gravecall':
-    '喚墓（每15秒，一個縛魂從下一個石棺壁龕飄向他；抵達後他獲得飽食亡者，每個靈魂使他造成的傷害提高10%，最多10層，並恢復3%的生命值。擋在路徑上的玩家會代為承受：普通難度下12到16點暗影傷害）',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    '不寧者儀式（生命值降到65%時，他回到祭壇，在不寧結界中免疫傷害，同時墓穴寒意每秒對所有人造成3點暗影傷害，每5秒提高1點，還有2具不安之骨從壁龕中爬出。重燃4根追思蠟燭：每根需要引導4秒，每秒吸取點燃者6%的最大生命值，受到攻擊不會打斷，移動或昏迷會打斷。最後一根蠟燭會打破儀式：他昏迷8秒，受到的傷害提高25%）',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    '收割不寧者（生命值低於35%時靈魂停止出現；每14秒施法2秒後揮動鐮刀：普通難度下對他前方14碼、120度扇形內的所有人造成55到65點暗影傷害。此後暗影脈衝每9秒一次）',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    '英雄難度：點名亡者（名冊點出蠟燭的順序：點錯蠟燭會熄滅最後點燃的那根，並對點燃者造成252到288點暗影傷害，每次重燃每秒吸取8%），墳墓之握（每16秒2名玩家腳下出現4碼法環；1.5秒後鬼手破土而出：定身3秒並造成162到198點暗影傷害），以及喪鐘巨龍的燃燒喪鐘（它飛上天空，標記半個法環4.5秒，然後向那一半傾瀉幽魂之火，造成1,000到1,120點火焰傷害，每次飛行3個半區）',
-  'hudChrome.cryptAlert.knellTitle': '燃燒喪鐘！',
-  'hudChrome.cryptAlert.knellLine': '計時條耗盡時，幽魂之火會傾瀉到法環的這一半：去另一半',
-  'hudChrome.cryptAlert.graspTitle': '墳墓之握！',
-  'hudChrome.cryptAlert.graspLine': '鬼手會從這個法環中伸出，抓住站在裡面的人：離開',
-  'hudChrome.cryptAlert.reapTitle': '收割不寧者！',
-  'hudChrome.cryptAlert.reapLine': '他的鐮刀橫掃面前的地面：繞到他身後',
-  'hudChrome.cryptAlert.riteTitle': '不寧者儀式',
-  'hudChrome.cryptAlert.riteLine': '重燃追思蠟燭以擊碎他的結界：已點燃{lit}/{total}',
-  'hudChrome.cryptAlert.riteNamedLine': '只重燃名冊接下來點出的蠟燭：已點燃{lit}/{total}',
-  'hudChrome.cryptAlert.soulTitle': '縛魂',
-  'hudChrome.cryptAlert.soulLine': '一個靈魂正飄向莫森：站到它的路徑上，在它餵飽他之前接住它',
   'hudChrome.kitUse.relightLine': '引導時每秒吸取你的生命值：受到攻擊不會打斷，移動或昏迷會打斷',
   'hudChrome.kitUse.relightKey': '重燃{name}',
   'hudChrome.kitUse.relightTap': '點擊這裡重燃{name}',

@@ -15,7 +15,7 @@ import {
   savedQueueRewards,
 } from '../src/sim/social/queue_rewards';
 
-const activity = FINDER_ACTIVITIES.find((a) => a.id === 'hollow_crypt_normal')!;
+const activity = FINDER_ACTIVITIES.find((a) => a.id === 'sunken_bastion_normal')!;
 const final = activity.encounters.find((e) => e.final)!;
 describe('bounded character Queue Points and cosmetic purchases', () => {
   it('omits untouched state and rejects malformed counters and unknown ownership', () => {

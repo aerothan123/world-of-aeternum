@@ -346,11 +346,12 @@ describe('reliquary locale chunks (all shipped locales)', () => {
         swept.push(`${lang}.${page.id}`);
       }
     }
-    // Vacuity floor, snug to the real corpus: 20 anchorable pages x 18 locales
-    // since the release fill (5 normal + 5 heroic dungeons, 2 delves, 8 sets
-    // now that Roots' Bramblehide joined the set-page family; the world-boss
-    // page is mark-anchored and the rest carry no derivable anchor).
-    expect(swept.length).toBeGreaterThanOrEqual(360);
+    // Vacuity floor, snug to the real corpus: 18 anchorable pages x 18 locales
+    // since the release fill (4 normal + 4 heroic dungeons now that the
+    // retired Hollow Crypt pages carry no clear source, 2 delves, 8 sets with
+    // Roots' Bramblehide in the set-page family; the world-boss page is
+    // mark-anchored and the rest carry no derivable anchor).
+    expect(swept.length).toBeGreaterThanOrEqual(324);
   });
 
   // RELEASE-TIER ONLY: channel English lives in RELIQUARY_PAGES, outside the
@@ -420,7 +421,7 @@ describe('the window paints the RESOLVED page name, never the model English', ()
   // plus its grid aria label). One render per site, because a single call
   // reaches only one of them.
   const SENTINEL = 'ZZ SENTINEL PAGE NAME ZZ';
-  const JA_FILL = '虚ろの墓所'; // the ja_JP fill for conquerors_hollow_crypt
+  const JA_FILL = '沈んだ砦'; // the ja_JP fill for conquerors_sunken_bastion
 
   function fakeWorld(): unknown {
     const empty = new Set<string>();
@@ -470,7 +471,7 @@ describe('the window paints the RESOLVED page name, never the model English', ()
       itemTooltip: () => '',
       attachTooltip: () => {},
     };
-    const real = RELIQUARY_PAGES_BY_ID.conquerors_hollow_crypt;
+    const real = RELIQUARY_PAGES_BY_ID.conquerors_sunken_bastion;
     const synthetic: ReliquaryPageDef = { ...real, name: SENTINEL };
     const input: ReliquaryViewInput = {
       pages: [synthetic],
@@ -507,13 +508,13 @@ describe('the window paints the RESOLVED page name, never the model English', ()
 
   it('renders the ja_JP fill for the Overview nearly-complete row', async () => {
     // Nearly-complete needs at least one owned relic and an incomplete page: own
-    // every Hollow Crypt item but one.
-    const cryptItems = RELIQUARY_PAGES_BY_ID.conquerors_hollow_crypt.relics.flatMap((relic) =>
+    // every Sunken Bastion item but one.
+    const pageItems = RELIQUARY_PAGES_BY_ID.conquerors_sunken_bastion.relics.flatMap((relic) =>
       relic.kind === 'item' ? [relic.itemId] : [],
     );
     const html = await renderSentinel({
       nav: 'overview',
-      itemsDiscovered: new Set(cryptItems.slice(0, -1)),
+      itemsDiscovered: new Set(pageItems.slice(0, -1)),
     });
     expect(html).toContain('reliquary-nearly-row');
     expect(html).toContain(JA_FILL);
@@ -525,7 +526,7 @@ describe('the window paints the RESOLVED page name, never the model English', ()
   });
 
   it('renders the ja_JP fill in the page-detail title and grid aria label', async () => {
-    const html = await renderSentinel({ pageId: 'conquerors_hollow_crypt' });
+    const html = await renderSentinel({ pageId: 'conquerors_sunken_bastion' });
     expect(html).toContain('reliquary-page-title');
     expect(html).toContain('reliquary-grid');
     expect(html).toContain(JA_FILL);

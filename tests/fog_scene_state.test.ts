@@ -68,9 +68,7 @@ describe('resolveFogScene (the renderer fog resolution, moved verbatim)', () => 
     expect(resolveFogScene(true, interiorPx('drowned_temple'), 5, cam, SEED).desired).toBe(
       'drownedTemple',
     );
-    expect(resolveFogScene(true, interiorPx('hollow_crypt'), 5, cam, SEED).desired).toBe(
-      'hollowCrypt',
-    );
+    // The Hollow Crypt's fog state left with the dungeon (2026-11-11).
     expect(resolveFogScene(true, interiorPx('sunken_bastion'), 5, cam, SEED).desired).toBe(
       'sunkenBastion',
     );
@@ -113,7 +111,6 @@ describe('applyFogScenePreset (the renderer fog presets, moved verbatim)', () =>
     ['varkhul', ...raid('varkhul')],
     ['wildheartBasin', 0xbfb98a, 150, 1050],
     ['gravewyrmSanctum', 0x3d5a82, 90, 980],
-    ['hollowCrypt', 0x1c2238, 70, 460],
     ['sunkenBastion', 0x4d5a57, 70, 640],
     ['drownedTemple', 0x252a4c, 140, 1050],
     ['lastkeep', 0x241610, 30, 150],

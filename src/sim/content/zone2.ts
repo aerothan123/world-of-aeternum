@@ -1842,7 +1842,7 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     turnInNpcId: 'brother_aldric_fen',
     text: "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, $N, and I will unweave the seal.",
     completionText:
-      'The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.',
+      'The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.',
     objectives: [
       { type: 'collect', itemId: 'bastion_ward_stone', count: 1, label: 'Bastion Ward Stone' },
     ],

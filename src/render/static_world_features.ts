@@ -8,14 +8,12 @@
 // renderer.ts (the monolith ratchet).
 import { getActiveWorldContent } from '../sim/data';
 import { DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID } from '../sim/drowned_temple_entrance';
-import { HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID } from '../sim/hollow_crypt_entrance';
 import { objectRemoved } from '../sim/moved_objects';
 import { SANCTUM_SEAL_GATE_DUNGEON_ID } from '../sim/sanctum_seal_gate';
 import { SUNKEN_BASTION_ENTRANCE_DUNGEON_ID } from '../sim/sunken_bastion_entrance';
 import { WILDHEART_BASIN_ENTRANCE_DUNGEON_ID } from '../sim/wildheart_basin_entrance';
 import { buildDrownedTempleEntrance } from './drowned_temple_entrance';
 import { buildFarshoreFeatures } from './farshore_features';
-import { buildHollowCryptEntrance } from './hollow_crypt_entrance';
 import { buildSanctumSealGate } from './sanctum_seal_gate';
 import { clearSetPieceOccluders } from './set_piece_occluders';
 import { buildSunkenBastionEntrance } from './sunken_bastion_entrance';
@@ -38,7 +36,6 @@ export function buildStaticWorldFeatures(seed: number) {
     buildFarshoreFeatures(seed),
     ...(isDoorKept(SANCTUM_SEAL_GATE_DUNGEON_ID) ? [buildSanctumSealGate(seed)] : []),
     ...(isDoorKept(SUNKEN_BASTION_ENTRANCE_DUNGEON_ID) ? [buildSunkenBastionEntrance(seed)] : []),
-    ...(isDoorKept(HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID) ? [buildHollowCryptEntrance(seed)] : []),
     ...(isDoorKept(DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID) ? [buildDrownedTempleEntrance(seed)] : []),
     ...(isDoorKept(WILDHEART_BASIN_ENTRANCE_DUNGEON_ID) ? [buildWildheartBasinEntrance(seed)] : []),
   ];

@@ -62,6 +62,7 @@ export const da_DK: EnTranslations = {
     "earned": "Opnået",
     "redeemed": "Indløst",
     "emptyStamp": "Ikke fortjent endnu",
+    "retiredStamp": "No longer available",
     "stamping": "Stempler dit kort...",
     "redeem": "Indløs belønning",
     "previous": "Indløs tidligere stempler først.",
@@ -4824,30 +4825,6 @@ export const da_DK: EnTranslations = {
         "snappedFetters": "Dens kæder er brudt. Den kæmper ikke længere, kan ikke skades og forlader snart stedet.",
         "anchored": "Lænket til det druknede anker: du kan bevæge dig, men aldrig længere fra spillet, som trækker dig mod Drukningsgraven. Kom inden for {reach} yard af en tændt fortøjningspæl mindst {run} yard fra stedet, hvor du blev hægtet fast, for at fortøje kæden (pælen slukkes i {dark} sek.), eller lad gruppen bryde den med {links} træffere ({linksHeroic} på heroisk). Graven tager {pit}% af dit maksimale helbred ({pitHeroic}% på heroisk)."
       },
-      "crypt": {
-        "carrionEye": "Hver krage i kampen jager dig i {seconds} sek. Løb til din tank, så flokken kan nedlægges samlet.",
-        "graniteSkin": "Tager {pct}% mindre skade, og stenen bliver tykkere hver {every} sek., op til {max} lag. En bedøvelse knuser den og får den til at tage {cracked}% mere skade i {seconds} sek.",
-        "measured": "Når dette slutter, styrter en åben grav ind, hvor du står: {min} til {max} skade ({heroicMin} til {heroicMax} på heroisk) på alle inden for {radius} yard. Graven bliver resten af kampen, så bær mærket til gårdens kant, væk fra gruppen.",
-        "graveDirt": "Står i en åben grav: bevægelseshastigheden sænkes med {slow}%, og du tager {damage} skyggeskade hvert sekund ({heroic} på heroisk). På heroisk vækkes hvileløse knogler, hvis du bliver i en grav i {linger} sek. Træd ud af graven.",
-        "dirtInEyes": "Sænker bevægelseshastigheden med {pct}%. En skovlfuld rammer alle foran graver Marrow: stå bag ham.",
-        "blow": "Øger modtaget skade med {pct}%: {per}% for hver stak, nu {stacks} af {max}. Hvert Graverens slag tilføjer en stak og nulstiller varigheden til {seconds} sek.",
-        "graveVigor": "Angriber {pct}% hurtigere, mens han står i en åben grav. Hold ham ude af gravene.",
-        "tolling": "Immun over for skade, mens han går til klokkerebet og ringer med begravelsesklokken. Når ringningen slutter, gør klangen {min} til {max} skyggeskade ({heroicMin} til {heroicMax} på heroisk) på alle, og hver åben grav giver slip på hvileløse knogler.",
-        "embraced": "Holdes oppe i fruens arme: ude af stand til at handle og tager {tick} frostskade hvert sekund ({tickHeroic} på heroisk). Hvis gruppen gør skade svarende til {share}% af hendes maksimale helbred ({shareHeroic}% på heroisk), sætter hun dig forsigtigt ned; holder hun dig {hold} sek. øverst, slipper hun dig ned på isen for {min} til {max} skade ({heroicMin} til {heroicMax} på heroisk).",
-        "lament": "Når Brudens klage slutter, gør den {min} til {max} frostskade ({heroicMin} til {heroicMax} på heroisk) på alle, som ikke står inden for {radius} yard af en tændt gravlygte. En lygte beskytter de {cap} nærmeste spillere, slukkes så og er mørk ved næste klage.",
-        "lingering": "Din næste Brudens klage gør {pct}% mere skade: {per}% for hver stak, op til {max} stakke. Tag den næste i en lygtes lys.",
-        "slippery": "På glat is: din hastighed ændrer sig med højst {grip} yard/sek. hvert sekund, så du er langsom til at komme i gang, glider videre, når du stopper, og tager brede sving. Træd af isen for at få fodfæste igen.",
-        "harmony": "Tager {pct}% mindre skade: {per}% for hver af hendes levende korsangere. Dræb korsangerne først.",
-        "crescendo": "Synger hurtigere: Hulrummets klagesang tager {cast} sek. i stedet for {castNormal} sek. og kommer hver {every} sek. i stedet for hver {everyNormal} sek., og Knogleorglet spiller {waves} bølger af toner i stedet for {wavesNormal}.",
-        "gorged": "Gør {pct}% mere skade: {per}% for hver bundet sjæl, som nåede ham, nu {stacks} af {max}, resten af kampen. Hver sjæl, der når ham, heler ham også for {heal}% af hans maksimale helbred. Træd ind på en sjæls vej for at tage den i stedet.",
-        "unquietWard": "Immun over for skade, mens han kanaliserer De hvileløses ritual ved alteret: {lit} af {total} mindelys gentændt. At tænde ét er en kanalisering på {channel} sek., som dræner {drain}% af tænderens maksimale helbred hvert sekund ({drainHeroic}% på heroisk); træffere bryder den ikke, et skridt eller en bedøvelse gør. Det sidste lys knuser værnet. På heroisk tændes de i protokollens rækkefølge: et forkert lys slukker det senest tændte og gør {wrongMin} til {wrongMax} skyggeskade på tænderen.",
-        "riteBroken": "Bedøvet: det knuste værn gør ham ude af stand til at handle i {seconds} sek.",
-        "shatteredWard": "Tager {pct}% mere skade i {seconds} sek.: de gentændte lys brød hans værn. Brug dine stærkeste angreb nu.",
-        "graveChill": "Tager {bite} skyggeskade hvert sekund ({biteHeroic} på heroisk), mens De hvileløses ritual varer, stigende med {step} ({stepHeroic} på heroisk) hver {every} sek. Gentænd mindelysene for at afslutte det.",
-        "graspMark": "Hænder bryder frem fra ringen under dig om {fuse} sek.: alle inden for {radius} yard af stedet, hvor den blev lagt, rodfæstes i {root} sek. og tager {min} til {max} skyggeskade. Træd ud af ringen.",
-        "graspRoot": "Holdt af gravens hænder: kan ikke bevæge dig i {seconds} sek.",
-        "knellAirborne": "Flyver over ritualringen, uden for rækkevidde. Den markerer halvdelen af ringen i {mark} sek. og hælder så spøgelsesild over den halvdel: {min} til {max} ildskade på alle i den. Den brænder {breaths} halvdele på hver flyvning og lander så."
-      },
       "sanctum": {
         "lockbound": "Tager {pct}% mindre skade: {per}% for hver af hans kæder, der stadig holder. Bryd en segllænke for at frigøre dens kæde.",
         "enrage": "Gør {pct}% mere skade.",
@@ -7169,25 +7146,6 @@ export const da_DK: EnTranslations = {
       },
       "mech": {
         "shadow_pulse": "Skyggeimpuls (pulserende omradesskade)",
-        "crypt_shovelful": "En skovlfuld (hver 11. sekund slynger han gravjord over en kegle på 8 yard foran sig: halvanden gang hans slag og 50 procent langsommere bevægelse i 6 sekunder, så stå bag ham)",
-        "crypt_measured_for_the_grave": "Målt til graven (hver 15. sekund markerer han en anden spiller end tanken; 4 sekunder senere styrter en åben grav ind under vedkommende, 42 til 52 skade inden for 3 yard på normal, og graven bliver hele kampen: 9 skade i sekundet og 40 procent langsommere bevægelse indenfor, så læg gravene ved gårdens kant)",
-        "crypt_burial_toll": "Begravelsesklang (ved 66 og 33 procent helbred går han til klokkerebet, immun over for skade, og ringer i 3 sekunder: 30 til 38 skyggeskade på alle på normal, og hver åben grav vækker hvileløse knogler)",
-        "crypt_marrow_heroic": "Heroisk: Graverens slag hver 9. sekund på tanken (hver stak får tanken til at tage 6 procent mere skade i 20 sekunder, op til 6 stakke), Gravkraft (han slår 30 procent hurtigere i en grav) og Hvileløs jord (enhver, der bliver 2 sekunder i en grav, vækker hvileløse knogler der)",
-        "crypt_brides_lament": "Brudens klage (hver 22. sekund en klage på 3 sekunder: 60 til 75 frostskade på normal på alle uden for en tændt gravlygtes lys, halvdelen igen for hver stak Dvælende klage fra de klager, du allerede har taget. En lygte beskytter højst to spillere og slukkes i 28 sekunder, efter den har beskyttet nogen, så del jer op og skift)",
-        "crypt_frozen_embrace": "Frossent favntag (hver 30. sekund griber hun en anden spiller end tanken og stiger 5 yard op i luften med vedkommende, 6 frostskade i sekundet: gør skade svarende til 6 procent af hendes helbred inden for 8 sekunder, så sætter hun spilleren ned, ellers slipper hun for 150 til 180 skade på normal)",
-        "crypt_rime_path": "Rimfroststi (hun efterlader glat rimfrost, hvor hun svæver, i 25 sekunder: på den samler du fart langsomt og glider videre, når du stopper eller drejer)",
-        "crypt_bridal_freeze": "Brudefrysning (ved halvt helbred fryser hele kløftens gulv til: glat is resten af kampen)",
-        "crypt_lady_heroic": "Heroisk: hver tændt lygte slukkes også af sig selv efter 30 sekunder og forbliver mørk i 10, og Frossent favntag tager to spillere og slipper ved 4,4 procent af hendes helbred",
-        "crypt_dirge_of_the_hollow": "Hulrummets klagesang (hver 16. sekund en sang på 2,5 sekunder, som kan afbrydes: fuldfører hun den, 105 til 125 skyggeskade på normal og 4 sekunders tavshed til alle inden for 45 yard, som kan se hende, så afbryd den eller gem dig bag en korsøjle)",
-        "crypt_harmony": "Harmoni (hver levende korsanger får hende til at tage 30 procent mindre skade: dræb korsangerne først)",
-        "crypt_bone_organ": "Knogleorgel (hver 26. sekund spiller hun Knogleorglet: to bølger af skyggetoner brister ned langs loftets baner, 100 til 115 skade på normal i en bane, og anden bølge fylder den førstes huller)",
-        "crypt_crescendo": "Stigning (under 30 procent helbred tager hendes klagesang 1,8 sekunder og kommer hver 11. sekund, og orglet spiller en tredje bølge)",
-        "crypt_ilvane_heroic": "Heroisk: Ekstranummer (en korsanger, der ligger død i 10 sekunder, mens den anden står, rejser sig igen, så dræb dem sammen) og Ubrudt vers (hver tredje klagesang kan ikke afbrydes: gem dig for den)",
-        "crypt_morthen_shadow_pulse": "Skyggepuls (hver 12. sekund en besværgelse på 2 sekunder, så 24 til 30 skyggeskade på normal på alle inden for 12 yard af ham, så gå væk; hver 9. sekund under hans Sidste ritualer)",
-        "crypt_gravecall": "Gravkald (hver 15. sekund driver en bundet sjæl fra næste sarkofagniche mod ham; når den når ham, bliver han Mæt af de døde, 10 procent mere skade pr. sjæl op til 10 stakke, og heler 3 procent af sit helbred. En spiller på dens vej tager den i stedet: 12 til 16 skyggeskade på normal)",
-        "crypt_rite_of_the_unquiet": "De hvileløses ritual (ved 65 procent helbred vender han tilbage til alteret, immun i De hvileløses værn, mens Gravkulde gør 3 skyggeskade i sekundet på alle, stigende med 1 hver 5. sekund, og 2 hvileløse knogler klatrer ud af nicherne. Gentænd de 4 mindelys: hvert kræver 4 sekunders kanalisering, som dræner 6 procent af tænderens maksimale helbred hvert sekund; træffere bryder den ikke, et skridt eller en bedøvelse gør. Det sidste lys bryder ritualet: han bedøves i 8 sekunder og tager 25 procent mere skade)",
-        "crypt_reap_the_unquiet": "Høst de hvileløse (under 35 procent helbred stopper sjælene; hver 14. sekund svinger han leen efter en besværgelse på 2 sekunder: 55 til 65 skyggeskade på normal på alle i en bue på 120 grader 14 yard foran ham. Skyggepuls kommer derefter hver 9. sekund)",
-        "crypt_morthen_heroic": "Heroisk: Navngiv de døde (protokollen angiver lysenes rækkefølge: et forkert lys slukker det senest tændte og gør 252 til 288 skyggeskade på tænderen, og hver gentænding dræner 8 procent i sekundet), Gravens greb (hver 16. sekund får 2 spillere en ring på 4 yard; 1,5 sekunder senere bryder hænder frem: 3 sekunders rodfæstning og 162 til 198 skyggeskade) og Dødsklangslindormens Brændende dødsklang (den letter og markerer halvdelen af ringen i 4,5 sekunder, og hælder så spøgelsesild over den halvdel for 1.000 til 1.120 ildskade, 3 halvdele pr. flyvning)",
         "reaping_arc": "Mejende Bue (frontal mejning)",
         "hallowed_brine": "Helliggjort saltvand (en pøl af mørkt helligt vand på 9 yard, 10 på heroisk: 18 skade i sekundet på alle i den, 26 på heroisk, og han tager 40 procent mindre skade, mens han står i den, så træk ham ud)",
         "rebounding_bulwark": "Tilbagespringende bolværk (hans skjold springer til nærmeste spiller inden for 10 yard af den sidst ramte, op til 3 spillere, 4 på heroisk: spred jer)",
@@ -7410,33 +7368,6 @@ export const da_DK: EnTranslations = {
       "rimeLine": "Forlad ungernes ånde for at undgå at fryse helt fast ved fulde stakke: Krybende rimfrost {stacks}/{max}",
       "slabTitle": "Isblok",
       "slabLine": "Sæt isblokken mellem dig og fjendtlige magibrugere for at blokere deres sigtelinje"
-    },
-    "cryptAlert": {
-      "measuredTitle": "Målt til graven!",
-      "measuredLine": "Gå til gårdens kant, før mærket udløber, for at holde den skadende grav væk fra gruppen",
-      "embracedTitle": "Frossent favntag!",
-      "embracedLine": "Din gruppe skal skade Knoglekuldens frue for at befri dig fra hendes greb",
-      "lamentTitle": "Brudens klage!",
-      "lamentShelteredLine": "Bliv i denne tændte lygtes lys for at undgå klageskaden: du har en beskyttet plads",
-      "lamentOpenLine": "Gå ind i en tændt lygtes lys for at undgå klageskaden: kun to spillere kan være ved hver lygte",
-      "graveTitle": "I en åben grav!",
-      "graveLine": "Gravjorden brænder og sænker dig: træd ud af den",
-      "tollTitle": "Begravelsesklang!",
-      "tollLine": "Gør klar til at bekæmpe skeletterne, der vækkes fra åbne grave: Marrow er immun, mens han ringer med klokken",
-      "harmonyTitle": "Harmoni",
-      "harmonyLine": "Dræb korsangerne for at fjerne Ilvanes skadesreduktion på {pct}%",
-      "knellTitle": "Brændende dødsklang!",
-      "knellLine": "Spøgelsesild hældes over denne halvdel af ringen, når linjen tømmes: kom til den anden halvdel",
-      "graspTitle": "Gravens greb!",
-      "graspLine": "Forlad den markerede ring, før hænderne bryder frem, for at undgå skade og rodfæstning",
-      "reapTitle": "Høst de hvileløse!",
-      "reapLine": "Gå bag Morthen for at undgå leen, der rammer alle foran ham",
-      "riteTitle": "De hvileløses ritual",
-      "riteLine": "Gentænd alle mindelys for at bryde Morthens immunitet: {lit} af {total} tændt",
-      "riteNamedLine": "Gentænd lys i protokollens rækkefølge for at bryde Morthens immunitet: et forkert lys ophæver fremskridt ({lit}/{total})",
-      "soulTitle": "Bundet sjæl",
-      "soulLine": "Opfang den drivende sjæl for at stoppe den i at hele Morthen og øge hans skade. Det skader dig at fange den",
-      "timeAria": "{seconds} sekunder tilbage"
     },
     "kitUse": {
       "toppleLine": "Vælt ildskålen ned over fjender i nærheden for at brænde dem med indholdet",
@@ -10783,7 +10714,6 @@ export const da_DK: EnTranslations = {
       "bastionName": "Den Sunkne Bastion",
       "templeName": "Det Druknede Tempel",
       "sanctumName": "Gravormens Helligdom",
-      "hollowBody": "En gravrøvet kapelkrypt, hvor de nyligt døde nægter at hvile. Den første rigtige prøve for et nyt følge.",
       "bastionBody": "En oversvømmet fæstning fortabt til sumpen, holdt af druknede forsvarere og den stigende tidevand selv.",
       "templeBody": "En måneoplyst helligdom sunket under en glødende tjern højt oppe i bjergene, nået gennem en port af koldt lys. En druknet kult synger stadig dernede i sine rådne klædninger, og advarslerne ristet på bredden siger, at noget dybt nede kun sover. Et selvstændigt mysterium, sat til side fra hovedhistorien, for de nysgerrige og de velforberedte.",
       "sanctumBody": "Tornetops mørke hjerte, hvor kultens lange arbejde når sit frygtelige højdepunkt.",
@@ -17014,46 +16944,6 @@ export const da_DK: EnTranslations = {
       "hoard_cast_mimic_bite": "Hæslig bid",
       "hoard_cast_mimic_leap": "Knusende spring",
       "hoard_cast_coin_spit": "Forbandede mønter",
-      "crypt_grave_bolt": "Gravbolt",
-      "crypt_raise_bones": "Rejs knogler",
-      "crypt_murder_call": "Krageflokkens kald",
-      "crypt_stone_shriek": "Stenskrig",
-      "crypt_grave_cleave": "Gravkløvning",
-      "crypt_barrowflame_breath": "Gravflammens ånde",
-      "crypt_tail_lash": "Halepisk",
-      "crypt_wing_gust": "Vingekast",
-      "crypt_grave_rupture": "Gravbristning",
-      "crypt_carrion_eye": "Ådselsøje",
-      "crypt_marrow_crush": "Marvknus",
-      "crypt_rimesilk_spit": "Rimsilkespyt",
-      "crypt_gravespark_volley": "Gravgnistsalve",
-      "crypt_morthen_rite_wakes": "Ritualet vågner",
-      "crypt_morthen_rise": "Gravkalderens opstigning",
-      "crypt_morthen_proclaim": "Gravforkyndelse",
-      "crypt_morthen_descend": "Nedstigning",
-      "crypt_knellwyrm_arrive": "Nedstigning fra himlen",
-      "crypt_knellwyrm_pyre_strafe": "Bålsvejp",
-      "crypt_knellwyrm_strafe_run": "Strygningsangreb",
-      "crypt_knellwyrm_dread_bellow": "Rædselsbrøl",
-      "crypt_marrow_shovelful": "En skovlfuld",
-      "crypt_marrow_measure": "Målt til graven",
-      "crypt_marrow_burial_toll": "Begravelsesklang",
-      "crypt_marrow_gravediggers_blow": "Graverens slag",
-      "crypt_lady_brides_lament": "Brudens klage",
-      "crypt_lady_frozen_embrace": "Frossent favntag",
-      "crypt_lady_embrace_hold": "Frossent favntag",
-      "crypt_lady_bridal_freeze": "Brudefrysning",
-      "crypt_ilvane_dirge": "Hulrummets klagesang",
-      "crypt_ilvane_unbroken_dirge": "Ubrudt vers",
-      "crypt_ilvane_bone_organ": "Knogleorgel",
-      "crypt_morthen_shadow_pulse": "Skyggepuls",
-      "crypt_morthen_rite_of_the_unquiet": "De hvileløses ritual",
-      "crypt_morthen_reap_the_unquiet": "Høst de hvileløse",
-      "kituse_crypt_relight_candle": "Tænd lyset igen",
-      "crypt_knellwyrm_knell_rise": "Brændende dødsklang",
-      "crypt_knellwyrm_knell_mark": "Brændende dødsklang",
-      "crypt_knellwyrm_knell_breath": "Brændende dødsklang",
-      "crypt_knellwyrm_knell_land": "Brændende dødsklang",
       "bastion_brine_mend": "Saltvandsheling",
       "bastion_fog_ward": "Tågeværn",
       "bastion_halberd_sweep": "Hellebardsving",
@@ -26563,9 +26453,6 @@ export const da_DK: EnTranslations = {
       "restless_bones": {
         "name": "Rastløse Knogler"
       },
-      "marrow_restless_bones": {
-        "name": "Hvileløse knogler"
-      },
       "gorrak": {
         "name": "Gorrak den Nådesløse"
       },
@@ -26667,90 +26554,6 @@ export const da_DK: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Benklædt Genganger"
-      },
-      "crypt_shambler": {
-        "name": "Kryptslæber"
-      },
-      "hollow_acolyte": {
-        "name": "Hul Akolyt"
-      },
-      "bonechill_widow": {
-        "name": "Benkulde-Enke"
-      },
-      "sexton_marrow": {
-        "name": "Kirkegraver Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Gravkalderen"
-      },
-      "ossuary_sentinel": {
-        "name": "Benhusvogter"
-      },
-      "hollow_gravedigger": {
-        "name": "Hul graver"
-      },
-      "rime_egg_sac": {
-        "name": "Rimfrostægsæk"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rimvævsunge"
-      },
-      "rimeweb_spinner": {
-        "name": "Rimvævsspinder"
-      },
-      "candlewright_acolyte": {
-        "name": "Lysmagerakolyt"
-      },
-      "hollow_chorister": {
-        "name": "Hul korsanger"
-      },
-      "bound_soul": {
-        "name": "Bundet sjæl"
-      },
-      "rimeweb": {
-        "name": "Knoglekuldens frue"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Benhuskriger"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravkalderadept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Benhusets strubeskærer"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravkaldernekromantiker"
-      },
-      "crypt_bone_minion": {
-        "name": "Knogletjener"
-      },
-      "crypt_bone_brute": {
-        "name": "Knoglebæst"
-      },
-      "crypt_bone_pile": {
-        "name": "Rørende knogler"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapelgargoyle"
-      },
-      "crypt_crow_caller": {
-        "name": "Kragekalder"
-      },
-      "crypt_carrion_crow": {
-        "name": "Ådselskrage"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Benhusdrage"
-      },
-      "crypt_knellwyrm": {
-        "name": "Dødsklangslindorm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Mindelys"
       },
       "bastion_revenant": {
         "name": "Bastionens Genganger"
@@ -28700,16 +28503,6 @@ export const da_DK: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "De Rastløse Døde",
-        "text": "Den gamle ruin på den nordvestlige bakke var engang et kapel, og dens gård et hvilested. Noget har vækket de døde af deres søvn. Skænk dem fred, {playerName} - giv 8 Rastløse Knogler tilbage til jorden.",
-        "completion": "Måtte de hvile nu, og måtte Lyset tilgive, hvad der end vækkede dem.",
-        "objectives": {
-          "0": {
-            "label": "Rastløse Knogler lagt til hvile"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Stjålne Forsyninger",
         "text": "De banditter ramte min sidste vogn og stak af med fire kasser varer - værktøj, salt, godt Østbæk-linned. Kasserne er stablet rundt om deres lejr i bakkerne mod nordvest. Stjæl dem tilbage for mig, vil du ikke?",
@@ -28720,26 +28513,6 @@ export const da_DK: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Hvisken Nedenunder",
-        "text": "Du har stedt de døde til hvile, men de vil ikke forblive i hvile, noget kalder dem tilbage. Gennemsøg kapelruinen for ethvert spor af den, der kalder. Hvis du finder en sigille eller et segl, så bring det uberørt til mig.",
-        "completion": "Denne sigille... den bærer Gravkaldernes mærke, en sekt jeg havde bedt til var uddød. Dette er værre end jeg frygtede, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravkalderens Sigille"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "De Dødes Navne",
-        "text": "Hvis Gravkalderne rejste vores døde, må jeg vide, hvis grave de plyndrede. Kapellets graver førte en begravelsesprotokol, og vinden har spredt dens sider ud over kapellets gård. Saml 3 af dem til mig, {playerName} - de døde fortjener at blive kaldt ved deres navne.",
-        "completion": "Disse stakkels sjæle... og se her. Graver Marrow - kapellets egen levende vogter - hans grav den første, der blev forstyrret. Morthen begyndte med netop den mand, der begravede Østbæks døde.",
-        "objectives": {
-          "0": {
-            "label": "Forvitret Regnskabsside"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Bring Kaldet til Tavshed",
         "text": "Hvert navn i den protokol er en sjæl, Morthen agter at slæbe op af jorden, og kapellets gård vrimler allerede med dem, han har kaldt. Bring 12 Hvileløse Ben tilbage til deres grave, {playerName}, før Gravkalderens hvisken svulmer til et kor.",
@@ -28747,49 +28520,6 @@ export const da_DK: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Hvileløse Ben bragt til tavshed"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Den Bindende Rite",
-        "text": "Krypten under kapellet må åbnes, hvis vi skal standse Gravecalleren - men kun en bindende rite vil lade de levende passere. Jeg har brug for 4 klumper Velsignet Tælle - minens gravere hamstrer tælle i kassevis - og 6 Spøgelsesagtige Essenser fra de hvileløse døde.",
-        "completion": "Det er gjort. Vejen nedenunder står åben... og må Lyset tilgive mig for at åbne den. Saml dine stærkeste ledsagere, før du stiger ned, {playerName}. Ingen bør møde Den Hule alene.",
-        "objectives": {
-          "0": {
-            "label": "Velsignet Tælle"
-          },
-          "1": {
-            "label": "Spøgelsesagtig Essens"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Ned i Det Hule",
-        "text": "Morthen Gravkalderen venter på bunden af Den Hule Krypt, omringet af de elitedøde, han har rejst. Han er langt hinsides nogen enkelt helt - tag fire følgesvende, ikke færre. Gør ende på ham, og Dalens døde vil endelig sove.",
-        "completion": "Hviskenen er hørt op. Du har gjort, hvad hele Dalen ikke kunne, {playerName} - de døde sover, og Østbæk skylder dig alt, hvad den ejer.",
-        "objectives": {
-          "0": {
-            "label": "Morthen Gravkalderen dræbt"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Graverens Klokke",
-        "text": "Protokollen navngav ham, og krypten holder ham: Graver Marrow, kapellets vogter, den første mand Morthen rejste - der vogter sin mesters dør i døden lige så trofast, som han passede kapellet i livet. Tag fire ledsagere med ind i Den Hule Krypt og skænk den gamle graver den hvile, han blev frarøvet, {playerName}.",
-        "completion": "Så er Marrow endelig fri. Ring ingen klokke for ham - han hørte nok af dem i livet.",
-        "objectives": {
-          "0": {
-            "label": "Graver Marrow stedt til hvile"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Gravkalderens Spor",
-        "text": "Morthen er død, men et spørgsmål nager mig: en sekt, der gemte sig i et århundrede, ødsler ikke sig selv på ét landsbykapel. Han holdt en grimoire - sine riter, sin korrespondance. Hvis noget af den overlever, ligger det i sakristiet i det forfaldne kapel over krypten. Søg ruinen igennem og bring mig, hvad der er tilbage af hans skrifter, {playerName}.",
-        "completion": "Morthen skrev til en 'Fogbinder' i den nordlige mose. Sekten er ikke død, {playerName} - den har blot været tålmodig.",
-        "objectives": {
-          "0": {
-            "label": "Morthens Grimoire"
           }
         }
       },
@@ -32720,11 +32450,6 @@ export const da_DK: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Den Hule Krypt",
-        "enterText": "Du stiger ned i Den Hule Krypt...",
-        "leaveText": "Du klatrer tilbage op i dagslyset."
-      },
       "sunken_bastion": {
         "name": "Den Sunkne Bastion",
         "enterText": "Du vader ned i Den Sunkne Bastion...",
@@ -32833,11 +32558,6 @@ export const da_DK: EnTranslations = {
         "sender": "Marskal Redbrook",
         "subject": "Gamle Gråkæbe, endelig",
         "body": "Rygter løber hurtigt i så lille en by. Hyrderne skålede for dit helbred i aftes, og Wilkes sværger, at ulven var stor som en kærre. Lad dem bare brodere: du har fortjent det.\n\nTag et måltid på vagtens regning.\n- Marskal Redbrook"
-      },
-      "letter_q_hollow": {
-        "sender": "Broder Aldric",
-        "subject": "Det, du gjorde i mørket",
-        "body": "Kun få vil nogensinde vide, hvad der lå begravet i den lavning, og endnu færre ville tro det. Jeg ved det, og jeg glemmer det ikke.\n\nMå din vej forblive oplyst.\n- Broder Aldric"
       },
       "heroic_marks_reward": {
         "sender": "Heroisk kvartermester",

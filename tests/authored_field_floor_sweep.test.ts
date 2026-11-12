@@ -1,6 +1,7 @@
 // The floor a body stands on IS the floor that is drawn, across the whole of
-// every authored open-air field (the Hollow Crypt, the Sunken Bastion, the
-// Drowned Temple, the Wildheart Basin, the Gravewyrm Sanctum).
+// every authored open-air field (the Sunken Bastion, the Drowned Temple, the
+// Wildheart Basin, the Gravewyrm Sanctum; the Hollow Crypt left the sweep when
+// the dungeon was retired, 2026-11-11).
 //
 // Live report (the Sunken Bastion, online): in the Lower Bailey by the dead
 // Turretback Hermit only the player's head showed above the paving, "and more
@@ -34,7 +35,6 @@ import {
 } from '../src/render/sunken_bastion/bastion_headland_core';
 import { DROWNED_TEMPLE_FIELD } from '../src/sim/content/drowned_temple_layout';
 import { GRAVEWYRM_SANCTUM_FIELD } from '../src/sim/content/gravewyrm_sanctum_layout';
-import { HOLLOW_CRYPT_FIELD } from '../src/sim/content/hollow_crypt_layout';
 import {
   BAILEY_CHAPEL,
   SUNKEN_BASTION_ANCHORS,
@@ -161,7 +161,6 @@ function describeMisses(misses: Miss[]): string {
 }
 
 const FIELDS: [string, AuthoredFieldDef][] = [
-  ['the Hollow Crypt', HOLLOW_CRYPT_FIELD],
   ['the Sunken Bastion', SUNKEN_BASTION_FIELD],
   ['the Drowned Temple', DROWNED_TEMPLE_FIELD],
   ['the Wildheart Basin', WILDHEART_BASIN_FIELD],

@@ -1906,11 +1906,16 @@ describe('Affliction Warlock', () => {
     expect(distant.hp).toBe(farHp);
 
     const bossSim = makeAffliction(503);
-    const boss = createMob((bossSim as unknown as { nextId: number }).nextId++, MOBS.morthen, 20, {
-      x: bossSim.player.pos.x,
-      y: bossSim.player.pos.y,
-      z: bossSim.player.pos.z + 8,
-    });
+    const boss = createMob(
+      (bossSim as unknown as { nextId: number }).nextId++,
+      MOBS.vael_the_mistcaller,
+      20,
+      {
+        x: bossSim.player.pos.x,
+        y: bossSim.player.pos.y,
+        z: bossSim.player.pos.z + 8,
+      },
+    );
     boss.maxHp = 100_000;
     boss.hp = boss.maxHp;
     // Held where it stands, like addTarget's dummies: the splash geometry below
@@ -2226,11 +2231,16 @@ describe('Affliction Warlock', () => {
 
   it('keeps the 100-Condemnation boss bonus out of the Coven echo', () => {
     const sim = makeAffliction(506);
-    const boss = createMob((sim as unknown as { nextId: number }).nextId++, MOBS.morthen, 20, {
-      x: sim.player.pos.x,
-      y: sim.player.pos.y,
-      z: sim.player.pos.z + 8,
-    });
+    const boss = createMob(
+      (sim as unknown as { nextId: number }).nextId++,
+      MOBS.vael_the_mistcaller,
+      20,
+      {
+        x: sim.player.pos.x,
+        y: sim.player.pos.y,
+        z: sim.player.pos.z + 8,
+      },
+    );
     boss.maxHp = 100_000;
     boss.hp = boss.maxHp;
     sim.addEntity(boss);

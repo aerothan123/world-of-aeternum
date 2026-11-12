@@ -213,10 +213,6 @@ export const table: DeedLocaleTable = {
     name: 'Otrzep Się i Wstań',
     desc: 'Zgiń po raz pierwszy; zdarza się najlepszym.',
   },
-  dgn_hollow_crypt: {
-    name: 'Łamacz Krypt',
-    desc: 'Pokonaj Morthena Grobowego Wołacza w Wydrążonej Krypcie.',
-  },
   dgn_sunken_bastion: {
     name: 'Fogbinder Rozpętany',
     desc: 'Pokonaj Vaela Fogbindera w Zatopionym Bastionie.',
@@ -228,10 +224,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Żmij z Głębin',
     desc: 'Pokonaj Korzula Grobowego Żmija w Sanktuarium Grobowego Żmija.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroiczna: Wydrążona Krypta',
-    desc: 'Pokonaj Morthena Grobowego Wołacza w Wydrążonej Krypcie na heroicznym poziomie trudności.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroiczny: Zatopiony Bastion',
@@ -268,14 +260,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Za Pięćdziesiątymi Drzwiami',
     desc: 'Pokonaj 50 finałowych bossów lochów.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Poszło Jak po Kościach',
-    desc: 'Pokonaj Morthena Grobowego Wołacza na heroicznym poziomie trudności tak, by nikt z drużyny nie zginął.',
-  },
-  dgn_morthen_trio: {
-    name: 'W Trójkę Przeciw Mogile',
-    desc: 'Pokonaj Morthena Grobowego Wołacza w składzie liczącym najwyżej trzech graczy.',
   },
   dgn_olen_arc: {
     name: 'Wymiń Żniwiarza',
@@ -1299,10 +1283,6 @@ export const table: DeedLocaleTable = {
     name: 'Wszystkie głowy w dół',
     desc: 'Zabij wszystkie trzy głowy Jeziornej Hydry w odstępie najwyżej 10 sekund.',
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Ani włos nie osmalony',
-    desc: 'Pokonaj Dzwonnego Żmija, nie dopuszczając, by jego Ognisty przelot kogokolwiek poparzył.',
-  },
   dgn_turnkey_cage: {
     name: 'Żadna klatka nas nie zatrzyma',
     desc: 'Pokonaj Klucznika Więzienia, nie dopuszczając do zmiażdżenia nikogo w Żelaznej klatce.',
@@ -1347,22 +1327,6 @@ export const table: DeedLocaleTable = {
     name: 'Ostatnia zwrotka',
     desc: 'Pokonaj Ysolei, Awatar Utopionego Księżyca, z Ostatnim Kantorem Bladego Chóru u boku.',
     title: 'Świadek Chóru',
-  },
-  dgn_marrow_tidy: {
-    name: 'Zadbany cmentarz',
-    desc: 'Pokonaj Grabarza Marrowa, umieszczając każdy Otwarty grób na skraju Dziedzińca Dzwonu.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Nikt nie zostaje w powietrzu',
-    desc: 'Pokonaj Panią Przeszywającego Chłodu, nie dopuszczając, by upuściła kogokolwiek ze swojego Lodowego objęcia.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Teraz cisza',
-    desc: 'Pokonaj Kantorkę Ilvane, nie dopuszczając, by jej Tren Pustki kogokolwiek trafił.',
-  },
-  dgn_morthen_candlelight: {
-    name: 'Każda świeca płonie',
-    desc: 'Pokonaj Morthena Grobowego Wołacza po ponownym zapaleniu wszystkich czterech Świec pamięci w ciągu 20 sekund od pojawienia się jego Osłony niespokojnych.',
   },
   dgn_guild_first_contract: {
     name: 'Zlecenie podpisane',

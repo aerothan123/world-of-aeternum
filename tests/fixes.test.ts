@@ -4,7 +4,6 @@
 import { describe, expect, it } from 'vitest';
 import { isBlocked, moverHeight, resolvePosition } from '../src/sim/colliders';
 import {
-  CRYPT_DOOR_POS,
   DUNGEON_LIST,
   DUNGEON_X_THRESHOLD,
   ITEMS,
@@ -664,11 +663,15 @@ describe('rare spawn rules', () => {
   });
 });
 
-describe('the Hollow Crypt doors', () => {
+// The walk-in door cases ran on the Hollow Crypt's door until the dungeon was
+// retired (2026-11-11); the Sunken Bastion's door carries the same mechanics.
+const DOOR_POS = expectDefined(DUNGEON_LIST.find((d) => d.id === 'sunken_bastion')).doorPos;
+
+describe('a five-man dungeon door (the Sunken Bastion)', () => {
   it('walking into the door teleports you inside; walking into the exit brings you back', () => {
     const sim = makeSim();
     const p = sim.player;
-    teleportTo(sim, CRYPT_DOOR_POS.x, CRYPT_DOOR_POS.z - 1.2);
+    teleportTo(sim, DOOR_POS.x, DOOR_POS.z - 1.2);
     sim.tick();
     expect(p.pos.x).toBeGreaterThan(DUNGEON_X_THRESHOLD);
 
@@ -681,7 +684,7 @@ describe('the Hollow Crypt doors', () => {
     p.facing = Math.PI;
     sim.tick();
     expect(p.pos.x).toBeLessThan(DUNGEON_X_THRESHOLD);
-    expect(dist2d(p.pos, { x: CRYPT_DOOR_POS.x, y: 0, z: CRYPT_DOOR_POS.z }) < 8).toBe(true);
+    expect(dist2d(p.pos, { x: DOOR_POS.x, y: 0, z: DOOR_POS.z }) < 8).toBe(true);
   });
 
   it('party members who walk in share one instance', () => {
@@ -692,9 +695,9 @@ describe('the Hollow Crypt doors', () => {
     sim.partyAccept(b);
     expect(sim.partyOf(a)?.members).toContain(b);
 
-    teleportTo(sim, CRYPT_DOOR_POS.x, CRYPT_DOOR_POS.z - 1, a);
+    teleportTo(sim, DOOR_POS.x, DOOR_POS.z - 1, a);
     sim.tick();
-    teleportTo(sim, CRYPT_DOOR_POS.x, CRYPT_DOOR_POS.z - 1, b);
+    teleportTo(sim, DOOR_POS.x, DOOR_POS.z - 1, b);
     sim.tick();
 
     const ea = expectDefined(sim.entities.get(a));
@@ -707,7 +710,7 @@ describe('the Hollow Crypt doors', () => {
     const infoB = sim.instanceInfoAt(eb.pos);
     expect(slotA).not.toBeNull();
     expect(slotA).toBe(slotB);
-    expect(infoA).toEqual({ slot: slotA, dungeonId: 'hollow_crypt' });
+    expect(infoA).toEqual({ slot: slotA, dungeonId: 'sunken_bastion' });
     expect(infoB).toEqual(infoA);
   });
 
@@ -715,9 +718,9 @@ describe('the Hollow Crypt doors', () => {
     const sim = new Sim({ seed: SEED, playerClass: 'warrior', noPlayer: true });
     const a = sim.addPlayer('warrior', 'Anna');
     const b = sim.addPlayer('mage', 'Bert');
-    teleportTo(sim, CRYPT_DOOR_POS.x, CRYPT_DOOR_POS.z - 1, a);
+    teleportTo(sim, DOOR_POS.x, DOOR_POS.z - 1, a);
     sim.tick();
-    teleportTo(sim, CRYPT_DOOR_POS.x, CRYPT_DOOR_POS.z - 1, b);
+    teleportTo(sim, DOOR_POS.x, DOOR_POS.z - 1, b);
     sim.tick();
     const slotA = sim.instanceSlotAt(expectDefined(sim.entities.get(a)).pos);
     const slotB = sim.instanceSlotAt(expectDefined(sim.entities.get(b)).pos);
@@ -811,11 +814,9 @@ describe('boss loot and encounter resets', () => {
     const sim = makeLootSim();
     const meta = expectDefined(sim.meta(sim.playerId));
     for (const [bossId, groupId, exactlyOne] of [
-      ['morthen', 'morthen_guaranteed_uncommon', true],
-      ['morthen', 'morthen_bonus', false],
+      // Morthen's three groups left with the Hollow Crypt (2026-11-11).
       // The lower dungeons' normal blues (tests/lower_dungeon_blues.test.ts):
       // one rare group per boss, guaranteed on the final bosses.
-      ['morthen', 'morthen_blue', true],
       ['knight_commander_olen', 'olen_guaranteed_uncommon', true],
       ['knight_commander_olen', 'olen_blue', false],
       ['vael_the_mistcaller', 'vael_guaranteed_uncommon', true],
@@ -856,7 +857,7 @@ describe('boss loot and encounter resets', () => {
     const meta = expectDefined(sim.meta(sim.playerId));
     const lootOf = (m: Entity) => m.loot;
     for (const bossId of [
-      'morthen',
+      // Morthen left with the Hollow Crypt (2026-11-11).
       'knight_commander_olen',
       'vael_the_mistcaller',
       'korgath_the_bound',

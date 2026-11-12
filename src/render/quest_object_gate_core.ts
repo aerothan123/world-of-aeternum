@@ -18,7 +18,6 @@
 // sites. Pure: no Three, no DOM, no i18n, no clock, no rng.
 
 import { WORLD_QUESTS_BY_ID } from '../sim/data';
-import { isEntombed } from '../sim/encounters/hollow_crypt/ids';
 import { isQuestGatedGroundObjectHidden } from '../sim/quest_gated_entity';
 import type { Entity, QuestProgress, WorldQuestProgress } from '../sim/types';
 import { vaultPortalVisible } from '../sim/vault_portal_visibility';
@@ -50,14 +49,12 @@ export function makeQuestObjectGate(
   options: QuestObjectGateOptions,
   worldQuests?: WorldQuestObjectReader,
 ): QuestObjectGate {
-  // An encounter-concealed mob (the Hollow Crypt's Morthen entombed under his
-  // ring, the Knellwyrm before it flies in) is withheld from every viewer:
-  // no body, no plate, nothing to click, until the encounter reveals it.
-  if (options.showAllQuestObjects === true) return (entity) => isEntombed(entity);
+  // The Hollow Crypt's entombed-mob concealment left with the dungeon
+  // (2026-11-11), so show-all hides nothing.
+  if (options.showAllQuestObjects === true) return () => false;
   const salvageQuest = WORLD_QUESTS_BY_ID.wq_farshore_salvage;
   if (worldQuests) {
     return (entity, questLog) => {
-      if (isEntombed(entity)) return true;
       if (
         !vaultPortalVisible(
           entity,
@@ -80,6 +77,5 @@ export function makeQuestObjectGate(
       return isQuestGatedGroundObjectHidden(entity, questLog);
     };
   }
-  return (entity, questLog) =>
-    isEntombed(entity) || isQuestGatedGroundObjectHidden(entity, questLog);
+  return (entity, questLog) => isQuestGatedGroundObjectHidden(entity, questLog);
 }

@@ -27,7 +27,7 @@ import { placePlayerInOpenField } from './open_field';
 
 /** A five-man dungeon with no attunement and no raid-group requirement: the
  *  cheapest live claim in the pool. */
-export const TEST_DUNGEON_ID = 'hollow_crypt';
+export const TEST_DUNGEON_ID = 'sunken_bastion';
 /** The raid-required wing (RAID_REQUIRED_DUNGEON_IDS, instances/dungeons.ts):
  *  entering it proves a real raid group, not a solo claim on a raid-allowed id. */
 export const TEST_RAID_DUNGEON_ID = 'nythraxis_boss_arena';

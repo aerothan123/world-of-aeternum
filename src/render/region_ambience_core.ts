@@ -189,7 +189,6 @@ const INTERIOR_BED: Readonly<Record<string, number>> = Object.freeze({
   mine: MINE,
   nythraxis: LAIR,
   crypt: CRYPT,
-  hollow_crypt: CRYPT,
   gravewyrm_sanctum: CRYPT,
   sanctum: TEMPLE,
   temple: TEMPLE,

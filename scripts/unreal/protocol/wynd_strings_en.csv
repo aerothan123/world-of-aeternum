@@ -49,45 +49,6 @@ abilityUi.cast.bastion_veil_rise,Fog Veil
 abilityUi.cast.cantor_last_verse,The Last Verse
 abilityUi.cast.chopping,Chopping
 abilityUi.cast.crafting,Crafting
-abilityUi.cast.crypt_barrowflame_breath,Barrowflame Breath
-abilityUi.cast.crypt_carrion_eye,Carrion Eye
-abilityUi.cast.crypt_grave_bolt,Grave Bolt
-abilityUi.cast.crypt_grave_cleave,Grave Cleave
-abilityUi.cast.crypt_grave_rupture,Grave Rupture
-abilityUi.cast.crypt_gravespark_volley,Gravespark Volley
-abilityUi.cast.crypt_ilvane_bone_organ,Bone Organ
-abilityUi.cast.crypt_ilvane_dirge,Dirge of the Hollow
-abilityUi.cast.crypt_ilvane_unbroken_dirge,Unbroken Verse
-abilityUi.cast.crypt_knellwyrm_arrive,Descending from the Sky
-abilityUi.cast.crypt_knellwyrm_dread_bellow,Dread Bellow
-abilityUi.cast.crypt_knellwyrm_knell_breath,Burning Knell
-abilityUi.cast.crypt_knellwyrm_knell_land,Burning Knell
-abilityUi.cast.crypt_knellwyrm_knell_mark,Burning Knell
-abilityUi.cast.crypt_knellwyrm_knell_rise,Burning Knell
-abilityUi.cast.crypt_knellwyrm_pyre_strafe,Pyre Strafe
-abilityUi.cast.crypt_knellwyrm_strafe_run,Strafing Run
-abilityUi.cast.crypt_lady_bridal_freeze,Bridal Freeze
-abilityUi.cast.crypt_lady_brides_lament,Bride's Lament
-abilityUi.cast.crypt_lady_embrace_hold,Frozen Embrace
-abilityUi.cast.crypt_lady_frozen_embrace,Frozen Embrace
-abilityUi.cast.crypt_marrow_burial_toll,Burial Toll
-abilityUi.cast.crypt_marrow_crush,Marrow Crush
-abilityUi.cast.crypt_marrow_gravediggers_blow,Gravedigger's Blow
-abilityUi.cast.crypt_marrow_measure,Measured for the Grave
-abilityUi.cast.crypt_marrow_shovelful,Shovelful
-abilityUi.cast.crypt_morthen_descend,Descent
-abilityUi.cast.crypt_morthen_proclaim,Grave Proclamation
-abilityUi.cast.crypt_morthen_reap_the_unquiet,Reap the Unquiet
-abilityUi.cast.crypt_morthen_rise,Rise of the Gravecaller
-abilityUi.cast.crypt_morthen_rite_of_the_unquiet,Rite of the Unquiet
-abilityUi.cast.crypt_morthen_rite_wakes,The Rite Wakes
-abilityUi.cast.crypt_morthen_shadow_pulse,Shadow Pulse
-abilityUi.cast.crypt_murder_call,Murder Call
-abilityUi.cast.crypt_raise_bones,Raise Bones
-abilityUi.cast.crypt_rimesilk_spit,Rimesilk Spit
-abilityUi.cast.crypt_stone_shriek,Stone Shriek
-abilityUi.cast.crypt_tail_lash,Tail Lash
-abilityUi.cast.crypt_wing_gust,Wing Gust
 abilityUi.cast.demonHeal,Demon Heal
 abilityUi.cast.disenchanting,Disenchanting
 abilityUi.cast.enchanting_apply,Enchanting
@@ -124,7 +85,6 @@ abilityUi.cast.hoard_ice_age,Ice Age
 abilityUi.cast.hoard_lightning_strike,Lightning Strike
 abilityUi.cast.hoard_pulsar_overload,Pulsar Overload
 abilityUi.cast.hoard_rolling_boulder,Rolling Boulder
-abilityUi.cast.kituse_crypt_relight_candle,Relight the Candle
 abilityUi.cast.kituse_sanctum_topple_brazier,Topple Brazier
 abilityUi.cast.kituse_wildheart_pull_spear,Pull the Spear
 abilityUi.cast.rift_arcane_execution,Void Rift
@@ -4944,9 +4904,6 @@ entities.dungeons.drowned_temple.name,The Drowned Temple
 entities.dungeons.gravewyrm_sanctum.enterText,The air goes cold. Something vast breathes below...
 entities.dungeons.gravewyrm_sanctum.leaveText,You stagger back into the mountain wind.
 entities.dungeons.gravewyrm_sanctum.name,Gravewyrm Sanctum
-entities.dungeons.hollow_crypt.enterText,You descend into the Hollow Crypt...
-entities.dungeons.hollow_crypt.leaveText,You climb back into daylight.
-entities.dungeons.hollow_crypt.name,The Hollow Crypt
 entities.dungeons.house_eastbrook_quay_cottage.enterText,You step inside your house.
 entities.dungeons.house_eastbrook_quay_cottage.leaveText,You close your front door behind you.
 entities.dungeons.house_eastbrook_quay_cottage.name,Quay Cottage
@@ -7567,12 +7524,6 @@ Share a meal on the watch.
 - Warden Corren"
 entities.letters.letter_q_greyjaw.sender,Warden Corren
 entities.letters.letter_q_greyjaw.subject,"Old Greyjaw, at last"
-entities.letters.letter_q_hollow.body,"Few will ever know what was buried in that hollow, and fewer still would believe it. I know, and I will not forget.
-
-May your road stay lit.
-- Brother Aldric"
-entities.letters.letter_q_hollow.sender,Brother Aldric
-entities.letters.letter_q_hollow.subject,What you did in the dark
 entities.letters.letter_q_wolves.body,"The herders can sleep with both eyes shut for once, and that is your doing. I have told the Ravenpost to carry you a little something from the watch fund.
 
 Keep your blade oiled.
@@ -7713,10 +7664,8 @@ entities.mobs.bastion_warhound.name,Bastion Warhound
 entities.mobs.blackadit_tunneler.name,Blackadit Tunneler
 entities.mobs.bog_bloat.name,Bog Bloat
 entities.mobs.bogtoad.name,Bogtoad
-entities.mobs.bonechill_widow.name,Bonechill Widow
 entities.mobs.boneclad_revenant.name,Boneclad Revenant
 entities.mobs.bound_guardian.name,The Bound Guardian
-entities.mobs.bound_soul.name,Bound Soul
 entities.mobs.brakka_wallbreaker.name,Brakka the Wallbreaker
 entities.mobs.breach_wretch.name,Breach Wretch
 entities.mobs.briarbitten_fox.name,Briarbitten Fox
@@ -7761,9 +7710,7 @@ entities.mobs.buddy_tiger.name,Tiger
 entities.mobs.buddy_triple_t.name,Triple T
 entities.mobs.buddy_trollface.name,Trollface
 entities.mobs.buddy_tuskhorn_boar.name,Tuskhorn Boar
-entities.mobs.candlewright_acolyte.name,Candlewright Acolyte
 entities.mobs.canopy_weaver.name,Canopy Weaver
-entities.mobs.cantor_ilvane.name,Cantor Ilvane
 entities.mobs.captain_verlan.name,Captain Verlan
 entities.mobs.castaway_navigator.name,Navigator Suli
 entities.mobs.charwood_boar.name,Charwood Boar
@@ -7772,20 +7719,6 @@ entities.mobs.choirmother_selthe.name,Choirmother Selthe
 entities.mobs.cindraleth_maw_matriarch.name,Cindraleth the Maw Matriarch
 entities.mobs.corrupted_priest_malric.name,Corrupted Priest Malric
 entities.mobs.corrupted_sporeling.name,Corrupted Sporeling
-entities.mobs.crypt_bone_brute.name,Bone Brute
-entities.mobs.crypt_bone_minion.name,Bone Minion
-entities.mobs.crypt_bone_pile.name,Stirring Bones
-entities.mobs.crypt_carrion_crow.name,Carrion Crow
-entities.mobs.crypt_chapel_gargoyle.name,Chapel Gargoyle
-entities.mobs.crypt_crow_caller.name,Crow Caller
-entities.mobs.crypt_gravecaller_adept.name,Gravecaller Adept
-entities.mobs.crypt_gravecaller_necromancer.name,Gravecaller Necromancer
-entities.mobs.crypt_knellwyrm.name,Knellwyrm
-entities.mobs.crypt_ossuary_cutthroat.name,Ossuary Cutthroat
-entities.mobs.crypt_ossuary_drake.name,Ossuary Drake
-entities.mobs.crypt_ossuary_warrior.name,Ossuary Warrior
-entities.mobs.crypt_remembrance_candle.name,Remembrance Candle
-entities.mobs.crypt_shambler.name,Crypt Shambler
 entities.mobs.culvert_rat.name,Culvert Rat
 entities.mobs.deacon_varric.name,Deacon Vandric
 entities.mobs.deacon_voss.name,Deacon Voss
@@ -7888,9 +7821,6 @@ entities.mobs.hoard_coinsack_scurrier.name,Coinsack Scurrier
 entities.mobs.hoard_healing_tide_totem.name,Healing Tide Totem
 entities.mobs.hoard_silk_cocoon.name,Silk Cocoon
 entities.mobs.hoard_sporeling.name,Sporeling
-entities.mobs.hollow_acolyte.name,Hollow Acolyte
-entities.mobs.hollow_chorister.name,Hollow Chorister
-entities.mobs.hollow_gravedigger.name,Hollow Gravedigger
 entities.mobs.howdah_hexcaller.name,Howdah Hexcaller
 entities.mobs.hub_healing_dummy.name,Healing Dummy
 entities.mobs.hub_training_dummy.name,Training Dummy
@@ -7909,7 +7839,6 @@ entities.mobs.korgath_the_bound.name,Korgath the Bound
 entities.mobs.korzul_the_gravewyrm.name,Korzul the Gravewyrm
 entities.mobs.lagoon_snapper.name,Lagoon Snapper
 entities.mobs.lily_wisp.name,Lily Wisp
-entities.mobs.marrow_restless_bones.name,Restless Bones
 entities.mobs.marrowlord_varkas.name,Marrowlord Varkas
 entities.mobs.mere_hydra_head_center.name,Mere Hydra
 entities.mobs.mere_hydra_head_left.name,Mere Hydra
@@ -7929,7 +7858,6 @@ entities.mobs.moonfleece_grazer.name,Moonfleece Grazer
 entities.mobs.moonlit_siren.name,Moonlit Siren
 entities.mobs.moonspawn.name,Moonspawn
 entities.mobs.moor_ram.name,Moor Ram
-entities.mobs.morthen.name,Morthen the Gravecaller
 entities.mobs.mudfin_murloc.name,Mudfin Skulker
 entities.mobs.mushroom_pixie.name,Gleamfolk Pixie
 entities.mobs.muster_chaplain.name,Muster Chaplain
@@ -7956,7 +7884,6 @@ entities.mobs.old_greyjaw.name,Old Greyjaw
 entities.mobs.old_marrowshell.name,Old Marrowshell
 entities.mobs.orchard_boar.name,Orchard Boar
 entities.mobs.orchard_treant.name,Orchard Treant
-entities.mobs.ossuary_sentinel.name,Ossuary Sentinel
 entities.mobs.pale_accord_delver.name,Pale Accord Delver
 entities.mobs.pale_choir_acolyte.name,Pale Choir Acolyte
 entities.mobs.pale_huntsman.name,The Pale Huntsman
@@ -8004,12 +7931,8 @@ entities.mobs.rift_tide_thrall.name,Tide Thrall
 entities.mobs.rift_venom_weaver.name,Venom Weaver
 entities.mobs.rift_void_acolyte.name,Voidscar Acolyte
 entities.mobs.riftspawn.name,Riftspawn
-entities.mobs.rime_egg_sac.name,Rime Egg Sac
 entities.mobs.rime_elemental.name,Rime Elemental
 entities.mobs.rime_whelp.name,Rime Whelp
-entities.mobs.rimeweb.name,Lady of the Bonechill
-entities.mobs.rimeweb_hatchling.name,Rimeweb Hatchling
-entities.mobs.rimeweb_spinner.name,Rimeweb Spinner
 entities.mobs.saltdown_ram.name,Saltdown Ram
 entities.mobs.sanctum_boneguard.name,Sanctum Boneguard
 entities.mobs.sanctum_drakonid.name,Sanctum Scaleguard
@@ -8018,7 +7941,6 @@ entities.mobs.sanctum_shackle_bellows.name,Bellows Shackle
 entities.mobs.sanctum_shackle_hammer.name,Hammer Shackle
 entities.mobs.sanctum_shackle_tongs.name,Tongs Shackle
 entities.mobs.sethrael_palecoil.name,Sethrael the Palecoil
-entities.mobs.sexton_marrow.name,Sexton Marrow
 entities.mobs.shackled_prisoner.name,Shackled Prisoner
 entities.mobs.shardlord_kazzix.name,Shardlord Kazzix
 entities.mobs.shoal_scuttler.name,Shoal Scuttler
@@ -9032,7 +8954,7 @@ entities.quests.q_bandits.completion,Ten fewer knives in the dark. Take this: yo
 entities.quests.q_bandits.objectives.0.label,Vale Bandit slain
 entities.quests.q_bandits.text,A pack of cutthroats has made camp in the northwest hills. They have robbed three wagons this week. Drive them out: slay 10 Vale Bandits.
 entities.quests.q_bandits.title,Bandits of the Vale
-entities.quests.q_bastion_door.completion,"The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening."
+entities.quests.q_bastion_door.completion,"The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening."
 entities.quests.q_bastion_door.objectives.0.label,Bastion Ward Stone
 entities.quests.q_bastion_door.text,"The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal."
 entities.quests.q_bastion_door.title,The Sunken Bastion
@@ -9040,10 +8962,6 @@ entities.quests.q_boars.completion,"Ah, fine bristly hides! These will fetch a g
 entities.quests.q_boars.objectives.0.label,Bristly Boar Hide
 entities.quests.q_boars.text,"Boar hide makes the finest travel packs, and the meadows northwest of town are crawling with the beasts. Bring me 5 Bristly Boar Hides and I will make it worth your time."
 entities.quests.q_boars.title,Bristly Boar Hides
-entities.quests.q_bones.completion,"May they rest now, and may the Light forgive whatever woke them."
-entities.quests.q_bones.objectives.0.label,Restless Skulls recovered
-entities.quests.q_bones.text,"The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, {playerName}, eight in all, so I may speak the rites over them and grant the peace they were denied."
-entities.quests.q_bones.title,The Restless Dead
 entities.quests.q_breaking_the_seal.completion,They burn blue and clean: the mountain remembers its old oath. With these I can unbind the gate for us alone.
 entities.quests.q_breaking_the_seal.objectives.0.label,Blessed Embers
 entities.quests.q_breaking_the_seal.text,"The seal on the Sanctum was wrought with mountain-fire, and only mountain-fire will let us pass without tearing it wide open. The stormcrag elementals carry embers of that first forging in their cores. Bring me five Blessed Embers, {playerName}, for if the cult opens that gate first, they will not be careful, and the Wyrm will not wake gently."
@@ -9065,7 +8983,7 @@ entities.quests.q_cult_camp.completion,"Twelve robes face-down in the mud. Every
 entities.quests.q_cult_camp.objectives.0.label,Gravecaller Cultist slain
 entities.quests.q_cult_camp.text,"There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. This is no handful of fanatics, {playerName}. It is a cell of something larger, paid and supplied, and they have stopped hiding, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists."
 entities.quests.q_cult_camp.title,Robes in the Reeds
-entities.quests.q_cult_orders.completion,"This script... I last saw its like in Morthen's grimoire, in Eastbrook. The same hand has guided every grave we have fought over, {playerName}."
+entities.quests.q_cult_orders.completion,"This script... I last saw its like in Eastbrook. The same hand has guided every grave we have fought over, {playerName}."
 entities.quests.q_cult_orders.objectives.0.label,Orders from Below
 entities.quests.q_cult_orders.text,"The zealots move with purpose now, watches set and supplies counted, like soldiers before a siege. Cultists who organize are cultists taking orders, {playerName}. One of them is carrying written orders from below. Find the zealot who has them and bring the orders to me: I would know the hand that commands them."
 entities.quests.q_cult_orders.title,Orders from Below
@@ -9346,10 +9264,6 @@ entities.quests.q_gourdlight_daily_wicks.completion,"Six stubs, cold as frost. W
 entities.quests.q_gourdlight_daily_wicks.objectives.0.label,Cursed candles snuffed
 entities.quests.q_gourdlight_daily_wicks.text,"Someone has been setting candles with green flames at the feet of our lamp posts. They burn without melting and they whisper when you turn your back. Snuff six of them for me, {playerName}, in any of the three towns, and bring me the stubs."
 entities.quests.q_gourdlight_daily_wicks.title,Wicked Wicks
-entities.quests.q_gravecallers_trail.completion,"Morthen wrote to a 'Fogbinder' in the northern fen. The Pale Accord is not dead, {playerName}. It has merely been patient."
-entities.quests.q_gravecallers_trail.objectives.0.label,Morthen's Grimoire
-entities.quests.q_gravecallers_trail.text,"Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, {playerName}."
-entities.quests.q_gravecallers_trail.title,The Gravecaller's Trail
 entities.quests.q_gravewyrm.completion,"It is over. The dead of three lands may rest, the mountain sleeps unhaunted, and it is your name, {playerName}, that every bell from here to Eastbrook rings tonight."
 entities.quests.q_gravewyrm.objectives.0.label,Korzul the Gravewyrm slain
 entities.quests.q_gravewyrm.text,"There is no rite left to stop, {playerName}: only the Wyrm itself, half-woken in its hollow, gorged on the dead of the Vale and the fen. If it rises, the wall, the marsh, Eastbrook, everything we have defended falls in a single night. Take your companions into the Wyrm's Hollow and finish what we began in a chapel yard so long ago. The Light has carried you this far; carry it the rest of the way."
@@ -9370,10 +9284,6 @@ entities.quests.q_highwatch_summons.completion,"Aldric's word reaches far. If th
 entities.quests.q_highwatch_summons.objectives.0.label,Highwatch Summons
 entities.quests.q_highwatch_summons.text,"Vael's last words have not left me, {playerName}: the Wyrm stirs beneath the peaks. Captain Thessaly commands the wall at Highwatch, at the head of the mountain road north. A summons stands posted at her gate: take it up, and tell her Brother Aldric is climbing the mountain behind you."
 entities.quests.q_highwatch_summons.title,The Watch on the Peaks
-entities.quests.q_hollow.completion,"The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, {playerName}, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not."
-entities.quests.q_hollow.objectives.0.label,Morthen the Gravecaller slain
-entities.quests.q_hollow.text,"The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping."
-entities.quests.q_hollow.title,Into the Hollow
 entities.quests.q_hollow_first_of_the_herd.completion,"So the First falls to the last. The herd is already calmer, do you feel it? You did the Hollow a kindness today, even if it does not look like one."
 entities.quests.q_hollow_first_of_the_herd.objectives.0.label,Aurelhorn given peace
 entities.quests.q_hollow_first_of_the_herd.text,"The second name is harder to say. Aurelhorn led these herds when my grandmother kept this lookout, and whatever woke in the Hollow woke him wrong. He tramples what he once warded, and the herd will not survive his madness. He roams the meadows near the old court roads. End him with mercy, {playerName}, and bring a friend to share the weight of it."
@@ -9459,10 +9369,6 @@ entities.quests.q_muster_trophy.completion,"Down again, and you were in the figh
 entities.quests.q_muster_trophy.objectives.0.label,Balgath slain
 entities.quests.q_muster_trophy.text,"Every week he stands back up, and every week we knock him down again. That takes a raid, and the muster cannot raise one on its own. Find the next raid that goes after Balgath and help bring him down, {playerName}. Strike him, shield the ones who do, or mend them: every hand that fights him counts. When he falls, come back and report to me. The muster pays for every kill."
 entities.quests.q_muster_trophy.title,A Chip Off the Foreman
-entities.quests.q_names_of_the_dead.completion,"These poor souls... and look here. Sexton Marrow, the chapel's own living caretaker, his grave the first disturbed. Morthen began with the very man who buried Eastbrook's dead."
-entities.quests.q_names_of_the_dead.objectives.0.label,Weathered Ledger Page
-entities.quests.q_names_of_the_dead.text,"If the Gravecallers raised our dead, I must know whose graves they robbed. The chapel sexton kept a burial ledger, and the wind has scattered its pages across the chapel yard. Gather 3 of them for me, {playerName}. The dead deserve to be called by their names."
-entities.quests.q_names_of_the_dead.title,The Names of the Dead
 entities.quests.q_nb_charts_of_the_stones.completion,"No doubt is left. Every bearing has crept toward the Sleepless Barrow, as if the sky itself leans over that mound to watch. The old kings were buried under aligned stars for a reason, {playerName}."
 entities.quests.q_nb_charts_of_the_stones.objectives.0.label,Star chart read
 entities.quests.q_nb_charts_of_the_stones.text,"The Vigil stones are older than Moonrest, older than the gloamkin who tend them, and their faces are cut with star charts I have spent my life learning to read. The sky has shifted, {playerName}, and I must know how far. Read the charts on three of the stones and bring me their bearings."
@@ -9732,11 +9638,6 @@ entities.quests.q_ringleader.completion,Gorrak is dead? Then the Vale is free of
 entities.quests.q_ringleader.objectives.0.label,Gorrak the Ruthless slain
 entities.quests.q_ringleader.text,"The bandits answer to one man: Gorrak the Ruthless. Cut off the head and the body will scatter. He skulks at the heart of their camp. End him, {playerName}."
 entities.quests.q_ringleader.title,The Ringleader
-entities.quests.q_rite.completion,"It is done. The way below stands open... and may the Light forgive me for opening it. Gather your strongest companions before you descend, {playerName}. No one should face the Hollow alone."
-entities.quests.q_rite.objectives.0.label,Blessed Tallow
-entities.quests.q_rite.objectives.1.label,Ghostly Essence
-entities.quests.q_rite.text,"The crypt beneath the chapel must be unsealed if we are to stop the Gravecaller, but only a binding rite will let the living pass. I need 4 lumps of Blessed Tallow (the mine's burrowers hoard tallow by the crate) and 6 Ghostly Essences from the restless dead."
-entities.quests.q_rite.title,The Binding Rite
 entities.quests.q_rite_of_redemption.completion,"Kneel, {playerName}, and read the words aloud. There. Do you feel it? The Light no longer only mends the living in your hands, it can summon back those who have crossed over. Use it wisely. A soul called back to a hopeless fight is a cruelty, not a mercy. Rise, Redeemer."
 entities.quests.q_rite_of_redemption.objectives.0.label,Drowned Dead laid to rest
 entities.quests.q_rite_of_redemption.text,"So you followed me into the mire, {playerName}. Good. I have the Dawnbound Tome here, and this drowned ground is where its words belong: nowhere is the veil between life and death thinner than a place where the dead will not stay buried. But the drowned would drag your voice down mid-verse. Clear a space fit for the rite: put 8 of the Drowned Dead to rest, and we will consecrate it together."
@@ -9749,10 +9650,6 @@ entities.quests.q_seal_restored.completion,"I felt it close from here, gentle as
 entities.quests.q_seal_restored.objectives.0.label,The seal set back in the sealstone
 entities.quests.q_seal_restored.text,"Take the Warden's seal to the sealstone at the heart of the court and set it back where it was struck loose. Then the Hollow can begin to heal, and you, {playerName}, will have done what no one of your kind has done before."
 entities.quests.q_seal_restored.title,The Seal Restored
-entities.quests.q_sexton.completion,So Marrow is free at last. Ring no bell for him: he heard enough of them in life.
-entities.quests.q_sexton.objectives.0.label,Sexton Marrow laid to rest
-entities.quests.q_sexton.text,"The ledger named him and the crypt holds him: Sexton Marrow, the chapel's caretaker, the first man Morthen raised, guarding his master's door in death as faithfully as he kept the chapel in life. Take four companions into the Hollow Crypt and grant the old sexton the rest he was robbed of, {playerName}."
-entities.quests.q_sexton.title,The Sexton's Bell
 entities.quests.q_shard_cores.completion,"Each core leans the same way, like iron filings to a lodestone. They point south, {playerName}. To the Sanctum."
 entities.quests.q_shard_cores.objectives.0.label,Storm Core
 entities.quests.q_shard_cores.text,"At each elemental's heart sits a storm core, a knot of lightning bound in stone. Six of them, set side by side, will tell me where the disturbance is centered. I suspect I already know, {playerName}, and I dearly hope that I am wrong."
@@ -9889,10 +9786,6 @@ entities.quests.q_wf_witch_of_willowweep.completion,"Alden sent you all this way
 entities.quests.q_wf_witch_of_willowweep.objectives.0.label,Find Mother Sedge
 entities.quests.q_wf_witch_of_willowweep.text,"You have heard it by now, {playerName}: the snore. Slow and heavy, out past the Drowsy Flats, like the fen itself turning over in its sleep. The toads, the sprites, the wisps burning at noon: it all started when that sound did. One soul might know what it is. Mother Sedge keeps a camp at Willowweep, west around the moat and down the far shore. Find her, and ask her what sleeps at the middle of my fen."
 entities.quests.q_wf_witch_of_willowweep.title,The Witch of Willowweep
-entities.quests.q_whispers.completion,"This sigil... it bears the mark of the Gravecallers, a cell of the Pale Accord, the order that still keeps faith with Vauldren Sere, whom the old verses name the Oathless King. I had prayed they were gone. This is worse than I feared, {playerName}."
-entities.quests.q_whispers.objectives.0.label,Gravecaller's Sigil
-entities.quests.q_whispers.text,"You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched."
-entities.quests.q_whispers.title,Whispers Below
 entities.quests.q_widows.completion,"Whole sacs, every one. A woman asked me this morning who her husband was. Tonight she will remember. You have steadier hands than half the surgeons in the south, {playerName}."
 entities.quests.q_widows.objectives.0.label,Mirefen Widow slain
 entities.quests.q_widows.objectives.1.label,Widow Venom Sac
@@ -10913,7 +10806,6 @@ guide.dungeonsPage.heroicLockoutBody,"Normal dungeons can be run all day. Heroic
 guide.dungeonsPage.heroicRewardsBody,"Heroic bosses drop the loot you know, upgraded and tagged Heroic on the tooltip, and the final boss of each run adds epics found nowhere else. That last kill also leaves Heroic Marks for every participant: a currency spent with Quartermaster Vex in Highwatch, whose counter is a shelf of rings and pendants that nothing but proof of the heroic depths will buy."
 guide.dungeonsPage.heroicRewardsTitle,Heroic Marks and upgraded spoils
 guide.dungeonsPage.heroicTitle,Heroic mode
-guide.dungeonsPage.hollowBody,A grave-robbed chapel crypt where the newly dead refuse to rest. The first real test of a new party.
 guide.dungeonsPage.hollowName,The Hollow Crypt
 guide.dungeonsPage.intro,"When the open world is not enough, gather a party and step into an instance: a private copy of a dungeon made just for your group."
 guide.dungeonsPage.levelAround,Around level {n}
@@ -13955,28 +13847,6 @@ hudChrome.auraEffect.cooldownCap,{used} of {cap} sec of cooldown reduction used 
 hudChrome.auraEffect.costTax,Increases ability costs by {pct}%
 hudChrome.auraEffect.crit,Increases critical strike chance by {pct}%
 hudChrome.auraEffect.critVuln,Increases chance to be critically hit by {pct}%
-hudChrome.auraEffect.crypt.blow,"Increases damage taken by {pct}%: {per}% for each stack, {stacks} of {max} now. Each Gravedigger's Blow adds a stack and resets the duration to {seconds} sec."
-hudChrome.auraEffect.crypt.carrionEye,Every crow in the fight hunts you for {seconds} sec. Run to your tank so the flock can be cut down together.
-hudChrome.auraEffect.crypt.crescendo,"Sings faster: the Dirge of the Hollow takes {cast} sec instead of {castNormal} sec and comes every {every} sec instead of {everyNormal} sec, and the Bone Organ plays {waves} waves of notes instead of {wavesNormal}."
-hudChrome.auraEffect.crypt.dirtInEyes,Reduces movement speed by {pct}%. Shovelful hits everyone in front of Sexton Marrow: stand behind him.
-hudChrome.auraEffect.crypt.embraced,"Held aloft in the Lady's arms: unable to act, taking {tick} Frost damage every second ({tickHeroic} on Heroic). If your group deals {share}% of her maximum health ({shareHeroic}% on Heroic) she sets you down gently; if she holds you {hold} sec at the top she drops you onto the ice for {min} to {max} damage ({heroicMin} to {heroicMax} on Heroic)."
-hudChrome.auraEffect.crypt.gorged,"Deals {pct}% more damage: {per}% for each Bound Soul that reached him, {stacks} of {max} now, for the rest of the fight. Each soul that reaches him also heals him for {heal}% of his maximum health. Step into a soul's path to take it instead."
-hudChrome.auraEffect.crypt.graniteSkin,"Takes {pct}% less damage, and the stone thickens every {every} sec, up to {max} layers. A stun shatters it and leaves it taking {cracked}% more damage for {seconds} sec."
-hudChrome.auraEffect.crypt.graspMark,Hands erupt from the ring under you in {fuse} sec: everyone within {radius} yd of where it was laid is rooted for {root} sec and takes {min} to {max} Shadow damage. Step out of the ring.
-hudChrome.auraEffect.crypt.graspRoot,Held by the grave's hands: unable to move for {seconds} sec.
-hudChrome.auraEffect.crypt.graveChill,"Takes {bite} Shadow damage every second ({biteHeroic} on Heroic) while the Rite of the Unquiet holds, rising by {step} ({stepHeroic} on Heroic) every {every} sec. Relight the Remembrance Candles to end it."
-hudChrome.auraEffect.crypt.graveDirt,"Standing in an Open Grave: movement speed reduced by {slow}% and {damage} Shadow damage every second ({heroic} on Heroic). On Heroic, lingering {linger} sec in a grave raises a Restless Bones. Step out of the grave."
-hudChrome.auraEffect.crypt.graveVigor,Attacks {pct}% faster while he stands in an Open Grave. Keep him out of the graves.
-hudChrome.auraEffect.crypt.harmony,Takes {pct}% less damage: {per}% for each of her living Choristers. Kill the Choristers first.
-hudChrome.auraEffect.crypt.knellAirborne,"On the wing over the Rite Ring, out of reach. It marks half of the ring for {mark} sec, then pours ghost fire over that half: {min} to {max} Fire damage to everyone in it. It burns {breaths} halves each flight, then lands."
-hudChrome.auraEffect.crypt.lament,"When Bride's Lament ends, it deals {min} to {max} Frost damage ({heroicMin} to {heroicMax} on Heroic) to everyone not within {radius} yd of a lit grave lantern. A lantern shelters the {cap} players nearest it, then goes dark and misses the next Lament."
-hudChrome.auraEffect.crypt.lingering,"Your next Bride's Lament deals {pct}% more damage: {per}% for each stack, up to {max} stacks. Take the next one in a lantern's light."
-hudChrome.auraEffect.crypt.measured,"When this ends, an Open Grave caves in where you stand: {min} to {max} damage ({heroicMin} to {heroicMax} on Heroic) to everyone within {radius} yd. The grave stays for the rest of the fight, so carry the mark to the edge of the yard, away from the group."
-hudChrome.auraEffect.crypt.riteBroken,Stunned: the shattered ward leaves him unable to act for {seconds} sec.
-hudChrome.auraEffect.crypt.shatteredWard,Takes {pct}% more damage for {seconds} sec: the relit candles broke his ward. Spend your strongest attacks now.
-hudChrome.auraEffect.crypt.slippery,"On slick ice: your speed changes by at most {grip} yd/sec each second, so you are slow to get going, slide on when you stop, and swing wide when you turn. Step off the ice to get your footing back."
-hudChrome.auraEffect.crypt.tolling,"Immune to damage while he strides to the bell rope and rings the Burial Bell. When the ringing ends, the Toll deals {min} to {max} Shadow damage ({heroicMin} to {heroicMax} on Heroic) to everyone, and every Open Grave gives up a Restless Bones."
-hudChrome.auraEffect.crypt.unquietWard,"Immune to damage while he channels the Rite of the Unquiet at the altar: {lit} of {total} Remembrance Candles relit. Relighting one is a {channel} sec channel that drains {drain}% of the lighter's maximum health every second ({drainHeroic}% on Heroic); hits do not break it, a step or a stun does. The last candle shatters the ward. On Heroic, light them in the order the Ledger names: a wrong candle snuffs the last one lit and deals {wrongMin} to {wrongMax} Shadow damage to the lighter."
 hudChrome.auraEffect.damageReduction,Reduces all damage taken by {pct}%
 hudChrome.auraEffect.dawnsWrath,HoW: all HP · +1 use · CD 0 · +{pct}% DMG
 hudChrome.auraEffect.defensiveStance,"Guarded Stance: reduced damage taken, more threat"
@@ -15475,31 +15345,6 @@ hudChrome.crafting.trendNudge,Your hands are leaning toward the {archetype}. Its
 hudChrome.crafting.trendNudgeNoMaster,Your hands are leaning toward the {archetype}. Seek a craft master to take it up.
 hudChrome.crafting.unknownRecipe,That recipe does not exist.
 hudChrome.crafting.vaultUnreachable,The Materials Vault is out of reach here.
-hudChrome.cryptAlert.embracedLine,Your group must damage the Lady of the Bonechill to free you from her grip
-hudChrome.cryptAlert.embracedTitle,Frozen Embrace!
-hudChrome.cryptAlert.graspLine,Leave the marked ring before the hands erupt to avoid damage and being rooted
-hudChrome.cryptAlert.graspTitle,Grasp of the Grave!
-hudChrome.cryptAlert.graveLine,The grave dirt burns and slows you: step out of it
-hudChrome.cryptAlert.graveTitle,In an Open Grave!
-hudChrome.cryptAlert.harmonyLine,Kill the Choristers to remove Ilvane's {pct}% damage reduction
-hudChrome.cryptAlert.harmonyTitle,Harmony
-hudChrome.cryptAlert.knellLine,Ghost fire pours over this half of the ring when the bar runs out: get to the other half
-hudChrome.cryptAlert.knellTitle,Burning Knell!
-hudChrome.cryptAlert.lamentOpenLine,Move into a lit lantern's light to avoid the wail damage: only two players fit per lantern
-hudChrome.cryptAlert.lamentShelteredLine,Stay in this lit lantern's light to avoid the wail damage: you have a shelter spot
-hudChrome.cryptAlert.lamentTitle,Bride's Lament!
-hudChrome.cryptAlert.measuredLine,Move to the yard's edge before the mark ends to keep the damaging grave away from your group
-hudChrome.cryptAlert.measuredTitle,Measured for the Grave!
-hudChrome.cryptAlert.reapLine,Move behind Morthen to avoid the scythe striking everyone in front
-hudChrome.cryptAlert.reapTitle,Reap the Unquiet!
-hudChrome.cryptAlert.riteLine,Relight all Remembrance Candles to break Morthen's immunity: {lit} of {total} lit
-hudChrome.cryptAlert.riteNamedLine,Relight candles in the Ledger's order to break Morthen's immunity: a wrong candle undoes progress ({lit}/{total})
-hudChrome.cryptAlert.riteTitle,Rite of the Unquiet
-hudChrome.cryptAlert.soulLine,Intercept the drifting soul to stop it healing Morthen and increasing his damage. Catching it hurts you
-hudChrome.cryptAlert.soulTitle,Bound Soul
-hudChrome.cryptAlert.timeAria,{seconds} seconds left
-hudChrome.cryptAlert.tollLine,Prepare to fight the skeletons raised from open graves: Marrow is immune while ringing the bell
-hudChrome.cryptAlert.tollTitle,Burial Toll!
 hudChrome.currencies.activities,Activities
 hudChrome.currencies.automatonCog,Automaton Cog
 hudChrome.currencies.automatonCogNote,World Quests in Automaton zones
@@ -16311,25 +16156,6 @@ hudChrome.finder.mech.chains_of_the_forge,"Chains of the Forge (heroic only, sta
 hudChrome.finder.mech.chorus_and_solo,"Chorus and Solo (stack on one mark, spread from the other)"
 hudChrome.finder.mech.cinder_orbs,Cinder Orbs (marked players spread to the room edges)
 hudChrome.finder.mech.crown_endures,"The Crown Endures (hard enrage at 6:00, heroic 5:00)"
-hudChrome.finder.mech.crypt_bone_organ,"Bone Organ (every 26 seconds she plays the Bone Organ: two waves of shadow notes burst down lanes of the loft, 100 to 115 damage on normal in a lane, the second wave filling the first one's gaps)"
-hudChrome.finder.mech.crypt_bridal_freeze,Bridal Freeze (at half health the whole ravine floor freezes over: slippery ice for the rest of the fight)
-hudChrome.finder.mech.crypt_brides_lament,"Bride's Lament (every 22 seconds a 3 second wail: 60 to 75 frost damage on normal to everyone outside the light of a lit grave lantern, half again for every Lingering Lament stack from the Laments you already took. A lantern shelters two players at most and goes dark for 28 seconds after it shelters anyone, so split up and take turns)"
-hudChrome.finder.mech.crypt_burial_toll,"Burial Toll (at 66 and 33 percent health he strides to the bell rope, immune to damage, and rings for 3 seconds: 30 to 38 shadow damage to everyone on normal, and every Open Grave raises a Restless Bones)"
-hudChrome.finder.mech.crypt_crescendo,"Crescendo (below 30 percent health her Dirge takes 1.8 seconds and comes every 11 seconds, and the organ plays a third wave)"
-hudChrome.finder.mech.crypt_dirge_of_the_hollow,"Dirge of the Hollow (every 16 seconds a 2.5 second song you can interrupt: if she finishes it, 105 to 125 shadow damage on normal and a 4 second silence to everyone within 45 yards who can see her, so interrupt it or hide behind a choir pillar)"
-hudChrome.finder.mech.crypt_frozen_embrace,"Frozen Embrace (every 30 seconds she seizes a player other than the tank and rises 5 yards into the air with them, 6 frost damage a second: deal 6 percent of her health within 8 seconds and she sets them down, otherwise she drops them for 150 to 180 damage on normal)"
-hudChrome.finder.mech.crypt_gravecall,"Gravecall (every 15 seconds a Bound Soul drifts from the next sarcophagus alcove toward him; when it reaches him he is Gorged on the Dead, 10 percent more damage for each soul up to 10 stacks, and heals 3 percent of his health. A player in its path takes it instead: 12 to 16 shadow damage on normal)"
-hudChrome.finder.mech.crypt_harmony,Harmony (each living Chorister makes her take 30 percent less damage: kill the Choristers first)
-hudChrome.finder.mech.crypt_ilvane_heroic,"Heroic: Encore (a Chorister that lies dead for 10 seconds while the other still stands rises again, so kill them together) and Unbroken Verse (every third Dirge cannot be interrupted: hide from it)"
-hudChrome.finder.mech.crypt_lady_heroic,"Heroic: every lit lantern also burns out on its own after 30 seconds and stays dark for 10, and the Frozen Embrace takes two players and lets go at 4.4 percent of her health"
-hudChrome.finder.mech.crypt_marrow_heroic,"Heroic: Gravedigger's Blow every 9 seconds on the tank (each stack makes them take 6 percent more damage for 20 seconds, up to 6 stacks), Grave Vigor (he swings 30 percent faster while he stands in a grave) and Unquiet Earth (anyone who stays 2 seconds in a grave raises a Restless Bones there)"
-hudChrome.finder.mech.crypt_measured_for_the_grave,"Measured for the Grave (every 15 seconds he marks a player other than the tank; 4 seconds later an Open Grave caves in under them, 42 to 52 damage within 3 yards on normal, and the pit stays for the fight: 9 damage a second and 40 percent slower movement inside, so lay the graves at the edge of the yard)"
-hudChrome.finder.mech.crypt_morthen_heroic,"Heroic: Name the Dead (the Ledger names the order of the candles: a wrong candle snuffs the last one lit and deals 252 to 288 shadow damage to the lighter, and each relight drains 8 percent a second), Grasp of the Grave (every 16 seconds 2 players get a 4 yard ring; 1.5 seconds later hands erupt in it: a 3 second root and 162 to 198 shadow damage) and the Knellwyrm's Burning Knell (it takes flight and marks half of the ring for 4.5 seconds, then pours ghost fire over that half for 1,000 to 1,120 fire damage, 3 halves each flight)"
-hudChrome.finder.mech.crypt_morthen_shadow_pulse,"Shadow Pulse (every 12 seconds a 2 second cast, then 24 to 30 shadow damage on normal to everyone within 12 yards of him, so step away; every 9 seconds in his Last Rites)"
-hudChrome.finder.mech.crypt_reap_the_unquiet,Reap the Unquiet (below 35 percent health the souls stop; every 14 seconds he sweeps his scythe after a 2 second cast: 55 to 65 shadow damage on normal to everyone in a 120 degree arc 14 yards in front of him. Shadow Pulse then comes every 9 seconds)
-hudChrome.finder.mech.crypt_rime_path,Rime Path (she leaves slippery rime where she drifts for 25 seconds: on it you gather speed slowly and slide on when you stop or turn)
-hudChrome.finder.mech.crypt_rite_of_the_unquiet,"Rite of the Unquiet (at 65 percent health he returns to the altar, immune inside the Unquiet Ward, while Grave Chill deals 3 shadow damage a second to everyone, rising by 1 every 5 seconds, and 2 Restless Bones climb out of the alcoves. Relight the 4 Remembrance Candles: each is a 4 second channel that drains 6 percent of the lighter's maximum health every second, which hits do not break but a step or a stun does. The last candle breaks the Rite: he is stunned for 8 seconds and takes 25 percent more damage)"
-hudChrome.finder.mech.crypt_shovelful,"Shovelful (every 11 seconds he flings grave dirt over an 8 yard cone in front of him: one and a half times his swing and 50 percent slower movement for 6 seconds, so stand behind him)"
 hudChrome.finder.mech.deathless_court,"The Deathless Court (heroic only, the royal court rises after Deathless Rage)"
 hudChrome.finder.mech.deathless_rage,Deathless Rage (interrupted at the wardstones)
 hudChrome.finder.mech.deathstalker_cleave,Deathstalker Cleave (splash around the tank)
@@ -19815,7 +19641,7 @@ hudChrome.weekly.kinds.battlegrounds.lore,"War banners fly over Thornhollow Fiel
 hudChrome.weekly.kinds.dungeons.category,Dungeons
 hudChrome.weekly.kinds.dungeons.goal,Complete {count} dungeons on any difficulty.
 hudChrome.weekly.kinds.dungeons.goalLabel,Dungeons completed
-hudChrome.weekly.kinds.dungeons.lore,The depths of the realm never rest: the Derelict Mech stirs again and the Hollow Crypt wakes. Gather your allies and cleanse the dungeons of their corruption.
+hudChrome.weekly.kinds.dungeons.lore,The depths of the realm never rest: the Derelict Mech stirs again and the drowned garrison of the Sunken Bastion wakes. Gather your allies and cleanse the dungeons of their corruption.
 hudChrome.weekly.kinds.raid.category,Raid
 hudChrome.weekly.kinds.raid.goal,Take part in {count} raid on any difficulty.
 hudChrome.weekly.kinds.raid.goalLabel,Raids completed
@@ -21722,6 +21548,7 @@ referralCards.referrerRewards.3,"1,000 Claudium."
 referralCards.referrerRewards.4,"1,000 Claudium."
 referralCards.referrerRewards.5,Flicker and Glimmer buddy companions.
 referralCards.referrerTitle,Friends you helped
+referralCards.retiredStamp,No longer available
 referralCards.reward,Reward: {reward}
 referralCards.rewards.fogbinder,"Your trinket evolves, gaining more Stamina and an active effect: +5 to all stats for 15 seconds, with a 2 minute cooldown."
 referralCards.rewards.gravewyrm,Free mount training.

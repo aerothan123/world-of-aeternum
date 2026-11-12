@@ -2797,7 +2797,7 @@ function mobLocomotion(): Scenario {
     name: 'mob_locomotion',
     coverage: [
       'attack arm aoePulse rng.range(pulse.min,pulse.max) + spellfx (mogger Ground Pound)',
-      'attack arm War Stomp rng.range(stomp.min,stomp.max) + stomp_stun aura (ossuary_sentinel: the Korgath Stomp moved into his encounter)',
+      'attack arm War Stomp rng.range(stomp.min,stomp.max) + stomp_stun aura (sump_troll_devourer: the Ossuary Sentinel retired with the Hollow Crypt)',
       'attack arm Banshee terrify rng.range(-PI,PI) fear facing + fear_incap aura on the non-tank bystander; the aggro target is exempt (sister_nhalia)',
       'idle arm wander draws (range(0,2PI) heading + range(2,9) radius -> groundPos wanderTarget)',
       'evade arm arrival -> resetEvadingMob (rng.range(2,8), full-heal, clearThreat, telegraph re-arm)',
@@ -2854,7 +2854,7 @@ function mobLocomotion(): Scenario {
       rec.snapshot('aoe-pulse');
 
       // War Stomp: draws rng.range(8,12) + lands a stomp_stun aura on the player.
-      const stomper = fireMechanic('ossuary_sentinel', 8, (m) => {
+      const stomper = fireMechanic('sump_troll_devourer', 8, (m) => {
         m.stompTimer = 0.001;
       });
       rec.notes.stomperId = stomper.id;
@@ -3134,7 +3134,7 @@ function delveCompanion(): Scenario {
   };
 }
 
-// Dungeon instancing (I1): a party walks through the Hollow Crypt door (the
+// Dungeon instancing (I1): a party walks through the Sunken Bastion door (the
 // updateDoorTriggers door-trigger teleport -> enterDungeon -> claimInstance, which
 // draws rng.int once per spawn). The second party member walks the same door and
 // joins the SAME instance via instanceKeyFor (no re-claim, no rng). Both then walk
@@ -3163,10 +3163,10 @@ function dungeonInstances(): Scenario {
       const eb = sim.entities.get(b) as AnyEntity;
       beef(ea);
       beef(eb);
-      // Walk player A onto the Hollow Crypt door -> the movement-pass door trigger
+      // Walk player A onto the Sunken Bastion door -> the movement-pass door trigger
       // enters the dungeon and claims a fresh instance (rng.int per spawned mob).
       const door = [...sim.entities.values()].find(
-        (e: AnyEntity) => e.templateId === 'dungeon_door' && e.dungeonId === 'hollow_crypt',
+        (e: AnyEntity) => e.templateId === 'dungeon_door' && e.dungeonId === 'sunken_bastion',
       ) as AnyEntity;
       teleport(sim, ea, door.pos.x, door.pos.z);
       rec.tick(1);
@@ -3174,7 +3174,7 @@ function dungeonInstances(): Scenario {
       teleport(sim, eb, door.pos.x, door.pos.z);
       rec.tick(1);
       const inst = requireValue(
-        sim.instances.find((i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null),
+        sim.instances.find((i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null),
         'parity scenario dungeon instance',
       );
       rec.track(...inst.mobIds, ...inst.objectIds);
@@ -7823,23 +7823,23 @@ function bopPartyTradeEligibility(): Scenario {
 }
 
 // Mob casts and line of sight, with the walk round a wall (mob/cast_sight.ts,
-// mob/chase_route.ts, mob/route_search.ts). A Gravecaller Adept in a claimed
-// Hollow Crypt whose target stands dead behind the Ossuary Monument: its Grave
-// Spark may not begin, so on its plan slot it searches a way round (the
+// mob/chase_route.ts, mob/route_search.ts). A Mistweaver in a claimed Sunken
+// Bastion whose target stands dead behind the Drowning Winch: its Chilling
+// Mist may not begin, so on its plan slot it searches a way round (the
 // bounded search), walks the route and casts from where it sees. The target
-// then steps to the far side of the monument and the caster goes round again.
-// Everything the route keeps is on the sampled Adept (Entity.chaseRoute: the
+// then steps to the far side of the winch and the caster goes round again.
+// Everything the route keeps is on the sampled caster (Entity.chaseRoute: the
 // waypoints, the plan clock, the tries), so a reordered search, a moved plan
-// slot or a changed budget turns this golden red.
+// slot or a changed budget turns this golden red. (Ran on the Hollow Crypt's
+// Gravecaller Adept and Ossuary Monument until the crypt retired, 2026-11-11.)
 //
-// Two more legs pin the cast that FAILS. The target hides while a Grave Spark
-// windup is committed: the windup runs out, nothing lands and nothing is drawn
-// from the rng across its release tick. Then the Adept is lent its own Grave
-// Bolt (a kit cast bar; heroic-only on its template, and this claim is
-// normal) and its victim hides while the bar runs: the bar ends, nothing
-// lands, and the cast is handed back.
-const SIGHT_ROUTE_SPELL = 'Grave Spark';
-const SIGHT_ROUTE_BAR = 'Grave Bolt';
+// Two more legs pin the cast that FAILS. The target hides while a Chilling
+// Mist windup is committed: the windup runs out, nothing lands and nothing is
+// drawn from the rng across its release tick. Then the caster is lent the
+// Drowned Temple's Glimmer Venom (a kit cast bar) and its victim hides while
+// the bar runs: the bar ends, nothing lands, and the cast is handed back.
+const SIGHT_ROUTE_SPELL = 'Chilling Mist';
+const SIGHT_ROUTE_BAR = 'Glimmer Venom';
 function mobCastSightRoute(): Scenario {
   return {
     name: 'mob_cast_sight_route',
@@ -7857,21 +7857,20 @@ function mobCastSightRoute(): Scenario {
       const pid = sim.addPlayer('warrior', 'Bonewall') as number;
       sim.setPlayerLevel(20, pid);
       const p = requireEntity(sim, pid, 'parity scenario sight-route player');
-      sim.enterDungeon('hollow_crypt', pid);
+      sim.enterDungeon('sunken_bastion', pid);
       const inst = requireValue(
-        sim.instances.find((i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null),
+        sim.instances.find((i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null),
         'parity scenario sight-route instance',
       );
-      // The placed crypt is cleared so the one engaged mob is the Adept and
-      // every gate stands open. Morthen stays entombed: with him dead the
-      // claim would raise his Knellwyrm into the scene.
+      // The placed Bastion is cleared so the one engaged mob is the caster and
+      // every gate stands open.
       for (const id of inst.mobIds) {
         const e = sim.entities.get(id);
-        if (e && !e.dead && e.templateId !== 'morthen') sim.ctx.handleDeath(e, p);
+        if (e && !e.dead) sim.ctx.handleDeath(e, p);
       }
-      const o = instanceOrigin(DUNGEONS.hollow_crypt.index, inst.slot);
-      // The Ossuary Monument (instance-local): a 5 yd pillar of bone.
-      const monument = { x: o.x, z: o.z - 30 };
+      const o = instanceOrigin(DUNGEONS.sunken_bastion.index, inst.slot);
+      // The Drowning Winch (instance-local): a 4.2 yd drum in the open yard.
+      const monument = { x: o.x - 2, z: o.z + 24 };
       const stand = (x: number, z: number) => {
         p.pos = sim.ctx.groundPos(x, z);
         p.prevPos = { ...p.pos };
@@ -7889,8 +7888,8 @@ function mobCastSightRoute(): Scenario {
       rec.tick(1);
       const adept = createMob(
         sim.nextId++,
-        MOBS.crypt_gravecaller_adept,
-        MOBS.crypt_gravecaller_adept.minLevel,
+        MOBS.mistweaver,
+        MOBS.mistweaver.minLevel,
         sim.ctx.groundPos(monument.x, monument.z - 14),
       ) as AnyEntity;
       adept.maxHp = 1_000_000;
@@ -7989,12 +7988,11 @@ function mobCastSightRoute(): Scenario {
       };
       rec.snapshot('windup-fizzled');
 
-      // THE BAR THAT FAILS. The Adept's own Grave Bolt, lent without its
-      // heroic-only mark; the caster walks round to see its target, begins the
-      // bar, and the victim hides while it runs.
+      // THE BAR THAT FAILS. The lent Glimmer Venom; the caster walks round to
+      // see its target, begins the bar, and the victim hides while it runs.
       const bolt = requireValue(
-        MOBS.crypt_gravecaller_adept.trashKit?.bolt,
-        'parity scenario sight-route Grave Bolt',
+        MOBS.glimmerscale_lurker.trashKit?.bolt,
+        'parity scenario sight-route Glimmer Venom',
       );
       adept.devTrashKit = { bolt: { ...bolt, heroicOnly: false } };
       const casting = () => adept.castingAbility === bolt.castId;

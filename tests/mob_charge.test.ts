@@ -22,11 +22,10 @@ const SEED = 61234;
 type AnySim = Sim & Record<string, any>;
 type AnyEntity = Entity & Record<string, any>;
 
-// The seven heroic warrior/guard melee templates that carry the charge (Sexton
-// Marrow left the list with his Bell Yard encounter kit), and the
+// The six heroic warrior/guard melee templates that carry the charge (the
+// Crypt Shambler left the list with the retired Hollow Crypt), and the
 // exact record they all share (anti-kite band 5..30yd, 12s cooldown, 0.5s stun).
 const CHARGE_TEMPLATE_IDS = [
-  'crypt_shambler',
   'bastion_revenant',
   'drowned_thrall',
   'sanctum_boneguard',
@@ -46,17 +45,14 @@ const CHARGE_RECORD = {
 // all bosses, and every Nythraxis raid mob (keeps the raid parity golden
 // untouched).
 const NO_CHARGE_TEMPLATE_IDS = [
-  'hollow_acolyte',
   'tidebound_acolyte',
   'pale_choir_acolyte',
   'choirmother_selthe',
   'grand_necromancer_velkhar',
-  'bonechill_widow',
   'glimmerscale_lurker',
   'moonspawn',
   'sanctum_drakonid',
   'korgath_the_bound',
-  'morthen',
   // The Sunken Bastion rework replaced Olen's Onrush with his scripted
   // Oathbound Charge (encounters/sunken_bastion/olen.ts).
   'knight_commander_olen',
@@ -168,18 +164,18 @@ describe('charge template coverage (data contract)', () => {
   });
 
   it('applyDungeonMobTuning stamps chargeEnabled on heroic spawns only', () => {
-    const heroic = { templateId: 'crypt_shambler' } as Entity;
-    applyDungeonMobTuning(heroic, 'hollow_crypt', 'heroic');
+    const heroic = { templateId: 'drowned_thrall' } as Entity;
+    applyDungeonMobTuning(heroic, 'sunken_bastion', 'heroic');
     expect(heroic.chargeEnabled).toBe(true);
 
-    const normal = { templateId: 'crypt_shambler' } as Entity;
-    applyDungeonMobTuning(normal, 'hollow_crypt', 'normal');
+    const normal = { templateId: 'drowned_thrall' } as Entity;
+    applyDungeonMobTuning(normal, 'sunken_bastion', 'normal');
     expect(normal.chargeEnabled).toBeUndefined();
 
     // A heroic spawn of a template WITHOUT charge is never stamped.
-    const widow = { templateId: 'bonechill_widow' } as Entity;
-    applyDungeonMobTuning(widow, 'hollow_crypt', 'heroic');
-    expect(widow.chargeEnabled).toBeUndefined();
+    const acolyte = { templateId: 'tidebound_acolyte' } as Entity;
+    applyDungeonMobTuning(acolyte, 'sunken_bastion', 'heroic');
+    expect(acolyte.chargeEnabled).toBeUndefined();
   });
 });
 
@@ -187,7 +183,7 @@ describe('heroic charge through the full sim tick', () => {
   it('a heroic spawn at 20yd stuns its target the same tick and dashes to melee', () => {
     const sim = makeSim();
     const { pid, player } = addGmPlayer(sim, 20, 0);
-    const mob = spawnTuned(sim, 9001, 'crypt_shambler', 'hollow_crypt', 'heroic', 0, 0);
+    const mob = spawnTuned(sim, 9001, 'drowned_thrall', 'sunken_bastion', 'heroic', 0, 0);
     expect(mob.chargeEnabled).toBe(true);
     expect(mob.moveSpeed).toBe(8); // the heroic anti-kite floor the dash multiplies
     engage(mob, pid);
@@ -201,7 +197,9 @@ describe('heroic charge through the full sim tick', () => {
     expect(stun!.kind).toBe('stun');
     // The announce mirrors the stomp "unleashes" line (localized client-side).
     expect(
-      events.some((e) => e.type === 'log' && e.text === 'Crypt Shambler unleashes Onrush!'),
+      events.some(
+        (e) => e.type === 'log' && e.text === `${MOBS.drowned_thrall.name} unleashes Onrush!`,
+      ),
     ).toBe(true);
     expect(mob.mobChargeTargetId).toBe(pid);
 
@@ -258,7 +256,7 @@ describe('heroic charge through the full sim tick', () => {
   it('a NORMAL spawn of the same template never charges from 20yd', () => {
     const sim = makeSim();
     const { pid, player } = addGmPlayer(sim, 20, 0);
-    const mob = spawnTuned(sim, 9031, 'crypt_shambler', 'hollow_crypt', 'normal', 0, 0);
+    const mob = spawnTuned(sim, 9031, 'drowned_thrall', 'sunken_bastion', 'normal', 0, 0);
     expect(mob.chargeEnabled).toBeUndefined();
     engage(mob, pid);
 
@@ -276,7 +274,7 @@ describe('heroic charge through the full sim tick', () => {
 describe('charge module semantics (direct SimContext calls)', () => {
   function moduleSetup() {
     const sim = makeSim();
-    const mob = spawnTuned(sim, 9101, 'crypt_shambler', 'hollow_crypt', 'heroic', 0, 0);
+    const mob = spawnTuned(sim, 9101, 'drowned_thrall', 'sunken_bastion', 'heroic', 0, 0);
     const victim = createMob(9102, MOBS.forest_wolf, 5, { x: 20, y: 0, z: 0 }) as AnyEntity;
     (sim as any).addEntity(victim);
     engage(mob, victim.id);
@@ -356,7 +354,7 @@ describe('charge module semantics (direct SimContext calls)', () => {
 
     // And the no-op path for a mob without the stamp is rng-silent too (the
     // per-tick call every engaged mob makes on normal difficulty).
-    const normal = spawnTuned(sim, 9103, 'crypt_shambler', 'hollow_crypt', 'normal', 0, 40);
+    const normal = spawnTuned(sim, 9103, 'drowned_thrall', 'sunken_bastion', 'normal', 0, 40);
     engage(normal, victim.id);
     sim.rng.setObserver(() => {
       draws += 1;

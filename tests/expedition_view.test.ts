@@ -12,8 +12,8 @@ const info = (): DungeonFinderInfo => ({
   myApplication: null,
   expedition: {
     exitId: 20,
-    activityId: 'hollow_crypt_normal',
-    dungeonId: 'hollow_crypt',
+    activityId: 'sunken_bastion_normal',
+    dungeonId: 'sunken_bastion',
     leaderPid: 1,
     isLeader: true,
     isInside: true,
@@ -25,7 +25,7 @@ const info = (): DungeonFinderInfo => ({
 });
 const group = (id = 3): DungeonFinderListingView => ({
   id,
-  activityId: 'hollow_crypt_normal',
+  activityId: 'sunken_bastion_normal',
   leaderName: 'Ana',
   tags: [],
   size: 1,
@@ -41,13 +41,13 @@ describe('open expedition view', () => {
     state.expedition = null;
     state.myListing = {
       id: 3,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
-      applicants: [{ pid: 2, name: 'Bru', cls: 'priest', level: 8, roles: ['healer'] }],
+      applicants: [{ pid: 2, name: 'Bru', cls: 'priest', level: 12, roles: ['healer'] }],
     };
     const view = buildExpeditionView(state, [], 1, false, false, null);
     expect(view.run).toBeNull();
-    expect(view.recruitment?.dungeonId).toBe('hollow_crypt');
+    expect(view.recruitment?.dungeonId).toBe('sunken_bastion');
     expect(view.capacity).toBe(5);
     expect(view.requests[0]?.pid).toBe(2);
     expect(view.alert?.pid).toBe(2);
@@ -69,7 +69,7 @@ describe('open expedition view', () => {
   });
   it('partitions the current listing from other groups without losing it when recruitment closes', () => {
     const state = info();
-    state.myListing = { id: 3, activityId: 'hollow_crypt_normal', tags: [], applicants: [] };
+    state.myListing = { id: 3, activityId: 'sunken_bastion_normal', tags: [], applicants: [] };
     const view = buildExpeditionView(state, [group(3), group(4)], 1, false, false, null);
     expect(view.currentGroup?.id).toBe(3);
     expect(view.otherGroups.map((row) => row.id)).toEqual([4]);
@@ -82,7 +82,7 @@ describe('open expedition view', () => {
     state.expedition!.isLeader = false;
     const party = {
       leader: 9,
-      members: [{ pid: 9, name: 'Ana', cls: 'warrior', level: 8, role: 'tank' }],
+      members: [{ pid: 9, name: 'Ana', cls: 'warrior', level: 12, role: 'tank' }],
       raid: false,
     } as never;
     const view = buildExpeditionView(state, [group()], 1, true, false, null, 2, party);
@@ -102,9 +102,9 @@ describe('open expedition view', () => {
     state.expedition!.open = true;
     state.myListing = {
       id: 3,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
-      applicants: [{ pid: 2, name: 'Bru', cls: 'priest', level: 8, roles: ['healer'] }],
+      applicants: [{ pid: 2, name: 'Bru', cls: 'priest', level: 12, roles: ['healer'] }],
     };
     const view = buildExpeditionView(state, [group()], 1, false, true, null);
     expect(view.prompt).toBeNull();
@@ -116,10 +116,10 @@ describe('open expedition view', () => {
     state.expedition!.open = true;
     state.myListing = {
       id: 3,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
       applicants: [
-        { pid: 2, name: 'Bru', cls: 'priest', level: 8, roles: ['healer'], remaining: 0 },
+        { pid: 2, name: 'Bru', cls: 'priest', level: 12, roles: ['healer'], remaining: 0 },
       ],
     };
     const view = buildExpeditionView(state, [], 1, false, false, null);
@@ -144,7 +144,7 @@ describe('open expedition view', () => {
   it('suggests missing roles without blocking another compatible role', () => {
     const listing = group();
     listing.needed = null;
-    listing.members = [{ cls: 'warrior', level: 8, role: 'tank' }];
+    listing.members = [{ cls: 'warrior', level: 12, role: 'tank' }];
     const view = buildExpeditionView(info(), [listing], 1, false, false, null);
     expect(view.groups[0].needed).toEqual({ tank: 0, healer: 1, dps: 3 });
     expect(view.groups[0].canApply).toBe(true);

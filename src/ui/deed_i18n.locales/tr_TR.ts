@@ -209,7 +209,6 @@ export const table: DeedLocaleTable = {
     name: 'Silkelen ve Kalk',
     desc: 'İlk kez öl; en iyilerimizin bile başına gelir.',
   },
-  dgn_hollow_crypt: { name: 'Mezarkıran', desc: "Oyuk Mezar'da Mezarçağıran Morthen'i alt et." },
   dgn_sunken_bastion: {
     name: 'Sisin Bağı Çözüldü',
     desc: "Batık Kale'de Fogbinder Vael'i alt et.",
@@ -221,10 +220,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Aşağıdaki Ejder',
     desc: "Mezarejderi Mabedi'nde Mezarejderi Korzul'u alt et.",
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Kahramanca: Oyuk Mezar',
-    desc: "Oyuk Mezar'da Mezarçağıran Morthen'i Kahramanca zorlukta alt et.",
   },
   dgn_sunken_bastion_heroic: {
     name: 'Kahramanca: Batık Kale',
@@ -259,14 +254,6 @@ export const table: DeedLocaleTable = {
     desc: 'Dört Kahramanca zindanın hepsinden tek bir günde Kahramanca Nişan kazan.',
   },
   dgn_boss_clears_50: { name: 'Ellinci Kapı', desc: "50 zindan sonu boss'unu alt et." },
-  dgn_morthen_flawless: {
-    name: 'Kemiğimiz Bile Kırılmadı',
-    desc: "Hiçbir grup üyesi ölmeden Mezarçağıran Morthen'i Kahramanca zorlukta alt et.",
-  },
-  dgn_morthen_trio: {
-    name: 'Mezara Karşı Üç Kişi',
-    desc: "Mezarçağıran Morthen'i en fazla üç oyuncuyla alt et.",
-  },
   dgn_olen_arc: {
     name: "Azrail'e Çalım",
     desc: "Şövalye-Komutan Olen'i, Biçen Yay'ı mevcut hedefinden başka kimseye isabet etmeden alt et.",
@@ -1271,10 +1258,6 @@ export const table: DeedLocaleTable = {
     name: 'Tüm Başlar Yerde',
     desc: 'Göl Hidrasının üç başını da birbirinden en fazla 10 saniye arayla öldür.',
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Tek Tüy Bile Yanmadı',
-    desc: 'Ölüm Çanı Ejderini, kimse Rov Alevi Geçişiyle yanmadan yen.',
-  },
   dgn_turnkey_cage: {
     name: 'Hiçbir Kafes Bizi Tutamaz',
     desc: 'Zindan Anahtarcısını, kimse Demir Kafeste ezilmeden yen.',
@@ -1319,22 +1302,6 @@ export const table: DeedLocaleTable = {
     name: 'Son Kıta',
     desc: "Boğulmuş Ay'ın Avatarı Ysolei'yi, Solgun Koronun Son Kantoru yanındayken yen.",
     title: 'Koronun Tanığı',
-  },
-  dgn_marrow_tidy: {
-    name: 'Düzenli Bir Mezarlık',
-    desc: "Zangoç Marrow'u, her Açık Mezar Çan Avlusunun kenarına yerleştirilmiş olarak yen.",
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Kimse Asılı Kalmadı',
-    desc: 'Kemik Donduran Leydiyi, Donmuş Kucaklamasından hiç kimseyi düşürmeden yen.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Artık Sus',
-    desc: "Kantor Ilvane'yi, Boşluğun Ağıdı kimseye hiç isabet etmeden yen.",
-  },
-  dgn_morthen_candlelight: {
-    name: 'Her Mum Yanıyor',
-    desc: "Mezarçağıran Morthen'i, Huzursuz Koruması yükseldikten sonraki 20 saniye içinde dört Anma Mumunun tümünü yeniden yaktıktan sonra yen.",
   },
   dgn_guild_first_contract: {
     name: 'Belge İmzalandı',

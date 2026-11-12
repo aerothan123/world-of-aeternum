@@ -51,6 +51,20 @@ export const NYTHRAXIS_RELOCATED_ITEM_IDS = [
   'stormhymn_chain_treads',
 ] as const;
 
+// The four relocated pieces (the Thornpeak relics) whose second Heroic copy
+// dropped from a Hollow Crypt boss: the Bonewrought Greatsword (Sexton Marrow),
+// the Courtier's Bonefang (Rimeweb), the Votive Ward (Cantor Ilvane) and the
+// Thornpeak Wardblade (Morthen). The owner retired those crypt rows with the
+// dungeon (2026-11-11) instead of moving them, so each now drops only from its
+// home boss, on both difficulties, at its shipped home chances; the Heroic
+// copies keep their raid tier (item level 33) like every relocated piece.
+export const NYTHRAXIS_CRYPT_RETIRED_COPY_IDS = [
+  'bonewrought_greatsword',
+  'courtiers_bonefang',
+  'votive_ward_of_the_deathless_court',
+  'thornpeak_wardblade',
+] as const;
+
 // The four heroic raid trinkets relocated to heroic five-man bosses
 // (content/heroic_loot.ts). Same promise: they keep the raid tier, item level 33.
 export const NYTHRAXIS_RELOCATED_TRINKET_IDS = [

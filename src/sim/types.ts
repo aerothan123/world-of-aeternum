@@ -18,10 +18,6 @@ import type { DungeonGuideRun } from './dungeon_guide/types';
 import type { KorgathFightState } from './encounters/gravewyrm_sanctum/korgath_state';
 import type { KorzulFightState } from './encounters/gravewyrm_sanctum/korzul_state';
 import type { VelkharFightState } from './encounters/gravewyrm_sanctum/velkhar_state';
-import type {
-  CryptBossFightState,
-  KnellwyrmKnellState,
-} from './encounters/hollow_crypt/boss_state';
 import type { GrassClearCircle } from './grass_clear';
 import type { LockSession, LootTier, PickAction, StepResult, VisibleCell } from './lockpick';
 import type { MapObjectives } from './map_objectives';
@@ -3251,11 +3247,6 @@ export interface MobTemplate {
     delay: number;
     name: string;
     school?: Aura['school'];
-    /** The burst also cuts the claim's living mobs of `family` inside the
-     *  radius (the Bone Minion's Splinter Burst: drag the skeletons onto it
-     *  before it dies) for `maxHpPct` of their own health, never a killing
-     *  blow. No rng (mob/trash_kit/crypt_hooks.ts boneShrapnel). */
-    shrapnel?: { family: MobFamily; maxHpPct: number; name: string };
   };
   // Classic beast "Frenzy": when a mob with this trait dies, nearby living
   // same-family hostile mobs briefly attack faster (hasteMult, e.g. 1.3 = +30%
@@ -4993,16 +4984,7 @@ export interface TrashKitDef {
     bleed?: { perTick: number; interval: number; duration: number };
     /** A stun on landing, in seconds (the Bastion Warhound's Lunge). */
     stun?: number;
-    /** A slow on landing: the victim runs at `mult` of its speed for
-     *  `seconds` (the Ossuary Cutthroat's Torn Tendon). */
-    slow?: { mult: number; seconds: number; name: string };
-    /** Heroic: when nobody answers the leap inside its fixate (a taunt, or a
-     *  stun, root or slow on the leaper), it leaps again at the next caster
-     *  (mob/trash_kit/crypt_kit.ts). */
-    releapOnHeroic?: boolean;
   };
-  /** An add that stays alive this long in combat turns into `into`. */
-  grow?: { after: number; into: string; name: string };
   /** A perched statue: holds its perch until its pack is pulled, then dives. */
   perch?: { diveSeconds: number; name: string };
   /** A frontal-cone breath's rear twin: a short-bar lash of everything behind. */
@@ -5226,67 +5208,7 @@ export interface TrashKitDef {
    *  a hazard pool in front of it, centred `ahead` yards out (the Sanctum
    *  Scaleguard's heroic Boiling Meltwater). `heroicOnly` keeps it off normal. */
   breathPool?: { ahead: number; heroicOnly?: boolean; hazard: KitHazardDef };
-  // ---- The Hollow Crypt and Sunken Bastion trash mechanics pass
-  // (mob/trash_kit/crypt_kit.ts, bastion_kit.ts) ----
-  /** It stands back up: when it falls while a living `masters` mob of its pack
-   *  stands, a `pile` mob (its bones) lies where it fell for `seconds`; break
-   *  the pile, or kill the master, or the body rises with `hpPct` of its health
-   *  (heroic: `heroicHpPct`), at most `rises` times (heroic: `heroicRises`).
-   *  A risen body pays nothing twice (Entity.regrown). The Ossuary Warrior's
-   *  Reassemble. */
-  reassemble?: {
-    name: string;
-    masters: readonly string[];
-    pile: string;
-    seconds: number;
-    hpPct: number;
-    heroicHpPct: number;
-    rises: number;
-    heroicRises: number;
-  };
-  /** This mob is a Reassemble's bone pile: it never moves or swings, and the
-   *  body it lies on stands when its countdown ends (Entity.trashLife.pile). */
-  bonePile?: { name: string };
-  /** An interruptible cast that bursts a fallen packmate's corpse: the corpse
-   *  nearest the caster's foe within `range` is marked (a ring object the
-   *  client mirrors, scale = radius) and everyone inside `radius` of it when
-   *  the bar ends is hit. Heroic leaves a `pool` burning there (the Gravecaller
-   *  Necromancer's Grave Rupture). */
-  rupture?: TrashKitCast & {
-    range: number;
-    radius: number;
-    min: number;
-    max: number;
-    pool: { seconds: number; tick: number; min: number; max: number };
-  };
-  /** A stone ward that thickens every `every` seconds in the fight, `perStack`
-   *  less damage taken per stack (heroic: `heroicPerStack`) up to `maxStacks`;
-   *  a stun shatters it and leaves the mob cracked, taking `cracked.taken`
-   *  more damage for `cracked.seconds` (the Chapel Gargoyle's Granite Skin). */
-  granite?: {
-    name: string;
-    every: number;
-    perStack: number;
-    heroicPerStack: number;
-    maxStacks: number;
-    cracked: { name: string; seconds: number; taken: number };
-  };
-  /** An interruptible mark on one player in reach (never the caster's own foe
-   *  while anyone else stands in reach): for `seconds` every living `flock`
-   *  mob in the fight hunts the marked player (the Crow Caller's Carrion Eye). */
-  eye?: TrashKitCast & { range: number; seconds: number; flock: string };
-  /** The template breath cone leaves its fire on the floor on heroic: for
-   *  `seconds` every `tick` seconds each player inside the burnt cone takes a
-   *  roll (an object the client mirrors, scale = the cone's range). The
-   *  Ossuary Drake's Barrow Embers. */
-  scorch?: {
-    name: string;
-    seconds: number;
-    tick: number;
-    min: number;
-    max: number;
-    school: TrashKitCast['school'];
-  };
+  // ---- The Sunken Bastion trash mechanics pass (mob/trash_kit/bastion_kit.ts) ----
   /** A telegraphed hook down a lane at the farthest player at least
    *  `minRange` away: whoever stands in the lane when the bar ends is hit,
    *  and the farthest one caught is dragged to `stop` yards in front of the
@@ -5351,21 +5273,13 @@ export interface TrashKitDef {
 }
 
 /** Trash kit state that outlives a pull's TrashKitState (Entity.trashLife;
- *  mob/trash_kit/crypt_kit.ts, bastion_kit.ts). Sim only, never on the wire. */
+ *  mob/trash_kit/bastion_kit.ts, the Mere Hydra's regrowth). Sim only, never on the wire. */
 export interface TrashLifeState {
-  /** Reassemble: how many times this body has already stood back up. */
-  rises?: number;
-  /** Reassemble: this fall was judged (a pile was laid, or none could be). */
-  judged?: boolean;
-  /** Grave Rupture burst this corpse: it never stands again. */
-  ruptured?: boolean;
-  /** On a bone pile: the body it lies on and the seconds before it stands. */
-  pile?: { corpseId: number; remaining: number };
   /** Carrion Glut stacks (its death burst grows with them). */
   gorge?: number;
   /** Snapped Fetters: seconds before the freed prisoner leaves the fight. */
   freed?: number;
-  /** Reassemble: the first life's corpse was lootable when it stood; its
+  /** A regrown part's first life's corpse was lootable when it stood; its
    *  loot is held (unlootable) while it stands and given back when it falls. */
   lootHeld?: boolean;
 }
@@ -5549,26 +5463,7 @@ export interface TrashKitState {
   walkers?: number;
   /** The once-per-pull split already happened (TrashKitDef.split). */
   split?: true;
-  // ---- The Hollow Crypt and Sunken Bastion trash mechanics pass ----
-  /** Grave Rupture: the corpse marked while the bar runs and its ring. */
-  rupture?: { corpseId: number; x: number; z: number; objectId: number | null };
-  /** Grave Rupture's heroic pool burning on the floor. */
-  pool?: { x: number; z: number; remaining: number; objectId: number | null };
-  /** Granite Skin: stacks, the clock to the next, and the crack's seconds left. */
-  granite?: { stacks: number; t: number; cracked: number };
-  /** Heroic Rending Leap: the victim, the fixate's seconds left, and whether
-   *  anyone answered (a taunt, or a stun, root or slow on the leaper). */
-  releap?: { victimId: number; remaining: number; answered: boolean };
-  /** Barrow Embers: a breath that landed this tick (set by the breath bar),
-   *  and the burnt cones still on the floor. */
-  scorchAt?: { x: number; z: number; facing: number };
-  scorches?: {
-    x: number;
-    z: number;
-    facing: number;
-    remaining: number;
-    objectId: number | null;
-  }[];
+  // ---- The Sunken Bastion trash mechanics pass ----
   /** Boathook: the caught player being dragged and the seconds left. */
   hook?: { victimId: number; remaining: number };
   /** Fall Back: a leap back in flight. */
@@ -6201,64 +6096,6 @@ export type SanctumFightState =
   | VelkharFightState
   | KorzulFightState;
 
-/** Morthen's entrance and the Knellwyrm finale at the Hollow Crypt's Rite Ring
- *  (encounters/hollow_crypt), on Morthen for the claim's life: the entrance
- *  plays once per claim, the finale once after he falls. */
-export interface CryptRiteState {
-  phase: 'dormant' | 'wakes' | 'rise' | 'proclaim' | 'descend' | 'land' | 'risen';
-  /** Seconds into the current entrance phase. */
-  t: number;
-  finale: 'none' | 'pyre' | 'arrive' | 'settle' | 'fight' | 'slain';
-  /** Seconds into the current finale phase. */
-  ft: number;
-  /** The Knellwyrm, once summoned. */
-  wyrmId: number | null;
-  /** The burning ritual circle (the warning), while it stands. */
-  pyreObjectId: number | null;
-}
-
-/** The Knellwyrm's fight (encounters/hollow_crypt/knellwyrm.ts), on the wyrm;
- *  cleared when the fight ends (a kill, an evade, a wipe). */
-export interface KnellwyrmFightState {
-  strafeTimer: number;
-  bellowTimer: number;
-  /** A marked strafe: its lane (instance-local), then the run along it. */
-  strafe: {
-    x: number;
-    z: number;
-    yaw: number;
-    length: number;
-    phase: 'mark' | 'run';
-    t: number;
-    /** Where it took wing from (instance-local). */
-    fromX: number;
-    fromZ: number;
-    /** The lane's encounter object (the mark, then the burning lane). */
-    objectId: number;
-    /** Players the run already burned (one hit each). */
-    hit: number[];
-  } | null;
-  /** Lanes still burning (their object ids). */
-  lanes: {
-    x: number;
-    z: number;
-    yaw: number;
-    length: number;
-    remaining: number;
-    tick: number;
-    objectId: number;
-  }[];
-  casts: number;
-  /** Someone was burned by a Pyre Strafe this fight (the deed reads it). */
-  burned: boolean;
-  /** Heroic Burning Knell (encounters/hollow_crypt/knellwyrm_knell.ts):
-   *  seconds to the next flight, and the flight in progress. */
-  knellTimer?: number;
-  knell?: KnellwyrmKnellState | null;
-  /** Burning Knells flown (the half pick's draw order). */
-  knells?: number;
-}
-
 /** What an in-dungeon gate looks like (render-only pick; collision is one box). */
 export type DungeonGateKind =
   | 'portcullis'
@@ -6345,9 +6182,6 @@ export interface DungeonObjectSpawn {
     | 'bastion_buttress_intact'
     | 'bastion_beacon_lamp'
     | 'bastion_mooring_lit'
-    // The Hollow Crypt's grave lanterns (encounters/hollow_crypt/
-    // lady_lanterns.ts): lit, dark or kindling rides the template id.
-    | 'crypt_lady_lantern_lit'
     // The Gravewyrm Sanctum's story markers (encounters/gravewyrm_sanctum/
     // story.ts): the Calving Face's crack step rides the template id.
     | 'sanctum_story_0';
@@ -6405,7 +6239,6 @@ export interface DungeonDef {
     | 'ignivar_lift'
     | 'ignivar_depths'
     | 'wildheart'
-    | 'hollow_crypt'
     | 'sunken_bastion'
     | 'drowned_temple'
     | 'gravewyrm_sanctum'
@@ -8481,15 +8314,6 @@ export interface Entity extends ClientMirroredEntityFields {
    *  an engine piece no shipped template carries yet can be playtested. Sim
    *  authority only; never set in a live realm without ALLOW_DEV_COMMANDS. */
   devTrashKit?: TrashKitDef;
-  /** Morthen's entrance and the Knellwyrm finale (encounters/hollow_crypt),
-   *  on Morthen. Sim authority only; the client reads casts, auras, heights. */
-  cryptRite?: CryptRiteState;
-  /** The Knellwyrm's fight state (encounters/hollow_crypt/knellwyrm.ts). */
-  knellwyrmFight?: KnellwyrmFightState;
-  /** Per-fight state of a Hollow Crypt wing boss (encounters/hollow_crypt:
-   *  Sexton Marrow, the Lady of the Bonechill, Cantor Ilvane). Sim authority
-   *  only; the client reads casts, auras and the encounter objects. */
-  cryptBossFight?: CryptBossFightState;
   /** A 'relight' or 'free' G3 use completed on this body (mob/trash_kit/encounter_use.ts):
    *  the user's entity id, read and cleared by the dungeon module that owns
    *  the body on its next pass. Sim authority only. */

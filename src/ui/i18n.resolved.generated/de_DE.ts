@@ -62,6 +62,7 @@ export const de_DE: EnTranslations = {
     "earned": "Errungen",
     "redeemed": "Eingelöst",
     "emptyStamp": "Noch nicht verdient",
+    "retiredStamp": "No longer available",
     "stamping": "Deine Karte wird abgestempelt …",
     "redeem": "Belohnung einlösen",
     "previous": "Löse zuerst frühere Stempel ein.",
@@ -4824,30 +4825,6 @@ export const de_DE: EnTranslations = {
         "snappedFetters": "Seine Ketten sind gebrochen. Es kämpft nicht mehr, kann nicht verletzt werden und geht bald fort.",
         "anchored": "An den Ertrunkenen Anker gekettet: Du kannst dich bewegen, aber nie weiter von der Winde entfernen, die dich zur Grube des Ertrinkens zieht. Nähere dich einem brennenden Festmacherpfahl auf {reach} Yard, der mindestens {run} Yard von der Stelle entfernt ist, an der du gehakt wurdest, um die Kette dort festzumachen (der Pfahl erlischt für {dark} Sek.), oder lass deine Gruppe sie mit {links} Treffern zerbrechen ({linksHeroic} auf Heroisch). Die Grube nimmt dir {pit}% deiner maximalen Gesundheit ({pitHeroic}% auf Heroisch)."
       },
-      "crypt": {
-        "carrionEye": "Jede Krähe im Kampf jagt dich {seconds} Sek. lang. Laufe zu deinem Tank, damit der Schwarm gemeinsam getötet werden kann.",
-        "graniteSkin": "Erleidet {pct}% weniger Schaden, und der Stein wird alle {every} Sek. dicker, bis zu {max} Schichten. Eine Betäubung zerschmettert ihn; danach erleidet es {seconds} Sek. lang {cracked}% mehr Schaden.",
-        "measured": "Wenn dies endet, bricht ein Offenes Grab an deiner Position ein: {min} bis {max} Schaden ({heroicMin} bis {heroicMax} auf Heroisch) für alle innerhalb von {radius} Yard. Das Grab bleibt den ganzen Kampf; trage die Markierung daher an den Rand des Hofs, weg von der Gruppe.",
-        "graveDirt": "In einem Offenen Grab: Bewegungsgeschwindigkeit um {slow}% verringert und jede Sekunde {damage} Schattenschaden ({heroic} auf Heroisch). Auf Heroisch erweckt ein Aufenthalt von {linger} Sek. in einem Grab Ruheloses Gebein. Verlasse das Grab.",
-        "dirtInEyes": "Verringert die Bewegungsgeschwindigkeit um {pct}%. Schaufelladung trifft alle vor Küster Marrow: Stelle dich hinter ihn.",
-        "blow": "Erhöht erlittenen Schaden um {pct}%: {per}% je Stapel, derzeit {stacks} von {max}. Jeder Totengräberschlag fügt einen Stapel hinzu und setzt die Dauer auf {seconds} Sek. zurück.",
-        "graveVigor": "Greift {pct}% schneller an, solange er in einem Offenen Grab steht. Halte ihn aus den Gräbern heraus.",
-        "tolling": "Immun gegen Schaden, während er zum Glockenseil schreitet und die Begräbnisglocke läutet. Am Ende des Läutens verursacht das Geläut bei allen {min} bis {max} Schattenschaden ({heroicMin} bis {heroicMax} auf Heroisch), und jedes Offene Grab gibt Ruheloses Gebein frei.",
-        "embraced": "In den Armen der Lady hochgehalten: Du kannst nicht handeln und erleidest jede Sekunde {tick} Frostschaden ({tickHeroic} auf Heroisch). Fügt deine Gruppe ihr {share}% ihrer maximalen Gesundheit zu ({shareHeroic}% auf Heroisch), setzt sie dich sanft ab. Hält sie dich oben {hold} Sek. fest, lässt sie dich für {min} bis {max} Schaden aufs Eis fallen ({heroicMin} bis {heroicMax} auf Heroisch).",
-        "lament": "Wenn Klage der Braut endet, erleiden alle außerhalb von {radius} Yard um eine brennende Grablaterne {min} bis {max} Frostschaden ({heroicMin} bis {heroicMax} auf Heroisch). Eine Laterne schützt die {cap} nächsten Spieler, erlischt dann und schützt bei der nächsten Klage nicht.",
-        "lingering": "Deine nächste Klage der Braut verursacht {pct}% mehr Schaden: {per}% je Stapel, bis zu {max} Stapel. Erleide die nächste im Licht einer Laterne.",
-        "slippery": "Auf glattem Eis: Deine Geschwindigkeit ändert sich pro Sekunde höchstens um {grip} Yard/Sek.; du kommst langsam in Gang, rutschst beim Anhalten weiter und ziehst weite Kurven. Verlasse das Eis, um wieder festen Halt zu haben.",
-        "harmony": "Erleidet {pct}% weniger Schaden: {per}% für jeden ihrer lebenden Chorsänger. Töte zuerst die Chorsänger.",
-        "crescendo": "Singt schneller: Das Klagelied der Hohlen dauert {cast} statt {castNormal} Sek. und kommt alle {every} statt {everyNormal} Sek.; die Knochenorgel spielt {waves} statt {wavesNormal} Notenwellen.",
-        "gorged": "Verursacht für den Rest des Kampfes {pct}% mehr Schaden: {per}% je Gebundener Seele, die ihn erreicht hat, derzeit {stacks} von {max}. Jede Seele, die ihn erreicht, heilt ihn auch um {heal}% seiner maximalen Gesundheit. Stelle dich einer Seele in den Weg, um sie stattdessen aufzunehmen.",
-        "unquietWard": "Immun gegen Schaden, während er am Altar den Ritus der Ruhelosen kanalisiert: {lit} von {total} Gedenkkerzen wieder entzündet. Eine Kerze anzuzünden erfordert {channel} Sek. Kanalisierung und entzieht der anzündenden Person jede Sekunde {drain}% ihrer maximalen Gesundheit ({drainHeroic}% auf Heroisch); Treffer unterbrechen sie nicht, ein Schritt oder eine Betäubung schon. Die letzte Kerze zerschmettert den Schutz. Auf Heroisch zünde sie in der vom Totenbuch genannten Reihenfolge an: Eine falsche Kerze löscht die zuletzt entzündete und verursacht bei der anzündenden Person {wrongMin} bis {wrongMax} Schattenschaden.",
-        "riteBroken": "Betäubt: Der zerschmetterte Schutz hindert ihn {seconds} Sek. am Handeln.",
-        "shatteredWard": "Erleidet {seconds} Sek. lang {pct}% mehr Schaden: Die wieder entzündeten Kerzen haben seinen Schutz gebrochen. Nutze jetzt deine stärksten Angriffe.",
-        "graveChill": "Erleidet jede Sekunde {bite} Schattenschaden ({biteHeroic} auf Heroisch), solange der Ritus der Ruhelosen anhält; dies steigt alle {every} Sek. um {step} ({stepHeroic} auf Heroisch). Zünde die Gedenkkerzen wieder an, um es zu beenden.",
-        "graspMark": "In {fuse} Sek. brechen Hände aus dem Ring unter dir hervor: Alle innerhalb von {radius} Yard seiner ursprünglichen Stelle werden {root} Sek. festgewurzelt und erleiden {min} bis {max} Schattenschaden. Verlasse den Ring.",
-        "graspRoot": "Von den Händen des Grabes gehalten: Du kannst dich {seconds} Sek. nicht bewegen.",
-        "knellAirborne": "Fliegt außer Reichweite über dem Rituskreis. Es markiert eine Hälfte des Kreises {mark} Sek. lang und gießt dann Geisterfeuer darauf: {min} bis {max} Feuerschaden für alle darin. Es verbrennt pro Flug {breaths} Hälften und landet dann."
-      },
       "sanctum": {
         "lockbound": "Erleidet {pct}% weniger Schaden: {per}% für jede seiner noch haltenden Ketten. Zerstöre eine Siegelfessel, um ihre Kette zu lösen.",
         "enrage": "Verursacht {pct}% mehr Schaden.",
@@ -7169,25 +7146,6 @@ export const de_DE: EnTranslations = {
       },
       "mech": {
         "shadow_pulse": "Schattenpuls (pulsierender Flachenschaden)",
-        "crypt_shovelful": "Schaufelladung (alle 11 Sekunden wirft er Graberde in einen 8 Yard langen Kegel vor sich: anderthalbfacher Nahkampfschaden und 6 Sekunden lang 50 Prozent langsamere Bewegung; stelle dich hinter ihn)",
-        "crypt_measured_for_the_grave": "Für das Grab vermessen (alle 15 Sekunden markiert er einen Spieler außer dem Tank; 4 Sekunden später bricht ein Offenes Grab unter ihm ein, auf Normal 42 bis 52 Schaden innerhalb von 3 Yard. Die Grube bleibt den ganzen Kampf: darin 9 Schaden pro Sekunde und 40 Prozent langsamere Bewegung; platziert die Gräber daher am Hofrand)",
-        "crypt_burial_toll": "Begräbnisgeläut (bei 66 und 33 Prozent Gesundheit schreitet er immun gegen Schaden zum Glockenseil und läutet 3 Sekunden: auf Normal 30 bis 38 Schattenschaden bei allen, und jedes Offene Grab erweckt Ruheloses Gebein)",
-        "crypt_marrow_heroic": "Heroisch: Totengräberschlag alle 9 Sekunden auf den Tank (jeder Stapel erhöht seinen erlittenen Schaden 20 Sekunden lang um 6 Prozent, bis zu 6 Stapel), Grabeskraft (er schlägt in einem Grab 30 Prozent schneller) und Ruhelose Erde (wer 2 Sekunden in einem Grab bleibt, erweckt dort Ruheloses Gebein)",
-        "crypt_brides_lament": "Klage der Braut (alle 22 Sekunden ein 3 Sekunden langes Wehklagen: auf Normal 60 bis 75 Frostschaden bei allen außerhalb des Lichts einer brennenden Grablaterne, dazu die Hälfte für jeden Stapel Anhaltende Klage aus bereits erlittenen Klagen. Eine Laterne schützt höchstens zwei Spieler und erlischt nach dem Schutz für 28 Sekunden; teilt euch auf und wechselt euch ab)",
-        "crypt_frozen_embrace": "Gefrorene Umarmung (alle 30 Sekunden packt sie einen Spieler außer dem Tank und hebt ihn 5 Yard in die Luft, 6 Frostschaden pro Sekunde: Verursache innerhalb von 8 Sekunden 6 Prozent ihrer Gesundheit als Schaden, damit sie ihn absetzt; andernfalls lässt sie ihn auf Normal für 150 bis 180 Schaden fallen)",
-        "crypt_rime_path": "Raureifpfad (sie hinterlässt auf ihrem Weg 25 Sekunden lang glatten Raureif: Darauf beschleunigst du langsam und rutschst beim Anhalten oder Drehen weiter)",
-        "crypt_bridal_freeze": "Brautfrost (bei halber Gesundheit gefriert der gesamte Schluchtboden: rutschiges Eis für den Rest des Kampfes)",
-        "crypt_lady_heroic": "Heroisch: Jede brennende Laterne erlischt auch von selbst nach 30 Sekunden und bleibt 10 Sekunden dunkel; Gefrorene Umarmung packt zwei Spieler und lässt bei 4,4 Prozent ihrer Gesundheit los",
-        "crypt_dirge_of_the_hollow": "Klagelied der Hohlen (alle 16 Sekunden ein unterbrechbarer Gesang von 2,5 Sekunden: Vollendet sie ihn, auf Normal 105 bis 125 Schattenschaden und 4 Sekunden Stille bei allen innerhalb von 45 Yard, die sie sehen können; unterbrich ihn oder verstecke dich hinter einer Chorsäule)",
-        "crypt_harmony": "Harmonie (jeder lebende Chorsänger verringert ihren erlittenen Schaden um 30 Prozent: Töte zuerst die Chorsänger)",
-        "crypt_bone_organ": "Knochenorgel (alle 26 Sekunden spielt sie die Knochenorgel: Zwei Wellen von Schattennoten explodieren in Bahnen durch die Empore, auf Normal 100 bis 115 Schaden in einer Bahn; die zweite Welle füllt die Lücken der ersten)",
-        "crypt_crescendo": "Crescendo (unter 30 Prozent Gesundheit dauert ihr Klagelied 1,8 Sekunden und kommt alle 11 Sekunden; die Orgel spielt eine dritte Welle)",
-        "crypt_ilvane_heroic": "Heroisch: Zugabe (ein Chorsänger, der 10 Sekunden tot liegt, während der andere noch lebt, erhebt sich erneut; töte sie daher gemeinsam) und Ungebrochene Strophe (jedes dritte Klagelied ist nicht unterbrechbar: Verstecke dich)",
-        "crypt_morthen_shadow_pulse": "Schattenimpuls (alle 12 Sekunden eine Zauberzeit von 2 Sekunden, dann auf Normal 24 bis 30 Schattenschaden bei allen innerhalb von 12 Yard um ihn; entferne dich. Während seiner Letzten Riten alle 9 Sekunden)",
-        "crypt_gravecall": "Grabruf (alle 15 Sekunden schwebt eine Gebundene Seele aus der nächsten Sarkophagnische zu ihm; erreicht sie ihn, wird er Von den Toten gesättigt, mit 10 Prozent mehr Schaden pro Seele bis zu 10 Stapel, und heilt 3 Prozent seiner Gesundheit. Ein Spieler auf ihrer Bahn nimmt sie stattdessen auf: auf Normal 12 bis 16 Schattenschaden)",
-        "crypt_rite_of_the_unquiet": "Ritus der Ruhelosen (bei 65 Prozent Gesundheit kehrt er zum Altar zurück, immun im Schutz der Ruhelosen, während Grabeskälte bei allen 3 Schattenschaden pro Sekunde verursacht, alle 5 Sekunden um 1 steigend, und 2 Ruhelose Gebeine aus den Nischen klettern. Entzündet die 4 Gedenkkerzen erneut: Jede erfordert 4 Sekunden Kanalisierung und entzieht der anzündenden Person jede Sekunde 6 Prozent ihrer maximalen Gesundheit; Treffer unterbrechen nicht, ein Schritt oder eine Betäubung schon. Die letzte Kerze bricht den Ritus: Er ist 8 Sekunden betäubt und erleidet 25 Prozent mehr Schaden)",
-        "crypt_reap_the_unquiet": "Die Ruhelosen ernten (unter 35 Prozent Gesundheit kommen keine Seelen mehr; alle 14 Sekunden schwingt er nach 2 Sekunden Zauberzeit seine Sense: auf Normal 55 bis 65 Schattenschaden bei allen in einem 120-Grad-Bogen 14 Yard vor ihm. Schattenimpuls kommt dann alle 9 Sekunden)",
-        "crypt_morthen_heroic": "Heroisch: Die Toten benennen (das Totenbuch nennt die Kerzenreihenfolge: Eine falsche Kerze löscht die zuletzt entzündete und verursacht beim Anzündenden 252 bis 288 Schattenschaden; jedes erneute Anzünden entzieht 8 Prozent pro Sekunde), Griff des Grabes (alle 16 Sekunden erhalten 2 Spieler einen Ring von 4 Yard; 1,5 Sekunden später brechen Hände hervor: 3 Sekunden Festwurzeln und 162 bis 198 Schattenschaden) sowie Brennendes Totengeläut des Knellwyrms (er fliegt auf, markiert eine Ringhälfte 4,5 Sekunden lang und gießt dann Geisterfeuer für 1.000 bis 1.120 Feuerschaden darauf, 3 Hälften je Flug)",
         "reaping_arc": "Sichelschwung (frontaler Schwung)",
         "hallowed_brine": "Geweihte Salzlauge (ein 9 Yard großes Becken dunklen Weihwassers, 10 auf Heroisch: 18 Schaden pro Sekunde bei allen darin, 26 auf Heroisch; er erleidet darin 40 Prozent weniger Schaden, also ziehe ihn heraus)",
         "rebounding_bulwark": "Abprallendes Bollwerk (sein Schild prallt zum nächsten Spieler innerhalb von 10 Yard um den zuletzt Getroffenen weiter, bis zu 3 Spieler, 4 auf Heroisch: Verteilt euch)",
@@ -7410,33 +7368,6 @@ export const de_DE: EnTranslations = {
       "rimeLine": "Verlasse den Atem der Welpen, um bei vollen Stapeln nicht völlig einzufrieren: Kriechender Raureif {stacks}/{max}",
       "slabTitle": "Eisblock",
       "slabLine": "Bringe die Eisplatte zwischen dich und feindliche Zauberer, um ihre Sichtlinie zu blockieren"
-    },
-    "cryptAlert": {
-      "measuredTitle": "Für das Grab vermessen!",
-      "measuredLine": "Gehe vor dem Ende der Markierung an den Hofrand, um das schädliche Grab von deiner Gruppe fernzuhalten",
-      "embracedTitle": "Gefrorene Umarmung!",
-      "embracedLine": "Deine Gruppe muss der Lady des Knochenfrosts Schaden zufügen, um dich aus ihrem Griff zu befreien",
-      "lamentTitle": "Klage der Braut!",
-      "lamentShelteredLine": "Bleibe im Licht dieser brennenden Laterne, um dem Schaden des Wehklagens zu entgehen: Du hast einen Schutzplatz",
-      "lamentOpenLine": "Tritt ins Licht einer brennenden Laterne, um dem Schaden des Wehklagens zu entgehen: Pro Laterne passen nur zwei Spieler",
-      "graveTitle": "In einem Offenen Grab!",
-      "graveLine": "Die Graberde verbrennt und verlangsamt dich: Verlasse sie",
-      "tollTitle": "Begräbnisgeläut!",
-      "tollLine": "Bereite dich auf die Skelette aus offenen Gräbern vor: Marrow ist beim Glockenläuten immun",
-      "harmonyTitle": "Harmonie",
-      "harmonyLine": "Töte die Chorsänger, um Ilvanes Schadensverringerung von {pct}% aufzuheben",
-      "knellTitle": "Brennendes Totengeläut!",
-      "knellLine": "Wenn der Balken endet, ergießt sich Geisterfeuer über diese Hälfte des Rings: Wechsle auf die andere Hälfte",
-      "graspTitle": "Griff des Grabes!",
-      "graspLine": "Verlasse den markierten Ring, bevor die Hände hervorbrechen, um Schaden und Festwurzeln zu vermeiden",
-      "reapTitle": "Die Ruhelosen ernten!",
-      "reapLine": "Gehe hinter Morthen, um der Sense zu entgehen, die alle vor ihm trifft",
-      "riteTitle": "Ritus der Ruhelosen",
-      "riteLine": "Zünde alle Gedenkkerzen wieder an, um Morthens Immunität zu brechen: {lit} von {total} brennen",
-      "riteNamedLine": "Zünde die Kerzen in der Reihenfolge des Totenbuchs an, um Morthens Immunität zu brechen: Eine falsche Kerze macht Fortschritt rückgängig ({lit}/{total})",
-      "soulTitle": "Gebundene Seele",
-      "soulLine": "Fange die schwebende Seele ab, damit sie Morthen weder heilt noch seinen Schaden erhöht. Das Abfangen verletzt dich",
-      "timeAria": "Noch {seconds} Sekunden"
     },
     "kitUse": {
       "toppleLine": "Stoße das Kohlenbecken auf nahe Gegner, um sie mit dem verschütteten Inhalt zu verbrennen",
@@ -10783,7 +10714,6 @@ export const de_DE: EnTranslations = {
       "bastionName": "Die versunkene Bastion",
       "templeName": "Der Ertränkte Tempel",
       "sanctumName": "Gravewyrm-Heiligtum",
-      "hollowBody": "Eine grabgeschändete Kapellengruft, in der die frisch Verstorbenen nicht ruhen wollen. Die erste echte Bewährungsprobe für eine neue Gruppe.",
       "bastionBody": "Eine überflutete Festung, ans Moor verloren, gehalten von ertrunkenen Verteidigern und der steigenden Flut selbst.",
       "templeBody": "Ein versunkener Schrein abseits der Moorstraße, ein Nebenweg für die Neugierigen und gut Vorbereiteten.",
       "sanctumBody": "Das dunkle Herz von Thornpeak, wo das lange Wirken des Kults seinen schrecklichen Höhepunkt erreicht.",
@@ -17014,46 +16944,6 @@ export const de_DE: EnTranslations = {
       "hoard_cast_mimic_bite": "Gefräßiger Biss",
       "hoard_cast_mimic_leap": "Zerschmetternder Sprung",
       "hoard_cast_coin_spit": "Verfluchte Münzen",
-      "crypt_grave_bolt": "Grabgeschoss",
-      "crypt_raise_bones": "Knochen erwecken",
-      "crypt_murder_call": "Krähenschwarmruf",
-      "crypt_stone_shriek": "Steinschrei",
-      "crypt_grave_cleave": "Grabhieb",
-      "crypt_barrowflame_breath": "Grabhügelflammenatem",
-      "crypt_tail_lash": "Schwanzpeitsche",
-      "crypt_wing_gust": "Flügelböe",
-      "crypt_grave_rupture": "Grabbruch",
-      "crypt_carrion_eye": "Aasauge",
-      "crypt_marrow_crush": "Markzertrümmerung",
-      "crypt_rimesilk_spit": "Raureifseiden-Spucke",
-      "crypt_gravespark_volley": "Grabfunken-Salve",
-      "crypt_morthen_rite_wakes": "Der Ritus erwacht",
-      "crypt_morthen_rise": "Aufstieg des Gravecallers",
-      "crypt_morthen_proclaim": "Grabverkündung",
-      "crypt_morthen_descend": "Abstieg",
-      "crypt_knellwyrm_arrive": "Abstieg vom Himmel",
-      "crypt_knellwyrm_pyre_strafe": "Scheiterhaufen-Feuerflug",
-      "crypt_knellwyrm_strafe_run": "Tiefflugangriff",
-      "crypt_knellwyrm_dread_bellow": "Schreckensgebrüll",
-      "crypt_marrow_shovelful": "Schaufelladung",
-      "crypt_marrow_measure": "Für das Grab vermessen",
-      "crypt_marrow_burial_toll": "Begräbnisgeläut",
-      "crypt_marrow_gravediggers_blow": "Totengräberschlag",
-      "crypt_lady_brides_lament": "Klage der Braut",
-      "crypt_lady_frozen_embrace": "Gefrorene Umarmung",
-      "crypt_lady_embrace_hold": "Gefrorene Umarmung",
-      "crypt_lady_bridal_freeze": "Brautfrost",
-      "crypt_ilvane_dirge": "Klagelied der Hohlen",
-      "crypt_ilvane_unbroken_dirge": "Ungebrochene Strophe",
-      "crypt_ilvane_bone_organ": "Knochenorgel",
-      "crypt_morthen_shadow_pulse": "Schattenimpuls",
-      "crypt_morthen_rite_of_the_unquiet": "Ritus der Ruhelosen",
-      "crypt_morthen_reap_the_unquiet": "Die Ruhelosen ernten",
-      "kituse_crypt_relight_candle": "Kerze wieder anzünden",
-      "crypt_knellwyrm_knell_rise": "Brennendes Totengeläut",
-      "crypt_knellwyrm_knell_mark": "Brennendes Totengeläut",
-      "crypt_knellwyrm_knell_breath": "Brennendes Totengeläut",
-      "crypt_knellwyrm_knell_land": "Brennendes Totengeläut",
       "bastion_brine_mend": "Salzlaugen-Heilung",
       "bastion_fog_ward": "Nebelschutz",
       "bastion_halberd_sweep": "Hellebardenfeger",
@@ -26563,9 +26453,6 @@ export const de_DE: EnTranslations = {
       "restless_bones": {
         "name": "Ruhelose Knochen"
       },
-      "marrow_restless_bones": {
-        "name": "Ruhelose Knochen"
-      },
       "gorrak": {
         "name": "Gorrak der Gnadenlose"
       },
@@ -26667,90 +26554,6 @@ export const de_DE: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Knochengepanzerter Wiedergänger"
-      },
-      "crypt_shambler": {
-        "name": "Gruftschlurfer"
-      },
-      "hollow_acolyte": {
-        "name": "Akolyth der Höhlung"
-      },
-      "bonechill_widow": {
-        "name": "Knochenkälte-Witwe"
-      },
-      "sexton_marrow": {
-        "name": "Küster Marrow"
-      },
-      "morthen": {
-        "name": "Morthen der Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Beinhauswächter"
-      },
-      "hollow_gravedigger": {
-        "name": "Hohler Totengräber"
-      },
-      "rime_egg_sac": {
-        "name": "Raureifeiersack"
-      },
-      "rimeweb_hatchling": {
-        "name": "Raureifnetzjunges"
-      },
-      "rimeweb_spinner": {
-        "name": "Raureifnetzspinner"
-      },
-      "candlewright_acolyte": {
-        "name": "Kerzenmacherakolyth"
-      },
-      "hollow_chorister": {
-        "name": "Hohler Chorsänger"
-      },
-      "bound_soul": {
-        "name": "Gebundene Seele"
-      },
-      "rimeweb": {
-        "name": "Lady des Knochenfrosts"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Beinhauskrieger"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravecaller-Adept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Beinhausmeuchler"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravecaller-Nekromant"
-      },
-      "crypt_bone_minion": {
-        "name": "Knochendiener"
-      },
-      "crypt_bone_brute": {
-        "name": "Knochenkoloss"
-      },
-      "crypt_bone_pile": {
-        "name": "Sich regendes Gebein"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapellengargoyle"
-      },
-      "crypt_crow_caller": {
-        "name": "Krähenrufer"
-      },
-      "crypt_carrion_crow": {
-        "name": "Aaskrähe"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Beinhausdrache"
-      },
-      "crypt_knellwyrm": {
-        "name": "Totengeläutwyrm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Gedenkkerze"
       },
       "bastion_revenant": {
         "name": "Bastion-Wiedergänger"
@@ -28700,16 +28503,6 @@ export const de_DE: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "Die ruhelosen Toten",
-        "text": "Die alte Kapelle war einst ein Ruheort, bis etwas die Toten weckte. Lege 8 ruhelose Knochen wieder in die Erde, {playerName}.",
-        "completion": "Mögen sie nun ruhen, und möge das Licht vergeben, was sie geweckt hat.",
-        "objectives": {
-          "0": {
-            "label": "Ruhelose Knochen zur Ruhe gelegt"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Gestohlene Vorräte",
         "text": "Die Banditen raubten meinen letzten Wagen: Werkzeug, Salz und gutes Eastbrook-Leinen. Hol 4 Kisten aus ihrem Lager im Nordwesten zurück.",
@@ -28720,26 +28513,6 @@ export const de_DE: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Flüstern darunter",
-        "text": "Die Toten stehen wieder auf, weil etwas sie ruft. Durchsuche die Kapelle nach dem Rufer und bring jedes Siegel unversehrt her.",
-        "completion": "Dieses Siegel trägt das Zeichen der Gravecaller. Ich hatte gebetet, diese Sekte sei erloschen, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravecaller-Siegel"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "Die Namen der Toten",
-        "text": "Wenn die Gravecaller unsere Gräber raubten, muss ich wissen, wessen Ruhe sie stahlen. Sammle 3 Seiten des Begräbnisbuchs, {playerName}.",
-        "completion": "Arme Seelen... und sieh hier: Küster Marrow war der erste. Morthen begann mit dem Mann, der Eastbrooks Tote begrub.",
-        "objectives": {
-          "0": {
-            "label": "Verwitterte Buchseite"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Den Ruf verstummen lassen",
         "text": "Jeder Name im Buch ist eine Seele, die Morthen aus der Erde ziehen will. Bringe 12 ruhelose Knochen zum Schweigen, {playerName}, bevor der Flüsterton zum Chor wird.",
@@ -28747,49 +28520,6 @@ export const de_DE: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Ruhelose Knochen zum Schweigen gebracht"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Der Bindungsritus",
-        "text": "Die Gruft unter der Kapelle muss entsiegelt werden, wenn wir den Gravecaller aufhalten wollen, doch nur ein Bindungsritus lässt die Lebenden passieren. Ich brauche 4 Klumpen gesegneten Talg, die Wühler der Mine horten Talg kistenweise, und 6 geisterhafte Essenzen von den ruhelosen Toten.",
-        "completion": "Es ist getan. Der Weg hinab steht offen... sammle deine stärksten Gefährten, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gesegneter Talg"
-          },
-          "1": {
-            "label": "Geisterhafte Essenz"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "In die Höhlung",
-        "text": "Morthen wartet am Grund der Hohlen Gruft, umringt von den elitären Toten. Nimm vier Gefährten mit und beende ihn.",
-        "completion": "Das Flüstern ist verstummt. Die Toten schlafen, {playerName}, und Eastbrook schuldet dir alles.",
-        "objectives": {
-          "0": {
-            "label": "Morthen der Gravecaller getötet"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Die Glocke des Küsters",
-        "text": "Das Buch nennt Küster Marrow, Morthens ersten erhobenen Wächter. Steig mit vier Gefährten hinab und gib ihm die geraubte Ruhe zurück, {playerName}.",
-        "completion": "Marrow ist endlich frei. Läutet keine Glocke für ihn; er hörte im Leben genug.",
-        "objectives": {
-          "0": {
-            "label": "Küster Marrow zur Ruhe gelegt"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Die Spur des Gravecallers",
-        "text": "Morthen ist tot, doch seine Sekte verschwendet kein Jahrhundert des Schweigens an eine einzige Kapelle. Suche sein Grimoire in den Ruinen, {playerName}.",
-        "completion": "Morthen schrieb an einen 'Fogbinder' im nördlichen Moor. Die Sekte ist nicht tot, {playerName}, sie war nur geduldig.",
-        "objectives": {
-          "0": {
-            "label": "Morthens Grimoire"
           }
         }
       },
@@ -32720,11 +32450,6 @@ export const de_DE: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Die Hohle Gruft",
-        "enterText": "Du steigst in die Hohle Gruft hinab...",
-        "leaveText": "Du kletterst zurück ins Tageslicht."
-      },
       "sunken_bastion": {
         "name": "Die versunkene Bastion",
         "enterText": "Du watest in die versunkene Bastion hinab...",
@@ -32833,11 +32558,6 @@ export const de_DE: EnTranslations = {
         "sender": "Marschall Redbrook",
         "subject": "Der alte Graukiefer, endlich",
         "body": "Neuigkeiten verbreiten sich schnell in einer so kleinen Stadt. Die Hirten haben gestern Abend auf Eure Gesundheit getrunken, und Wilkes schwört, der Wolf sei so groß wie ein Karren gewesen. Lasst sie ruhig übertreiben: Ihr habt es Euch verdient.\n\nGönnt Euch ein Mahl auf Kosten der Wache.\n- Marschall Redbrook"
-      },
-      "letter_q_hollow": {
-        "sender": "Bruder Aldric",
-        "subject": "Was Ihr im Dunkeln vollbracht habt",
-        "body": "Nur wenige werden je erfahren, was in jener Senke begraben lag, und noch weniger würden es glauben. Ich weiß es, und ich werde es nicht vergessen.\n\nMöge Euer Weg erleuchtet bleiben.\n- Bruder Aldric"
       },
       "heroic_marks_reward": {
         "sender": "Heroischer Quartiermeister",

@@ -62,6 +62,7 @@ export const sv_SE: EnTranslations = {
     "earned": "Fullbordade",
     "redeemed": "Inlöst",
     "emptyStamp": "Inte förtjänad ännu",
+    "retiredStamp": "No longer available",
     "stamping": "Stämplar ditt kort...",
     "redeem": "Lös in belöning",
     "previous": "Lös in tidigare stämplar först.",
@@ -4824,30 +4825,6 @@ export const sv_SE: EnTranslations = {
         "snappedFetters": "Dess kedjor är brutna. Den slåss inte längre, kan inte skadas och lämnar snart platsen.",
         "anchored": "Fastkedjad vid det dränkta ankaret: du kan röra dig, men aldrig längre från vinschen, som drar dig mot Drunkningsgropen. Kom inom {reach} yard från en tänd förtöjningsstolpe minst {run} yard från platsen där du hakades fast för att förtöja kedjan (stolpen slocknar i {dark} sek), eller låt gruppen bryta den med {links} träffar ({linksHeroic} i heroiskt läge). Gropen tar {pit}% av din maximala hälsa ({pitHeroic}% i heroiskt läge)."
       },
-      "crypt": {
-        "carrionEye": "Varje kråka i striden jagar dig i {seconds} sek. Spring till din tank så att flocken kan huggas ned tillsammans.",
-        "graniteSkin": "Tar {pct}% mindre skada, och stenen tjocknar var {every}:e sek, upp till {max} lager. En bedövning krossar den och gör att den tar {cracked}% mer skada i {seconds} sek.",
-        "measured": "När effekten tar slut rasar en öppen grav in där du står: {min} till {max} skada ({heroicMin} till {heroicMax} i heroiskt läge) på alla inom {radius} yard. Graven blir kvar under resten av striden, så bär markeringen till gårdens kant, bort från gruppen.",
-        "graveDirt": "Står i en öppen grav: rörelsehastigheten minskar med {slow}% och du tar {damage} skuggskada varje sekund ({heroic} i heroiskt läge). Om du stannar i en grav i {linger} sek i heroiskt läge väcks ett rastlöst skelett. Gå ut ur graven.",
-        "dirtInEyes": "Minskar rörelsehastigheten med {pct}%. En skyffel jord träffar alla framför dödgrävaren Marrow: stå bakom honom.",
-        "blow": "Ökar skadan du tar med {pct}%: {per}% per laddning, nu {stacks} av {max}. Varje Dödgrävarens slag lägger till en laddning och återställer varaktigheten till {seconds} sek.",
-        "graveVigor": "Attackerar {pct}% snabbare medan han står i en öppen grav. Håll honom borta från gravarna.",
-        "tolling": "Immun mot skada medan han går till klockrepet och ringer i begravningsklockan. När ringningen slutar gör klangen {min} till {max} skuggskada ({heroicMin} till {heroicMax} i heroiskt läge) på alla, och varje öppen grav släpper fram ett rastlöst skelett.",
-        "embraced": "Hålls uppe i damens armar: kan inte agera och tar {tick} frostskada varje sekund ({tickHeroic} i heroiskt läge). Om gruppen gör skada motsvarande {share}% av hennes maximala hälsa ({shareHeroic}% i heroiskt läge) sätter hon varsamt ned dig; om hon håller dig högst upp i {hold} sek släpper hon dig på isen för {min} till {max} skada ({heroicMin} till {heroicMax} i heroiskt läge).",
-        "lament": "När Brudens klagan tar slut gör den {min} till {max} frostskada ({heroicMin} till {heroicMax} i heroiskt läge) på alla som inte står inom {radius} yard från en tänd gravlykta. En lykta skyddar de {cap} närmaste spelarna, slocknar sedan och är släckt under nästa klagan.",
-        "lingering": "Nästa Brudens klagan gör {pct}% mer skada på dig: {per}% per laddning, upp till {max} laddningar. Ta nästa i skenet från en lykta.",
-        "slippery": "På hal is: din hastighet ändras med högst {grip} yard/sek varje sekund, så du kommer långsamt i gång, glider vidare när du stannar och gör vida svängar. Gå av isen för att få fäste igen.",
-        "harmony": "Tar {pct}% mindre skada: {per}% för varje levande korist. Döda koristerna först.",
-        "crescendo": "Sjunger snabbare: Klagosång från hålrummet tar {cast} sek i stället för {castNormal} sek och kommer var {every}:e sek i stället för var {everyNormal}:e sek, och Benorgel spelar {waves} vågor av toner i stället för {wavesNormal}.",
-        "gorged": "Gör {pct}% mer skada: {per}% för varje bunden själ som nått honom, nu {stacks} av {max}, under resten av striden. Varje själ som når honom läker honom också med {heal}% av hans maximala hälsa. Ställ dig i själens väg för att ta den i stället.",
-        "unquietWard": "Immun mot skada medan han kanaliserar De oroligas rit vid altaret: {lit} av {total} minnesljus återtända. Att tända ett ljus är en kanalisering på {channel} sek som dränerar {drain}% av tändarens maximala hälsa varje sekund ({drainHeroic}% i heroiskt läge); träffar bryter inte kanaliseringen, men ett steg eller en bedövning gör det. Det sista ljuset krossar skyddet. Tänd dem i liggarens ordning i heroiskt läge: fel ljus släcker det senast tända och gör {wrongMin} till {wrongMax} skuggskada på tändaren.",
-        "riteBroken": "Bedövad: det krossade skyddet hindrar honom från att agera i {seconds} sek.",
-        "shatteredWard": "Tar {pct}% mer skada i {seconds} sek: de återtända ljusen bröt hans skydd. Använd dina starkaste attacker nu.",
-        "graveChill": "Tar {bite} skuggskada varje sekund ({biteHeroic} i heroiskt läge) medan De oroligas rit pågår, med en ökning på {step} ({stepHeroic} i heroiskt läge) var {every}:e sek. Tänd minnesljusen igen för att avsluta den.",
-        "graspMark": "Händer bryter fram ur ringen under dig om {fuse} sek: alla inom {radius} yard från platsen där den lades rotas i {root} sek och tar {min} till {max} skuggskada. Gå ut ur ringen.",
-        "graspRoot": "Fasthållen av gravens händer: kan inte röra dig i {seconds} sek.",
-        "knellAirborne": "Flyger ovanför ritringen, utom räckhåll. Den markerar halva ringen i {mark} sek och öser sedan spökeld över den halvan: {min} till {max} eldskada på alla där. Den bränner {breaths} halvor under varje flygning och landar sedan."
-      },
       "sanctum": {
         "lockbound": "Tar {pct}% mindre skada: {per}% för varje kedja som fortfarande håller honom. Bryt en sigillboja för att släppa dess kedja.",
         "enrage": "Gör {pct}% mer skada.",
@@ -7169,25 +7146,6 @@ export const sv_SE: EnTranslations = {
       },
       "mech": {
         "shadow_pulse": "Skuggpuls (pulserande områdesskada)",
-        "crypt_shovelful": "En skyffel jord (var 11:e sekund slungar han gravjord över en kon på 8 yard framför sig: en och en halv gånger hans vanliga slag och 50 procent långsammare rörelse i 6 sekunder, så stå bakom honom)",
-        "crypt_measured_for_the_grave": "Mätt för graven (var 15:e sekund markerar han en annan spelare än tanken; 4 sekunder senare rasar en öppen grav in under spelaren, 42 till 52 skada inom 3 yard i normalt läge, och gropen stannar under striden: 9 skada per sekund och 40 procent långsammare rörelse därinne, så placera gravarna vid gårdens kant)",
-        "crypt_burial_toll": "Begravningsklang (vid 66 och 33 procent hälsa går han till klockrepet, immun mot skada, och ringer i 3 sekunder: 30 till 38 skuggskada på alla i normalt läge, och varje öppen grav väcker ett rastlöst skelett)",
-        "crypt_marrow_heroic": "Heroiskt: Dödgrävarens slag var 9:e sekund på tanken (varje laddning får tanken att ta 6 procent mer skada i 20 sekunder, upp till 6 laddningar), Gravkraft (han slår 30 procent snabbare medan han står i en grav) och Orolig jord (den som stannar i en grav i 2 sekunder väcker ett rastlöst skelett där)",
-        "crypt_brides_lament": "Brudens klagan (var 22:a sekund en klagan på 3 sekunder: 60 till 75 frostskada i normalt läge på alla utanför skenet från en tänd gravlykta, hälften så mycket till för varje laddning av Kvardröjande klagan från de klagor du redan tagit. En lykta skyddar högst två spelare och slocknar i 28 sekunder efter att ha skyddat någon, så dela upp er och turas om)",
-        "crypt_frozen_embrace": "Frusen omfamning (var 30:e sekund griper hon en annan spelare än tanken och stiger 5 yard upp i luften med spelaren, 6 frostskada per sekund: gör skada motsvarande 6 procent av hennes hälsa inom 8 sekunder så sätter hon ned spelaren, annars släpper hon ned spelaren för 150 till 180 skada i normalt läge)",
-        "crypt_rime_path": "Rimfroststig (hon lämnar hal rimfrost där hon svävar i 25 sekunder: på den ökar du farten långsamt och glider vidare när du stannar eller svänger)",
-        "crypt_bridal_freeze": "Brudfrysning (vid halv hälsa fryser hela ravinens golv till: hal is under resten av striden)",
-        "crypt_lady_heroic": "Heroiskt: varje tänd lykta slocknar även av sig själv efter 30 sekunder och förblir släckt i 10, och Frusen omfamning tar två spelare och släpper vid 4,4 procent av hennes hälsa",
-        "crypt_dirge_of_the_hollow": "Klagosång från hålrummet (var 16:e sekund en sång på 2,5 sekunder som kan avbrytas: om hon slutför den gör den 105 till 125 skuggskada i normalt läge och tystar i 4 sekunder alla inom 45 yard som kan se henne, så avbryt den eller göm dig bakom en körpelare)",
-        "crypt_harmony": "Harmoni (varje levande korist får henne att ta 30 procent mindre skada: döda koristerna först)",
-        "crypt_bone_organ": "Benorgel (var 26:e sekund spelar hon Benorgel: två vågor av skuggtoner brister fram längs läktarens banor, 100 till 115 skada i normalt läge i en bana, och den andra vågen fyller luckorna i den första)",
-        "crypt_crescendo": "Stegring (under 30 procent hälsa tar hennes klagosång 1,8 sekunder och kommer var 11:e sekund, och orgeln spelar en tredje våg)",
-        "crypt_ilvane_heroic": "Heroiskt: Extranummer (en korist som legat död i 10 sekunder medan den andra fortfarande står reser sig igen, så döda dem samtidigt) och Obruten vers (var tredje klagosång kan inte avbrytas: göm dig från den)",
-        "crypt_morthen_shadow_pulse": "Skuggpuls (var 12:e sekund en besvärjelse på 2 sekunder, sedan 24 till 30 skuggskada i normalt läge på alla inom 12 yard från honom, så gå undan; var 9:e sekund under hans Sista smörjelse)",
-        "crypt_gravecall": "Gravkall (var 15:e sekund driver en bunden själ från nästa sarkofagnisch mot honom; när den når honom blir han Mätt på de döda, 10 procent mer skada per själ upp till 10 laddningar, och läker 3 procent av sin hälsa. En spelare i dess väg tar den i stället: 12 till 16 skuggskada i normalt läge)",
-        "crypt_rite_of_the_unquiet": "De oroligas rit (vid 65 procent hälsa återvänder han till altaret, immun inuti De oroligas skydd, medan Gravkyla gör 3 skuggskada per sekund på alla, med en ökning på 1 var 5:e sekund, och 2 rastlösa skelett klättrar upp ur nischerna. Tänd de 4 minnesljusen igen: varje ljus kräver en kanalisering på 4 sekunder som dränerar 6 procent av tändarens maximala hälsa varje sekund; träffar bryter inte den men ett steg eller en bedövning gör det. Det sista ljuset bryter riten: han bedövas i 8 sekunder och tar 25 procent mer skada)",
-        "crypt_reap_the_unquiet": "Skörda de oroliga (under 35 procent hälsa upphör själarna; var 14:e sekund sveper han med lien efter en besvärjelse på 2 sekunder: 55 till 65 skuggskada i normalt läge på alla i en båge på 120 grader 14 yard framför honom. Skuggpuls kommer då var 9:e sekund)",
-        "crypt_morthen_heroic": "Heroiskt: Namnge de döda (liggaren anger ljusens ordning: fel ljus släcker det senast tända och gör 252 till 288 skuggskada på tändaren, och varje återtändning dränerar 8 procent per sekund), Gravens grepp (var 16:e sekund får 2 spelare en ring på 4 yard; 1,5 sekunder senare bryter händer fram i den: en rotning på 3 sekunder och 162 till 198 skuggskada) och Dödsklangslindormens Brinnande dödsklang (den lyfter och markerar halva ringen i 4,5 sekunder och öser sedan spökeld över den halvan för 1 000 till 1 120 eldskada, 3 halvor per flygning)",
         "reaping_arc": "Skördebåge (frontalt huggsving)",
         "hallowed_brine": "Helgat saltvatten (en pöl av mörkt heligt vatten på 9 yard, 10 i heroiskt läge: 18 skada per sekund på alla i den, 26 i heroiskt läge, och han tar 40 procent mindre skada medan han står i den, så dra ut honom)",
         "rebounding_bulwark": "Återstudsande bålverk (hans sköld studsar till närmaste spelare inom 10 yard från den senast träffade, upp till 3 spelare, 4 i heroiskt läge: sprid ut er)",
@@ -7410,33 +7368,6 @@ export const sv_SE: EnTranslations = {
       "rimeLine": "Lämna ungarnas andedräkt för att undvika att frysa fast vid fulla laddningar: Krypande rimfrost {stacks}/{max}",
       "slabTitle": "Isblock",
       "slabLine": "Placera isblocket mellan dig och fiendens besvärjare för att blockera deras siktlinje"
-    },
-    "cryptAlert": {
-      "measuredTitle": "Mätt för graven!",
-      "measuredLine": "Gå till gårdens kant innan markeringen tar slut för att hålla den skadande graven borta från gruppen",
-      "embracedTitle": "Frusen omfamning!",
-      "embracedLine": "Din grupp måste skada Benkylans dam för att befria dig ur hennes grepp",
-      "lamentTitle": "Brudens klagan!",
-      "lamentShelteredLine": "Stanna i skenet från denna tända lykta för att undvika klagans skada: du har en skyddad plats",
-      "lamentOpenLine": "Gå in i skenet från en tänd lykta för att undvika klagans skada: bara två spelare får plats vid varje lykta",
-      "graveTitle": "I en öppen grav!",
-      "graveLine": "Gravjorden bränner och saktar dig: gå ur den",
-      "tollTitle": "Begravningsklang!",
-      "tollLine": "Förbered dig på att slåss mot skeletten som väcks ur öppna gravar: Marrow är immun medan han ringer i klockan",
-      "harmonyTitle": "Harmoni",
-      "harmonyLine": "Döda koristerna för att ta bort Ilvanes skademinskning på {pct}%",
-      "knellTitle": "Brinnande dödsklang!",
-      "knellLine": "Spökeld öser över denna halva av ringen när fältet tömts: ta dig till den andra halvan",
-      "graspTitle": "Gravens grepp!",
-      "graspLine": "Lämna den markerade ringen innan händerna bryter fram för att undvika skada och rotning",
-      "reapTitle": "Skörda de oroliga!",
-      "reapLine": "Gå bakom Morthen för att undvika lien som träffar alla framför honom",
-      "riteTitle": "De oroligas rit",
-      "riteLine": "Tänd alla minnesljus igen för att bryta Morthens immunitet: {lit} av {total} tända",
-      "riteNamedLine": "Tänd ljusen i liggarens ordning för att bryta Morthens immunitet: fel ljus återställer framsteg ({lit}/{total})",
-      "soulTitle": "Bunden själ",
-      "soulLine": "Fånga upp den drivande själen för att hindra den från att läka Morthen och öka hans skada. Att fånga den skadar dig",
-      "timeAria": "{seconds} sekunder kvar"
     },
     "kitUse": {
       "toppleLine": "Vält fyrfatet över närliggande fiender för att bränna dem med spillet",
@@ -10783,7 +10714,6 @@ export const sv_SE: EnTranslations = {
       "bastionName": "Den sjunkna bastionen",
       "templeName": "Det dränkta templet",
       "sanctumName": "Gravlindormens helgedom",
-      "hollowBody": "En gravplundrad kapellkrypta där de nyligen döda vägrar vila. Det första riktiga provet för en ny grupp.",
       "bastionBody": "En översvämmad fästning förlorad till träsket, hållen av dränkta försvarare och den stigande tidvattnet självt.",
       "templeBody": "En månbelyst helgedom sjunken under en glödande tjärn högt uppe bland topparna, nådd genom en port av kallt ljus. En dränkt kult sjunger fortfarande där nere i sina ruttna skrudar, och varningarna ristade på stranden säger att något därunder bara sover. Ett fristående mysterium, åtskilt från huvudberättelsen, för de nyfikna och de välförberedda.",
       "sanctumBody": "Törntoppens mörka hjärta, där kultens långa arbete når sin fasansfulla höjdpunkt.",
@@ -17014,46 +16944,6 @@ export const sv_SE: EnTranslations = {
       "hoard_cast_mimic_bite": "Fruktansvärd bett",
       "hoard_cast_mimic_leap": "Krossande språng",
       "hoard_cast_coin_spit": "Förbannade mynt",
-      "crypt_grave_bolt": "Gravprojektil",
-      "crypt_raise_bones": "Väck benen",
-      "crypt_murder_call": "Kråkflockens rop",
-      "crypt_stone_shriek": "Stenskrik",
-      "crypt_grave_cleave": "Gravklyvning",
-      "crypt_barrowflame_breath": "Gravflammans andedräkt",
-      "crypt_tail_lash": "Svanspiska",
-      "crypt_wing_gust": "Vingkast",
-      "crypt_grave_rupture": "Gravbristning",
-      "crypt_carrion_eye": "Asöga",
-      "crypt_marrow_crush": "Märgkross",
-      "crypt_rimesilk_spit": "Rimsilkesspott",
-      "crypt_gravespark_volley": "Gravgnistsalva",
-      "crypt_morthen_rite_wakes": "Riten vaknar",
-      "crypt_morthen_rise": "Gravkallarens uppstigande",
-      "crypt_morthen_proclaim": "Gravförkunnelse",
-      "crypt_morthen_descend": "Nedstigning",
-      "crypt_knellwyrm_arrive": "Nedstigning från himlen",
-      "crypt_knellwyrm_pyre_strafe": "Bålsvep",
-      "crypt_knellwyrm_strafe_run": "Svepande anfall",
-      "crypt_knellwyrm_dread_bellow": "Skräckvrål",
-      "crypt_marrow_shovelful": "En skyffel jord",
-      "crypt_marrow_measure": "Mätt för graven",
-      "crypt_marrow_burial_toll": "Begravningsklang",
-      "crypt_marrow_gravediggers_blow": "Dödgrävarens slag",
-      "crypt_lady_brides_lament": "Brudens klagan",
-      "crypt_lady_frozen_embrace": "Frusen omfamning",
-      "crypt_lady_embrace_hold": "Frusen omfamning",
-      "crypt_lady_bridal_freeze": "Brudfrysning",
-      "crypt_ilvane_dirge": "Klagosång från hålrummet",
-      "crypt_ilvane_unbroken_dirge": "Obruten vers",
-      "crypt_ilvane_bone_organ": "Benorgel",
-      "crypt_morthen_shadow_pulse": "Skuggpuls",
-      "crypt_morthen_rite_of_the_unquiet": "De oroligas rit",
-      "crypt_morthen_reap_the_unquiet": "Skörda de oroliga",
-      "kituse_crypt_relight_candle": "Tänd ljuset igen",
-      "crypt_knellwyrm_knell_rise": "Brinnande dödsklang",
-      "crypt_knellwyrm_knell_mark": "Brinnande dödsklang",
-      "crypt_knellwyrm_knell_breath": "Brinnande dödsklang",
-      "crypt_knellwyrm_knell_land": "Brinnande dödsklang",
       "bastion_brine_mend": "Saltvattenläkning",
       "bastion_fog_ward": "Dimskydd",
       "bastion_halberd_sweep": "Hillebardsvep",
@@ -26563,9 +26453,6 @@ export const sv_SE: EnTranslations = {
       "restless_bones": {
         "name": "Rastlösa ben"
       },
-      "marrow_restless_bones": {
-        "name": "Rastlöst skelett"
-      },
       "gorrak": {
         "name": "Gorrak den skoningslöse"
       },
@@ -26667,90 +26554,6 @@ export const sv_SE: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Benklädd gengångare"
-      },
-      "crypt_shambler": {
-        "name": "Kryptvandrare"
-      },
-      "hollow_acolyte": {
-        "name": "Ihålig akolyt"
-      },
-      "bonechill_widow": {
-        "name": "Benkylsänka"
-      },
-      "sexton_marrow": {
-        "name": "Klockare Marrow"
-      },
-      "morthen": {
-        "name": "Morthen Gravkallaren"
-      },
-      "ossuary_sentinel": {
-        "name": "Benhusväktare"
-      },
-      "hollow_gravedigger": {
-        "name": "Ihålig dödgrävare"
-      },
-      "rime_egg_sac": {
-        "name": "Rimfrostsäggsäck"
-      },
-      "rimeweb_hatchling": {
-        "name": "Rimnätsunge"
-      },
-      "rimeweb_spinner": {
-        "name": "Rimnätsspinnare"
-      },
-      "candlewright_acolyte": {
-        "name": "Ljusmakarakolyt"
-      },
-      "hollow_chorister": {
-        "name": "Ihålig korist"
-      },
-      "bound_soul": {
-        "name": "Bunden själ"
-      },
-      "rimeweb": {
-        "name": "Benkylans dam"
-      },
-      "cantor_ilvane": {
-        "name": "Kantor Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Benhuskrigare"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Gravkallaradept"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Benhusets strupskärare"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Gravkallarnekromantiker"
-      },
-      "crypt_bone_minion": {
-        "name": "Bentjänare"
-      },
-      "crypt_bone_brute": {
-        "name": "Benbest"
-      },
-      "crypt_bone_pile": {
-        "name": "Rörliga ben"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Kapellgargoyl"
-      },
-      "crypt_crow_caller": {
-        "name": "Kråkkallare"
-      },
-      "crypt_carrion_crow": {
-        "name": "Askråka"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Benhusdrake"
-      },
-      "crypt_knellwyrm": {
-        "name": "Dödsklangslindorm"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Minnesljus"
       },
       "bastion_revenant": {
         "name": "Bastionens gengångare"
@@ -28700,16 +28503,6 @@ export const sv_SE: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "De rastlösa döda",
-        "text": "Den gamla ruinen på den nordvästra kullen var en gång ett kapell, och dess gård en viloplats. Något har stört de döda ur deras sömn. Skänk dem frid, {playerName} - återlämna 8 Rastlösa ben till jorden.",
-        "completion": "Må de vila nu, och må Ljuset förlåta vad som än väckte dem.",
-        "objectives": {
-          "0": {
-            "label": "Rastlösa ben lagda till ro"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Stulna förråd",
         "text": "De där banditerna slog till mot min senaste vagn och kom undan med fyra lådor varor - verktyg, salt, fint Östbäckslinne. Lådorna är staplade runt deras läger i de nordvästra kullarna. Stjäl tillbaka dem åt mig, är du snäll?",
@@ -28720,26 +28513,6 @@ export const sv_SE: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Viskningar där nere",
-        "text": "Du har lagt de döda till ro, men de förblir inte vilande - något kallar tillbaka dem. Genomsök kapellruinen efter varje spår av den som kallar. Om du hittar ett sigill eller insegel, ta det till mig orört.",
-        "completion": "Det här sigillet... det bär Gravkallarnas märke, en sekt jag hade bett att vore utdöd. Det här är värre än jag fruktade, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Gravkallarens sigill"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "De dödas namn",
-        "text": "Om Gravkallarna reste våra döda måste jag veta vilkas gravar de plundrade. Kapellets klockare förde en begravningsliggare, och vinden har spridit dess sidor över kapellgården. Samla 3 av dem åt mig, {playerName} - de döda förtjänar att kallas vid sina namn.",
-        "completion": "Dessa arma själar... och se här. Klockare Marrow - kapellets egen levande vårdare - hans grav den första som stördes. Morthen började med just den man som begravde Östbäcks döda.",
-        "objectives": {
-          "0": {
-            "label": "Väderbiten liggarsida"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Tysta kallelsen",
         "text": "Varje namn i den liggaren är en själ Morthen tänker släpa upp ur jorden, och kapellgården kryllar redan av dem han har kallat. Återför 12 rastlösa ben till sina gravar, {playerName}, innan Gravkallarens viskning sväller till en kör.",
@@ -28747,49 +28520,6 @@ export const sv_SE: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Rastlösa ben tystade"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Den bindande riten",
-        "text": "Kryptan under kapellet måste öppnas om vi ska stoppa Gravecallern - men endast en bindande rit låter de levande passera. Jag behöver 4 klumpar välsignad talg - gruvans grävare hamstrar talg lådvis - och 6 spöklika essenser från de rastlösa döda.",
-        "completion": "Det är gjort. Vägen nedåt står öppen... och må Ljuset förlåta mig för att jag öppnade den. Samla dina starkaste följeslagare innan du stiger ner, {playerName}. Ingen bör möta den Ihåliga ensam.",
-        "objectives": {
-          "0": {
-            "label": "Välsignad talg"
-          },
-          "1": {
-            "label": "Spöklik essens"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "In i det ihåliga",
-        "text": "Morthen Gravkallaren väntar på botten av Den ihåliga kryptan, omringad av de elitdöda han har rest. Han är långt bortom någon enskild hjälte - ta fyra följeslagare, inte färre. Gör slut på honom, och Dalens döda kommer äntligen att sova.",
-        "completion": "Viskningarna har upphört. Du har gjort vad hela Dalen inte kunde, {playerName} - de döda sover, och Östbäck är dig skyldig allt det har.",
-        "objectives": {
-          "0": {
-            "label": "Morthen Gravkallaren dräpt"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "Klockarens klocka",
-        "text": "Liggaren namngav honom och kryptan rymmer honom: klockare Marrow, kapellets vårdare, den förste man Morthen reste - vaktande sin mästares dörr i döden lika troget som han skötte kapellet i livet. Ta med fyra följeslagare in i Den ihåliga kryptan och skänk den gamle klockaren den ro han berövades, {playerName}.",
-        "completion": "Så Marrow är äntligen fri. Ring ingen klocka för honom - han hörde tillräckligt av dem i livet.",
-        "objectives": {
-          "0": {
-            "label": "Klockare Marrow lagd till ro"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "Gravkallarens spår",
-        "text": "Morthen är död, men en fråga gnager i mig: en sekt som gömt sig i ett sekel slösar inte bort sig själv på ett enda bykapell. Han höll en grimoar - sina riter, sin korrespondens. Om något av den överlever, ligger den i sakristian i det ödelagda kapellet ovanför kryptan. Genomsök ruinen och hämta mig vad som än återstår av hans skrifter, {playerName}.",
-        "completion": "Morthen skrev till en 'Fogbinder' i det norra kärret. Sekten är inte död, {playerName} - den har bara varit tålmodig.",
-        "objectives": {
-          "0": {
-            "label": "Morthens grimoar"
           }
         }
       },
@@ -32720,11 +32450,6 @@ export const sv_SE: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "Den ihåliga kryptan",
-        "enterText": "Du stiger ner i Den ihåliga kryptan ...",
-        "leaveText": "Du klättrar tillbaka upp i dagsljuset."
-      },
       "sunken_bastion": {
         "name": "Den sjunkna bastionen",
         "enterText": "Du vadar ner i Den sjunkna bastionen ...",
@@ -32833,11 +32558,6 @@ export const sv_SE: EnTranslations = {
         "sender": "Marskalk Redbrook",
         "subject": "Gamle Gråkäft, äntligen",
         "body": "Nyheter färdas snabbt i en så liten stad. Herdarna skålade för din hälsa i går kväll, och Wilkes svär att vargen var stor som en kärra. Låt dem brodera ut det: du har förtjänat det.\n\nÄt en måltid på vaktens bekostnad.\n- Marskalk Redbrook"
-      },
-      "letter_q_hollow": {
-        "sender": "Broder Aldric",
-        "subject": "Det du gjorde i mörkret",
-        "body": "Få kommer någonsin att veta vad som låg begravet i den sänkan, och ännu färre skulle tro det. Jag vet, och jag kommer inte att glömma.\n\nMå din väg förbli upplyst.\n- Broder Aldric"
       },
       "heroic_marks_reward": {
         "sender": "Heroisk kvartermästare",

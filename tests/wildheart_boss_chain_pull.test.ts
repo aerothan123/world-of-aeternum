@@ -99,7 +99,6 @@ describe('Wildheart Basin premature boss pull', () => {
     // docs/design/dungeon-rework: bossChainPull stays on everywhere).
     const OPTED_IN = new Set([
       'wildheart_basin',
-      'hollow_crypt',
       'sunken_bastion',
       'drowned_temple',
       'gravewyrm_sanctum',

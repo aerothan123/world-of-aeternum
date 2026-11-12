@@ -31,10 +31,10 @@ import { LEDGE_GRAB_MIN } from '../src/sim/physics/ledge';
 import { traversalBand } from '../src/sim/traversal_band';
 import { WORLD_BOSSES } from '../src/sim/world_boss';
 
-// The release/v0.45.0 dungeon roster, by id and index (index 6 is unused). An
+// The release/v0.45.0 dungeon roster, by id and index (index 6 is unused; 0
+// was the Hollow Crypt's, retired 2026-11-11). An
 // authored map registers no dungeon of its own, so the roster never changes.
 const RELEASE_DUNGEONS = [
-  'hollow_crypt#0',
   'sunken_bastion#1',
   'gravewyrm_sanctum#2',
   'drowned_temple#3',

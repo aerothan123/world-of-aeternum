@@ -1,5 +1,6 @@
-// Evidence frames of the Hollow Crypt and Sunken Bastion trash mechanics pass
-// (src/sim/mob/trash_kit/crypt_kit.ts, bastion_kit.ts) in a live offline world:
+// Evidence frames of the Sunken Bastion trash mechanics pass
+// (src/sim/mob/trash_kit/bastion_kit.ts) in a live offline world (the Hollow
+// Crypt's sequences left with the dungeon, retired 2026-11-11):
 // every mechanic set up with /dev spawns, framed, saved frame by frame and
 // joined into one strip per mechanic. Evidence tooling, not a repo test.
 //
@@ -24,124 +25,12 @@ const PRESET = Number(process.env.SHOT_PRESET ?? 4);
 fs.mkdirSync(OUT, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Each sequence: the dungeon (crypt | bastion) and difficulty, the mobs to
+// Each sequence: the dungeon (bastion) and difficulty, the mobs to
 // spawn (/dev <d> spawn <type>, each 10 yd ahead of where the player faces,
 // the player turned by `spread` between spawns), a setup action, then the
 // trigger: a cast id to wait for on a bar, an aura id to wait for, or an
 // action, and the frames (ms after the trigger) to save.
 const SEQS = [
-  // ---- the Hollow Crypt ----
-  {
-    id: 'reensamblar',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['necromancer', 'warrior'],
-    spread: 0.6,
-    action: 'killWarrior',
-    frames: [300, 2500, 5500, 7600, 8300, 9200],
-    cam: { yaw: 0.2, pitch: 0.45, dist: 16 },
-  },
-  {
-    id: 'reensamblar_romper',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['necromancer', 'warrior'],
-    spread: 0.6,
-    action: 'killWarriorThenPile',
-    frames: [300, 2500, 3100, 3600],
-    cam: { yaw: 0.2, pitch: 0.45, dist: 16 },
-  },
-  {
-    id: 'ruptura_tumba',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['necromancer', 'adept'],
-    spread: 0.4,
-    action: 'killAdept',
-    cast: 'crypt_grave_rupture',
-    frames: [100, 900, 1800, 2500, 2800, 3300],
-    cam: { yaw: 0.3, pitch: 0.55, dist: 20 },
-  },
-  {
-    id: 'ruptura_tumba_heroico',
-    dir: 'cripta',
-    d: 'crypt',
-    heroic: true,
-    spawn: ['necromancer', 'adept'],
-    spread: 0.4,
-    action: 'killAdept',
-    cast: 'crypt_grave_rupture',
-    frames: [1800, 2600, 3200, 4200, 5200],
-    cam: { yaw: 0.3, pitch: 0.55, dist: 20 },
-  },
-  {
-    id: 'estallido_astillas',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['warrior', 'minion'],
-    spread: 0.15,
-    action: 'killMinion',
-    frames: [200, 1000, 1700, 1950, 2300, 2900],
-    cam: { yaw: 0.4, pitch: 0.5, dist: 15 },
-  },
-  {
-    id: 'machacar_bruto',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['brute'],
-    cast: 'crypt_marrow_crush',
-    frames: [100, 800, 1500, 2050, 2400, 3000],
-    cam: { yaw: 1.2, pitch: 0.5, dist: 18 },
-  },
-  {
-    id: 'piel_granito',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['gargoyle'],
-    aura: { id: 'crypt_granite_skin', stacks: 5 },
-    action: 'stunGargoyle',
-    actionAfter: 1200,
-    frames: [0, 600, 1300, 1600, 2200, 4000],
-    cam: { yaw: 1.0, pitch: 0.35, dist: 16 },
-  },
-  {
-    id: 'ojo_carrona',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['caller'],
-    cast: 'crypt_carrion_eye',
-    frames: [100, 900, 1600, 2200, 3500, 5000],
-    cam: { yaw: 1.4, pitch: 0.35, dist: 18 },
-  },
-  {
-    id: 'ascuas_tumulo_heroico',
-    dir: 'cripta',
-    d: 'crypt',
-    heroic: true,
-    spawn: ['drake'],
-    cast: 'crypt_barrowflame_breath',
-    frames: [900, 2100, 2800, 4000, 5500, 7200],
-    cam: { yaw: 1.3, pitch: 0.6, dist: 30 },
-  },
-  {
-    id: 'escupitajo_escarcha',
-    dir: 'cripta',
-    d: 'crypt',
-    spawn: ['widow'],
-    cast: 'crypt_rimesilk_spit',
-    frames: [100, 700, 1300, 1700, 2500, 3300],
-    cam: { yaw: 1.2, pitch: 0.55, dist: 20 },
-  },
-  {
-    id: 'tendon_degollador',
-    dir: 'cripta',
-    d: 'crypt',
-    heroic: true,
-    spawn: ['cutthroat'],
-    spawnDist: 14,
-    frames: [1800, 2400, 3000, 6000, 6800, 7600],
-    cam: { yaw: 1.3, pitch: 0.4, dist: 18 },
-  },
   // ---- the Sunken Bastion ----
   {
     id: 'bichero',
@@ -262,31 +151,6 @@ async function action(page, name) {
     const mobs = [...w.entities.values()].filter((e) => e.kind === 'mob' && !e.dead);
     const first = (t) => mobs.find((e) => e.templateId === t);
     const kill = (e) => e && ctx.handleDeath(e, me);
-    if (n === 'killWarrior') kill(first('crypt_ossuary_warrior'));
-    if (n === 'killWarriorThenPile') {
-      kill(first('crypt_ossuary_warrior'));
-      setTimeout(() => {
-        for (const e of w.entities.values())
-          if (e.templateId === 'crypt_bone_pile' && !e.dead)
-            ctx.dealDamage(me, e, e.maxHp, false, 'physical', 'Strike', 'hit');
-      }, 2800);
-    }
-    if (n === 'killAdept') kill(first('crypt_gravecaller_adept'));
-    if (n === 'killMinion') kill(first('crypt_bone_minion'));
-    if (n === 'stunGargoyle') {
-      const g = first('crypt_chapel_gargoyle');
-      if (g)
-        ctx.applyAura(g, {
-          id: 'shot_stun',
-          name: 'Stun',
-          kind: 'stun',
-          remaining: 2,
-          duration: 2,
-          value: 0,
-          sourceId: me.id,
-          school: 'physical',
-        });
-    }
     if (n === 'stepToArbalest') {
       const a = first('fogbound_arbalest');
       if (a) {
@@ -358,12 +222,11 @@ async function enter(page, d, heroic) {
   await sleep(2500);
   // A quiet bench: the packs round the bench die (never a boss: a heroic
   // final boss kill would lock the next heroic run out).
-  const packs =
-    d === 'crypt' ? ['c1', 'c2', 'c3', 'c4', 'p1', 'drake'] : ['f1', 'f2', 'fa', 'fb', 'f3'];
+  const packs = ['f1', 'f2', 'fa', 'fb', 'f3'];
   for (const pack of packs) await chat(page, `/dev ${d} kill ${pack}`);
   await sleep(800);
-  // A clear patch of floor: the crypt cloister, the Bastion's tidal flats.
-  await chat(page, d === 'crypt' ? '/dev crypt tp cloister' : '/dev bastion tp flats');
+  // A clear patch of floor: the Bastion's tidal flats.
+  await chat(page, `/dev ${d} tp flats`);
   await sleep(1500);
 }
 
@@ -488,7 +351,7 @@ async function main() {
     let field = '';
     for (const seq of SEQS) {
       if (ONLY.length && !ONLY.includes(seq.id)) continue;
-      const want = seq.d === 'crypt' ? 'hollowCryptField' : 'sunkenBastionField';
+      const want = 'sunkenBastionField';
       try {
         await runSeq(page, seq);
         if (field !== want) {

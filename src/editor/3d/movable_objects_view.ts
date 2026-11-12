@@ -12,7 +12,6 @@ import type { Renderer } from '../../render/renderer';
 import { FARM_PATCHES } from '../../sim/content/farm_patches';
 import { activeGatherNodes } from '../../sim/data';
 import { DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID } from '../../sim/drowned_temple_entrance';
-import { HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID } from '../../sim/hollow_crypt_entrance';
 import { farmPatchesFor, type ObjectMoves } from '../../sim/moved_objects';
 import { SANCTUM_SEAL_GATE_DUNGEON_ID } from '../../sim/sanctum_seal_gate';
 import type { Sim } from '../../sim/sim';
@@ -169,12 +168,11 @@ export class MovableObjectsView {
     return shown;
   }
 
-  /** Whether a door carries an entrance set piece (the five built ones). */
+  /** Whether a door carries an entrance set piece (the four built ones). */
   private hasSetPiece(dungeonId: string): boolean {
     return [
       SANCTUM_SEAL_GATE_DUNGEON_ID,
       SUNKEN_BASTION_ENTRANCE_DUNGEON_ID,
-      HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID,
       DROWNED_TEMPLE_ENTRANCE_DUNGEON_ID,
       WILDHEART_BASIN_ENTRANCE_DUNGEON_ID,
     ].includes(dungeonId);

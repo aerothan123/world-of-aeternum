@@ -34,7 +34,7 @@ import {
 import { refinedGroundWeights } from '../../src/render/world_style_ground_core';
 import { streetlampPlacements } from '../../src/sim/colliders';
 import { ZONE1_FLOWER_MEADOWS } from '../../src/sim/content/zone1';
-import { activeDungeonDoorPos, DUNGEONS, getActiveWorldContent } from '../../src/sim/data';
+import { getActiveWorldContent } from '../../src/sim/data';
 import { rockHeightOf } from '../../src/sim/decoration_dims';
 import {
   DOCK_SECTION_LOCAL_Z,
@@ -46,7 +46,6 @@ import {
 import { EASTBROOK_LAYOUT } from '../../src/sim/eastbrook_layout';
 import { grassClearedAt } from '../../src/sim/grass_clear';
 import { generateGroundDressing } from '../../src/sim/ground_dressing';
-import { HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID } from '../../src/sim/hollow_crypt_entrance';
 import { DOCK_BOAT } from '../../src/sim/prop_layout';
 import { fbm2, hash2 } from '../../src/sim/rng';
 import type { BiomeId, ZonePropsDef } from '../../src/sim/types';
@@ -592,25 +591,6 @@ export function collectPlacements(
       fit: { mode: 'raw', scale: sp.scale },
       seatOnGround: false,
     });
-  }
-  // the Fallen Chapel over the Hollow Crypt's door: the four Blender GLBs
-  // render/hollow_crypt_entrance.ts seats at the door, unrotated, at scale 1
-  const crypt = DUNGEONS[HOLLOW_CRYPT_ENTRANCE_DUNGEON_ID];
-  const cryptDoor = crypt ? activeDungeonDoorPos(crypt) : null;
-  if (cryptDoor && inside(b, cryptDoor.x, cryptDoor.z)) {
-    for (const part of ['', '_walls', '_props', '_growth']) {
-      add({
-        id: `landmark:hollow_crypt_entrance${part}`,
-        source: 'landmarks',
-        path: `/models/props/hollow_crypt_entrance${part}.glb`,
-        x: cryptDoor.x,
-        y: terrainHeight(cryptDoor.x, cryptDoor.z, seed),
-        z: cryptDoor.z,
-        rotY: 0,
-        fit: { mode: 'raw', scale: 1 },
-        seatOnGround: false,
-      });
-    }
   }
   clutter('mines', P.mines, 'oreRocks', 3);
   clutter('mudHuts', pair(P.mudHuts), 'mudfinHutA', 4);

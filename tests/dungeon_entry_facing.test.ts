@@ -106,8 +106,8 @@ describe('online dungeon entry facing fence', () => {
 
   it('acknowledges a pending nonzero entry on a newly constructed client', () => {
     const id = 43;
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
     const sent: string[] = [];
     const client = bareClient(id, {
       mouselookFacing: Math.PI,
@@ -118,7 +118,7 @@ describe('online dungeon entry facing fence', () => {
       },
     });
 
-    applySelf(client, selfWire(id, origin.x + crypt.entry.x, origin.z + crypt.entry.z, 0, 4));
+    applySelf(client, selfWire(id, origin.x + bastion.entry.x, origin.z + bastion.entry.z, 0, 4));
 
     expect(JSON.parse(sent.at(-1) ?? '{}')).toMatchObject({ facing: 0, de: 4 });
     expect(client.consumeDungeonEntryFacing()).toBe(0);
@@ -126,8 +126,8 @@ describe('online dungeon entry facing fence', () => {
 
   it('uses the spatial fallback when an older server omits entry tokens', () => {
     const id = 44;
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
     const sent: string[] = [];
     const client = bareClient(id, {
       mouselookFacing: Math.PI,
@@ -138,10 +138,10 @@ describe('online dungeon entry facing fence', () => {
         send: (raw: string) => sent.push(raw),
       },
     });
-    applySelf(client, selfWire(id, crypt.doorPos.x, crypt.doorPos.z, Math.PI));
+    applySelf(client, selfWire(id, bastion.doorPos.x, bastion.doorPos.z, Math.PI));
     const sentAtDoor = sent.length;
 
-    applySelf(client, selfWire(id, origin.x + crypt.entry.x, origin.z + crypt.entry.z, 0));
+    applySelf(client, selfWire(id, origin.x + bastion.entry.x, origin.z + bastion.entry.z, 0));
 
     expect(sent).toHaveLength(sentAtDoor + 1);
     expect(JSON.parse(sent.at(-1) ?? '{}')).toMatchObject({ facing: 0, mi: { f: 1 } });
@@ -151,8 +151,8 @@ describe('online dungeon entry facing fence', () => {
 
   it('cancels queued entry presentation after an exit or reconnect reset', () => {
     const id = 45;
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
     const client = bareClient(id, {
       mouselookFacing: Math.PI,
       ws: {
@@ -161,9 +161,9 @@ describe('online dungeon entry facing fence', () => {
         send: () => {},
       },
     });
-    applySelf(client, selfWire(id, crypt.doorPos.x, crypt.doorPos.z, Math.PI, 0));
-    applySelf(client, selfWire(id, origin.x + crypt.entry.x, origin.z + crypt.entry.z, 0, 1));
-    applySelf(client, selfWire(id, crypt.doorPos.x, crypt.doorPos.z, 1.25));
+    applySelf(client, selfWire(id, bastion.doorPos.x, bastion.doorPos.z, Math.PI, 0));
+    applySelf(client, selfWire(id, origin.x + bastion.entry.x, origin.z + bastion.entry.z, 0, 1));
+    applySelf(client, selfWire(id, bastion.doorPos.x, bastion.doorPos.z, 1.25));
     expect(client.consumeDungeonEntryFacing()).toBeNull();
 
     (client as unknown as { pendingDungeonEntryFacing: number | null }).pendingDungeonEntryFacing =
@@ -178,9 +178,9 @@ describe('online dungeon entry facing fence', () => {
   });
 
   it('acknowledges every new generation and ignores absent or malformed tokens', () => {
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
-    const insideX = origin.x + crypt.entry.x;
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
+    const insideX = origin.x + bastion.entry.x;
     expect(dungeonEntrySnapshotFacing(null, 0, insideX, insideX, 0, Math.PI)).toEqual({
       entrySeq: 0,
       inputFacing: Math.PI,
@@ -224,7 +224,7 @@ describe('online dungeon entry facing fence', () => {
       forceFacing: false,
     });
     expect(
-      dungeonEntrySnapshotFacing(null, 2, crypt.doorPos.x, crypt.doorPos.x, 0, Math.PI),
+      dungeonEntrySnapshotFacing(null, 2, bastion.doorPos.x, bastion.doorPos.x, 0, Math.PI),
     ).toEqual({
       entrySeq: 2,
       inputFacing: Math.PI,
@@ -236,8 +236,8 @@ describe('online dungeon entry facing fence', () => {
       dungeonEntrySnapshotFacing(
         null,
         undefined,
-        crypt.doorPos.x,
-        origin.x + crypt.entry.x,
+        bastion.doorPos.x,
+        origin.x + bastion.entry.x,
         0,
         Math.PI,
       ),

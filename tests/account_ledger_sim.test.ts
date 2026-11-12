@@ -32,8 +32,8 @@ import {
 import { type CharacterState, Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
 
-const CATALOGUE_RELIC = 'cryptbone_helm';
-const PAGE_ID = 'conquerors_hollow_crypt';
+const CATALOGUE_RELIC = 'tideguard_greaves';
+const PAGE_ID = 'conquerors_sunken_bastion';
 const MARK_ID = 'gather_event:pristine_vein';
 const MOUNT_KEY = RELIQUARY_HORIZON_MOUNTS[0];
 const TITLE_DEED = DEED_ORDER.find((id) => DEEDS[id].reward?.kind === 'title')!;
@@ -104,7 +104,7 @@ describe('grant paths append the acting character', () => {
       pid: meta.entityId,
     });
     expect(evs[0].retro).toBeUndefined();
-    expect(meta.accountLedger.relics.has('item:cryptbone_helm')).toBe(true);
+    expect(meta.accountLedger.relics.has('item:tideguard_greaves')).toBe(true);
     expect(meta.accountLedger.relics.has('item:bone_fragments')).toBe(false);
   });
 
@@ -170,7 +170,7 @@ describe('both lanes read the account union: display, and the Reliquary-derived 
     recordAccountRelic(meta.accountLedger, accountRelicKey('item', CATALOGUE_RELIC), ALT);
     expect(sim.reliquaryPageCompletion(PAGE_ID)?.owned).toBe(1);
     expect(sim.reliquaryCuratorRank()).toBe(1);
-    expect(sim.reliquaryAccountFinds.get('item:cryptbone_helm')).toEqual([ALT]);
+    expect(sim.reliquaryAccountFinds.get('item:tideguard_greaves')).toEqual([ALT]);
     // The character's own discovery set is untouched: the union, never a copy.
     expect(meta.deedStats.itemsDiscovered.has(CATALOGUE_RELIC)).toBe(false);
     // The one ownership read every grant path uses is that same union.
@@ -257,17 +257,17 @@ describe('both lanes read the account union: display, and the Reliquary-derived 
 
   /** Seed `count` catalogued item relics onto the ledger as the alt's finds,
    *  drawn from Thunzharr minus its last relic (so the flagship page stays one
-   *  short and no ladder title moves the count) and then from the Hollow Crypt
+   *  short and no ladder title moves the count) and then from the Sunken Bastion
    *  uniques (a page far too large for two fills to complete). Returns the
    *  seeded relics in order. */
   function seedAltItemFinds(meta: { accountLedger: AccountLedger }, count: number) {
     const thunzharr = RELIQUARY_PAGES_BY_ID[FLAGSHIP_PAGE].relics.slice(0, -1);
-    const crypt = RELIQUARY_PAGES_BY_ID[PAGE_ID].relics;
-    const pool = [...thunzharr, ...crypt].filter(
+    const bastion = RELIQUARY_PAGES_BY_ID[PAGE_ID].relics;
+    const pool = [...thunzharr, ...bastion].filter(
       (r): r is Extract<typeof r, { kind: 'item' }> => r.kind === 'item',
     );
     expect(pool.length).toBeGreaterThan(count);
-    expect(crypt.length - (count - thunzharr.length)).toBeGreaterThan(1);
+    expect(bastion.length - (count - thunzharr.length)).toBeGreaterThan(1);
     const seeded = pool.slice(0, count);
     for (const relic of seeded) {
       recordAccountRelic(meta.accountLedger, accountRelicKey('item', relic.itemId), ALT);

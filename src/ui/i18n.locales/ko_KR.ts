@@ -6831,7 +6831,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.willowfen_remedy_caravan.name': '버들늪 약품 대상단',
   'entities.mobs.frostveil_supply_caravan.name': '서리장막 보급 대상단',
   'entities.mobs.restless_bones.name': '불안한 뼈무더기',
-  'entities.mobs.marrow_restless_bones.name': '불안한 뼈무더기',
   'entities.mobs.gorrak.name': '무자비한 고라크',
   'entities.mobs.mire_prowler.name': '수렁 배회자',
   'entities.mobs.deepfen_murloc.name': '딥펜 무는이',
@@ -6873,11 +6872,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.wyrmcult_zealot.name': '용서약단 광신도',
   'entities.mobs.wyrmcult_necromancer.name': '용서약단 강령술사',
   'entities.mobs.boneclad_revenant.name': '뼈갑옷 망령',
-  'entities.mobs.crypt_shambler.name': '묘실 비틀걸음',
-  'entities.mobs.hollow_acolyte.name': '공허의 수행사제',
-  'entities.mobs.bonechill_widow.name': '뼈서리 과부거미',
-  'entities.mobs.sexton_marrow.name': '성구지기 매로우',
-  'entities.mobs.morthen.name': '무덤부름 모르덴',
   'entities.mobs.bastion_revenant.name': '요새 망령',
   'entities.mobs.tidebound_acolyte.name': '조수결속 수행사제',
   'entities.mobs.drowned_thrall.name': '익사한 노예',
@@ -7147,59 +7141,17 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '좋은 구리 광맥을 찾자마자 그 땅 파는 해충들이 언덕 비탈에서 쏟아져 나왔습니다. 갱도가 정리되기 전까지는 제 인부들이 발도 들이지 않을 겁니다. 깊은바위 채굴꾼 10마리를 처치하십시오.',
   'entities.quests.q_mine.completion': '하! 다시 일하러 가라, 친구들! 감사와 보수를 받으십시오.',
   'entities.quests.q_mine.objectives.0.label': '깊은바위 채굴꾼 처치',
-  'entities.quests.q_bones.title': '쉬지 못하는 죽은 자',
-  'entities.quests.q_bones.text':
-    '옛 예배당은 안식의 땅이었지만, 무언가가 죽은 자들을 깨웠습니다. 불안한 뼈무더기 8구를 흙으로 돌려보내십시오, {playerName}.',
-  'entities.quests.q_bones.completion': '이제 쉬기를. 그리고 그들을 깨운 것을 빛이 용서하기를.',
-  'entities.quests.q_bones.objectives.0.label': '불안한 뼈무더기 안식시킴',
   'entities.quests.q_supplies.title': '도난당한 보급품',
   'entities.quests.q_supplies.text':
     '도적들이 내 마지막 마차를 털었습니다. 도구, 소금, 이스트브룩 아마가 들었습니다. 북서쪽 야영지에서 보급 상자 4개를 되찾아 주십시오.',
   'entities.quests.q_supplies.completion': '내 상자들입니다! 흠집도 거의 없군요. 대단합니다.',
   'entities.quests.q_supplies.objectives.0.label': '도난당한 보급 상자',
-  'entities.quests.q_whispers.title': '아래의 속삭임',
-  'entities.quests.q_whispers.text':
-    '죽은 자들이 다시 일어납니다. 무언가가 부르고 있기 때문입니다. 예배당을 수색해 부르는 자의 표식을 온전하게 가져오십시오.',
-  'entities.quests.q_whispers.completion':
-    '이 인장은 무덤부름의 표식입니다. 이 교단이 사라졌기를 바랐는데, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': '무덤부름 인장',
-  'entities.quests.q_names_of_the_dead.title': '죽은 자들의 이름',
-  'entities.quests.q_names_of_the_dead.text':
-    '무덤부름이 우리 무덤을 더럽혔다면 누구의 잠을 훔쳤는지 알아야 합니다. {playerName}이여, 매장 장부 페이지 3장을 모아 오십시오.',
-  'entities.quests.q_names_of_the_dead.completion':
-    '가엾은 영혼들... 여기 성구지기 매로우가 처음입니다. 모르덴은 이스트브룩의 죽은 자를 묻던 사람부터 시작했습니다.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': '풍화된 장부 페이지',
   'entities.quests.q_silence_the_call.title': '부름을 침묵시키기',
   'entities.quests.q_silence_the_call.text':
     '장부의 모든 이름은 모르덴이 흙에서 끌어내려는 영혼입니다. {playerName}이여, 속삭임이 합창이 되기 전에 불안한 뼈 12구를 잠재우십시오.',
   'entities.quests.q_silence_the_call.completion':
     '묘지는 조용해졌지만, 부름은 이제 묘실 아래에서 올라옵니다, {playerName}.',
   'entities.quests.q_silence_the_call.objectives.0.label': '불안한 뼈무더기 침묵시킴',
-  'entities.quests.q_rite.title': '속박 의식',
-  'entities.quests.q_rite.text':
-    '무덤부름을 막으려면 예배당 아래 묘실의 봉인을 풀어야 합니다. 하지만 오직 속박 의식만이 산 자를 지나가게 해줍니다. 축복받은 수지 4덩어리가 필요합니다. 광산의 굴착꾼들이 수지를 궤짝째 쌓아둡니다. 그리고 안식하지 못한 죽은 자들에게서 유령 정수 6개를 가져오십시오.',
-  'entities.quests.q_rite.completion':
-    '끝났습니다. 아래로 가는 길이 열렸습니다... 가장 강한 동료들을 모으십시오, {playerName}.',
-  'entities.quests.q_rite.objectives.0.label': '축복받은 수지',
-  'entities.quests.q_rite.objectives.1.label': '유령 정수',
-  'entities.quests.q_hollow.title': '공허 속으로',
-  'entities.quests.q_hollow.text':
-    '모르덴은 텅 빈 묘실 밑바닥에서 자신이 일으킨 정예 망자들에게 둘러싸여 있습니다. 네 동료와 함께 끝내십시오.',
-  'entities.quests.q_hollow.completion':
-    '속삭임이 멎었습니다. {playerName}이여, 온 계곡이 하지 못한 일을 그대가 해냈습니다. 죽은 자들은 잠들었고, 이스트브룩은 당신에게 모든 것을 빚졌습니다.',
-  'entities.quests.q_hollow.objectives.0.label': '무덤부름 모르덴 처치',
-  'entities.quests.q_sexton.title': '성구지기의 종',
-  'entities.quests.q_sexton.text':
-    '장부에는 성구지기 매로우의 이름이 있습니다. 모르덴이 처음 일으킨 문지기입니다. {playerName}이여, 네 동료와 내려가 빼앗긴 안식을 돌려주십시오.',
-  'entities.quests.q_sexton.completion':
-    '매로우가 마침내 자유롭습니다. 종은 울리지 마십시오. 살아서 충분히 들었습니다.',
-  'entities.quests.q_sexton.objectives.0.label': '성구지기 매로우 안식시킴',
-  'entities.quests.q_gravecallers_trail.title': '무덤부름의 흔적',
-  'entities.quests.q_gravecallers_trail.text':
-    '모르덴은 죽었지만, 한 세기 숨어 있던 교단이 한 예배당 때문에 움직였을 리 없습니다. {playerName}이여, 폐허에서 그의 마법서를 찾으십시오.',
-  'entities.quests.q_gravecallers_trail.completion':
-    "모르덴은 북쪽 습지의 '안개엮는자'에게 편지를 보냈습니다. 교단은 죽지 않았습니다, {playerName}이여. 그저 참을성 있게 기다렸을 뿐입니다.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': '모르덴의 마법서',
   'entities.quests.q_bandits.title': '계곡의 도적들',
   'entities.quests.q_bandits.text':
     '북서쪽 언덕에 칼잡이들이 야영하고 있습니다. 이번 주에 마차 셋을 털었습니다. 계곡 도적 10명을 처치하십시오.',
@@ -7918,9 +7870,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_seal_restored.completion':
     '여기서도 닫히는 것이 느껴졌네. 황혼처럼 부드럽게. 골짜기는 벗을 기억한다네, {playerName}. 아무리 멀리 떠나도 큰 나무 아래에는 언제나 그대를 위한 불빛이 있을 걸세.',
   'entities.quests.q_seal_restored.objectives.0.label': '봉인을 봉인석에 되돌려 놓았다',
-  'entities.dungeons.hollow_crypt.name': '텅 빈 묘실',
-  'entities.dungeons.hollow_crypt.enterText': '텅 빈 묘실로 내려갑니다...',
-  'entities.dungeons.hollow_crypt.leaveText': '다시 햇빛 아래로 올라옵니다.',
   'entities.dungeons.sunken_bastion.name': '가라앉은 요새',
   'entities.dungeons.sunken_bastion.enterText':
     '가라앉은 요새의 깊은 곳으로 물을 헤치며 들어갑니다...',
@@ -9884,8 +9833,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'guide.dungeonsPage.levelExact': '{n}레벨',
   'guide.dungeonsPage.raidSize': '10인, {n}레벨',
   'guide.dungeonsPage.hollowName': '공허의 묘소',
-  'guide.dungeonsPage.hollowBody':
-    '도굴당한 예배당 묘소로, 갓 죽은 자들이 안식하기를 거부하는 곳. 새 파티의 첫 진정한 시험대입니다.',
   'guide.dungeonsPage.bastionName': '가라앉은 성채',
   'guide.dungeonsPage.bastionBody':
     '습지에 삼켜진 침수된 요새로, 물에 빠진 수호자들과 차오르는 밀물 그 자체가 지키고 있습니다.',
@@ -12797,10 +12744,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': '늙은 회색이빨, 마침내',
   'entities.letters.letter_q_greyjaw.body':
     '이런 작은 마을에서는 소문이 빠르게 도는 법이오. 목동들은 어젯밤 그대의 건강을 위해 잔을 들었고, 윌크스는 그 늑대가 수레만 했다고 우기고 있소. 부풀리게 내버려 두시오. 그대가 얻어낸 명성이니.\n\n경비대를 대신해 식사 한 끼 하시오.\n- 레드브룩 원수',
-  'entities.letters.letter_q_hollow.sender': '알드릭 수사',
-  'entities.letters.letter_q_hollow.subject': '그대가 어둠 속에서 해낸 일',
-  'entities.letters.letter_q_hollow.body':
-    '그 구렁에 무엇이 묻혀 있었는지 아는 이는 거의 없고, 믿을 이는 더 적을 것입니다. 저는 알고 있고, 잊지 않겠습니다.\n\n그대의 길에 늘 빛이 함께하기를.\n- 알드릭 수사',
   'entities.letters.heroic_marks_reward.sender': '영웅 병참장교',
   'entities.letters.heroic_marks_reward.subject': '당신의 영웅의 징표',
   'entities.letters.heroic_marks_reward.body':
@@ -14243,34 +14186,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.finder.partyMemberMeta': '{level}레벨 {cls}',
   'hudChrome.finder.difficultyHeading': '난이도',
   'hudChrome.finder.mech.shadow_pulse': '어둠의 파동(주기적 광역 피해)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    '한 삽의 무덤흙(11초마다 앞쪽 8미터 부채꼴에 무덤흙을 뿌림: 평타의 1.5배 피해와 6초 동안 이동 속도 50% 감소. 그의 뒤에 서세요)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    '무덤 치수 재기(15초마다 탱커가 아닌 플레이어를 표시. 4초 후 그 발밑에 열린 무덤이 무너져 일반 난이도 기준 3미터 안에 42~52 피해. 구덩이는 전투 내내 남아 안에 있으면 초당 9 피해와 이동 속도 40% 감소. 무덤은 묘지 가장자리에 만드세요)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    '장례의 종소리(생명력 66%와 33%에서 종 밧줄로 성큼 걸어가 피해 면역 상태로 3초 동안 종을 울림: 일반 난이도 기준 모두에게 30~38 암흑 피해, 열린 무덤마다 불안한 뼈무더기가 일어남)',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    '영웅: 무덤꾼의 일격이 9초마다 탱커를 타격(중첩당 받는 피해 6% 증가, 20초, 최대 6중첩), 무덤의 활력(무덤 안에 서 있으면 공격 속도 30% 증가), 불안한 대지(무덤 안에 2초 머물면 그 자리에서 불안한 뼈무더기가 일어남)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    '신부의 애가(22초마다 3초 동안 통곡: 일반 난이도 기준 켜진 무덤 등불의 빛 밖에 있는 모두에게 60~75 냉기 피해, 이미 받은 남은 애가 중첩마다 절반씩 증가. 등불 하나는 최대 2명만 보호하며 누군가를 보호하면 28초 동안 꺼집니다. 흩어져서 교대로 쓰세요)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    '얼어붙은 포옹(30초마다 탱커가 아닌 플레이어를 붙잡아 함께 5미터 높이로 떠오름, 초당 6 냉기 피해: 8초 안에 그녀의 생명력 6%를 깎으면 내려놓지만, 아니면 떨어뜨려 일반 난이도 기준 150~180 피해)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    '서리길(그녀가 지나간 자리에 25초 동안 미끄러운 서리가 남음: 그 위에서는 천천히 가속하고 멈추거나 방향을 틀 때 계속 미끄러집니다)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    '신부의 결빙(생명력이 절반이 되면 협곡 바닥 전체가 얼어붙어 남은 전투 내내 미끄러운 얼음이 됩니다)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    '영웅: 켜진 등불은 30초가 지나면 저절로 꺼져 10초 동안 어두워지고, 얼어붙은 포옹은 두 명을 붙잡습니다',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    '공허의 만가(16초마다 차단 가능한 2.5초 노래: 끝까지 부르면 일반 난이도 기준 45미터 안에서 그녀가 보이는 모두에게 105~125 암흑 피해와 4초 침묵. 차단하거나 성가대 기둥 뒤에 숨으세요)',
-  'hudChrome.finder.mech.crypt_harmony':
-    '화음(살아 있는 성가대원 한 명마다 그녀가 받는 피해가 30% 감소: 성가대원을 먼저 처치하세요)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    '뼈 오르간(26초마다 뼈 오르간을 연주: 암흑 음표 두 파도가 성가대석 바닥의 줄을 따라 터지며 일반 난이도 기준 줄 안에서 100~115 피해, 두 번째 파도는 첫 번째의 빈틈을 메웁니다)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    '크레셴도(생명력 30% 미만에서 만가가 1.8초로 짧아지고 11초마다 오며, 오르간이 세 번째 파도를 연주합니다)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    '영웅: 앙코르(다른 한 명이 서 있는 동안 10초 쓰러져 있던 성가대원은 다시 일어남: 둘을 함께 처치하세요)와 끊기지 않는 구절(세 번째 만가마다 차단할 수 없음: 숨으세요)',
   'hudChrome.finder.mech.reaping_arc': '수확의 호(전방 휩쓸기)',
   'hudChrome.finder.mech.mist_surge': '안개 쇄도(주기적 광역 피해)',
   'hudChrome.finder.mech.summons_adds': '증원 소환',
@@ -21793,29 +21708,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '{range}미터 이내의 대상을 {duration}초 동안 사슬로 묶어 제자리에 고정합니다. 우두머리처럼 제어 효과에 면역인 생물은 대신 이동 속도가 {slow}% 감소하며, 감속에도 면역이면 효과가 없습니다.',
   'hudChrome.auraEffect.trinket.shackle': '사슬에 묶임: 이동할 수 없습니다.',
   'hudChrome.auraEffect.trinket.shackleSlow': '사슬에 묶임: 이동 속도가 {pct}% 감소합니다.',
-  'entities.mobs.ossuary_sentinel.name': '납골당 파수병',
-  'entities.mobs.hollow_gravedigger.name': '공허의 무덤파기꾼',
-  'entities.mobs.rimeweb_hatchling.name': '서리거미줄 새끼거미',
-  'entities.mobs.rimeweb_spinner.name': '서리거미줄 실잣는거미',
-  'entities.mobs.candlewright_acolyte.name': '초장이 수행사제',
-  'entities.mobs.hollow_chorister.name': '공허의 성가대원',
-  'entities.mobs.bound_soul.name': '속박된 영혼',
-  'entities.mobs.rimeweb.name': '뼈서리의 귀부인',
-  'entities.mobs.cantor_ilvane.name': '성가대장 일베인',
-  'entities.mobs.rime_egg_sac.name': '서리 알주머니',
-  // The Hollow Crypt trash (M16 non-Latin fills for its new names).
-  'abilityUi.cast.crypt_grave_bolt': '무덤 화살',
-  'abilityUi.cast.crypt_raise_bones': '뼈 일으키기',
-  'abilityUi.cast.crypt_murder_call': '까마귀떼 부름',
-  'abilityUi.cast.crypt_stone_shriek': '돌의 비명',
-  'abilityUi.cast.crypt_grave_cleave': '무덤 가르기',
-  'abilityUi.cast.crypt_barrowflame_breath': '무덤불꽃 숨결',
-  'abilityUi.cast.crypt_tail_lash': '꼬리 채찍',
-  'abilityUi.cast.crypt_wing_gust': '날개 돌풍',
-  'abilityUi.cast.crypt_grave_rupture': '무덤 파열',
-  'abilityUi.cast.crypt_carrion_eye': '썩은 고기의 눈',
-  'abilityUi.cast.crypt_marrow_crush': '골수 분쇄',
-  'abilityUi.cast.crypt_rimesilk_spit': '서리실 뱉기',
   'abilityUi.cast.bastion_brine_mend': '소금물 치유',
   'abilityUi.cast.bastion_fog_ward': '안개 보호막',
   'abilityUi.cast.bastion_halberd_sweep': '미늘창 휩쓸기',
@@ -21862,42 +21754,8 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.temple_ysolei_wrath': '익사한 분노',
   'abilityUi.cast.temple_prism_glare': '프리즘 응시',
   'abilityUi.cast.temple_arcing_spark': '호를 그리는 불꽃',
-  'abilityUi.cast.crypt_gravespark_volley': '무덤 불꽃 일제 사격',
   'abilityUi.cast.bastion_loose_on_my_mark': '내 신호에 쏴라',
   'abilityUi.cast.temple_call_of_the_shallows': '여울의 부름',
-  'entities.mobs.crypt_ossuary_warrior.name': '납골당 전사',
-  'entities.mobs.crypt_gravecaller_adept.name': '무덤부름 수련생',
-  'entities.mobs.crypt_ossuary_cutthroat.name': '납골당 멱따개',
-  'entities.mobs.crypt_gravecaller_necromancer.name': '무덤부름 강령술사',
-  'entities.mobs.crypt_bone_minion.name': '뼈 하수인',
-  'entities.mobs.crypt_bone_brute.name': '뼈 야수병',
-  'entities.mobs.crypt_bone_pile.name': '꿈틀거리는 뼈',
-  'entities.mobs.crypt_chapel_gargoyle.name': '예배당 가고일',
-  'entities.mobs.crypt_crow_caller.name': '까마귀 부르미',
-  'entities.mobs.crypt_carrion_crow.name': '썩은고기 까마귀',
-  'entities.mobs.crypt_ossuary_drake.name': '납골당 뼈드레이크',
-  // The Hollow Crypt finale (M16 non-Latin fills for its new names).
-  'abilityUi.cast.crypt_morthen_rite_wakes': '의식의 각성',
-  'abilityUi.cast.crypt_morthen_rise': '무덤부름의 승천',
-  'abilityUi.cast.crypt_morthen_proclaim': '무덤의 선포',
-  'abilityUi.cast.crypt_morthen_descend': '강림',
-  'abilityUi.cast.crypt_knellwyrm_arrive': '하늘에서 강하',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': '화장의 강습',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': '강습 비행',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': '공포의 포효',
-  'abilityUi.cast.crypt_marrow_shovelful': '한 삽의 무덤흙',
-  'abilityUi.cast.crypt_marrow_measure': '무덤 치수 재기',
-  'abilityUi.cast.crypt_marrow_burial_toll': '장례의 종소리',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': '무덤꾼의 일격',
-  'abilityUi.cast.crypt_lady_brides_lament': '신부의 애가',
-  'abilityUi.cast.crypt_lady_frozen_embrace': '얼어붙은 포옹',
-  'abilityUi.cast.crypt_lady_embrace_hold': '얼어붙은 포옹',
-  'abilityUi.cast.crypt_lady_bridal_freeze': '신부의 결빙',
-  'abilityUi.cast.crypt_ilvane_dirge': '공허의 만가',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': '끊기지 않는 구절',
-  'abilityUi.cast.crypt_ilvane_bone_organ': '뼈 오르간',
-  'entities.mobs.crypt_knellwyrm.name': '조종룡',
-  // The Sunken Bastion fifth pass (M16 non-Latin fills for its new names).
   'abilityUi.cast.bastion_iron_cage': '강철 우리',
   'abilityUi.cast.bastion_drowned_anchor_cast': '익사의 닻',
   'abilityUi.cast.bastion_shackle_pair': '쌍둥이 족쇄',
@@ -21960,10 +21818,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '죽은 자를 흡수했습니다({stacks}/{max}중첩). 중첩마다 영혼 방출의 범위가 {radius}야드 넓어지고 피해가 {pct}% 증가합니다.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     '사슬이 끊어졌습니다. 더 이상 싸우지 않고, 피해를 입지 않으며, 곧 떠납니다.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    '전투 중인 모든 까마귀가 {seconds}초 동안 당신을 노립니다. 탱커에게 달려가 무리를 한꺼번에 처치하세요.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    '받는 피해가 {pct}% 감소하며, 돌이 {every}초마다 두꺼워집니다(최대 {max}겹). 기절시키면 부서져 {seconds}초 동안 받는 피해가 {cracked}% 증가합니다.',
   'hudChrome.bastionChain.shackledTitle': '{name} 님과 족쇄로 묶임',
   'hudChrome.bastionChain.shackledLine': '서로 {range}야드 이내에 머무르세요 (현재 {dist}야드)',
   'hudChrome.bastionChain.strainedLine':
@@ -22325,102 +22179,8 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.npcs.cantor_laverock.title': '창백한 성가대의 마지막 선창자',
   'entities.npcs.cantor_laverock.greeting':
     '나는 창백한 성가대에서 가장 어린 목소리였소. 의식의 밤, 나는 마시지 않고 도망쳤지. 그 뒤로 보름달이 뜰 때마다 물 아래에서 그들이 노래하는 소리가 들리오. 죽기 전에 그분을 직접 봐야 하오. 뒤에서 걷게 해 주시오. 싸우지도 않고, 짐이 되지도 않겠소.',
-  'hudChrome.cryptAlert.measuredTitle': '무덤 치수 재기!',
-  'hudChrome.cryptAlert.measuredLine':
-    '바가 다 떨어지면 발밑에 무덤이 무너집니다: 묘지 가장자리로 옮기세요',
-  'hudChrome.cryptAlert.embracedTitle': '얼어붙은 포옹!',
-  'hudChrome.cryptAlert.embracedLine':
-    '그녀가 당신을 공중에 들어 올렸습니다: 파티가 그녀에게 피해를 줘야 내려놓습니다',
-  'hudChrome.cryptAlert.lamentTitle': '신부의 애가!',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    '켜진 등불의 빛 안에 당신의 자리가 있습니다: 가만히 있으세요',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    '통곡이 닥치기 전에 켜진 등불의 빛 안으로 들어가세요: 등불 하나에 두 명',
-  'hudChrome.cryptAlert.graveTitle': '열린 무덤 안에 있습니다!',
-  'hudChrome.cryptAlert.graveLine': '무덤흙이 당신을 태우고 느리게 합니다: 무덤에서 나오세요',
-  'hudChrome.cryptAlert.tollTitle': '장례의 종소리!',
-  'hudChrome.cryptAlert.tollLine':
-    '종을 울리는 동안 그는 피해를 받지 않습니다: 종소리와 그것이 일으키는 망자에 대비하세요',
-  'hudChrome.cryptAlert.harmonyTitle': '화음',
-  'hudChrome.cryptAlert.harmonyLine':
-    '성가대원들이 그녀가 받는 피해를 {pct}% 줄이고 있습니다: 성가대원을 먼저 처치하세요',
-  'hudChrome.cryptAlert.timeAria': '{seconds}초 남음',
-  'hudChrome.auraEffect.crypt.measured':
-    '이 효과가 끝나면 서 있는 자리에 열린 무덤이 무너져 {radius}미터 안의 모두에게 {min}~{max} 피해를 줍니다(영웅 난이도 {heroicMin}~{heroicMax}). 무덤은 전투 내내 남으므로 표식을 파티에서 떨어진 묘지 가장자리로 옮기세요.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    '열린 무덤 안에 서 있음: 이동 속도 {slow}% 감소, 매초 {damage} 암흑 피해(영웅 난이도 {heroic}). 영웅 난이도에서는 무덤 안에 {linger}초 머물면 불안한 뼈무더기가 일어납니다. 무덤에서 나오세요.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    '이동 속도가 {pct}% 감소합니다. 한 삽의 무덤흙은 성구지기 매로우 앞의 모두를 맞힙니다: 그의 뒤에 서세요.',
-  'hudChrome.auraEffect.crypt.blow':
-    '받는 피해가 {pct}% 증가합니다: 중첩당 {per}%, 현재 {stacks}/{max}중첩. 무덤꾼의 일격마다 중첩이 쌓이고 지속 시간이 {seconds}초로 초기화됩니다.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    '열린 무덤 안에 서 있는 동안 공격 속도가 {pct}% 증가합니다. 그를 무덤 밖에 두세요.',
-  'hudChrome.auraEffect.crypt.tolling':
-    '종 밧줄로 걸어가 장례의 종을 울리는 동안 피해 면역입니다. 종소리가 끝나면 모두에게 {min}~{max} 암흑 피해(영웅 난이도 {heroicMin}~{heroicMax})를 주고, 열린 무덤마다 불안한 뼈무더기가 일어납니다.',
-  'hudChrome.auraEffect.crypt.embraced':
-    '귀부인의 품에 안겨 공중에 떠 있음: 행동할 수 없고 매초 {tick} 냉기 피해(영웅 난이도 {tickHeroic})를 받습니다. 파티가 그녀의 최대 생명력 {share}%(영웅 난이도 {shareHeroic}%)를 깎으면 부드럽게 내려놓지만, 높은 곳에서 {hold}초 동안 붙잡고 있으면 얼음 위로 떨어뜨려 {min}~{max} 피해(영웅 난이도 {heroicMin}~{heroicMax})를 줍니다.',
-  'hudChrome.auraEffect.crypt.lament':
-    '신부의 애가가 끝나면 켜진 무덤 등불에서 {radius}미터 안에 없는 모두에게 {min}~{max} 냉기 피해(영웅 난이도 {heroicMin}~{heroicMax})를 줍니다. 등불은 가장 가까운 {cap}명만 보호한 뒤 꺼져 다음 애가를 놓칩니다.',
-  'hudChrome.auraEffect.crypt.lingering':
-    '다음 신부의 애가로 받는 피해가 {pct}% 증가합니다: 중첩당 {per}%, 최대 {max}중첩. 다음 애가는 등불 빛 안에서 받으세요.',
-  'hudChrome.auraEffect.crypt.slippery':
-    '미끄러운 얼음 위: 속도가 매초 최대 {grip}미터/초씩만 바뀌므로 출발이 느리고, 멈추면 계속 미끄러지며, 방향을 틀면 크게 돌아갑니다. 얼음에서 벗어나면 다시 중심을 잡을 수 있습니다.',
-  'hudChrome.auraEffect.crypt.harmony':
-    '받는 피해가 {pct}% 감소합니다: 살아 있는 성가대원 한 명마다 {per}%. 성가대원을 먼저 처치하세요.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    '더 빠르게 노래합니다: 공허의 만가가 {castNormal}초 대신 {cast}초 걸리고 {everyNormal}초 대신 {every}초마다 오며, 뼈 오르간이 {wavesNormal}파도 대신 {waves}파도의 음표를 연주합니다.',
   // Morthen the Gravecaller's Rite and the Knellwyrm's heroic Burning Knell
   // (M16 non-Latin fills for their new strings).
-  'abilityUi.cast.crypt_morthen_shadow_pulse': '어둠의 파동',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': '불안한 자들의 의식',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': '불안한 자들의 수확',
-  'abilityUi.cast.kituse_crypt_relight_candle': '촛불 다시 밝히기',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': '불타는 조종',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': '불타는 조종',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': '불타는 조종',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': '불타는 조종',
-  'entities.mobs.crypt_remembrance_candle.name': '추모의 양초',
-  'hudChrome.auraEffect.crypt.gorged':
-    '주는 피해 {pct}% 증가: 그에게 도달한 속박된 영혼 하나마다 {per}%, 현재 {stacks}/{max}중첩이며 전투가 끝날 때까지 지속됩니다. 영혼이 도달할 때마다 최대 생명력의 {heal}%도 회복합니다. 영혼의 경로에 들어서면 대신 받아낼 수 있습니다.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    '제단에서 불안한 자들의 의식을 시전하는 동안 피해 면역: 추모의 양초 {total}개 중 {lit}개를 다시 밝혔습니다. 하나를 다시 밝히려면 {channel}초 동안 정신 집중해야 하며, 그동안 밝히는 사람의 최대 생명력 {drain}%(영웅 난이도 {drainHeroic}%)를 매초 빨아들입니다. 공격을 받아도 끊기지 않지만 움직이거나 기절하면 끊깁니다. 마지막 양초가 결계를 부숩니다. 영웅 난이도에서는 명부가 부르는 순서대로 밝히세요: 다른 양초를 밝히면 마지막으로 밝힌 양초가 꺼지고 밝힌 사람에게 {wrongMin}~{wrongMax} 암흑 피해를 줍니다.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    '기절: 부서진 결계 때문에 {seconds}초 동안 행동할 수 없습니다.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    '{seconds}초 동안 받는 피해 {pct}% 증가: 다시 밝힌 양초들이 그의 결계를 부쉈습니다. 지금 가장 강한 공격을 퍼부으세요.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    '불안한 자들의 의식이 이어지는 동안 매초 {bite} 암흑 피해(영웅 난이도 {biteHeroic})를 받으며, {every}초마다 {step}(영웅 난이도 {stepHeroic})씩 늘어납니다. 추모의 양초를 다시 밝혀 끝내세요.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    '{fuse}초 후 발밑의 고리에서 손이 솟아오릅니다: 고리가 놓인 곳에서 {radius}야드 안의 모두가 {root}초 동안 묶이고 {min}~{max} 암흑 피해를 받습니다. 고리에서 나오세요.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    '무덤의 손에 붙잡힘: {seconds}초 동안 움직일 수 없습니다.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    '의식의 고리 위를 날고 있어 공격이 닿지 않습니다. 고리의 절반에 {mark}초 동안 표식을 남긴 뒤 그 절반에 유령불을 쏟아붓습니다: 그 안의 모두에게 {min}~{max} 화염 피해. 한 번 날 때마다 절반을 {breaths}번 태운 뒤 내려앉습니다.',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    '어둠의 파동(12초마다 2초 시전 후, 일반 난이도 기준 그에게서 12야드 안의 모두에게 24~30 암흑 피해: 떨어지세요. 최후의 의식 중에는 9초마다)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    '무덤부름(15초마다 속박된 영혼이 다음 석관 벽감에서 그에게로 떠갑니다. 도달하면 망자 포식 상태가 되어 영혼 하나마다 주는 피해가 10% 증가하고(최대 10중첩) 생명력의 3%를 회복합니다. 경로에 선 플레이어가 대신 받아냅니다: 일반 난이도 기준 12~16 암흑 피해)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    '불안한 자들의 의식(생명력 65%에서 제단으로 돌아가 불안한 자들의 결계 안에서 피해 면역이 됩니다. 그동안 무덤의 냉기가 모두에게 매초 3 암흑 피해를 주고 5초마다 1씩 늘어나며, 벽감에서 불안한 뼈무더기 2개가 기어 나옵니다. 추모의 양초 4개를 다시 밝히세요: 하나마다 4초 정신 집중이며 밝히는 사람의 최대 생명력 6%를 매초 빨아들입니다. 공격으로는 끊기지 않지만 움직이거나 기절하면 끊깁니다. 마지막 양초가 의식을 깨뜨립니다: 8초 동안 기절하고 받는 피해가 25% 증가합니다)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    '불안한 자들의 수확(생명력 35% 미만에서 영혼이 멈추고, 14초마다 2초 시전 후 낫을 휘두릅니다: 일반 난이도 기준 앞쪽 14야드, 120도 부채꼴 안의 모두에게 55~65 암흑 피해. 이후 어둠의 파동은 9초마다 옵니다)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    '영웅 난이도: 망자의 이름(명부가 양초의 순서를 부릅니다. 다른 양초를 밝히면 마지막으로 밝힌 양초가 꺼지고 밝힌 사람에게 252~288 암흑 피해를 주며, 다시 밝히기는 매초 8%를 빨아들입니다), 무덤의 손아귀(16초마다 플레이어 2명 발밑에 4야드 고리가 생기고 1.5초 후 손이 솟아오릅니다: 3초 이동 불가와 162~198 암흑 피해), 조종룡의 불타는 조종(날아올라 고리의 절반에 4.5초 동안 표식을 남긴 뒤 그 절반에 유령불을 쏟아 1,000~1,120 화염 피해, 한 번 날 때마다 3번)',
-  'hudChrome.cryptAlert.knellTitle': '불타는 조종!',
-  'hudChrome.cryptAlert.knellLine':
-    '바가 다 줄어들면 고리의 이쪽 절반에 유령불이 쏟아집니다: 반대쪽 절반으로 가세요',
-  'hudChrome.cryptAlert.graspTitle': '무덤의 손아귀!',
-  'hudChrome.cryptAlert.graspLine': '이 고리에서 손이 솟아올라 안에 선 사람을 붙잡습니다: 나오세요',
-  'hudChrome.cryptAlert.reapTitle': '불안한 자들의 수확!',
-  'hudChrome.cryptAlert.reapLine': '그의 낫이 앞쪽 땅을 휩씁니다: 그의 뒤로 가세요',
-  'hudChrome.cryptAlert.riteTitle': '불안한 자들의 의식',
-  'hudChrome.cryptAlert.riteLine':
-    '추모의 양초를 다시 밝혀 결계를 부수세요: {total}개 중 {lit}개 점화',
-  'hudChrome.cryptAlert.riteNamedLine':
-    '명부가 다음에 부르는 양초만 다시 밝히세요: {total}개 중 {lit}개 점화',
-  'hudChrome.cryptAlert.soulTitle': '속박된 영혼',
-  'hudChrome.cryptAlert.soulLine':
-    '영혼이 모르덴에게 떠가고 있습니다: 경로에 들어서서 그가 배를 채우기 전에 받아내세요',
   'hudChrome.kitUse.relightLine':
     '정신 집중하는 동안 매초 생명력을 빨아들입니다: 공격으로는 끊기지 않지만 움직이거나 기절하면 끊깁니다',
   'hudChrome.kitUse.relightKey': '{name} 다시 밝히기',

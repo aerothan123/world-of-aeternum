@@ -10708,11 +10708,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.stormcrag_elemental.name': 'Élémentaire de Stormcrag',
   'entities.mobs.shardlord_kazzix.name': 'Seigneur des éclats Kazzix',
   'entities.mobs.boneclad_revenant.name': "Revenant caparaçonné d'os",
-  'entities.mobs.crypt_shambler.name': 'Traînard de la crypte',
-  'entities.mobs.hollow_acolyte.name': 'Acolyte du Creux',
-  'entities.mobs.bonechill_widow.name': 'Veuve Frissos',
-  'entities.mobs.sexton_marrow.name': 'Sacristain Marrow',
-  'entities.mobs.morthen.name': 'Morthen le Gravecaller',
   'entities.mobs.bastion_revenant.name': 'Revenant du Bastion',
   'entities.mobs.tidebound_acolyte.name': 'Acolyte lié aux marées',
   'entities.mobs.drowned_thrall.name': 'Serviteur noyé',
@@ -10879,61 +10874,18 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_mine.completion':
     'Ha! Au travail, les gars! Vous avez mes remerciements et ma paie.',
   'entities.quests.q_mine.objectives.0.label': 'Terrassier de Deeprock tué',
-  'entities.quests.q_bones.title': 'Les morts sans repos',
-  'entities.quests.q_bones.text':
-    'La vieille chapelle était un lieu de repos avant que quelque chose réveille ses morts. Rendez 8 ossements agités à la terre, {playerName}.',
-  'entities.quests.q_bones.completion':
-    'Puissent-ils reposer, et puisse la Lumière pardonner à ce qui les a réveillés.',
-  'entities.quests.q_bones.objectives.0.label': 'Ossements agités rendu au repos',
   'entities.quests.q_supplies.title': 'Fournitures volées',
   'entities.quests.q_supplies.text':
     "Les bandits ont pris mon dernier chariot: outils, sel et bon lin d'Eastbrook. Reprenez 4 caisses dans leur camp du nord-ouest.",
   'entities.quests.q_supplies.completion':
     'Mes caisses! À peine une égratignure. Vous êtes prodigieux.',
   'entities.quests.q_supplies.objectives.0.label': 'Caisse de fournitures volée',
-  'entities.quests.q_whispers.title': 'Murmures sous terre',
-  'entities.quests.q_whispers.text':
-    'Les morts se relèvent parce que quelque chose les rappelle. Fouillez la chapelle et rapportez-moi tout sceau trouvé intact.',
-  'entities.quests.q_whispers.completion':
-    'Ce sceau porte la marque des Gravecallers. Je priais pour que cette secte soit éteinte, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Sceau de Gravecaller',
-  'entities.quests.q_names_of_the_dead.title': 'Les noms des morts',
-  'entities.quests.q_names_of_the_dead.text':
-    'Si les Gravecallers ont pillé nos tombes, je dois savoir qui ils ont volé. Rassemblez 3 pages du registre funéraire, {playerName}.',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Pauvres âmes... et voici le sacristain Marrow, le premier dérangé. Morthen a commencé par celui qui enterrait Eastbrook.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Page de registre usée',
   'entities.quests.q_silence_the_call.title': "Faire taire l'appel",
   'entities.quests.q_silence_the_call.text':
     'Chaque nom du registre est une âme que Morthen veut tirer de terre. Faites taire 12 ossements, {playerName}, avant que le murmure devienne chœur.',
   'entities.quests.q_silence_the_call.completion':
     "Le cimetière se calme, mais l'appel monte maintenant de la crypte, {playerName}.",
   'entities.quests.q_silence_the_call.objectives.0.label': 'Ossements agités réduit au silence',
-  'entities.quests.q_rite.title': 'Le rite de lien',
-  'entities.quests.q_rite.text':
-    'La crypte sous la chapelle doit être descellée si nous voulons arrêter le Gravecaller, mais seul un rite de lien laissera passer les vivants. Il me faut 4 morceaux de Suif béni, les fouisseurs de la mine amassent le suif par caisses entières, et 6 Essences spectrales prélevées sur les morts sans repos.',
-  'entities.quests.q_rite.completion':
-    "C'est fait. Le passage s'ouvre... rassemblez vos compagnons les plus solides, {playerName}.",
-  'entities.quests.q_rite.objectives.0.label': 'Suif béni',
-  'entities.quests.q_rite.objectives.1.label': 'Essence spectrale',
-  'entities.quests.q_hollow.title': 'Dans le Creux',
-  'entities.quests.q_hollow.text':
-    "Morthen attend au fond de la Crypte creuse, entouré des morts d'élite qu'il a relevés. Prenez quatre compagnons et mettez fin à tout cela.",
-  'entities.quests.q_hollow.completion':
-    'Les murmures ont cessé. Les morts dorment, {playerName}, et Eastbrook vous doit tout.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen le Gravecaller tué',
-  'entities.quests.q_sexton.title': 'La cloche du sacristain',
-  'entities.quests.q_sexton.text':
-    'Le registre nomme le sacristain Marrow, premier serviteur relevé par Morthen. Descendez avec quatre compagnons et rendez-lui son repos, {playerName}.',
-  'entities.quests.q_sexton.completion':
-    'Marrow est enfin libre. Ne sonnez pas pour lui; il a assez entendu de cloches.',
-  'entities.quests.q_sexton.objectives.0.label': 'Sacristain Marrow rendu au repos',
-  'entities.quests.q_gravecallers_trail.title': 'La piste du Gravecaller',
-  'entities.quests.q_gravecallers_trail.text':
-    "Morthen est mort, mais sa secte n'aurait pas attendu un siècle pour une seule chapelle. Cherchez son grimoire dans les ruines, {playerName}.",
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen écrivait à un « Fogbinder » dans la fagne du nord. La secte n'est pas morte, {playerName}, elle a simplement patienté.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Grimoire de Morthen',
   'entities.quests.q_bandits.title': 'Bandits du Val',
   'entities.quests.q_bandits.text':
     "Une bande d'égorgeurs campe dans les collines du nord-ouest. Trois chariots ont été pillés cette semaine. Tuez 10 bandits du Val.",
@@ -11409,9 +11361,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.zones.wraithwood.pois.3.label': 'La Clairière Pendue',
   'entities.zones.wraithwood.pois.4.label': 'La Chapelle de Mournstone',
   'entities.zones.wraithwood.pois.5.label': 'La Clairière du Chasseur',
-  'entities.dungeons.hollow_crypt.name': 'La Crypte creuse',
-  'entities.dungeons.hollow_crypt.enterText': 'Vous descendez dans la Crypte creuse...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Vous remontez à la lumière du jour.',
   'entities.dungeons.sunken_bastion.name': 'Le Bastion englouti',
   'entities.dungeons.sunken_bastion.enterText':
     'Vous pataugez dans les profondeurs du Bastion englouti...',
@@ -12173,8 +12122,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
     'Une forteresse inondée perdue dans le marais, tenue par des défenseurs noyés et par la marée montante elle-même.',
   'guide.dungeonsPage.bastionName': 'Le Bastion englouti',
   'guide.dungeonsPage.heading': 'Donjons et raids',
-  'guide.dungeonsPage.hollowBody':
-    "Une crypte de chapelle profanée où les morts récents refusent le repos. La première vraie épreuve d'un nouveau groupe.",
   'guide.dungeonsPage.hollowName': 'La Crypte creuse',
   'guide.dungeonsPage.intro':
     "Quand le monde ouvert ne suffit plus, rassemblez un groupe et pénétrez dans une instance : une copie privée d'un donjon créée rien que pour votre groupe.",
@@ -13922,10 +13869,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Vieux Grisemâchoire, enfin',
   'entities.letters.letter_q_greyjaw.body':
     'Les nouvelles vont vite dans une si petite ville. Les bergers ont bu à votre santé hier soir, et Wilkes jure que le loup était grand comme une charrette. Laissez-les broder : vous l’avez mérité.\n\nPartagez un repas aux frais du guet.\n- Maréchal Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Frère Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Ce que vous avez accompli dans le noir',
-  'entities.letters.letter_q_hollow.body':
-    'Rares sont ceux qui sauront jamais ce qui était enterré dans ce creux, et plus rares encore ceux qui le croiraient. Moi, je le sais, et je ne l’oublierai pas.\n\nQue votre route reste éclairée.\n- Frère Aldric',
   'hudChrome.gathering.herbalism': 'Herboristerie',
   'hudChrome.gathering.logging': 'Bûcheronnage',
   'hudChrome.gathering.mining': 'Minage',
@@ -20653,7 +20596,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'guide.interfacePage.framesGovernedResourceAndHill':
     'Activez Détacher la barre de ressource dans l’onglet Cadres pour que Modifier les cadres déverrouille aussi votre barre de ressource : votre mana, votre énergie ou votre rage peut ainsi être placé séparément, où vous le souhaitez. Largeur de la barre de ressource et Hauteur de la barre de ressource, dans ce même onglet, règlent sa taille. Modifier les cadres déverrouille aussi la barre du Roi de la colline ; Opacité du fond du Roi de la colline, dans cet onglet, estompe son panneau sans nuire à la lisibilité du texte.',
   'hudChrome.options.pixelsValue': '{value} px',
-  'abilityUi.cast.crypt_morthen_descend': 'Descente',
   'abilityUi.cast.sanctum_goad': 'Aiguillon',
   'auth.wocBuilder.cat.face': 'Visage',
   'auth.wocBuilder.eye.teal': 'Sarcelle',
@@ -20730,7 +20672,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'editor.weather.clear': 'Effacer',
   'entities.items.hoarfrost_mantle.name': 'Manteau de givre',
   'entities.mobs.buddy_spider.name': 'Araignée',
-  'entities.mobs.marrow_restless_bones.name': 'Ossements agités',
   'entities.mobs.vael_fog_shade.name': 'Vael le Fogbinder',
   'entities.npcs.patron_hester_quillby.title': 'Cartographe',
   'referralCards.milestones.fogbinder': 'Le Fogbinder',
@@ -20765,48 +20706,9 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Brume grandissante',
   'abilityUi.cast.bastion_veil_rise': 'Voile de brume',
   'abilityUi.cast.cantor_last_verse': 'Le dernier couplet',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Souffle de flamme sépulcrale',
-  'abilityUi.cast.crypt_carrion_eye': 'Œil de charogne',
-  'abilityUi.cast.crypt_grave_bolt': 'Trait sépulcral',
-  'abilityUi.cast.crypt_grave_cleave': 'Enchaînement sépulcral',
-  'abilityUi.cast.crypt_grave_rupture': 'Rupture sépulcrale',
-  'abilityUi.cast.crypt_gravespark_volley': "Salve d'étincelles sépulcrales",
-  'abilityUi.cast.crypt_ilvane_bone_organ': "Orgue d'os",
-  'abilityUi.cast.crypt_ilvane_dirge': 'Complainte du creux',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Couplet ininterrompu',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Descente du ciel',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': "Beuglement d'effroi",
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Glas ardent',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Glas ardent',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Glas ardent',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Glas ardent',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Mitraillage du bûcher',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Passe de mitraillage',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Gel nuptial',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Lamentation de la mariée',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Étreinte glacée',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Étreinte glacée',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Glas funéraire',
-  'abilityUi.cast.crypt_marrow_crush': 'Écrasement de moelle',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Coup du fossoyeur',
-  'abilityUi.cast.crypt_marrow_measure': 'Mesuré pour la tombe',
-  'abilityUi.cast.crypt_marrow_shovelful': 'Pelletée',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Proclamation sépulcrale',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Faucher les tourmentés',
-  'abilityUi.cast.crypt_morthen_rise': 'Avènement du Gravecaller',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'Rite des tourmentés',
-  'abilityUi.cast.crypt_morthen_rite_wakes': "Le rite s'éveille",
-  'abilityUi.cast.crypt_morthen_shadow_pulse': "Impulsion d'ombre",
-  'abilityUi.cast.crypt_murder_call': 'Appel de la volée',
-  'abilityUi.cast.crypt_raise_bones': 'Relèvement des os',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Crachat de soie givrée',
-  'abilityUi.cast.crypt_stone_shriek': 'Cri de pierre',
-  'abilityUi.cast.crypt_tail_lash': 'Fouet de queue',
-  'abilityUi.cast.crypt_wing_gust': "Rafale d'ailes",
   'abilityUi.cast.ghost_captain_anchor': 'Ancre maudite',
   'abilityUi.cast.ghost_captain_boarding': 'Abordage fantôme',
   'abilityUi.cast.ghost_captain_broadside': 'Bordée spectrale',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Rallumer la bougie',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Renverser le brasero',
   'abilityUi.cast.sanctum_branding_iron': 'Fer à marquer',
   'abilityUi.cast.sanctum_cinder_breath': 'Souffle de cendres',
@@ -21034,50 +20936,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
     "Subit {pct}% de dégâts en moins tant qu'un autre Guetteur noyé se tient à moins de {radius} yards. Éloignez-les l'un de l'autre.",
   'hudChrome.auraEffect.bastion.snappedFetters':
     "Ses chaînes sont brisées. Il ne combat plus, ne peut plus subir de dégâts et s'en va bientôt.",
-  'hudChrome.auraEffect.crypt.blow':
-    'Augmente les dégâts subis de {pct}% : {per}% par cumul, actuellement {stacks} sur {max}. Chaque Coup du fossoyeur ajoute un cumul et réinitialise la durée à {seconds} s.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    "Tous les corbeaux du combat vous pourchassent pendant {seconds} s. Courez vers votre tank pour que la volée puisse être abattue d'un seul coup.",
-  'hudChrome.auraEffect.crypt.crescendo':
-    "Chante plus vite : la Complainte du creux s'incante en {cast} s au lieu de {castNormal} s et revient toutes les {every} s au lieu de {everyNormal} s ; l'Orgue d'os joue {waves} vagues de notes au lieu de {wavesNormal}.",
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Réduit la vitesse de déplacement de {pct}%. Pelletée frappe toutes les personnes devant le Sacristain Marrow : placez-vous derrière lui.',
-  'hudChrome.auraEffect.crypt.embraced':
-    "Maintenu en l'air dans les bras de la Dame : vous ne pouvez pas agir et subissez {tick} points de dégâts de Givre par seconde ({tickHeroic} en héroïque). Si votre groupe lui inflige {share}% de ses points de vie maximum ({shareHeroic}% en héroïque), elle vous repose doucement ; si elle vous garde {hold} s au sommet, elle vous lâche sur la glace et vous inflige {min} à {max} points de dégâts ({heroicMin} à {heroicMax} en héroïque).",
-  'hudChrome.auraEffect.crypt.gorged':
-    "Inflige {pct}% de dégâts supplémentaires : {per}% pour chaque Âme liée qui l'a atteint, actuellement {stacks} sur {max}, jusqu'à la fin du combat. Chaque âme qui l'atteint lui rend aussi {heal}% de ses points de vie maximum. Placez-vous sur le chemin d'une âme pour l'absorber à sa place.",
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    "Subit {pct}% de dégâts en moins, et la pierre s'épaissit toutes les {every} s, jusqu'à {max} couches. Un étourdissement la brise et lui fait subir {cracked}% de dégâts supplémentaires pendant {seconds} s.",
-  'hudChrome.auraEffect.crypt.graspMark':
-    "Des mains jaillissent du cercle sous vos pieds dans {fuse} s : toutes les personnes à moins de {radius} yards de son emplacement sont immobilisées pendant {root} s et subissent {min} à {max} points de dégâts d'Ombre. Sortez du cercle.",
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Retenu par les mains de la tombe : vous ne pouvez pas vous déplacer pendant {seconds} s.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    "Subit {bite} points de dégâts d'Ombre par seconde ({biteHeroic} en héroïque) tant que le Rite des tourmentés se poursuit ; ces dégâts augmentent de {step} ({stepHeroic} en héroïque) toutes les {every} s. Rallumez les Bougies du souvenir pour y mettre fin.",
-  'hudChrome.auraEffect.crypt.graveDirt':
-    "Dans une Tombe ouverte : vitesse de déplacement réduite de {slow}% et {damage} points de dégâts d'Ombre par seconde ({heroic} en héroïque). En héroïque, rester {linger} s dans une tombe fait apparaître des Ossements sans repos. Sortez de la tombe.",
-  'hudChrome.auraEffect.crypt.graveVigor':
-    "Attaque {pct}% plus vite tant qu'il se tient dans une Tombe ouverte. Gardez-le hors des tombes.",
-  'hudChrome.auraEffect.crypt.harmony':
-    "Subit {pct}% de dégâts en moins : {per}% pour chacun de ses Choristes encore en vie. Tuez d'abord les Choristes.",
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    "Vole au-dessus du Cercle rituel, hors de portée. Il marque la moitié du cercle pendant {mark} s, puis déverse un feu fantomatique sur cette moitié : {min} à {max} points de dégâts de Feu à toutes les personnes qui s'y trouvent. Il embrase {breaths} moitiés à chaque envol, puis atterrit.",
-  'hudChrome.auraEffect.crypt.lament':
-    "À la fin de Lamentation de la mariée, toutes les personnes qui ne sont pas à moins de {radius} yards d'une lanterne funéraire allumée subissent {min} à {max} points de dégâts de Givre ({heroicMin} à {heroicMax} en héroïque). Une lanterne protège les {cap} joueurs les plus proches, puis s'éteint et ne protège pas lors de la Lamentation suivante.",
-  'hudChrome.auraEffect.crypt.lingering':
-    "Votre prochaine Lamentation de la mariée inflige {pct}% de dégâts supplémentaires : {per}% par cumul, jusqu'à {max} cumuls. Subissez la suivante dans la lumière d'une lanterne.",
-  'hudChrome.auraEffect.crypt.measured':
-    "À la fin de cet effet, une Tombe ouverte s'effondre à votre position : {min} à {max} points de dégâts ({heroicMin} à {heroicMax} en héroïque) à toutes les personnes à moins de {radius} yards. La tombe reste jusqu'à la fin du combat ; portez donc la marque au bord de la cour, loin du groupe.",
-  'hudChrome.auraEffect.crypt.riteBroken':
-    "Étourdi : la protection brisée l'empêche d'agir pendant {seconds} s.",
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Subit {pct}% de dégâts supplémentaires pendant {seconds} s : les bougies rallumées ont brisé sa protection. Utilisez maintenant vos attaques les plus puissantes.',
-  'hudChrome.auraEffect.crypt.slippery':
-    "Sur la glace glissante : votre vitesse ne peut changer que de {grip} yards/s par seconde ; vous démarrez lentement, continuez à glisser après l'arrêt et prenez des virages larges. Quittez la glace pour retrouver vos appuis.",
-  'hudChrome.auraEffect.crypt.tolling':
-    "Insensible aux dégâts tandis qu'il rejoint la corde de la cloche et sonne la Cloche funéraire. À la fin de la sonnerie, le Glas inflige {min} à {max} points de dégâts d'Ombre ({heroicMin} à {heroicMax} en héroïque) à tout le monde, et chaque Tombe ouverte libère des Ossements sans repos.",
-  'hudChrome.auraEffect.crypt.unquietWard':
-    "Insensible aux dégâts tandis qu'il canalise le Rite des tourmentés à l'autel : {lit} Bougies du souvenir rallumées sur {total}. En rallumer une nécessite une canalisation de {channel} s qui retire chaque seconde {drain}% des points de vie maximum de la personne qui l'allume ({drainHeroic}% en héroïque) ; les coups ne l'interrompent pas, mais un pas ou un étourdissement l'interrompt. La dernière bougie brise la protection. En héroïque, allumez-les dans l'ordre indiqué par le Registre : une erreur éteint la dernière bougie allumée et inflige {wrongMin} à {wrongMax} points de dégâts d'Ombre à la personne qui l'allume.",
   'hudChrome.auraEffect.effigyLanternOut':
     'La lanterne du Contremaître de paille est éteinte pour vous : vos coups et ceux de votre familier ignorent sa Peau de planches et infligent tous leurs dégâts',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -21326,43 +21184,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Messager',
   'hudChrome.courier.unavailable': 'Invoquez votre messager pour préparer une livraison.',
   'hudChrome.courier.waiting': 'Attend de vous rendre vos objets',
-  'hudChrome.cryptAlert.embracedLine':
-    "Votre groupe doit infliger des dégâts à la Dame du Froid d'Os pour vous libérer de son étreinte",
-  'hudChrome.cryptAlert.embracedTitle': 'Étreinte glacée !',
-  'hudChrome.cryptAlert.graspLine':
-    "Quittez le cercle marqué avant que les mains jaillissent pour éviter les dégâts et l'immobilisation",
-  'hudChrome.cryptAlert.graspTitle': 'Étreinte de la tombe !',
-  'hudChrome.cryptAlert.graveLine': 'La terre funéraire vous brûle et vous ralentit : sortez-en',
-  'hudChrome.cryptAlert.graveTitle': 'Dans une Tombe ouverte !',
-  'hudChrome.cryptAlert.harmonyLine':
-    "Tuez les Choristes pour supprimer la réduction de dégâts de {pct}% d'Ilvane",
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmonie',
-  'hudChrome.cryptAlert.knellLine':
-    "Le feu fantomatique se déversera sur cette moitié du cercle à la fin de la barre : rejoignez l'autre moitié",
-  'hudChrome.cryptAlert.knellTitle': 'Glas ardent !',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    "Entrez dans la lumière d'une lanterne allumée pour éviter les dégâts du cri : chaque lanterne n'abrite que deux joueurs",
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    "Restez dans la lumière de cette lanterne allumée pour éviter les dégâts du cri : vous avez une place à l'abri",
-  'hudChrome.cryptAlert.lamentTitle': 'Lamentation de la mariée !',
-  'hudChrome.cryptAlert.measuredLine':
-    'Rejoignez le bord de la cour avant la fin de la marque pour placer la tombe dangereuse loin de votre groupe',
-  'hudChrome.cryptAlert.measuredTitle': 'Mesuré pour la tombe !',
-  'hudChrome.cryptAlert.reapLine':
-    'Passez derrière Morthen pour éviter la faux qui frappe tout le monde devant lui',
-  'hudChrome.cryptAlert.reapTitle': 'Faucher les tourmentés !',
-  'hudChrome.cryptAlert.riteLine':
-    "Rallumez toutes les Bougies du souvenir pour briser l'immunité de Morthen : {lit} sur {total} allumées",
-  'hudChrome.cryptAlert.riteNamedLine':
-    "Rallumez les bougies dans l'ordre du Registre pour briser l'immunité de Morthen : une erreur annule votre progression ({lit}/{total})",
-  'hudChrome.cryptAlert.riteTitle': 'Rite des tourmentés',
-  'hudChrome.cryptAlert.soulLine':
-    "Interceptez l'âme flottante pour l'empêcher de soigner Morthen et d'augmenter ses dégâts. L'attraper vous blesse",
-  'hudChrome.cryptAlert.soulTitle': 'Âme liée',
-  'hudChrome.cryptAlert.timeAria': '{seconds} secondes restantes',
-  'hudChrome.cryptAlert.tollLine':
-    "Préparez-vous à combattre les squelettes sortis des tombes ouvertes : Marrow est insensible aux dégâts pendant qu'il sonne la cloche",
-  'hudChrome.cryptAlert.tollTitle': 'Glas funéraire !',
   'hudChrome.deeds.buddiesEmpty':
     "Collectionnez un compagnon pour l'invoquer depuis cette étagère.",
   'hudChrome.deeds.buddiesNone': 'Aucun compagnon',
@@ -21480,44 +21301,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
     'Tension (éloignez-vous de chaque pilier dont la chaîne tient encore)',
   'hudChrome.finder.mech.chorus_and_solo':
     "Chœur et Solo (regroupez-vous sur une marque, dispersez-vous pour l'autre)",
-  'hudChrome.finder.mech.crypt_bone_organ':
-    "Orgue d'os (toutes les 26 secondes, elle joue de l'Orgue d'os : deux vagues de notes d'ombre éclatent dans les couloirs de la tribune, infligeant 100 à 115 points de dégâts en normal dans un couloir ; la seconde vague remplit les espaces laissés par la première)",
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    "Gel nuptial (à la moitié de ses points de vie, tout le sol du ravin gèle : la glace reste glissante jusqu'à la fin du combat)",
-  'hudChrome.finder.mech.crypt_brides_lament':
-    "Lamentation de la mariée (toutes les 22 secondes, un cri de 3 secondes : 60 à 75 points de dégâts de Givre en normal à toutes les personnes hors de la lumière d'une lanterne funéraire allumée, plus la moitié de ces dégâts pour chaque cumul de Lamentation persistante reçu lors des Lamentations précédentes. Une lanterne abrite au maximum deux joueurs et s'éteint pendant 28 secondes après avoir abrité quelqu'un ; séparez-vous et alternez)",
-  'hudChrome.finder.mech.crypt_burial_toll':
-    "Glas funéraire (à 66 et 33 pour cent de ses points de vie, il rejoint la corde de la cloche, insensible aux dégâts, et sonne pendant 3 secondes : 30 à 38 points de dégâts d'Ombre à tout le monde en normal, et chaque Tombe ouverte fait apparaître des Ossements sans repos)",
-  'hudChrome.finder.mech.crypt_crescendo':
-    "Crescendo (sous 30 pour cent de ses points de vie, sa Complainte s'incante en 1.8 seconde et revient toutes les 11 secondes ; l'orgue joue une troisième vague)",
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    "Complainte du creux (toutes les 16 secondes, un chant de 2.5 secondes que vous pouvez interrompre : s'il s'achève, 105 à 125 points de dégâts d'Ombre en normal et un silence de 4 secondes à toutes les personnes à moins de 45 yards qui peuvent la voir ; interrompez-le ou cachez-vous derrière un pilier du chœur)",
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    "Étreinte glacée (toutes les 30 secondes, elle saisit un joueur autre que le tank et s'élève avec lui de 5 yards, infligeant 6 points de dégâts de Givre par seconde : infligez-lui 6 pour cent de ses points de vie en 8 secondes pour qu'elle le repose, sinon elle le lâche pour 150 à 180 points de dégâts en normal)",
-  'hudChrome.finder.mech.crypt_gravecall':
-    "Appel de la tombe (toutes les 15 secondes, une Âme liée flotte de l'alcôve du sarcophage suivant vers lui ; si elle l'atteint, il est Gorgé des morts, avec 10 pour cent de dégâts supplémentaires par âme jusqu'à 10 cumuls, et récupère 3 pour cent de ses points de vie. Un joueur sur sa trajectoire l'absorbe à sa place : 12 à 16 points de dégâts d'Ombre en normal)",
-  'hudChrome.finder.mech.crypt_harmony':
-    "Harmonie (chaque Choriste en vie réduit les dégâts qu'elle subit de 30 pour cent : tuez d'abord les Choristes)",
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    "Héroïque : Rappel (un Choriste mort depuis 10 secondes alors que l'autre vit encore se relève ; tuez-les donc ensemble) et Couplet ininterrompu (une Complainte sur trois ne peut pas être interrompue : cachez-vous)",
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    "Héroïque : chaque lanterne allumée s'éteint aussi d'elle-même après 30 secondes et reste éteinte pendant 10 secondes ; l'Étreinte glacée saisit deux joueurs et les libère après avoir subi 4.4 pour cent de ses points de vie en dégâts",
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    "Héroïque : Coup du fossoyeur toutes les 9 secondes sur le tank (chaque cumul augmente les dégâts subis de 6 pour cent pendant 20 secondes, jusqu'à 6 cumuls), Vigueur sépulcrale (il frappe 30 pour cent plus vite dans une tombe) et Terre tourmentée (toute personne restant 2 secondes dans une tombe y fait apparaître des Ossements sans repos)",
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    "Mesuré pour la tombe (toutes les 15 secondes, il marque un joueur autre que le tank ; 4 secondes plus tard, une Tombe ouverte s'effondre sous lui, infligeant 42 à 52 points de dégâts dans un rayon de 3 yards en normal. La fosse reste jusqu'à la fin du combat : 9 points de dégâts par seconde et déplacement ralenti de 40 pour cent à l'intérieur ; placez donc les tombes au bord de la cour)",
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    "Héroïque : Nommer les morts (le Registre indique l'ordre des bougies : une erreur éteint la dernière allumée et inflige 252 à 288 points de dégâts d'Ombre à la personne qui l'allume ; chaque rallumage draine 8 pour cent par seconde), Étreinte de la tombe (toutes les 16 secondes, 2 joueurs reçoivent un cercle de 4 yards ; 1.5 seconde plus tard, des mains en jaillissent : immobilisation de 3 secondes et 162 à 198 points de dégâts d'Ombre) et Glas ardent du Knellwyrm (il s'envole et marque la moitié du cercle pendant 4.5 secondes, puis y déverse un feu fantomatique pour 1 000 à 1 120 points de dégâts de Feu, sur 3 moitiés par envol)",
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    "Impulsion d'ombre (toutes les 12 secondes, une incantation de 2 secondes, puis 24 à 30 points de dégâts d'Ombre en normal à toutes les personnes à moins de 12 yards de lui ; éloignez-vous. Toutes les 9 secondes pendant ses Derniers rites)",
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    "Faucher les tourmentés (sous 35 pour cent de ses points de vie, les âmes cessent d'arriver ; toutes les 14 secondes, il balaie de sa faux après une incantation de 2 secondes : 55 à 65 points de dégâts d'Ombre en normal à toutes les personnes dans un arc de 120 degrés à 14 yards devant lui. Impulsion d'ombre revient alors toutes les 9 secondes)",
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Sentier de givre (elle laisse du givre glissant sur son passage pendant 25 secondes : vous y accélérez lentement et continuez à glisser quand vous vous arrêtez ou tournez)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    "Rite des tourmentés (à 65 pour cent de ses points de vie, il retourne à l'autel, insensible aux dégâts dans la Protection des tourmentés, tandis que Froid sépulcral inflige 3 points de dégâts d'Ombre par seconde à tout le monde, augmentant de 1 toutes les 5 secondes, et que 2 Ossements sans repos sortent des alcôves. Rallumez les 4 Bougies du souvenir : chacune nécessite une canalisation de 4 secondes qui draine chaque seconde 6 pour cent des points de vie maximum de la personne qui l'allume ; les coups ne l'interrompent pas, mais un pas ou un étourdissement l'interrompt. La dernière bougie brise le Rite : il est étourdi pendant 8 secondes et subit 25 pour cent de dégâts supplémentaires)",
-  'hudChrome.finder.mech.crypt_shovelful':
-    'Pelletée (toutes les 11 secondes, il projette de la terre funéraire dans un cône de 8 yards devant lui : une fois et demie les dégâts de son coup et déplacement ralenti de 50 pour cent pendant 6 secondes ; placez-vous donc derrière lui)',
   'hudChrome.finder.mech.drowned_anchor':
     "Ancre noyée (sa victime est ramenée vers la fosse : approchez à moins de 3 yards d'un poteau d'amarrage allumé pour y amarrer la chaîne ; le poteau s'éteint alors pendant 30 secondes. Vous pouvez aussi briser la chaîne en 12 coups, 16 en héroïque)",
   'hudChrome.finder.mech.fog_veil':
@@ -22206,7 +21989,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.abilities.courier.name': 'Messager',
   'entities.mobs.bastion_drowned_anchor.name': 'Ancre noyée',
   'entities.mobs.bastion_gaol_cage.name': 'Cage de fer',
-  'entities.mobs.bound_soul.name': 'Âme liée',
   'entities.npcs.innkeeper_maudie.title': 'Aubergiste',
   'referralCards.awarded': 'Décerné',
   'referralCards.firstPage': 'Première page',
@@ -25708,21 +25490,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Triple T',
   'entities.mobs.buddy_trollface.name': 'Trollface',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Sanglier Corne-défense',
-  'entities.mobs.candlewright_acolyte.name': 'Acolyte cirier',
-  'entities.mobs.cantor_ilvane.name': 'Chantre Ilvane',
-  'entities.mobs.crypt_bone_brute.name': "Brute d'os",
-  'entities.mobs.crypt_bone_minion.name': "Serviteur d'os",
-  'entities.mobs.crypt_bone_pile.name': 'Ossements agités',
-  'entities.mobs.crypt_carrion_crow.name': 'Corbeau charognard',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Gargouille de la chapelle',
-  'entities.mobs.crypt_crow_caller.name': 'Appelant des corbeaux',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Adepte Gravecaller',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Nécromancien Gravecaller',
-  'entities.mobs.crypt_knellwyrm.name': 'Knellwyrm',
-  'entities.mobs.crypt_ossuary_cutthroat.name': "Coupe-gorge de l'ossuaire",
-  'entities.mobs.crypt_ossuary_drake.name': "Drake de l'ossuaire",
-  'entities.mobs.crypt_ossuary_warrior.name': "Guerrier de l'ossuaire",
-  'entities.mobs.crypt_remembrance_candle.name': 'Bougie du souvenir',
   'entities.mobs.drowned_pilgrim.name': 'Pèlerin noyé',
   'entities.mobs.drowned_sergeant.name': 'Sergent noyé',
   'entities.mobs.drowned_watchman.name': 'Guetteur noyé',
@@ -25732,8 +25499,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Geôlier Ossick',
   'entities.mobs.glacier_splinter.name': 'Éclat de glacier',
   'entities.mobs.great_saurian.name': 'Grand Saurien',
-  'entities.mobs.hollow_chorister.name': 'Choriste creux',
-  'entities.mobs.hollow_gravedigger.name': 'Fossoyeur creux',
   'entities.mobs.howdah_hexcaller.name': 'Lanceur de maléfices du howdah',
   'entities.mobs.ice_wraith.name': 'Spectre de glace',
   'entities.mobs.lagoon_snapper.name': 'Tortue hargneuse de la lagune',
@@ -25748,12 +25513,7 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Fantassin du rassemblement',
   'entities.mobs.muster_sergeant.name': 'Sergent du rassemblement',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogre tire-traîneau',
-  'entities.mobs.ossuary_sentinel.name': "Sentinelle de l'ossuaire",
-  'entities.mobs.rime_egg_sac.name': "Sac d'œufs de givre",
   'entities.mobs.rime_whelp.name': 'Dragonnet de givre',
-  'entities.mobs.rimeweb.name': "Dame du Froid d'Os",
-  'entities.mobs.rimeweb_hatchling.name': 'Jeune araignée de toile givrée',
-  'entities.mobs.rimeweb_spinner.name': 'Tisseuse de toile givrée',
   'entities.mobs.sanctum_shackle_anvil.name': "Entrave de l'Enclume",
   'entities.mobs.sanctum_shackle_bellows.name': 'Entrave du Soufflet',
   'entities.mobs.sanctum_shackle_hammer.name': 'Entrave du Marteau',

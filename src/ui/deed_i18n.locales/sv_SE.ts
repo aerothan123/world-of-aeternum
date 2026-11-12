@@ -256,10 +256,6 @@ export const table: DeedLocaleTable = {
     name: 'Borsta av dig',
     desc: 'Dö för första gången; det händer de bästa av oss.',
   },
-  dgn_hollow_crypt: {
-    name: 'Kryptbrytaren',
-    desc: 'Besegra Morthen Gravkallaren i Den ihåliga kryptan.',
-  },
   dgn_sunken_bastion: {
     name: 'Dimman lättar',
     desc: 'Besegra Vael Fogbindern i Den sjunkna bastionen.',
@@ -271,10 +267,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Lindormen i djupet',
     desc: 'Besegra Korzul Gravlindormen i Gravlindormens helgedom.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroisk: Den ihåliga kryptan',
-    desc: 'Besegra Morthen Gravkallaren i Den ihåliga kryptan på heroisk svårighetsgrad.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroisk: Den sjunkna bastionen',
@@ -311,14 +303,6 @@ export const table: DeedLocaleTable = {
   dgn_boss_clears_50: {
     name: 'Femtio dörrar djupare',
     desc: 'Besegra 50 slutbossar i fängelsehål.',
-  },
-  dgn_morthen_flawless: {
-    name: 'Benfritt',
-    desc: 'Besegra Morthen Gravkallaren på heroisk svårighetsgrad utan att någon gruppmedlem dör.',
-  },
-  dgn_morthen_trio: {
-    name: 'Tre mot graven',
-    desc: 'Besegra Morthen Gravkallaren med tre eller färre spelare.',
   },
   dgn_olen_arc: {
     name: 'Kliv undan lien',
@@ -1350,22 +1334,6 @@ export const table: DeedLocaleTable = {
     desc: 'Ha Världs-PvP på under 7 dagar speltid medan du är vid liv i den öppna världen eller en PvP-match. Fristäder, PvE-instanser, död och utloggning pausar framstegen; att stänga av nollställer dem. Intjänade titlar är permanenta.',
     title: 'Okuvlig',
   },
-  dgn_morthen_candlelight: {
-    name: 'Alla ljus tända',
-    desc: 'Besegra Morthen Gravkallaren efter att ha tänt alla fyra minnesljusen igen inom 20 sekunder efter att hans oroliga skydd uppstod.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Tyst nu',
-    desc: 'Besegra kantor Ilvane utan att hennes Klagosång från hålrummet någonsin träffar någon.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Ingen kvar i luften',
-    desc: 'Besegra Benkylans dam utan att hon någonsin släpper någon från sin Frusna omfamning.',
-  },
-  dgn_marrow_tidy: {
-    name: 'En prydlig kyrkogård',
-    desc: 'Besegra dödgrävaren Marrow med varje öppen grav placerad vid klockgårdens kant.',
-  },
   dgn_drowned_temple_cantor: {
     name: 'Sista versen',
     desc: 'Besegra Ysolei, den dränkta månens avatar, med Bleka körens sista kantor vid din sida.',
@@ -1410,10 +1378,6 @@ export const table: DeedLocaleTable = {
   dgn_turnkey_cage: {
     name: 'Ingen bur håller oss',
     desc: 'Besegra fängelsevakten utan att någon krossas i en järnbur.',
-  },
-  dgn_crypt_knellwyrm: {
-    name: 'Inte ett svedt hårstrå',
-    desc: 'Besegra dödsklangslindormen utan att någon bränns av dess Bålsvep.',
   },
   dgn_mere_hydra: {
     name: 'Alla huvuden ned',

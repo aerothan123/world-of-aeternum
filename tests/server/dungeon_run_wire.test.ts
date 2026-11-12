@@ -137,8 +137,8 @@ describe('dgrun: the dungeon run on the wire', () => {
     sim.setPlayerLevel(20, other.pid);
     sim.partyInvite(other.pid, session.pid);
     sim.partyAccept(other.pid);
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', session.pid, true)).toBe(true);
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', other.pid, true)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', session.pid, true)).toBe(true);
+    expect(enterDungeon(sim.ctx, 'sunken_bastion', other.pid, true)).toBe(true);
     const spy = vi.spyOn(JSON, 'stringify');
     try {
       const a = dungeonRunWireJson(sim.ctx, session.pid);
@@ -146,7 +146,7 @@ describe('dgrun: the dungeon run on the wire', () => {
       const again = dungeonRunWireJson(sim.ctx, session.pid);
       expect(a).toBe(b);
       expect(again).toBe(a);
-      expect(a).toContain('"dungeonId":"hollow_crypt"');
+      expect(a).toContain('"dungeonId":"sunken_bastion"');
       expect(spy).toHaveBeenCalledTimes(1);
     } finally {
       spy.mockRestore();
@@ -289,11 +289,11 @@ describe('dgrun: the dungeon run on the wire', () => {
 
 describe('decodeDungeonRun', () => {
   const good = {
-    dungeonId: 'hollow_crypt',
+    dungeonId: 'sunken_bastion',
     difficulty: 'normal',
     bosses: [
-      { mobId: 'sexton_marrow', defeated: true },
-      { mobId: 'morthen', defeated: false },
+      { mobId: 'knight_commander_olen', defeated: true },
+      { mobId: 'vael_the_mistcaller', defeated: false },
     ],
   };
 
@@ -318,7 +318,7 @@ describe('decodeDungeonRun', () => {
   it.each([
     ['null', null],
     ['undefined', undefined],
-    ['a string', 'hollow_crypt'],
+    ['a string', 'sunken_bastion'],
     ['an array', [good]],
     ['an unknown dungeon', { ...good, dungeonId: 'crypt_of_next_patch' }],
     ['a prototype key as the dungeon', { ...good, dungeonId: 'constructor' }],
@@ -331,11 +331,14 @@ describe('decodeDungeonRun', () => {
       'an oversized boss list',
       { ...good, bosses: Array.from({ length: 17 }, () => good.bosses[0]) },
     ],
-    ['a boss that is not a record', { ...good, bosses: ['sexton_marrow'] }],
+    ['a boss that is not a record', { ...good, bosses: ['knight_commander_olen'] }],
     ['an unknown boss', { ...good, bosses: [{ mobId: 'boss_of_next_patch', defeated: false }] }],
     ['a prototype key as the boss', { ...good, bosses: [{ mobId: 'toString', defeated: false }] }],
-    ['a non-boolean defeated flag', { ...good, bosses: [{ mobId: 'morthen', defeated: 1 }] }],
-    ['a missing defeated flag', { ...good, bosses: [{ mobId: 'morthen' }] }],
+    [
+      'a non-boolean defeated flag',
+      { ...good, bosses: [{ mobId: 'vael_the_mistcaller', defeated: 1 }] },
+    ],
+    ['a missing defeated flag', { ...good, bosses: [{ mobId: 'vael_the_mistcaller' }] }],
   ])('drops the whole run for %s', (_label, frame) => {
     expect(decodeDungeonRun(frame)).toBeNull();
   });
@@ -343,19 +346,19 @@ describe('decodeDungeonRun', () => {
   it('sameDungeonRun compares the dungeon, the difficulty and every row', () => {
     const a = decodeDungeonRun(good) as NonNullable<ReturnType<typeof decodeDungeonRun>>;
     expect(sameDungeonRun(a, { ...a })).toBe(true);
-    expect(sameDungeonRun(a, { ...a, dungeonId: 'sunken_bastion' })).toBe(false);
+    expect(sameDungeonRun(a, { ...a, dungeonId: 'gravewyrm_sanctum' })).toBe(false);
     expect(sameDungeonRun(a, { ...a, difficulty: 'heroic' })).toBe(false);
     expect(sameDungeonRun(a, { ...a, bosses: a.bosses.slice(0, 1) })).toBe(false);
     expect(
       sameDungeonRun(a, {
         ...a,
-        bosses: [a.bosses[0], { mobId: 'morthen', defeated: true }],
+        bosses: [a.bosses[0], { mobId: 'vael_the_mistcaller', defeated: true }],
       }),
     ).toBe(false);
     expect(
       sameDungeonRun(a, {
         ...a,
-        bosses: [a.bosses[0], { mobId: 'rimeweb', defeated: false }],
+        bosses: [a.bosses[0], { mobId: 'gaoler_ossick', defeated: false }],
       }),
     ).toBe(false);
   });

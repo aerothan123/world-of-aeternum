@@ -62,6 +62,7 @@ export const it_IT: EnTranslations = {
     "earned": "Ottenute",
     "redeemed": "Riscattato",
     "emptyStamp": "Non ancora guadagnato",
+    "retiredStamp": "No longer available",
     "stamping": "Applicazione del timbro alla tessera...",
     "redeem": "Riscatta ricompensa",
     "previous": "Riscatta prima i timbri precedenti.",
@@ -4824,30 +4825,6 @@ export const it_IT: EnTranslations = {
         "snappedFetters": "Le sue catene sono spezzate. Non combatte più, non può essere ferito e presto se ne andrà.",
         "anchored": "Sei incatenato all'Ancora annegata: puoi muoverti, ma non allontanarti dall'argano, che ti trascina verso la Fossa dell'Annegamento. Arriva entro {reach} iarde da un palo d'ormeggio acceso distante almeno {run} iarde dal punto in cui sei stato agganciato per fissare la catena (il palo si spegne per {dark} s), oppure fai spezzare la catena dal gruppo con {links} colpi ({linksHeroic} in modalità Eroica). La fossa sottrae il {pit}% della tua salute massima ({pitHeroic}% in modalità Eroica)."
       },
-      "crypt": {
-        "carrionEye": "Tutti i corvi dello scontro ti danno la caccia per {seconds} s. Corri verso il difensore per poter abbattere insieme lo stormo.",
-        "graniteSkin": "Subisce il {pct}% di danni in meno e la pietra si ispessisce ogni {every} s, fino a {max} strati. Uno stordimento la frantuma e gli fa subire il {cracked}% di danni in più per {seconds} s.",
-        "measured": "Al termine, una Tomba Aperta sprofonda nel punto in cui ti trovi: da {min} a {max} danni (da {heroicMin} a {heroicMax} in modalità Eroica) a chiunque sia entro {radius} iarde. La tomba resta per tutto lo scontro, quindi porta il marchio al bordo del cortile, lontano dal gruppo.",
-        "graveDirt": "Sei in una Tomba Aperta: velocità di movimento ridotta del {slow}% e {damage} danni da ombra al secondo ({heroic} in modalità Eroica). In modalità Eroica, restare {linger} s in una tomba fa sorgere delle Ossa inquiete. Esci dalla tomba.",
-        "dirtInEyes": "Riduce la velocità di movimento del {pct}%. Palata colpisce tutti davanti al Sagrestano Marrow: resta alle sue spalle.",
-        "blow": "Aumenta i danni subiti del {pct}%: {per}% per accumulo, attualmente {stacks} su {max}. Ogni Colpo del Becchino aggiunge un accumulo e ripristina la durata a {seconds} s.",
-        "graveVigor": "Attacca il {pct}% più velocemente mentre si trova in una Tomba Aperta. Tienilo fuori dalle tombe.",
-        "tolling": "È immune ai danni mentre raggiunge la fune e suona la Campana Funebre. Al termine dei rintocchi, il Rintocco infligge da {min} a {max} danni da ombra (da {heroicMin} a {heroicMax} in modalità Eroica) a tutti, e da ogni Tomba Aperta sorgono delle Ossa inquiete.",
-        "embraced": "Sei sollevato tra le braccia della Dama: non puoi agire e subisci {tick} danni da gelo al secondo ({tickHeroic} in modalità Eroica). Se il gruppo le infligge danni pari al {share}% della sua salute massima ({shareHeroic}% in modalità Eroica), ti posa dolcemente; se ti trattiene in alto per {hold} s, ti lascia cadere sul ghiaccio infliggendoti da {min} a {max} danni (da {heroicMin} a {heroicMax} in modalità Eroica).",
-        "lament": "Quando termina il Lamento della Sposa, infligge da {min} a {max} danni da gelo (da {heroicMin} a {heroicMax} in modalità Eroica) a chiunque non sia entro {radius} iarde da una lanterna funeraria accesa. Ogni lanterna ripara i {cap} giocatori più vicini, poi si spegne e non protegge dal Lamento successivo.",
-        "lingering": "Il tuo prossimo Lamento della Sposa infligge il {pct}% di danni in più: {per}% per accumulo, fino a {max} accumuli. Affronta il prossimo nella luce di una lanterna.",
-        "slippery": "Sei sul ghiaccio scivoloso: la tua velocità cambia al massimo di {grip} iarde/s ogni secondo, quindi acceleri lentamente, scivoli quando ti fermi e fai curve larghe. Esci dal ghiaccio per ritrovare l'equilibrio.",
-        "harmony": "Subisce il {pct}% di danni in meno: {per}% per ogni sua Corista ancora in vita. Uccidi prima le Coriste.",
-        "crescendo": "Canta più in fretta: il Lamento del Vuoto richiede {cast} s anziché {castNormal} s e arriva ogni {every} s anziché {everyNormal} s; l'Organo d'Ossa suona {waves} ondate di note anziché {wavesNormal}.",
-        "gorged": "Infligge il {pct}% di danni in più: {per}% per ogni Anima vincolata che lo ha raggiunto, attualmente {stacks} su {max}, per il resto dello scontro. Ogni anima che lo raggiunge gli ripristina anche il {heal}% della salute massima. Intercetta un'anima per prenderla al suo posto.",
-        "unquietWard": "È immune ai danni mentre canalizza il Rito degli Inquieti all'altare: {lit} Candele della Rimembranza riaccese su {total}. Riaccenderne una richiede una canalizzazione di {channel} s che sottrae ogni secondo il {drain}% della salute massima di chi l'accende ({drainHeroic}% in modalità Eroica); i colpi non la interrompono, un passo o uno stordimento sì. L'ultima candela frantuma la protezione. In modalità Eroica, accendile nell'ordine indicato dal Registro: una candela sbagliata spegne l'ultima accesa e infligge da {wrongMin} a {wrongMax} danni da ombra a chi l'accende.",
-        "riteBroken": "Stordito: la protezione frantumata gli impedisce di agire per {seconds} s.",
-        "shatteredWard": "Subisce il {pct}% di danni in più per {seconds} s: le candele riaccese hanno spezzato la sua protezione. Usa ora i tuoi attacchi più potenti.",
-        "graveChill": "Subisce {bite} danni da ombra al secondo ({biteHeroic} in modalità Eroica) finché dura il Rito degli Inquieti, con un aumento di {step} ({stepHeroic} in modalità Eroica) ogni {every} s. Riaccendi le Candele della Rimembranza per interromperlo.",
-        "graspMark": "Tra {fuse} s, delle mani emergono dall'anello sotto di te: chiunque si trovi entro {radius} iarde dal punto in cui è apparso viene immobilizzato per {root} s e subisce da {min} a {max} danni da ombra. Esci dall'anello.",
-        "graspRoot": "Sei trattenuto dalle mani della tomba: non puoi muoverti per {seconds} s.",
-        "knellAirborne": "Vola sopra l'Anello del Rito, fuori portata. Segna metà dell'anello per {mark} s, poi riversa fuoco spettrale su quella metà: da {min} a {max} danni da fuoco a chiunque vi si trovi. Incendia {breaths} metà a ogni volo, poi atterra."
-      },
       "sanctum": {
         "lockbound": "Subisce il {pct}% di danni in meno: {per}% per ogni catena ancora intatta. Spezza un Ceppo del Sigillo per far cadere la sua catena.",
         "enrage": "Infligge il {pct}% di danni in più.",
@@ -7169,25 +7146,6 @@ export const it_IT: EnTranslations = {
       },
       "mech": {
         "shadow_pulse": "Impulso d'Ombra (danno ad area pulsante)",
-        "crypt_shovelful": "Palata (ogni 11 secondi scaglia terra sepolcrale in un cono di 8 iarde davanti a sé: una volta e mezza i danni di un colpo e movimento rallentato del 50 percento per 6 secondi, quindi resta alle sue spalle)",
-        "crypt_measured_for_the_grave": "Misurato per la Tomba (ogni 15 secondi marchia un giocatore diverso dal difensore; dopo 4 secondi una Tomba Aperta sprofonda sotto di lui, da 42 a 52 danni entro 3 iarde in modalità Normale, e la fossa resta per tutto lo scontro: 9 danni al secondo e movimento rallentato del 40 percento al suo interno, quindi colloca le tombe al bordo del cortile)",
-        "crypt_burial_toll": "Rintocco Funebre (al 66 e al 33 percento di salute raggiunge la fune della campana, immune ai danni, e suona per 3 secondi: da 30 a 38 danni da ombra a tutti in modalità Normale, e da ogni Tomba Aperta sorgono delle Ossa inquiete)",
-        "crypt_marrow_heroic": "Eroica: Colpo del Becchino ogni 9 secondi sul difensore (ogni accumulo aumenta i danni subiti del 6 percento per 20 secondi, fino a 6 accumuli), Vigore Sepolcrale (attacca il 30 percento più velocemente mentre è in una tomba) e Terra Inquieta (chi resta 2 secondi in una tomba vi fa sorgere delle Ossa inquiete)",
-        "crypt_brides_lament": "Lamento della Sposa (ogni 22 secondi un lamento di 3 secondi: da 60 a 75 danni da gelo in modalità Normale a chiunque sia fuori dalla luce di una lanterna funeraria accesa, aumentati della metà per ogni accumulo di Lamento Persistente lasciato dai Lamenti già subiti. Ogni lanterna ripara al massimo due giocatori e si spegne per 28 secondi dopo aver riparato qualcuno, quindi dividetevi e alternatevi)",
-        "crypt_frozen_embrace": "Abbraccio Gelido (ogni 30 secondi afferra un giocatore diverso dal difensore e si solleva con lui di 5 iarde, infliggendo 6 danni da gelo al secondo: infliggetele danni pari al 6 percento della sua salute entro 8 secondi e lo poserà, altrimenti lo lascia cadere per infliggere da 150 a 180 danni in modalità Normale)",
-        "crypt_rime_path": "Sentiero di Brina (lascia brina scivolosa per 25 secondi dove fluttua: su di essa acceleri lentamente e continui a scivolare quando ti fermi o svolti)",
-        "crypt_bridal_freeze": "Gelo Nuziale (a metà salute l'intero fondo del burrone gela: ghiaccio scivoloso per il resto dello scontro)",
-        "crypt_lady_heroic": "Eroica: ogni lanterna accesa si spegne anche da sola dopo 30 secondi e resta spenta per 10; l'Abbraccio Gelido afferra due giocatori e li lascia andare al 4,4 percento della sua salute",
-        "crypt_dirge_of_the_hollow": "Lamento del Vuoto (ogni 16 secondi un canto interrompibile di 2,5 secondi: se lo completa, da 105 a 125 danni da ombra in modalità Normale e un silenzio di 4 secondi a chiunque possa vederla entro 45 iarde, quindi interrompilo o nasconditi dietro un pilastro del coro)",
-        "crypt_harmony": "Armonia (ogni Corista viva le fa subire il 30 percento di danni in meno: uccidi prima le Coriste)",
-        "crypt_bone_organ": "Organo d'Ossa (ogni 26 secondi suona l'Organo d'Ossa: due ondate di note d'ombra esplodono lungo le corsie del soppalco, infliggendo da 100 a 115 danni per corsia in modalità Normale; la seconda ondata riempie gli spazi lasciati dalla prima)",
-        "crypt_crescendo": "Crescendo (sotto il 30 percento di salute il Lamento richiede 1,8 secondi e arriva ogni 11 secondi, e l'organo suona una terza ondata)",
-        "crypt_ilvane_heroic": "Eroica: Bis (una Corista morta da 10 secondi risorge se l'altra è ancora viva, quindi uccidile insieme) e Strofa Ininterrotta (ogni terzo Lamento non può essere interrotto: nasconditi)",
-        "crypt_morthen_shadow_pulse": "Impulso d'Ombra (ogni 12 secondi un lancio di 2 secondi, poi da 24 a 30 danni da ombra in modalità Normale a chiunque sia entro 12 iarde da lui, quindi allontanati; ogni 9 secondi durante gli Ultimi Riti)",
-        "crypt_gravecall": "Richiamo della Tomba (ogni 15 secondi un'Anima vincolata fluttua verso di lui dalla nicchia del sarcofago successivo; quando lo raggiunge, si Sazia dei Morti, ottenendo il 10 percento di danni in più per anima fino a 10 accumuli, e recupera il 3 percento della salute. Un giocatore sul percorso la prende al suo posto: da 12 a 16 danni da ombra in modalità Normale)",
-        "crypt_rite_of_the_unquiet": "Rito degli Inquieti (al 65 percento di salute torna all'altare, immune dentro la Protezione Inquieta, mentre Gelo Sepolcrale infligge a tutti 3 danni da ombra al secondo, aumentando di 1 ogni 5 secondi, e 2 Ossa inquiete escono dalle nicchie. Riaccendi le 4 Candele della Rimembranza: ognuna richiede una canalizzazione di 4 secondi che sottrae ogni secondo il 6 percento della salute massima di chi l'accende; i colpi non la interrompono, ma un passo o uno stordimento sì. L'ultima candela spezza il Rito: viene stordito per 8 secondi e subisce il 25 percento di danni in più)",
-        "crypt_reap_the_unquiet": "Mieti gli Inquieti (sotto il 35 percento di salute le anime cessano; ogni 14 secondi spazza con la falce dopo un lancio di 2 secondi: da 55 a 65 danni da ombra in modalità Normale a tutti in un arco di 120 gradi per 14 iarde davanti a lui. Impulso d'Ombra arriva poi ogni 9 secondi)",
-        "crypt_morthen_heroic": "Eroica: Nomina i Morti (il Registro indica l'ordine delle candele: una candela sbagliata spegne l'ultima accesa e infligge da 252 a 288 danni da ombra a chi l'accende, e ogni riaccensione sottrae l'8 percento al secondo), Presa della Tomba (ogni 16 secondi 2 giocatori ricevono un anello di 4 iarde; dopo 1,5 secondi vi emergono mani: immobilizzazione di 3 secondi e da 162 a 198 danni da ombra) e Rintocco Ardente del Drago del Rintocco Funebre (spicca il volo e segna metà dell'anello per 4,5 secondi, poi riversa fuoco spettrale su quella metà per infliggere da 1.000 a 1.120 danni da fuoco, 3 metà a ogni volo)",
         "reaping_arc": "Arco Mietitore (fendente frontale)",
         "hallowed_brine": "Salamoia Consacrata (una pozza di acqua sacra oscura di 9 iarde, 10 in modalità Eroica: 18 danni al secondo a chiunque vi si trovi, 26 in modalità Eroica; lui subisce il 40 percento di danni in meno mentre vi si trova, quindi trascinalo fuori)",
         "rebounding_bulwark": "Baluardo Rimbalzante (lo scudo rimbalza sul giocatore più vicino entro 10 iarde dall'ultimo colpito, fino a 3 giocatori, 4 in modalità Eroica: sparpagliatevi)",
@@ -7410,33 +7368,6 @@ export const it_IT: EnTranslations = {
       "rimeLine": "Esci dal soffio dei cuccioli per evitare di congelarti al massimo degli accumuli: Brina Strisciante {stacks}/{max}",
       "slabTitle": "Lastra di ghiaccio",
       "slabLine": "Metti la lastra di ghiaccio tra te e gli incantatori nemici per bloccare la loro linea di vista"
-    },
-    "cryptAlert": {
-      "measuredTitle": "Misurato per la Tomba!",
-      "measuredLine": "Raggiungi il bordo del cortile prima che finisca il marchio per tenere la tomba dannosa lontana dal gruppo",
-      "embracedTitle": "Abbraccio Gelido!",
-      "embracedLine": "Il gruppo deve danneggiare la Dama del Gelo d'Ossa per liberarti dalla sua presa",
-      "lamentTitle": "Lamento della Sposa!",
-      "lamentShelteredLine": "Resta nella luce di questa lanterna accesa per evitare i danni del lamento: hai un posto al riparo",
-      "lamentOpenLine": "Entra nella luce di una lanterna accesa per evitare i danni del lamento: ogni lanterna ospita solo due giocatori",
-      "graveTitle": "Sei in una Tomba Aperta!",
-      "graveLine": "La terra della tomba ti brucia e ti rallenta: esci",
-      "tollTitle": "Rintocco Funebre!",
-      "tollLine": "Preparati a combattere gli scheletri sorti dalle tombe aperte: Marrow è immune mentre suona la campana",
-      "harmonyTitle": "Armonia",
-      "harmonyLine": "Uccidi le Coriste per rimuovere la riduzione dei danni del {pct}% di Ilvane",
-      "knellTitle": "Rintocco Ardente!",
-      "knellLine": "Il fuoco spettrale si riversa su questa metà dell'anello allo scadere della barra: raggiungi l'altra metà",
-      "graspTitle": "Presa della Tomba!",
-      "graspLine": "Esci dall'anello segnato prima che emergano le mani per evitare danni e immobilizzazione",
-      "reapTitle": "Mieti gli Inquieti!",
-      "reapLine": "Spostati dietro Morthen per evitare la falce che colpisce tutti davanti a lui",
-      "riteTitle": "Rito degli Inquieti",
-      "riteLine": "Riaccendi tutte le Candele della Rimembranza per spezzare l'immunità di Morthen: {lit} accese su {total}",
-      "riteNamedLine": "Riaccendi le candele nell'ordine del Registro per spezzare l'immunità di Morthen: una candela sbagliata annulla i progressi ({lit}/{total})",
-      "soulTitle": "Anima vincolata",
-      "soulLine": "Intercetta l'anima fluttuante per impedirle di curare Morthen e aumentarne i danni. Catturarla ti ferisce",
-      "timeAria": "{seconds} secondi rimasti"
     },
     "kitUse": {
       "toppleLine": "Rovescia il braciere sui nemici vicini per bruciarli con ciò che versa",
@@ -10783,7 +10714,6 @@ export const it_IT: EnTranslations = {
       "bastionName": "Il Bastione Sommerso",
       "templeName": "Il Tempio Annegato",
       "sanctumName": "Santuario del Gravewyrm",
-      "hollowBody": "Una cripta di cappella profanata dove i morti recenti si rifiutano di riposare. La prima vera prova di un nuovo gruppo.",
       "bastionBody": "Una fortezza allagata perduta nella palude, difesa dagli annegati e dalla marea crescente in persona.",
       "templeBody": "Un santuario sommerso lungo la strada della palude, una deviazione per i curiosi e i ben preparati.",
       "sanctumBody": "Il cuore oscuro di Thornpeak, dove la lunga opera del culto raggiunge il suo apice terribile.",
@@ -17014,46 +16944,6 @@ export const it_IT: EnTranslations = {
       "hoard_cast_mimic_bite": "Morso Vorace",
       "hoard_cast_mimic_leap": "Balzo Schiacciante",
       "hoard_cast_coin_spit": "Monete Maledette",
-      "crypt_grave_bolt": "Dardo Sepolcrale",
-      "crypt_raise_bones": "Risveglia Ossa",
-      "crypt_murder_call": "Richiamo dello Stormo",
-      "crypt_stone_shriek": "Stridio di Pietra",
-      "crypt_grave_cleave": "Fendente Sepolcrale",
-      "crypt_barrowflame_breath": "Soffio della Fiamma Sepolcrale",
-      "crypt_tail_lash": "Sferzata di Coda",
-      "crypt_wing_gust": "Folata d'Ali",
-      "crypt_grave_rupture": "Rottura Sepolcrale",
-      "crypt_carrion_eye": "Occhio delle Carogne",
-      "crypt_marrow_crush": "Frantumazione del Midollo",
-      "crypt_rimesilk_spit": "Sputo di Seta Brinata",
-      "crypt_gravespark_volley": "Raffica di Scintille Sepolcrali",
-      "crypt_morthen_rite_wakes": "Il Rito si Risveglia",
-      "crypt_morthen_rise": "Ascesa dell'Evocatombe",
-      "crypt_morthen_proclaim": "Proclamazione Sepolcrale",
-      "crypt_morthen_descend": "Discesa",
-      "crypt_knellwyrm_arrive": "Discesa dal Cielo",
-      "crypt_knellwyrm_pyre_strafe": "Passaggio della Pira",
-      "crypt_knellwyrm_strafe_run": "Passaggio Radente",
-      "crypt_knellwyrm_dread_bellow": "Ruggito del Terrore",
-      "crypt_marrow_shovelful": "Palata",
-      "crypt_marrow_measure": "Misurato per la Tomba",
-      "crypt_marrow_burial_toll": "Rintocco Funebre",
-      "crypt_marrow_gravediggers_blow": "Colpo del Becchino",
-      "crypt_lady_brides_lament": "Lamento della Sposa",
-      "crypt_lady_frozen_embrace": "Abbraccio Gelido",
-      "crypt_lady_embrace_hold": "Abbraccio Gelido",
-      "crypt_lady_bridal_freeze": "Gelo Nuziale",
-      "crypt_ilvane_dirge": "Lamento del Vuoto",
-      "crypt_ilvane_unbroken_dirge": "Strofa Ininterrotta",
-      "crypt_ilvane_bone_organ": "Organo d'Ossa",
-      "crypt_morthen_shadow_pulse": "Impulso d'Ombra",
-      "crypt_morthen_rite_of_the_unquiet": "Rito degli Inquieti",
-      "crypt_morthen_reap_the_unquiet": "Mieti gli Inquieti",
-      "kituse_crypt_relight_candle": "Riaccendi la Candela",
-      "crypt_knellwyrm_knell_rise": "Rintocco Ardente",
-      "crypt_knellwyrm_knell_mark": "Rintocco Ardente",
-      "crypt_knellwyrm_knell_breath": "Rintocco Ardente",
-      "crypt_knellwyrm_knell_land": "Rintocco Ardente",
       "bastion_brine_mend": "Cura Salmastra",
       "bastion_fog_ward": "Protezione di Nebbia",
       "bastion_halberd_sweep": "Spazzata d'Alabarda",
@@ -26563,9 +26453,6 @@ export const it_IT: EnTranslations = {
       "restless_bones": {
         "name": "Ossa irrequiete"
       },
-      "marrow_restless_bones": {
-        "name": "Ossa inquiete"
-      },
       "gorrak": {
         "name": "Gorrak lo Spietato"
       },
@@ -26667,90 +26554,6 @@ export const it_IT: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "Revenant corazzato di ossa"
-      },
-      "crypt_shambler": {
-        "name": "Barcollante della cripta"
-      },
-      "hollow_acolyte": {
-        "name": "Accolito del Vuoto"
-      },
-      "bonechill_widow": {
-        "name": "Vedova Freddosso"
-      },
-      "sexton_marrow": {
-        "name": "Sagrestano Marrow"
-      },
-      "morthen": {
-        "name": "Morthen il Gravecaller"
-      },
-      "ossuary_sentinel": {
-        "name": "Sentinella dell'ossario"
-      },
-      "hollow_gravedigger": {
-        "name": "Becchino del vuoto"
-      },
-      "rime_egg_sac": {
-        "name": "Sacca di uova brinate"
-      },
-      "rimeweb_hatchling": {
-        "name": "Piccolo di Telabrina"
-      },
-      "rimeweb_spinner": {
-        "name": "Filatore di Telabrina"
-      },
-      "candlewright_acolyte": {
-        "name": "Accolito delle candele"
-      },
-      "hollow_chorister": {
-        "name": "Corista vuoto"
-      },
-      "bound_soul": {
-        "name": "Anima vincolata"
-      },
-      "rimeweb": {
-        "name": "Dama del Gelo d'Ossa"
-      },
-      "cantor_ilvane": {
-        "name": "Cantore Ilvane"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "Guerriero dell'ossario"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "Adepto dell'Evocatombe"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "Tagliagole dell'ossario"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "Negromante dell'Evocatombe"
-      },
-      "crypt_bone_minion": {
-        "name": "Servitore d'ossa"
-      },
-      "crypt_bone_brute": {
-        "name": "Bruto d'ossa"
-      },
-      "crypt_bone_pile": {
-        "name": "Ossa in movimento"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "Gargoyle della cappella"
-      },
-      "crypt_crow_caller": {
-        "name": "Evocatore di corvi"
-      },
-      "crypt_carrion_crow": {
-        "name": "Corvo delle carogne"
-      },
-      "crypt_ossuary_drake": {
-        "name": "Draco dell'ossario"
-      },
-      "crypt_knellwyrm": {
-        "name": "Drago del rintocco funebre"
-      },
-      "crypt_remembrance_candle": {
-        "name": "Candela della rimembranza"
       },
       "bastion_revenant": {
         "name": "Revenant del Bastione"
@@ -28700,16 +28503,6 @@ export const it_IT: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "I morti inquieti",
-        "text": "La vecchia cappella era un luogo di riposo, finché qualcosa ha svegliato i morti. Riporta alla terra 8 ossa irrequiete, {playerName}.",
-        "completion": "Che riposino, e che la Luce perdoni chi li ha svegliati.",
-        "objectives": {
-          "0": {
-            "label": "Ossa irrequiete restituite al riposo"
-          }
-        }
-      },
       "q_supplies": {
         "title": "Scorte rubate",
         "text": "I banditi hanno colpito il mio ultimo carro e sono fuggiti con quattro casse di merce: attrezzi, sale, buon lino di Eastbrook. Le casse sono ammucchiate intorno al loro campo sulle colline a nord-ovest. Riprendile per me, vuoi?",
@@ -28720,26 +28513,6 @@ export const it_IT: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "Sussurri nel sottosuolo",
-        "text": "I morti si rialzano perché qualcosa li richiama. Cerca nella cappella un sigillo o una traccia del richiamo e portala intatta.",
-        "completion": "Questo sigillo porta il marchio dei Gravecaller. Pregavo che la setta fosse estinta, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sigillo Gravecaller"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "I nomi dei morti",
-        "text": "Se i Gravecaller hanno profanato le tombe, devo sapere chi hanno rubato. Raccogli 3 pagine del registro funebre, {playerName}.",
-        "completion": "Povere anime... e guarda: il sagrestano Marrow fu il primo. Morthen cominciò dall'uomo che seppelliva Eastbrook.",
-        "objectives": {
-          "0": {
-            "label": "Pagina di registro consunta"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "Zittire il richiamo",
         "text": "Ogni nome nel registro è un'anima che Morthen vuole strappare dalla terra. Zittisci 12 ossa irrequiete, {playerName}, prima che il sussurro diventi coro.",
@@ -28747,49 +28520,6 @@ export const it_IT: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Ossa irrequiete messe a tacere"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "Il rito del vincolo",
-        "text": "La cripta sotto la cappella deve essere dissigillata se vogliamo fermare il Gravecaller, ma solo un rito del vincolo lascerà passare i vivi. Mi servono 4 grumi di Sego Benedetto, gli scavatori della miniera accumulano sego a casse intere, e 6 Essenze Spettrali dai morti inquieti.",
-        "completion": "È fatto. La via sotto è aperta... raduna i compagni più forti, {playerName}.",
-        "objectives": {
-          "0": {
-            "label": "Sego benedetto"
-          },
-          "1": {
-            "label": "Essenza spettrale"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "Nel Vuoto",
-        "text": "Morthen attende in fondo alla Cripta Vuota, circondato dai morti d'élite che ha rialzato. Porta quattro compagni e fermalo.",
-        "completion": "I sussurri sono cessati. I morti dormono, {playerName}, ed Eastbrook ti deve tutto.",
-        "objectives": {
-          "0": {
-            "label": "Morthen il Gravecaller ucciso"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "La campana del sagrestano",
-        "text": "Il registro nomina il sagrestano Marrow, primo guardiano rialzato da Morthen. Scendi con quattro compagni e ridagli il riposo rubato, {playerName}.",
-        "completion": "Marrow è libero finalmente. Non suonate campane per lui; ne udì abbastanza in vita.",
-        "objectives": {
-          "0": {
-            "label": "Sagrestano Marrow restituito al riposo"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "La traccia del Gravecaller",
-        "text": "Morthen è morto, ma la sua setta non sprecò un secolo di silenzio per una sola cappella. Cerca il suo grimorio tra le rovine, {playerName}.",
-        "completion": "Morthen scriveva a un 'Fogbinder' nell'acquitrino del nord. La setta non è morta, {playerName}, ha solo avuto pazienza.",
-        "objectives": {
-          "0": {
-            "label": "Grimorio di Morthen"
           }
         }
       },
@@ -32720,11 +32450,6 @@ export const it_IT: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "La Cripta Vuota",
-        "enterText": "Scendi nella Cripta Vuota...",
-        "leaveText": "Risali alla luce del giorno."
-      },
       "sunken_bastion": {
         "name": "Il Bastione Sommerso",
         "enterText": "Guadi nelle profondità del Bastione Sommerso...",
@@ -32833,11 +32558,6 @@ export const it_IT: EnTranslations = {
         "sender": "Maresciallo Redbrook",
         "subject": "Il vecchio Grigiafauci, finalmente",
         "body": "Le notizie corrono in una città così piccola. Ieri sera i pastori hanno brindato alla tua salute, e Wilkes giura che il lupo era grande quanto un carro. Lascia pure che ricamino: te lo sei guadagnato.\n\nConcediti un pasto a spese della guardia.\n- Maresciallo Redbrook"
-      },
-      "letter_q_hollow": {
-        "sender": "Fratello Aldric",
-        "subject": "Ciò che hai compiuto nel buio",
-        "body": "Pochi sapranno mai cosa giaceva sepolto in quella conca, e ancora meno ci crederebbero. Io lo so, e non lo dimenticherò.\n\nChe la tua strada resti illuminata.\n- Fratello Aldric"
       },
       "heroic_marks_reward": {
         "sender": "Quartiermastro eroico",

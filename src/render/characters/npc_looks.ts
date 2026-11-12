@@ -3215,20 +3215,6 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'wand',
   },
-  // Crow Caller (the Hollow Crypt, hollow_crypt_trash.ts): raven haired, close set eyes.
-  crypt_crow_caller: {
-    cls: 'rogue',
-    app: {
-      gender: 'male',
-      ...head('shoulder', 'chops', 'slim', 'hooded', 'aquiline', 'default', 'default', 'brow'),
-      ...skin(24, 0.3, 0.5),
-      ...hair(240, 0.1, 0.07),
-      ...eyes(45, 0.6, 0.35),
-      headShape: shape({ eyeSpacing: -0.6, eyeSize: -0.4, eyeTilt: -0.6 }),
-      bodyScale: 1.0,
-    },
-    props: 'daggers',
-  },
   // Dawnhold Knight (Evergarden, evergarden.ts): fair haired, square jawed, gold plate.
   hedge_knight: {
     cls: 'paladin',
@@ -3487,7 +3473,6 @@ export const MOB_LOOK_IDS: ReadonlySet<string> = new Set([
   'edda_reedhand',
   'acolyte_tessa',
   'rift_pact_acolyte',
-  'crypt_crow_caller',
   'hedge_knight',
   'the_wreck_warden',
   // Wyndlewood Chapter One (content/chapter_one.ts): its two escortees and the

@@ -43,7 +43,7 @@ function input(over: Partial<DungeonFinderViewInput> = {}): DungeonFinderViewInp
   return {
     info: makeInfo('sim'),
     board: [],
-    playerLevel: 8,
+    playerLevel: 12,
     playerClass: 'warrior',
     playerId: 1,
     specRole: null,
@@ -67,7 +67,7 @@ describe('dungeon finder view core', () => {
     const ids = finderLootItemIds();
     expect(ids.length).toBeGreaterThan(90);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids).toContain('gravewoven_bag');
+    expect(ids).toContain('mistveil_cord');
     expect(ids).toContain('scepter_of_the_deathless_court');
   });
 
@@ -114,11 +114,11 @@ describe('dungeon finder view core', () => {
   });
 
   it('lists every catalogued activity with strict level eligibility', () => {
-    const view = live(buildDungeonFinderView(input({ playerLevel: 8, specRole: 'tank' })));
+    const view = live(buildDungeonFinderView(input({ playerLevel: 12, specRole: 'tank' })));
     expect(view.rows.map((r) => r.id)).toEqual(FINDER_ACTIVITIES.map((a) => a.id));
     const byId = new Map(view.rows.map((r) => [r.id, r]));
-    expect(byId.get('hollow_crypt_normal')?.eligible).toBe(true);
-    expect(byId.get('sunken_bastion_normal')?.blocked).toBe('level');
+    expect(byId.get('sunken_bastion_normal')?.eligible).toBe(true);
+    expect(byId.get('drowned_temple_normal')?.blocked).toBe('level');
     expect(byId.get('nythraxis_boss_arena_normal')?.blocked).toBe('level');
   });
 
@@ -129,12 +129,12 @@ describe('dungeon finder view core', () => {
           input({
             playerLevel: 20,
             specRole,
-            stagedActivityIds: ['hollow_crypt_heroic'],
+            stagedActivityIds: ['sunken_bastion_heroic'],
             info: makeInfo('sim', { roles: ['tank'] }),
           }),
         ),
       );
-      expect(view.rows.find((r) => r.id === 'hollow_crypt_heroic')?.blocked).toBeNull();
+      expect(view.rows.find((r) => r.id === 'sunken_bastion_heroic')?.blocked).toBeNull();
       expect(view.queue.roles.filter((role) => role.eligible).map((role) => role.role)).toEqual([
         'tank',
         'dps',
@@ -147,7 +147,7 @@ describe('dungeon finder view core', () => {
       'tank',
       'dps',
     ]);
-    expect(lowLevel.rows.find((row) => row.id === 'hollow_crypt_normal')?.blocked).toBe('level');
+    expect(lowLevel.rows.find((row) => row.id === 'sunken_bastion_normal')?.blocked).toBe('level');
   });
 
   it('selects the first activity by default and honors an explicit selection', () => {
@@ -163,23 +163,20 @@ describe('dungeon finder view core', () => {
   });
 
   it('builds encounter previews with portraits, mechanics, and loot groups', () => {
-    const view = live(buildDungeonFinderView(input({ selectedActivityId: 'hollow_crypt_normal' })));
+    const view = live(
+      buildDungeonFinderView(input({ selectedActivityId: 'sunken_bastion_normal' })),
+    );
     const boss = view.detail?.encounters.find((e) => e.final);
-    expect(boss?.mobId).toBe('morthen');
-    expect(boss?.portraitUrl).toBe('/ui/dungeons/morthen.webp');
-    expect(boss?.mechanics).toEqual([
-      'crypt_morthen_shadow_pulse',
-      'crypt_gravecall',
-      'crypt_rite_of_the_unquiet',
-      'crypt_reap_the_unquiet',
-    ]);
+    expect(boss?.mobId).toBe('vael_the_mistcaller');
+    expect(boss?.portraitUrl).toBe('/ui/dungeons/vael_the_mistcaller.webp');
+    expect(boss?.mechanics).toEqual(['fog_veil', 'reaper_behind', 'mist_surge', 'summons_adds']);
     expect(boss?.groups.length).toBeGreaterThan(0);
-    // morthen_guaranteed_uncommon partitions a full draw; morthen_bonus sums
-    // below 1 and must NOT claim a guaranteed drop.
+    // vael_guaranteed_uncommon partitions a full draw; vael_bonus sums below 1
+    // and must NOT claim a guaranteed drop.
     expect(boss?.groups[0].guaranteed).toBe(true);
     expect(boss?.groups[1].guaranteed).toBe(false);
     // Normal difficulty previews the normal money base, never the heroic one.
-    expect(boss?.copper).toBe(2500);
+    expect(boss?.copper).toBe(5000);
     expect(boss?.heroicGroups).toEqual([]);
     // Attunement quest drops never appear in the preview.
     const crypt = live(
@@ -270,7 +267,7 @@ describe('dungeon finder view core', () => {
         input({
           playerLevel: 20,
           specRole: 'tank',
-          selectedActivityId: 'hollow_crypt_heroic',
+          selectedActivityId: 'sunken_bastion_heroic',
         }),
       ),
     );
@@ -284,11 +281,11 @@ describe('dungeon finder view core', () => {
     // The heroic finale preview advertises the raised heroicCopper base the
     // kill actually pays; a non-finale encounter keeps its normal copper.
     expect(boss?.copper).toBe(100000);
-    const sexton = view.detail?.encounters.find((e) => e.mobId === 'sexton_marrow');
-    // The rework raised Marrow's purse with his level (hollow_crypt.md 8.1).
-    expect(sexton?.copper).toBe(800);
-    expect(sexton?.heroicGroups).toHaveLength(1);
-    expect(sexton?.heroicGroups[0].guaranteed).toBe(true);
+    const olen = view.detail?.encounters.find((e) => e.mobId === 'knight_commander_olen');
+    // The rework set Olen's purse with his level (sunken_bastion.md 8.1).
+    expect(olen?.copper).toBe(800);
+    expect(olen?.heroicGroups).toHaveLength(1);
+    expect(olen?.heroicGroups[0].guaranteed).toBe(true);
 
     const wildheart = live(
       buildDungeonFinderView(
@@ -311,7 +308,7 @@ describe('dungeon finder view core', () => {
   });
 
   it('previews the live non-finale equipment budget on Heroic only', () => {
-    const sextonOn = (activityId: string) =>
+    const olenOn = (activityId: string) =>
       live(
         buildDungeonFinderView(
           input({
@@ -320,30 +317,32 @@ describe('dungeon finder view core', () => {
             selectedActivityId: activityId,
           }),
         ),
-      ).detail?.encounters.find((e) => e.mobId === 'sexton_marrow');
-    const heroic = sextonOn('hollow_crypt_heroic');
+      ).detail?.encounters.find((e) => e.mobId === 'knight_commander_olen');
+    const heroic = olenOn('sunken_bastion_heroic');
     expect(heroic?.final).toBe(false);
     expect(heroic?.heroicGroups).toMatchObject([
       {
         guaranteed: true,
-        // The relocated Nythraxis piece (0.1) and the blue roll's three rare
-        // copies (0.04 each, 2026-10-08) come first; the shipped rows keep their
-        // ratios in the remaining 0.78. The two uncommon rows left on 2026-10-09
-        // (Heroic pays no uncommon gear), so 0.7 of weight shares the 0.78.
+        // The relocated Nythraxis piece (0.1) comes first; the shipped rows
+        // (weights summing to 1, the Bastion blues' Heroic copies included)
+        // keep their ratios in the remaining 0.9 (HEROIC_BOSS_LOOT in
+        // content/heroic_loot.ts). Restated here from the retired Hollow
+        // Crypt's Sexton Marrow (2026-11-11).
         items: [
-          { itemId: 'heroic_bonewrought_greatsword', chance: expect.closeTo(0.1, 9) },
-          { itemId: 'heroic_spadeworn_gauntlets', chance: expect.closeTo(0.04, 9) },
-          { itemId: 'heroic_gravedirt_grips', chance: expect.closeTo(0.04, 9) },
-          { itemId: 'heroic_bellrope_mitts', chance: expect.closeTo(0.04, 9) },
-          { itemId: 'sextons_burial_spade', chance: expect.closeTo((0.3 / 0.7) * 0.78, 9) },
-          { itemId: 'cryptplate_helm', chance: expect.closeTo((0.3 / 0.7) * 0.78, 9) },
-          { itemId: 'heroic_sextons_spadehaft', chance: expect.closeTo((0.1 / 0.7) * 0.78, 9) },
+          { itemId: 'heroic_stormhymn_chain_grips', chance: expect.closeTo(0.1, 9) },
+          { itemId: 'drowned_commanders_breastplate', chance: expect.closeTo(0.3 * 0.9, 9) },
+          { itemId: 'tideguard_faceguard', chance: expect.closeTo(0.2 * 0.9, 9) },
+          { itemId: 'mistforged_pauldrons', chance: expect.closeTo(0.2 * 0.9, 9) },
+          { itemId: 'heroic_knight_commanders_longsword', chance: expect.closeTo(0.15 * 0.9, 9) },
+          { itemId: 'heroic_tideguard_greaves', chance: expect.closeTo(0.05 * 0.9, 9) },
+          { itemId: 'heroic_drowned_prayer_leggings', chance: expect.closeTo(0.05 * 0.9, 9) },
+          { itemId: 'heroic_eelscale_leggings', chance: expect.closeTo(0.05 * 0.9, 9) },
         ],
       },
     ]);
     expect(heroic?.groups).toEqual([]);
     expect(heroic?.singles).toEqual([]);
-    expect(sextonOn('hollow_crypt_normal')?.heroicGroups).toEqual([]);
+    expect(olenOn('sunken_bastion_normal')?.heroicGroups).toEqual([]);
   });
 
   it('maps raid entrances to the Abandoned Crypt door with its zone', () => {
@@ -412,22 +411,22 @@ describe('dungeon finder view core', () => {
         input({
           playerLevel: 20,
           specRole: 'tank',
-          lockouts: [{ id: 'hollow_crypt:heroic', msRemaining: 3_600_000 }],
+          lockouts: [{ id: 'sunken_bastion:heroic', msRemaining: 3_600_000 }],
         }),
       ),
     );
     const byId = new Map(view.rows.map((r) => [r.id, r]));
-    expect(byId.get('hollow_crypt_heroic')?.lockedMinutes).toBe(60);
-    expect(byId.get('hollow_crypt_normal')?.lockedMinutes).toBe(0);
+    expect(byId.get('sunken_bastion_heroic')?.lockedMinutes).toBe(60);
+    expect(byId.get('sunken_bastion_normal')?.lockedMinutes).toBe(0);
   });
 
   it('derives Quick Match state: staged checklist, leader gate, and canQueue', () => {
     const staged = live(
       buildDungeonFinderView(
-        input({ tab: 'queue', specRole: 'tank', stagedActivityIds: ['hollow_crypt_normal'] }),
+        input({ tab: 'queue', specRole: 'tank', stagedActivityIds: ['sunken_bastion_normal'] }),
       ),
     );
-    expect(staged.queue.options.find((o) => o.id === 'hollow_crypt_normal')?.checked).toBe(true);
+    expect(staged.queue.options.find((o) => o.id === 'sunken_bastion_normal')?.checked).toBe(true);
     expect(staged.queue.canQueue).toBe(true);
     // A non-leader party member cannot queue.
     const member = live(
@@ -435,7 +434,7 @@ describe('dungeon finder view core', () => {
         input({
           tab: 'queue',
           specRole: 'tank',
-          stagedActivityIds: ['hollow_crypt_normal'],
+          stagedActivityIds: ['sunken_bastion_normal'],
           party: { leader: 99, size: 2 },
         }),
       ),
@@ -448,7 +447,7 @@ describe('dungeon finder view core', () => {
         input({
           tab: 'queue',
           specRole: 'tank',
-          info: makeInfo('sim', { queue: { activities: ['hollow_crypt_normal'], waited: 42 } }),
+          info: makeInfo('sim', { queue: { activities: ['sunken_bastion_normal'], waited: 42 } }),
         }),
       ),
     );
@@ -464,7 +463,7 @@ describe('dungeon finder view core', () => {
           info: makeInfo('sim', {
             proposal: {
               id: 3,
-              activityId: 'hollow_crypt_normal',
+              activityId: 'sunken_bastion_normal',
               role: 'tank',
               size: 5,
               accepted: 2,
@@ -476,7 +475,7 @@ describe('dungeon finder view core', () => {
         }),
       ),
     );
-    expect(view.queue.proposal?.dungeonId).toBe('hollow_crypt');
+    expect(view.queue.proposal?.dungeonId).toBe('sunken_bastion');
     expect(view.queue.proposal?.myResponse).toBe('pending');
     expect(view.clocks.proposalRemaining).toBe(21);
     expect(view.clocks.proposalAccepted).toBe(2);
@@ -485,13 +484,13 @@ describe('dungeon finder view core', () => {
   it('annotates board listings with apply eligibility and role fit', () => {
     const listing = {
       id: 7,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       leaderName: 'Lead',
       tags: ['first_run' as const],
       size: 1,
       capacity: 5,
       needed: { tank: 0, healer: 1, dps: 3 },
-      members: [{ cls: 'warrior' as const, level: 8, role: 'tank' as const }],
+      members: [{ cls: 'warrior' as const, level: 12, role: 'tank' as const }],
     };
     // A tank-only viewer cannot fill the open slots.
     const tankView = live(
@@ -541,23 +540,23 @@ describe('dungeon finder view core', () => {
   it('hides premade groups the player is already part of (issue 2031)', () => {
     const ownListing = {
       id: 7,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       leaderName: 'Lead',
       tags: [],
       size: 1,
       capacity: 5,
       needed: { tank: 0, healer: 1, dps: 3 },
-      members: [{ cls: 'warrior' as const, level: 8, role: 'tank' as const }],
+      members: [{ cls: 'warrior' as const, level: 12, role: 'tank' as const }],
     };
     const otherListing = {
       id: 8,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       leaderName: 'Someone Else',
       tags: [],
       size: 1,
       capacity: 5,
       needed: { tank: 0, healer: 1, dps: 3 },
-      members: [{ cls: 'priest' as const, level: 8, role: 'healer' as const }],
+      members: [{ cls: 'priest' as const, level: 12, role: 'healer' as const }],
     };
 
     // I lead a listing: it never shows up in my own browse results.
@@ -567,7 +566,7 @@ describe('dungeon finder view core', () => {
           tab: 'board',
           board: [ownListing, otherListing],
           info: makeInfo('sim', {
-            myListing: { id: 7, activityId: 'hollow_crypt_normal', tags: [], applicants: [] },
+            myListing: { id: 7, activityId: 'sunken_bastion_normal', tags: [], applicants: [] },
           }),
         }),
       ),
@@ -577,7 +576,7 @@ describe('dungeon finder view core', () => {
     // 7 from `listings` must not also drop it from `myListing`.
     expect(leaderView.board.myListing).toEqual({
       id: 7,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
       applicants: [],
     });
@@ -605,7 +604,7 @@ describe('dungeon finder view core', () => {
   it('hides premade listings for a dungeon the viewer is locked out of (#2030)', () => {
     const heroicListing = {
       id: 8,
-      activityId: 'hollow_crypt_heroic',
+      activityId: 'sunken_bastion_heroic',
       leaderName: 'Lead',
       tags: [],
       size: 1,
@@ -625,7 +624,7 @@ describe('dungeon finder view core', () => {
           tab: 'board',
           playerLevel: 20,
           board: [heroicListing],
-          lockouts: [{ id: 'hollow_crypt:heroic', msRemaining: 3_600_000 }],
+          lockouts: [{ id: 'sunken_bastion:heroic', msRemaining: 3_600_000 }],
         }),
       ),
     );
@@ -635,7 +634,7 @@ describe('dungeon finder view core', () => {
   it('keeps a listing visible for withdraw when the viewer applied before going locked (#2030)', () => {
     const heroicListing = {
       id: 8,
-      activityId: 'hollow_crypt_heroic',
+      activityId: 'sunken_bastion_heroic',
       leaderName: 'Lead',
       tags: [],
       size: 1,
@@ -650,7 +649,7 @@ describe('dungeon finder view core', () => {
           playerLevel: 20,
           board: [heroicListing],
           info: makeInfo('sim', { myApplication: { listingId: 8 } }),
-          lockouts: [{ id: 'hollow_crypt:heroic', msRemaining: 3_600_000 }],
+          lockouts: [{ id: 'sunken_bastion:heroic', msRemaining: 3_600_000 }],
         }),
       ),
     );
@@ -673,7 +672,7 @@ describe('dungeon finder view core', () => {
     // myListing object assertion.
     const heroicListing = {
       id: 8,
-      activityId: 'hollow_crypt_heroic',
+      activityId: 'sunken_bastion_heroic',
       leaderName: 'Lead',
       tags: [],
       size: 1,
@@ -681,14 +680,14 @@ describe('dungeon finder view core', () => {
       needed: { tank: 0, healer: 1, dps: 3 },
       members: [{ cls: 'warrior' as const, level: 20, role: 'tank' as const }],
     };
-    const myListing = { id: 8, activityId: 'hollow_crypt_heroic', tags: [], applicants: [] };
+    const myListing = { id: 8, activityId: 'sunken_bastion_heroic', tags: [], applicants: [] };
     // The positive control: an unrelated leader's unlocked listing must
     // SURVIVE both arms, so an empty result can only mean the own row was
     // hidden, never that the loop produced nothing (a content-id rename
     // would otherwise green this test forever).
     const otherListing = {
       id: 9,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       leaderName: 'Other',
       tags: [],
       size: 1,
@@ -703,7 +702,7 @@ describe('dungeon finder view core', () => {
           playerLevel: 20,
           board: [heroicListing, otherListing],
           info: makeInfo('sim', { myListing }),
-          lockouts: [{ id: 'hollow_crypt:heroic', msRemaining: 3_600_000 }],
+          lockouts: [{ id: 'sunken_bastion:heroic', msRemaining: 3_600_000 }],
         }),
       ),
     );
@@ -712,7 +711,7 @@ describe('dungeon finder view core', () => {
     // release's full-object assertion, adopted at the merge).
     expect(locked.board.myListing).toEqual({
       id: 8,
-      activityId: 'hollow_crypt_heroic',
+      activityId: 'sunken_bastion_heroic',
       tags: [],
       applicants: [],
     });
@@ -732,7 +731,7 @@ describe('dungeon finder view core', () => {
     expect(unlocked.board.listings.map((l) => l.id)).toEqual([9]);
     expect(unlocked.board.myListing).toEqual({
       id: 8,
-      activityId: 'hollow_crypt_heroic',
+      activityId: 'sunken_bastion_heroic',
       tags: [],
       applicants: [],
     });
@@ -741,7 +740,7 @@ describe('dungeon finder view core', () => {
   it('does not hide a listing over a lockout on a DIFFERENT dungeon or a lockout-free difficulty (#2030 followup)', () => {
     const heroicListing = {
       id: 8,
-      activityId: 'hollow_crypt_heroic',
+      activityId: 'sunken_bastion_heroic',
       leaderName: 'Lead',
       tags: [],
       size: 1,
@@ -762,16 +761,16 @@ describe('dungeon finder view core', () => {
     );
     expect(otherDungeonLocked.board.listings.map((l) => l.id)).toEqual([8]);
 
-    // hollow_crypt normal has lockout:'none', so a listing for it must stay
+    // sunken_bastion normal has lockout:'none', so a listing for it must stay
     // visible even if the (unrelated) heroic difficulty is locked.
-    const normalListing = { ...heroicListing, id: 9, activityId: 'hollow_crypt_normal' };
+    const normalListing = { ...heroicListing, id: 9, activityId: 'sunken_bastion_normal' };
     const normalDifficultyUnaffected = live(
       buildDungeonFinderView(
         input({
           tab: 'board',
           playerLevel: 20,
           board: [normalListing],
-          lockouts: [{ id: 'hollow_crypt:heroic', msRemaining: 3_600_000 }],
+          lockouts: [{ id: 'sunken_bastion:heroic', msRemaining: 3_600_000 }],
         }),
       ),
     );
@@ -787,14 +786,14 @@ describe('dungeon finder view core', () => {
             info: makeInfo('sim', {
               myListing: {
                 id: 7,
-                activityId: 'hollow_crypt_normal',
+                activityId: 'sunken_bastion_normal',
                 tags: [],
                 applicants: [
                   {
                     pid: 2,
                     name: 'Priest',
                     cls: 'priest',
-                    level: 8,
+                    level: 12,
                     roles: ['dps'],
                     spec,
                     remaining,
@@ -814,11 +813,11 @@ describe('dungeon finder view core', () => {
   it('keeps the 1 Hz clock numbers OUT of the render-skip signature', () => {
     const base = input({
       info: makeInfo('sim', {
-        queue: { activities: ['hollow_crypt_normal'], waited: 10 },
+        queue: { activities: ['sunken_bastion_normal'], waited: 10 },
         cooldown: 0,
         proposal: {
           id: 3,
-          activityId: 'hollow_crypt_normal',
+          activityId: 'sunken_bastion_normal',
           role: 'tank',
           size: 5,
           accepted: 1,
@@ -833,11 +832,11 @@ describe('dungeon finder view core', () => {
       buildDungeonFinderView({
         ...base,
         info: makeInfo('sim', {
-          queue: { activities: ['hollow_crypt_normal'], waited: 11 },
+          queue: { activities: ['sunken_bastion_normal'], waited: 11 },
           cooldown: 0,
           proposal: {
             id: 3,
-            activityId: 'hollow_crypt_normal',
+            activityId: 'sunken_bastion_normal',
             role: 'tank',
             size: 5,
             accepted: 2,
@@ -866,7 +865,7 @@ describe('dungeon finder view core', () => {
 describe('proposal popup view', () => {
   const proposal = {
     id: 9,
-    activityId: 'hollow_crypt_normal',
+    activityId: 'sunken_bastion_normal',
     role: 'healer' as const,
     size: 5,
     accepted: 3,
@@ -882,7 +881,7 @@ describe('proposal popup view', () => {
 
   it('builds one meter per role slot with my slot flagged', () => {
     const view = buildFinderProposalPopupView(makeInfo('sim', { proposal }));
-    expect(view?.dungeonId).toBe('hollow_crypt');
+    expect(view?.dungeonId).toBe('sunken_bastion');
     expect(view?.slots).toEqual([
       { role: 'tank', total: 1, accepted: 1, mine: false },
       { role: 'healer', total: 1, accepted: 0, mine: true },
@@ -914,7 +913,7 @@ describe('group board expedition applications', () => {
   function listing(id: number, expedition = true): DungeonFinderListingView {
     return {
       id,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       leaderName: `Leader${id}`,
       tags: [],
       size: 1,
@@ -986,7 +985,7 @@ describe('group board expedition applications', () => {
     expect(clear.board.listings.every((row) => row.canApply)).toBe(true);
   });
   it('refuses expedition admission while queued but allows class roles without specialization', () => {
-    const queued = boardView({ queue: { activities: ['hollow_crypt_normal'], waited: 5 } });
+    const queued = boardView({ queue: { activities: ['sunken_bastion_normal'], waited: 5 } });
     expect(
       queued.board.listings.filter((row) => row.expedition).every((row) => !row.canApply),
     ).toBe(true);
@@ -1020,12 +1019,14 @@ describe('dungeon finder view: Normal-only loot rows', () => {
   // a real boss table, restored after, so the real activity catalogue drives
   // the view.
   it('previews a normalOnly group on Normal and hides it from the Heroic preview', () => {
-    expect(ITEMS.mistveil_cord).toBeTruthy();
-    const original = MOBS.morthen.loot;
-    MOBS.morthen.loot = [
+    // gravewoven_bag is a save-compat item def no Bastion table rolls, so the
+    // substituted row is the only way it can reach Vael's preview.
+    expect(ITEMS.gravewoven_bag).toBeTruthy();
+    const original = MOBS.vael_the_mistcaller.loot;
+    MOBS.vael_the_mistcaller.loot = [
       ...original,
       {
-        itemId: 'mistveil_cord',
+        itemId: 'gravewoven_bag',
         chance: 1,
         rollGroup: 'finder_test_normal_only',
         normalOnly: true,
@@ -1035,19 +1036,23 @@ describe('dungeon finder view: Normal-only loot rows', () => {
       const listsCord = (view: ReturnType<typeof buildDungeonFinderView>) =>
         live(view)
           .detail?.encounters.find((e) => e.final)
-          ?.groups.some((g) => g.items.some((i) => i.itemId === 'mistveil_cord'));
+          ?.groups.some((g) => g.items.some((i) => i.itemId === 'gravewoven_bag'));
       expect(
-        listsCord(buildDungeonFinderView(input({ selectedActivityId: 'hollow_crypt_normal' }))),
+        listsCord(buildDungeonFinderView(input({ selectedActivityId: 'sunken_bastion_normal' }))),
       ).toBe(true);
       expect(
         listsCord(
           buildDungeonFinderView(
-            input({ playerLevel: 20, specRole: 'tank', selectedActivityId: 'hollow_crypt_heroic' }),
+            input({
+              playerLevel: 20,
+              specRole: 'tank',
+              selectedActivityId: 'sunken_bastion_heroic',
+            }),
           ),
         ),
       ).toBe(false);
     } finally {
-      MOBS.morthen.loot = original;
+      MOBS.vael_the_mistcaller.loot = original;
     }
   });
 });

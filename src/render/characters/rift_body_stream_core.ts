@@ -31,8 +31,6 @@ import { BUDDY_MOBS } from '../../sim/content/buddy_mobs';
 import { DROWNED_TEMPLE_MOBS } from '../../sim/content/drowned_temple';
 import { DUNGEON_MOBS } from '../../sim/content/dungeons';
 import { GRAVEWYRM_SANCTUM_MOBS } from '../../sim/content/gravewyrm_sanctum';
-import { HOLLOW_CRYPT_MOBS } from '../../sim/content/hollow_crypt';
-import { HOLLOW_CRYPT_TRASH_MOBS } from '../../sim/content/hollow_crypt_trash';
 import { HOARD_MOBS, RIFT_MOBS } from '../../sim/content/rift/mobs';
 import { SUNKEN_BASTION_MOBS } from '../../sim/content/sunken_bastion';
 import { TEMPLE_DUNGEON_MOBS } from '../../sim/content/temple';
@@ -75,7 +73,6 @@ function defUrls(def: VisualDef): string[] {
 }
 
 const INTERIOR_MOBS: Readonly<Record<string, Readonly<Record<string, MobTemplate>>>> = {
-  hollow_crypt: { ...HOLLOW_CRYPT_MOBS, ...HOLLOW_CRYPT_TRASH_MOBS },
   sunken_bastion: SUNKEN_BASTION_MOBS,
   gravewyrm_sanctum: GRAVEWYRM_SANCTUM_MOBS,
   drowned_temple: { ...TEMPLE_DUNGEON_MOBS, ...DROWNED_TEMPLE_MOBS },

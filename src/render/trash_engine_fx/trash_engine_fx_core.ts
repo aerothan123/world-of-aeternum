@@ -11,8 +11,6 @@
 // Three-free, DOM-free, deterministic.
 
 import { DUNGEONS, instanceOrigin, MOBS } from '../../sim/data';
-import { BOUND_SOUL_WALKER } from '../../sim/encounters/hollow_crypt/morthen_gravecall';
-import { MORTHEN_SOUL_TEMPLATE } from '../../sim/encounters/hollow_crypt/morthen_ids';
 import { COMBAT_WALL_SHAPES } from '../../sim/instances/combat_wall_state';
 import { BASTION_THROATLIGHT_ORB } from '../../sim/mob/trash_kit/bastion_cast_ids';
 import { TRASH_ENGINE_DEMO_KIT } from '../../sim/mob/trash_kit/engine_demo';
@@ -30,7 +28,6 @@ import type {
   TrashKitDef,
 } from '../../sim/types';
 import { TELEGRAPH_THREAT_COLORS } from '../floor_telegraph/telegraph_look_core';
-import { BOUND_SOUL_LOOK } from '../hollow_crypt/morthen_rite_fx_core';
 
 export type KitSchool = Aura['school'];
 export type KitNovaDef = NonNullable<TrashKitDef['nova']>;
@@ -128,13 +125,9 @@ export function buildEngineCatalog(
 let catalog: EngineCatalog | null = null;
 
 /** Walkers an ENCOUNTER launches itself (an 'event' launch from a spot, never
- *  a mob's bar), so no template's kit carries them: Morthen's Bound Soul
- *  (encounters/hollow_crypt/morthen_gravecall.ts). The engine draws their
- *  orbs and beats; their launch and the boss's own surge are the encounter
- *  painter's (render/hollow_crypt/morthen_soul_fx.ts). They join `walkers`
- *  only: no launch bar to gather on, and no lingering empower glow (Gorged on
- *  the Dead lasts the fight; his own soul fire deepens with it instead). */
-export const ENCOUNTER_WALKERS: readonly KitWalkerDef[] = [BOUND_SOUL_WALKER];
+ *  a mob's bar), so no template's kit carries them. They join `walkers` only.
+ *  Empty since Morthen's Bound Soul left with the Hollow Crypt (2026-11-11). */
+export const ENCOUNTER_WALKERS: readonly KitWalkerDef[] = [];
 
 /** The shipped catalog: every template's kit, then the dev demo kit, then the
  *  encounters' own walkers. */
@@ -477,9 +470,6 @@ export const WALKER_LOOKS: Readonly<
 > = {
   [BASTION_THROATLIGHT_ORB]: { tint: 0x52f0b8, hover: 1.5 },
   [TEMPLE_HEARTPEARL_ORB]: { tint: 0xe4f0ff, hover: 0.42 },
-  // Morthen's Bound Soul: a big soul-green spirit at a tall man's head height
-  // (its ghost-fire body and wake are morthen_soul_fx.ts's).
-  [MORTHEN_SOUL_TEMPLATE]: BOUND_SOUL_LOOK,
 };
 
 /** The tint an orb (and its empower glow) draws in. */

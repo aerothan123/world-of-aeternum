@@ -707,20 +707,13 @@ const heroicFarmPatternRows = (): LootEntry[] => [
 // merely because their acquisition rows now share the heroic equipment slot.
 const PRESERVED_BASE_LOOT_SOURCES = new Set([
   // The Heroic copies of the lower dungeons' blue rolls (BLUE_COPY_SHARE).
-  'heroic_bellrope_mitts',
+  // (The retired Hollow Crypt's copies left with its tables, 2026-11-11: their
+  // item levels are pinned in content/hollow_crypt_retired.ts.)
   'heroic_brinewarden_robe',
-  'heroic_candlewatch_jerkin',
-  'heroic_cantors_stole',
   'heroic_cellwatch_belt',
-  'heroic_choirward_pauldrons',
-  'heroic_choristers_spaulders',
   'heroic_conchplate_sabatons',
   'heroic_fogbinders_rod',
   'heroic_gaolyard_jerkin',
-  'heroic_gravecallers_rod',
-  'heroic_gravedirt_grips',
-  'heroic_knellbound_hauberk',
-  'heroic_lamenting_veil',
   'heroic_lanternwick_sash',
   'heroic_mere_crested_helm',
   'heroic_merecleaver',
@@ -731,16 +724,9 @@ const PRESERVED_BASE_LOOT_SOURCES = new Set([
   'heroic_pale_chorus_slippers',
   'heroic_portcullis_girdle',
   'heroic_prism_etched_handwraps',
-  'heroic_rime_laced_hood',
-  'heroic_rimewreath_coif',
-  'heroic_robe_of_the_unquiet_rite',
-  'heroic_spadeworn_gauntlets',
   'heroic_tideglass_gauntlets',
   'heroic_turnkeys_shank',
   'heroic_boneguard_breastplate',
-  'heroic_cantors_hymnal',
-  'heroic_rimeweb_fang',
-  'heroic_sextons_spadehaft',
   'heroic_knight_commanders_longsword',
   'heroic_gaolyard_cudgel',
   'heroic_chorus_conch',
@@ -808,7 +794,11 @@ const THORNPEAK_SHARE = 0.1;
 // Gravewyrm Sanctum or Wildheart Basin boss whose Normal table carries it), so
 // every relic on those dungeons' Reliquary pages is paid on both difficulties.
 // A piece with no second heroic boss takes THORNPEAK_SHARE at home; one that
-// also drops from a Crypt, Bastion or Temple boss takes this smaller share.
+// also drops from a Bastion or Temple boss takes this smaller share. The four
+// relics whose second copy dropped from a Hollow Crypt boss
+// (NYTHRAXIS_CRYPT_RETIRED_COPY_IDS in content/nythraxis_loot.ts) keep this
+// share too: the owner retired their crypt rows with the dungeon (2026-11-11)
+// rather than re-homing them, so their home rows are exactly as shipped.
 const THORNPEAK_HOME_SHARE = 0.04;
 // The Heroic copy of each blue on a lower dungeon boss's Normal blue roll
 // (2026-10-08). Those base rows are normalOnly, so the copy is what keeps the
@@ -820,54 +810,6 @@ const BLUE_COPY_SHARE = 0.04;
 // uncommon pieces drop on Normal, never on a Heroic kill, so each boss's one
 // Heroic item is an epic, a raid piece or a Heroic copy.
 export const HEROIC_BOSS_LOOT: Record<string, LootEntry[]> = {
-  // The Hollow Crypt rework (hollow_crypt.md 8.2): one equipment item per boss
-  // kill; four shipped epics moved off Morthen onto the new wing and choir bosses.
-  sexton_marrow: [
-    ...weightedLootGroup('sexton_marrow_heroic', [
-      ['heroic_bonewrought_greatsword', THORNPEAK_SHARE],
-      ['heroic_spadeworn_gauntlets', BLUE_COPY_SHARE],
-      ['heroic_gravedirt_grips', BLUE_COPY_SHARE],
-      ['heroic_bellrope_mitts', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 3 * BLUE_COPY_SHARE, [
-        ['sextons_burial_spade', 0.3],
-        ['cryptplate_helm', 0.3],
-        ['heroic_sextons_spadehaft', 0.1],
-      ]),
-    ]).map(preserveBaseLootSource),
-  ],
-  rimeweb: [
-    ...weightedLootGroup('rimeweb_heroic', [
-      ['heroic_courtiers_bonefang', THORNPEAK_SHARE],
-      ['heroic_rimewreath_coif', BLUE_COPY_SHARE],
-      ['heroic_rime_laced_hood', BLUE_COPY_SHARE],
-      ['heroic_lamenting_veil', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 3 * BLUE_COPY_SHARE, [
-        ['rimesilk_hood', 0.35],
-        ['bonechill_striders', 0.25],
-        ['bonechill_cord', 0.25],
-        ['heroic_rimeweb_fang', 0.15],
-      ]),
-    ]).map(preserveBaseLootSource),
-  ],
-  // The design's Vigil Taper trinket (a new trinket effect) is deferred to the
-  // encounter pass; its share is spread over the other pieces meanwhile. The
-  // base rare chase rows are normalOnly, so each boss's Heroic partition carries
-  // the rare's Heroic variant (Spadehaft, Fang, Hymnal) inside its one slot.
-  // The Shadowpulse Slippers moved here off Morthen to join their Handwraps, so
-  // the choir boss carries two heroic epics like his neighbours.
-  cantor_ilvane: [
-    ...weightedLootGroup('cantor_ilvane_heroic', [
-      ['heroic_votive_ward_of_the_deathless_court', THORNPEAK_SHARE],
-      ['heroic_choirward_pauldrons', BLUE_COPY_SHARE],
-      ['heroic_choristers_spaulders', BLUE_COPY_SHARE],
-      ['heroic_cantors_stole', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 3 * BLUE_COPY_SHARE, [
-        ['shadowpulse_handwraps', 0.35],
-        ['shadowpulse_slippers', 0.3],
-        ['heroic_cantors_hymnal', 0.15],
-      ]),
-    ]).map(preserveBaseLootSource),
-  ],
   // The Sunken Bastion rework (sunken_bastion.md 8.2): one equipment item per
   // boss kill; three shipped epics moved off Vael onto Olen and Ossick.
   knight_commander_olen: [
@@ -1020,23 +962,6 @@ export const HEROIC_BOSS_LOOT: Record<string, LootEntry[]> = {
     ]).map(preserveBaseLootSource),
     { itemId: 'necromancers_reagent_satchel', chance: 0.2, preserveSourceTier: true },
   ],
-  morthen: [
-    ...weightedLootGroup('morthen_heroic', [
-      ['heroic_thornpeak_wardblade', THORNPEAK_SHARE],
-      ['heroic_knellbound_hauberk', BLUE_COPY_SHARE],
-      ['heroic_candlewatch_jerkin', BLUE_COPY_SHARE],
-      ['heroic_robe_of_the_unquiet_rite', BLUE_COPY_SHARE],
-      ['heroic_gravecallers_rod', BLUE_COPY_SHARE],
-      ...sharedPartition(1 - THORNPEAK_SHARE - 4 * BLUE_COPY_SHARE, [
-        ['morthens_cryptforged_hauberk', 0.18],
-        ['lunarward_cinch', 0.18],
-        ['bastion_sigil', 0.18],
-      ]),
-    ]).map(preserveBaseLootSource),
-    { itemId: 'gravewoven_bag', chance: 0.2, preserveSourceTier: true },
-    { itemId: 'reins_stormfeather_griffin', chance: HEROIC_GREEN_MOUNT_CHANCE },
-    ...heroicFarmPatternRows(),
-  ],
   vael_the_mistcaller: [
     ...weightedLootGroup('vael_heroic', [
       ['heroic_direfang_quiver', THORNPEAK_SHARE],
@@ -1054,6 +979,11 @@ export const HEROIC_BOSS_LOOT: Record<string, LootEntry[]> = {
     ]).map(preserveBaseLootSource),
     { itemId: 'mistcallers_duffel', chance: 0.1, preserveSourceTier: true },
     { itemId: 'reins_shadowjump_toad', chance: HEROIC_GREEN_MOUNT_CHANCE },
+    // The Stormfeather's five-man path, re-homed here from Morthen when the
+    // Hollow Crypt was retired (2026-11-12): the Bastion is the lowest live
+    // five-man, the nearest band to the crypt's. Same heroic 0.5% it paid on
+    // Morthen. Sits after the Toad so the Toad's draw keeps its stream slot.
+    { itemId: 'reins_stormfeather_griffin', chance: HEROIC_GREEN_MOUNT_CHANCE },
     ...heroicFarmPatternRows(),
   ],
   ysolei: [

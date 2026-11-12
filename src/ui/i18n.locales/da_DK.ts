@@ -8199,9 +8199,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Luften bliver kold. Noget vældigt ånder nedenunder...',
   'entities.dungeons.gravewyrm_sanctum.leaveText': 'Du vakler tilbage ud i bjergvinden.',
   'entities.dungeons.gravewyrm_sanctum.name': 'Gravormens Helligdom',
-  'entities.dungeons.hollow_crypt.enterText': 'Du stiger ned i Den Hule Krypt...',
-  'entities.dungeons.hollow_crypt.leaveText': 'Du klatrer tilbage op i dagslyset.',
-  'entities.dungeons.hollow_crypt.name': 'Den Hule Krypt',
   'entities.dungeons.nythraxis_boss_arena.enterText':
     'Du passerer gennem den forseglede kongelige dør.',
   'entities.dungeons.nythraxis_boss_arena.leaveText': 'Du vender tilbage til Tornetops kolde luft.',
@@ -8657,14 +8654,12 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.acolyte_tessa.name': 'Akolyt Tessa',
   'entities.mobs.bastion_revenant.name': 'Bastionens Genganger',
   'entities.mobs.bog_bloat.name': 'Sumpopsvulmer',
-  'entities.mobs.bonechill_widow.name': 'Benkulde-Enke',
   'entities.mobs.boneclad_revenant.name': 'Benklædt Genganger',
   'entities.mobs.bound_guardian.name': 'Den Bundne Vogter',
   'entities.mobs.brutok_skullsmasher.name': 'Brutok Kranieknuser',
   'entities.mobs.captain_verlan.name': 'Kaptajn Verlan',
   'entities.mobs.choirmother_selthe.name': 'Kormoder Selthe',
   'entities.mobs.corrupted_priest_malric.name': 'Fordærvet Præst Malric',
-  'entities.mobs.crypt_shambler.name': 'Kryptslæber',
   'entities.mobs.deacon_varric.name': 'Diakon Vandric',
   'entities.mobs.deacon_voss.name': 'Diakon Voss',
   'entities.mobs.deathstalker_voss.name': 'Dødssniger Voss',
@@ -8686,7 +8681,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gravecaller_summoner.name': 'Gravkalder-Tilkalder',
   'entities.mobs.grix_the_tunnelking.name': 'Grix Tunnelkongen',
   'entities.mobs.grubjaw.name': 'Larvekæft den Frådser',
-  'entities.mobs.hollow_acolyte.name': 'Hul Akolyt',
   'entities.mobs.emberkin.name': 'Emberkin',
   'entities.mobs.pyre_colossus.name': 'Pyre Colossus',
   'entities.mobs.ironvein_foreman.name': 'Jernåre-Formand',
@@ -8703,7 +8697,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.mogger.name': 'Mogger',
   'entities.mobs.mogger_lackey.name': 'Mogger-Lakaj',
   'entities.mobs.moonspawn.name': 'Måneyngel',
-  'entities.mobs.morthen.name': 'Morthen Gravkalderen',
   'entities.mobs.mudfin_murloc.name': 'Mudfinne-Sniger',
   'entities.mobs.nhalia_mourner.name': 'Nhalia Sørgende',
   'entities.mobs.nythraxis_heroic_priest_add.name': 'Malric, Den Udødelige Hierofant',
@@ -8727,7 +8720,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.sanctum_boneguard.name': 'Helligdoms-Benvogter',
   'entities.mobs.sanctum_drakonid.name': 'Helligdoms-Skælvogter',
   'entities.mobs.sethrael_palecoil.name': 'Sethrael Blegslyngen',
-  'entities.mobs.sexton_marrow.name': 'Kirkegraver Marrow',
   'entities.mobs.shardlord_kazzix.name': 'Skårherre Kazzix',
   'entities.mobs.sister_nhalia.name': 'Søster Nhalia',
   'entities.mobs.sloomtooth_the_drowned.name': 'Sloomtand den Druknede',
@@ -8869,12 +8861,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_boars.text':
     'Vildsvineskind giver de fineste rejsetasker, og engene nordvest for byen vrimler med bæsterne. Bring mig 5 Børstede Vildsvineskind, så skal jeg gøre det umagen værd.',
   'entities.quests.q_boars.title': 'Børstede Vildsvineskind',
-  'entities.quests.q_bones.completion':
-    'Måtte de hvile nu, og måtte Lyset tilgive, hvad der end vækkede dem.',
-  'entities.quests.q_bones.objectives.0.label': 'Rastløse Knogler lagt til hvile',
-  'entities.quests.q_bones.text':
-    'Den gamle ruin på den nordvestlige bakke var engang et kapel, og dens gård et hvilested. Noget har vækket de døde af deres søvn. Skænk dem fred, {playerName} - giv 8 Rastløse Knogler tilbage til jorden.',
-  'entities.quests.q_bones.title': 'De Rastløse Døde',
   'entities.quests.q_breaking_the_seal.completion':
     'De brænder blåt og rent - bjerget husker sin gamle ed. Med disse kan jeg løse porten op for os alene.',
   'entities.quests.q_breaking_the_seal.objectives.0.label': 'Velsignede Gløder',
@@ -8983,12 +8969,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_glowing_wax.text':
     'Caddis viste mig en klump voks taget af en af de tunnelgravere - den gløder, {playerName}, og den er varm som et hjerteslag. Han vil have mere til studie, og jeg vil have det af min rekvisitionsliste. Bring seks klumper af den glødende voks tilbage.',
   'entities.quests.q_glowing_wax.title': 'Sælsom Voks',
-  'entities.quests.q_gravecallers_trail.completion':
-    "Morthen skrev til en 'Fogbinder' i den nordlige mose. Sekten er ikke død, {playerName} - den har blot været tålmodig.",
-  'entities.quests.q_gravecallers_trail.objectives.0.label': 'Morthens Grimoire',
-  'entities.quests.q_gravecallers_trail.text':
-    'Morthen er død, men et spørgsmål nager mig: en sekt, der gemte sig i et århundrede, ødsler ikke sig selv på ét landsbykapel. Han holdt en grimoire - sine riter, sin korrespondance. Hvis noget af den overlever, ligger det i sakristiet i det forfaldne kapel over krypten. Søg ruinen igennem og bring mig, hvad der er tilbage af hans skrifter, {playerName}.',
-  'entities.quests.q_gravecallers_trail.title': 'Gravkalderens Spor',
   'entities.quests.q_gravewyrm.completion':
     'Det er forbi. De dødes af tre lande kan hvile, bjerget sover uhjemsøgt - og det er dit navn, {playerName}, som hver klokke herfra til Østbæk ringer i nat.',
   'entities.quests.q_gravewyrm.objectives.0.label': 'Korzul Gravormen dræbt',
@@ -9013,12 +8993,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_highwatch_summons.text':
     'Vaels sidste ord har ikke forladt mig, {playerName}: Ormen rører sig under tinderne. Kaptajn Thessaly fører an på muren ved Højvagten, ved hovedet af bjergvejen mod nord. En indkaldelse står opslået ved hendes port - tag den op, og fortæl hende, at Broder Aldric bestiger bjerget bag dig.',
   'entities.quests.q_highwatch_summons.title': 'Vagten på Tinderne',
-  'entities.quests.q_hollow.completion':
-    'Hviskenen er hørt op. Du har gjort, hvad hele Dalen ikke kunne, {playerName} - de døde sover, og Østbæk skylder dig alt, hvad den ejer.',
-  'entities.quests.q_hollow.objectives.0.label': 'Morthen Gravkalderen dræbt',
-  'entities.quests.q_hollow.text':
-    'Morthen Gravkalderen venter på bunden af Den Hule Krypt, omringet af de elitedøde, han har rejst. Han er langt hinsides nogen enkelt helt - tag fire følgesvende, ikke færre. Gør ende på ham, og Dalens døde vil endelig sove.',
-  'entities.quests.q_hollow.title': 'Ned i Det Hule',
   'entities.quests.q_idols.completion':
     'Gravkalder-værk - ældre end Morthen, ældre end mig. Sekten begyndte ikke i Østbæk, {playerName}. Den begyndte her, og søen har vogtet sine hemmeligheder.',
   'entities.quests.q_idols.objectives.0.label': 'Vandfyldt Afgud',
@@ -9067,12 +9041,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_murlocs.text':
     'I tyve år har jeg fisket i Spejlsøen, og aldrig mistet et net, før de gurglende fiskemænd kravlede op af lavvandet. Driv Mudfin tilbage - dræb 8 af dem. Og pas på dig selv: hvor der er én mudfin, er der fem.',
   'entities.quests.q_murlocs.title': 'Ballade ved Søen',
-  'entities.quests.q_names_of_the_dead.completion':
-    'Disse stakkels sjæle... og se her. Graver Marrow - kapellets egen levende vogter - hans grav den første, der blev forstyrret. Morthen begyndte med netop den mand, der begravede Østbæks døde.',
-  'entities.quests.q_names_of_the_dead.objectives.0.label': 'Forvitret Regnskabsside',
-  'entities.quests.q_names_of_the_dead.text':
-    'Hvis Gravkalderne rejste vores døde, må jeg vide, hvis grave de plyndrede. Kapellets graver førte en begravelsesprotokol, og vinden har spredt dens sider ud over kapellets gård. Saml 3 af dem til mig, {playerName} - de døde fortjener at blive kaldt ved deres navne.',
-  'entities.quests.q_names_of_the_dead.title': 'De Dødes Navne',
   'entities.quests.q_necromancers.completion':
     'Lyset tilgive os. Disse rummer de døde fra Dalen og sumpen - hvert lig Gravkalderne nogensinde rejste, høstet. De byggede aldrig en hær, {playerName}. De indsamlede en tiende.',
   'entities.quests.q_necromancers.objectives.0.label': 'Ormekult-Nekromantiker dræbt',
@@ -9178,25 +9146,12 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_ringleader.text':
     'Banditterne svarer til én mand: Gorrak den Hensynsløse. Hug hovedet af, så spredes kroppen. Han lusker i hjertet af deres lejr. Gør det af med ham, {playerName}.',
   'entities.quests.q_ringleader.title': 'Bagmanden',
-  'entities.quests.q_rite.completion':
-    'Det er gjort. Vejen nedenunder står åben... og må Lyset tilgive mig for at åbne den. Saml dine stærkeste ledsagere, før du stiger ned, {playerName}. Ingen bør møde Den Hule alene.',
-  'entities.quests.q_rite.objectives.0.label': 'Velsignet Tælle',
-  'entities.quests.q_rite.objectives.1.label': 'Spøgelsesagtig Essens',
-  'entities.quests.q_rite.text':
-    'Krypten under kapellet må åbnes, hvis vi skal standse Gravecalleren - men kun en bindende rite vil lade de levende passere. Jeg har brug for 4 klumper Velsignet Tælle - minens gravere hamstrer tælle i kassevis - og 6 Spøgelsesagtige Essenser fra de hvileløse døde.',
-  'entities.quests.q_rite.title': 'Den Bindende Rite',
   'entities.quests.q_sanctum_gate.completion':
     'Skårene sidder rigtigt... og porten kender sin nøgle. Vejen nedenunder står åben, {playerName}. Saml de stærkeste ledsagere, du kan finde - hvad der kommer nu, bør ingen møde alene.',
   'entities.quests.q_sanctum_gate.objectives.0.label': 'Helligdomsnøgleskår',
   'entities.quests.q_sanctum_gate.text':
     'Dette er den sidste tærskel, {playerName}. Porten til Gravormens Helligdom blev låst med en nøglesten, og kulten knuste den til skår frem for at se den vendt imod dem. Skårene ligger spredt på portpladsen, under de benklædte dødes øjne. Bring mig tre, så åbner jeg vejen, som Lyset havde til hensigt - i stilhed.',
   'entities.quests.q_sanctum_gate.title': 'Helligdomsporten',
-  'entities.quests.q_sexton.completion':
-    'Så er Marrow endelig fri. Ring ingen klokke for ham - han hørte nok af dem i livet.',
-  'entities.quests.q_sexton.objectives.0.label': 'Graver Marrow stedt til hvile',
-  'entities.quests.q_sexton.text':
-    'Protokollen navngav ham, og krypten holder ham: Graver Marrow, kapellets vogter, den første mand Morthen rejste - der vogter sin mesters dør i døden lige så trofast, som han passede kapellet i livet. Tag fire ledsagere med ind i Den Hule Krypt og skænk den gamle graver den hvile, han blev frarøvet, {playerName}.',
-  'entities.quests.q_sexton.title': 'Graverens Klokke',
   'entities.quests.q_shard_cores.completion':
     'Hver kerne hælder samme vej, som jernspåner mod en magnetsten. De peger mod syd, {playerName}. Mod Helligdommen.',
   'entities.quests.q_shard_cores.objectives.0.label': 'Stormkerne',
@@ -9279,12 +9234,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.quests.q_voice_below.text':
     'I nat knælede hele kultlejren på én gang, {playerName}, hver zelot, hver nekromantiker, alle vendt mod Helligdommen. Korzul taler til dem i deres søvn nu; Vael hørte den samme stemme i mosen, og Morthen før ham. Hug menigheden ned, ti zeloter, seks nekromantikere, før den stemme har hænder nok til selv at trække porten op.',
   'entities.quests.q_voice_below.title': 'Stemmen Nedenunder',
-  'entities.quests.q_whispers.completion':
-    'Denne sigille... den bærer Gravkaldernes mærke, en sekt jeg havde bedt til var uddød. Dette er værre end jeg frygtede, {playerName}.',
-  'entities.quests.q_whispers.objectives.0.label': 'Gravkalderens Sigille',
-  'entities.quests.q_whispers.text':
-    'Du har stedt de døde til hvile, men de vil ikke forblive i hvile, noget kalder dem tilbage. Gennemsøg kapelruinen for ethvert spor af den, der kalder. Hvis du finder en sigille eller et segl, så bring det uberørt til mig.',
-  'entities.quests.q_whispers.title': 'Hvisken Nedenunder',
   'entities.quests.q_widows.completion':
     'Hele sække, hver eneste. Du har roligere hænder end halvdelen af kirurgerne i syden, {playerName}.',
   'entities.quests.q_widows.objectives.0.label': 'Mosekær-Enke dræbt',
@@ -9867,8 +9816,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Højt på toppene, væk fra hovedkampen, ligger et koldere mysterium. Gamle grave bærer en krone, som ingen optegnelse husker, og de døde, der vogter dem, tjente engang en glemt konge. Læs deres sten, saml de nøglesten, de bevarede, og du kan bryde seglet på en grav, som tre trofaste sjæle døde for at holde lukket, den valgfri prøvelse, der åbner riget for dets ti-spiller-raid for dem, der følger sporene helt til ende.',
   'guide.dungeonsPage.cryptLeadTitle': 'En dør, de døde skulle holde lukket',
   'guide.dungeonsPage.heading': 'Fangehuller og Raids',
-  'guide.dungeonsPage.hollowBody':
-    'En gravrøvet kapelkrypt, hvor de nyligt døde nægter at hvile. Den første rigtige prøve for et nyt følge.',
   'guide.dungeonsPage.hollowName': 'Den Hule Krypt',
   'guide.dungeonsPage.intro':
     'Når den åbne verden ikke er nok, så saml et følge og træd ind i en instans: en privat kopi af et fangehul lavet kun til din gruppe.',
@@ -12799,10 +12746,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.letters.letter_q_greyjaw.subject': 'Gamle Gråkæbe, endelig',
   'entities.letters.letter_q_greyjaw.body':
     'Rygter løber hurtigt i så lille en by. Hyrderne skålede for dit helbred i aftes, og Wilkes sværger, at ulven var stor som en kærre. Lad dem bare brodere: du har fortjent det.\n\nTag et måltid på vagtens regning.\n- Marskal Redbrook',
-  'entities.letters.letter_q_hollow.sender': 'Broder Aldric',
-  'entities.letters.letter_q_hollow.subject': 'Det, du gjorde i mørket',
-  'entities.letters.letter_q_hollow.body':
-    'Kun få vil nogensinde vide, hvad der lå begravet i den lavning, og endnu færre ville tro det. Jeg ved det, og jeg glemmer det ikke.\n\nMå din vej forblive oplyst.\n- Broder Aldric',
   'entities.letters.mastery_reset_notice.body':
     'Gildemedlem,\n\nLauget har vedtaget en ny vurdering af mesterskab. Alle hænder begynder klatringen forfra: dine håndværksfærdigheder og dine indsamlingsfærdigheder er sat til nul.\n\nAlt andet er dit, uberørt: dine opskrifter, dine værktøjer og materialer, din bank og dit guld, dine indstillinger og titler, dine bedrifter og hæder, dine quests og post.\n\nKlatringen er ærlig nu. Billigt arbejde vil ikke bære dig. Søg sværere opskrifter, rigere årer og dybere vande.\n\nMed respekt,\nLaugehallen',
   'entities.letters.mastery_reset_notice.sender': 'Laugehallen',
@@ -20151,49 +20094,9 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'abilityUi.cast.bastion_veil_gather': 'Samlende tåge',
   'abilityUi.cast.bastion_veil_rise': 'Tågeslør',
   'abilityUi.cast.cantor_last_verse': 'Det sidste vers',
-  'abilityUi.cast.crypt_barrowflame_breath': 'Gravflammens ånde',
-  'abilityUi.cast.crypt_carrion_eye': 'Ådselsøje',
-  'abilityUi.cast.crypt_grave_bolt': 'Gravbolt',
-  'abilityUi.cast.crypt_grave_cleave': 'Gravkløvning',
-  'abilityUi.cast.crypt_grave_rupture': 'Gravbristning',
-  'abilityUi.cast.crypt_gravespark_volley': 'Gravgnistsalve',
-  'abilityUi.cast.crypt_ilvane_bone_organ': 'Knogleorgel',
-  'abilityUi.cast.crypt_ilvane_dirge': 'Hulrummets klagesang',
-  'abilityUi.cast.crypt_ilvane_unbroken_dirge': 'Ubrudt vers',
-  'abilityUi.cast.crypt_knellwyrm_arrive': 'Nedstigning fra himlen',
-  'abilityUi.cast.crypt_knellwyrm_dread_bellow': 'Rædselsbrøl',
-  'abilityUi.cast.crypt_knellwyrm_knell_breath': 'Brændende dødsklang',
-  'abilityUi.cast.crypt_knellwyrm_knell_land': 'Brændende dødsklang',
-  'abilityUi.cast.crypt_knellwyrm_knell_mark': 'Brændende dødsklang',
-  'abilityUi.cast.crypt_knellwyrm_knell_rise': 'Brændende dødsklang',
-  'abilityUi.cast.crypt_knellwyrm_pyre_strafe': 'Bålsvejp',
-  'abilityUi.cast.crypt_knellwyrm_strafe_run': 'Strygningsangreb',
-  'abilityUi.cast.crypt_lady_bridal_freeze': 'Brudefrysning',
-  'abilityUi.cast.crypt_lady_brides_lament': 'Brudens klage',
-  'abilityUi.cast.crypt_lady_embrace_hold': 'Frossent favntag',
-  'abilityUi.cast.crypt_lady_frozen_embrace': 'Frossent favntag',
-  'abilityUi.cast.crypt_marrow_burial_toll': 'Begravelsesklang',
-  'abilityUi.cast.crypt_marrow_crush': 'Marvknus',
-  'abilityUi.cast.crypt_marrow_gravediggers_blow': 'Graverens slag',
-  'abilityUi.cast.crypt_marrow_measure': 'Målt til graven',
-  'abilityUi.cast.crypt_marrow_shovelful': 'En skovlfuld',
-  'abilityUi.cast.crypt_morthen_descend': 'Nedstigning',
-  'abilityUi.cast.crypt_morthen_proclaim': 'Gravforkyndelse',
-  'abilityUi.cast.crypt_morthen_reap_the_unquiet': 'Høst de hvileløse',
-  'abilityUi.cast.crypt_morthen_rise': 'Gravkalderens opstigning',
-  'abilityUi.cast.crypt_morthen_rite_of_the_unquiet': 'De hvileløses ritual',
-  'abilityUi.cast.crypt_morthen_rite_wakes': 'Ritualet vågner',
-  'abilityUi.cast.crypt_morthen_shadow_pulse': 'Skyggepuls',
-  'abilityUi.cast.crypt_murder_call': 'Krageflokkens kald',
-  'abilityUi.cast.crypt_raise_bones': 'Rejs knogler',
-  'abilityUi.cast.crypt_rimesilk_spit': 'Rimsilkespyt',
-  'abilityUi.cast.crypt_stone_shriek': 'Stenskrig',
-  'abilityUi.cast.crypt_tail_lash': 'Halepisk',
-  'abilityUi.cast.crypt_wing_gust': 'Vingekast',
   'abilityUi.cast.ghost_captain_anchor': 'Forbandet anker',
   'abilityUi.cast.ghost_captain_boarding': 'Spøgelsesentring',
   'abilityUi.cast.ghost_captain_broadside': 'Spøgelsesbredside',
-  'abilityUi.cast.kituse_crypt_relight_candle': 'Tænd lyset igen',
   'abilityUi.cast.kituse_sanctum_topple_brazier': 'Vælt ildskålen',
   'abilityUi.cast.sanctum_branding_iron': 'Brændejern',
   'abilityUi.cast.sanctum_cinder_breath': 'Glødeånde',
@@ -20959,7 +20862,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.bastion_drowned_anchor.name': 'Druknet anker',
   'entities.mobs.bastion_gaol_cage.name': 'Jernbur',
   'entities.mobs.bastion_warhound.name': 'Bastionens krigshund',
-  'entities.mobs.bound_soul.name': 'Bundet sjæl',
   'entities.mobs.broodsworn_goadsmith.name': 'Kuldsvoren sporesmed',
   'entities.mobs.broodsworn_pyre_tender.name': 'Kuldsvoren bålpasser',
   'entities.mobs.broodsworn_thawcaller.name': 'Kuldsvoren tøkalder',
@@ -20993,21 +20895,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.buddy_triple_t.name': 'Trippel-T',
   'entities.mobs.buddy_trollface.name': 'Troldeansigtet',
   'entities.mobs.buddy_tuskhorn_boar.name': 'Stødhornsvin',
-  'entities.mobs.candlewright_acolyte.name': 'Lysmagerakolyt',
-  'entities.mobs.cantor_ilvane.name': 'Kantor Ilvane',
-  'entities.mobs.crypt_bone_brute.name': 'Knoglebæst',
-  'entities.mobs.crypt_bone_minion.name': 'Knogletjener',
-  'entities.mobs.crypt_bone_pile.name': 'Rørende knogler',
-  'entities.mobs.crypt_carrion_crow.name': 'Ådselskrage',
-  'entities.mobs.crypt_chapel_gargoyle.name': 'Kapelgargoyle',
-  'entities.mobs.crypt_crow_caller.name': 'Kragekalder',
-  'entities.mobs.crypt_gravecaller_adept.name': 'Gravkalderadept',
-  'entities.mobs.crypt_gravecaller_necromancer.name': 'Gravkaldernekromantiker',
-  'entities.mobs.crypt_knellwyrm.name': 'Dødsklangslindorm',
-  'entities.mobs.crypt_ossuary_cutthroat.name': 'Benhusets strubeskærer',
-  'entities.mobs.crypt_ossuary_drake.name': 'Benhusdrage',
-  'entities.mobs.crypt_ossuary_warrior.name': 'Benhuskriger',
-  'entities.mobs.crypt_remembrance_candle.name': 'Mindelys',
   'entities.mobs.drowned_pilgrim.name': 'Druknet pilgrim',
   'entities.mobs.drowned_sergeant.name': 'Druknet sergent',
   'entities.mobs.drowned_watchman.name': 'Druknet vagtmand',
@@ -21017,12 +20904,9 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.gaoler_ossick.name': 'Fangevogter Ossick',
   'entities.mobs.glacier_splinter.name': 'Gletsjersplint',
   'entities.mobs.great_saurian.name': 'Storøgle',
-  'entities.mobs.hollow_chorister.name': 'Hul korsanger',
-  'entities.mobs.hollow_gravedigger.name': 'Hul graver',
   'entities.mobs.howdah_hexcaller.name': 'Bærestolens forbandelsesmaner',
   'entities.mobs.ice_wraith.name': 'Isgenfærd',
   'entities.mobs.lagoon_snapper.name': 'Lagunesnapper',
-  'entities.mobs.marrow_restless_bones.name': 'Hvileløse knogler',
   'entities.mobs.mere_hydra_head_center.name': 'Søhydra',
   'entities.mobs.mere_hydra_head_left.name': 'Søhydra',
   'entities.mobs.mere_hydra_head_right.name': 'Søhydra',
@@ -21034,12 +20918,7 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.mobs.muster_footman.name': 'Opbuddets fodsoldat',
   'entities.mobs.muster_sergeant.name': 'Opbuddets sergent',
   'entities.mobs.ogre_sledge_hauler.name': 'Ogreslædetrækker',
-  'entities.mobs.ossuary_sentinel.name': 'Benhusvogter',
-  'entities.mobs.rime_egg_sac.name': 'Rimfrostægsæk',
   'entities.mobs.rime_whelp.name': 'Rimfrostunge',
-  'entities.mobs.rimeweb.name': 'Knoglekuldens frue',
-  'entities.mobs.rimeweb_hatchling.name': 'Rimvævsunge',
-  'entities.mobs.rimeweb_spinner.name': 'Rimvævsspinder',
   'entities.mobs.sanctum_shackle_anvil.name': 'Amboltlænke',
   'entities.mobs.sanctum_shackle_bellows.name': 'Blæsebælglænke',
   'entities.mobs.sanctum_shackle_hammer.name': 'Hammerlænke',
@@ -21119,50 +20998,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Tager {pct}% mindre skade, mens en anden druknet vagtmand står inden for {radius} yard. Træk dem fra hinanden.',
   'hudChrome.auraEffect.bastion.snappedFetters':
     'Dens kæder er brudt. Den kæmper ikke længere, kan ikke skades og forlader snart stedet.',
-  'hudChrome.auraEffect.crypt.blow':
-    'Øger modtaget skade med {pct}%: {per}% for hver stak, nu {stacks} af {max}. Hvert Graverens slag tilføjer en stak og nulstiller varigheden til {seconds} sek.',
-  'hudChrome.auraEffect.crypt.carrionEye':
-    'Hver krage i kampen jager dig i {seconds} sek. Løb til din tank, så flokken kan nedlægges samlet.',
-  'hudChrome.auraEffect.crypt.crescendo':
-    'Synger hurtigere: Hulrummets klagesang tager {cast} sek. i stedet for {castNormal} sek. og kommer hver {every} sek. i stedet for hver {everyNormal} sek., og Knogleorglet spiller {waves} bølger af toner i stedet for {wavesNormal}.',
-  'hudChrome.auraEffect.crypt.dirtInEyes':
-    'Sænker bevægelseshastigheden med {pct}%. En skovlfuld rammer alle foran graver Marrow: stå bag ham.',
-  'hudChrome.auraEffect.crypt.embraced':
-    'Holdes oppe i fruens arme: ude af stand til at handle og tager {tick} frostskade hvert sekund ({tickHeroic} på heroisk). Hvis gruppen gør skade svarende til {share}% af hendes maksimale helbred ({shareHeroic}% på heroisk), sætter hun dig forsigtigt ned; holder hun dig {hold} sek. øverst, slipper hun dig ned på isen for {min} til {max} skade ({heroicMin} til {heroicMax} på heroisk).',
-  'hudChrome.auraEffect.crypt.gorged':
-    'Gør {pct}% mere skade: {per}% for hver bundet sjæl, som nåede ham, nu {stacks} af {max}, resten af kampen. Hver sjæl, der når ham, heler ham også for {heal}% af hans maksimale helbred. Træd ind på en sjæls vej for at tage den i stedet.',
-  'hudChrome.auraEffect.crypt.graniteSkin':
-    'Tager {pct}% mindre skade, og stenen bliver tykkere hver {every} sek., op til {max} lag. En bedøvelse knuser den og får den til at tage {cracked}% mere skade i {seconds} sek.',
-  'hudChrome.auraEffect.crypt.graspMark':
-    'Hænder bryder frem fra ringen under dig om {fuse} sek.: alle inden for {radius} yard af stedet, hvor den blev lagt, rodfæstes i {root} sek. og tager {min} til {max} skyggeskade. Træd ud af ringen.',
-  'hudChrome.auraEffect.crypt.graspRoot':
-    'Holdt af gravens hænder: kan ikke bevæge dig i {seconds} sek.',
-  'hudChrome.auraEffect.crypt.graveChill':
-    'Tager {bite} skyggeskade hvert sekund ({biteHeroic} på heroisk), mens De hvileløses ritual varer, stigende med {step} ({stepHeroic} på heroisk) hver {every} sek. Gentænd mindelysene for at afslutte det.',
-  'hudChrome.auraEffect.crypt.graveDirt':
-    'Står i en åben grav: bevægelseshastigheden sænkes med {slow}%, og du tager {damage} skyggeskade hvert sekund ({heroic} på heroisk). På heroisk vækkes hvileløse knogler, hvis du bliver i en grav i {linger} sek. Træd ud af graven.',
-  'hudChrome.auraEffect.crypt.graveVigor':
-    'Angriber {pct}% hurtigere, mens han står i en åben grav. Hold ham ude af gravene.',
-  'hudChrome.auraEffect.crypt.harmony':
-    'Tager {pct}% mindre skade: {per}% for hver af hendes levende korsangere. Dræb korsangerne først.',
-  'hudChrome.auraEffect.crypt.knellAirborne':
-    'Flyver over ritualringen, uden for rækkevidde. Den markerer halvdelen af ringen i {mark} sek. og hælder så spøgelsesild over den halvdel: {min} til {max} ildskade på alle i den. Den brænder {breaths} halvdele på hver flyvning og lander så.',
-  'hudChrome.auraEffect.crypt.lament':
-    'Når Brudens klage slutter, gør den {min} til {max} frostskade ({heroicMin} til {heroicMax} på heroisk) på alle, som ikke står inden for {radius} yard af en tændt gravlygte. En lygte beskytter de {cap} nærmeste spillere, slukkes så og er mørk ved næste klage.',
-  'hudChrome.auraEffect.crypt.lingering':
-    'Din næste Brudens klage gør {pct}% mere skade: {per}% for hver stak, op til {max} stakke. Tag den næste i en lygtes lys.',
-  'hudChrome.auraEffect.crypt.measured':
-    'Når dette slutter, styrter en åben grav ind, hvor du står: {min} til {max} skade ({heroicMin} til {heroicMax} på heroisk) på alle inden for {radius} yard. Graven bliver resten af kampen, så bær mærket til gårdens kant, væk fra gruppen.',
-  'hudChrome.auraEffect.crypt.riteBroken':
-    'Bedøvet: det knuste værn gør ham ude af stand til at handle i {seconds} sek.',
-  'hudChrome.auraEffect.crypt.shatteredWard':
-    'Tager {pct}% mere skade i {seconds} sek.: de gentændte lys brød hans værn. Brug dine stærkeste angreb nu.',
-  'hudChrome.auraEffect.crypt.slippery':
-    'På glat is: din hastighed ændrer sig med højst {grip} yard/sek. hvert sekund, så du er langsom til at komme i gang, glider videre, når du stopper, og tager brede sving. Træd af isen for at få fodfæste igen.',
-  'hudChrome.auraEffect.crypt.tolling':
-    'Immun over for skade, mens han går til klokkerebet og ringer med begravelsesklokken. Når ringningen slutter, gør klangen {min} til {max} skyggeskade ({heroicMin} til {heroicMax} på heroisk) på alle, og hver åben grav giver slip på hvileløse knogler.',
-  'hudChrome.auraEffect.crypt.unquietWard':
-    'Immun over for skade, mens han kanaliserer De hvileløses ritual ved alteret: {lit} af {total} mindelys gentændt. At tænde ét er en kanalisering på {channel} sek., som dræner {drain}% af tænderens maksimale helbred hvert sekund ({drainHeroic}% på heroisk); træffere bryder den ikke, et skridt eller en bedøvelse gør. Det sidste lys knuser værnet. På heroisk tændes de i protokollens rækkefølge: et forkert lys slukker det senest tændte og gør {wrongMin} til {wrongMax} skyggeskade på tænderen.',
   'hudChrome.auraEffect.effigyLanternOut':
     'Halmformandens lygte er slukket for dig: dine og dit kæledyrs slag ignorerer dens Plankehud og rammer med fuld kraft',
   'hudChrome.auraEffect.effigyPlankHide':
@@ -21394,42 +21229,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.courier.title': 'Kurer',
   'hudChrome.courier.unavailable': 'Fremkald din kurer for at planlægge en levering.',
   'hudChrome.courier.waiting': 'Venter på at returnere dine genstande',
-  'hudChrome.cryptAlert.embracedLine':
-    'Din gruppe skal skade Knoglekuldens frue for at befri dig fra hendes greb',
-  'hudChrome.cryptAlert.embracedTitle': 'Frossent favntag!',
-  'hudChrome.cryptAlert.graspLine':
-    'Forlad den markerede ring, før hænderne bryder frem, for at undgå skade og rodfæstning',
-  'hudChrome.cryptAlert.graspTitle': 'Gravens greb!',
-  'hudChrome.cryptAlert.graveLine': 'Gravjorden brænder og sænker dig: træd ud af den',
-  'hudChrome.cryptAlert.graveTitle': 'I en åben grav!',
-  'hudChrome.cryptAlert.harmonyLine':
-    'Dræb korsangerne for at fjerne Ilvanes skadesreduktion på {pct}%',
-  'hudChrome.cryptAlert.harmonyTitle': 'Harmoni',
-  'hudChrome.cryptAlert.knellLine':
-    'Spøgelsesild hældes over denne halvdel af ringen, når linjen tømmes: kom til den anden halvdel',
-  'hudChrome.cryptAlert.knellTitle': 'Brændende dødsklang!',
-  'hudChrome.cryptAlert.lamentOpenLine':
-    'Gå ind i en tændt lygtes lys for at undgå klageskaden: kun to spillere kan være ved hver lygte',
-  'hudChrome.cryptAlert.lamentShelteredLine':
-    'Bliv i denne tændte lygtes lys for at undgå klageskaden: du har en beskyttet plads',
-  'hudChrome.cryptAlert.lamentTitle': 'Brudens klage!',
-  'hudChrome.cryptAlert.measuredLine':
-    'Gå til gårdens kant, før mærket udløber, for at holde den skadende grav væk fra gruppen',
-  'hudChrome.cryptAlert.measuredTitle': 'Målt til graven!',
-  'hudChrome.cryptAlert.reapLine': 'Gå bag Morthen for at undgå leen, der rammer alle foran ham',
-  'hudChrome.cryptAlert.reapTitle': 'Høst de hvileløse!',
-  'hudChrome.cryptAlert.riteLine':
-    'Gentænd alle mindelys for at bryde Morthens immunitet: {lit} af {total} tændt',
-  'hudChrome.cryptAlert.riteNamedLine':
-    'Gentænd lys i protokollens rækkefølge for at bryde Morthens immunitet: et forkert lys ophæver fremskridt ({lit}/{total})',
-  'hudChrome.cryptAlert.riteTitle': 'De hvileløses ritual',
-  'hudChrome.cryptAlert.soulLine':
-    'Opfang den drivende sjæl for at stoppe den i at hele Morthen og øge hans skade. Det skader dig at fange den',
-  'hudChrome.cryptAlert.soulTitle': 'Bundet sjæl',
-  'hudChrome.cryptAlert.timeAria': '{seconds} sekunder tilbage',
-  'hudChrome.cryptAlert.tollLine':
-    'Gør klar til at bekæmpe skeletterne, der vækkes fra åbne grave: Marrow er immun, mens han ringer med klokken',
-  'hudChrome.cryptAlert.tollTitle': 'Begravelsesklang!',
   'hudChrome.deeds.buddiesEmpty': 'Saml en ledsager for at fremkalde den fra denne hylde.',
   'hudChrome.deeds.buddiesNone': 'Ingen ledsager',
   'hudChrome.deeds.buddiesSection': 'Ledsagere',
@@ -24109,44 +23908,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Anstrengelse (gå væk fra hver søjle, hvis kæde stadig holder)',
   'hudChrome.finder.mech.chorus_and_solo':
     'Kor og Solo (saml jer på det ene mærke, spred jer fra det andet)',
-  'hudChrome.finder.mech.crypt_bone_organ':
-    'Knogleorgel (hver 26. sekund spiller hun Knogleorglet: to bølger af skyggetoner brister ned langs loftets baner, 100 til 115 skade på normal i en bane, og anden bølge fylder den førstes huller)',
-  'hudChrome.finder.mech.crypt_bridal_freeze':
-    'Brudefrysning (ved halvt helbred fryser hele kløftens gulv til: glat is resten af kampen)',
-  'hudChrome.finder.mech.crypt_brides_lament':
-    'Brudens klage (hver 22. sekund en klage på 3 sekunder: 60 til 75 frostskade på normal på alle uden for en tændt gravlygtes lys, halvdelen igen for hver stak Dvælende klage fra de klager, du allerede har taget. En lygte beskytter højst to spillere og slukkes i 28 sekunder, efter den har beskyttet nogen, så del jer op og skift)',
-  'hudChrome.finder.mech.crypt_burial_toll':
-    'Begravelsesklang (ved 66 og 33 procent helbred går han til klokkerebet, immun over for skade, og ringer i 3 sekunder: 30 til 38 skyggeskade på alle på normal, og hver åben grav vækker hvileløse knogler)',
-  'hudChrome.finder.mech.crypt_crescendo':
-    'Stigning (under 30 procent helbred tager hendes klagesang 1,8 sekunder og kommer hver 11. sekund, og orglet spiller en tredje bølge)',
-  'hudChrome.finder.mech.crypt_dirge_of_the_hollow':
-    'Hulrummets klagesang (hver 16. sekund en sang på 2,5 sekunder, som kan afbrydes: fuldfører hun den, 105 til 125 skyggeskade på normal og 4 sekunders tavshed til alle inden for 45 yard, som kan se hende, så afbryd den eller gem dig bag en korsøjle)',
-  'hudChrome.finder.mech.crypt_frozen_embrace':
-    'Frossent favntag (hver 30. sekund griber hun en anden spiller end tanken og stiger 5 yard op i luften med vedkommende, 6 frostskade i sekundet: gør skade svarende til 6 procent af hendes helbred inden for 8 sekunder, så sætter hun spilleren ned, ellers slipper hun for 150 til 180 skade på normal)',
-  'hudChrome.finder.mech.crypt_gravecall':
-    'Gravkald (hver 15. sekund driver en bundet sjæl fra næste sarkofagniche mod ham; når den når ham, bliver han Mæt af de døde, 10 procent mere skade pr. sjæl op til 10 stakke, og heler 3 procent af sit helbred. En spiller på dens vej tager den i stedet: 12 til 16 skyggeskade på normal)',
-  'hudChrome.finder.mech.crypt_harmony':
-    'Harmoni (hver levende korsanger får hende til at tage 30 procent mindre skade: dræb korsangerne først)',
-  'hudChrome.finder.mech.crypt_ilvane_heroic':
-    'Heroisk: Ekstranummer (en korsanger, der ligger død i 10 sekunder, mens den anden står, rejser sig igen, så dræb dem sammen) og Ubrudt vers (hver tredje klagesang kan ikke afbrydes: gem dig for den)',
-  'hudChrome.finder.mech.crypt_lady_heroic':
-    'Heroisk: hver tændt lygte slukkes også af sig selv efter 30 sekunder og forbliver mørk i 10, og Frossent favntag tager to spillere og slipper ved 4,4 procent af hendes helbred',
-  'hudChrome.finder.mech.crypt_marrow_heroic':
-    'Heroisk: Graverens slag hver 9. sekund på tanken (hver stak får tanken til at tage 6 procent mere skade i 20 sekunder, op til 6 stakke), Gravkraft (han slår 30 procent hurtigere i en grav) og Hvileløs jord (enhver, der bliver 2 sekunder i en grav, vækker hvileløse knogler der)',
-  'hudChrome.finder.mech.crypt_measured_for_the_grave':
-    'Målt til graven (hver 15. sekund markerer han en anden spiller end tanken; 4 sekunder senere styrter en åben grav ind under vedkommende, 42 til 52 skade inden for 3 yard på normal, og graven bliver hele kampen: 9 skade i sekundet og 40 procent langsommere bevægelse indenfor, så læg gravene ved gårdens kant)',
-  'hudChrome.finder.mech.crypt_morthen_heroic':
-    'Heroisk: Navngiv de døde (protokollen angiver lysenes rækkefølge: et forkert lys slukker det senest tændte og gør 252 til 288 skyggeskade på tænderen, og hver gentænding dræner 8 procent i sekundet), Gravens greb (hver 16. sekund får 2 spillere en ring på 4 yard; 1,5 sekunder senere bryder hænder frem: 3 sekunders rodfæstning og 162 til 198 skyggeskade) og Dødsklangslindormens Brændende dødsklang (den letter og markerer halvdelen af ringen i 4,5 sekunder, og hælder så spøgelsesild over den halvdel for 1.000 til 1.120 ildskade, 3 halvdele pr. flyvning)',
-  'hudChrome.finder.mech.crypt_morthen_shadow_pulse':
-    'Skyggepuls (hver 12. sekund en besværgelse på 2 sekunder, så 24 til 30 skyggeskade på normal på alle inden for 12 yard af ham, så gå væk; hver 9. sekund under hans Sidste ritualer)',
-  'hudChrome.finder.mech.crypt_reap_the_unquiet':
-    'Høst de hvileløse (under 35 procent helbred stopper sjælene; hver 14. sekund svinger han leen efter en besværgelse på 2 sekunder: 55 til 65 skyggeskade på normal på alle i en bue på 120 grader 14 yard foran ham. Skyggepuls kommer derefter hver 9. sekund)',
-  'hudChrome.finder.mech.crypt_rime_path':
-    'Rimfroststi (hun efterlader glat rimfrost, hvor hun svæver, i 25 sekunder: på den samler du fart langsomt og glider videre, når du stopper eller drejer)',
-  'hudChrome.finder.mech.crypt_rite_of_the_unquiet':
-    'De hvileløses ritual (ved 65 procent helbred vender han tilbage til alteret, immun i De hvileløses værn, mens Gravkulde gør 3 skyggeskade i sekundet på alle, stigende med 1 hver 5. sekund, og 2 hvileløse knogler klatrer ud af nicherne. Gentænd de 4 mindelys: hvert kræver 4 sekunders kanalisering, som dræner 6 procent af tænderens maksimale helbred hvert sekund; træffere bryder den ikke, et skridt eller en bedøvelse gør. Det sidste lys bryder ritualet: han bedøves i 8 sekunder og tager 25 procent mere skade)',
-  'hudChrome.finder.mech.crypt_shovelful':
-    'En skovlfuld (hver 11. sekund slynger han gravjord over en kegle på 8 yard foran sig: halvanden gang hans slag og 50 procent langsommere bevægelse i 6 sekunder, så stå bag ham)',
   'hudChrome.finder.mech.drowned_anchor':
     'Druknet anker (offeret trækkes mod graven: løb inden for 3 yard af en tændt fortøjningspæl for at fortøje kæden, hvorefter pælen slukkes i 30 sekunder, eller bryd kæden med 12 træffere, 16 på heroisk)',
   'hudChrome.finder.mech.fog_veil':

@@ -10,6 +10,67 @@ import { rollLoot } from '../src/sim/loot/loot_roll';
 import { Rng } from '../src/sim/rng';
 import { Sim } from '../src/sim/sim';
 
+// The retired Hollow Crypt (2026-11-11): its four bosses and their tables are
+// gone, but every heroic acquisition they paid is a shipped item players own.
+// Each list is that boss's last gearIds and its last gearDigest, kept verbatim:
+// the digest is over the live defs AND their item levels, so it proves every
+// retired piece (and each kept heroic_* copy) still resolves to the exact def
+// and level it shipped at (content/hollow_crypt_retired.ts). Four of those
+// ids are the Thornpeak relics' crypt-side Heroic copies; those relics still
+// drop at their home bosses, the crypt rows were retired with the dungeon.
+const RETIRED_CRYPT_BASELINE = {
+  sexton_marrow: {
+    gearIds: [
+      'cryptplate_helm',
+      'heroic_bellrope_mitts',
+      'heroic_bonewrought_greatsword',
+      'heroic_gravedirt_grips',
+      'heroic_sextons_spadehaft',
+      'heroic_spadeworn_gauntlets',
+      'sextons_burial_spade',
+    ],
+    gearDigest: '3f9c75d6579d1c9e0a4b9fad3ca29fc5daebd6d839ef73fdee2fe5d25a18507a',
+  },
+  rimeweb: {
+    gearIds: [
+      'bonechill_cord',
+      'bonechill_striders',
+      'heroic_courtiers_bonefang',
+      'heroic_lamenting_veil',
+      'heroic_rime_laced_hood',
+      'heroic_rimeweb_fang',
+      'heroic_rimewreath_coif',
+      'rimesilk_hood',
+    ],
+    gearDigest: '87f555c7e2465b9bcb9ce3b31f79889e268ef0ac0b68e7ee91e01190ca642f8f',
+  },
+  cantor_ilvane: {
+    gearIds: [
+      'heroic_cantors_hymnal',
+      'heroic_cantors_stole',
+      'heroic_choirward_pauldrons',
+      'heroic_choristers_spaulders',
+      'heroic_votive_ward_of_the_deathless_court',
+      'shadowpulse_handwraps',
+      'shadowpulse_slippers',
+    ],
+    gearDigest: '1842301c7e8371500253d2e9d055d622549e9b4785649c972d91be5a66c86584',
+  },
+  morthen: {
+    gearIds: [
+      'bastion_sigil',
+      'heroic_candlewatch_jerkin',
+      'heroic_gravecallers_rod',
+      'heroic_knellbound_hauberk',
+      'heroic_robe_of_the_unquiet_rite',
+      'heroic_thornpeak_wardblade',
+      'lunarward_cinch',
+      'morthens_cryptforged_hauberk',
+    ],
+    gearDigest: 'be60e19c7dd81b4029e0c03363e90006e11dc03f82acc3b6bf11fcf8b3bfa9b4',
+  },
+} as const;
+
 // Release baseline: every existing acquisition remains and item definitions and
 // levels stay byte-equivalent after canonical serialization. This catches an
 // accidental stat buff from moving generated variants into HEROIC_BOSS_LOOT.
@@ -50,70 +111,6 @@ import { Sim } from '../src/sim/sim';
 // soulbound from ordinary trinkets. Restoring that field reproduced every
 // previous digest exactly; acquisition ids, item levels and stats are unchanged.
 const BASELINE = {
-  // Re-minted for the Hollow Crypt rework (docs/design/dungeon-rework/hollow_crypt.md
-  // 8.1 and 8.2): every boss now carries its own table. Four shipped heroic epics
-  // moved off Morthen (Cryptplate Helm to Sexton Marrow, the Bonechill Striders and
-  // Cord to Rimeweb, the Shadowpulse Handwraps to Cantor Ilvane), none left the
-  // game; their item defs are unchanged, only the boss that pays them moved.
-  sexton_marrow: {
-    gearIds: [
-      'cryptplate_helm',
-      'heroic_bellrope_mitts',
-      'heroic_bonewrought_greatsword',
-      'heroic_gravedirt_grips',
-      'heroic_sextons_spadehaft',
-      'heroic_spadeworn_gauntlets',
-      'sextons_burial_spade',
-    ],
-    normalDigest: 'f07e48d99b1c384c50ed260a5d8b5951c5fd44b7eb81135bf2a3bb2330f7e6ab',
-    gearDigest: '3f9c75d6579d1c9e0a4b9fad3ca29fc5daebd6d839ef73fdee2fe5d25a18507a',
-  },
-  rimeweb: {
-    gearIds: [
-      'bonechill_cord',
-      'bonechill_striders',
-      'heroic_courtiers_bonefang',
-      'heroic_lamenting_veil',
-      'heroic_rime_laced_hood',
-      'heroic_rimeweb_fang',
-      'heroic_rimewreath_coif',
-      'rimesilk_hood',
-    ],
-    normalDigest: '28d6bb3705f5155881e944d858071457bc2fff6e65ddbe3b528425f42bd2403e',
-    // Re-minted when the Rimesilk Hood moved onto the stamina model (int 11,
-    // spi 7, sta 6: its 18-point caster line plus the 6-stamina baseline), and
-    // again when the Lady's rework renamed the fang (display only: the heroic
-    // twin reads its base's new name, Bride's Icicle; the old name reproduces
-    // the previous digest, verified at the rename, so no stat moved).
-    gearDigest: '87f555c7e2465b9bcb9ce3b31f79889e268ef0ac0b68e7ee91e01190ca642f8f',
-  },
-  cantor_ilvane: {
-    gearIds: [
-      'heroic_cantors_hymnal',
-      'heroic_cantors_stole',
-      'heroic_choirward_pauldrons',
-      'heroic_choristers_spaulders',
-      'heroic_votive_ward_of_the_deathless_court',
-      'shadowpulse_handwraps',
-      'shadowpulse_slippers',
-    ],
-    normalDigest: 'bd8086f86a2eb33fcd96aa481a389a19286ed2536a8082279565594bf0162460',
-    gearDigest: '1842301c7e8371500253d2e9d055d622549e9b4785649c972d91be5a66c86584',
-  },
-  morthen: {
-    gearIds: [
-      'bastion_sigil',
-      'heroic_candlewatch_jerkin',
-      'heroic_gravecallers_rod',
-      'heroic_knellbound_hauberk',
-      'heroic_robe_of_the_unquiet_rite',
-      'heroic_thornpeak_wardblade',
-      'lunarward_cinch',
-      'morthens_cryptforged_hauberk',
-    ],
-    normalDigest: '5d6ae5399615ed65d1a72890bdec2dec6be1d1c0e4afa111a5418e21fb217bd7',
-    gearDigest: 'be60e19c7dd81b4029e0c03363e90006e11dc03f82acc3b6bf11fcf8b3bfa9b4',
-  },
   // Re-minted for the Sunken Bastion rework (docs/design/dungeon-rework/
   // sunken_bastion.md 8.1 and 8.2): Olen's normal table gains the Longsword row
   // and folds the Fenmist Robe into its guaranteed group; the new Gaoler Ossick
@@ -403,7 +400,6 @@ function digest(value: unknown): string {
 describe('heroic five-player equipment budget', () => {
   it('keeps migrated bags independent at their original per-kill chances', () => {
     for (const [bossId, itemId, chance, sourceLevel] of [
-      ['morthen', 'gravewoven_bag', 0.2, 10],
       ['vael_the_mistcaller', 'mistcallers_duffel', 0.1, 13],
       ['grand_necromancer_velkhar', 'necromancers_reagent_satchel', 0.2, 20],
     ] as const) {
@@ -412,6 +408,27 @@ describe('heroic five-player equipment budget', () => {
       expect(itemSourceLevel(itemId)).toBe(sourceLevel);
       expect(itemLevel(ITEMS[itemId])).toBeUndefined();
       expect(MOBS[bossId].loot.find((row) => row.itemId === itemId)?.normalOnly).toBe(true);
+    }
+  });
+
+  it('keeps every retired Hollow Crypt acquisition at its shipped def and level', () => {
+    for (const [bossId, retired] of Object.entries(RETIRED_CRYPT_BASELINE)) {
+      // The boss and both of its tables left with the dungeon.
+      expect(MOBS[bossId], bossId).toBeUndefined();
+      expect(HEROIC_BOSS_LOOT[bossId], bossId).toBeUndefined();
+      const definitions = Object.fromEntries(
+        retired.gearIds.map((id) => [id, { def: ITEMS[id], level: itemLevel(ITEMS[id]) }]),
+      );
+      expect(digest(definitions), bossId).toBe(retired.gearDigest);
+    }
+  });
+
+  it('keeps the retired Gravewoven Bag at its shipped source tier', () => {
+    // Morthen's heroic bag row left with the crypt; the bag keeps source 10.
+    expect(itemSourceLevel('gravewoven_bag')).toBe(10);
+    expect(itemLevel(ITEMS.gravewoven_bag)).toBeUndefined();
+    for (const rows of Object.values(HEROIC_BOSS_LOOT)) {
+      expect(rows.some((row) => row.itemId === 'gravewoven_bag')).toBe(false);
     }
   });
 
@@ -437,7 +454,7 @@ describe('heroic five-player equipment budget', () => {
       const meta = sim.ctx.players.get(sim.player.id)!;
       sim.ctx.instances.push({
         id: -1,
-        dungeonId: 'hollow_crypt',
+        dungeonId: 'sunken_bastion',
         partyKey: 'budget-test',
         difficulty: 'heroic',
         mobIds: [-1],
@@ -466,7 +483,7 @@ describe('heroic five-player equipment budget', () => {
       const draw = vi.spyOn(sim.rng, 'next');
       sim.ctx.instances.push({
         id: -1,
-        dungeonId: 'hollow_crypt',
+        dungeonId: 'sunken_bastion',
         partyKey: 'budget-test',
         difficulty: 'heroic',
         mobIds: [-1],

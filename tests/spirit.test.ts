@@ -311,7 +311,7 @@ describe('spirit: dungeons', () => {
     const sim = makeSim();
     sim.setPlayerLevel(10);
     const p = sim.player as AnyEntity;
-    sim.enterDungeon('hollow_crypt');
+    sim.enterDungeon('sunken_bastion');
     expect(p.pos.x).toBeGreaterThan(DUNGEON_X_THRESHOLD); // inside the instance
     // walk deeper into the instance, then die there
     p.pos = { x: p.pos.x, y: p.pos.y, z: p.pos.z + 30 };
@@ -336,7 +336,7 @@ describe('spirit: dungeons', () => {
     const sim = makeSim();
     sim.setPlayerLevel(10);
     const p = sim.player as AnyEntity;
-    sim.enterDungeon('hollow_crypt');
+    sim.enterDungeon('sunken_bastion');
     const entry = { x: p.pos.x, y: p.pos.y, z: p.pos.z };
     // die deep inside and release to the outdoor graveyard
     p.pos = { x: p.pos.x, y: p.pos.y, z: p.pos.z + 30 };
@@ -347,7 +347,7 @@ describe('spirit: dungeons', () => {
     expect(p.ghost).toBe(true);
     expect(p.pos.x).toBeLessThan(DUNGEON_X_THRESHOLD); // outside as a ghost
     // run the spirit back and re-enter: resurrects at the entry, no Resurrection Sickness
-    sim.enterDungeon('hollow_crypt');
+    sim.enterDungeon('sunken_bastion');
     expect(p.dead).toBe(false);
     expect(p.ghost).toBe(false);
     expect(p.corpsePos).toBeNull();

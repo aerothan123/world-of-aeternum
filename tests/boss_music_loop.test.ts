@@ -12,13 +12,8 @@ import {
 import { scoreCueUrl } from '../src/game/music_tracks';
 import { DUNGEONS, instanceOrigin, MOBS, ZONES } from '../src/sim/data';
 
-const MORTHEN_URL = scoreCueUrl('wyn_boss_undead') ?? '';
+const VELKHAR_URL = scoreCueUrl('wyn_boss_undead') ?? '';
 const DUNGEON_BOSS_IDS = [
-  'morthen',
-  'sexton_marrow',
-  'rimeweb',
-  'cantor_ilvane',
-  'crypt_knellwyrm',
   'knight_commander_olen',
   'gaoler_ossick',
   'vael_the_mistcaller',
@@ -39,7 +34,7 @@ const DUNGEON_BOSS_IDS = [
 const zoneFixture = ZONES.find((zone) => zone.id === 'eastbrook_vale');
 if (!zoneFixture) throw new Error('eastbrook_vale fixture is missing');
 const zone = zoneFixture;
-const crypt = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
+const bastion = instanceOrigin(DUNGEONS.sunken_bastion.index, 0);
 
 function input(overrides: Partial<InstanceMusicInput> = {}): InstanceMusicInput {
   return {
@@ -48,7 +43,7 @@ function input(overrides: Partial<InstanceMusicInput> = {}): InstanceMusicInput 
     lastBossCombatEventAt: 0,
     inCombat: false,
     playerId: 7,
-    playerPos: { x: crypt.x, z: crypt.z },
+    playerPos: { x: bastion.x, z: bastion.z },
     zone,
     inDungeon: true,
     entities: [],
@@ -57,17 +52,17 @@ function input(overrides: Partial<InstanceMusicInput> = {}): InstanceMusicInput 
   };
 }
 
-const morthen = (aggroTargetId: number | null): InstanceMusicEntity => ({
+const velkhar = (aggroTargetId: number | null): InstanceMusicEntity => ({
   kind: 'mob',
   dead: false,
-  templateId: 'morthen',
+  templateId: 'grand_necromancer_velkhar',
   aggroTargetId,
 });
 
 describe('per-boss fight tracks', () => {
   it('gives every dungeon boss a versioned Wyndlewood score cue, the Hydra heads one', () => {
     expect(Object.keys(BOSS_TRACK_URLS).sort()).toEqual([...DUNGEON_BOSS_IDS].sort());
-    expect(BOSS_TRACK_URLS.morthen).toBe(MORTHEN_URL);
+    expect(BOSS_TRACK_URLS.grand_necromancer_velkhar).toBe(VELKHAR_URL);
     expect(BOSS_TRACK_URLS.korzul_the_gravewyrm).toBe(scoreCueUrl('wyn_boss_raid_dragon'));
     expect(BOSS_TRACK_URLS.wildheart_beastmaster).toBe(scoreCueUrl('wyn_boss_wild'));
     for (const id of [
@@ -92,27 +87,29 @@ describe('per-boss fight tracks', () => {
   });
 
   it('resolves a track only for a boss that has one', () => {
-    expect(bossTrackFor('morthen')).toBe(MORTHEN_URL);
-    expect(bossTrackFor('sexton_marrow')).toBe(BOSS_TRACK_URLS.sexton_marrow);
+    expect(bossTrackFor('grand_necromancer_velkhar')).toBe(VELKHAR_URL);
+    expect(bossTrackFor('korgath_the_bound')).toBe(BOSS_TRACK_URLS.korgath_the_bound);
+    // The retired Hollow Crypt's bosses kept no cue.
+    expect(bossTrackFor('morthen')).toBeNull();
     expect(bossTrackFor('wildheart_stalker')).toBeNull();
     expect(bossTrackFor('toString')).toBeNull();
   });
 
   it('engages each dedicated boss loop only while a living boss holds a target', () => {
-    const idle = instanceMusicDecision(input({ entities: [morthen(null)] }));
+    const idle = instanceMusicDecision(input({ entities: [velkhar(null)] }));
     expect(idle.bossEngaged).toBe(false);
     expect(idle.bossTrackUrl).toBeNull();
 
-    const fighting = instanceMusicDecision(input({ entities: [morthen(7)] }));
+    const fighting = instanceMusicDecision(input({ entities: [velkhar(7)] }));
     expect(fighting.bossEngaged).toBe(true);
-    expect(fighting.bossTrackUrl).toBe(MORTHEN_URL);
+    expect(fighting.bossTrackUrl).toBe(VELKHAR_URL);
 
-    const dead = instanceMusicDecision(input({ entities: [{ ...morthen(7), dead: true }] }));
+    const dead = instanceMusicDecision(input({ entities: [{ ...velkhar(7), dead: true }] }));
     expect(dead.bossEngaged).toBe(false);
     expect(dead.bossTrackUrl).toBeNull();
 
     for (const id of DUNGEON_BOSS_IDS) {
-      const fightingBoss = { ...morthen(9), templateId: id };
+      const fightingBoss = { ...velkhar(9), templateId: id };
       expect(instanceMusicDecision(input({ entities: [fightingBoss] })).bossTrackUrl, id).toBe(
         BOSS_TRACK_URLS[id],
       );
@@ -127,15 +124,15 @@ describe('per-boss fight tracks', () => {
     };
     const controller = new InstanceMusicController(port);
 
-    controller.update(input({ now: 20000, entities: [morthen(7)] }));
-    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, MORTHEN_URL);
+    controller.update(input({ now: 20000, entities: [velkhar(7)] }));
+    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, VELKHAR_URL);
 
     // An immune hover drops his target for a few seconds: the track holds.
-    controller.update(input({ now: 25000, entities: [morthen(null)] }));
-    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, MORTHEN_URL);
+    controller.update(input({ now: 25000, entities: [velkhar(null)] }));
+    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, VELKHAR_URL);
 
     // Ten seconds without a target (a wipe, a reset): back to the zone score.
-    controller.update(input({ now: 30000, entities: [morthen(null)] }));
+    controller.update(input({ now: 30000, entities: [velkhar(null)] }));
     expect(port.setBossCombat).toHaveBeenLastCalledWith(false);
   });
 
@@ -146,10 +143,17 @@ describe('per-boss fight tracks', () => {
       setBossCombat: vi.fn(),
     };
     const controller = new InstanceMusicController(port);
-    controller.update(input({ entities: [{ ...morthen(7), templateId: 'sexton_marrow' }] }));
-    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, BOSS_TRACK_URLS.sexton_marrow);
-    controller.update(input({ now: 21000, entities: [{ ...morthen(7), templateId: 'rimeweb' }] }));
-    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, BOSS_TRACK_URLS.rimeweb);
+    controller.update(
+      input({ entities: [{ ...velkhar(7), templateId: 'grand_necromancer_velkhar' }] }),
+    );
+    expect(port.setBossCombat).toHaveBeenLastCalledWith(
+      true,
+      BOSS_TRACK_URLS.grand_necromancer_velkhar,
+    );
+    controller.update(
+      input({ now: 21000, entities: [{ ...velkhar(7), templateId: 'korgath_the_bound' }] }),
+    );
+    expect(port.setBossCombat).toHaveBeenLastCalledWith(true, BOSS_TRACK_URLS.korgath_the_bound);
     controller.update(input({ now: 31000 }));
     expect(port.setBossCombat).toHaveBeenLastCalledWith(false);
   });
@@ -161,8 +165,13 @@ describe('per-boss fight tracks', () => {
       setBossCombat: vi.fn(),
     };
     const controller = new InstanceMusicController(port);
-    controller.update(input({ entities: [{ ...morthen(7), templateId: 'sexton_marrow' }] }));
-    expect(port.setBossCombat).toHaveBeenCalledWith(true, BOSS_TRACK_URLS.sexton_marrow);
+    controller.update(
+      input({ entities: [{ ...velkhar(7), templateId: 'grand_necromancer_velkhar' }] }),
+    );
+    expect(port.setBossCombat).toHaveBeenCalledWith(
+      true,
+      BOSS_TRACK_URLS.grand_necromancer_velkhar,
+    );
     expect(port.setBossCombat.mock.invocationCallOrder[0]).toBeLessThan(
       port.update.mock.invocationCallOrder[0],
     );

@@ -143,7 +143,7 @@ describe('region_ambience_core', () => {
         x: 5000,
         z: 0,
         inDungeon: true,
-        dungeonInterior: 'hollow_crypt',
+        dungeonInterior: 'gravewyrm_sanctum',
         dayWeight: 1,
         forestDensity: 0,
       },

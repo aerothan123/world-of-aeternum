@@ -1174,6 +1174,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "es_ES": [
@@ -2341,6 +2342,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "fr_FR": [
@@ -3508,6 +3510,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "fr_CA": [
@@ -4675,6 +4678,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "en_CA": [],
@@ -5843,6 +5847,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "de_DE": [
@@ -7010,6 +7015,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "zh_CN": [
@@ -7946,6 +7952,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "zh_TW": [
@@ -8882,6 +8889,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "ko_KR": [
@@ -9818,6 +9826,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "ja_JP": [
@@ -10754,6 +10763,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "pt_BR": [
@@ -11921,6 +11931,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "ru_RU": [
@@ -12857,6 +12868,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "cs_CZ": [
@@ -14024,6 +14036,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "nl_NL": [
@@ -15191,6 +15204,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "pl_PL": [
@@ -16358,6 +16372,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "id_ID": [
@@ -17525,6 +17540,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "tr_TR": [
@@ -18692,6 +18708,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "sv_SE": [
@@ -19859,6 +19876,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "vi_VN": [
@@ -21026,6 +21044,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ],
   "da_DK": [
@@ -22193,6 +22212,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.unsaved",
     "questEditor.subtitle",
     "questEditor.title",
+    "referralCards.retiredStamp",
     "seasonal.itemUse.sweet"
   ]
 };

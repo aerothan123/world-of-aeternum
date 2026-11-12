@@ -38,13 +38,7 @@ import { Sim } from '../src/sim/sim';
 import type { Entity, SimEvent } from '../src/sim/types';
 import { weeklyQuestWeekForResetDay } from '../src/sim/weekly_quests';
 
-const FIVE = [
-  'hollow_crypt',
-  'sunken_bastion',
-  'drowned_temple',
-  'gravewyrm_sanctum',
-  'wildheart_basin',
-];
+const FIVE_PLAYER = ['sunken_bastion', 'drowned_temple', 'gravewyrm_sanctum', 'wildheart_basin'];
 
 /** A reset day whose week posts `contractId` (searching forward from the epoch). */
 function dayPosting(contractId: string): string {
@@ -93,9 +87,9 @@ describe("the week's board", () => {
     expect([...seen].sort()).toEqual(GUILD_CONTRACTS.map((c) => c.id).sort());
   });
 
-  it("names only the five five-player dungeons' real bosses and real encounter tasks", () => {
+  it("names only the four five-player dungeons' real bosses and real encounter tasks", () => {
     for (const contract of GUILD_CONTRACTS) {
-      expect(FIVE, contract.id).toContain(contract.dungeonId);
+      expect(FIVE_PLAYER, contract.id).toContain(contract.dungeonId);
       expect(DUNGEONS[contract.dungeonId], contract.id).toBeDefined();
       expect(MOBS[contract.mobId], contract.id).toBeDefined();
       const encounters = FINDER_ACTIVITIES.filter(
@@ -107,41 +101,41 @@ describe("the week's board", () => {
     for (const contract of GUILD_HEROIC_CONTRACTS) {
       expect(FINAL_BOSS_DUNGEONS[contract.mobId], contract.id).toBe(contract.dungeonId);
     }
-    expect(GUILD_HEROIC_CONTRACTS.map((c) => c.dungeonId).sort()).toEqual([...FIVE].sort());
+    expect(GUILD_HEROIC_CONTRACTS.map((c) => c.dungeonId).sort()).toEqual([...FIVE_PLAYER].sort());
     // a task contract is one of the Book's own encounter deeds, on its own boss
     for (const contract of GUILD_TASK_CONTRACTS) {
       expect(DEEDS[contract.taskDeedId ?? ''], contract.id).toBeDefined();
       expect(DEEDS[contract.taskDeedId ?? ''].trigger, contract.id).toEqual({ kind: 'manual' });
     }
-    expect(FLAWLESS_TASKS.morthen).toBe('dgn_morthen_flawless');
+    expect(FLAWLESS_TASKS.ysolei).toBe('dgn_ysolei_flawless');
     expect(GUILD_BOSS_CONTRACTS.length).toBeGreaterThan(10);
   });
 });
 
 describe('contract credit', () => {
   it('pays a named-boss contract once a week, from the deeds kill path, to the eligible roster', () => {
-    const day = dayPosting('gc_boss_morthen');
+    const day = dayPosting('gc_boss_gaoler_ossick');
     const s = sim(day);
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
     const before = seals(s);
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     const events = s.tick();
     expect(seals(s) - before).toBe(1);
-    expect(s.guildContracts.done).toEqual(['gc_boss_morthen']);
+    expect(s.guildContracts.done).toEqual(['gc_boss_gaoler_ossick']);
     expect(s.guildContracts.lifetime).toBe(1);
     const paid = events.filter((e: SimEvent) => e.type === 'guildContractDone');
     expect(paid).toEqual([
       expect.objectContaining({
         type: 'guildContractDone',
-        contractId: 'gc_boss_morthen',
+        contractId: 'gc_boss_gaoler_ossick',
         seals: 1,
       }),
     ]);
     // the first contract earns its milestone deed
     expect(meta.deedsEarned.has('dgn_guild_first_contract')).toBe(true);
     // a second kill the same week pays nothing more
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     expect(seals(s) - before).toBe(1);
     // a boss the board does not name pays nothing
     onMobKillCreditForDeeds(s.ctx, fakeBoss('forest_wolf'), s.player, meta, [meta]);
@@ -156,15 +150,31 @@ describe('contract credit', () => {
   });
 
   it('pays a Heroic clear only on Heroic, and a task only when the encounter met it', () => {
-    const heroicDay = dayPosting('gc_heroic_hollow_crypt');
+    const heroicDay = dayPosting('gc_heroic_gravewyrm_sanctum');
     const s = sim(heroicDay);
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
     const grant = () => {};
-    onKillForGuildContracts(s.ctx, fakeBoss('morthen'), false, [meta], [meta], [], grant);
-    expect(s.guildContracts.done).not.toContain('gc_heroic_hollow_crypt');
-    onKillForGuildContracts(s.ctx, fakeBoss('morthen'), true, [meta], [meta], [], grant);
-    expect(s.guildContracts.done).toContain('gc_heroic_hollow_crypt');
+    onKillForGuildContracts(
+      s.ctx,
+      fakeBoss('korzul_the_gravewyrm'),
+      false,
+      [meta],
+      [meta],
+      [],
+      grant,
+    );
+    expect(s.guildContracts.done).not.toContain('gc_heroic_gravewyrm_sanctum');
+    onKillForGuildContracts(
+      s.ctx,
+      fakeBoss('korzul_the_gravewyrm'),
+      true,
+      [meta],
+      [meta],
+      [],
+      grant,
+    );
+    expect(s.guildContracts.done).toContain('gc_heroic_gravewyrm_sanctum');
 
     const taskDay = dayPosting('gc_task_dgn_vael_thralls');
     const t = sim(taskDay);
@@ -205,7 +215,7 @@ describe('contract credit', () => {
   });
 
   it('draws no randomness: no rng draw rides a payment', () => {
-    const s = sim(dayPosting('gc_boss_morthen'));
+    const s = sim(dayPosting('gc_boss_gaoler_ossick'));
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
     let draws = 0;
@@ -214,11 +224,11 @@ describe('contract credit', () => {
     });
     onKillForGuildContracts(
       s.ctx,
-      fakeBoss('morthen'),
+      fakeBoss('gaoler_ossick'),
       true,
       [meta],
       [meta],
-      ['dgn_morthen_flawless'],
+      ['dgn_vael_thralls'],
       () => {},
     );
     s.ctx.rng.setObserver(null);
@@ -242,17 +252,21 @@ describe('the Lantern Seal and the save shape', () => {
     expect(
       sanitizeGuildContractProgress({
         week: 'wk_3',
-        done: ['gc_boss_morthen', 'nope', 'gc_boss_morthen'],
+        done: ['gc_boss_gaoler_ossick', 'nope', 'gc_boss_gaoler_ossick'],
         lifetime: -4,
       }),
-    ).toEqual({ week: 'wk_3', done: ['gc_boss_morthen'], lifetime: 1 });
-    const s = sim(dayPosting('gc_boss_morthen'));
+    ).toEqual({ week: 'wk_3', done: ['gc_boss_gaoler_ossick'], lifetime: 1 });
+    const s = sim(dayPosting('gc_boss_gaoler_ossick'));
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
     expect(savedGuildContractProgress(meta)).toBeUndefined();
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     const saved = savedGuildContractProgress(meta);
-    expect(saved).toEqual({ week: s.guildContracts.week, done: ['gc_boss_morthen'], lifetime: 1 });
+    expect(saved).toEqual({
+      week: s.guildContracts.week,
+      done: ['gc_boss_gaoler_ossick'],
+      lifetime: 1,
+    });
     expect(sanitizeGuildContractProgress(JSON.parse(JSON.stringify(saved)))).toEqual(saved);
     // the full character save carries it, and a fresh sim restores it
     const state = s.serializeCharacter(s.player.id);
@@ -355,10 +369,10 @@ describe('the contracts across weeks, milestones and the save', () => {
   });
 
   it('pays the same contract again in a later week that posts it, and bumps the wire revision', () => {
-    // two weeks that both post the Morthen bounty
+    // two weeks that both post the Ossick bounty
     const days: string[] = [];
     for (let week = 0; week < 400 && days.length < 2; week++) {
-      if (guildContractsForWeek(`wk_${week}`).some((c) => c.id === 'gc_boss_morthen'))
+      if (guildContractsForWeek(`wk_${week}`).some((c) => c.id === 'gc_boss_gaoler_ossick'))
         days.push(new Date(Date.UTC(2026, 8, 1 + week * 7)).toISOString().slice(0, 10));
     }
     expect(days).toHaveLength(2);
@@ -366,29 +380,29 @@ describe('the contracts across weeks, milestones and the save', () => {
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
     const rev = meta.wireRev;
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     expect(meta.wireRev).toBeGreaterThan(rev);
     s.resetDay = days[1];
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     expect(seals(s)).toBe(2);
     expect(s.guildContracts.lifetime).toBe(2);
-    expect(s.guildContracts.done).toEqual(['gc_boss_morthen']);
+    expect(s.guildContracts.done).toEqual(['gc_boss_gaoler_ossick']);
     expect(s.guildContracts.week).toBe(weeklyQuestWeekForResetDay(days[1]));
   });
 
   it('earns the ten and fifty contract milestones on the payment that reaches them', () => {
-    const s = sim(dayPosting('gc_boss_morthen'));
+    const s = sim(dayPosting('gc_boss_gaoler_ossick'));
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
     meta.guildContracts = { week: s.guildContracts.week, done: [], lifetime: 8 };
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     expect(meta.deedsEarned.has('dgn_guild_ten_contracts')).toBe(false);
     meta.guildContracts = { week: s.guildContracts.week, done: [], lifetime: 9 };
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     expect(meta.deedsEarned.has('dgn_guild_ten_contracts')).toBe(true);
     expect(meta.deedsEarned.has('dgn_guild_fifty_contracts')).toBe(false);
     meta.guildContracts = { week: s.guildContracts.week, done: [], lifetime: 49 };
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     expect(meta.deedsEarned.has('dgn_guild_fifty_contracts')).toBe(true);
     expect(s.guildContracts.lifetime).toBe(50);
   });
@@ -411,17 +425,17 @@ describe('the contracts across weeks, milestones and the save', () => {
   });
 
   it('restores the record from the character save, and an old save restores none', () => {
-    const day = dayPosting('gc_boss_morthen');
+    const day = dayPosting('gc_boss_gaoler_ossick');
     const s = sim(day);
     const meta = s.players.get(s.player.id);
     if (!meta) throw new Error('no meta');
-    onMobKillCreditForDeeds(s.ctx, fakeBoss('morthen'), s.player, meta, [meta]);
+    onMobKillCreditForDeeds(s.ctx, fakeBoss('gaoler_ossick'), s.player, meta, [meta]);
     const state = JSON.parse(JSON.stringify(s.serializeCharacter(s.player.id)));
     const t = sim(day);
     const pid = t.addPlayer('warrior', 'Copy', { state });
     expect(t.players.get(pid)?.guildContracts).toEqual({
       week: weeklyQuestWeekForResetDay(day),
-      done: ['gc_boss_morthen'],
+      done: ['gc_boss_gaoler_ossick'],
       lifetime: 1,
     });
     expect(t.ctx.countItem(LANTERN_SEAL_ITEM_ID, pid)).toBe(1);
@@ -435,7 +449,7 @@ describe('the contracts across weeks, milestones and the save', () => {
     expect(sanitizeGuildContractProgress([])).toBeNull();
     expect(sanitizeGuildContractProgress({ week: 3, done: [], lifetime: 1 })).toBeNull();
     expect(
-      sanitizeGuildContractProgress({ week: 'wk_3', done: 'gc_boss_morthen', lifetime: 2 }),
+      sanitizeGuildContractProgress({ week: 'wk_3', done: 'gc_boss_gaoler_ossick', lifetime: 2 }),
     ).toEqual({ week: 'wk_3', done: [], lifetime: 2 });
     expect(
       sanitizeGuildContractProgress({ week: 'wk_3', done: [], lifetime: Number.NaN })?.lifetime,

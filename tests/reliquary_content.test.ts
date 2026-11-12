@@ -399,9 +399,11 @@ describe('Reliquary Conqueror catalog structure', () => {
     // +1: conquerors_vanguard_gallery (Warfare Season 2).
     // +1: the Buried Hoards page.
     // +1: conquerors_balgath (the Mirefen world boss).
-    expect(CONQUEROR_PAGES.length).toBe(35);
+    // -2 / +2: the two Hollow Crypt pages moved to the horizons shelf as
+    // retired pages when the owner retired the dungeon (2026-11-11).
+    expect(CONQUEROR_PAGES.length).toBe(33);
     expect(PROFESSION_PAGES.length).toBe(5);
-    expect(HORIZON_PAGES.length).toBe(5);
+    expect(HORIZON_PAGES.length).toBe(7);
     // Literal: update when product adds a page (45 with the Mirefen world boss page).
     expect(RELIQUARY_PAGES.length).toBe(45);
     expect(
@@ -414,6 +416,8 @@ describe('Reliquary Conqueror catalog structure', () => {
       'horizons_weapon_skins',
       'horizons_titles',
       'horizons_vault_of_ages',
+      'conquerors_hollow_crypt',
+      'conquerors_hollow_crypt_heroic',
       'horizons_riftbound',
     ]);
   });
@@ -494,7 +498,9 @@ describe('Reliquary Conqueror catalog structure', () => {
     // Two referral reward mounts and nightwing_chimera join Horizons. Wobbles the
     // Slime (a developer mount, pending its route) takes one more slot: 567.
     // The Bracken Circle's Champion title (Circle Elder) joins Horizons: 582.
-    expect(full).toEqual({ owned: 582, total: 582 });
+    // The Hollow Crypt's 26 slots (18 normal, 8 heroic) left completion when
+    // its pages became retired pages (dungeon retired 2026-11-11): 556.
+    expect(full).toEqual({ owned: 556, total: 556 });
     // The Warfare Season 2 Vanguard Gallery (135 set pieces and four weapons)
     // is class-personal and sits outside completion, so it moves neither pair.
     const character = catalogCharacterCompletion({
@@ -531,8 +537,10 @@ describe('Reliquary Conqueror catalog structure', () => {
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 529;
     // 532 with the two referral reward mounts and nightwing_chimera; 537 with
     // Wobbles the Slime's character-scoped mount slot. 552 with the Bracken
-    // Circle's Champion title slot (the fourth Wyndlewood faction).
-    expect(character).toEqual({ owned: 552, total: 552 });
+    // Circle's Champion title slot (the fourth Wyndlewood faction). 526 once
+    // the Hollow Crypt's 26 character-scoped item slots left completion with
+    // its retired pages (2026-11-11).
+    expect(character).toEqual({ owned: 526, total: 526 });
     // The Warfare Season 2 page is class-personal, outside completion.
   });
 
@@ -680,15 +688,14 @@ describe('Reliquary Conqueror catalog structure', () => {
     }
   });
 
-  it('absorbs the Phase 1 stub page id with real Hollow Crypt uniques', () => {
+  it('keeps the Phase 1 stub page id, now a retired page of real Hollow Crypt uniques', () => {
+    // The dungeon was retired (2026-11-11); the page id survives (page ids are
+    // append-only) as a sourceless retired page on the horizons shelf.
     const page = RELIQUARY_PAGES_BY_ID.conquerors_hollow_crypt;
     expect(page).toBeDefined();
-    expect(page.shelf).toBe('conquerors');
-    expect(page.clearSource).toEqual({
-      kind: 'dungeon',
-      dungeonId: 'hollow_crypt',
-      difficulty: 'normal',
-    });
+    expect(page.shelf).toBe('horizons');
+    expect(page.clearSource).toEqual({ kind: 'none' });
+    expect(page.excludeFromCompletion).toBe('retired');
     const relics = itemRelicIds(page);
     expect(relics).toContain('cryptbone_helm');
     expect(relics).toContain('gravewoven_bag');
@@ -970,8 +977,10 @@ describe('Reliquary dungeon clear meters count every difficulty that pays the pa
       : [],
   );
 
-  it('sweeps at least the five five-man pages and the three raid pages', () => {
-    expect(dungeonPages.length).toBeGreaterThanOrEqual(8);
+  it('sweeps at least the four five-man pages and the three raid pages', () => {
+    // Four five-mans since the Hollow Crypt was retired (2026-11-11): its
+    // pages carry no dungeon clear source any more.
+    expect(dungeonPages.length).toBeGreaterThanOrEqual(7);
   });
 
   it("an 'any' meter is only authored where Heroic and Normal both pay every relic", () => {
@@ -995,12 +1004,10 @@ describe('Reliquary dungeon clear meters count every difficulty that pays the pa
     }
   });
 
-  it('the five-man and Nythraxis pages count both difficulties; the Crucible raid pages and the Hollow Crypt keep the Normal filter', () => {
+  it('the five-man and Nythraxis pages count both difficulties; the Crucible raid pages keep the Normal filter', () => {
     const byId = Object.fromEntries(dungeonPages.map((d) => [d.page.id, d.difficulty]));
-    // Morthen's four uncommon brand pieces drop on Normal alone since Heroic
-    // stopped paying uncommon gear (2026-10-09); Heroic runs count on the
-    // Heroic Hollow Crypt page instead.
-    expect(byId.conquerors_hollow_crypt).toBe('normal');
+    // The retired Hollow Crypt page has no clear meter at all now.
+    expect(byId.conquerors_hollow_crypt).toBeUndefined();
     expect(byId.conquerors_sunken_bastion).toBe('any');
     expect(byId.conquerors_drowned_temple).toBe('any');
     expect(byId.conquerors_gravewyrm_sanctum).toBe('any');
@@ -1070,7 +1077,6 @@ describe('Reliquary clear sources map to live content', () => {
     const required = [
       'ignivar_raid_arena',
       'ignivar_inner_crucible',
-      'hollow_crypt',
       'sunken_bastion',
       'drowned_temple',
       'gravewyrm_sanctum',
@@ -1115,11 +1121,8 @@ describe('Reliquary clear sources map to live content', () => {
 
 describe('Reliquary heroic gear pins against HEROIC_BOSS_LOOT', () => {
   const HEROIC_PAGE_BY_BOSS: Record<string, string> = {
-    // The Hollow Crypt rework: four bosses, one shared heroic page.
-    sexton_marrow: 'conquerors_hollow_crypt_heroic',
-    rimeweb: 'conquerors_hollow_crypt_heroic',
-    cantor_ilvane: 'conquerors_hollow_crypt_heroic',
-    morthen: 'conquerors_hollow_crypt_heroic',
+    // (The Hollow Crypt's four bosses left with the dungeon, 2026-11-11; its
+    // heroic page lives on as a retired page with no boss behind it.)
     // The Sunken Bastion rework: four bosses, one shared heroic page (the Gaol
     // Turnkey took two of Vael's heroic epics on 2026-10-08).
     knight_commander_olen: 'conquerors_sunken_bastion_heroic',
@@ -1477,7 +1480,7 @@ describe('Reliquary Riftbound page (class-personal, outside completion)', () => 
 });
 
 describe('Reliquary outside-completion pages (the flagged set)', () => {
-  it('flags exactly the four pages, in catalog order, each with its reason', () => {
+  it('flags exactly the six pages, in catalog order, each with its reason', () => {
     // Catalog-wide companion to the per-page pins: the flag is the one lever
     // that removes a page from every completion pair, so its whole membership
     // is pinned in one place. Forgebreaker's approved one-time, class-restricted
@@ -1489,6 +1492,9 @@ describe('Reliquary outside-completion pages (the flagged set)', () => {
       ]),
     ).toEqual([
       ['horizons_vault_of_ages', 'retired'],
+      // The retired Hollow Crypt pages (dungeon retired 2026-11-11).
+      ['conquerors_hollow_crypt', 'retired'],
+      ['conquerors_hollow_crypt_heroic', 'retired'],
       ['horizons_riftbound', 'personal'],
       ['professions_forgebreaker', 'personal'],
       // Class-locked Warfare Season 2 stock: no single character can fill it.
@@ -2216,7 +2222,6 @@ describe('Reliquary dungeon and raid pages derive from live mob loot', () => {
       // running form of "The Gorgebloom".
       conquerors_wildheart_basin: ['wildheart_beastmaster'],
       conquerors_wildheart_basin_heroic: ['wildheart_beastmaster', 'wildheart_high_priest'],
-      conquerors_hollow_crypt_heroic: ['morthen'],
       conquerors_nythraxis: ['nythraxis_scourge_of_thornpeak'],
       conquerors_ignivar: ['ignivar_herald_of_the_last_flame'],
       conquerors_ignivar_heroic: ['ignivar_herald_of_the_last_flame'],
@@ -2251,35 +2256,54 @@ describe('Reliquary dungeon and raid pages derive from live mob loot', () => {
     expect(derivedPairs).toEqual(expected);
   });
 
-  it('Hollow Crypt: rare+ equality plus four curated uncommon brand pieces', () => {
-    // SUBSET regime with explicit inclusions: the entry dungeon's only rare+
-    // drop is the gravewoven_bag, so the page adds the four uncommon Crypt
-    // brand pieces as deliberate curation. Both halves pin against live loot.
-    const page = RELIQUARY_PAGES_BY_ID.conquerors_hollow_crypt;
-    const pageIds = itemRelicIds(page);
-    const derived = dungeonRarePlusLootIds('hollow_crypt');
-    // Literal: update when catalog content lands (snug vacuity floor).
-    expect(derived.length).toBeGreaterThanOrEqual(1);
-    // The rework's three new rare chase rows join the page with their painted
-    // art (a relic cell needs committed dark-card art); until then they are
-    // the only derived rare+ ids the page leaves out.
-    const ART_PENDING_RARES = ['cantors_hymnal', 'rimeweb_fang', 'sextons_spadehaft'];
-    for (const id of ART_PENDING_RARES) expect(derived, id).toContain(id);
-    expect(pageIds.filter((id) => isRarePlus(id)).sort()).toEqual(
-      derived.filter((id) => !ART_PENDING_RARES.includes(id)),
-    );
-    const CURATED_UNCOMMON = [
-      'cryptbone_greaves',
-      'cryptbone_helm',
-      'cryptbone_pauldrons',
-      'greyjaw_hide_boots',
-    ];
-    expect(pageIds.filter((id) => !isRarePlus(id)).sort()).toEqual([...CURATED_UNCOMMON].sort());
-    // Every page id, curated uncommons included, is a real Crypt drop.
-    const live = dungeonLootIdsAnyQuality('hollow_crypt');
-    for (const id of pageIds) {
-      expect(live.has(id), `${id} is not dropped in hollow_crypt`).toBe(true);
+  it('keeps the two Hollow Crypt pages as retired pages outside completion', () => {
+    // The owner retired the dungeon outright (2026-11-11). Its pages stay
+    // visible under their original ids (page ids are append-only, so holders
+    // keep their sticky illumination) as labeled retired pages, the Vault of
+    // Ages pattern: horizons shelf, retired flag, no clear meter, no source
+    // hints, and every relic a shipped save-compat item def.
+    const CRYPT_PAGES = ['conquerors_hollow_crypt', 'conquerors_hollow_crypt_heroic'];
+    for (const id of CRYPT_PAGES) {
+      const page = RELIQUARY_PAGES_BY_ID[id];
+      expect(page, id).toBeDefined();
+      expect(page.shelf, id).toBe('horizons');
+      expect(page.excludeFromCompletion, id).toBe('retired');
+      expect(page.clearSource, id).toEqual({ kind: 'none' });
+      expect(page.secondaryClearSource, id).toBeUndefined();
+      expect(page.sourceDefault, id).toBeUndefined();
+      expect(itemRelicIds(page).length, id).toBeGreaterThan(0);
+      for (const relic of page.relics) {
+        expect(reliquaryRelicSource(page, relic), id).toEqual([]);
+      }
+      for (const itemId of itemRelicIds(page)) {
+        expect(ITEMS[itemId], `${id}: ${itemId} save-compat def`).toBeDefined();
+      }
     }
+    // Excluded from completion on BOTH sides of BOTH pairs: the live catalog
+    // with everything owned scores exactly what it scores without the two
+    // pages, and owning only relics no live page catalogs scores zero.
+    const allOwned = { has: () => true };
+    const surfaces = {
+      itemsDiscovered: allOwned,
+      marks: allOwned,
+      ownedMounts: allOwned,
+      weaponSkins: allOwned,
+      deedsEarned: allOwned,
+    };
+    const noCrypt = RELIQUARY_PAGES.filter((p) => !CRYPT_PAGES.includes(p.id));
+    expect(noCrypt.length).toBe(RELIQUARY_PAGES.length - 2);
+    expect(catalogRelicCompletion(surfaces)).toEqual(catalogRelicCompletion(surfaces, noCrypt));
+    expect(catalogCharacterCompletion(surfaces)).toEqual(
+      catalogCharacterCompletion(surfaces, noCrypt),
+    );
+    const cryptOnly = new Set(
+      CRYPT_PAGES.flatMap((id) => itemRelicIds(RELIQUARY_PAGES_BY_ID[id])).filter((itemId) =>
+        (RELIQUARY_ITEM_TO_PAGES.get(itemId) ?? []).every((pageId) => CRYPT_PAGES.includes(pageId)),
+      ),
+    );
+    expect(cryptOnly.size).toBeGreaterThan(0);
+    expect(catalogRelicCompletion({ itemsDiscovered: cryptOnly }).owned).toBe(0);
+    expect(catalogCharacterCompletion({ itemsDiscovered: cryptOnly }).owned).toBe(0);
   });
 });
 
@@ -2302,12 +2326,13 @@ describe('Reliquary growth sweeps (new content must page or opt out)', () => {
       (id) => dungeonRarePlusLootIds(id).length > 0,
     );
     // Contents-pin completeness: a dungeon with rare+ loot must sit under an
-    // equality regime, EQUALITY_PAGES (exact pin), hollow_crypt's curated
-    // subset test, or an explicit EXCLUDED_DUNGEONS opt-out; a NEW rare+
+    // equality regime, EQUALITY_PAGES (exact pin) or an explicit
+    // EXCLUDED_DUNGEONS opt-out (the Hollow Crypt's curated subset left with
+    // the dungeon, 2026-11-11); a NEW rare+
     // dungeon reds here until the curator picks one, so its page can never
     // pass on mere existence without a contents pin.
     expect([...withRarePlus].sort()).toEqual(
-      [...Object.keys(EQUALITY_PAGES), 'hollow_crypt', ...Object.keys(EXCLUDED_DUNGEONS)].sort(),
+      [...Object.keys(EQUALITY_PAGES), ...Object.keys(EXCLUDED_DUNGEONS)].sort(),
     );
     for (const dungeonId of withRarePlus) {
       if (EXCLUDED_DUNGEONS[dungeonId] !== undefined) continue;
@@ -2696,8 +2721,9 @@ describe('Reliquary Horizons shelf (Phase 8)', () => {
         expect(['mount', 'weapon_skin', 'title']).toContain(relic.kind);
       }
     }
-    // The exemption stays snug: exactly the two flagged Horizons pages today,
-    // each named with the reason that exempts it.
+    // The exemption stays snug: exactly the four flagged Horizons pages today
+    // (the two retired Hollow Crypt pages joined on 2026-11-11), each named
+    // with the reason that exempts it.
     expect(
       HORIZON_PAGES.filter((p) => p.excludeFromCompletion !== undefined).map((p) => [
         p.id,
@@ -2705,6 +2731,8 @@ describe('Reliquary Horizons shelf (Phase 8)', () => {
       ]),
     ).toEqual([
       ['horizons_vault_of_ages', 'retired'],
+      ['conquerors_hollow_crypt', 'retired'],
+      ['conquerors_hollow_crypt_heroic', 'retired'],
       ['horizons_riftbound', 'personal'],
     ]);
   });
@@ -3319,10 +3347,10 @@ function slotKey(pageId: string, slotId: string): string {
  *  even while every surviving hint still validates. Update deliberately with
  *  the authoring, the same regime as the totals pins above. */
 const EXPECTED_DISTINCT_SOURCES: Record<string, number> = {
-  // Four since every Crypt boss's blue roll joined the page (2026-10-08).
-  conquerors_hollow_crypt: 4,
-  // The Hollow Crypt rework: four bosses pay the heroic page.
-  conquerors_hollow_crypt_heroic: 4,
+  // The retired Hollow Crypt pages (2026-11-11) are sourceless like the
+  // vault: no door is left to name.
+  conquerors_hollow_crypt: 0,
+  conquerors_hollow_crypt_heroic: 0,
   // Four since the Gaol Turnkey's blue roll joined the page (2026-10-08).
   conquerors_sunken_bastion: 4,
   conquerors_sunken_bastion_heroic: 4,
@@ -3383,8 +3411,9 @@ const EXPECTED_DISTINCT_SOURCES: Record<string, number> = {
   // the WOC Store's annual membership Chimaera reward; the one pending-ruling
   // absence resolves to nothing.
   // plus the referral-card reward activity, plus Lantern Hall's quartermaster (the guild's
-  // horse, sold for Lantern Seals)
-  horizons_mounts: 17,
+  // horse, sold for Lantern Seals). Morthen's door left the Stormfeather
+  // Griffin's reins with the Hollow Crypt (retired 2026-11-11): 16.
+  horizons_mounts: 16,
   // the account storefront, plus Lantern Hall's quartermaster for the guild's earned blade
   horizons_weapon_skins: 2,
   // Every title relic's source is its own deed, so the count tracks the page
@@ -3428,7 +3457,6 @@ const EXPECTED_DISTINCT_SOURCES: Record<string, number> = {
  *  authoring) so under-authoring one of them cannot quietly pass. */
 const KNOWN_MULTI_SOURCE_PAGES = [
   // The dungeons whose relics span two or more of their own bosses.
-  'conquerors_hollow_crypt_heroic',
   'conquerors_sunken_bastion',
   'conquerors_drowned_temple',
   'conquerors_gravewyrm_sanctum',
@@ -4312,8 +4340,9 @@ describe('Reliquary source hint coverage', () => {
     // three daggers the v0.36.0 release merge added, keeping the original slack.
     const hinted = RELIC_SLOTS.length - retiredSlots - actuallyUnhinted.size;
     expect(hinted).toBeGreaterThanOrEqual(368);
-    // The retired arm stays snug too: exactly the vault's four slots today.
-    expect(retiredSlots).toBe(4);
+    // The retired arm stays snug too: the vault's four slots plus the retired
+    // Hollow Crypt pages' 26 (18 normal, 8 heroic) since 2026-11-11.
+    expect(retiredSlots).toBe(30);
   });
 
   it('no relic authors an EMPTY hint list (a sourceless slot stays keyless)', () => {

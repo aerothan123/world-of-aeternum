@@ -62,6 +62,7 @@ export const zh_CN: EnTranslations = {
     "earned": "已获得",
     "redeemed": "已领取",
     "emptyStamp": "尚未获得",
+    "retiredStamp": "No longer available",
     "stamping": "正在为卡片盖章...",
     "redeem": "领取奖励",
     "previous": "请先领取之前印章的奖励。",
@@ -4824,30 +4825,6 @@ export const zh_CN: EnTranslations = {
         "snappedFetters": "它的锁链已断。它不再战斗，无法被伤害，并很快离开。",
         "anchored": "被锁在溺亡之锚上：你可以移动，但无法远离绞盘，它会把你绞向溺亡深坑。走到距被钩住处至少{run}码的点亮系泊柱{reach}码以内即可系住锁链（该柱熄灭{dark}秒），或者让队友用{links}次攻击砸断锁链（英雄难度{linksHeroic}次）。掉进深坑会损失{pit}%的最大生命值（英雄难度{pitHeroic}%）。"
       },
-      "crypt": {
-        "carrionEye": "战斗中的所有乌鸦都会追猎你，持续{seconds}秒。跑向你的坦克，让队伍一起消灭鸦群。",
-        "graniteSkin": "受到的伤害降低{pct}%，石层每{every}秒增厚一次，最多{max}层。击晕会将其击碎，使其在{seconds}秒内受到的伤害提高{cracked}%。",
-        "measured": "此效果结束时，一座敞开的坟墓会在你所站之处塌陷：对{radius}码内的所有人造成{min}到{max}点伤害（英雄难度{heroicMin}到{heroicMax}点）。坟墓会在整场战斗中保留，所以把印记带到墓园边缘，远离队伍。",
-        "graveDirt": "站在敞开的坟墓中：移动速度降低{slow}%，每秒受到{damage}点暗影伤害（英雄难度{heroic}点）。英雄难度下，在坟墓中停留{linger}秒会唤起一具不安之骨。离开坟墓。",
-        "dirtInEyes": "移动速度降低{pct}%。一铲坟土会击中司事马罗身前的所有人：站到他身后。",
-        "blow": "受到的伤害提高{pct}%：每层{per}%，当前{stacks}/{max}层。每次掘墓人重击都会增加一层，并将持续时间重置为{seconds}秒。",
-        "graveVigor": "站在敞开的坟墓中时攻击速度提高{pct}%。别让他待在坟墓里。",
-        "tolling": "他大步走向钟绳并敲响葬钟时免疫伤害。钟声结束时，丧钟对所有人造成{min}到{max}点暗影伤害（英雄难度{heroicMin}到{heroicMax}点），并且每座敞开的坟墓都会爬出一具不安之骨。",
-        "embraced": "被夫人举在半空：无法行动，每秒受到{tick}点冰霜伤害（英雄难度{tickHeroic}点）。如果你的队伍打掉她{share}%的最大生命值（英雄难度{shareHeroic}%），她会把你轻轻放下；如果她在高处抓住你{hold}秒，就会把你扔到冰面上，造成{min}到{max}点伤害（英雄难度{heroicMin}到{heroicMax}点）。",
-        "lament": "新娘的哀歌结束时，对所有不在点亮的墓灯{radius}码内的人造成{min}到{max}点冰霜伤害（英雄难度{heroicMin}到{heroicMax}点）。每盏灯只庇护离它最近的{cap}名玩家，然后熄灭并错过下一次哀歌。",
-        "lingering": "你承受的下一次新娘的哀歌伤害提高{pct}%：每层{per}%，最多{max}层。下一次请在墓灯光芒中承受。",
-        "slippery": "在光滑的冰面上：你的速度每秒最多改变{grip}码/秒，所以起步缓慢，停下时会继续滑行，转向时会甩出大弧线。离开冰面就能重新站稳。",
-        "harmony": "受到的伤害降低{pct}%：她每有一名存活的唱诗者就降低{per}%。先杀死唱诗者。",
-        "crescendo": "唱得更快：空洞挽歌只需{cast}秒（原为{castNormal}秒），每{every}秒一次（原为{everyNormal}秒），骨管风琴会奏出{waves}波音符（原为{wavesNormal}波）。",
-        "gorged": "造成的伤害提高{pct}%：每个抵达他身边的缚魂提高{per}%，当前{stacks}/{max}层，持续到战斗结束。每个抵达的灵魂还会为他恢复{heal}%的最大生命值。站到灵魂的路径上，就能由你代为承受。",
-        "unquietWard": "他在祭坛引导不宁者仪式时免疫伤害：已重燃{lit}/{total}根追思蜡烛。重燃一根需要引导{channel}秒，期间每秒吸取点燃者{drain}%的最大生命值（英雄难度{drainHeroic}%）；受到攻击不会打断，移动或昏迷会打断。最后一根蜡烛会击碎结界。英雄难度下，须按名册点出的顺序点燃：点错蜡烛会熄灭最后点燃的那根，并对点燃者造成{wrongMin}到{wrongMax}点暗影伤害。",
-        "riteBroken": "昏迷：破碎的结界让他{seconds}秒内无法行动。",
-        "shatteredWard": "{seconds}秒内受到的伤害提高{pct}%：重燃的蜡烛击碎了他的结界。现在就打出最强的攻击。",
-        "graveChill": "不宁者仪式持续期间，每秒受到{bite}点暗影伤害（英雄难度{biteHeroic}点），每{every}秒提高{step}点（英雄难度{stepHeroic}点）。重燃追思蜡烛来终结它。",
-        "graspMark": "{fuse}秒后，你脚下的法环中会伸出鬼手：法环落下处{radius}码内的所有人被定身{root}秒，并受到{min}到{max}点暗影伤害。离开法环。",
-        "graspRoot": "被坟墓之手抓住：{seconds}秒内无法移动。",
-        "knellAirborne": "在仪式之环上空飞行，无法触及。它会标记半个法环{mark}秒，然后向那一半倾泻幽魂之火：对其中所有人造成{min}到{max}点火焰伤害。每次飞行焚烧{breaths}个半区，然后降落。"
-      },
       "sanctum": {
         "lockbound": "受到的伤害降低{pct}%：每条仍然完好的锁链提供{per}%。打破一个封印镣铐即可让其锁链脱落。",
         "enrage": "造成的伤害提高{pct}%。",
@@ -7169,25 +7146,6 @@ export const zh_CN: EnTranslations = {
       },
       "mech": {
         "shadow_pulse": "暗影脉冲（周期性范围伤害）",
-        "crypt_shovelful": "一铲坟土（每11秒他向身前8码锥形区域扬起坟土：造成他普通攻击1.5倍的伤害，并使移动速度降低50%，持续6秒，所以站到他身后）",
-        "crypt_measured_for_the_grave": "量身定墓（每15秒他标记一名非坦克玩家；4秒后脚下塌出一座敞开的坟墓，普通难度下对3码内造成42到52点伤害，坑会在整场战斗中保留：在其中每秒受到9点伤害且移动速度降低40%，所以把坟墓留在墓园边缘）",
-        "crypt_burial_toll": "葬礼丧钟（生命值降到66%和33%时，他大步走向钟绳，免疫伤害，摇钟3秒：普通难度下对所有人造成30到38点暗影伤害，并且每座敞开的坟墓都会爬出一具不安之骨）",
-        "crypt_marrow_heroic": "英雄：掘墓人重击，每9秒打击坦克（每层使其受到的伤害提高6%，持续20秒，最多6层）；坟墓之力（他站在坟墓里时攻击速度提高30%）；不宁之土（任何人在坟墓里停留2秒，就会在那里爬出一具不安之骨）",
-        "crypt_brides_lament": "新娘的哀歌（每22秒一次3秒的哀嚎：普通难度下对所有不在点亮的墓灯光芒中的人造成60到75点冰霜伤害，你已承受的每层萦绕哀歌再提高一半。每盏灯最多庇护两名玩家，庇护过任何人后会熄灭28秒，所以分散开轮流使用）",
-        "crypt_frozen_embrace": "冰封之拥（每30秒她抓住一名非坦克玩家，带着对方升到空中5码高，每秒造成6点冰霜伤害：在8秒内打掉她6%的生命值她就会把人放下，否则她会把人扔下，普通难度下造成150到180点伤害）",
-        "crypt_rime_path": "霜径（她飘过的地方会留下光滑的白霜，持续25秒：在上面你加速缓慢，停下或转向时会继续滑行）",
-        "crypt_bridal_freeze": "新娘冰封（生命值降到一半时，整个峡谷地面都会冻结：在战斗剩余时间里都是光滑的冰面）",
-        "crypt_lady_heroic": "英雄：每盏点亮的墓灯在30秒后也会自行熄灭10秒，冰封之拥会同时抓住两名玩家",
-        "crypt_dirge_of_the_hollow": "空洞挽歌（每16秒一首可打断的2.5秒歌曲：如果她唱完，普通难度下对45码内所有能看见她的人造成105到125点暗影伤害并沉默4秒，所以打断它或躲到唱诗柱后面）",
-        "crypt_harmony": "和声（每名存活的唱诗者都使她受到的伤害降低30%：先杀唱诗者）",
-        "crypt_bone_organ": "骨管风琴（每26秒她弹奏骨管风琴：两波暗影音符沿着唱诗楼的通道爆发，普通难度下通道内造成100到115点伤害，第二波会填满第一波的空隙）",
-        "crypt_crescendo": "渐强（生命值低于30%时，她的挽歌只需1.8秒且每11秒一次，风琴还会多奏一波）",
-        "crypt_ilvane_heroic": "英雄：安可（一名唱诗者倒下10秒而另一名仍站着时，它会再次站起，所以同时杀掉它们）以及不断之诗（每第三首挽歌无法被打断：躲开它）",
-        "crypt_morthen_shadow_pulse": "暗影脉冲（每12秒施法2秒，然后在普通难度下对他周围12码内所有人造成24到30点暗影伤害，所以要走开；在他的终末仪式中每9秒一次）",
-        "crypt_gravecall": "唤墓（每15秒，一个缚魂从下一个石棺壁龛飘向他；抵达后他获得饱食亡者，每个灵魂使他造成的伤害提高10%，最多10层，并恢复3%的生命值。挡在路径上的玩家会代为承受：普通难度下12到16点暗影伤害）",
-        "crypt_rite_of_the_unquiet": "不宁者仪式（生命值降到65%时，他回到祭坛，在不宁结界中免疫伤害，同时墓穴寒意每秒对所有人造成3点暗影伤害，每5秒提高1点，还有2具不安之骨从壁龛中爬出。重燃4根追思蜡烛：每根需要引导4秒，每秒吸取点燃者6%的最大生命值，受到攻击不会打断，移动或昏迷会打断。最后一根蜡烛会打破仪式：他昏迷8秒，受到的伤害提高25%）",
-        "crypt_reap_the_unquiet": "收割不宁者（生命值低于35%时灵魂停止出现；每14秒施法2秒后挥动镰刀：普通难度下对他前方14码、120度扇形内的所有人造成55到65点暗影伤害。此后暗影脉冲每9秒一次）",
-        "crypt_morthen_heroic": "英雄难度：点名亡者（名册点出蜡烛的顺序：点错蜡烛会熄灭最后点燃的那根，并对点燃者造成252到288点暗影伤害，每次重燃每秒吸取8%），坟墓之握（每16秒2名玩家脚下出现4码法环；1.5秒后鬼手破土而出：定身3秒并造成162到198点暗影伤害），以及丧钟巨龙的燃烧丧钟（它飞上天空，标记半个法环4.5秒，然后向那一半倾泻幽魂之火，造成1,000到1,120点火焰伤害，每次飞行3个半区）",
         "reaping_arc": "收割之弧（正面顺劈）",
         "hallowed_brine": "圣化咸水（半径9码的暗色圣水池，英雄难度10码：池中每秒受到18点伤害，英雄难度26点，他站在池中时受到的伤害降低40%，把他拖出去）",
         "rebounding_bulwark": "回弹壁盾（盾牌弹向上一个被击中者10码内最近的玩家，最多3人，英雄4人：散开）",
@@ -7410,33 +7368,6 @@ export const zh_CN: EnTranslations = {
       "rimeLine": "蔓延霜凇 {stacks}/{max}：离开幼龙的吐息",
       "slabTitle": "冰块",
       "slabLine": "坚冰：它会阻挡视线。躲到它后面，避开施法者的法术"
-    },
-    "cryptAlert": {
-      "measuredTitle": "量身定墓！",
-      "measuredLine": "计时条走完时，坟墓会在你脚下塌陷：把它带到墓园边缘",
-      "embracedTitle": "冰封之拥！",
-      "embracedLine": "她把你举在半空：你的队伍必须伤害她，她才会把你放下",
-      "lamentTitle": "新娘的哀歌！",
-      "lamentShelteredLine": "你站在点亮的墓灯光芒中，灯下还有你的位置：保持不动",
-      "lamentOpenLine": "在哀嚎落下前进入点亮的墓灯光芒中：每盏灯两人",
-      "graveTitle": "你在敞开的坟墓里！",
-      "graveLine": "坟土会灼烧你并让你减速：离开坟墓",
-      "tollTitle": "葬礼丧钟！",
-      "tollLine": "他摇钟时无法受到伤害：准备承受丧钟和它唤起的亡者",
-      "harmonyTitle": "和声",
-      "harmonyLine": "她的唱诗者使她受到的伤害降低{pct}%：先杀死它们",
-      "knellTitle": "燃烧丧钟！",
-      "knellLine": "计时条耗尽时，幽魂之火会倾泻到法环的这一半：去另一半",
-      "graspTitle": "坟墓之握！",
-      "graspLine": "鬼手会从这个法环中伸出，抓住站在里面的人：离开",
-      "reapTitle": "收割不宁者！",
-      "reapLine": "他的镰刀横扫面前的地面：绕到他身后",
-      "riteTitle": "不宁者仪式",
-      "riteLine": "重燃追思蜡烛以击碎他的结界：已点燃{lit}/{total}",
-      "riteNamedLine": "只重燃名册接下来点出的蜡烛：已点燃{lit}/{total}",
-      "soulTitle": "缚魂",
-      "soulLine": "一个灵魂正飘向莫森：站到它的路径上，在它喂饱他之前接住它",
-      "timeAria": "剩余{seconds}秒"
     },
     "kitUse": {
       "toppleLine": "把它踢倒在敌群上：洒出的火焰会灼烧它们",
@@ -10783,7 +10714,6 @@ export const zh_CN: EnTranslations = {
       "bastionName": "沉没堡垒",
       "templeName": "沉没神殿",
       "sanctumName": "墓龙圣所",
-      "hollowBody": "一座被盗墓的教堂地穴，新逝的死者拒绝安息。这是新队伍面临的第一场真正考验。",
       "bastionBody": "一座沉入沼泽、被淹没守军和不断上涨的潮水所占据的失落要塞。",
       "templeBody": "沼泽小路旁一座沉没的圣殿，是为好奇者与有备而来者准备的岔路。",
       "sanctumBody": "隐藏在棘峰高处的一座冰川，一条巨龙被封冻在冰中，邪教正焚烧窃取的灵魂将它解冻。从高山隘口一路下行，穿过冰塔、铁匠断裂的锁链与邪教的火堆，直到冰川脚下的冰封湖面。",
@@ -17014,46 +16944,6 @@ export const zh_CN: EnTranslations = {
       "hoard_cast_mimic_bite": "贪婪撕咬",
       "hoard_cast_mimic_leap": "碾压跳跃",
       "hoard_cast_coin_spit": "诅咒金币",
-      "crypt_grave_bolt": "墓穴之箭",
-      "crypt_raise_bones": "唤起骸骨",
-      "crypt_murder_call": "鸦群召唤",
-      "crypt_stone_shriek": "石之尖啸",
-      "crypt_grave_cleave": "墓穴横扫",
-      "crypt_barrowflame_breath": "冢焰吐息",
-      "crypt_tail_lash": "尾鞭",
-      "crypt_wing_gust": "翼风",
-      "crypt_grave_rupture": "墓穴崩裂",
-      "crypt_carrion_eye": "腐鸦之眼",
-      "crypt_marrow_crush": "碎髓重击",
-      "crypt_rimesilk_spit": "霜丝喷吐",
-      "crypt_gravespark_volley": "墓火齐射",
-      "crypt_morthen_rite_wakes": "仪式苏醒",
-      "crypt_morthen_rise": "唤墓者升起",
-      "crypt_morthen_proclaim": "墓之宣告",
-      "crypt_morthen_descend": "降临",
-      "crypt_knellwyrm_arrive": "自天而降",
-      "crypt_knellwyrm_pyre_strafe": "火葬扫射",
-      "crypt_knellwyrm_strafe_run": "俯冲扫射",
-      "crypt_knellwyrm_dread_bellow": "恐惧咆哮",
-      "crypt_marrow_shovelful": "一铲坟土",
-      "crypt_marrow_measure": "量身定墓",
-      "crypt_marrow_burial_toll": "葬礼丧钟",
-      "crypt_marrow_gravediggers_blow": "掘墓人重击",
-      "crypt_lady_brides_lament": "新娘的哀歌",
-      "crypt_lady_frozen_embrace": "冰封之拥",
-      "crypt_lady_embrace_hold": "冰封之拥",
-      "crypt_lady_bridal_freeze": "新娘冰封",
-      "crypt_ilvane_dirge": "空洞挽歌",
-      "crypt_ilvane_unbroken_dirge": "不断之诗",
-      "crypt_ilvane_bone_organ": "骨管风琴",
-      "crypt_morthen_shadow_pulse": "暗影脉冲",
-      "crypt_morthen_rite_of_the_unquiet": "不宁者仪式",
-      "crypt_morthen_reap_the_unquiet": "收割不宁者",
-      "kituse_crypt_relight_candle": "重燃蜡烛",
-      "crypt_knellwyrm_knell_rise": "燃烧丧钟",
-      "crypt_knellwyrm_knell_mark": "燃烧丧钟",
-      "crypt_knellwyrm_knell_breath": "燃烧丧钟",
-      "crypt_knellwyrm_knell_land": "燃烧丧钟",
       "bastion_brine_mend": "盐水愈合",
       "bastion_fog_ward": "雾之护佑",
       "bastion_halberd_sweep": "戟之横扫",
@@ -26563,9 +26453,6 @@ export const zh_CN: EnTranslations = {
       "restless_bones": {
         "name": "不宁骸骨"
       },
-      "marrow_restless_bones": {
-        "name": "不宁骸骨"
-      },
       "gorrak": {
         "name": "无情者戈拉克"
       },
@@ -26667,90 +26554,6 @@ export const zh_CN: EnTranslations = {
       },
       "boneclad_revenant": {
         "name": "骨甲亡魂"
-      },
-      "crypt_shambler": {
-        "name": "墓穴蹒跚者"
-      },
-      "hollow_acolyte": {
-        "name": "空洞侍僧"
-      },
-      "bonechill_widow": {
-        "name": "寒骨寡妇蛛"
-      },
-      "sexton_marrow": {
-        "name": "司事马罗"
-      },
-      "morthen": {
-        "name": "唤墓者莫森"
-      },
-      "ossuary_sentinel": {
-        "name": "骨堂哨兵"
-      },
-      "hollow_gravedigger": {
-        "name": "空洞掘墓人"
-      },
-      "rime_egg_sac": {
-        "name": "霜卵囊"
-      },
-      "rimeweb_hatchling": {
-        "name": "霜网幼蛛"
-      },
-      "rimeweb_spinner": {
-        "name": "霜网织丝蛛"
-      },
-      "candlewright_acolyte": {
-        "name": "烛匠侍僧"
-      },
-      "hollow_chorister": {
-        "name": "空洞唱诗者"
-      },
-      "bound_soul": {
-        "name": "缚魂"
-      },
-      "rimeweb": {
-        "name": "寒骨夫人"
-      },
-      "cantor_ilvane": {
-        "name": "领唱者伊尔凡"
-      },
-      "crypt_ossuary_warrior": {
-        "name": "骨堂战士"
-      },
-      "crypt_gravecaller_adept": {
-        "name": "唤墓者学徒"
-      },
-      "crypt_ossuary_cutthroat": {
-        "name": "骨堂割喉者"
-      },
-      "crypt_gravecaller_necromancer": {
-        "name": "唤墓者死灵法师"
-      },
-      "crypt_bone_minion": {
-        "name": "骸骨仆从"
-      },
-      "crypt_bone_brute": {
-        "name": "骸骨蛮兵"
-      },
-      "crypt_bone_pile": {
-        "name": "蠢动的骸骨"
-      },
-      "crypt_chapel_gargoyle": {
-        "name": "礼拜堂石像鬼"
-      },
-      "crypt_crow_caller": {
-        "name": "唤鸦者"
-      },
-      "crypt_carrion_crow": {
-        "name": "食腐乌鸦"
-      },
-      "crypt_ossuary_drake": {
-        "name": "骨堂骨龙"
-      },
-      "crypt_knellwyrm": {
-        "name": "丧钟巨龙"
-      },
-      "crypt_remembrance_candle": {
-        "name": "追思蜡烛"
       },
       "bastion_revenant": {
         "name": "堡垒亡魂"
@@ -28700,16 +28503,6 @@ export const zh_CN: EnTranslations = {
           }
         }
       },
-      "q_bones": {
-        "title": "不宁的死者",
-        "text": "旧礼拜堂曾是安息之地，如今有东西唤醒了死者。让8具不宁骸骨归土，{playerName}。",
-        "completion": "愿他们从此安息，也愿圣光宽恕唤醒他们之物。",
-        "objectives": {
-          "0": {
-            "label": "让不宁骸骨安息"
-          }
-        }
-      },
       "q_supplies": {
         "title": "被盗的补给",
         "text": "强盗抢走了我的最后一辆货车，工具、盐和东溪亚麻都在里面。去西北山丘的营地夺回4个补给箱。",
@@ -28720,26 +28513,6 @@ export const zh_CN: EnTranslations = {
           }
         }
       },
-      "q_whispers": {
-        "title": "地下低语",
-        "text": "死者又爬起来，因为有什么在召唤他们。搜索礼拜堂遗址，把召唤者留下的徽记完整带给我。",
-        "completion": "这枚徽记有唤墓者的印记。我曾祈祷这个教派早已灭绝，{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "唤墓者徽记"
-          }
-        }
-      },
-      "q_names_of_the_dead": {
-        "title": "死者之名",
-        "text": "如果唤墓者盗用了我们的墓地，我必须知道他们偷走了谁。收集3页葬册残页，{playerName}。",
-        "completion": "可怜的亡魂...看这里，司事马罗是第一个。莫森从埋葬东溪死者的人开始。",
-        "objectives": {
-          "0": {
-            "label": "风化账页"
-          }
-        }
-      },
       "q_silence_the_call": {
         "title": "让呼唤沉寂",
         "text": "名册上的每个名字都是莫森想拖出泥土的灵魂。{playerName}，在低语变成合唱前，让12具不宁骸骨沉寂。",
@@ -28747,49 +28520,6 @@ export const zh_CN: EnTranslations = {
         "objectives": {
           "0": {
             "label": "使不宁骸骨沉寂"
-          }
-        }
-      },
-      "q_rite": {
-        "title": "束缚仪式",
-        "text": "如果我们要阻止唤墓者，就必须解开礼拜堂下方墓穴的封印，但只有束缚仪式才能让生者通过。我需要 4 块祝福兽脂，矿井里的穴居者会成箱地囤积兽脂，还需要从不安的亡者身上取得 6 份幽魂精华。",
-        "completion": "完成了。下方的路已经打开...召集最强的同伴再下去，{playerName}。",
-        "objectives": {
-          "0": {
-            "label": "祝福油脂"
-          },
-          "1": {
-            "label": "幽魂精华"
-          }
-        }
-      },
-      "q_hollow": {
-        "title": "进入空洞",
-        "text": "莫森在空洞墓穴底部等着，身边是他唤起的精英亡者。带上四名同伴，终结他。",
-        "completion": "低语停了。死者终于沉睡，{playerName}，东溪欠你一切。",
-        "objectives": {
-          "0": {
-            "label": "击败唤墓者莫森"
-          }
-        }
-      },
-      "q_sexton": {
-        "title": "司事的钟",
-        "text": "葬册写着司事马罗的名字，他是莫森唤起的第一个守门人。{playerName}，带四名同伴下墓穴，还给他被夺走的安息。",
-        "completion": "马罗终于自由了。别为他敲钟，他生前听得够多了。",
-        "objectives": {
-          "0": {
-            "label": "让司事马罗安息"
-          }
-        }
-      },
-      "q_gravecallers_trail": {
-        "title": "唤墓者的踪迹",
-        "text": "莫森死了，但潜伏百年的教派不会只为一座村庄礼拜堂现身。去废墟里找他的魔典，{playerName}。",
-        "completion": "莫森曾写信给北方湿地的一名『缚雾者』。这个教派并未消亡，{playerName}，它只是一直在耐心等待。",
-        "objectives": {
-          "0": {
-            "label": "莫森的魔典"
           }
         }
       },
@@ -32720,11 +32450,6 @@ export const zh_CN: EnTranslations = {
       }
     },
     "dungeons": {
-      "hollow_crypt": {
-        "name": "空洞墓穴",
-        "enterText": "你走下空洞墓穴...",
-        "leaveText": "你重新爬回日光之下。"
-      },
       "sunken_bastion": {
         "name": "沉没堡垒",
         "enterText": "你涉水进入沉没堡垒深处...",
@@ -32833,11 +32558,6 @@ export const zh_CN: EnTranslations = {
         "sender": "雷德布鲁克元帅",
         "subject": "老灰颚，终于倒下了",
         "body": "小镇里消息传得快。牧人们昨晚为你的健康干杯，威尔克斯发誓那头狼有马车那么大。让他们添油加醋去吧：这是你应得的。\n\n请代守备队享用一顿好饭。\n- 雷德布鲁克元帅"
-      },
-      "letter_q_hollow": {
-        "sender": "奥德里克修士",
-        "subject": "你在黑暗中所做的一切",
-        "body": "很少有人会知道那处洼地里埋葬着什么，愿意相信的人更少。但我知道，而且我不会忘记。\n\n愿你的道路常明。\n- 奥德里克修士"
       },
       "heroic_marks_reward": {
         "sender": "英勇军需官",

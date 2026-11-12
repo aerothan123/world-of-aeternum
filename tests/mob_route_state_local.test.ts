@@ -22,7 +22,7 @@ const SENTINEL_TEXT = 'zz-route-state-sentinel';
 function world(): { sim: Sim; player: Entity; mob: Entity } {
   const sim = new Sim({ seed: 31, playerClass: 'warrior' });
   const player = sim.player;
-  const mob = createMob(sim.ctx.nextId++, MOBS.crypt_gravecaller_adept, 8, {
+  const mob = createMob(sim.ctx.nextId++, MOBS.drowned_sergeant, 8, {
     x: player.pos.x + 6,
     y: player.pos.y,
     z: player.pos.z,

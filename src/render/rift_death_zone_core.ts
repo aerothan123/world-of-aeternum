@@ -13,7 +13,6 @@ import { DUNGEON_X_THRESHOLD, dungeonAt, isRiftPos } from '../sim/data';
 
 export type EncounterFxScope =
   | 'rift'
-  | 'hollow_crypt'
   | 'sunken_bastion'
   | 'drowned_temple'
   | 'wildheart_basin'
@@ -36,7 +35,6 @@ export function resolveEncounterFxScope(
   const dungeon = dungeonAt(playerX);
   if (!dungeon) return null;
   switch (dungeon.id) {
-    case 'hollow_crypt':
     case 'sunken_bastion':
     case 'drowned_temple':
     case 'wildheart_basin':

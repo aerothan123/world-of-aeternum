@@ -147,33 +147,39 @@ describe('dungeon entry camera facing', () => {
   });
 
   it('gives dungeon entry precedence over an overlapping ferry origin', () => {
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
 
     expect(
-      teleportCameraArrivalKind(-280, 0, origin.x + crypt.entry.x, origin.z + crypt.entry.z, JUMP),
+      teleportCameraArrivalKind(
+        -280,
+        0,
+        origin.x + bastion.entry.x,
+        origin.z + bastion.entry.z,
+        JUMP,
+      ),
     ).toBe('dungeon');
   });
 
   it('keeps walked movement outside the dungeon arrival classifier', () => {
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
 
-    expect(isDungeonEntryTeleport(0, origin.x + crypt.entry.x, TELEPORT_DISPLACEMENT_YD)).toBe(
+    expect(isDungeonEntryTeleport(0, origin.x + bastion.entry.x, TELEPORT_DISPLACEMENT_YD)).toBe(
       false,
     );
   });
 
   it('does not classify dungeon exits or unrelated mainland teleports for a camera snap', () => {
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
 
     expect(
       teleportCameraArrivalKind(
-        origin.x + crypt.entry.x,
-        origin.z + crypt.entry.z,
-        crypt.doorPos.x,
-        crypt.doorPos.z,
+        origin.x + bastion.entry.x,
+        origin.z + bastion.entry.z,
+        bastion.doorPos.x,
+        bastion.doorPos.z,
         JUMP,
       ),
     ).toBeNull();
@@ -244,14 +250,14 @@ describe('live teleport camera facing state', () => {
   });
 
   it('feeds the authored facing into the next offline catch-up tick', () => {
-    const crypt = DUNGEONS.hollow_crypt;
-    const origin = instanceOrigin(crypt.index, 0);
-    const cryptX = origin.x + crypt.entry.x;
+    const bastion = DUNGEONS.sunken_bastion;
+    const origin = instanceOrigin(bastion.index, 0);
+    const bastionX = origin.x + bastion.entry.x;
     const arrival = teleportCameraArrivalBetween(
-      crypt.doorPos.x,
-      crypt.doorPos.z,
-      cryptX,
-      origin.z + crypt.entry.z,
+      bastion.doorPos.x,
+      bastion.doorPos.z,
+      bastionX,
+      origin.z + bastion.entry.z,
     );
     if (arrival === null) throw new Error('dungeon entry was not classified');
     const aligned = teleportCameraFacingState(arrival, 0, {
@@ -264,7 +270,7 @@ describe('live teleport camera facing state', () => {
 
     const nextTickFacing = aligned.movementFacing;
     expect(nextTickFacing).toBe(0);
-    expect(teleportCameraArrivalAfterTick(cryptX, 0, cryptX, 0, 1, 2)).toBe('dungeon');
+    expect(teleportCameraArrivalAfterTick(bastionX, 0, bastionX, 0, 1, 2)).toBe('dungeon');
   });
 
   it('keeps ferry heading handoffs while snapping only the camera yaw', () => {

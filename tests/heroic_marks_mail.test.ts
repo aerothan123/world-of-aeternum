@@ -32,8 +32,8 @@ import type { Entity, WorldContent } from '../src/sim/types';
 type AnySim = SimType & Record<string, any>;
 type AnyEntity = Entity & Record<string, any>;
 
-const DUNGEON = 'hollow_crypt';
-const BOSS = 'morthen';
+const DUNGEON = 'sunken_bastion';
+const BOSS = 'vael_the_mistcaller';
 const LOCK_ID = heroicLockoutId(DUNGEON);
 const MARK_LETTER = 'heroic_marks_reward';
 
@@ -89,8 +89,8 @@ function metaOf(sim: AnySim, pid: number): PlayerMeta {
 }
 
 /**
- * A heroic hollow_crypt run with three party members:
- *  - `leader` stands at Morthen and lands the killing blow,
+ * A heroic sunken_bastion run with three party members:
+ *  - `leader` stands at Vael and lands the killing blow,
  *  - `away` walked in and then walked off (still on the claim, absent from the
  *    corpse): the mail arm's own case,
  *  - `anchor` keeps the party alive across the away member's logout, so the

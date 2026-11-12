@@ -18,7 +18,6 @@ export const STILL_FOCUS = {
     // a warm key from the camera side, so the stitched grin reads on the dark sackcloth
     rim: { color: 0xffd2a0, intensity: 2.4, from: [2, 3, 6] },
   },
-  'models/creatures/woc_crypt_morthen.glb': { bone: 'head', radius: 0.26, lift: -0.5, yaw: 0.6 },
   'models/creatures/woc_bastion_turnkey.glb': { bone: 'head', radius: 0.36, lift: -0.3 },
   // the Sledge Tusker: the soul lantern's post tops its bounds, so the top crop held only the
   // hump; framed on its brow with the tusks curling below it, turned three-quarter

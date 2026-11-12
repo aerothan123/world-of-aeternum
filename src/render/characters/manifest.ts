@@ -24,40 +24,6 @@ import {
   YSOLEI_WRATH,
 } from '../../sim/encounters/drowned_temple/ids';
 import {
-  KNELLWYRM_ARRIVE,
-  KNELLWYRM_DREAD_BELLOW,
-  KNELLWYRM_KNELL_BREATH,
-  KNELLWYRM_KNELL_LAND,
-  KNELLWYRM_KNELL_MARK,
-  KNELLWYRM_KNELL_RISE,
-  KNELLWYRM_PYRE_STRAFE,
-  KNELLWYRM_STRAFE_RUN,
-  MORTHEN_DESCEND,
-  MORTHEN_PROCLAIM,
-  MORTHEN_RISE,
-  MORTHEN_RITE_WAKES,
-} from '../../sim/encounters/hollow_crypt/ids';
-import {
-  ILVANE_BONE_ORGAN,
-  ILVANE_DIRGE,
-  ILVANE_UNBROKEN_DIRGE,
-} from '../../sim/encounters/hollow_crypt/ilvane_ids';
-import {
-  LADY_BRIDAL_FREEZE,
-  LADY_BRIDES_LAMENT,
-  LADY_EMBRACE_DROPPED,
-  LADY_EMBRACE_HOLD,
-  LADY_EMBRACE_RELEASED,
-  LADY_FROZEN_EMBRACE,
-} from '../../sim/encounters/hollow_crypt/lady_ids';
-import {
-  MARROW_BURIAL_TOLL,
-  MARROW_GRAVEDIGGERS_BLOW,
-  MARROW_MEASURE,
-  MARROW_SHOVELFUL,
-} from '../../sim/encounters/hollow_crypt/marrow_ids';
-import { MORTHEN_REAP, MORTHEN_RITE } from '../../sim/encounters/hollow_crypt/morthen_ids';
-import {
   GHOST_CAPTAIN_ANCHOR,
   GHOST_CAPTAIN_BOARDING,
   GHOST_CAPTAIN_BROADSIDE,
@@ -104,20 +70,6 @@ import {
   BASTION_PIERCING_BOLT,
   BASTION_SNAPPED_FETTERS,
 } from '../../sim/mob/trash_kit/bastion_cast_ids';
-import {
-  CRYPT_BARROWFLAME_BREATH,
-  CRYPT_GRAVE_BOLT,
-  CRYPT_GRAVE_CLEAVE,
-  CRYPT_GRAVESPARK_VOLLEY,
-  CRYPT_MARROW_CRUSH,
-  CRYPT_MURDER_CALL,
-  CRYPT_PERCH_DIVE,
-  CRYPT_RAISE_BONES,
-  CRYPT_SKY_LANDING,
-  CRYPT_STONE_SHRIEK,
-  CRYPT_TAIL_LASH,
-  CRYPT_WING_GUST,
-} from '../../sim/mob/trash_kit/cast_ids';
 import {
   TEMPLE_CALL_OF_THE_SHALLOWS,
   TEMPLE_CALL_THE_TIDE,
@@ -174,17 +126,6 @@ import {
   HOARD_GESTURE_FROST_GUST,
   HOARD_GESTURE_ICE_AGE_RELEASE,
 } from '../hoard_boss_gestures_core';
-import {
-  MORTHEN_DEATH_LIFT,
-  MORTHEN_GROWTH,
-  MORTHEN_HOVER,
-  MORTHEN_REAP_SWEEP,
-  MORTHEN_SCYTHE_HELD,
-  MORTHEN_SCYTHE_UNFOLD,
-  MORTHEN_STAFF_HELD,
-  MORTHEN_TOLL,
-} from '../hollow_crypt/morthen_fx_core';
-import { KNELL_GESTURE_POUR, KNELL_GESTURE_SKY_ROAR } from '../hollow_crypt/morthen_rite_fx_core';
 import type { LocoGaitThresholds } from '../locomotion';
 import type { AimCoreDef } from '../pick_aim_core';
 import { BASTION_OPEN_CELLS_GESTURE } from '../sunken_bastion/bastion_creature_fx_core';
@@ -517,7 +458,7 @@ export interface AttachDef {
   /** The size the prop draws at about its hand, on top of its model's own fit: set by the
    *  swap path from the equipped ITEM (held_item_size_core.ts: a common or uncommon weapon
    *  draws a fifth smaller), or authored on a fixed attach whose rig is not the WOC bodies'
-   *  scale (WOC_CRYPT_PROP_SIZE). Absent is 1. */
+   *  scale. Absent is 1. */
   size?: number;
 }
 
@@ -533,8 +474,8 @@ export interface VisualDef {
    *  tail): the ground anchor is the lowest skinned vertex, so without the
    *  sink the body is lifted until the tail tip touches and the feet float. */
   hover?: number;
-  /** A creature that flies, or waits perched high over the floor (the Hollow
-   *  Crypt's drake and gargoyles): its airborne state is read from its drawn
+  /** A creature that flies, or waits perched high over the floor (the
+   *  Gravewyrm Sanctum's flier, sanctum_boss_looks.ts): its airborne state is read from its drawn
    *  height over the standing surface, as a player's is (a mob's `onGround`
    *  never leaves true), so `jump` plays while it is up (LOOPED, never clamped:
    *  a flight loop or a perch), `fall` while it plunges and `land` on touchdown. */
@@ -724,9 +665,9 @@ export interface VisualDef {
    *  KayKit modular library. The class keeps its fixed `player_<class>` def on
    *  every surface (WOC_BODY_CLASSES in woc_parts_core.ts). */
   wocCharacter?: WocCharacterManifest;
-  /** Boss stance vocabularies keyed by a presentation gesture id (Morthen's
-   *  bell staff and the scythe it unfolds into, src/render/hollow_crypt/
-   *  morthen_fx_core.ts). The gesture, sent through the renderer's
+  /** Boss stance vocabularies keyed by a presentation gesture id (the
+   *  Drowned Temple's and the Gravewyrm Sanctum's bosses, temple_fx_core.ts and
+   *  sanctum_boss_looks.ts). The gesture, sent through the renderer's
    *  triggerAttack seam, swaps the rig's whole ClipMap in place and plays the
    *  stance's `enter` one-shot when it names one; a gesture for the stance
    *  already held does nothing. `clips` should be one of these stances. */
@@ -2670,14 +2611,6 @@ export const NYTHRAXIS_BONE_SPIKE_SELF_ILLUMINATION = 0.35;
  *  it, not on the raider it pins (owner call, 2026-09-11). */
 export const NYTHRAXIS_BONE_SPIKE_CLICK_RADIUS = 2.6;
 
-// Morthen the Gravecaller as the Lich Bishop (scripts/assets/hollow_crypt_creatures/
-// build_morthen.py): two whole vocabularies on one rig. With the BELL STAFF he
-// glides, strikes with the bell head and the shaft, tolls the bell for his
-// Shadow Pulse, and his entrance rides his cast bar: he unfurls as he rises
-// (Rise), raises his off hand as he speaks the names (SummonSouls; the v2 body
-// carries no Book of Names) and holds his ward
-// as he comes down (ShieldRitual). At his Last Rites the staff's crest UNFOLDS
-// INTO A SCYTHE (Transform) and every clip after it carries the blade out.
 // The Pearlguard Sentinel's two stances (temple_sentinel below): the manta
 // gliding open-winged, and its cocoon (the wings wrapped under its belly)
 // while its Pearl Carapace holds.
@@ -2695,52 +2628,6 @@ const SENTINEL_SHELL_CLIPS: ClipMap = {
   hit: ['ShellHit'],
   cast: 'ShellIdle',
 };
-
-const MORTHEN_STAFF_CLIPS: ClipMap = {
-  idle: 'Idle',
-  walk: 'Walk',
-  run: 'Run',
-  attack: ['StaffStrike', 'StaffStrike2'],
-  // The overhead smash and the backhand bash land on frame 17 of 30 fps clips; the
-  // flinch and the number wait for the crozier.
-  contacts: { StaffStrike: [0.533], StaffStrike2: [0.533] },
-  attackByAbility: { [MORTHEN_TOLL]: 'BellToll' },
-  attackTimeScaleByAbility: { [MORTHEN_TOLL]: 1 },
-  hit: ['Hit'],
-  death: 'Death',
-  cast: 'SummonSouls',
-  castByAbility: {
-    [MORTHEN_RITE_WAKES]: 'Rise',
-    [MORTHEN_RISE]: 'Rise',
-    [MORTHEN_PROCLAIM]: 'SummonSouls',
-    [MORTHEN_DESCEND]: 'ShieldRitual',
-    // The Rite of the Unquiet: the staff held level before him, the ward up.
-    [MORTHEN_RITE]: 'ShieldRitual',
-  },
-  castTimeScaleByAbility: { [MORTHEN_RISE]: 1, [MORTHEN_PROCLAIM]: 1, [MORTHEN_DESCEND]: 1 },
-};
-const MORTHEN_SCYTHE_CLIPS: ClipMap = {
-  idle: 'ScytheIdle',
-  walk: 'ScytheWalk',
-  run: 'ScytheRun',
-  attack: ['ScytheSweep', 'ScytheSweep2'],
-  // Both reaps cross his front on frame 17 of 30 fps clips.
-  contacts: { ScytheSweep: [0.533], ScytheSweep2: [0.533] },
-  // Reap the Unquiet: the bar winds the blade up (ScytheSummon, the scythe
-  // raised over the souls), the landing brings it round in the flat sweep, fast
-  // (its cut across his front at frame 17 lands about 0.3 s after the hit).
-  attackByAbility: { [MORTHEN_TOLL]: 'ScytheToll', [MORTHEN_REAP_SWEEP]: 'ScytheSweep' },
-  attackTimeScaleByAbility: { [MORTHEN_TOLL]: 1, [MORTHEN_REAP_SWEEP]: 1.9 },
-  hit: ['ScytheHit'],
-  death: 'ScytheDeath',
-  cast: 'ScytheSummon',
-  castByAbility: { [MORTHEN_REAP]: 'ScytheSummon' },
-};
-
-// The held-prop size on the art guide's crypt bodies. Their rigs stand about 1.9 units
-// tall natively, where a WOC body stands 1.15 with a handslot that draws props at 0.46:
-// 0.46 x 1.9 / 1.15 is 0.76, so a sword sits in their fist at the size a WOC body holds it.
-const WOC_CRYPT_PROP_SIZE = 0.76;
 
 // The skeleton minion remade through the art guide (scripts/assets/specs/
 // woc_skeleton_minion.json): a T-pose concept, Tripo Smart Mesh P2.0, and a 31-bone
@@ -4925,469 +4812,7 @@ export const VISUALS: Record<string, VisualDef> = {
     tintStrength: 0.25,
   },
 
-  // -- the Hollow Crypt trash (sim/content/hollow_crypt_trash.ts) ----------------
-  // The crypt's skeletons are the art guide's models (concept, Tripo P2, a skeleton
-  // and every clip built from scratch in Blender), each with the trash kit's casts on
-  // its own gestures. Their painted atlas carries its own colour, so they draw it
-  // untinted; the yellow cast Tripo baked into the bone is pulled to neutral before
-  // compression (scripts/assets/neutralize_warm_albedo.mjs).
-  //
-  // The Ossuary Warrior: an ossuary guard in rusted plate studded with skulls and
-  // bones, an iron sword in its right hand. Attack is the overhead chop, Attack2 the
-  // diagonal slice. Cleave is Grave Cleave: both hands take the hilt, the sword hangs
-  // overhead straining while the 1.6 s bar fills and falls into the ground on the
-  // bar's end (frame 49, bar-locked), then the recovery plays out. Death crumples it
-  // onto its back and the helmed skull rolls clear: that corpse is Reassemble's bone
-  // pile, and Awaken (the flourish on the dead-to-alive edge) rolls the skull back
-  // and hauls the body up to Idle. Walk and Run are authored at 1.37 and 4.2 raw
-  // units/s over the 1.819 posed idle height. The sword's size matches the WOC
-  // bodies' hold (their handslot draws props at 0.46 on a body 1.15 units tall).
-  crypt_skel_warrior: {
-    url: `${CREATURES}/woc_crypt_ossuary_warrior.glb`,
-    height: 3.3,
-    clips: {
-      idle: 'Idle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      hit: ['React'],
-      death: 'Death',
-      flourish: 'Awaken',
-      castByAbility: { [CRYPT_GRAVE_CLEAVE]: 'Cleave' },
-      castPlayOut: ['Cleave'],
-    },
-    castClipSync: [CRYPT_GRAVE_CLEAVE],
-    oneShotsHoldAttacks: ['Awaken'],
-    attach: [
-      { url: `${WEAPONS}/sword_field_iron.glb`, bone: 'handslot.r', size: WOC_CRYPT_PROP_SIZE },
-    ],
-    walkRef: 2.5,
-    runRef: 7.6,
-    authoredAtlas: true,
-  },
-  // Reassemble's Stirring Bones (crypt_bone_pile): the pile IS the fallen
-  // warrior's own corpse, so this draws no body; its click capsule, widened so
-  // the pile is easy to target over the corpse, nameplate and bar stay. The
-  // soul-green countdown glow and the tether are hollow_crypt/crypt_bone_fx.ts.
-  // When the bones stand, the warrior's own rig plays its flourish
-  // (Skeletons_Awaken_Standing) on the dead-to-alive edge (CharacterVisual.revive).
-  crypt_skel_bone_pile: {
-    url: `${ENEMIES}/skeleton_warrior.glb`,
-    height: 1.4,
-    // Bound from the warrior GLB alone (no hit-variety pack: it is never seen).
-    clips: {
-      idle: 'Lie_Idle',
-      walk: 'Lie_Idle',
-      run: 'Lie_Idle',
-      attack: [],
-      hit: ['Hit_A'],
-      death: 'Death_A',
-    },
-    bodyless: true,
-    clickRadius: 2,
-  },
-  // A Remembrance Candle's usable body (crypt_remembrance_candle, Morthen's
-  // Rite: encounters/hollow_crypt/morthen_candles.ts) stands at its pillar's
-  // foot: the pillar is the kit's and the flame the crypt's own painter
-  // (hollow_crypt/morthen_candle_fx.ts), so this draws no body. Its click
-  // capsule, nameplate and bar stay, raised to the candle's height so the
-  // relight is easy to target; bound off the bone pile's rig (never seen).
-  crypt_rite_candle_body: {
-    url: `${ENEMIES}/skeleton_warrior.glb`,
-    height: 3.6,
-    clips: {
-      idle: 'Lie_Idle',
-      walk: 'Lie_Idle',
-      run: 'Lie_Idle',
-      attack: [],
-      hit: ['Hit_A'],
-      death: 'Death_A',
-    },
-    bodyless: true,
-    clickRadius: 2.2,
-    // What the player sees is the kit's pillar, not this body: the body stands
-    // at the pillar's foot facing away from it, 1.9 yd out from the pillar's
-    // axis (morthen_ids.ts candleBodySpot). Measured in the running game: the
-    // pillar's stone is 3.55 yd tall (its wick) on a plinth 1.4 yd in radius,
-    // the tallow column 0.95 (hollow_crypt/morthen_rite_fx_core.ts), the dark
-    // candle's glow 0.75 either side of the wick up to 4.4. The core is the
-    // tallow column with a quarter yard of slack, kept inside the pillar's
-    // 1.3 yd collider so it never reaches where a mob can stand beside it;
-    // its rounded top covers the glow (tests/pick_resolution.test.ts pins it).
-    aimCore: { back: 1.9, radius: 1.2, height: 3.55 },
-  },
-  // The Gravecaller Adept: a novice of the cult in a violet hooded robe split over its
-  // legs, a violet staff in its right hand. Cast is the conjuring loop (Grave Spark).
-  // Bolt is Grave Bolt: the staff levelled, the off hand drawn back to the shoulder
-  // through the 2.5 s bar and thrust out on its end (frame 76). Volley is Gravespark
-  // Volley: staff and hand climb overhead through the 3 s bar and fling forward on its
-  // end (frame 91). Both are bar-locked and play their recovery out. Walk and Run are
-  // authored at 1.21 and 4.0 raw units/s over the 1.818 posed idle height.
-  crypt_skel_adept: {
-    url: `${CREATURES}/woc_crypt_gravecaller_adept.glb`,
-    height: 3.2,
-    clips: {
-      idle: 'Idle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack'],
-      hit: ['React'],
-      death: 'Death',
-      cast: 'Cast',
-      castByAbility: { [CRYPT_GRAVE_BOLT]: 'Bolt', [CRYPT_GRAVESPARK_VOLLEY]: 'Volley' },
-      castPlayOut: ['Bolt', 'Volley'],
-    },
-    castClipSync: [CRYPT_GRAVE_BOLT, CRYPT_GRAVESPARK_VOLLEY],
-    attach: [
-      { url: `${WEAPONS}/staff_rare_a_violet.glb`, bone: 'handslot.r', size: WOC_CRYPT_PROP_SIZE },
-    ],
-    walkRef: 2.13,
-    runRef: 7.0,
-    authoredAtlas: true,
-  },
-  // The Gravecaller Necromancer: a senior priest in black over violet robes, a mantle of
-  // finger bones and a chained ledger, a violet staff in its right hand. Cast is the
-  // conjuring loop (Grave Spark, Grave Rupture); Raise is the Raise Bones channel, both
-  // arms and the staff lifting the dead with each heave. Walk and Run are authored at
-  // 1.13 and 3.9 raw units/s over the 1.836 posed idle height.
-  crypt_skel_necromancer: {
-    url: `${CREATURES}/woc_crypt_gravecaller_necromancer.glb`,
-    height: 3.3,
-    clips: {
-      idle: 'Idle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack'],
-      hit: ['React'],
-      death: 'Death',
-      cast: 'Cast',
-      castByAbility: { [CRYPT_RAISE_BONES]: 'Raise' },
-    },
-    attach: [
-      { url: `${WEAPONS}/staff_rare_b_violet.glb`, bone: 'handslot.r', size: WOC_CRYPT_PROP_SIZE },
-    ],
-    walkRef: 2.03,
-    runRef: 7.0,
-    authoredAtlas: true,
-  },
-  // The rest of the Hollow Crypt roster, raised a head or more over a player (2.6) so
-  // nothing in the crypt stands at player size: the cutthroat, the Bone Minion (it
-  // grows into the Brute), the Brute itself, the Sexton, the Cantor and her choir,
-  // Morthen, and Rimeweb over her brood.
-  //
-  // The Ossuary Cutthroat: a lean skeleton bound in burial shroud, a bone dagger in each
-  // hand, crouched low. Attack is the right-hand stab, Attack2 the double-dagger lunge
-  // (also what its Rending Leap plays: the leap's windup carries no ability id, so it
-  // swings the plain attack mid-arc). Walk and Run are authored at 1.45 and 4.6 raw
-  // units/s over the 1.734 posed (crouched) idle height.
-  crypt_skel_cutthroat: {
-    url: `${CREATURES}/woc_crypt_ossuary_cutthroat.glb`,
-    height: 3.2,
-    clips: {
-      idle: 'Idle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      hit: ['React'],
-      death: 'Death',
-    },
-    attach: [
-      { url: `${WEAPONS}/dagger_rare_a_bone.glb`, bone: 'handslot.r', size: WOC_CRYPT_PROP_SIZE },
-      { url: `${WEAPONS}/dagger_rare_a_bone.glb`, bone: 'handslot.l', size: WOC_CRYPT_PROP_SIZE },
-    ],
-    walkRef: 2.68,
-    runRef: 8.5,
-    authoredAtlas: true,
-  },
-  // the crypt's own bone minion draws its texture untinted, like the rest of its roster
-  crypt_skel_minion: { ...WOC_SKELETON_MINION, height: 3.5, tint: undefined },
-  // The Bone Brute: a hulk of fused ribcages and bundled bone, unarmed, its skull sunk
-  // between the shoulders. Attack is a right hook, Attack2 a short two-fist hammer. Slam
-  // is Marrow Crush: both fists climb overhead through the 2 s bar and smash the floor on
-  // its end (frame 61, bar-locked), then the recovery plays out. Walk and Run are
-  // authored at 1.17 and 3.6 raw units/s over the 1.819 posed idle height.
-  crypt_skel_brute: {
-    url: `${CREATURES}/woc_crypt_bone_brute.glb`,
-    height: 4.6,
-    clips: {
-      idle: 'Idle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      hit: ['React'],
-      death: 'Death',
-      castByAbility: { [CRYPT_MARROW_CRUSH]: 'Slam' },
-      castPlayOut: ['Slam'],
-    },
-    castClipSync: [CRYPT_MARROW_CRUSH],
-    walkRef: 2.97,
-    runRef: 9.1,
-    authoredAtlas: true,
-  },
-  // Sexton Marrow (the art guide's model): the parish gravedigger raised and
-  // still digging, a stooped skeleton about twice a player's height in a hooded
-  // grave coat and a leather apron, a tin lantern at his hip and the long spade
-  // in his fists. At rest he digs (Idle: drive, lever, lift, toss); in a fight he
-  // holds the spade low like a spear (CombatIdle), chops (Attack) and swats
-  // (Attack2), and Walk drags the blade behind him. Every bar clip is authored
-  // at bar time and plays its recovery out: Shovelful flings the earth at 1.0 of
-  // its 1.2 s bar, Measure levels the spade at the mark from 0.5, GravediggersBlow
-  // lands at 0.7 of 0.8. BellRing is a 1.0 s loop (the haul bottoming at 0.9, in
-  // step with ropePull) with his fists on his own axis, the spade stood in the
-  // earth beside him.
-  crypt_skel_sexton: {
-    url: `${CREATURES}/woc_crypt_sexton_marrow.glb`,
-    // The idle's posed height and lowest point half a second in (the spade's blade
-    // is in the earth), at 3.5 yd a unit.
-    height: 5.975,
-    hover: -0.56,
-    clips: {
-      idle: 'Idle',
-      combatIdle: 'CombatIdle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      hit: ['Hit'],
-      death: 'Death',
-      cast: 'Measure',
-      castByAbility: {
-        [MARROW_SHOVELFUL]: 'Shovelful',
-        [MARROW_MEASURE]: 'Measure',
-        [MARROW_BURIAL_TOLL]: 'BellRing',
-        [MARROW_GRAVEDIGGERS_BLOW]: 'GravediggersBlow',
-      },
-      castTimeScaleByAbility: {
-        [MARROW_SHOVELFUL]: 1,
-        [MARROW_MEASURE]: 1,
-        [MARROW_BURIAL_TOLL]: 1,
-        [MARROW_GRAVEDIGGERS_BLOW]: 1,
-      },
-      castPlayOut: ['Shovelful', 'Measure', 'GravediggersBlow'],
-    },
-    // The one-shot bars follow the bar; the bell loops for as long as it rings.
-    castClipSync: [MARROW_SHOVELFUL, MARROW_MEASURE, MARROW_GRAVEDIGGERS_BLOW],
-    castPlayOutHoldsAttacks: true,
-    walkRef: 3.29,
-    runRef: 9.1,
-    authoredAtlas: true,
-    selfIllumination: 0.1,
-    clickRadius: 2.2,
-  },
-  // Cantor Ilvane (the art guide's model): a tall skeletal choir mistress in a
-  // violet cassock under a black cloak, a crown of silver organ pipes caging her
-  // face, the hymnal hung open at her belt and a finger-bone baton in her right
-  // hand. Idle conducts softly in three; CombatIdle points the baton at her foe.
-  // Sing is the Dirge: bar-locked, its peak reached by 1.75 s (the Crescendo's 1.8 s
-  // bar) and held, climbing, to the 2.5 s bar's end. PlayOrgan loops at the Bone
-  // Organ's keys, leaning in; Conduct is her flourish.
-  crypt_skel_cantor: {
-    url: `${CREATURES}/woc_crypt_cantor_ilvane.glb`,
-    // The idle's posed height (hem to the crown's tallest pipe, half a second in);
-    // her template's 1.1 draws her about 6.5 yd, two and a half players.
-    height: 5.964,
-    hover: -0.206,
-    clips: {
-      idle: 'Idle',
-      combatIdle: 'CombatIdle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      // The baton's chop and the claw's backhand land on frame 18 of a 1.5 s swing played
-      // at 1x (she rises and coils, hangs, then steps in); the flinch and the number wait.
-      contacts: { Attack: [0.567], Attack2: [0.567] },
-      hit: ['Hit'],
-      death: 'Death',
-      cast: 'Conduct',
-      castByAbility: {
-        [ILVANE_DIRGE]: 'Sing',
-        [ILVANE_UNBROKEN_DIRGE]: 'Sing',
-        [ILVANE_BONE_ORGAN]: 'PlayOrgan',
-      },
-      castTimeScaleByAbility: {
-        [ILVANE_DIRGE]: 1,
-        [ILVANE_UNBROKEN_DIRGE]: 1,
-        [ILVANE_BONE_ORGAN]: 1,
-      },
-    },
-    // The Dirge follows its bar (normal or Crescendo); the organ loops while she plays.
-    castClipSync: [ILVANE_DIRGE, ILVANE_UNBROKEN_DIRGE],
-    attackTimeScale: 1,
-    walkRef: 1.97,
-    runRef: 6.82,
-    authoredAtlas: true,
-    selfIllumination: 0.1,
-    clickRadius: 2.2,
-  },
-  // The Hollow Chorister (the art guide's model): a skeleton of the ruined choir in a lace
-  // hood and surplice over a violet cassock, its jaw open mid-hymn. It fights unarmed
-  // with two raking claw swipes; Sing is its cast loop. Death drops it in its robes, and
-  // Awaken (the flourish: heroic Encore stands a fallen Chorister back up) reverses the
-  // fall into Idle. Walk and Run are authored at 1.10 and 3.9 raw units/s over the 1.806
-  // posed idle height.
-  crypt_skel_chorister: {
-    url: `${CREATURES}/woc_crypt_hollow_chorister.glb`,
-    height: 3.3,
-    clips: {
-      idle: 'Idle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      hit: ['React'],
-      death: 'Death',
-      flourish: 'Awaken',
-      cast: 'Sing',
-    },
-    oneShotsHoldAttacks: ['Awaken'],
-    walkRef: 2.0,
-    runRef: 7.1,
-    authoredAtlas: true,
-  },
-  // Morthen, the Lich Bishop (the art guide's model; the clip sets above): a
-  // spiked mitre with a green eye, a cope over an open ribcage of soul fire, belt
-  // charms, and a ring-headed crozier whose crest unfolds into the scythe. About
-  // three players tall at his template's 1.35, floating on his soul
-  // smoke, the smoke funnel sunk into the ring floor (morthen_fx_core.ts
-  // MORTHEN_HOVER) so his whole body and face read from the default camera; his
-  // corpse is lifted back onto the flags as he falls (MORTHEN_DEATH_LIFT).
-  // `height` is the idle's posed height half a second in, smoke tip to mitre
-  // (5.85 authored yards), grown by MORTHEN_GROWTH so he stands as tall as the
-  // body he replaced.
-  crypt_morthen_lich: {
-    url: `${CREATURES}/woc_crypt_morthen.glb`,
-    height: 5.85 * MORTHEN_GROWTH,
-    hover: MORTHEN_HOVER * MORTHEN_GROWTH,
-    deathLift: MORTHEN_DEATH_LIFT,
-    clips: MORTHEN_STAFF_CLIPS,
-    phaseClips: {
-      [MORTHEN_STAFF_HELD]: { clips: MORTHEN_STAFF_CLIPS },
-      [MORTHEN_SCYTHE_HELD]: { clips: MORTHEN_SCYTHE_CLIPS },
-      [MORTHEN_SCYTHE_UNFOLD]: { clips: MORTHEN_SCYTHE_CLIPS, enter: 'Transform' },
-    },
-    authoredAtlas: true,
-    selfIllumination: 0.08,
-    clickRadius: 2.2,
-  },
-  // The Lady of the Bonechill (the art guide's model), the ghost of a bride buried
-  // in the ravine's ice: a crown of ice, long hair, a bouquet of frozen roses at her
-  // waist, a gown and veil hung with icicles, floating half a yard over the ice
-  // (`hover`; `height` is the idle's posed height half a second in). Her gown, veil
-  // and sleeves are the alpha-blended CreatureGhostVeil; her face, hands, crown and
-  // bouquet the solid CreatureBody. The Lament and the Bridal Freeze play the Wail
-  // on their bars (the Freeze's 2.5 s bar at 1.2, so the scream peaks as either
-  // lands); the Embrace's reach closes on its bar's end, and the hold loops while
-  // the sim lifts her aloft. Her Death sinks her onto the ice below her hover.
-  crypt_lady_bonechill: {
-    url: `${CREATURES}/woc_crypt_lady_bonechill.glb`,
-    height: 6.749,
-    hover: 0.544,
-    clips: {
-      idle: 'Idle',
-      combatIdle: 'CombatIdle',
-      walk: 'Walk',
-      run: 'Run',
-      attack: ['Attack', 'Attack2'],
-      // Both claws strike on frame 18 of a 1.5 s swing played at 1x (the coiled windup
-      // hangs at its apex first); the flinch and the number wait for them.
-      contacts: { Attack: [0.567], Attack2: [0.567] },
-      // Letting go (gently or not): the arms open.
-      attackByAbility: { [LADY_EMBRACE_RELEASED]: 'Release', [LADY_EMBRACE_DROPPED]: 'Release' },
-      hit: ['Hit'],
-      death: 'Death',
-      cast: 'Wail',
-      castByAbility: {
-        [LADY_BRIDES_LAMENT]: 'Wail',
-        [LADY_BRIDAL_FREEZE]: 'Wail',
-        [LADY_FROZEN_EMBRACE]: 'EmbraceReach',
-        [LADY_EMBRACE_HOLD]: 'EmbraceHold',
-      },
-      castTimeScaleByAbility: {
-        [LADY_BRIDES_LAMENT]: 1,
-        [LADY_BRIDAL_FREEZE]: 1.2,
-        [LADY_FROZEN_EMBRACE]: 1,
-      },
-    },
-    // The scream and the reach follow their bars; the hold just loops.
-    castClipSync: [LADY_BRIDES_LAMENT, LADY_BRIDAL_FREEZE, LADY_FROZEN_EMBRACE],
-    attackTimeScale: 1,
-    authoredAtlas: true,
-    selfIllumination: 0.3,
-    clickRadius: 2.2,
-  },
-  // The Rime Egg Sac (the art guide's model): a frost-crusted clutch of spider eggs
-  // in a mound of rime-webbing, nearly a player's height. Idle breathes (the shells
-  // swell in turn, something twitching inside); Hit wobbles it; Death swells the
-  // shells, splits them open and lets them fall away, the mound slumping into a torn
-  // husk, as the hatchling breaks free (the sim's frost burst, broodEgg.burstSchool).
-  // `height` is the idle's posed height half a second in.
-  crypt_rime_egg_sac: {
-    url: `${CREATURES}/woc_crypt_rime_egg_sac.glb`,
-    height: 2.2,
-    clips: {
-      idle: 'Idle',
-      walk: 'Idle',
-      run: 'Idle',
-      attack: ['Idle'],
-      hit: ['Hit'],
-      death: 'Death',
-    },
-    authoredAtlas: true,
-    selfIllumination: 0.12,
-  },
-  mob_crypt_rimeweb: {
-    url: `${CREATURES}/spider.glb`,
-    height: 2.7,
-    clips: SPIDER,
-    tint: 'entity',
-    tintStrength: 0.35,
-  },
-  // A hooded cultist of the Gravecallers with a crooked staff: calls the crows.
-  mob_crypt_crow_caller: {
-    url: `${PLAYERS}/rogue_hooded.glb`,
-    animUrls: [`${PLAYERS}/rogue_hooded_hit_variety_anims.glb`],
-    height: 3.3,
-    clips: {
-      ...kaykit(['2H_Melee_Attack_Chop']),
-      castByAbility: { [CRYPT_MURDER_CALL]: 'Spellcast_Raise' },
-    },
-    attach: [{ url: `${WEAPONS}/staff.glb`, bone: 'handslot.r' }],
-    tint: 'entity',
-    tintStrength: 0.6,
-  },
-  // The Chapel Gargoyle (the art guide's model): a great, heavy horned stone brute
-  // with bat wings and digitigrade legs, raised to scale 1.5 by its template, so it
-  // looms well over three players high on its arch (a player stands 2.6). It is a
-  // statue while it perches (`Perch`, read as airborne up on the cap), cracks free
-  // on the pull (`Awaken`, keyed on the dive cue), plunges (`Dive`), slams down
-  // (`DiveLand`), fights from a braced crouch (`Ready`), rakes with its talons and
-  // rears to shriek (`Screech`). `height` and `hover` are the perch's posed height
-  // and lowest point, at 3.94 yd a unit.
-  mob_crypt_gargoyle: {
-    url: `${CREATURES}/woc_crypt_gargoyle.glb`,
-    authoredAtlas: true,
-    height: 5.81,
-    hover: 0.043,
-    flight: true,
-    clips: {
-      idle: 'Perch',
-      combatIdle: 'Ready',
-      walk: 'Walk',
-      run: 'Run',
-      jump: 'Perch',
-      fall: 'Dive',
-      land: 'DiveLand',
-      attack: ['ClawRake', 'ClawRake2'],
-      attackByAbility: { [CRYPT_PERCH_DIVE]: 'Awaken' },
-      attackTimeScaleByAbility: { [CRYPT_PERCH_DIVE]: 1.9 },
-      hit: ['Hit'],
-      death: 'Death',
-      cast: 'Screech',
-      castByAbility: { [CRYPT_STONE_SHRIEK]: 'Screech' },
-    },
-    // its stalk and lope, authored at 0.86 and 2.87 units a second, at its drawn size
-    walkRef: 5.1,
-    runRef: 17,
-    selfIllumination: 0.18,
-  },
+  // -- the Carrion Crow (the retired Hollow Crypt's; Gourdlight Eve's crows wear it) --
   // The Carrion Crow is always on the wing: `hover` lifts it and its Death clip
   // drops the body onto the floor.
   mob_crypt_crow: {
@@ -5405,122 +4830,6 @@ export const VISUALS: Record<string, VisualDef> = {
     },
     selfIllumination: 0.15,
   },
-  // The Ossuary Drake (the art guide's model): a colossal skeletal dragon on four
-  // legs, an S-neck to a horned skull, soul fire caged in its ribs, its bat wings a
-  // separate pair raised over its back, centred on its chest so the jaws that pour
-  // the Barrowflame hang over the breath cone's apex. It flies its patrol (`Fly`:
-  // two downbeats and a long glide), cries as it breaks off (`SkyRoar`, the landing
-  // cue), glides down (`Glide`), lands (`Land`), walks in four beats and runs in a
-  // bounding gallop, bites (never claws), and plays each strike to its bar: the
-  // breath inhales over the 2 s bar with the head reared and its exhale plays OUT
-  // after it, the jaws thrust low (crypt_creature_fx_core.ts DRAKE_JAWS_*); the
-  // tail sweeps and the wings buffet exactly at their bars' ends. Plain swings never
-  // cut those short. `height` is the idle's posed height half a second in.
-  mob_crypt_drake: {
-    url: `${CREATURES}/woc_crypt_ossuary_drake.glb`,
-    authoredAtlas: true,
-    height: 13.63,
-    hover: -0.034,
-    flight: true,
-    clips: {
-      idle: 'Idle',
-      idleBeat: { clip: 'Roar', everySec: 16, jitterSec: 5 },
-      walk: 'Walk',
-      run: 'Run',
-      jump: 'Fly',
-      fall: 'Glide',
-      land: 'Land',
-      attack: ['Bite', 'Bite2'],
-      attackByAbility: { [CRYPT_SKY_LANDING]: 'SkyRoar' },
-      attackTimeScaleByAbility: { [CRYPT_SKY_LANDING]: 1 },
-      hit: ['Hit'],
-      death: 'Death',
-      cast: 'Roar',
-      castByAbility: {
-        [CRYPT_BARROWFLAME_BREATH]: 'Breath',
-        [CRYPT_TAIL_LASH]: 'TailSweep',
-        [CRYPT_WING_GUST]: 'WingBuffet',
-      },
-      castTimeScaleByAbility: {
-        [CRYPT_BARROWFLAME_BREATH]: 1,
-        [CRYPT_TAIL_LASH]: 1,
-        [CRYPT_WING_GUST]: 1,
-      },
-      castPlayOut: ['Breath', 'TailSweep', 'WingBuffet'],
-      flourish: 'Roar',
-    },
-    castPlayOutHoldsAttacks: true,
-    walkRef: 3.04,
-    runRef: 13.2,
-    selfIllumination: 0.12,
-  },
-
-  // The Knellwyrm (the art guide's model): the Ossuary Drake's charred kin, a
-  // horned four-legged bone dragon with violet ghost fire through its ribs and
-  // spine, a funeral bell hung under its chest, its wings a separate pair, and a
-  // long spined tail, posed by the drake's clip set on its own skeleton and centred
-  // on its chest. Its template raises it a quarter again. It glides in from the sky
-  // (the arrival bar), takes wing for its Pyre Strafe, flies the lane with its neck
-  // plunged and jaws wide, and rears off its forefeet with its wings flung wide for
-  // Dread Bellow; the drake's strikes play to their bars (its strafing jaws:
-  // KNELLWYRM_JAWS_STRAFE). `height` is the idle's posed height half a second in.
-  mob_crypt_knellwyrm: {
-    url: `${CREATURES}/woc_crypt_knellwyrm.glb`,
-    authoredAtlas: true,
-    height: 15.07,
-    hover: 0,
-    flight: true,
-    clips: {
-      idle: 'Idle',
-      idleBeat: { clip: 'Roar', everySec: 14, jitterSec: 4 },
-      walk: 'Walk',
-      run: 'Run',
-      jump: 'Fly',
-      fall: 'Glide',
-      land: 'Land',
-      attack: ['Bite', 'Bite2'],
-      hit: ['Hit'],
-      death: 'Death',
-      cast: 'Roar',
-      castByAbility: {
-        [CRYPT_BARROWFLAME_BREATH]: 'Breath',
-        [CRYPT_TAIL_LASH]: 'TailSweep',
-        [CRYPT_WING_GUST]: 'WingBuffet',
-        [KNELLWYRM_ARRIVE]: 'Glide',
-        [KNELLWYRM_PYRE_STRAFE]: 'TakeWing',
-        [KNELLWYRM_STRAFE_RUN]: 'Strafe',
-        [KNELLWYRM_DREAD_BELLOW]: 'Bellow',
-        // Heroic Burning Knell. Aloft, a flier's `jump` (Fly) owns the rig and
-        // these play only on the frames it reads grounded (the take-off, the
-        // touchdown); the mark and the pour also ride one-shots below.
-        [KNELLWYRM_KNELL_RISE]: 'TakeWing',
-        [KNELLWYRM_KNELL_MARK]: 'SkyRoar',
-        [KNELLWYRM_KNELL_BREATH]: 'Strafe',
-        [KNELLWYRM_KNELL_LAND]: 'Glide',
-      },
-      castTimeScaleByAbility: {
-        [CRYPT_BARROWFLAME_BREATH]: 1,
-        [CRYPT_TAIL_LASH]: 1,
-        [CRYPT_WING_GUST]: 1,
-        [KNELLWYRM_PYRE_STRAFE]: 1,
-        [KNELLWYRM_DREAD_BELLOW]: 1,
-        // TakeWing is authored on the 2.5 s rise (76 frames at 30 fps).
-        [KNELLWYRM_KNELL_RISE]: 1,
-      },
-      // The Knell's beats aloft (morthen_rite_fx_core.ts): it roars the fire
-      // down over the marked half, then dives into the pour (Strafe's 43
-      // frames are the 1.4 s breath at rate 1).
-      attackByAbility: { [KNELL_GESTURE_SKY_ROAR]: 'SkyRoar', [KNELL_GESTURE_POUR]: 'Strafe' },
-      attackTimeScaleByAbility: { [KNELL_GESTURE_SKY_ROAR]: 1, [KNELL_GESTURE_POUR]: 1 },
-      castPlayOut: ['Breath', 'TailSweep', 'WingBuffet', 'Bellow'],
-      flourish: 'Roar',
-    },
-    castPlayOutHoldsAttacks: true,
-    walkRef: 4.2,
-    runRef: 18.2,
-    selfIllumination: 0.2,
-  },
-
   // -- the Sunken Bastion trash (sim/content/sunken_bastion.ts) ------------------
   // The Bastion's drowned garrison and its sea beasts, each its own Blender
   // body (the drowned, the sea hag, the acolyte, the war hound and the Turnkey
@@ -8461,27 +7770,6 @@ const MOB_KEYS: Record<string, string> = {
   necromancy_skeletal_warrior: 'skel_minion',
   necromancy_bone_mage: 'skel_mage',
   necromancy_gravewing: 'mob_gravewing',
-  hollow_acolyte: 'skel_mage',
-  sexton_marrow: 'crypt_skel_sexton',
-  morthen: 'crypt_morthen_lich',
-  cantor_ilvane: 'crypt_skel_cantor',
-  hollow_chorister: 'crypt_skel_chorister',
-  rimeweb: 'crypt_lady_bonechill',
-  rime_egg_sac: 'crypt_rime_egg_sac',
-  crypt_shambler: 'skel_rogue',
-  // The Hollow Crypt trash (sim/content/hollow_crypt_trash.ts).
-  crypt_ossuary_warrior: 'crypt_skel_warrior',
-  crypt_bone_pile: 'crypt_skel_bone_pile',
-  crypt_remembrance_candle: 'crypt_rite_candle_body',
-  crypt_gravecaller_adept: 'crypt_skel_adept',
-  crypt_ossuary_cutthroat: 'crypt_skel_cutthroat',
-  crypt_gravecaller_necromancer: 'crypt_skel_necromancer',
-  crypt_bone_minion: 'crypt_skel_minion',
-  crypt_bone_brute: 'crypt_skel_brute',
-  crypt_chapel_gargoyle: 'mob_crypt_gargoyle',
-  crypt_carrion_crow: 'mob_crypt_crow',
-  crypt_ossuary_drake: 'mob_crypt_drake',
-  crypt_knellwyrm: 'mob_crypt_knellwyrm',
   // The Sunken Bastion trash (sim/content/sunken_bastion.ts).
   drowned_watchman: 'bastion_skel_watchman',
   fogbound_arbalest: 'bastion_skel_arbalest',

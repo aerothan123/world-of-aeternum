@@ -31,7 +31,7 @@ function place(sim: Sim) {
 describe('retired feasts leave their room object roster', () => {
   it.each(['dungeon', 'delve'] as const)('also reclaims expired ids from a %s roster', (kind) => {
     const sim = new Sim({ seed: 42, playerClass: 'warrior', world: EMPTY_TEST_WORLD });
-    if (kind === 'dungeon') enterDungeon(sim.ctx, 'hollow_crypt', sim.player.id);
+    if (kind === 'dungeon') enterDungeon(sim.ctx, 'sunken_bastion', sim.player.id);
     else {
       sim.setPlayerLevel(DELVES.collapsed_reliquary.minLevel);
       sim.enterDelve('collapsed_reliquary', 'normal');

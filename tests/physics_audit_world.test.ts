@@ -27,7 +27,6 @@ import {
   YUMI_BAND_X_MIN,
 } from '../src/sim/data';
 import { CRYPT_LAYOUT, DAIS_HEIGHT, tombSlotRoll } from '../src/sim/dungeon_layout';
-import { morthenEntranceHeight } from '../src/sim/encounters/hollow_crypt/ids';
 import { FENBRIDGE_LAYOUT } from '../src/sim/fenbridge_layout';
 import {
   CHAPEL_HALL_ROOF_EAVE,
@@ -596,9 +595,10 @@ describe('dungeon deep sweep', () => {
     expect(stood).toBeLessThan(0.95);
   });
 
-  it('mobs in a dev-entered crypt stand at groundHeight, dais included', () => {
+  // Run on the Sunken Bastion since the Hollow Crypt was retired (2026-11-11).
+  it('mobs in a dev-entered dungeon stand at groundHeight', () => {
     const sim = makeSim();
-    sim.chat('/dev dungeon hollow_crypt');
+    sim.chat('/dev dungeon sunken_bastion');
     for (let i = 0; i < 200; i++) sim.tick();
     let checked = 0;
     for (const e of sim.entities.values()) {
@@ -607,11 +607,10 @@ describe('dungeon deep sweep', () => {
       // A perched gargoyle waits on its arch, a flying patrol on the wing
       // (mob/trash_kit): each at its own authored height, not the floor.
       const up = e.perchY ?? e.dungeonPatrol?.flightY;
-      // Morthen waits buried under the Rite Ring for his entrance
-      // (encounters/hollow_crypt/morthen_rise.ts): his floor plus the
-      // entrance's authored height, 0 once he has risen.
-      const rite = e.cryptRite ? morthenEntranceHeight(e.cryptRite.phase, e.cryptRite.t) : 0;
-      const g = up ?? groundHeight(e.pos.x, e.pos.z, SEED) + rite;
+      // Vael waits off the floor for his scripted entrance on the Beacon Crown
+      // (encounters/sunken_bastion/vael_intro.ts), as Morthen did in the crypt.
+      if (e.templateId === 'vael_the_mistcaller') continue;
+      const g = up ?? groundHeight(e.pos.x, e.pos.z, SEED);
       expect(Math.abs(e.pos.y - g), e.templateId).toBeLessThan(0.01);
       checked++;
     }

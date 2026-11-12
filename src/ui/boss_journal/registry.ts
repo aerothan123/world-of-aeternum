@@ -3,13 +3,11 @@
 
 import { DROWNED_TEMPLE_JOURNAL } from './dungeons/drowned_temple';
 import { GRAVEWYRM_SANCTUM_JOURNAL } from './dungeons/gravewyrm_sanctum';
-import { HOLLOW_CRYPT_JOURNAL } from './dungeons/hollow_crypt';
 import { SUNKEN_BASTION_JOURNAL } from './dungeons/sunken_bastion';
 import { WILDHEART_BASIN_JOURNAL } from './dungeons/wildheart_basin';
 import { type DungeonJournalDef, dungeonJournalSource, type JournalSource } from './journal_view';
 
 export const DUNGEON_JOURNALS: readonly DungeonJournalDef[] = [
-  HOLLOW_CRYPT_JOURNAL,
   SUNKEN_BASTION_JOURNAL,
   DROWNED_TEMPLE_JOURNAL,
   GRAVEWYRM_SANCTUM_JOURNAL,

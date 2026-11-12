@@ -8,8 +8,8 @@ import {
   type DungeonCheckpoint,
 } from '../src/sim/content/dungeon_checkpoints';
 import { GRAVEWYRM_SANCTUM_FIELD } from '../src/sim/content/gravewyrm_sanctum_layout';
-import { HOLLOW_CRYPT_FIELD } from '../src/sim/content/hollow_crypt_layout';
 import {
+  BREACH_BASTION,
   SUNKEN_BASTION_ANCHORS,
   SUNKEN_BASTION_FIELD,
 } from '../src/sim/content/sunken_bastion_layout';
@@ -33,9 +33,6 @@ import { RES_HP_FRACTION, RESURRECTION_SICKNESS_ID } from '../src/sim/spirit';
 import { type Entity, PLAYER_INTEREST_DROP_RADIUS } from '../src/sim/types';
 
 const CASES = [
-  ['hollow_crypt', ['sexton_marrow'], -82, 116],
-  ['hollow_crypt', ['rimeweb'], 80, 112],
-  ['hollow_crypt', ['sexton_marrow', 'rimeweb', 'cantor_ilvane'], 0, 162],
   ['drowned_temple', ['choirmother_selthe'], 0, 0],
   ['drowned_temple', ['choirmother_selthe', 'tideglass_colossus'], 86, 208],
   ['sunken_bastion', ['knight_commander_olen'], 57, 130],
@@ -46,27 +43,29 @@ const CASES = [
   ['wildheart_basin', ['the_gorgebloom'], 84, 42],
 ] as const;
 
-// The Choir Loft's own neighbours. None of them stands behind a gate on the way
-// in, and each one denies the loft while it lives (pinned further down): the nave
-// guard q1, the aisle patrol q2, and the two Choristers of Cantor's own pack.
-const LOFT_NEIGHBOURS = ['q1', 'q2', 'ilvane'] as const;
-const LOFT_BOSSES = ['sexton_marrow', 'rimeweb', 'cantor_ilvane'] as const;
-const isLoft = (dungeonId: string, bosses: readonly string[]) =>
-  dungeonId === 'hollow_crypt' && LOFT_BOSSES.every((boss) => bosses.includes(boss));
+// The shared fixture is the Sunken Bastion: the Hollow Crypt that used to carry
+// these cases was retired (2026-11-11). Olen's Breach Bastion is its first
+// checkpoint (ARENA) and the Drowning Yard after Olen and Ossick its second
+// (YARD); CASES pins both points against the table.
+const FIXTURE = 'sunken_bastion';
+const OLEN = 'knight_commander_olen';
+const OSSICK = 'gaoler_ossick';
+const ENTRY = DUNGEONS.sunken_bastion.entry;
+const ARENA = { x: 57, z: 130 };
+const YARD = { x: -2, z: 12 };
 
 // The open gate sets are a process-wide collision view keyed by slot: no test
 // inherits the one an earlier sim (or an earlier flood fill) published.
 beforeEach(() => clearDungeonGateStateForTest());
 
 const FIELDS = {
-  hollow_crypt: HOLLOW_CRYPT_FIELD,
   drowned_temple: DROWNED_TEMPLE_FIELD,
   sunken_bastion: SUNKEN_BASTION_FIELD,
   gravewyrm_sanctum: GRAVEWYRM_SANCTUM_FIELD,
   wildheart_basin: WILDHEART_BASIN_FIELD,
 } as const;
 
-function setup(dungeonId = 'hollow_crypt', heroic = false, idleMobTickRadius = 0) {
+function setup(dungeonId: string = FIXTURE, heroic = false, idleMobTickRadius = 0) {
   const sim = new Sim({
     seed: 99,
     playerClass: 'warrior',
@@ -226,12 +225,12 @@ function tickAndWatch(sim: Sim, inst: InstanceSlot, player: Entity, seconds: num
 
 describe('dungeon death checkpoints', () => {
   it.each([false, true])(
-    'returns to the cleared Marrow arena through the door (heroic=%s)',
+    'returns to the cleared Olen arena through the door (heroic=%s)',
     (heroic) => {
-      const { sim, pid, inst, player } = setup('hollow_crypt', heroic);
-      earn(sim, inst, 'sexton_marrow');
+      const { sim, pid, inst, player } = setup(FIXTURE, heroic);
+      earn(sim, inst, OLEN);
       reenter(sim, pid, inst.dungeonId);
-      expectLocal(sim, pid, inst, -82, 116);
+      expectLocal(sim, pid, inst, ARENA.x, ARENA.z);
       expect(player.dead).toBe(false);
       expect(player.ghost).toBe(false);
       expect(player.corpsePos).toBeNull();
@@ -254,7 +253,6 @@ describe('dungeon death checkpoints', () => {
       // Only the packs the route's gates wait on die, with the bosses. Every other
       // pack, patrol and boss of the dungeon is alive when the ghost arrives.
       earn(sim, inst, ...bosses);
-      if (isLoft(dungeonId, bosses)) killPacks(sim, inst, ...LOFT_NEIGHBOURS);
       const trashAlive = inst.mobIds
         .map((id) => sim.entities.get(id))
         .filter((mob) => mob && !mob.dead && !MOBS[mob.templateId].boss);
@@ -279,14 +277,19 @@ describe('dungeon death checkpoints', () => {
 
   it('does not bypass a living predecessor when a later boss dies out of order', () => {
     const { sim, pid, inst } = setup();
-    // Every gate reads open, so only the boss order can refuse the loft.
+    // Every gate reads open and the Drowning Yard's own gate packs are dead, so
+    // only the boss order can refuse it.
     setDungeonGatesDevOpen(inst, true);
-    kill(sim, inst, 'cantor_ilvane');
-    killPacks(sim, inst, ...LOFT_NEIGHBOURS);
+    for (const gateId of rowOf(FIXTURE, [OLEN, OSSICK]).gates)
+      killPacks(sim, inst, ...(gateOf(FIXTURE, gateId).packs ?? []));
+    kill(sim, inst, OSSICK);
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, 0, -130);
+    expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
+    // Positive control: the living predecessor was all that refused it.
+    kill(sim, inst, OLEN);
+    reenter(sim, pid, inst.dungeonId);
+    expectLocal(sim, pid, inst, YARD.x, YARD.z);
   });
-
   it('requires both the Beastmaster and his Jaguar to finish their checkpoint', () => {
     const { sim, pid, inst } = setup('wildheart_basin');
     const row = rowOf('wildheart_basin', ['wildheart_beastmaster', 'fanglord_jaguar']);
@@ -306,45 +309,45 @@ describe('dungeon death checkpoints', () => {
 
   it('ordinary living entries still arrive at the entrance', () => {
     const { sim, pid, inst } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     sim.leaveDungeon(pid);
     sim.enterDungeon(inst.dungeonId, pid);
-    expectLocal(sim, pid, inst, 0, -130);
+    expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
   });
 
   it('falls back during combat and recovers the checkpoint after the fight stops', () => {
     const { sim, pid, inst } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     const enemy = livingMob(sim, inst);
     enemy.inCombat = true;
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, 0, -130);
+    expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
     enemy.inCombat = false;
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, -82, 116);
+    expectLocal(sim, pid, inst, ARENA.x, ARENA.z);
   });
 
   it('falls back to an earlier safe checkpoint if a live enemy occupies the latest one', () => {
     const { sim, pid, inst } = setup();
-    earn(sim, inst, 'sexton_marrow', 'rimeweb');
-    const web = localOf(inst, 80, 112);
+    earn(sim, inst, OLEN, OSSICK);
+    const web = localOf(inst, YARD.x, YARD.z);
     standAt(sim, livingMob(sim, inst), web.x, web.z);
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, -82, 116);
+    expectLocal(sim, pid, inst, ARENA.x, ARENA.z);
   });
 
   it('cannot borrow progress from another solo claim or a missing boss entity', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     release(sim, pid);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: -82, z: 116 });
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(ARENA);
     const secondPid = sim.addPlayer('warrior', 'Other');
     sim.enterDungeon(inst.dungeonId, secondPid);
     const other = sim.instances.find(
       (i) => i.dungeonId === inst.dungeonId && i.partyKey === `solo:${secondPid}`,
     )!;
     expect(dungeonReentryPoint(sim.ctx, other, player)).toEqual(DUNGEONS[inst.dungeonId].entry);
-    sim.ctx.dropEntity(rosterMob(sim, inst, 'sexton_marrow').id);
+    sim.ctx.dropEntity(rosterMob(sim, inst, OLEN).id);
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS[inst.dungeonId].entry);
   });
 
@@ -354,46 +357,46 @@ describe('dungeon death checkpoints', () => {
     const secondPid = sim.addPlayer('warrior', 'PartyRunner');
     sim.partyInvite(secondPid, pid);
     sim.partyAccept(secondPid);
-    sim.enterDungeon('hollow_crypt', pid);
-    sim.enterDungeon('hollow_crypt', secondPid);
+    sim.enterDungeon(FIXTURE, pid);
+    sim.enterDungeon(FIXTURE, secondPid);
     const inst = sim.instances.find(
-      (i) => i.dungeonId === 'hollow_crypt' && i.partyKey?.startsWith('party:'),
+      (i) => i.dungeonId === FIXTURE && i.partyKey?.startsWith('party:'),
     )!;
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     reenter(sim, secondPid, inst.dungeonId);
-    expectLocal(sim, secondPid, inst, -82, 116);
+    expectLocal(sim, secondPid, inst, ARENA.x, ARENA.z);
   });
 
   it('resetting and reclaiming a slot discards its recovery progress', () => {
     const { sim, pid, inst } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     sim.leaveDungeon(pid);
     freeInstance(sim.ctx, inst);
-    sim.enterDungeon('hollow_crypt', pid);
+    sim.enterDungeon(FIXTURE, pid);
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, 0, -130);
+    expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
   });
 
   it('retains progress after the defeated boss corpse decays', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
-    const boss = rosterMob(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
+    const boss = rosterMob(sim, inst, OLEN);
     boss.corpseTimer = 0;
     release(sim, pid);
     sim.tick();
     expect(sim.entities.get(boss.id)?.dead).toBe(true);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: -82, z: 116 });
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(ARENA);
   });
 
   it('uses the previous safe arena while a lingering ground zone covers the latest checkpoint', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow', 'rimeweb');
+    earn(sim, inst, OLEN, OSSICK);
     release(sim, pid);
     const origin = instanceOrigin(DUNGEONS[inst.dungeonId].index, inst.slot);
     const ctx = sim.ctx;
     ctx.groundAoEs.push({
       sourceId: inst.mobIds[0],
-      pos: { x: origin.x + 80, y: -6, z: origin.z + 112 },
+      pos: { x: origin.x + YARD.x, y: 1, z: origin.z + YARD.z },
       radius: 5,
       remaining: 10,
       min: 1,
@@ -404,14 +407,14 @@ describe('dungeon death checkpoints', () => {
       ability: 'Test hazard',
       abilityId: 'test_hazard',
     });
-    expect(dungeonReentryPoint(ctx, inst, player)).toEqual({ x: -82, z: 116 });
+    expect(dungeonReentryPoint(ctx, inst, player)).toEqual(ARENA);
     ctx.groundAoEs[0].remaining = 0;
-    expect(dungeonReentryPoint(ctx, inst, player)).toEqual({ x: 80, z: 112 });
+    expect(dungeonReentryPoint(ctx, inst, player)).toEqual(YARD);
     ctx.groundAoEs[0].remaining = 10;
-    ctx.groundAoEs[0].pos.z = origin.z + 112 + 5 + PLAYER_BODY_RADIUS;
-    expect(dungeonReentryPoint(ctx, inst, player)).toEqual({ x: -82, z: 116 });
+    ctx.groundAoEs[0].pos.z = origin.z + YARD.z + 5 + PLAYER_BODY_RADIUS;
+    expect(dungeonReentryPoint(ctx, inst, player)).toEqual(ARENA);
     ctx.groundAoEs[0].pos.z += 0.01;
-    expect(dungeonReentryPoint(ctx, inst, player)).toEqual({ x: 80, z: 112 });
+    expect(dungeonReentryPoint(ctx, inst, player)).toEqual(YARD);
   });
 
   it('does not apply a reclaimed slot checkpoint to a corpse from its previous claim', () => {
@@ -420,38 +423,35 @@ describe('dungeon death checkpoints', () => {
     const oldClaimId = player.corpseInstanceId;
     freeInstance(sim.ctx, inst);
     const secondPid = sim.addPlayer('warrior', 'NewOwner');
-    sim.enterDungeon('hollow_crypt', secondPid);
-    earn(sim, inst, 'sexton_marrow');
+    sim.enterDungeon(FIXTURE, secondPid);
+    earn(sim, inst, OLEN);
     expect(inst.exitId).not.toBe(oldClaimId);
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS[inst.dungeonId].entry);
     // The new owner's own corpse does earn it, so only the claim id refused the old one.
     release(sim, secondPid);
-    expect(dungeonReentryPoint(sim.ctx, inst, sim.entities.get(secondPid)!)).toEqual({
-      x: -82,
-      z: 116,
-    });
+    expect(dungeonReentryPoint(sim.ctx, inst, sim.entities.get(secondPid)!)).toEqual(ARENA);
   });
 
   it.each(['chase', 'evade'] as const)(
     'keeps the entrance while a living actor is in %s',
     (aiState) => {
       const { sim, pid, inst } = setup();
-      earn(sim, inst, 'sexton_marrow');
+      earn(sim, inst, OLEN);
       livingMob(sim, inst).aiState = aiState;
       reenter(sim, pid, inst.dungeonId);
-      expectLocal(sim, pid, inst, 0, -130);
+      expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
     },
   );
 
   it('counts an engaged encounter add appended after the static spawns', () => {
     const { sim, pid, inst } = setup();
-    earn(sim, inst, 'sexton_marrow');
-    const add = createMob(sim.ctx.nextId++, MOBS.crypt_shambler, 8, livingMob(sim, inst).pos);
+    earn(sim, inst, OLEN);
+    const add = createMob(sim.ctx.nextId++, MOBS.drowned_watchman, 8, livingMob(sim, inst).pos);
     add.inCombat = true;
     sim.ctx.addEntity(add);
     inst.mobIds.push(add.id);
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, 0, -130);
+    expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
   });
 
   it.each([
@@ -482,7 +482,7 @@ describe('dungeon death checkpoints', () => {
   it('resolves identical recoveries on a replay without drawing rng', () => {
     const run = () => {
       const { sim, pid, inst, player } = setup();
-      earn(sim, inst, 'sexton_marrow');
+      earn(sim, inst, OLEN);
       const draws: number[] = [];
       sim.ctx.rng.setObserver((value) => draws.push(value));
       reenter(sim, pid, inst.dungeonId);
@@ -494,65 +494,39 @@ describe('dungeon death checkpoints', () => {
     };
     const first = run();
     expect(first).toEqual(run());
-    const origin = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
-    expect(first.pos.x).toBe(origin.x - 82);
-    expect(first.pos.z).toBe(origin.z + 116);
+    const origin = instanceOrigin(DUNGEONS.sunken_bastion.index, 0);
+    expect(first.pos.x).toBe(origin.x + ARENA.x);
+    expect(first.pos.z).toBe(origin.z + ARENA.z);
   });
 
-  it.each(['sexton_marrow', 'rimeweb'])(
-    'the loft still requires %s independently',
-    (missingBoss) => {
-      const { sim, pid, inst } = setup();
-      // Every gate reads open and the loft stands empty, so only the living wing
-      // boss can refuse it.
-      setDungeonGatesDevOpen(inst, true);
-      kill(sim, inst, ...LOFT_BOSSES.filter((boss) => boss !== missingBoss));
-      killPacks(sim, inst, ...LOFT_NEIGHBOURS);
-      reenter(sim, pid, inst.dungeonId);
-      if (missingBoss === 'rimeweb') expectLocal(sim, pid, inst, -82, 116);
-      else expectLocal(sim, pid, inst, 80, 112);
-    },
-  );
-
+  // The crypt's two loft cases (each wing boss required independently, Cantor
+  // required while her body stood far away) went with the dungeon. The
+  // Bastion's chain is linear; the predecessor rule they pinned is still
+  // covered above ("does not bypass a living predecessor" and "cannot unlock
+  // %s by killing only %s", which re-homes the living predecessors far away).
   it('a same-template summoned corpse cannot replace the living authored boss', () => {
     const { sim, pid, inst, player } = setup();
     setDungeonGatesDevOpen(inst, true);
-    // The authored Sexton lives, far from his yard, so his body cannot be what
+    // The authored Olen lives, far from his terrace, so his body cannot be what
     // refuses the point: only his own spawn ordinal still reading alive can.
-    const sexton = rosterMob(sim, inst, 'sexton_marrow');
-    const far = localOf(inst, 0, -30);
-    moveHome(sim, sexton, far.x, far.z);
-    const summon = createMob(sim.ctx.nextId++, MOBS.sexton_marrow, 8, { ...sexton.pos });
+    const olen = rosterMob(sim, inst, OLEN);
+    const far = localOf(inst, ENTRY.x, ENTRY.z + 40);
+    moveHome(sim, olen, far.x, far.z);
+    const summon = createMob(sim.ctx.nextId++, MOBS.knight_commander_olen, 8, { ...olen.pos });
     sim.ctx.addEntity(summon);
     inst.mobIds.push(summon.id);
     handleDeath(sim.ctx, summon, sim.entities.get(pid) ?? null);
     expect(summon.dead).toBe(true);
     release(sim, pid);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS.hollow_crypt.entry);
-    // The authored one dies and the same scene offers the yard.
-    kill(sim, inst, 'sexton_marrow');
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: -82, z: 116 });
-  });
-
-  it('the loft still requires Cantor even when her living body is away from the recovery point', () => {
-    const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow', 'rimeweb');
-    setDungeonGatesDevOpen(inst, true);
-    killPacks(sim, inst, 'q1', 'q2');
-    // Cantor and her Choristers live, re-homed far from the loft.
-    const far = localOf(inst, 0, -30);
-    for (const mob of packMobs(sim, inst, ['ilvane'])) moveHome(sim, mob, far.x, far.z);
-    release(sim, pid);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: 80, z: 112 });
-    // Her death alone, Choristers still standing far off, offers the loft.
-    kill(sim, inst, 'cantor_ilvane');
-    expect(packMobs(sim, inst, ['ilvane']).length).toBe(2);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: 0, z: 162 });
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS.sunken_bastion.entry);
+    // The authored one dies and the same scene offers the terrace.
+    kill(sim, inst, OLEN);
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(ARENA);
   });
 
   it('falls back to the previous arena if the latest point becomes obstructed', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow', 'rimeweb');
+    earn(sim, inst, OLEN, OSSICK);
     release(sim, pid);
     const origin = instanceOrigin(DUNGEONS[inst.dungeonId].index, inst.slot);
     const original = colliders.isBlocked;
@@ -561,10 +535,10 @@ describe('dungeon death checkpoints', () => {
     const probe = vi
       .spyOn(colliders, 'isBlocked')
       .mockImplementation((seed, x, z, radius) =>
-        x === origin.x + 80 && z === origin.z + 112 ? true : original(seed, x, z, radius),
+        x === origin.x + YARD.x && z === origin.z + YARD.z ? true : original(seed, x, z, radius),
       );
     try {
-      expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: -82, z: 116 });
+      expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(ARENA);
     } finally {
       probe.mockRestore();
     }
@@ -572,13 +546,13 @@ describe('dungeon death checkpoints', () => {
 
   it('keeps the static boss ordinals when an appended encounter body is dropped', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     const spawns = DUNGEONS[inst.dungeonId].spawns;
     const far = localOf(inst, 0, 60);
     const bodies = [0, 1].map(() => {
       const body = createMob(
         sim.ctx.nextId++,
-        MOBS.crypt_shambler,
+        MOBS.drowned_watchman,
         8,
         sim.ctx.groundPos(far.x, far.z),
       );
@@ -597,9 +571,9 @@ describe('dungeon death checkpoints', () => {
     });
     dropEncounterBody(sim.ctx, inst, null, bodies[1].id);
     release(sim, pid);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: -82, z: 116 });
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(ARENA);
     // A dead boss that left its own ordinal is no longer proof of anything.
-    dropEncounterBody(sim.ctx, inst, null, rosterMob(sim, inst, 'sexton_marrow').id);
+    dropEncounterBody(sim.ctx, inst, null, rosterMob(sim, inst, OLEN).id);
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS[inst.dungeonId].entry);
   });
 });
@@ -638,7 +612,6 @@ describe('dungeon death checkpoints: gates', () => {
         killPacks(sim, inst, ...(other.packs ?? []).filter((p) => !spared.has(p)));
       }
       kill(sim, inst, ...row.bosses);
-      if (isLoft(dungeonId, row.bosses)) killPacks(sim, inst, ...LOFT_NEIGHBOURS);
       expect(packMobs(sim, inst, [...spared]).length).toBeGreaterThan(0);
       expect(dungeonGateState(sim.ctx, inst, gate)).toBe('closed');
       release(sim, pid);
@@ -662,25 +635,24 @@ describe('dungeon death checkpoints: gates', () => {
 
   it('a remote boss kill cannot open a sealed arena to a returning ghost', () => {
     const { sim, pid, inst, player } = setup();
-    // The boss is dead and every pack of the dungeon is alive: the Bone Barrier
-    // (packs w1 to w4) and the Undercroft Grille before it are both closed.
-    kill(sim, inst, 'sexton_marrow');
-    expect(dungeonGateState(sim.ctx, inst, gateOf('hollow_crypt', 'grille'))).toBe('closed');
-    expect(dungeonGateState(sim.ctx, inst, gateOf('hollow_crypt', 'yard_barrier'))).toBe('closed');
+    // The boss is dead and every pack of the dungeon is alive: the Sea Gate
+    // (the flats packs) and the Rampart Door before Olen are both closed.
+    kill(sim, inst, OLEN);
+    expect(dungeonGateState(sim.ctx, inst, gateOf(FIXTURE, 'sea_gate'))).toBe('closed');
+    expect(dungeonGateState(sim.ctx, inst, gateOf(FIXTURE, 'rampart_door'))).toBe('closed');
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, 0, -130);
+    expectLocal(sim, pid, inst, ENTRY.x, ENTRY.z);
     expect(player.dead).toBe(false);
   });
-
   it('reads the gates through the gate module, dev override included', () => {
     const { sim, pid, inst, player } = setup();
-    kill(sim, inst, 'sexton_marrow');
+    kill(sim, inst, OLEN);
     release(sim, pid);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS.hollow_crypt.entry);
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS.sunken_bastion.entry);
     setDungeonGatesDevOpen(inst, true);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: -82, z: 116 });
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(ARENA);
     setDungeonGatesDevOpen(inst, false);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS.hollow_crypt.entry);
+    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(DUNGEONS.sunken_bastion.entry);
   });
 });
 
@@ -690,22 +662,22 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expect(MAX_WANDER_RADIUS).toBe(9);
     expect(RIFT_ENTRY_CLEAR_RADIUS).toBe(29);
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     release(sim, pid);
-    const at = localOf(inst, -82, 116);
-    const yard = { x: -82, z: 116 };
+    const at = localOf(inst, ARENA.x, ARENA.z);
+    const yard = ARENA;
     const door = DUNGEONS[inst.dungeonId].entry;
     // Unrostered on purpose: a hazard nobody added to the claim is still seen.
-    const add = createMob(sim.ctx.nextId++, MOBS.crypt_shambler, 8, {
+    const add = createMob(sim.ctx.nextId++, MOBS.drowned_watchman, 8, {
       x: at.x + 28.99,
-      y: 8,
+      y: BREACH_BASTION.h,
       z: at.z,
     });
     sim.ctx.addEntity(add);
     expect(inst.mobIds).not.toContain(add.id);
     const place = (home: number, body: number) => {
-      add.spawnPos = { x: at.x + home, y: 8, z: at.z };
-      add.pos = { x: at.x + body, y: 8, z: at.z };
+      add.spawnPos = { x: at.x + home, y: BREACH_BASTION.h, z: at.z };
+      add.pos = { x: at.x + body, y: BREACH_BASTION.h, z: at.z };
       add.prevPos = { ...add.pos };
       sim.ctx.rebucket(add);
       return dungeonReentryPoint(sim.ctx, inst, player);
@@ -728,15 +700,15 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expect(PATROL_REJOIN_DISTANCE).toBe(4);
     const reach = MAX_AGGRO_RADIUS + PATROL_REJOIN_DISTANCE;
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     release(sim, pid);
-    const at = localOf(inst, -82, 116);
-    const yard = { x: -82, z: 116 };
+    const at = localOf(inst, ARENA.x, ARENA.z);
+    const yard = ARENA;
     const door = DUNGEONS[inst.dungeonId].entry;
     // The patroller itself stands far off: only its loop comes near the yard.
-    const walker = createMob(sim.ctx.nextId++, MOBS.crypt_shambler, 8, {
+    const walker = createMob(sim.ctx.nextId++, MOBS.drowned_watchman, 8, {
       x: at.x + 70,
-      y: 8,
+      y: BREACH_BASTION.h,
       z: at.z,
     });
     sim.ctx.addEntity(walker);
@@ -758,12 +730,12 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(yard);
     // A patrol has no wander ring: its spawn point inside the home clearance
     // does not refuse a point its loop stays clear of.
-    walker.spawnPos = { x: at.x + reach, y: 8, z: at.z };
+    walker.spawnPos = { x: at.x + reach, y: BREACH_BASTION.h, z: at.z };
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(yard);
     // The same mob without a loop, standing in the ring round that spawn point,
     // is a wanderer homed too close.
     walker.dungeonPatrol = undefined;
-    walker.pos = { x: at.x + reach + MAX_WANDER_RADIUS, y: 8, z: at.z };
+    walker.pos = { x: at.x + reach + MAX_WANDER_RADIUS, y: BREACH_BASTION.h, z: at.z };
     sim.ctx.rebucket(walker);
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(door);
     // A loop that only a dead patroller walked refuses nothing.
@@ -775,19 +747,19 @@ describe('dungeon death checkpoints: arrival clearance', () => {
 
   it('a wanderer on the edge of the clearance never reaches an arrival', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
-    const at = localOf(inst, -82, 116);
+    earn(sim, inst, OLEN);
+    const at = localOf(inst, ARENA.x, ARENA.z);
     const home = sim.ctx.groundPos(at.x, at.z - RIFT_ENTRY_CLEAR_RADIUS);
-    const wanderer = createMob(sim.ctx.nextId++, MOBS.crypt_shambler, 8, home);
+    const wanderer = createMob(sim.ctx.nextId++, MOBS.drowned_watchman, 8, home);
     sim.ctx.addEntity(wanderer);
     inst.mobIds.push(wanderer.id);
     // The worst arrival: low enough that the wanderer sees it from the full ceiling.
     sim.setPlayerLevel(1, pid);
     expect(
-      MOBS.crypt_shambler.aggroRadius + (wanderer.level - player.level) * 1.5,
+      MOBS.drowned_watchman.aggroRadius + (wanderer.level - player.level) * 1.5,
     ).toBeGreaterThanOrEqual(MAX_AGGRO_RADIUS);
     reenter(sim, pid, inst.dungeonId);
-    expectLocal(sim, pid, inst, -82, 116);
+    expectLocal(sim, pid, inst, ARENA.x, ARENA.z);
     let nearest = Infinity;
     let strayed = 0;
     for (let i = 0; i < 20 * 60; i++) {
@@ -804,60 +776,11 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expect(nearest).toBeGreaterThanOrEqual(MAX_AGGRO_RADIUS);
   });
 
-  // The tightest real case: the aisle patrol q2 turns 18 yd short of the loft.
-  // Run on a host that ticks every idle mob and on one that culls them out of
-  // sight of every player (the server and the offline client), where the patrol
-  // stands frozen at the far end of the nave while the spirit runs back.
-  it.each([0, PLAYER_INTEREST_DROP_RADIUS])(
-    'refuses a point a living patrol walks past, wherever it is now (idle cull %i)',
-    (idleMobTickRadius) => {
-      const { sim, pid, inst, player } = setup('hollow_crypt', false, idleMobTickRadius);
-      earn(sim, inst, ...LOFT_BOSSES);
-      killPacks(sim, inst, 'q1', 'ilvane');
-      const patrol = packMobs(sim, inst, ['q2']);
-      expect(patrol.length).toBeGreaterThan(0);
-      const loft = localOf(inst, 0, 162);
-      const before = patrol.map((mob) => ({ ...mob.pos }));
-      release(sim, pid);
-      for (let i = 0; i < 20 * 40; i++) sim.tick();
-      const walked = patrol.some((mob, i) => gap(mob.pos, before[i]) > 1);
-      expect(walked).toBe(idleMobTickRadius === 0);
-      if (idleMobTickRadius > 0) {
-        // Frozen out of sight: no mob stands anywhere near the loft right now.
-        for (const mob of patrol) {
-          expect(gap(mob.pos, loft)).toBeGreaterThan(RIFT_ENTRY_CLEAR_RADIUS);
-        }
-      }
-      crossDoor(sim, pid, inst.dungeonId);
-      expectLocal(sim, pid, inst, 80, 112);
-      let nearestToLoft = Infinity;
-      for (let i = 0; i < 20 * 40; i++) {
-        sim.tick();
-        expect(player.inCombat).toBe(false);
-        for (const mob of patrol) {
-          expect(mob.inCombat).toBe(false);
-          nearestToLoft = Math.min(nearestToLoft, gap(mob.pos, loft));
-        }
-      }
-      // Meanwhile the patrol came round inside the aggro ceiling of the loft...
-      expect(nearestToLoft).toBeLessThan(MAX_AGGRO_RADIUS);
-      // ...where it does see a low arrival: the refusal is not caution for its own sake.
-      const visitor = sim.addPlayer('warrior', 'Visitor');
-      const body = sim.entities.get(visitor)!;
-      expect(body.level).toBe(1);
-      standAt(sim, body, loft.x, loft.z);
-      let seen = false;
-      for (let i = 0; i < 20 * 60 && !seen; i++) {
-        sim.tick();
-        seen = patrol.some((mob) => mob.aggroTargetId === visitor);
-      }
-      expect(seen).toBe(true);
-      killPacks(sim, inst, 'q2');
-      reenter(sim, pid, inst.dungeonId);
-      expectLocal(sim, pid, inst, 0, 162);
-    },
-  );
-
+  // The idle-cull patrol case ran on the crypt's aisle patrol q2, whose loop
+  // turned 18 yd short of the Choir Loft. It left with the dungeon (2026-11-11):
+  // no remaining dungeon has a live, off-route patrol inside the aggro ceiling
+  // of a checkpoint. The loop rule itself stays pinned by "measures a patrol
+  // by its loop" above.
   it('lands beside a living patrol whose loop stays outside the aggro ceiling', () => {
     const { sim, pid, inst, player } = setup('gravewyrm_sanctum');
     earn(sim, inst, 'korgath_the_bound', 'grand_necromancer_velkhar');
@@ -887,50 +810,25 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expectLocal(sim, pid, inst, 0, 107);
   });
 
-  it('a Chorister that outlives Cantor still guards the loft', () => {
-    const { sim, pid, inst, player } = setup();
-    earn(sim, inst, ...LOFT_BOSSES);
-    killPacks(sim, inst, 'q1', 'q2');
-    // Cantor's death leaves her two Choristers standing: ordinary hostile elites
-    // of her pack, idle at the rail 10.6 yd from the loft's point.
-    const choristers = packMobs(sim, inst, ['ilvane']);
-    expect(choristers.map((mob) => mob.templateId)).toEqual([
-      'hollow_chorister',
-      'hollow_chorister',
-    ]);
-    const loft = localOf(inst, 0, 162);
-    for (const mob of choristers) {
-      expect(mob.hostile).toBe(true);
-      expect(mob.aiState).toBe('idle');
-      expect(gap(mob.pos, loft)).toBeLessThan(11);
-    }
-    release(sim, pid);
-    expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual({ x: 80, z: 112 });
-    // They are a real threat to the point, not a stale body: a living player of
-    // their own level who stands on it is pulled at once.
-    const visitor = sim.addPlayer('warrior', 'Visitor');
-    sim.setPlayerLevel(8, visitor);
-    const body = sim.entities.get(visitor)!;
-    standAt(sim, body, loft.x, loft.z);
-    for (let i = 0; i < 20 * 2; i++) sim.tick();
-    expect(choristers.some((mob) => mob.aggroTargetId === visitor)).toBe(true);
-  });
-
+  // The crypt-only Chorister case (a pack member outliving its boss beside the
+  // loft) went with the dungeon; "counts only the mobs that can pull the
+  // arriving player" below still pins that a living hostile elite beside a
+  // point refuses it.
   it('counts only the mobs that can pull the arriving player', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
+    earn(sim, inst, OLEN);
     release(sim, pid);
-    const at = localOf(inst, -82, 116);
-    const yard = { x: -82, z: 116 };
+    const at = localOf(inst, ARENA.x, ARENA.z);
+    const yard = ARENA;
     const door = DUNGEONS[inst.dungeonId].entry;
     const prop = createMob(
       sim.ctx.nextId++,
-      MOBS.crypt_shambler,
+      MOBS.drowned_watchman,
       8,
       sim.ctx.groundPos(at.x + 4, at.z),
     );
     sim.ctx.addEntity(prop);
-    expect(MOBS.crypt_shambler.elite).toBe(true);
+    expect(MOBS.drowned_watchman.elite).toBe(true);
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(door);
     // An inert, non-hostile body (a candle, a cage, a scripted entrance) pulls nobody.
     prop.hostile = false;
@@ -949,10 +847,10 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expect(dungeonReentryPoint(sim.ctx, inst, player)).toEqual(door);
     prop.hostile = false;
     // Ordinary (non-elite) trash counts while the arrival is near its level...
-    expect(MOBS.rime_egg_sac.elite).toBeFalsy();
+    expect(MOBS.barnacle_crawler.elite).toBeFalsy();
     const plain = createMob(
       sim.ctx.nextId++,
-      MOBS.rime_egg_sac,
+      MOBS.barnacle_crawler,
       8,
       sim.ctx.groundPos(at.x - 4, at.z),
     );
@@ -972,8 +870,8 @@ describe('dungeon death checkpoints: arrival clearance', () => {
 
   it('a member who dies at depth is delivered to the cleared arena and left alone', () => {
     const { sim, pid, inst, player } = setup();
-    earn(sim, inst, 'sexton_marrow');
-    // Die for real, deep in the dungeon, to a living mob of the Processional.
+    earn(sim, inst, OLEN);
+    // Die for real, deep in the dungeon, to a living mob of the route.
     const killer = livingMob(sim, inst);
     const deep = localOf(inst, 0, 60);
     standAt(sim, player, deep.x, deep.z);
@@ -994,9 +892,9 @@ describe('dungeon death checkpoints: arrival clearance', () => {
     expect(player.ghost).toBe(false);
     expect(player.dead).toBe(false);
     expect(player.corpsePos).toBeNull();
-    expectLocal(sim, pid, inst, -82, 116);
+    expectLocal(sim, pid, inst, ARENA.x, ARENA.z);
     expect(tickAndWatch(sim, inst, player, 10)).toBe(false);
-    expectLocal(sim, pid, inst, -82, 116);
+    expectLocal(sim, pid, inst, ARENA.x, ARENA.z);
   });
 });
 
@@ -1068,7 +966,7 @@ describe('dungeon death checkpoints: the table', () => {
     expect(Object.keys(DUNGEON_CHECKPOINTS).sort()).toEqual([
       'drowned_temple',
       'gravewyrm_sanctum',
-      'hollow_crypt',
+      // 'hollow_crypt' left the table with the dungeon (2026-11-11).
       'sunken_bastion',
       'wildheart_basin',
     ]);

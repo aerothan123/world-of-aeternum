@@ -212,10 +212,6 @@ export const table: DeedLocaleTable = {
     name: 'Staub abklopfen',
     desc: 'Stirb zum ersten Mal; das passiert den Besten von uns.',
   },
-  dgn_hollow_crypt: {
-    name: 'Gruftbrecher',
-    desc: 'Besiege Morthen den Gravecaller in der Hohlen Gruft.',
-  },
   dgn_sunken_bastion: {
     name: 'Der Fogbinder, entfesselt',
     desc: 'Besiege Vael den Fogbinder in der versunkenen Bastion.',
@@ -227,10 +223,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: 'Der Wyrm in der Tiefe',
     desc: 'Besiege Korzul den Gravewyrm im Gravewyrm-Heiligtum.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: 'Heroisch: Die Hohle Gruft',
-    desc: 'Besiege Morthen den Gravecaller in der Hohlen Gruft auf heroischem Schwierigkeitsgrad.',
   },
   dgn_sunken_bastion_heroic: {
     name: 'Heroisch: Die versunkene Bastion',
@@ -265,14 +257,6 @@ export const table: DeedLocaleTable = {
     desc: 'Verdiene an einem einzigen Tag Heroische Marken aus allen vier heroischen Dungeons.',
   },
   dgn_boss_clears_50: { name: 'Fünfzig Türen weiter', desc: 'Besiege 50 Dungeon-Endbosse.' },
-  dgn_morthen_flawless: {
-    name: 'Ohne Wenn und Knochen',
-    desc: 'Besiege Morthen den Gravecaller auf heroischem Schwierigkeitsgrad, ohne dass ein Gruppenmitglied stirbt.',
-  },
-  dgn_morthen_trio: {
-    name: 'Drei gegen das Grab',
-    desc: 'Besiege Morthen den Gravecaller mit höchstens drei Spielern.',
-  },
   dgn_olen_arc: {
     name: 'Dem Schnitter ausgewichen',
     desc: 'Besiege Ritterkommandant Olen, ohne dass sein Sensenschwung jemand anderen als sein aktuelles Ziel trifft.',
@@ -1314,10 +1298,6 @@ export const table: DeedLocaleTable = {
     name: 'Alle Köpfe unten',
     desc: 'Töte alle drei Köpfe der Seehydra innerhalb von 10 Sekunden voneinander.',
   },
-  dgn_crypt_knellwyrm: {
-    name: 'Kein Haar versengt',
-    desc: 'Besiege den Totengeläutwyrm, ohne dass jemand von seinem Scheiterhaufen-Feuerflug verbrannt wird.',
-  },
   dgn_turnkey_cage: {
     name: 'Kein Käfig hält uns',
     desc: 'Besiege den Kerkerwärter, ohne dass jemand in einem Eisenkäfig zerquetscht wird.',
@@ -1362,22 +1342,6 @@ export const table: DeedLocaleTable = {
     name: 'Die letzte Strophe',
     desc: 'Besiege Ysolei, Avatar des Ertrunkenen Mondes, mit dem Letzten Kantor des Bleichen Chors an deiner Seite.',
     title: 'Zeuge des Chors',
-  },
-  dgn_marrow_tidy: {
-    name: 'Ein ordentlicher Kirchhof',
-    desc: 'Besiege Küster Marrow, wobei jedes Offene Grab am Rand des Glockenhofs angelegt wird.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: 'Niemand bleibt hängen',
-    desc: 'Besiege die Lady des Knochenfrosts, ohne dass sie jemals jemanden aus ihrer Gefrorenen Umarmung fallen lässt.',
-  },
-  dgn_ilvane_hush: {
-    name: 'Sei jetzt still',
-    desc: 'Besiege Kantor Ilvane, ohne dass ihr Klagelied der Hohlen jemals jemanden trifft.',
-  },
-  dgn_morthen_candlelight: {
-    name: 'Jede Kerze brennt',
-    desc: 'Besiege Morthen den Gravecaller, nachdem alle vier Gedenkkerzen innerhalb von 20 Sekunden nach dem Erscheinen seines Schutzes der Ruhelosen wieder angezündet wurden.',
   },
   dgn_guild_first_contract: {
     name: 'Auftrag unterzeichnet',

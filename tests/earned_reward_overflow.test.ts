@@ -152,7 +152,7 @@ function hoardRig(full: boolean) {
 
 describe('earned rewards conserve overflow through complete operations', () => {
   it.each([
-    ['hollow_crypt', 'morthen', 1],
+    ['sunken_bastion', 'vael_the_mistcaller', 1],
     ['wildheart_basin', 'wildheart_high_priest', 1],
     ['nythraxis_boss_arena', 'nythraxis_scourge_of_thornpeak', 3],
   ] as const)(

@@ -19,11 +19,6 @@ export const DEFAULT_BOSS_TRACK_URL = '/audio/dungeon-boss-fight.mp3';
  *  and Drowned Temple bosses, Ysolei), the raid's dragon, and the shared dungeon boss
  *  cue for the rest. Hydra heads share one encounter cue. */
 export const BOSS_TRACK_CUES: Readonly<Record<string, string>> = Object.freeze({
-  morthen: 'wyn_boss_undead',
-  sexton_marrow: 'wyn_boss_undead',
-  rimeweb: 'wyn_boss_wild',
-  cantor_ilvane: 'wyn_boss_undead',
-  crypt_knellwyrm: 'wyn_boss_undead',
   knight_commander_olen: 'wyn_boss_tide',
   gaoler_ossick: 'wyn_boss_tide',
   vael_the_mistcaller: 'wyn_boss_tide',

@@ -4763,8 +4763,8 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // --- IWorldDungeons: dungeon enter/leave sends + the raid-lockout countdown read.
   // selfLockouts mirrors the snapshot `s.lockouts`; raidLockouts derives the live
   // countdown locally so it ticks without traffic. enter_crypt/leave_crypt are legacy
-  // dispatch-only aliases ClientWorld never sends (the enterCrypt/leaveCrypt helpers
-  // below just forward to enterDungeon/leaveDungeon). ---
+  // dispatch-only aliases ClientWorld never sends (the leaveCrypt helper below
+  // just forwards to leaveDungeon). ---
   enterDungeon(dungeonId: string): Promise<boolean> {
     return this.cmdWithOutcome({ cmd: 'enter_dungeon', dungeon: dungeonId });
   }
@@ -5166,10 +5166,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
   deleteLoadout(index: number): void {
     this.cmd({ cmd: 'deleteLoadout', index });
   }
-  // legacy aliases kept for older scripts
-  enterCrypt(): void {
-    this.enterDungeon('hollow_crypt');
-  }
+  // legacy alias kept for older scripts
   leaveCrypt(): void {
     this.leaveDungeon();
   }

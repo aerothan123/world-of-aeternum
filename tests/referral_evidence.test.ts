@@ -63,17 +63,17 @@ describe('authoritative referral evidence', () => {
   });
   it('quest evidence preserves completion and party at the event time', () => {
     const { sim, a, b, ctx } = world();
-    sim.meta(a)!.questsDone.add('q_hollow');
-    emitReferralQuestEvidence(ctx, sim.meta(a)!, 'q_hollow');
+    sim.meta(a)!.questsDone.add('q_mistcaller');
+    emitReferralQuestEvidence(ctx, sim.meta(a)!, 'q_mistcaller');
     const evidence = sim.events.filter((e) => e.type === 'referralEvidence').at(-1);
     sim.meta(a)!.questsDone.clear();
     sim.partyLeave(b);
     expect(evidence).toMatchObject({
       kind: 'quest',
       characterId: 11,
-      questId: 'q_hollow',
+      questId: 'q_mistcaller',
       participants: [
-        { completedQuestIds: ['q_hollow'], partyId: expect.any(Number) },
+        { completedQuestIds: ['q_mistcaller'], partyId: expect.any(Number) },
         { partyId: expect.any(Number) },
       ],
     });
@@ -81,14 +81,16 @@ describe('authoritative referral evidence', () => {
   it('only eligible recipients receive authored boss evidence', () => {
     const { sim, a, ctx } = world();
     sim.events.length = 0;
-    emitReferralBossEvidence(ctx, { templateId: 'morthen', dungeonId: 'hollow_crypt' } as Entity, [
-      sim.meta(a)!,
-    ]);
+    emitReferralBossEvidence(
+      ctx,
+      { templateId: 'vael_the_mistcaller', dungeonId: 'sunken_bastion' } as Entity,
+      [sim.meta(a)!],
+    );
     expect(sim.events).toMatchObject([
-      { kind: 'boss', dungeonId: 'hollow_crypt', participants: [{ characterId: 11 }] },
+      { kind: 'boss', dungeonId: 'sunken_bastion', participants: [{ characterId: 11 }] },
     ]);
     sim.events.length = 0;
-    emitReferralBossEvidence(ctx, { templateId: 'boar', dungeonId: 'hollow_crypt' } as Entity, [
+    emitReferralBossEvidence(ctx, { templateId: 'boar', dungeonId: 'sunken_bastion' } as Entity, [
       sim.meta(a)!,
     ]);
     expect(sim.events).toEqual([]);

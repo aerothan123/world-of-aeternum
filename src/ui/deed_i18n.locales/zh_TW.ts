@@ -51,10 +51,6 @@ export const table: DeedLocaleTable = {
     name: '三首俱滅',
     desc: '在 10 秒的時間差內殺死湖泊九頭蛇的全部三個頭顱。',
   },
-  dgn_crypt_knellwyrm: {
-    name: '毫髮未焦',
-    desc: '擊敗喪鐘巨龍，且無人被它的火葬掃射燒傷。',
-  },
   dgn_turnkey_cage: {
     name: '牢籠困不住我們',
     desc: '擊敗牢獄鑰匙官，且無人被鐵籠碾壓。',
@@ -99,22 +95,6 @@ export const table: DeedLocaleTable = {
     name: '最後的詩節',
     desc: '在蒼白唱詩班最後的領唱陪伴下，擊敗伊索蕾，溺月化身。',
     title: '唱詩班的見證者',
-  },
-  dgn_marrow_tidy: {
-    name: '整潔的教堂墓園',
-    desc: '擊敗司事馬羅，且每個敞開之墓均放置在鐘庭邊緣。',
-  },
-  dgn_lady_nobody_hanging: {
-    name: '無人懸而未決',
-    desc: '擊敗寒骨夫人，且她從未從冰封之擁中摔落任何人。',
-  },
-  dgn_ilvane_hush: {
-    name: '歸於寂靜',
-    desc: '擊敗領唱者伊爾凡，且她的空洞輓歌從未擊中任何人。',
-  },
-  dgn_morthen_candlelight: {
-    name: '燭火長明',
-    desc: '擊敗喚墓者莫森，並在其不息護盾出現後 20 秒內重新點燃全部四支追思蠟燭。',
   },
   exp_arcane_calligraphy: {
     name: '穩健的筆觸',
@@ -319,11 +299,9 @@ export const table: DeedLocaleTable = {
     name: '拍拍塵土再出發',
     desc: '迎來你的第一次死亡；再出色的冒險者也難免如此。',
   },
-  dgn_hollow_crypt: { name: '破墓者', desc: '在空洞墓穴擊敗喚墓者莫森。' },
   dgn_sunken_bastion: { name: '霧散縛解', desc: '在沉沒堡壘擊敗縛霧者維爾。' },
   dgn_drowned_temple: { name: '溺月終溺', desc: '在溺亡神殿擊敗「伊索蕾，溺月化身」。' },
   dgn_gravewyrm_sanctum: { name: '地底之龍', desc: '在墓龍聖所擊敗墓龍科祖爾。' },
-  dgn_hollow_crypt_heroic: { name: '英雄：空洞墓穴', desc: '以英雄難度在空洞墓穴擊敗喚墓者莫森。' },
   dgn_sunken_bastion_heroic: {
     name: '英雄：沉沒堡壘',
     desc: '以英雄難度在沉沒堡壘擊敗縛霧者維爾。',
@@ -345,11 +323,6 @@ export const table: DeedLocaleTable = {
   dgn_deepward: { name: '深淵之衛', desc: '以英雄難度征服每一座地城、團隊副本，以及兩座秘探。' },
   dgn_mark_circuit: { name: '全套巡迴', desc: '在同一天內從全部四座英雄地城獲得英雄徽記。' },
   dgn_boss_clears_50: { name: '五十扇門之後', desc: '擊敗50個地城最終首領。' },
-  dgn_morthen_flawless: {
-    name: '屍骨無存',
-    desc: '以英雄難度擊敗喚墓者莫森，且沒有任何隊伍成員死亡。',
-  },
-  dgn_morthen_trio: { name: '三人抗墓', desc: '以三名或更少的玩家擊敗喚墓者莫森。' },
   dgn_olen_arc: {
     name: '側身避鐮',
     desc: '擊敗騎士指揮官奧倫，且他的收割弧斬從未擊中其當前目標以外的任何人。',

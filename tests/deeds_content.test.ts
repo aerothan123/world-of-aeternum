@@ -159,8 +159,10 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // - the owner's trick-or-treat removal (feat_gourdlight_doorsteps and
     //   feat_gourdlight_frights, zero-Renown Feats; the no-retro-edit rule overridden by
     //   the owner for these two): 371, 4055.
-    expect(DEED_ORDER.length).toBe(371);
-    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4055);
+    // Owner override (2026-11-11): the Hollow Crypt retirement removed nine
+    // deeds worth 85 Renown on top of that: 362, 3970, measured off the table.
+    expect(DEED_ORDER.length).toBe(362);
+    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(3970);
   });
 
   it('ships the audited per-category counts', () => {
@@ -196,7 +198,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // +3 the Hollow Crypt wing bosses' encounter deeds.
       // +1 Morthen's Every Candle Lit.
       // +3 Lantern Hall's contract milestones.
-      dungeon: 63,
+      // -9 the retired Hollow Crypt's deeds (owner override, 2026-11-11).
+      dungeon: 54,
       delve: 13,
       // +4 farming first-harvest chronicles (chr_*_first_harvest).
       // +1 Wyndlewood Chapter One's closing chronicle.
@@ -223,10 +226,11 @@ describe('audited launch totals (literals: update deliberately with the catalog)
   });
 
   it('pins the catalog-refresh additions: ids, order, and renown literals', () => {
-    // The refresh tail appends AFTER the 186-deed launch set; both the launch
+    // The refresh tail appends AFTER the launch set (186 deeds, 182 since the
+    // Hollow Crypt's four launch deeds retired, 2026-11-11); both the launch
     // block and the tail are order-pinned so any insertion or reorder reds.
-    expect(DEED_ORDER[185]).toBe('hid_codfather');
-    expect(DEED_ORDER.slice(186)).toEqual([
+    expect(DEED_ORDER[181]).toBe('hid_codfather');
+    expect(DEED_ORDER.slice(182)).toEqual([
       'prog_crown_below',
       'prog_mere_at_rest',
       'prog_callused_hands',
@@ -459,7 +463,6 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       'dgn_ysolei_high_and_dry',
       'dgn_mere_hydra',
       // The Hollow Crypt's Knellwyrm finale (manual grant).
-      'dgn_crypt_knellwyrm',
       // The Sunken Bastion fifth pass's Gaol Turnkey miniboss (manual grant).
       'dgn_turnkey_cage',
       // The Wildheart Basin rework: its four encounter deeds.
@@ -476,11 +479,7 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // The Drowned Temple lore guide (manual grant at Ysolei's fall).
       'dgn_drowned_temple_cantor',
       // The Hollow Crypt wing bosses: one deed per boss core.
-      'dgn_marrow_tidy',
-      'dgn_lady_nobody_hanging',
-      'dgn_ilvane_hush',
       // Morthen the Gravecaller's Rite (morthen.ts).
-      'dgn_morthen_candlelight',
       'dgn_guild_first_contract',
       'dgn_guild_ten_contracts',
       'dgn_guild_fifty_contracts',
@@ -1164,7 +1163,15 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // overrode the no-retro-edit rule for its deeds: feat_gourdlight_doorsteps and
   // feat_gourdlight_frights left the catalog, and feat_gourdlight_eve_complete's visits
   // checklist lost the knock and Boo! marks. No other deed's trigger or renown moved.
-  const FROZEN_CATALOG_SHA256 = 'd5075740bae50772826b0b453ce5a5cc0899422a9c03a5caa2256c6fcfc79256';
+  // OWNER OVERRIDE (2026-11-11, the Hollow Crypt retired fully): the retirement
+  // REMOVES nine shipped crypt deeds (dgn_hollow_crypt, dgn_hollow_crypt_heroic,
+  // dgn_morthen_flawless, dgn_morthen_trio, dgn_crypt_knellwyrm, dgn_marrow_tidy,
+  // dgn_lady_nobody_hanging, dgn_ilvane_hush, dgn_morthen_candlelight) and drops
+  // dgn_hollow_crypt_heroic from the Deepward meta. That is a deliberate rule-9
+  // exception the owner ordered, not a drift. Both removals landed together at the
+  // Eastbrook Vale v2 integration merge, so the literal is re-measured off the
+  // merged table with the one-liner above.
+  const FROZEN_CATALOG_SHA256 = '92f80f6d4bb0378318309ceda8dc03422d28147fdfdd4ec6e606d8b98465f37f';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -1257,11 +1264,13 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   //
   // The owner's trick-or-treat removal (no-retro-edit rule overridden for those deeds,
   // see FROZEN_CATALOG_SHA256 above) deleted two Feats ahead of prog_first_felling and
-  // edited the meta's checklist, so tree chopping's 01e74f5e... mint can no longer be
-  // reproduced. The pre-append digest is re-measured on the post-removal catalog; the
-  // appended three still strip cleanly off the tail.
+  // edited the meta's checklist, and the owner's Hollow Crypt retirement (2026-11-11)
+  // removed nine older rows, so tree chopping's 01e74f5e... mint can never reproduce.
+  // The baseline is RE-MEASURED off the merged table minus the three ids below, the
+  // same fold-in the v0.42.0 retune took; every later append is provable the auditable
+  // way against it again.
   const PRE_APPEND_CATALOG_SHA256 =
-    'caf6941b135a3120b416b7970aad4fd0a67ac1855172bcd6eb6f7e4ca089046a';
+    '43573264a1f36108078c450a7089f2ea66bcf337a088c07cb8acc0b9112ae16f';
   const APPENDED_SINCE: readonly string[] = [
     'prog_bracken_circle_trusted',
     'prog_bracken_circle_champion',
@@ -1511,11 +1520,12 @@ describe('table shape', () => {
     // quartermaster's third title last.
     // Tree chopping's first felling appends last, one seat behind everything.
     // Then Wyndlewood's three (the Bracken Circle pair, Chapter One's chronicle).
-    // (Two seats nearer the tail since the owner removed trick-or-treat's two Feats.)
-    expect(DEED_ORDER[DEED_ORDER.length - 53]).toBe('exp_harbor_to_harbor');
-    expect(DEED_ORDER[DEED_ORDER.length - 44]).toBe('cmb_balgath_ten');
-    expect(DEED_ORDER[DEED_ORDER.length - 43]).toBe('cmb_point_taken');
-    expect(DEED_ORDER[DEED_ORDER.length - 19]).toBe('dgn_morthen_candlelight');
+    // Two seats nearer the tail since the owner removed trick-or-treat's two Feats, and
+    // the Hollow Crypt's retirement (2026-11-11) took five rework deeds out of the
+    // tail, Every Candle Lit among them, so the older seats sit five more nearer the end.
+    expect(DEED_ORDER[DEED_ORDER.length - 48]).toBe('exp_harbor_to_harbor');
+    expect(DEED_ORDER[DEED_ORDER.length - 39]).toBe('cmb_balgath_ten');
+    expect(DEED_ORDER[DEED_ORDER.length - 38]).toBe('cmb_point_taken');
     expect(DEED_ORDER[DEED_ORDER.length - 13]).toBe('feat_guild_of_lantern_hall');
     expect(DEED_ORDER.at(-5)).toBe('feat_gourdlight_eve_complete');
     expect(DEED_ORDER.at(-4)).toBe('prog_first_felling');

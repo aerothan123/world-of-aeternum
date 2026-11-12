@@ -1,5 +1,5 @@
-// The Hollow Crypt's GPU particle kit, shared by the hero creatures' effects
-// (crypt_creature_fx.ts) and the finale's (crypt_finale_fx.ts): per-particle
+// The shared dungeon GPU particle kit (born in the retired Hollow Crypt's
+// renderer, now imported by every dungeon FX painter): per-particle
 // launch data advected entirely in the vertex shader on one clock, drawn as
 // camera-facing sprites; fire runs the Ignivar flame atlas through the
 // ghost-fire ramp as upright flame tongues. The CPU writes a particle only
@@ -8,7 +8,6 @@
 import * as THREE from 'three';
 import { CAMERA_RELATIVE_GLSL } from '../camera_relative_glsl';
 import { FLAME_ATLAS_GLSL } from '../ignivar_fire_vfx';
-import { ghostFireRampGlsl } from './crypt_creature_fx_core';
 
 // ---------------------------------------------------------------- particles
 
@@ -89,8 +88,38 @@ void main() {
 }
 `;
 
-/** The ghost-fire ramp (crypt_creature_fx_core.ts GHOST_FIRE_RAMP): warm
- *  grave-light, green-white at the core, never cyan. */
+// Moved here from crypt_creature_fx_core.ts when the Hollow Crypt was retired
+// (2026-11-11): the shared particle shaders still build their ghost-fire ramp.
+// Declared above GHOST_RAMP: a module-level call before the const would hit
+// its temporal dead zone at import.
+/** The Barrowflame's ghost-fire ramp as (heat, r, g, b) stops: a fire's
+ *  temperature ladder shifted to grave-light (sooty green-black, grave-green,
+ *  spectral green, pale green-white, a white-hot core). Warm, never cyan: blue
+ *  never leads red past the embers, so it reads as flame, not ice. */
+export const GHOST_FIRE_RAMP: readonly (readonly [number, number, number, number])[] = [
+  [0.15, 0.02, 0.05, 0.02],
+  [0.33, 0.07, 0.3, 0.09],
+  [0.52, 0.28, 0.82, 0.3],
+  [0.72, 0.64, 1.0, 0.56],
+  [0.88, 0.88, 1.0, 0.84],
+  [1.0, 1.0, 1.0, 0.97],
+];
+
+/** GLSL `vec3 ghostRamp(float h)` built from GHOST_FIRE_RAMP. */
+export function ghostFireRampGlsl(): string {
+  const f = (v: number) => v.toFixed(3);
+  let prev = 0;
+  const lines = GHOST_FIRE_RAMP.map(([h, r, g, b], i) => {
+    const from = i === 0 ? 'vec3(0.0)' : 'c';
+    const line = `  ${i === 0 ? 'vec3 c' : 'c'} = mix(${from}, vec3(${f(r)}, ${f(g)}, ${f(b)}), smoothstep(${f(prev)}, ${f(h)}, h));`;
+    prev = h;
+    return line;
+  });
+  return `vec3 ghostRamp(float h) {\n${lines.join('\n')}\n  return c;\n}\n`;
+}
+
+/** The ghost-fire ramp (GHOST_FIRE_RAMP above): warm grave-light,
+ *  green-white at the core, never cyan. */
 export const GHOST_RAMP = ghostFireRampGlsl();
 
 export const FIRE_FRAG = /* glsl */ `
@@ -143,24 +172,6 @@ void main() {
   float core = pow(max(1.0 - r, 0.0), 2.2);
   float fade = smoothstep(0.0, 0.1, vT) * (1.0 - smoothstep(0.55, 1.0, vT));
   gl_FragColor = vec4(vColor.rgb * (0.6 + 1.2 * core), core * fade * vColor.a);
-}
-`;
-
-/** Heat shimmer over the fire (the Ignivar furnace's wobble haze): a faint,
- *  rising band of warped light, additive, so the air over the flames swims. */
-export const HAZE_FRAG = /* glsl */ `
-uniform float uTime;
-varying float vT;
-varying float vSeed;
-varying vec4 vColor;
-varying vec2 vUv;
-void main() {
-  vec2 p = vUv - 0.5;
-  float rise = uTime * 5.0 + vSeed * 20.0;
-  float wob = sin(vUv.y * 21.0 - rise) * 0.5 + sin(vUv.x * 13.0 + rise * 0.7) * 0.5;
-  float mask = (1.0 - smoothstep(0.12, 0.5, length(p * vec2(1.0, 0.8))));
-  float fade = smoothstep(0.0, 0.2, vT) * (1.0 - smoothstep(0.55, 1.0, vT));
-  gl_FragColor = vec4(vColor.rgb * (0.7 + 0.5 * wob), mask * fade * vColor.a * (0.45 + 0.55 * wob));
 }
 `;
 

@@ -10,8 +10,8 @@ import { bareClient } from './helpers/bare_client';
 const expedition = {
   exitId: 12,
   leaderPid: 7,
-  activityId: 'hollow_crypt_normal',
-  dungeonId: 'hollow_crypt',
+  activityId: 'sunken_bastion_normal',
+  dungeonId: 'sunken_bastion',
   isLeader: false,
   isInside: false,
   canTravel: true,
@@ -25,7 +25,7 @@ describe('group listing extras decoding (gear, advert, guild)', () => {
     const info = {
       myListing: {
         id: 7,
-        advertText: 'LFM - The Hollow Crypt - Normal - 1/5 - Healer/DPS needed',
+        advertText: 'LFM - The Sunken Bastion - Normal - 1/5 - Healer/DPS needed',
         applicants: [{ pid: 1, spec: 'arms', gear: { chest: 'gear_chest', mainhand: 'sword' } }],
       },
       advert: { general: 3, discord: 0, discordAvailable: true },
@@ -80,7 +80,7 @@ describe('expedition snapshot decoding', () => {
       listingId: 1,
       remaining: 90,
       leaderName: 'One',
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
     };
     const second = { listingId: 2, remaining: 60, leaderName: 'Two' };
     const valid = { myApplication: first, myApplications: [first, second] };

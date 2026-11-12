@@ -8,7 +8,6 @@
 // painter reads openness each frame.
 
 import { type DungeonGateState, dungeonGateStateOf } from '../../sim/instances/dungeon_gates';
-import { gateOpenness } from './crypt_plan_core';
 
 interface GateMemory {
   state: DungeonGateState;
@@ -66,7 +65,12 @@ export function gateView(key: string, now: number): GateView {
   };
 }
 
-/** Forget every gate (tests; a fresh page starts empty anyway). */
-export function clearGateMemoryForTest(): void {
-  memory.clear();
+// Moved here from crypt_plan_core.ts when the Hollow Crypt was retired
+// (2026-11-11); every dungeon's gate renderer still eases through it.
+export const GATE_REVEAL_SECONDS = 2.6;
+
+export function gateOpenness(from: number, to: number, elapsed: number): number {
+  const t = Math.max(0, Math.min(1, elapsed / GATE_REVEAL_SECONDS));
+  const ease = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+  return from + (to - from) * ease;
 }

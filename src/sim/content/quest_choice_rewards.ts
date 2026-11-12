@@ -101,14 +101,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'brookwatch_greaves',
     'brookwatch_moccasins',
   ],
-  q_bones: [
-    'hedgerow_sash',
-    'hedgerow_belt',
-    'hedgerow_waistguard',
-    'hedgerow_girdle',
-    'hedgerow_cord',
-    'hedgerow_cinch',
-  ],
   q_breaking_the_seal: [
     'hollowveil_leggings',
     'hollowveil_breeches',
@@ -638,14 +630,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'thornspire_coif',
     'thornspire_cowl',
   ],
-  q_gravecallers_trail: [
-    'brookwatch_mantle',
-    'brookwatch_shoulderpads',
-    'brookwatch_shoulderguards',
-    'brookwatch_pauldrons',
-    'brookwatch_spaulders',
-    'brookwatch_epaulets',
-  ],
   q_gravewyrm: ['wyrmshadow_tunic', 'wyrmshadow_chainmail', 'wyrmshadow_vest'],
   q_greyjaw: [
     'brookwatch_sash',
@@ -679,7 +663,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'bogwalker_greaves',
     'bogwalker_moccasins',
   ],
-  q_hollow: ['cryptbound_tunic', 'cryptbound_chainmail'],
   q_hollow_first_of_the_herd: [
     'hollowveil_sash',
     'hollowveil_belt',
@@ -784,14 +767,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'brookwatch_helm',
     'brookwatch_coif',
     'brookwatch_cowl',
-  ],
-  q_names_of_the_dead: [
-    'brookwatch_gloves',
-    'brookwatch_grips',
-    'brookwatch_handwraps',
-    'brookwatch_gauntlets',
-    'brookwatch_handguards',
-    'brookwatch_mitts',
   ],
   q_nb_charts_of_the_stones: [
     'highgale_sash',
@@ -1113,14 +1088,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'hedgerow_chausses',
     'hedgerow_trousers',
   ],
-  q_rite: [
-    'hedgerow_leggings',
-    'hedgerow_breeches',
-    'hedgerow_legwraps',
-    'hedgerow_legguards',
-    'hedgerow_chausses',
-    'hedgerow_trousers',
-  ],
   q_rite_of_redemption: [
     'bogwalker_robe',
     'bogwalker_jerkin',
@@ -1145,7 +1112,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'sealkeeper_handguards',
     'sealkeeper_mitts',
   ],
-  q_sexton: ['gravebell_treads', 'gravebell_greaves', 'gravebell_moccasins'],
   q_shard_cores: [
     'hollowveil_mantle',
     'hollowveil_shoulderpads',
@@ -1387,14 +1353,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'trailwarden_hauberk',
     'trailwarden_chainmail',
     'trailwarden_vest',
-  ],
-  q_whispers: [
-    'brookwatch_hood',
-    'brookwatch_cap',
-    'brookwatch_headguard',
-    'brookwatch_helm',
-    'brookwatch_coif',
-    'brookwatch_cowl',
   ],
   q_widows: [
     'bogwalker_gloves',

@@ -228,10 +228,6 @@ export const table: DeedLocaleTable = {
     name: '툭툭 털고 일어나기',
     desc: '처음으로 죽음을 맞이하십시오. 누구에게나 있는 일입니다.',
   },
-  dgn_hollow_crypt: {
-    name: '묘실을 깨뜨린 자',
-    desc: '텅 빈 묘실에서 무덤부름 모르덴을 처치하십시오.',
-  },
   dgn_sunken_bastion: {
     name: '안개의 매듭을 풀다',
     desc: '가라앉은 요새에서 안개엮는자 바엘을 처치하십시오.',
@@ -243,10 +239,6 @@ export const table: DeedLocaleTable = {
   dgn_gravewyrm_sanctum: {
     name: '지하의 고룡',
     desc: '무덤고룡 성소에서 무덤고룡 코르줄을 처치하십시오.',
-  },
-  dgn_hollow_crypt_heroic: {
-    name: '영웅: 텅 빈 묘실',
-    desc: '영웅 난이도의 텅 빈 묘실에서 무덤부름 모르덴을 처치하십시오.',
   },
   dgn_sunken_bastion_heroic: {
     name: '영웅: 가라앉은 요새',
@@ -281,14 +273,6 @@ export const table: DeedLocaleTable = {
     desc: '하루 안에 네 곳의 영웅 던전 모두에서 영웅의 징표를 획득하십시오.',
   },
   dgn_boss_clears_50: { name: '쉰 번째 문 너머', desc: '던전 최종 우두머리를 50번 처치하십시오.' },
-  dgn_morthen_flawless: {
-    name: '뼈도 못 추리게',
-    desc: '파티원이 한 명도 죽지 않고 영웅 난이도에서 무덤부름 모르덴을 처치하십시오.',
-  },
-  dgn_morthen_trio: {
-    name: '무덤에 맞선 셋',
-    desc: '3명 이하의 플레이어로 무덤부름 모르덴을 처치하십시오.',
-  },
   dgn_olen_arc: {
     name: '사신을 비껴가다',
     desc: '기사대장 올렌을 처치하되, 그의 수확의 호가 현재 대상 외에는 누구도 맞히지 않게 하십시오.',
@@ -1261,10 +1245,6 @@ export const table: DeedLocaleTable = {
     name: '모든 머리를 쓰러뜨려라',
     desc: '호수 히드라의 머리 셋을 서로 10초 이내의 간격으로 처치하세요.',
   },
-  dgn_crypt_knellwyrm: {
-    name: '머리카락 하나 그슬리지 않고',
-    desc: '아무도 장작더미 화염 비행에 타지 않게 하면서 조종룡을 처치하세요.',
-  },
   dgn_turnkey_cage: {
     name: '어떤 우리도 우릴 가두지 못한다',
     desc: '아무도 철창에 짓눌리지 않게 하면서 감옥 열쇠지기를 처치하세요.',
@@ -1309,22 +1289,6 @@ export const table: DeedLocaleTable = {
     name: '마지막 구절',
     desc: '창백한 성가대의 마지막 성가대장과 함께 익사한 달의 화신 이솔레이를 처치하세요.',
     title: '성가대의 증인',
-  },
-  dgn_marrow_tidy: {
-    name: '단정한 교회 묘지',
-    desc: '모든 열린 무덤을 종 마당 가장자리에 배치한 상태로 성구지기 매로우를 처치하세요.',
-  },
-  dgn_lady_nobody_hanging: {
-    name: '아무도 매달린 채 남지 않게',
-    desc: '얼어붙은 포옹에서 아무도 떨어뜨리지 않게 하면서 뼈서리의 귀부인을 처치하세요.',
-  },
-  dgn_ilvane_hush: {
-    name: '이제 조용히',
-    desc: '공허의 진혼곡이 아무도 맞히지 않게 하면서 성가대장 일베인을 처치하세요.',
-  },
-  dgn_morthen_candlelight: {
-    name: '모든 촛불에 불을',
-    desc: '잠들지 못한 결계가 나타난 후 20초 안에 추모의 초 넷을 모두 다시 밝힌 뒤 무덤부름 모르덴을 처치하세요.',
   },
   feat_gourdlight_errands: {
     name: '헤스터의 심부름꾼',

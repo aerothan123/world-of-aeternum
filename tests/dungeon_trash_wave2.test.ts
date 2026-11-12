@@ -1,10 +1,11 @@
-// The dungeon trash pass's second wave: the five mechanics that waited on the
+// The dungeon trash pass's second wave: the mechanics that waited on the
 // trash engine's line-of-sight rule (G6, kit_nova.ts) and its walker (G5,
 // kit_walker.ts). Each is driven through tickTrashKits inside a real claimed
 // dungeon: its trigger, every answer (a kick, a stun, a wall, a body), normal
 // against heroic, and its landed numbers against the math its content states.
+// (The Hollow Crypt's Gravespark Volley and Grave Rupture retired with the
+// dungeon.)
 //
-//   Gravecaller Adept   Gravespark Volley   (hollow_crypt_trash.ts, nova)
 //   Bastion Revenant    Throatlight          (dungeons.ts, walker launch 'death')
 //   Drowned Sergeant    Loose on My Mark     (sunken_bastion.ts, bastion_order.ts)
 //   Moonlit Siren       Call of the Shallows (drowned_temple.ts, temple_lure.ts)
@@ -25,7 +26,6 @@ import {
   BASTION_MARKED_BOLT_BLOCKED,
   BASTION_THROATLIGHT_ORB,
 } from '../src/sim/mob/trash_kit/bastion_cast_ids';
-import { CRYPT_GRAVE_BOLT, CRYPT_GRAVESPARK_VOLLEY } from '../src/sim/mob/trash_kit/cast_ids';
 import { spawnCombatWall } from '../src/sim/mob/trash_kit/combat_walls';
 import {
   launchWalker,
@@ -48,10 +48,9 @@ import type { InstanceSlot } from '../src/sim/sim';
 import { Sim } from '../src/sim/sim';
 import { DT, dist2d, type Entity, type SimEvent } from '../src/sim/types';
 
-type DungeonKey = 'hollow_crypt' | 'sunken_bastion' | 'drowned_temple';
+type DungeonKey = 'sunken_bastion' | 'drowned_temple';
 
 const BENCH: Record<DungeonKey, { dev: string; dx: number; dz: number }> = {
-  hollow_crypt: { dev: 'crypt', dx: 20, dz: -10 },
   sunken_bastion: { dev: 'bastion', dx: -10, dz: -200 },
   drowned_temple: { dev: 'temple', dx: 0, dz: -12 },
 };
@@ -164,94 +163,6 @@ function aura(e: Entity, id: string) {
 }
 
 // ---------------------------------------------------------------- the adept
-
-describe('Gravecaller Adept: Gravespark Volley (G6 nova)', () => {
-  const kit = MOBS.crypt_gravecaller_adept.trashKit;
-  const nova = kit?.nova;
-
-  it('is a kickable shadow volley; the Grave Bolt is heroic only', () => {
-    expect(nova?.castId).toBe(CRYPT_GRAVESPARK_VOLLEY);
-    expect(nova?.name).toBe('Gravespark Volley');
-    expect(nova?.castTime).toBe(3);
-    expect(nova?.radius).toBe(30);
-    expect([nova?.min, nova?.max]).toEqual([12, 16]);
-    expect(nova?.unstoppableCastId).toBeUndefined();
-    expect(SCRIPTED_INTERRUPTIBLE_CHANNELS[CRYPT_GRAVESPARK_VOLLEY]?.school).toBe('shadow');
-    expect(kit?.bolt?.heroicOnly).toBe(true);
-  });
-
-  it('normal: only the volley, striking everyone who can see it, never behind a wall', () => {
-    const r = room('hollow_crypt');
-    const adept = engage(r, 'crypt_gravecaller_adept', 0, 12);
-    wall(r, 0, 6);
-    expect(r.sim.ctx.hasLineOfSight(adept, r.me)).toBe(false);
-    // The cloister's own pillars stand round the bench: seat the second
-    // player on the first spot the adept can see past the slab.
-    const seen = addPlayer(r, 'mage', 8, 0);
-    const spots = [
-      [8, 0],
-      [-8, 0],
-      [6, 3],
-      [-6, 3],
-      [9, 6],
-      [-9, 6],
-      [5, -4],
-      [-5, -4],
-    ];
-    const clear = spots.find(([dx, dz]) => {
-      seen.pos = r.sim.ctx.groundPos(r.me.pos.x + dx, r.me.pos.z + dz);
-      seen.prevPos = { ...seen.pos };
-      return r.sim.ctx.hasLineOfSight(adept, seen);
-    });
-    expect(clear).toBeDefined();
-    runUntilCast(r, adept, CRYPT_GRAVESPARK_VOLLEY, [adept]);
-    run(r, nova!.castTime + DT, [adept]);
-    const hits = dealt(r, seen.id, 'Gravespark Volley');
-    expect(hits).toHaveLength(1);
-    expect(hits[0]).toBeGreaterThanOrEqual(12);
-    expect(hits[0]).toBeLessThanOrEqual(16);
-    expect(dealt(r, r.me.id, 'Gravespark Volley')).toEqual([]);
-    // A long normal pull never starts a Grave Bolt.
-    run(r, 40, [adept]);
-    const casts = r.events.filter(
-      (e) => e.type === 'spellfx' && e.sourceId === adept.id && e.ability === CRYPT_GRAVE_BOLT,
-    );
-    expect(casts).toEqual([]);
-    expect(dealt(r, r.me.id, 'Grave Bolt')).toEqual([]);
-    expect(dealt(r, seen.id, 'Grave Bolt')).toEqual([]);
-  });
-
-  it('a kick spares everyone', () => {
-    const r = room('hollow_crypt');
-    const adept = engage(r, 'crypt_gravecaller_adept', 0, 12);
-    const seen = addPlayer(r, 'mage', 8, 0);
-    runUntilCast(r, adept, CRYPT_GRAVESPARK_VOLLEY, [adept]);
-    r.sim.ctx.cancelCast(adept);
-    run(r, nova!.castTime + DT, [adept]);
-    expect(dealt(r, seen.id, 'Gravespark Volley')).toEqual([]);
-    expect(dealt(r, r.me.id, 'Gravespark Volley')).toEqual([]);
-  });
-
-  it('heroic: both casts, the volley on the adept x24 (288 to 384)', () => {
-    const r = room('hollow_crypt', 'heroic');
-    const adept = engage(r, 'crypt_gravecaller_adept', 0, 12);
-    expect(adept.mechanicDamageMult).toBe(24);
-    const seen = addPlayer(r, 'mage', 8, 0);
-    run(r, 40, [adept]);
-    const volley = dealt(r, seen.id, 'Gravespark Volley').concat(
-      dealt(r, r.me.id, 'Gravespark Volley'),
-    );
-    expect(volley.length).toBeGreaterThan(0);
-    for (const v of volley) {
-      expect(v).toBeGreaterThanOrEqual(288);
-      expect(v).toBeLessThanOrEqual(384);
-    }
-    const bolts = dealt(r, seen.id, 'Grave Bolt').concat(dealt(r, r.me.id, 'Grave Bolt'));
-    expect(bolts.length).toBeGreaterThan(0);
-  });
-});
-
-// ------------------------------------------------------------- the revenant
 
 describe('Bastion Revenant: Throatlight (G5 walker on death)', () => {
   const def = MOBS.bastion_revenant.trashKit?.walker;
@@ -723,39 +634,6 @@ const HEROIC_CLOTH = 1250;
 const HEROIC_CAP = 0.6 * HEROIC_CLOTH;
 
 describe('the balance audit: heroic avoidables never one-shot a cloth wearer', () => {
-  it('the Grave Rupture rides the necromancer x12, burst and pool together under the cap', () => {
-    const r = room('hollow_crypt', 'heroic');
-    const necro = engage(r, 'crypt_gravecaller_necromancer', 0, 8);
-    expect(necro.mechanicDamageMult).toBe(12);
-    // Its melee is priced apart (the heroic pack budget scaled its old x24
-    // floor lift to x10.8); the rupture keeps its own x12.
-    const crypt = HEROIC_DUNGEON_TUNING.hollow_crypt;
-    expect(crypt.damageMultiplierByMob?.crypt_gravecaller_necromancer).toBe(10.8);
-    // The wing bosses' own mechanic factors sit beside it (crypt bosses), with
-    // the trash kits the pack budget held at their pre-budget factors.
-    expect(crypt.mechanicDamageMultiplierByMob).toEqual({
-      crypt_ossuary_warrior: 20,
-      crypt_gravecaller_adept: 24,
-      crypt_chapel_gargoyle: 20,
-      crypt_ossuary_cutthroat: 23,
-      crypt_ossuary_drake: 20,
-      bonechill_widow: 20,
-      crypt_crow_caller: 24,
-      crypt_carrion_crow: 66,
-      crypt_gravecaller_necromancer: 12,
-      sexton_marrow: 6,
-      rimeweb: 5,
-      cantor_ilvane: 8,
-      morthen: 9,
-    });
-    const def = MOBS.crypt_gravecaller_necromancer.trashKit?.rupture;
-    if (!def) throw new Error('rupture');
-    const burst = def.max * 12;
-    const pool = def.pool.max * 12 * (def.pool.seconds / def.pool.tick);
-    expect([def.min * 12, burst]).toEqual([264, 360]);
-    expect(burst + pool).toBeLessThanOrEqual(HEROIC_CAP);
-  });
-
   it('the Brine Column rides the acolyte x8: 72 to 104 a beat, four beats', () => {
     const r = room('sunken_bastion', 'heroic');
     const aco = engage(r, 'tidebound_acolyte', 10, 0);
@@ -789,11 +667,9 @@ describe('the balance audit: heroic avoidables never one-shot a cloth wearer', (
   });
 
   it('every second-wave damage mechanic stays under the cap at its heroic factor', () => {
-    const volley = MOBS.crypt_gravecaller_adept.trashKit?.nova;
     const order = MOBS.drowned_sergeant.trashKit?.bastion?.order;
     const throat = MOBS.bastion_revenant.trashKit?.walker;
-    if (!volley || !order || !throat) throw new Error('wave 2');
-    expect(volley.max * 24).toBeLessThanOrEqual(HEROIC_CAP);
+    if (!order || !throat) throw new Error('wave 2');
     // Three arbalests in the r1 tower, each on its own x8.
     expect(order.max * 8 * 3).toBeLessThanOrEqual(HEROIC_CAP);
     expect(throat.intercept.max * 18).toBeLessThanOrEqual(HEROIC_CAP);

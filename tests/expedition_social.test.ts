@@ -13,14 +13,14 @@ function setup() {
   });
   const add = (name: string) => {
     const pid = sim.addPlayer('warrior', name);
-    sim.setPlayerLevel(8, pid);
+    sim.setPlayerLevel(12, pid);
     sim.setSpec(TALENTS.warrior.specs.find((s) => s.role === 'dps')!.id, pid);
     sim.dungeonFinderSetRoles(['dps'], pid);
     return pid;
   };
   const leader = add('Leader');
   const helper = add('Helper');
-  sim.enterDungeon('hollow_crypt', leader);
+  sim.enterDungeon('sunken_bastion', leader);
   sim.dungeonFinderExpeditionOpen(leader);
   const listing = sim.dungeonFinderBoardView()[0];
   return { sim, leader, helper, listing };

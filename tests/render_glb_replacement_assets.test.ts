@@ -42,7 +42,6 @@ import { gatherNodePreloadInternalsForTest } from '../src/render/gather_nodes';
 import { gliderCourseVisualPreloadInternalsForTest } from '../src/render/glider_course_visual';
 import { harborRouteMarkerInternalsForTest } from '../src/render/harbor_route_markers';
 import { hoardEntrancePreloadInternalsForTest } from '../src/render/hoard_entrance';
-import { hollowCryptEntrancePreloadInternalsForTest } from '../src/render/hollow_crypt_entrance';
 import { ignivarEnvPropsInternalsForTest } from '../src/render/ignivar_env_props';
 import { mailboxPreloadInternalsForTest } from '../src/render/mailbox';
 import { mirefenTavernInternalsForTest } from '../src/render/mirefen_tavern';
@@ -515,10 +514,7 @@ describe('GLB-replacement asset preload sets resolve to real, manifested files',
     for (const url of sunkenBastionEntrancePreloadInternalsForTest.urls)
       expectAssetExistsAndManifested(url);
   });
-  it('Hollow Crypt Fallen Chapel assets', () => {
-    for (const url of hollowCryptEntrancePreloadInternalsForTest.urls)
-      expectAssetExistsAndManifested(url);
-  });
+  // The Hollow Crypt Fallen Chapel entrance was retired with the dungeon (2026-11-11).
   it('Drowned Temple Moon Stair assets', () => {
     for (const url of drownedTempleEntrancePreloadInternalsForTest.urls)
       expectAssetExistsAndManifested(url);

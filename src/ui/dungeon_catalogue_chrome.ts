@@ -23,11 +23,10 @@ export function adventureName(row: Pick<FinderActivityRowView, 'kind' | 'dungeon
 
 /** Decorative art only; the copy and encounter portraits carry the accessible names. */
 export function catalogueHeroArtHtml(detail: FinderActivityDetailView): string {
-  const panoramic = detail.dungeonId === 'hollow_crypt';
   const encounter = detail.encounters.find((entry) => entry.final) ?? detail.encounters.at(-1);
-  const url = panoramic ? '/textures/loading/hollow-crypt-empty.webp' : encounter?.portraitUrl;
+  const url = encounter?.portraitUrl;
   return url
-    ? `<img class="df-guide-hero-art${panoramic ? '' : ' df-guide-hero-portrait'}" src="${esc(url)}" alt="" decoding="async" draggable="false">`
+    ? `<img class="df-guide-hero-art df-guide-hero-portrait" src="${esc(url)}" alt="" decoding="async" draggable="false">`
     : '';
 }
 

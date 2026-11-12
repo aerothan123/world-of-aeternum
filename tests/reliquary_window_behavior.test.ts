@@ -78,7 +78,7 @@ vi.mock('../src/ui/icons', async (importOriginal) => ({
 // The page every grid test drives: item relics, a dungeon clear source, and a boss
 // hint on every relic, so its missing cells exercise the two-part "bossDungeon"
 // source arm rather than the degenerate one. Sizes are read off the live page.
-const PAGE_ID = 'conquerors_hollow_crypt';
+const PAGE_ID = 'conquerors_sunken_bastion';
 // The Horizons mounts page: eight mounts name every door that awards their
 // reins and two remain content gaps, so it is the page that exercises BOTH the
 // hinted and the un-hinted arm at once.
@@ -753,7 +753,7 @@ describe('ReliquaryWindow: refreshIfChanged elision and per-dimension repaint', 
       state.clears.set(PAGE_ID, (state.clears.get(PAGE_ID) ?? 0) + 1);
     });
     expectDimension(rig, 'recent find ring', () => {
-      state.recent.push('cryptbone_helm');
+      state.recent.push('tideguard_greaves');
     });
     expectDimension(rig, 'marks', () => {
       state.marks.add('masterwork:blacksmithing');
@@ -1423,7 +1423,7 @@ describe('ReliquaryWindow: search filtering', () => {
   it('narrows the shelf list on a needle that lives only in a page BLURB', () => {
     const rig = makeWindow(baseState(), { nav: 'conquerors' });
     const all = pageIds(rig.el);
-    const needle = 'morthen';
+    const needle = 'ossick';
     // Premises, so content drift fails loudly rather than making this vacuous:
     // the needle must be absent from the NAME and present in the DESC, which is
     // what makes the row's survival proof that the blurb is searchable.
@@ -1447,7 +1447,7 @@ describe('ReliquaryWindow: search filtering', () => {
   it('narrows an open page grid to the relics whose localized names match', () => {
     const rig = openPage(baseState());
     const ids = relicIds(PAGE_ID);
-    const needle = 'cryptbone';
+    const needle = 'tideguard';
     const expected = ids.filter((id) =>
       reliquaryRelicDisplayName('item', id).toLocaleLowerCase(TAG).includes(needle),
     );
@@ -1471,11 +1471,11 @@ describe('ReliquaryWindow: search filtering', () => {
   it('carries the caret across the rebuild so typing mid-word does not jump', () => {
     const rig = makeWindow(baseState(), { nav: 'conquerors' });
     const before = searchField(rig.el);
-    typeSearch(rig.el, 'hollow crypt', [2, 5]);
+    typeSearch(rig.el, 'sunken bastion', [2, 5]);
     const fresh = searchField(rig.el);
     expect(fresh).not.toBe(before);
     expect(document.activeElement).toBe(fresh);
-    expect(fresh.value).toBe('hollow crypt');
+    expect(fresh.value).toBe('sunken bastion');
     // Both ends, not just the start: a rebuild that dropped the range would
     // land the caret at 0 or at the end of the value, never at 2..5.
     expect([fresh.selectionStart, fresh.selectionEnd]).toEqual([2, 5]);
@@ -1484,7 +1484,7 @@ describe('ReliquaryWindow: search filtering', () => {
   it('announces the surviving count only while a narrowing control is engaged', () => {
     const rig = makeWindow(baseState(), { nav: 'conquerors' });
     expect(liveRegion(rig.el)?.textContent).toBe('');
-    typeSearch(rig.el, 'morthen');
+    typeSearch(rig.el, 'ossick');
     const count = pageIds(rig.el).length;
     expect(count).toBeGreaterThan(0);
     expect(liveRegion(rig.el)?.textContent).toBe(
@@ -1511,7 +1511,7 @@ describe('ReliquaryWindow: search filtering', () => {
     expect(before, 'the region exists from the first paint').toBeTruthy();
 
     const markup = captureRawMarkup(rig.el, () => {
-      typeSearch(rig.el, 'morthen');
+      typeSearch(rig.el, 'ossick');
     });
     const raw = markup.at(-1) ?? '';
     expect(raw, 'the painter rebuilds the whole subtree on a keystroke').not.toBe('');
@@ -1530,12 +1530,12 @@ describe('ReliquaryWindow: search filtering', () => {
 
   it('re-announces an identical count so a second keystroke is not silent', () => {
     const rig = makeWindow(baseState(), { nav: 'conquerors' });
-    typeSearch(rig.el, 'morthen');
+    typeSearch(rig.el, 'ossick');
     const first = liveRegion(rig.el)?.textContent ?? '';
     expect(first).not.toBe('');
     // A needle that narrows to the SAME count would otherwise leave textContent
     // byte-identical, and an unchanged live region is silent on a screen reader.
-    typeSearch(rig.el, 'morthen ');
+    typeSearch(rig.el, 'ossick ');
     const second = liveRegion(rig.el)?.textContent ?? '';
     expect(second).not.toBe(first);
     // The marker is invisible: it must not change how the line READS.
@@ -1609,7 +1609,7 @@ describe('ReliquaryWindow: search filtering', () => {
     // proven by node identity so elision cannot satisfy this vacuously; the
     // player-driven re-mark is the previous test.
     const settled = rig.el.firstElementChild;
-    state.itemsDiscovered.add(relicIds('conquerors_sunken_bastion')[0] ?? '');
+    state.itemsDiscovered.add(relicIds('conquerors_drowned_temple')[0] ?? '');
     rig.w.refreshIfChanged();
     expect(rig.el.firstElementChild, 'the world change must really repaint').not.toBe(settled);
     expect(liveRegion(rig.el)?.textContent).toBe(announced);
@@ -1639,8 +1639,8 @@ describe('ReliquaryWindow: search filtering', () => {
     state.itemsDiscovered.add(relicIds(PAGE_ID)[0] ?? '');
     const rig = openPage(state);
     click(rig.el, '[data-filter="missing"]');
-    typeSearch(rig.el, 'cryptbone');
-    expect(searchField(rig.el).value).toBe('cryptbone');
+    typeSearch(rig.el, 'tideguard');
+    expect(searchField(rig.el).value).toBe('tideguard');
 
     rig.w.close();
     rig.w.open();
@@ -1685,7 +1685,7 @@ describe('ReliquaryWindow: search filtering', () => {
 
   it('keeps a shelf row alive on a relic-name match its page text cannot claim', () => {
     const rig = makeWindow(baseState(), { nav: 'conquerors' });
-    const needle = 'cryptbone';
+    const needle = 'tideguard';
     // Premise: no conquerors page can claim the needle with its own text, so
     // the row below can only survive through the deep relic match.
     for (const id of pageIds(rig.el)) {
@@ -1695,12 +1695,12 @@ describe('ReliquaryWindow: search filtering', () => {
       ).not.toContain(needle);
     }
     typeSearch(rig.el, needle);
-    expect(pageIds(rig.el)).toContain('conquerors_hollow_crypt');
+    expect(pageIds(rig.el)).toContain('conquerors_sunken_bastion');
   });
 
   it('forgets the reannounce marker when the region clears, so a re-narrowing reads clean', () => {
     const rig = makeWindow(baseState(), { nav: 'conquerors' });
-    typeSearch(rig.el, 'morthen');
+    typeSearch(rig.el, 'ossick');
     const first = liveRegion(rig.el)?.textContent ?? '';
     expect(first).not.toBe('');
     // The clear branch must both empty the region and forget the marker.
@@ -1709,7 +1709,7 @@ describe('ReliquaryWindow: search filtering', () => {
     // Re-narrowing to the same count must read as the CLEAN line: a marker
     // that survived the clear would come back with a stray trailing U+00A0,
     // which exact equality with the unmarked tPlural output catches.
-    typeSearch(rig.el, 'morthen');
+    typeSearch(rig.el, 'ossick');
     const count = pageIds(rig.el).length;
     expect(liveRegion(rig.el)?.textContent).toBe(
       tPlural('hudChrome.plurals.reliquarySearchResults', count, { count: fmt(count) }),
@@ -1837,7 +1837,7 @@ describe('ReliquaryWindow: search filtering', () => {
 
     // The silent open still latched the text: a world-driven repaint with the
     // grid's count unchanged stays silent too.
-    state.itemsDiscovered.add(relicIds('conquerors_sunken_bastion')[0] ?? '');
+    state.itemsDiscovered.add(relicIds('conquerors_drowned_temple')[0] ?? '');
     rig.w.refreshIfChanged();
     expect(liveRegion(rig.el)?.textContent).toBe('');
 
@@ -2280,10 +2280,10 @@ describe('ReliquaryWindow: the recent-find strip jumps to the relic', () => {
     for (const id of ids.slice(0, -1)) state.itemsDiscovered.add(id);
     state.recent.push(ids[0] ?? '');
     const rig = makeWindow(state, { nav: 'overview' });
-    // 'morthen' lives only in the page BLURB (the premise the shelf-list test
+    // 'ossick' lives only in the page BLURB (the premise the shelf-list test
     // pins), so it keeps the nearly row and empties the recent strip: exactly
     // one strip goes empty under a live needle.
-    const needle = 'morthen';
+    const needle = 'ossick';
     expect(
       reliquaryRelicDisplayName('item', ids[0] ?? '').toLocaleLowerCase(TAG),
       'content premise: the ring find does not match the needle',
@@ -2661,7 +2661,7 @@ describe('ReliquaryWindow: the Illumination celebration', () => {
 
   it('never celebrates a page other than the one that filled', () => {
     const state = baseState();
-    const other = 'conquerors_sunken_bastion';
+    const other = 'conquerors_drowned_temple';
     const rig = openPage(state, other);
     expect(other).not.toBe(PAGE_ID);
     for (const id of relicIds(PAGE_ID)) state.itemsDiscovered.add(id);
@@ -3287,12 +3287,24 @@ describe('ReliquaryWindow: the outside-completion chips', () => {
     // selector reach (class + hook on one element); the bare-attribute count
     // beside it keeps a STRAY hook without the badge class from hiding on
     // the flagged page (the two counts must always agree).
+    // The shelf lists three retired rows: the vault and the two Hollow Crypt
+    // pages that joined it when the dungeon retired (2026-11-11).
+    const retiredRows = RELIQUARY_PAGES.filter(
+      (p) => p.shelf === 'horizons' && p.excludeFromCompletion === 'retired',
+    ).length;
+    expect(retiredRows).toBe(3);
     const rowChips = [
       ...rig.el.querySelectorAll<HTMLElement>('.reliquary-complete-badge[data-retired]'),
     ];
-    expect(rowChips).toHaveLength(1);
-    expect(rig.el.querySelectorAll('[data-retired]')).toHaveLength(1);
-    expect(rowChips[0]?.textContent).toBe(t('hudChrome.reliquary.retiredLabel'));
+    expect(rowChips).toHaveLength(retiredRows);
+    expect(rig.el.querySelectorAll('[data-retired]')).toHaveLength(retiredRows);
+    for (const chip of rowChips) {
+      expect(chip.textContent).toBe(t('hudChrome.reliquary.retiredLabel'));
+    }
+    expect(
+      must(rig.el, `[data-page="${VAULT_PAGE_ID}"]`).querySelector('[data-retired]'),
+      'the vault row wears its own chip',
+    ).not.toBeNull();
     // Then the page header, on the same live window (bare count mirrored so
     // a stray hook cannot hide on this surface either).
     click(rig.el, `[data-page="${VAULT_PAGE_ID}"]`);
@@ -3378,7 +3390,7 @@ describe('population rarity', () => {
   const rarityPercent = (fraction: number): string =>
     formatNumber(fraction, { style: 'percent', maximumFractionDigits: 1 });
 
-  /** Rarity for the Hollow Crypt page: relic 0 found by 3 of 200, the page
+  /** Rarity for the Sunken Bastion page: relic 0 found by 3 of 200, the page
    *  illuminated by 5 of 200; every OTHER id is deliberately absent (the
    *  zero-found endpoint contract) so sibling cells prove the per-id gate. */
   function seededState(): { state: WorldState; relicId: string } {

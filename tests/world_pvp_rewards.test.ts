@@ -84,7 +84,7 @@ describe('World PvP rewards', () => {
     sim.setWorldPvpFlag(true, pid);
     meta.worldPvp!.rewardTicks = 3600 * TICK_RATE - 1;
     expect(worldPvpInfoFor(sim.ctx, pid)!.rewardPause).toBeNull();
-    expect(sim.enterDungeon('hollow_crypt', pid)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', pid)).toBe(true);
     expect(sim.entities.get(pid)!.pos.x).toBeGreaterThan(DUNGEON_X_THRESHOLD);
     for (let tick = 0; tick < 5 * TICK_RATE; tick++) sim.tick();
     expect(meta.worldPvp!.flagged).toBe(true);

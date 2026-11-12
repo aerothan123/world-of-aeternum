@@ -307,14 +307,6 @@ export const DEEDS: Record<string, DeedDef> = {
     trigger: { kind: 'stat', stat: 'deaths', count: 1 },
   },
 
-  dgn_hollow_crypt: {
-    id: 'dgn_hollow_crypt',
-    name: 'Cryptbreaker',
-    desc: 'Defeat Morthen the Gravecaller in the Hollow Crypt.',
-    category: 'dungeon',
-    renown: 5,
-    trigger: { kind: 'dungeonClears', dungeonId: 'hollow_crypt', count: 1 },
-  },
   dgn_sunken_bastion: {
     id: 'dgn_sunken_bastion',
     name: 'Fogbinder Unbound',
@@ -338,14 +330,6 @@ export const DEEDS: Record<string, DeedDef> = {
     category: 'dungeon',
     renown: 10,
     trigger: { kind: 'dungeonClears', dungeonId: 'gravewyrm_sanctum', count: 1 },
-  },
-  dgn_hollow_crypt_heroic: {
-    id: 'dgn_hollow_crypt_heroic',
-    name: 'Heroic: The Hollow Crypt',
-    desc: 'Defeat Morthen the Gravecaller in the Hollow Crypt on Heroic difficulty.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'dungeonClears', dungeonId: 'hollow_crypt', difficulty: 'heroic', count: 1 },
   },
   dgn_sunken_bastion_heroic: {
     id: 'dgn_sunken_bastion_heroic',
@@ -400,17 +384,12 @@ export const DEEDS: Record<string, DeedDef> = {
   dgn_thornpeak_rounds: {
     id: 'dgn_thornpeak_rounds',
     name: 'Making the Rounds',
-    desc: 'Clear the Hollow Crypt, the Sunken Bastion, the Drowned Temple, and Gravewyrm Sanctum.',
+    desc: 'Clear the Sunken Bastion, the Drowned Temple, and Gravewyrm Sanctum.',
     category: 'dungeon',
     renown: 10,
     trigger: {
       kind: 'meta',
-      deedIds: [
-        'dgn_hollow_crypt',
-        'dgn_sunken_bastion',
-        'dgn_drowned_temple',
-        'dgn_gravewyrm_sanctum',
-      ],
+      deedIds: ['dgn_sunken_bastion', 'dgn_drowned_temple', 'dgn_gravewyrm_sanctum'],
     },
   },
   dgn_deepward: {
@@ -422,7 +401,6 @@ export const DEEDS: Record<string, DeedDef> = {
     trigger: {
       kind: 'meta',
       deedIds: [
-        'dgn_hollow_crypt_heroic',
         'dgn_sunken_bastion_heroic',
         'dgn_drowned_temple_heroic',
         'dgn_gravewyrm_sanctum_heroic',
@@ -448,22 +426,6 @@ export const DEEDS: Record<string, DeedDef> = {
     category: 'dungeon',
     renown: 10,
     trigger: { kind: 'stat', stat: 'dungeonFinalBossKills', count: 50 },
-  },
-  dgn_morthen_flawless: {
-    id: 'dgn_morthen_flawless',
-    name: 'No Bones About It',
-    desc: 'Defeat Morthen the Gravecaller on Heroic difficulty without any party member dying.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
-  },
-  dgn_morthen_trio: {
-    id: 'dgn_morthen_trio',
-    name: 'Three Against the Grave',
-    desc: 'Defeat Morthen the Gravecaller with three or fewer players.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
   },
   dgn_olen_arc: {
     id: 'dgn_olen_arc',
@@ -707,28 +669,21 @@ export const DEEDS: Record<string, DeedDef> = {
     trigger: {
       kind: 'meta',
       deedIds: ['chr_vale_packbreaker', 'dlv_reliquary'],
-      questIds: ['q_murlocs', 'q_supplies', 'q_bandits', 'q_ringleader', 'q_mine', 'q_bones'],
+      questIds: ['q_murlocs', 'q_supplies', 'q_bandits', 'q_ringleader', 'q_mine'],
     },
   },
   chr_vale_chapter_iii: {
     id: 'chr_vale_chapter_iii',
     name: 'Chronicle of the Vale',
-    desc: "See the Vale's whole story through: the Gravecaller unmasked, the Hollow Crypt cleansed, and every named terror of the Vale laid low.",
+    desc: "See the Vale's whole story through: the restless dead silenced, and every named terror of the Vale laid low.",
     category: 'chronicle',
     renown: 25,
     trigger: {
       kind: 'meta',
-      deedIds: ['chr_vale_chapter_i', 'chr_vale_chapter_ii', 'chr_vale_rares', 'dgn_hollow_crypt'],
-      questIds: [
-        'q_whispers',
-        'q_names_of_the_dead',
-        'q_silence_the_call',
-        'q_rite',
-        'q_sexton',
-        'q_hollow',
-        'q_gravecallers_trail',
-        'q_mogger',
-      ],
+      // The Hollow Crypt deed and its quest chain were retired with the
+      // dungeon (2026-11-11, owner ruling over the no-retro-edit rule).
+      deedIds: ['chr_vale_chapter_i', 'chr_vale_chapter_ii', 'chr_vale_rares'],
+      questIds: ['q_silence_the_call', 'q_mogger'],
     },
     reward: { kind: 'title', text: 'of the Vale' },
   },
@@ -3788,18 +3743,6 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'manual' },
   },
-  // The Hollow Crypt's fourth pass: the Knellwyrm finale Morthen's dying rite
-  // summons (src/sim/encounters/hollow_crypt/knellwyrm.ts), granted to every
-  // player in the claim at the kill. Cosmetic only; appended at the END per
-  // the append-only contract. Generic English idiom, checked 2026-09-30.
-  dgn_crypt_knellwyrm: {
-    id: 'dgn_crypt_knellwyrm',
-    name: 'Not a Hair Singed',
-    desc: 'Defeat the Knellwyrm without anyone being burned by its Pyre Strafe.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
-  },
   // The Sunken Bastion's fifth pass: the Gaol Turnkey, the gaol's miniboss
   // (src/sim/encounters/sunken_bastion/turnkey.ts), granted to every player in
   // the claim at the kill. Cosmetic only; appended at the END per the
@@ -3911,43 +3854,6 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'manual' },
     reward: { kind: 'title', text: 'Witness of the Choir' },
-  },
-  // The Hollow Crypt's wing bosses (src/sim/encounters/hollow_crypt: marrow.ts,
-  // lady.ts, ilvane.ts), granted to everyone in the claim at the kill.
-  // Cosmetic only; appended at the END per the append-only contract.
-  dgn_marrow_tidy: {
-    id: 'dgn_marrow_tidy',
-    name: 'A Tidy Churchyard',
-    desc: 'Defeat Sexton Marrow with every Open Grave laid at the edge of the Bell Yard.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
-  },
-  dgn_lady_nobody_hanging: {
-    id: 'dgn_lady_nobody_hanging',
-    name: 'Nobody Left Hanging',
-    desc: 'Defeat the Lady of the Bonechill without her ever dropping anyone from her Frozen Embrace.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
-  },
-  dgn_ilvane_hush: {
-    id: 'dgn_ilvane_hush',
-    name: 'Hush Now',
-    desc: 'Defeat Cantor Ilvane without her Dirge of the Hollow ever striking anyone.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
-  },
-  // Morthen the Gravecaller's Rite (encounters/hollow_crypt/morthen.ts), granted
-  // to everyone in the claim at the kill. Cosmetic only; appended at the END.
-  dgn_morthen_candlelight: {
-    id: 'dgn_morthen_candlelight',
-    name: 'Every Candle Lit',
-    desc: 'Defeat Morthen the Gravecaller after relighting all four Remembrance Candles within 20 seconds of his Unquiet Ward rising.',
-    category: 'dungeon',
-    renown: 10,
-    trigger: { kind: 'manual' },
   },
   // Lantern Hall, the Highwatch adventurers' guild (src/sim/guild_contracts.ts and
   // src/sim/guild_quartermaster.ts), appended at the END. The three contract milestones are

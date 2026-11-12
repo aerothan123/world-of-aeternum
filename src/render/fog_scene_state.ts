@@ -16,8 +16,6 @@ import { applyIgnivarRaidFog, ignivarRaidFogStateForInterior } from './ignivar_r
 import type { FogSceneState } from './interior_light_rig';
 import { BASIN_FOG_COLOR } from './wildheart_basin/basin_plan_core';
 
-/** The Hollow Crypt's night fog colour (its sky dome fades to it at the horizon). */
-export const HOLLOW_CRYPT_FOG_COLOR = 0x1c2238;
 /** The Sunken Bastion's storm-tide sea fog (its sky dome fades to it at the horizon). */
 export const SUNKEN_BASTION_FOG_COLOR = 0x4d5a57;
 /** The Drowned Temple's violet night haze (its sky dome fades to it at the horizon). */
@@ -63,9 +61,6 @@ export function resolveFogScene(
   // The Wildheart Basin: an open-air jungle caldera on a humid gold
   // afternoon, under its OWN sky (the world dome hides inside it).
   const inWildheartBasin = interior === 'wildheart';
-  // The Hollow Crypt is open-air too, but at night under its OWN sky: the
-  // world dome hides and the interior group carries the moonlit sky.
-  const inHollowCrypt = interior === 'hollow_crypt';
   // The Sunken Bastion: open-air at storm-tide dusk under its own sky.
   const inSunkenBastion = interior === 'sunken_bastion';
   // The Drowned Temple: open-air at night over its lagoon, under its own sky.
@@ -89,23 +84,21 @@ export function resolveFogScene(
               ? ignivarRaidFogState
               : inWildheartBasin
                 ? 'wildheartBasin'
-                : inHollowCrypt
-                  ? 'hollowCrypt'
-                  : inSunkenBastion
-                    ? 'sunkenBastion'
-                    : inDrownedTemple
-                      ? 'drownedTemple'
-                      : inGravewyrmSanctum
-                        ? 'gravewyrmSanctum'
-                        : inLastKeep
-                          ? 'lastkeep'
-                          : inDawnhold
-                            ? 'dawnhold'
-                            : inside
-                              ? 'dungeon'
-                              : camY < waterLevelAt(cam.x, cam.z, seed) - 0.05
-                                ? 'underwater'
-                                : 'outdoor';
+                : inSunkenBastion
+                  ? 'sunkenBastion'
+                  : inDrownedTemple
+                    ? 'drownedTemple'
+                    : inGravewyrmSanctum
+                      ? 'gravewyrmSanctum'
+                      : inLastKeep
+                        ? 'lastkeep'
+                        : inDawnhold
+                          ? 'dawnhold'
+                          : inside
+                            ? 'dungeon'
+                            : camY < waterLevelAt(cam.x, cam.z, seed) - 0.05
+                              ? 'underwater'
+                              : 'outdoor';
   return { interior, desired };
 }
 
@@ -149,13 +142,6 @@ export function applyFogScenePreset(
     fog.color.setHex(WILDHEART_BASIN_FOG_COLOR);
     fog.near = 150;
     fog.far = 1050;
-  } else if (desired === 'hollowCrypt') {
-    // Night air over the grave-mist: a deep blue-violet veil pushed far back
-    // so the whole necropolis and the ritual column read from the landing,
-    // while the far crag settles into silhouette against the sky.
-    fog.color.setHex(HOLLOW_CRYPT_FOG_COLOR);
-    fog.near = 70;
-    fog.far = 460;
   } else if (desired === 'sunkenBastion') {
     // Storm-tide sea fog: grey-green and heavy low over the water, pushed back
     // far enough that the whole headland climbs out of it from the landing and

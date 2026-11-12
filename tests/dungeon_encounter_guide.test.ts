@@ -54,11 +54,11 @@ describe('catalogue encounter guide', () => {
   });
 
   it('uses the reworked dungeon journal and its difficulty-specific mechanics', () => {
-    const normal = markup('sexton_marrow');
-    const heroic = markup('sexton_marrow', [], 'heroic');
-    expect(normal.textContent).toContain('Shovelful');
-    expect(normal.textContent).not.toContain("Gravedigger's Blow");
-    expect(heroic.textContent).toContain("Gravedigger's Blow");
+    const normal = markup('tideglass_colossus');
+    const heroic = markup('tideglass_colossus', [], 'heroic');
+    expect(normal.textContent).toContain('Prism Ward');
+    expect(normal.textContent).not.toContain('Shattering Glass');
+    expect(heroic.textContent).toContain('Shattering Glass');
     expect(heroic.textContent).not.toMatch(/bossJournal\.|\{[a-zA-Z]+\}/);
   });
 

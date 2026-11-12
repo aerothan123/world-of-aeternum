@@ -245,17 +245,6 @@ export const QUEST_LETTERS: Record<string, LetterDef> = {
     items: [{ itemId: 'roasted_boar', count: 2 }],
     delaySeconds: 120,
   },
-  q_hollow: {
-    letterId: 'letter_q_hollow',
-    senderName: 'Brother Aldric',
-    subject: 'What you did in the dark',
-    body:
-      'Few will ever know what was buried in that hollow, and fewer still ' +
-      'would believe it. I know, and I will not forget.\n\n' +
-      'May your road stay lit.\n- Brother Aldric',
-    copper: 250,
-    delaySeconds: 150,
-  },
 };
 
 // Guild trend letters (Professions 2.0): when an unattuned character's

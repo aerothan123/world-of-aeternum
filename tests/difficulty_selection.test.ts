@@ -18,8 +18,8 @@ function setup() {
   const member = sim.addPlayer('priest', 'Member');
   sim.partyInvite(member, leader);
   sim.partyAccept(member);
-  expect(sim.enterDungeon('hollow_crypt', member)).toBe(true);
-  const inst = sim.instances.find((i) => i.partyKey !== null && i.dungeonId === 'hollow_crypt')!;
+  expect(sim.enterDungeon('sunken_bastion', member)).toBe(true);
+  const inst = sim.instances.find((i) => i.partyKey !== null && i.dungeonId === 'sunken_bastion')!;
   sim.drainEvents();
   return { sim, leader, member, inst };
 }
@@ -188,7 +188,7 @@ describe('difficulty selection through the live Sim', () => {
   it('reports a target-tier lockout without claiming success', () => {
     const { sim, leader, member, inst } = setup();
     sim.leaveDungeon(member);
-    sim.players.get(leader)!.raidLockouts.set('hollow_crypt:heroic', Number.MAX_SAFE_INTEGER);
+    sim.players.get(leader)!.raidLockouts.set('sunken_bastion:heroic', Number.MAX_SAFE_INTEGER);
     sim.drainEvents();
     sim.setDungeonDifficulty('heroic', leader);
     expect(inst.difficulty).toBe('normal');
@@ -197,7 +197,7 @@ describe('difficulty selection through the live Sim', () => {
         .drainEvents()
         .filter((e) => e.type === 'error')
         .map((e) => e.text),
-    ).toEqual(['You are locked to Heroic The Hollow Crypt.']);
+    ).toEqual(['You are locked to Heroic The Sunken Bastion.']);
   });
   it('switches raid difficulty back immediately, preserving the raid cooldown exemption', () => {
     const { sim, leader, member, inst: dungeon } = setup();
@@ -321,7 +321,7 @@ describe('difficulty selection through the live Sim', () => {
   });
   it('retains the queued request through a target lockout and applies after expiry', () => {
     const { sim, leader, member, inst } = setup();
-    sim.players.get(leader)!.raidLockouts.set('hollow_crypt:heroic', Number.MAX_SAFE_INTEGER);
+    sim.players.get(leader)!.raidLockouts.set('sunken_bastion:heroic', Number.MAX_SAFE_INTEGER);
     sim.setDungeonDifficulty('heroic', leader);
     expect(sim.ctx.pendingDifficultyChanges.size).toBe(1);
     sim.drainEvents();
@@ -330,9 +330,9 @@ describe('difficulty selection through the live Sim', () => {
       advance(sim)
         .filter((e) => e.type === 'error')
         .map((e) => e.text),
-    ).toContain('You are locked to Heroic The Hollow Crypt.');
+    ).toContain('You are locked to Heroic The Sunken Bastion.');
     expect(advance(sim).filter((e) => e.type === 'error')).toEqual([]);
-    sim.players.get(leader)!.raidLockouts.delete('hollow_crypt:heroic');
+    sim.players.get(leader)!.raidLockouts.delete('sunken_bastion:heroic');
     advance(sim);
     expect(inst.difficulty).toBe('heroic');
   });
@@ -407,13 +407,13 @@ describe('difficulty selection through the live Sim', () => {
       if (reason === 'loot') sim.entities.get(inst.mobIds[0])!.lootable = true;
       if (reason === 'cooldown') inst.resetAvailableAt = sim.time + 60;
       if (reason === 'lockout')
-        sim.players.get(leader)!.raidLockouts.set('hollow_crypt:heroic', Number.MAX_SAFE_INTEGER);
+        sim.players.get(leader)!.raidLockouts.set('sunken_bastion:heroic', Number.MAX_SAFE_INTEGER);
       sim.drainEvents();
       sim.setDungeonDifficulty('heroic', leader);
       const refusal = {
         loot: 'You cannot reset instances while loot remains inside.',
         cooldown: 'Instances can only be reset once every 5 minutes.',
-        lockout: 'You are locked to Heroic The Hollow Crypt.',
+        lockout: 'You are locked to Heroic The Sunken Bastion.',
       }[reason];
       expect(
         sim
@@ -459,8 +459,10 @@ describe('difficulty selection through the live Sim', () => {
     });
     const solo = sim.addPlayer('warrior', 'Solo');
     sim.setDungeonDifficulty('heroic', solo);
-    expect(sim.enterDungeon('hollow_crypt', solo)).toBe(true);
-    const inst = sim.instances.find((i) => i.partyKey !== null && i.dungeonId === 'hollow_crypt')!;
+    expect(sim.enterDungeon('sunken_bastion', solo)).toBe(true);
+    const inst = sim.instances.find(
+      (i) => i.partyKey !== null && i.dungeonId === 'sunken_bastion',
+    )!;
     expect(inst.difficulty).toBe('heroic');
     sim.leaveDungeon(solo);
     sim.entities.get(inst.mobIds[0])!.lootable = true;
@@ -489,11 +491,13 @@ describe('difficulty selection through the live Sim', () => {
     // once the winners took everything it must settle, or its 30-minute corpse
     // hold (frozen while nobody is near) blocks the switch as "loot remains inside".
     const { sim, leader, member, inst } = setup();
-    expect(sim.enterDungeon('hollow_crypt', leader)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', leader)).toBe(true);
     const lead = sim.entities.get(leader)!;
     const bosses = inst.mobIds
       .map((id) => sim.entities.get(id)!)
-      .filter((m) => m.templateId === 'morthen' || m.templateId === 'sexton_marrow');
+      .filter(
+        (m) => m.templateId === 'vael_the_mistcaller' || m.templateId === 'knight_commander_olen',
+      );
     for (const boss of bosses) {
       for (const pid of [leader, member]) {
         const e = sim.entities.get(pid)!;

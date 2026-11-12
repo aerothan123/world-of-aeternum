@@ -3,7 +3,10 @@
 // previously granted no item. Pins the quest wiring, the class reach through the
 // REWARD_ARCHETYPE fallback, each shield's quality and the item level its quest
 // confers, the exact stat budget, the shield ladder ordering, the greens sitting
-// under the same-band rare, and a real turn-in grant through the Sim.
+// under the same-band rare, and a real turn-in grant through the Sim. The
+// Lychgate Buckler's quest, q_bones, was retired with the Hollow Crypt
+// (2026-11-11); the shield keeps its shipped item level through the retired
+// source table (content/hollow_crypt_retired.ts).
 import { describe, expect, it } from 'vitest';
 import { QUEST_SHIELD_ART_PENDING_ITEM_IDS } from '../src/sim/content/quest_shields';
 import { ITEMS, QUESTS, questRewardItem } from '../src/sim/data';
@@ -24,6 +27,7 @@ const CASES = [
     quality: 'uncommon',
     ilvl: 8,
     budget: 2,
+    retired: true,
   },
   {
     questId: 'q_bastion_door',
@@ -47,6 +51,14 @@ describe('leveling quest shields', () => {
   for (const c of CASES) {
     it(`${c.questId} (${c.zone}) pays ${c.itemId} to exactly the shield classes`, () => {
       const quest = QUESTS[c.questId];
+      if ('retired' in c && c.retired) {
+        // The quest left with the Hollow Crypt; no live quest pays the shield.
+        expect(quest).toBeUndefined();
+        for (const q of Object.values(QUESTS)) {
+          expect(Object.values(q.itemRewards), q.id).not.toContain(c.itemId);
+        }
+        return;
+      }
       expect(quest.itemRewards).toEqual({ warrior: c.itemId });
       for (const cls of ALL_CLASSES) {
         const reward = questRewardItem(quest, cls);
@@ -122,19 +134,25 @@ describe('leveling quest shields', () => {
       ['mage', 0],
     ] as const) {
       const sim = new Sim({ seed: 1, playerClass: cls, playerName: 'Q', autoEquip: false });
-      const quest = QUESTS.q_bones;
+      const quest = QUESTS.q_bastion_door;
       // biome-ignore lint/suspicious/noExplicitAny: test reaches the primary meta like quest_reward.test.ts
       const meta = (sim as any).primary;
-      meta.questLog.set('q_bones', { questId: 'q_bones', state: 'ready', counts: [8] });
-      sim.addItem('restless_skull', 8);
+      meta.questLog.set('q_bastion_door', {
+        questId: 'q_bastion_door',
+        state: 'ready',
+        counts: [1],
+      });
+      sim.addItem('bastion_ward_stone', 1);
       const npc = [...sim.entities.values()].find(
         (e) => e.kind === 'npc' && e.templateId === quest.turnInNpcId,
       );
       expect(npc).toBeDefined();
       sim.player.pos = { ...npc!.pos };
-      const before = sim.countItem('lychgate_buckler');
-      sim.turnInQuest('q_bones');
-      expect(sim.countItem('lychgate_buckler') - before, cls).toBe(expected);
+      // The quest also offers a choose-one blue, so the shield is picked; a
+      // mage is never offered it and the turn-in pays nothing.
+      const before = sim.countItem('bastion_kite_shield');
+      sim.turnInQuest('q_bastion_door', 'bastion_kite_shield');
+      expect(sim.countItem('bastion_kite_shield') - before, cls).toBe(expected);
     }
   });
 });

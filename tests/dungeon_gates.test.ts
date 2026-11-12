@@ -1,13 +1,14 @@
 // In-dungeon gates and encounter seals (src/sim/instances/dungeon_gates.ts)
-// driven through a real Sim claim of the Hollow Crypt: closed until their
+// driven through a real Sim claim of the Sunken Bastion: closed until their
 // packs and bosses die, sealed once the named boss has fought for the seal
 // delay (the delay's own cases: tests/dungeon_gate_seal_delay.test.ts),
 // reopened on the wipe, closed again when the instance resets, and mirrored to
-// collision per slot.
+// collision per slot. These cases ran on the Hollow Crypt until it was retired
+// (2026-11-11).
 
 import { afterEach, describe, expect, it } from 'vitest';
 import { isBlocked } from '../src/sim/colliders';
-import { HOLLOW_CRYPT_GATES } from '../src/sim/content/hollow_crypt';
+import { SUNKEN_BASTION_GATES } from '../src/sim/content/sunken_bastion';
 import { BUILTIN_WORLD, DUNGEONS, instanceOrigin } from '../src/sim/data';
 import { clearDungeonGateStateForTest } from '../src/sim/instances/dungeon_gate_state';
 import {
@@ -24,27 +25,34 @@ import type { Entity, WorldContent } from '../src/sim/types';
 import { localizeSimText } from '../src/ui/sim_i18n';
 
 const WORLD: WorldContent = { ...BUILTIN_WORLD, camps: [], npcs: {}, groundObjects: [] };
+const BASTION = 'sunken_bastion';
+/** Every pack the Sea Gate, the Bailey Drawbridge and the Rampart Door wait on. */
+const ROUTE_TO_OLEN = [
+  ...['f1', 'f2', 'fa', 'fb', 'f3'],
+  ...['b1', 'b2', 'hermit', 'bc'],
+  ...['r1', 'r2', 'rc'],
+];
 
-function setup(seed = 11): { sim: Sim; pid: number; inst: InstanceSlot } {
+function setup(seed = 11, dungeonId = BASTION): { sim: Sim; pid: number; inst: InstanceSlot } {
   const sim = new Sim({ seed, playerClass: 'warrior', noPlayer: true, world: WORLD });
   const pid = sim.addPlayer('warrior', 'Gatewalker');
-  expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+  expect(enterDungeon(sim.ctx, dungeonId, pid)).toBe(true);
   const inst = sim.ctx.instances.find(
-    (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+    (i) => i.dungeonId === dungeonId && i.partyKey !== null,
   ) as InstanceSlot;
   sim.tick();
   return { sim, pid, inst };
 }
 
-function gate(id: string) {
-  const g = HOLLOW_CRYPT_GATES.find((x) => x.id === id);
+function gate(id: string, dungeonId = BASTION) {
+  const g = (DUNGEONS[dungeonId].gates ?? []).find((x) => x.id === id);
   if (!g) throw new Error(id);
   return g;
 }
 
 /** Kill every claim mob of the listed packs or templates (instant, no loot). */
 function kill(sim: Sim, inst: InstanceSlot, ids: string[]): void {
-  const spawns = DUNGEONS.hollow_crypt.spawns;
+  const spawns = DUNGEONS[inst.dungeonId].spawns;
   spawns.forEach((s, i) => {
     if (!ids.includes(s.packId ?? '') && !ids.includes(s.mobId)) return;
     const mob = sim.ctx.entities.get(inst.mobIds[i]) as Entity;
@@ -56,159 +64,187 @@ function kill(sim: Sim, inst: InstanceSlot, ids: string[]): void {
 }
 
 function blockedAt(sim: Sim, inst: InstanceSlot, id: string): boolean {
-  const g = gate(id);
-  const o = instanceOrigin(DUNGEONS.hollow_crypt.index, inst.slot);
+  const g = gate(id, inst.dungeonId);
+  const o = instanceOrigin(DUNGEONS[inst.dungeonId].index, inst.slot);
   return isBlocked(sim.cfg.seed, o.x + g.x, o.z + g.z, 0.5);
 }
 
 function mob(sim: Sim, inst: InstanceSlot, templateId: string): Entity {
-  const i = DUNGEONS.hollow_crypt.spawns.findIndex((s) => s.mobId === templateId);
+  const i = DUNGEONS[inst.dungeonId].spawns.findIndex((s) => s.mobId === templateId);
   return sim.ctx.entities.get(inst.mobIds[i]) as Entity;
 }
 
-describe('dungeon gates: the Hollow Crypt claim', () => {
+describe('dungeon gates: the Sunken Bastion claim', () => {
   afterEach(() => clearDungeonGateStateForTest());
 
   it('spawns one closed gate object per gate and blocks every passage', () => {
     const { sim, inst } = setup();
-    for (const g of HOLLOW_CRYPT_GATES) {
+    for (const g of SUNKEN_BASTION_GATES) {
       const e = dungeonGateEntity(sim.ctx, inst, g);
       expect(e, g.id).not.toBeNull();
-      if (g.id === 'rite_ward') continue; // no prerequisites: open until Morthen engages
       expect(e?.templateId, g.id).toBe(DUNGEON_GATE_TEMPLATES.closed);
       expect(blockedAt(sim, inst, g.id), g.id).toBe(true);
     }
-    expect(dungeonGateEntity(sim.ctx, inst, gate('rite_ward'))?.templateId).toBe(
-      DUNGEON_GATE_TEMPLATES.open,
-    );
   });
 
-  it('the Grille opens once every cloister pack is dead, and says so', () => {
+  it('the Sea Gate opens once every flats pack is dead, and says so', () => {
     const { sim, pid, inst } = setup();
-    kill(sim, inst, ['c1', 'c2', 'c3']);
+    const line = 'Chains shriek in the fog. The Sea Gate grinds open.';
+    kill(sim, inst, ['f1', 'f2', 'fa', 'fb']);
     sim.tick();
-    expect(dungeonGateState(sim.ctx, inst, gate('grille'))).toBe('closed');
-    expect(blockedAt(sim, inst, 'grille')).toBe(true);
-    kill(sim, inst, ['c4']);
+    expect(dungeonGateState(sim.ctx, inst, gate('sea_gate'))).toBe('closed');
+    expect(blockedAt(sim, inst, 'sea_gate')).toBe(true);
+    kill(sim, inst, ['f3']);
     const events = sim.tick() as { type: string; text?: string; pid?: number }[];
-    expect(dungeonGateState(sim.ctx, inst, gate('grille'))).toBe('open');
-    expect(dungeonGateEntity(sim.ctx, inst, gate('grille'))?.templateId).toBe('dungeon_gate_open');
-    expect(blockedAt(sim, inst, 'grille')).toBe(false);
+    expect(dungeonGateState(sim.ctx, inst, gate('sea_gate'))).toBe('open');
+    expect(dungeonGateEntity(sim.ctx, inst, gate('sea_gate'))?.templateId).toBe(
+      'dungeon_gate_open',
+    );
+    expect(blockedAt(sim, inst, 'sea_gate')).toBe(false);
     const logs = events.filter((e) => e.type === 'log' && e.pid === pid);
-    expect(logs.map((l) => l.text)).toContain('The Undercroft Grille grinds open.');
+    expect(logs.map((l) => l.text)).toContain(line);
     // Announced once: a later tick does not repeat it.
-    expect(
-      (sim.tick() as { type: string; text?: string }[]).some(
-        (e) => e.text === 'The Undercroft Grille grinds open.',
-      ),
-    ).toBe(false);
+    expect((sim.tick() as { type: string; text?: string }[]).some((e) => e.text === line)).toBe(
+      false,
+    );
   });
 
   it('an arena seals once its boss has fought for the delay and reopens when it resets', () => {
     const { sim, pid, inst } = setup();
-    kill(sim, inst, ['c1', 'c2', 'c3', 'c4', 'w1', 'w2', 'w3', 'w4']);
+    kill(sim, inst, ROUTE_TO_OLEN);
     sim.tick();
-    expect(dungeonGateState(sim.ctx, inst, gate('yard_barrier'))).toBe('open');
-    const marrow = mob(sim, inst, 'sexton_marrow');
-    marrow.maxHp = 1e6;
-    marrow.hp = marrow.maxHp;
+    expect(dungeonGateState(sim.ctx, inst, gate('rampart_door'))).toBe('open');
+    const olen = mob(sim, inst, 'knight_commander_olen');
+    olen.maxHp = 1e6;
+    olen.hp = olen.maxHp;
     // A real pull, driven through full sim ticks: the player stands on him and
     // is kept on their feet for the length of the delay.
     const player = sim.ctx.entities.get(pid) as Entity;
     const stand = (): void => {
-      player.pos = sim.ctx.groundPos(marrow.spawnPos.x, marrow.spawnPos.z - 2.5);
+      player.pos = sim.ctx.groundPos(olen.spawnPos.x, olen.spawnPos.z - 2.5);
       player.prevPos = { ...player.pos };
       player.maxHp = 1e7;
       player.hp = 1e7;
       sim.ctx.rebucket(player);
     };
     stand();
-    expect(sim.ctx.aggroMob(marrow, player, false)).toBe(true);
+    expect(sim.ctx.aggroMob(olen, player, false)).toBe(true);
     stand();
     sim.tick();
-    // The pull alone seals nothing: the yard stays open for the delay.
-    expect(marrow.inCombat).toBe(true);
-    expect(dungeonGateState(sim.ctx, inst, gate('yard_barrier'))).toBe('open');
-    expect(blockedAt(sim, inst, 'yard_barrier')).toBe(false);
+    // The pull alone seals nothing: the terrace stays open for the delay.
+    expect(olen.inCombat).toBe(true);
+    expect(dungeonGateState(sim.ctx, inst, gate('rampart_door'))).toBe('open');
+    expect(blockedAt(sim, inst, 'rampart_door')).toBe(false);
     for (let i = 0; i < BOSS_ROOM_SEAL_DELAY_TICKS; i++) {
       stand();
       sim.tick();
     }
-    expect(dungeonGateState(sim.ctx, inst, gate('yard_barrier'))).toBe('sealed');
-    expect(dungeonGateEntity(sim.ctx, inst, gate('yard_barrier'))?.templateId).toBe(
+    expect(dungeonGateState(sim.ctx, inst, gate('rampart_door'))).toBe('sealed');
+    expect(dungeonGateEntity(sim.ctx, inst, gate('rampart_door'))?.templateId).toBe(
       'dungeon_gate_sealed',
     );
-    expect(blockedAt(sim, inst, 'yard_barrier')).toBe(true);
+    expect(blockedAt(sim, inst, 'rampart_door')).toBe(true);
     // The wipe: the boss walks home and goes idle again.
-    sim.ctx.handleDeath(player, marrow);
-    for (let i = 0; i < 20 * 20 && (marrow.aiState !== 'idle' || marrow.inCombat); i++) sim.tick();
+    sim.ctx.handleDeath(player, olen);
+    for (let i = 0; i < 20 * 20 && (olen.aiState !== 'idle' || olen.inCombat); i++) sim.tick();
     sim.tick();
-    expect(marrow.aiState).toBe('idle');
-    expect(dungeonGateState(sim.ctx, inst, gate('yard_barrier'))).toBe('open');
-    expect(blockedAt(sim, inst, 'yard_barrier')).toBe(false);
+    expect(olen.aiState).toBe('idle');
+    expect(dungeonGateState(sim.ctx, inst, gate('rampart_door'))).toBe('open');
+    expect(blockedAt(sim, inst, 'rampart_door')).toBe(false);
   });
 
-  it('the Webbed Causeway opens on Rimeweb death, not before', () => {
+  it('the Postern Fog Wall opens on Olen death, not before', () => {
     const { sim, inst } = setup();
-    kill(sim, inst, ['c1', 'c2', 'c3', 'c4', 'e1', 'e2', 'e3']);
+    kill(sim, inst, ROUTE_TO_OLEN);
     sim.tick();
-    expect(blockedAt(sim, inst, 'web_bridge')).toBe(true);
-    kill(sim, inst, ['rimeweb']);
+    expect(blockedAt(sim, inst, 'postern_fog')).toBe(true);
+    kill(sim, inst, ['knight_commander_olen']);
     sim.tick();
-    expect(blockedAt(sim, inst, 'web_bridge')).toBe(false);
-    expect(blockedAt(sim, inst, 'web_curtain')).toBe(false);
+    expect(blockedAt(sim, inst, 'postern_fog')).toBe(false);
   });
 
-  it('the Twin Seals need both wing bosses, the Processional packs and the drake', () => {
+  it('the Gaol Grate needs every one of its packs, the Turnkey miniboss included', () => {
     const { sim, inst } = setup();
-    kill(sim, inst, [
-      ...['c1', 'c2', 'c3', 'c4', 'w1', 'w2', 'w3', 'w4', 'e1', 'e2', 'e3'],
-      ...['p1', 'p2', 'sexton_marrow', 'rimeweb'],
-    ]);
+    kill(sim, inst, [...ROUTE_TO_OLEN, 'knight_commander_olen', 'g1', 'g2', 'g3', 'gd']);
     sim.tick();
-    // The drake still flies: the seals hold.
-    expect(dungeonGateState(sim.ctx, inst, gate('twin_seals'))).toBe('closed');
-    kill(sim, inst, ['drake']);
+    // The Turnkey still stands: the grate holds.
+    expect(dungeonGateState(sim.ctx, inst, gate('gaol_grate'))).toBe('closed');
+    kill(sim, inst, ['turnkey']);
     sim.tick();
-    expect(dungeonGateState(sim.ctx, inst, gate('twin_seals'))).toBe('open');
-    expect(blockedAt(sim, inst, 'twin_seals')).toBe(false);
+    expect(dungeonGateState(sim.ctx, inst, gate('gaol_grate'))).toBe('open');
+    expect(blockedAt(sim, inst, 'gaol_grate')).toBe(false);
   });
 
-  it('the Twin Seals need both wing bosses', () => {
-    const { sim, inst } = setup();
-    kill(sim, inst, [
-      ...['c1', 'c2', 'c3', 'c4', 'w1', 'w2', 'w3', 'w4', 'e1', 'e2', 'e3'],
-      ...['p1', 'drake', 'p2', 'sexton_marrow'],
-    ]);
+  // The multi-boss gate (ported from the crypt's Twin Seals, 2026-11-11): the
+  // Wildheart Basin's Sunbone Causeway thorns list the Beastmaster, his
+  // jaguar and the Gorgebloom. The Beastmaster and the jaguar share one health
+  // pool and fall together (encounters/wildheart_basin/beastmaster.ts
+  // fellTogether), so the gate waits on two wing encounters: either one left
+  // standing holds the thorns shut.
+  const CAUSEWAY = 'sunbone_causeway_thorns';
+  const WILDHEART = 'wildheart_basin';
+  const PAIR = ['wildheart_beastmaster', 'fanglord_jaguar'];
+  const GORGEBLOOM = 'the_gorgebloom';
+
+  function alive(sim: Sim, inst: InstanceSlot, templateId: string): boolean {
+    const i = DUNGEONS[inst.dungeonId].spawns.findIndex((s) => s.mobId === templateId);
+    const mob = sim.ctx.entities.get(inst.mobIds[i]);
+    return !!mob && !mob.dead;
+  }
+
+  it('the Sunbone Causeway thorns list exactly the two wing encounters', () => {
+    expect([...(gate(CAUSEWAY, WILDHEART).bosses ?? [])].sort()).toEqual(
+      [...PAIR, GORGEBLOOM].sort(),
+    );
+  });
+
+  it('the Sunbone Causeway thorns hold while the Beastmaster pair stands', () => {
+    const { sim, inst } = setup(11, WILDHEART);
+    kill(sim, inst, [GORGEBLOOM]);
     sim.tick();
-    expect(dungeonGateState(sim.ctx, inst, gate('twin_seals'))).toBe('closed');
-    kill(sim, inst, ['rimeweb']);
+    expect(alive(sim, inst, PAIR[0]) && alive(sim, inst, PAIR[1])).toBe(true);
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('closed');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(true);
+    kill(sim, inst, PAIR);
     sim.tick();
-    expect(dungeonGateState(sim.ctx, inst, gate('twin_seals'))).toBe('open');
-    expect(blockedAt(sim, inst, 'twin_seals')).toBe(false);
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('open');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(false);
+  });
+
+  it('the Sunbone Causeway thorns hold while the Gorgebloom stands', () => {
+    const { sim, inst } = setup(11, WILDHEART);
+    kill(sim, inst, PAIR);
+    sim.tick();
+    expect(alive(sim, inst, GORGEBLOOM)).toBe(true);
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('closed');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(true);
+    kill(sim, inst, [GORGEBLOOM]);
+    sim.tick();
+    expect(dungeonGateState(sim.ctx, inst, gate(CAUSEWAY, WILDHEART))).toBe('open');
+    expect(blockedAt(sim, inst, CAUSEWAY)).toBe(false);
   });
 
   it('a reset re-closes every gate for the fresh claim', () => {
     const { sim, pid, inst } = setup();
-    kill(sim, inst, ['c1', 'c2', 'c3', 'c4']);
+    kill(sim, inst, ['f1', 'f2', 'fa', 'fb', 'f3']);
     sim.tick();
-    expect(blockedAt(sim, inst, 'grille')).toBe(false);
+    expect(blockedAt(sim, inst, 'sea_gate')).toBe(false);
     // Leave, free the claim, and claim again from the door.
     sim.leaveDungeon(pid);
     freeInstance(sim.ctx, inst);
     sim.tick();
-    expect(blockedAt(sim, inst, 'grille')).toBe(true);
-    expect(enterDungeon(sim.ctx, 'hollow_crypt', pid)).toBe(true);
+    expect(blockedAt(sim, inst, 'sea_gate')).toBe(true);
+    expect(enterDungeon(sim.ctx, BASTION, pid)).toBe(true);
     const fresh = sim.ctx.instances.find(
-      (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+      (i) => i.dungeonId === BASTION && i.partyKey !== null,
     ) as InstanceSlot;
     sim.tick();
-    expect(dungeonGateState(sim.ctx, fresh, gate('grille'))).toBe('closed');
-    expect(blockedAt(sim, fresh, 'grille')).toBe(true);
+    expect(dungeonGateState(sim.ctx, fresh, gate('sea_gate'))).toBe('closed');
+    expect(blockedAt(sim, fresh, 'sea_gate')).toBe(true);
   });
 
   it('every gate announcement is a known client line (i18n EXACT matcher)', () => {
-    for (const g of HOLLOW_CRYPT_GATES) {
+    for (const g of SUNKEN_BASTION_GATES) {
       if (!g.openText) continue;
       expect(localizeSimText(g.openText), g.id).not.toBeNull();
     }
@@ -224,9 +260,9 @@ describe('dungeon gates: the Hollow Crypt claim', () => {
   it('is deterministic: two worlds from one seed derive identical gate states', () => {
     const run = (): string[] => {
       const { sim, inst } = setup(21);
-      kill(sim, inst, ['c1', 'c2', 'c3', 'c4', 'e1']);
+      kill(sim, inst, ['f1', 'f2', 'fa', 'fb', 'f3', 'b1']);
       for (let i = 0; i < 5; i++) sim.tick();
-      return HOLLOW_CRYPT_GATES.map((g) => dungeonGateState(sim.ctx, inst, g));
+      return SUNKEN_BASTION_GATES.map((g) => dungeonGateState(sim.ctx, inst, g));
     };
     expect(run()).toEqual(run());
   });
