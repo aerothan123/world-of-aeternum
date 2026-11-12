@@ -17,9 +17,9 @@ function fixture() {
     world: EMPTY_TEST_WORLD,
   });
   const pid = sim.addPlayer('warrior', 'Fixture');
-  sim.setPlayerLevel(8, pid);
+  sim.setPlayerLevel(12, pid);
   sim.setSpec(TALENTS.warrior.specs.find((spec) => spec.role === 'dps')!.id, pid);
-  sim.enterDungeon('hollow_crypt', pid);
+  sim.enterDungeon('sunken_bastion', pid);
   return { sim, pid, ctx: (sim as unknown as { ctx: SimContext }).ctx };
 }
 describe('expedition recurring work bounds', () => {
@@ -71,7 +71,7 @@ describe('expedition recurring work bounds', () => {
     };
     const board = Array.from({ length: 50 }, (_, id) => ({
       id: id + 1,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       leaderName: 'Leader',
       tags: [],
       size: 1,

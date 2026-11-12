@@ -26,7 +26,7 @@ import { EMPTY_TEST_WORLD } from './sim_shared';
 
 function addPlayer(sim: Sim, name: string) {
   const pid = sim.addPlayer('warrior', name);
-  sim.setPlayerLevel(8, pid);
+  sim.setPlayerLevel(12, pid);
   sim.setSpec(TALENTS.warrior.specs.find((spec) => spec.role === 'dps')!.id, pid);
   sim.dungeonFinderSetRoles(['dps'], pid);
   return pid;
@@ -42,7 +42,7 @@ function setup(heroic = false) {
   const leader = addPlayer(sim, 'Leader');
   const helper = addPlayer(sim, 'Helper');
   if (heroic) sim.setDungeonDifficulty('heroic', leader);
-  expect(sim.enterDungeon('hollow_crypt', leader)).toBe(true);
+  expect(sim.enterDungeon('sunken_bastion', leader)).toBe(true);
   const claim = sim.instances.find(
     (entry) => entry.partyKey === instanceKeyFor(context(sim), leader),
   )!;
@@ -135,8 +135,8 @@ describe('open dungeon expeditions through the real Sim', () => {
     sim.dungeonFinderExpeditionTravel(helper);
     expect(sim.entities.get(helper)!.pos).toEqual(
       sim.groundPos(
-        origin.x + DUNGEONS.hollow_crypt.entry.x,
-        origin.z + DUNGEONS.hollow_crypt.entry.z,
+        origin.x + DUNGEONS.sunken_bastion.entry.x,
+        origin.z + DUNGEONS.sunken_bastion.entry.z,
       ),
     );
     expect(sim.instanceClaimIdAt(sim.entities.get(helper)!.pos)).toBe(claim.exitId);
@@ -226,7 +226,7 @@ describe('open dungeon expeditions through the real Sim', () => {
     const { sim, leader, claim } = setup();
     const boss = claim.mobIds
       .map((id) => sim.entities.get(id)!)
-      .find((mob) => mob.templateId === 'sexton_marrow')!;
+      .find((mob) => mob.templateId === 'gaol_turnkey')!;
     sim.dealDamage(
       sim.entities.get(leader)!,
       boss,
@@ -243,7 +243,7 @@ describe('open dungeon expeditions through the real Sim', () => {
     });
     const final = claim.mobIds
       .map((id) => sim.entities.get(id))
-      .find((mob) => mob?.templateId === 'morthen')!;
+      .find((mob) => mob?.templateId === 'vael_the_mistcaller')!;
     sim.dealDamage(
       sim.entities.get(leader)!,
       final,
@@ -349,11 +349,11 @@ describe('open dungeon expeditions through the real Sim', () => {
     });
     const leader = addPlayer(sim, 'Leader');
     const helper = addPlayer(sim, 'Helper');
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     const premade = sim.dungeonFinderBoardView()[0];
     sim.dungeonFinderApply(premade.id, helper);
     expect(sim.dungeonFinderInfoFor(helper)?.myApplication?.listingId).toBe(premade.id);
-    expect(sim.enterDungeon('hollow_crypt', leader)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', leader)).toBe(true);
     sim.dungeonFinderExpeditionOpen(leader);
     expect(sim.dungeonFinderBoardView()[0].id).not.toBe(premade.id);
     expect(sim.dungeonFinderInfoFor(helper)?.myApplication).toBeNull();
@@ -444,7 +444,7 @@ describe('open dungeon expeditions through the real Sim', () => {
     const oldExit = claim.exitId;
     freeInstance(context(sim), claim);
     const stranger = addPlayer(sim, 'Stranger');
-    expect(sim.enterDungeon('hollow_crypt', stranger)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', stranger)).toBe(true);
     expect(claim.exitId).not.toBe(oldExit);
     const position = { ...sim.entities.get(helper)!.pos };
     sim.dungeonFinderExpeditionTravel(helper);

@@ -65,8 +65,8 @@ describe('grouped dungeon activities', () => {
     root.innerHTML = groupedActivityOptionsHtml(
       [
         {
-          id: 'crypt-h',
-          dungeonId: 'hollow_crypt',
+          id: 'bastion-h',
+          dungeonId: 'sunken_bastion',
           difficulty: 'heroic',
           checked: true,
           disabled: false,
@@ -79,8 +79,8 @@ describe('grouped dungeon activities', () => {
           disabled: true,
         },
         {
-          id: 'crypt-n',
-          dungeonId: 'hollow_crypt',
+          id: 'bastion-n',
+          dungeonId: 'sunken_bastion',
           difficulty: 'normal',
           checked: true,
           disabled: false,
@@ -90,14 +90,14 @@ describe('grouped dungeon activities', () => {
     );
     const groups = [...root.querySelectorAll('.df-activity-group')];
     expect(groups.map((group) => group.getAttribute('data-dungeon'))).toEqual([
-      'hollow_crypt',
+      'sunken_bastion',
       'gravewyrm_sanctum',
     ]);
     expect(
       [...groups[0].querySelectorAll('[data-opt]')].map((button) =>
         button.getAttribute('data-opt'),
       ),
-    ).toEqual(['crypt-n', 'crypt-h']);
+    ).toEqual(['bastion-n', 'bastion-h']);
     expect(groups[0].querySelectorAll('.df-activity-name')).toHaveLength(1);
     expect(groups[1].querySelectorAll('button')).toHaveLength(1);
     expect(root.querySelectorAll('[aria-checked="true"]')).toHaveLength(2);
@@ -120,8 +120,8 @@ describe('grouped dungeon activities', () => {
     click(`[data-opt="${normal}"]`);
     click('[data-act="join"]');
     expect(world.dungeonFinderQueueJoin).toHaveBeenLastCalledWith([heroic]);
-    expect(button('[data-opt="hollow_crypt_normal"]').disabled).toBe(true);
-    click('[data-opt="hollow_crypt_normal"]');
+    expect(button('[data-opt="sunken_bastion_normal"]').disabled).toBe(true);
+    click('[data-opt="sunken_bastion_normal"]');
     click('[data-act="join"]');
     expect(world.dungeonFinderQueueJoin).toHaveBeenLastCalledWith([heroic]);
     click('[data-role="healer"]');
@@ -137,7 +137,7 @@ describe('grouped dungeon activities', () => {
     const checked = root.querySelectorAll('[data-createopt][aria-checked="true"]');
     expect(checked).toHaveLength(1);
     expect(checked[0].getAttribute('data-createopt')).toBe('gravewyrm_sanctum_heroic');
-    expect(root.querySelector('[data-createopt="hollow_crypt_normal"]')).toBeNull();
+    expect(root.querySelector('[data-createopt="sunken_bastion_normal"]')).toBeNull();
     click('[data-act="create"]');
     expect(world.dungeonFinderListingCreate).toHaveBeenLastCalledWith(
       'gravewyrm_sanctum_heroic',
@@ -150,15 +150,15 @@ describe('grouped dungeon activities', () => {
       roles: [],
       inParty: false,
       isLeader: true,
-      queuedActivities: ['crypt'],
+      queuedActivities: ['bastion'],
       queued: true,
       onCooldown: false,
       canQueue: false,
       proposal: null,
       options: [
         {
-          id: 'crypt',
-          dungeonId: 'hollow_crypt',
+          id: 'bastion',
+          dungeonId: 'sunken_bastion',
           difficulty: 'normal',
           kind: 'dungeon',
           eligible: true,

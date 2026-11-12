@@ -89,8 +89,8 @@ function primary(sim: Sim) {
   return { meta, e };
 }
 
-/** Catalogued Hollow Crypt unique (Phase 2 expanded conquerors_hollow_crypt). */
-const CATALOGUE_RELIC = 'cryptbone_helm';
+/** Catalogued Sunken Bastion unique (an Olen drop on conquerors_sunken_bastion). */
+const CATALOGUE_RELIC = 'tideguard_greaves';
 /** A catalogued relic that STACKS (a Professions-shelf specimen), so the
  *  per-copy half of the counting contract is reachable through plain addItem.
  *  File-scoped: the obtain-counts AND determinism describes both drive it. */
@@ -139,7 +139,7 @@ describe('Reliquary first discover of a catalogued relic', () => {
     expect(isCataloguedRelicItem(CATALOGUE_RELIC)).toBe(true);
 
     // Stamp a known clear count so firstFind.clears is observable.
-    meta.deedStats.dungeonClears.hollow_crypt = 3;
+    meta.deedStats.dungeonClears.sunken_bastion = 3;
 
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
     expect(meta.deedStats.itemsDiscovered.has(CATALOGUE_RELIC)).toBe(true);
@@ -149,7 +149,7 @@ describe('Reliquary first discover of a catalogued relic', () => {
     expect(meta.reliquary.recent).toEqual([CATALOGUE_RELIC]);
 
     // Second discover: no re-stamp, no double recent entry.
-    meta.deedStats.dungeonClears.hollow_crypt = 99;
+    meta.deedStats.dungeonClears.sunken_bastion = 99;
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
     expect(meta.reliquary.firstFind[CATALOGUE_RELIC]).toEqual({ clears: 3 });
     expect(meta.reliquary.recent).toEqual([CATALOGUE_RELIC]);
@@ -166,12 +166,12 @@ describe('Reliquary first discover of a catalogued relic', () => {
     // Driven through the real discover path.
     const sim = makeSim();
     const { meta } = primary(sim);
-    expect(RELIQUARY_PAGES_BY_ID.conquerors_hollow_crypt.clearSource).toEqual({
+    expect(RELIQUARY_PAGES_BY_ID.conquerors_sunken_bastion.clearSource).toEqual({
       kind: 'dungeon',
-      dungeonId: 'hollow_crypt',
-      difficulty: 'normal',
+      dungeonId: 'sunken_bastion',
+      difficulty: 'any',
     });
-    expect(meta.deedStats.dungeonClears.hollow_crypt).toBeUndefined();
+    expect(meta.deedStats.dungeonClears.sunken_bastion).toBeUndefined();
 
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
     // toEqual({}), not a key probe: the entry itself must still land (the fill
@@ -180,8 +180,8 @@ describe('Reliquary first discover of a catalogued relic', () => {
     expect(meta.reliquary.firstFind[CATALOGUE_RELIC]).toEqual({});
     // One clear later, the same page stamps for real: the omission is about
     // the meter reading zero, not about this page having no meter at all.
-    const other = 'cryptbone_greaves';
-    meta.deedStats.dungeonClears.hollow_crypt = 1;
+    const other = 'eelscale_leggings';
+    meta.deedStats.dungeonClears.sunken_bastion = 1;
     markItemDiscovered(sim.ctx, meta, other);
     expect(meta.reliquary.firstFind[other]).toEqual({ clears: 1 });
   });
@@ -216,7 +216,7 @@ describe('Reliquary non-catalogued discover', () => {
 describe('Reliquary retro ownership without inventing firstFind clears', () => {
   it('counts discovered items as owned even when firstFind is absent', () => {
     const owned = new Set([CATALOGUE_RELIC]);
-    const page = RELIQUARY_PAGES.find((p) => p.id === 'conquerors_hollow_crypt')!;
+    const page = RELIQUARY_PAGES.find((p) => p.id === 'conquerors_sunken_bastion')!;
     const progress = pageCompletion(page, { itemsDiscovered: owned });
     expect(progress.owned).toBe(1);
     expect(progress.total).toBe(page.relics.length);
@@ -255,7 +255,7 @@ describe('Reliquary retro ownership without inventing firstFind clears', () => {
     expect(isReliquaryStateEmpty(meta.reliquary)).toBe(true);
 
     // Pure completion still sees the item as owned (partial page is fine).
-    const page = RELIQUARY_PAGES.find((p) => p.id === 'conquerors_hollow_crypt')!;
+    const page = RELIQUARY_PAGES.find((p) => p.id === 'conquerors_sunken_bastion')!;
     const progress = pageCompletion(page, { itemsDiscovered: meta.deedStats.itemsDiscovered });
     expect(progress.owned).toBe(1);
     expect(progress.complete).toBe(false);
@@ -271,7 +271,7 @@ describe('Reliquary serialize / restore round-trip', () => {
   it('round-trips firstFind, marks, and recent; filters unknown ids on load', () => {
     const sim = makeSim();
     const { meta } = primary(sim);
-    meta.deedStats.dungeonClears.hollow_crypt = 2;
+    meta.deedStats.dungeonClears.sunken_bastion = 2;
     markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
 
     // Two more obtains of the same relic, so the folded tally has a value that
@@ -355,7 +355,7 @@ describe('Reliquary serialize / restore round-trip', () => {
         [zeroClears]: { clears: 0.6 },
         // A pre-Phase-17 blob: the retired pageId is simply not read, and the
         // entry loads clean rather than being rejected for carrying it.
-        [staleShape]: { clears: 3, pageId: 'conquerors_hollow_crypt' } as never,
+        [staleShape]: { clears: 3, pageId: 'conquerors_sunken_bastion' } as never,
         // A string clears fails the typeof gate outright (never coerced).
         [stringClears]: { clears: '5' } as never,
         // A tally of zero is the absent key, never a stored 0.
@@ -598,7 +598,7 @@ describe('Reliquary profession marks (Phase 7)', () => {
   });
 
   it('catalogCharacterCompletion excludes skin slots from both sides of the pair', () => {
-    const items = new Set<string>(['cryptbone_helm']);
+    const items = new Set<string>(['tideguard_greaves']);
     const char = catalogCharacterCompletion({ itemsDiscovered: items });
     const full = catalogRelicCompletion({ itemsDiscovered: items });
     // Exact skin-slot delta: every unique weapon_skin relic is out of total.
@@ -1155,7 +1155,7 @@ describe('Reliquary narrow restore helpers (public character-sheet path)', () =>
     );
     return {
       firstFind: { [CATALOGUE_RELIC]: { clears: 3, count: 2 } },
-      illuminatedPages: ['conquerors_hollow_crypt'],
+      illuminatedPages: ['conquerors_sunken_bastion'],
       marks: [markIds[0], 'not_a_mark', 7 as unknown as string, markIds[1]],
       recent: [
         many[0],
@@ -1332,7 +1332,7 @@ describe('Reliquary pure completion + curator rank', () => {
     if (!serialized) throw new Error('expected sparse serialize after catalog fills');
     expect(serialized).not.toHaveProperty('rankRewardsGranted');
     // illuminatedPages joined the allowed key set in Phase 18 (the first five
-    // fills above complete the Hollow Crypt page, so the sticky record is
+    // fills above complete the Sunken Bastion page, so the sticky record is
     // non-empty here); rank rewards themselves still serialize NOTHING.
     const allowed = new Set(['firstFind', 'illuminatedPages', 'marks', 'recent']);
     for (const key of Object.keys(serialized)) {
@@ -1450,8 +1450,8 @@ describe('Reliquary pure completion + curator rank', () => {
     // Rank is unique catalogued relic fills only (never kill/clear count alone).
     const sim = makeSim();
     const { meta } = primary(sim);
-    meta.deedStats.dungeonClears.hollow_crypt = 999;
-    meta.deedStats.dungeonClears['hollow_crypt:heroic'] = 999;
+    meta.deedStats.dungeonClears.sunken_bastion = 999;
+    meta.deedStats.dungeonClears['sunken_bastion:heroic'] = 999;
     meta.deedStats.counters.thunzharrKills = 999;
     // The real writer's tiered key shape (runs.ts `${delveId}:${tierId}`), so
     // the delve-clears meter is provably nonzero under the production reader.
@@ -1504,17 +1504,17 @@ describe('Reliquary pure completion + curator rank', () => {
     const sim = makeSim();
     const { meta } = primary(sim);
     expect(
-      clearCountForSource(meta, { kind: 'dungeon', dungeonId: 'hollow_crypt', difficulty: 'any' }),
+      clearCountForSource(meta, { kind: 'dungeon', dungeonId: 'sunken_bastion', difficulty: 'any' }),
     ).toBe(0);
-    meta.deedStats.dungeonClears.hollow_crypt = 1;
-    meta.deedStats.dungeonClears['hollow_crypt:heroic'] = 2;
+    meta.deedStats.dungeonClears.sunken_bastion = 1;
+    meta.deedStats.dungeonClears['sunken_bastion:heroic'] = 2;
     expect(
-      clearCountForSource(meta, { kind: 'dungeon', dungeonId: 'hollow_crypt', difficulty: 'any' }),
+      clearCountForSource(meta, { kind: 'dungeon', dungeonId: 'sunken_bastion', difficulty: 'any' }),
     ).toBe(3);
     expect(
       clearCountForSource(meta, {
         kind: 'dungeon',
-        dungeonId: 'hollow_crypt',
+        dungeonId: 'sunken_bastion',
         difficulty: 'heroic',
       }),
     ).toBe(2);
@@ -1601,7 +1601,7 @@ describe('Reliquary pure completion + curator rank', () => {
     // sat still run after run. A five-man page Heroic pays in full counts both
     // difficulties; the heroic-only epic pages keep the heroic filter. The
     // Sunken Bastion carries the pin since the Hollow Crypt page's uncommon
-    // brand pieces went Normal-only (2026-10-09, the next test).
+    // brand pieces went Normal-only (2026-10-09) and the crypt retired (2026-11-11).
     const sim = makeSim();
     const { meta } = primary(sim);
     expect(RELIQUARY_PAGES_BY_ID.conquerors_sunken_bastion?.clearSource).toEqual({
@@ -1624,19 +1624,19 @@ describe('Reliquary pure completion + curator rank', () => {
     expect(meta.reliquary.firstFind.tideguard_greaves).toEqual({ clears: 6 });
   });
 
-  it('the Hollow Crypt page counts Normal clears once Heroic stopped paying its uncommon pieces', () => {
-    // Morthen's four uncommon brand pieces drop on Normal alone (a Heroic kill
-    // pays no uncommon gear, 2026-10-09), so a Heroic run is not a run at this
-    // page's spoils: its Heroic clears count on the Heroic page instead.
+  it('the retired Hollow Crypt pages read no clear meter and stamp no clears', () => {
+    // Retired 2026-11-11: both crypt pages stay as horizons pages with no clear
+    // source, so legacy dungeonClears keys never surface as a page meter and a
+    // late find of one of their relics lands sparse (owned, provenance unknown).
     const sim = makeSim();
     const { meta } = primary(sim);
+    expect(RELIQUARY_PAGES_BY_ID.conquerors_hollow_crypt.clearSource).toEqual({ kind: 'none' });
     meta.deedStats.dungeonClears['hollow_crypt:heroic'] = 4;
-    expect(sim.reliquaryPageClearCount('conquerors_hollow_crypt')).toBe(0);
-    expect(sim.reliquaryPageClearCount('conquerors_hollow_crypt_heroic')).toBe(4);
     meta.deedStats.dungeonClears.hollow_crypt = 2;
-    expect(sim.reliquaryPageClearCount('conquerors_hollow_crypt')).toBe(2);
+    expect(sim.reliquaryPageClearCount('conquerors_hollow_crypt')).toBeUndefined();
+    expect(sim.reliquaryPageClearCount('conquerors_hollow_crypt_heroic')).toBeUndefined();
     markItemDiscovered(sim.ctx, meta, 'cryptbone_helm');
-    expect(meta.reliquary.firstFind.cryptbone_helm).toEqual({ clears: 2 });
+    expect(meta.reliquary.firstFind.cryptbone_helm).toEqual({});
   });
 
   it('a heroic-only dungeonClears key never leaks into a Normal-filtered raid page readout', () => {
@@ -2012,14 +2012,14 @@ describe('Reliquary obtain counts', () => {
     // The executed provenance ruling (maintainer, 2026-08-08), extending the
     // omit-at-zero one: the stamp answers "which clear did you find this on",
     // so a relic that arrived from somewhere else has no answer even when the
-    // meter is high. A player sitting on twelve Hollow Crypt clears who BUYS
+    // meter is high. A player sitting on twelve Sunken Bastion clears who BUYS
     // the drop did not find it on clear twelve.
     const sim = makeSim();
     const { meta } = primary(sim);
-    meta.deedStats.dungeonClears.hollow_crypt = 12;
+    meta.deedStats.dungeonClears.sunken_bastion = 12;
     // Premise: the meter really is turned over, so a sparse entry below cannot
     // be the omit-at-zero rule passing by coincidence.
-    expect(sim.reliquaryPageClearCount('conquerors_hollow_crypt')).toBe(12);
+    expect(sim.reliquaryPageClearCount('conquerors_sunken_bastion')).toBe(12);
 
     sim.addItem(CATALOGUE_RELIC, 1, sim.playerId, { movement: true });
     expect(meta.reliquary.firstFind[CATALOGUE_RELIC]).toEqual({});
@@ -2029,7 +2029,7 @@ describe('Reliquary obtain counts', () => {
     // simply stopped working.
     const world = makeSim();
     const worldMeta = primary(world).meta;
-    worldMeta.deedStats.dungeonClears.hollow_crypt = 12;
+    worldMeta.deedStats.dungeonClears.sunken_bastion = 12;
     world.addItem(CATALOGUE_RELIC, 1, world.playerId);
     expect(worldMeta.reliquary.firstFind[CATALOGUE_RELIC]).toEqual({ clears: 12 });
   });
@@ -2060,13 +2060,13 @@ describe('Reliquary obtain counts', () => {
     // test above would stay green.
     const traded = makeSim();
     const tradedMeta = primary(traded).meta;
-    tradedMeta.deedStats.dungeonClears.hollow_crypt = 7;
+    tradedMeta.deedStats.dungeonClears.sunken_bastion = 7;
     grantCopies(traded.ctx, traded.playerId, CATALOGUE_RELIC, 1);
     expect(tradedMeta.reliquary.firstFind[CATALOGUE_RELIC]).toEqual({});
 
     const instanced = makeSim();
     const instancedMeta = primary(instanced).meta;
-    instancedMeta.deedStats.dungeonClears.hollow_crypt = 7;
+    instancedMeta.deedStats.dungeonClears.sunken_bastion = 7;
     grantCopies(instanced.ctx, instanced.playerId, CATALOGUE_RELIC, 1, { signer: 'Seller' });
     expect(instancedMeta.reliquary.firstFind[CATALOGUE_RELIC]).toEqual({});
   });
@@ -2128,9 +2128,9 @@ describe('Reliquary legacy blob migration and the counts/firstFind invariant', (
     const [zeroClears, realClears, counted] = ids;
     const legacy = {
       firstFind: {
-        [zeroClears]: { clears: 0, pageId: 'conquerors_hollow_crypt' },
-        [realClears]: { clears: 4, pageId: 'conquerors_hollow_crypt' },
-        [counted]: { clears: 2, pageId: 'conquerors_hollow_crypt', count: 5 },
+        [zeroClears]: { clears: 0, pageId: 'conquerors_sunken_bastion' },
+        [realClears]: { clears: 4, pageId: 'conquerors_sunken_bastion' },
+        [counted]: { clears: 2, pageId: 'conquerors_sunken_bastion', count: 5 },
       },
       marks: [...RELIQUARY_MARK_IDS].slice(0, 1),
       recent: [zeroClears],
@@ -2371,7 +2371,7 @@ describe('Reliquary movement flag at the remaining relocation sites', () => {
     e.pos.z = wilkes!.pos.z;
     (sim as unknown as { rebucket(entity: typeof e): void }).rebucket(e);
     meta.copper = 100000;
-    meta.deedStats.dungeonClears.hollow_crypt = 9;
+    meta.deedStats.dungeonClears.sunken_bastion = 9;
 
     // Arrives with NO discovery credit, the guild-bank shape.
     meta.inventory.push({ itemId: CATALOGUE_RELIC, count: 1 });
@@ -2465,13 +2465,13 @@ describe('Reliquary ownership snapshot liveness', () => {
     const { meta } = primary(sim);
     const ownership = accountReliquaryOwnership(meta);
     expect(ownership.marks.has('gather_event:pristine_vein')).toBe(false);
-    expect(ownership.itemsDiscovered.has('cryptbone_helm')).toBe(false);
+    expect(ownership.itemsDiscovered.has('tideguard_greaves')).toBe(false);
     expect(ownership.deedsEarned.has('soc_meet_bursar')).toBe(false);
     meta.reliquary.marks.add('gather_event:pristine_vein');
-    meta.deedStats.itemsDiscovered.add('cryptbone_helm');
+    meta.deedStats.itemsDiscovered.add('tideguard_greaves');
     meta.deedsEarned.set('soc_meet_bursar', '2026-09-01');
     expect(ownership.marks.has('gather_event:pristine_vein')).toBe(true);
-    expect(ownership.itemsDiscovered.has('cryptbone_helm')).toBe(true);
+    expect(ownership.itemsDiscovered.has('tideguard_greaves')).toBe(true);
     expect(ownership.deedsEarned.has('soc_meet_bursar')).toBe(true);
   });
 
@@ -2512,7 +2512,7 @@ describe('Reliquary wire memo revision bumps', () => {
     const sim = makeSim();
     const { meta } = primary(sim);
     const state = meta.reliquary;
-    meta.deedStats.dungeonClears.hollow_crypt = 3;
+    meta.deedStats.dungeonClears.sunken_bastion = 3;
 
     const build = () => reliquaryWireJson(state);
     // A build with nothing written yet, so each step below has a prior string
@@ -2585,7 +2585,7 @@ describe('Reliquary wire memo revision bumps', () => {
     // INSIDE it); the literal arm below is what pins the actual bytes.
     const sim = makeSim();
     const { meta } = primary(sim);
-    meta.deedStats.dungeonClears.hollow_crypt = 2;
+    meta.deedStats.dungeonClears.sunken_bastion = 2;
     sim.addItem(CATALOGUE_RELIC, 1, sim.playerId);
     sim.addItem(STACKABLE_RELIC, 3, sim.playerId);
     expect(noteReliquaryMark(sim.ctx, meta, [...RELIQUARY_MARK_IDS][0])).toBe(true);
@@ -2600,31 +2600,31 @@ describe('Reliquary wire memo revision bumps', () => {
     // recorded live-vs-restored insertion-order property), so greaves lands
     // before helm even though the fixture lists helm first.
     const state = restoreReliquaryState({
-      firstFind: { cryptbone_helm: { clears: 2, count: 3 }, cryptbone_greaves: {} },
+      firstFind: { tideguard_greaves: { clears: 2, count: 3 }, eelscale_leggings: {} },
       marks: ['gather_event:pristine_vein'],
-      recent: ['cryptbone_helm'],
+      recent: ['tideguard_greaves'],
     });
     // This fixture completes NO page, so the Phase 18 illuminatedPages field
     // is OMITTED and the pre-Phase-18 bytes are unchanged (verified: two
-    // owned crypt relics of five). Byte-stability across the field's arrival
+    // owned Bastion relics of five). Byte-stability across the field's arrival
     // is the point of keeping this arm untouched.
     expect(reliquaryWireJson(state)).toBe(
-      '{"firstFind":{"cryptbone_greaves":{},"cryptbone_helm":{"clears":2,"count":3}},' +
-        '"marks":["gather_event:pristine_vein"],"recent":["cryptbone_helm"]}',
+      '{"firstFind":{"eelscale_leggings":{},"tideguard_greaves":{"clears":2,"count":3}},' +
+        '"marks":["gather_event:pristine_vein"],"recent":["tideguard_greaves"]}',
     );
 
     // The illuminated arm: the sticky record serializes SORTED, in its
     // ALPHABETICAL key position (firstFind, illuminatedPages, marks, recent).
     const illuminated = restoreReliquaryState({
-      firstFind: { cryptbone_helm: { clears: 2 } },
-      illuminatedPages: ['conquerors_thunzharr', 'conquerors_hollow_crypt'],
+      firstFind: { tideguard_greaves: { clears: 2 } },
+      illuminatedPages: ['conquerors_thunzharr', 'conquerors_sunken_bastion'],
       marks: ['gather_event:pristine_vein'],
-      recent: ['cryptbone_helm'],
+      recent: ['tideguard_greaves'],
     });
     expect(reliquaryWireJson(illuminated)).toBe(
-      '{"firstFind":{"cryptbone_helm":{"clears":2}},' +
-        '"illuminatedPages":["conquerors_hollow_crypt","conquerors_thunzharr"],' +
-        '"marks":["gather_event:pristine_vein"],"recent":["cryptbone_helm"]}',
+      '{"firstFind":{"tideguard_greaves":{"clears":2}},' +
+        '"illuminatedPages":["conquerors_sunken_bastion","conquerors_thunzharr"],' +
+        '"marks":["gather_event:pristine_vein"],"recent":["tideguard_greaves"]}',
     );
   });
 });
@@ -2746,8 +2746,9 @@ describe('Reliquary catalog index memo', () => {
     // The Warfare Season 2 Vanguard Gallery, appended after the reconciliation
     // above, is flagged personal, so the scoring set stays at 39.
     // The Buried Hoards page (2026-09-28 merge) scores: 40. The Mirefen world boss
-    // page is an ordinary conquerors page, so it scores too: 41.
-    expect(first?.length).toBe(41);
+    // page is an ordinary conquerors page, so it scores too: 41. The two retired
+    // Hollow Crypt pages (2026-11-11) carry excludeFromCompletion: 39.
+    expect(first?.length).toBe(39);
     expect(first?.some((p) => p.excludeFromCompletion !== undefined)).toBe(false);
 
     // An UNFLAGGED synthetic table answers the caller's own array by identity:
@@ -2814,7 +2815,7 @@ describe('Reliquary determinism', () => {
     function run(): { first: string; recent: string[]; counts: string } {
       const sim = makeSim(99);
       const { meta } = primary(sim);
-      meta.deedStats.dungeonClears.hollow_crypt = 4;
+      meta.deedStats.dungeonClears.sunken_bastion = 4;
       markItemDiscovered(sim.ctx, meta, NON_RELIC);
       markItemDiscovered(sim.ctx, meta, CATALOGUE_RELIC);
       // The tally is new Phase 17 sim state written on the grant path: it
@@ -3092,9 +3093,9 @@ function pageItemIds(pageId: string): string[] {
 describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
   it('a pre-Phase-18 blob restores to an empty set and round-trips as a fixed point', () => {
     const saved: SavedReliquaryState = {
-      firstFind: { cryptbone_helm: {} },
+      firstFind: { tideguard_greaves: {} },
       marks: ['gather_event:pristine_vein'],
-      recent: ['cryptbone_helm'],
+      recent: ['tideguard_greaves'],
     };
     const restored = restoreReliquaryState(saved);
     expect(restored.illuminatedPages.size).toBe(0);
@@ -3116,11 +3117,11 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
     // append-only by authoring rule); this arm pins that the trim happens
     // exactly once and the result is byte-stable.
     const restored = restoreReliquaryState({
-      illuminatedPages: ['conquerors_hollow_crypt', 'retired_page_of_yore'],
+      illuminatedPages: ['conquerors_sunken_bastion', 'retired_page_of_yore'],
     });
-    expect([...restored.illuminatedPages]).toEqual(['conquerors_hollow_crypt']);
+    expect([...restored.illuminatedPages]).toEqual(['conquerors_sunken_bastion']);
     const trimmed = serializeReliquaryState(restored);
-    expect(trimmed).toEqual({ illuminatedPages: ['conquerors_hollow_crypt'] });
+    expect(trimmed).toEqual({ illuminatedPages: ['conquerors_sunken_bastion'] });
     expect(JSON.stringify(serializeReliquaryState(restoreReliquaryState(trimmed)))).toBe(
       JSON.stringify(trimmed),
     );
@@ -3130,10 +3131,10 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
     // The contrast with counts documented on isReliquaryStateEmpty: the set
     // has no carrier entry, so it must count toward non-emptiness or an
     // illuminated-only blob would serialize to undefined and lose the record.
-    const state = restoreReliquaryState({ illuminatedPages: ['conquerors_hollow_crypt'] });
+    const state = restoreReliquaryState({ illuminatedPages: ['conquerors_sunken_bastion'] });
     expect(isReliquaryStateEmpty(state)).toBe(false);
     expect(serializeReliquaryState(state)).toEqual({
-      illuminatedPages: ['conquerors_hollow_crypt'],
+      illuminatedPages: ['conquerors_sunken_bastion'],
     });
   });
 
@@ -3145,7 +3146,7 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
 
     const mixed = restoreReliquaryState({
       illuminatedPages: [
-        'conquerors_hollow_crypt',
+        'conquerors_sunken_bastion',
         42 as unknown as string,
         null as unknown as string,
         'not_a_page',
@@ -3158,12 +3159,12 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
         // member is what makes that gate decisive (JSON.parse can never
         // produce one; the guard exists for clone-mangled callers).
         new String('conquerors_nythraxis_heroic') as unknown as string,
-        'conquerors_hollow_crypt',
+        'conquerors_sunken_bastion',
         'conquerors_thunzharr',
       ],
     });
     expect([...mixed.illuminatedPages].sort()).toEqual([
-      'conquerors_hollow_crypt',
+      'conquerors_sunken_bastion',
       'conquerors_thunzharr',
     ]);
   });
@@ -3200,17 +3201,17 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
     // Pre-Phase-18 veteran shape: the discovery ledger owns a whole page while
     // the record set is empty (the blob predates the field). Ledger-only
     // writes on purpose: the discovery hub would record the illumination live.
-    for (const id of pageItemIds('conquerors_hollow_crypt')) {
+    for (const id of pageItemIds('conquerors_sunken_bastion')) {
       meta.deedStats.itemsDiscovered.add(id);
     }
     expect(meta.reliquary.illuminatedPages.size).toBe(0);
     const before = reliquaryWireJson(meta.reliquary);
 
     expect(syncIlluminatedPages(meta)).toBe(1);
-    expect(meta.reliquary.illuminatedPages.has('conquerors_hollow_crypt')).toBe(true);
+    expect(meta.reliquary.illuminatedPages.has('conquerors_sunken_bastion')).toBe(true);
     const after = reliquaryWireJson(meta.reliquary);
     expect(after).not.toBe(before);
-    expect(JSON.parse(after).illuminatedPages).toEqual(['conquerors_hollow_crypt']);
+    expect(JSON.parse(after).illuminatedPages).toEqual(['conquerors_sunken_bastion']);
 
     // Second sweep: nothing added, NO revision bump: the memoized record is
     // reused by object identity, which only holds if the sweep stayed silent.
@@ -3299,12 +3300,12 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
     // the saved blob already records.
     const donor = makeSim();
     const { meta } = primary(donor);
-    for (const id of pageItemIds('conquerors_hollow_crypt')) {
+    for (const id of pageItemIds('conquerors_sunken_bastion')) {
       markItemDiscovered(donor.ctx, meta, id);
     }
-    expect(meta.reliquary.illuminatedPages.has('conquerors_hollow_crypt')).toBe(true);
+    expect(meta.reliquary.illuminatedPages.has('conquerors_sunken_bastion')).toBe(true);
     const saved = donor.serializeCharacter(donor.playerId)!;
-    expect(saved.reliquary?.illuminatedPages).toEqual(['conquerors_hollow_crypt']);
+    expect(saved.reliquary?.illuminatedPages).toEqual(['conquerors_sunken_bastion']);
 
     const host = makeSim();
     host.drainEvents();
@@ -3312,7 +3313,7 @@ describe('Reliquary illuminated pages (Phase 18 sticky record)', () => {
       state: JSON.parse(JSON.stringify(saved)) as CharacterState,
     });
     const restored = host.players.get(pid)!;
-    expect(restored.reliquary.illuminatedPages.has('conquerors_hollow_crypt')).toBe(true);
+    expect(restored.reliquary.illuminatedPages.has('conquerors_sunken_bastion')).toBe(true);
     const joinIllums = host
       .drainEvents()
       .filter((e) => e.pid === pid && e.type === 'reliquaryUnlock' && e.illuminatedPageId);
@@ -3527,7 +3528,7 @@ describe('Reliquary completion ladder deeds (Phase 18)', () => {
 
     // At total-1: the three Illumination deeds landed mid-rig (their flagship
     // pages completed under the item pass), while the shelf and catalog deeds
-    // wait on the one missing Hollow Crypt relic.
+    // wait on the one missing Sunken Bastion relic.
     for (const id of ILLUMINATION_IDS) {
       expect(meta.deedsEarned.has(id), id).toBe(true);
     }

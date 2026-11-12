@@ -156,8 +156,10 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // + tree chopping's first felling (prog_first_felling, renown 5): 370, 4015.
     // + the Bracken Circle's standing pair (Wyndlewood, 5 + 25): 372, 4045.
     // + Chapter One's chronicle (chr_shore_that_remembers, 10): 373, 4055.
-    expect(DEED_ORDER.length).toBe(373);
-    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4055);
+    // Owner override (2026-11-11): the Hollow Crypt retirement removed nine
+    // deeds worth 85 Renown (373 / 4055 before), measured off the table.
+    expect(DEED_ORDER.length).toBe(364);
+    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(3970);
   });
 
   it('ships the audited per-category counts', () => {
@@ -193,7 +195,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // +3 the Hollow Crypt wing bosses' encounter deeds.
       // +1 Morthen's Every Candle Lit.
       // +3 Lantern Hall's contract milestones.
-      dungeon: 63,
+      // -9 the retired Hollow Crypt's deeds (owner override, 2026-11-11).
+      dungeon: 54,
       delve: 13,
       // +4 farming first-harvest chronicles (chr_*_first_harvest).
       // +1 Wyndlewood Chapter One's closing chronicle.
@@ -219,10 +222,11 @@ describe('audited launch totals (literals: update deliberately with the catalog)
   });
 
   it('pins the catalog-refresh additions: ids, order, and renown literals', () => {
-    // The refresh tail appends AFTER the 186-deed launch set; both the launch
+    // The refresh tail appends AFTER the launch set (186 deeds, 182 since the
+    // Hollow Crypt's four launch deeds retired, 2026-11-11); both the launch
     // block and the tail are order-pinned so any insertion or reorder reds.
-    expect(DEED_ORDER[185]).toBe('hid_codfather');
-    expect(DEED_ORDER.slice(186)).toEqual([
+    expect(DEED_ORDER[181]).toBe('hid_codfather');
+    expect(DEED_ORDER.slice(182)).toEqual([
       'prog_crown_below',
       'prog_mere_at_rest',
       'prog_callused_hands',
@@ -455,7 +459,6 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       'dgn_ysolei_high_and_dry',
       'dgn_mere_hydra',
       // The Hollow Crypt's Knellwyrm finale (manual grant).
-      'dgn_crypt_knellwyrm',
       // The Sunken Bastion fifth pass's Gaol Turnkey miniboss (manual grant).
       'dgn_turnkey_cage',
       // The Wildheart Basin rework: its four encounter deeds.
@@ -472,11 +475,7 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // The Drowned Temple lore guide (manual grant at Ysolei's fall).
       'dgn_drowned_temple_cantor',
       // The Hollow Crypt wing bosses: one deed per boss core.
-      'dgn_marrow_tidy',
-      'dgn_lady_nobody_hanging',
-      'dgn_ilvane_hush',
       // Morthen the Gravecaller's Rite (morthen.ts).
-      'dgn_morthen_candlelight',
       'dgn_guild_first_contract',
       'dgn_guild_ten_contracts',
       'dgn_guild_fifty_contracts',
@@ -1154,7 +1153,14 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Main's frozen catalog is preserved as the prefix; Halloween appends ten feats.
   // Tree chopping appends prog_first_felling (renown 5) at the tail: re-minted.
   // Wyndlewood appends the Bracken Circle's standing pair at the tail: re-minted.
-  const FROZEN_CATALOG_SHA256 = '77568a4c762544b6bfccf5873d2b426cd9d1fc46e2478118c3b31b85046a4f48';
+  // OWNER OVERRIDE (2026-11-11, the Hollow Crypt retired fully): the retirement
+  // REMOVES nine shipped crypt deeds (dgn_hollow_crypt, dgn_hollow_crypt_heroic,
+  // dgn_morthen_flawless, dgn_morthen_trio, dgn_crypt_knellwyrm, dgn_marrow_tidy,
+  // dgn_lady_nobody_hanging, dgn_ilvane_hush, dgn_morthen_candlelight) and drops
+  // dgn_hollow_crypt_heroic from the Deepward meta. That is a deliberate rule-9
+  // exception the owner ordered, not a drift: the 77568a4c... literal is
+  // re-measured off the post-retirement table with the one-liner above.
+  const FROZEN_CATALOG_SHA256 = 'c28e59bb415a48359d444e02c7abec155ac1f6f0eafb7f713f1d2a186d3c9b5b';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -1244,8 +1250,14 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Chapter One's chronicle after prog_first_felling; the previous mint is tree chopping's 01e74f5e...
   // literal (rotated down here), and stripping the three reproduces it exactly
   // (the three shipped faction ladders kept their triggers, design rule 9).
+  //
+  // OWNER OVERRIDE (2026-11-11): the Hollow Crypt retirement removed nine older
+  // rows (listed at FROZEN_CATALOG_SHA256), so tree chopping's 01e74f5e... mint
+  // can never reproduce. The baseline is RE-MEASURED off the post-retirement
+  // table minus the three ids below, the same fold-in the v0.42.0 retune took;
+  // every later append is provable the auditable way against it again.
   const PRE_APPEND_CATALOG_SHA256 =
-    '01e74f5e5bd8fc4cf7b0cfef5cfcf0408cf962dc0a16ae062690a5d35096c7bf';
+    '3fc908b6a43d2cb154ff05e2a1925cea70048c8ba9027374a93e711d7d2504e5';
   const APPENDED_SINCE: readonly string[] = [
     'prog_bracken_circle_trusted',
     'prog_bracken_circle_champion',
@@ -1495,10 +1507,11 @@ describe('table shape', () => {
     // quartermaster's third title last.
     // Tree chopping's first felling appends last, one seat behind everything.
     // Then Wyndlewood's three (the Bracken Circle pair, Chapter One's chronicle).
-    expect(DEED_ORDER[DEED_ORDER.length - 55]).toBe('exp_harbor_to_harbor');
-    expect(DEED_ORDER[DEED_ORDER.length - 46]).toBe('cmb_balgath_ten');
-    expect(DEED_ORDER[DEED_ORDER.length - 45]).toBe('cmb_point_taken');
-    expect(DEED_ORDER[DEED_ORDER.length - 21]).toBe('dgn_morthen_candlelight');
+    // The Hollow Crypt's retirement (2026-11-11) took five rework deeds out of the
+    // tail, Every Candle Lit among them, so the older seats sit five nearer the end.
+    expect(DEED_ORDER[DEED_ORDER.length - 50]).toBe('exp_harbor_to_harbor');
+    expect(DEED_ORDER[DEED_ORDER.length - 41]).toBe('cmb_balgath_ten');
+    expect(DEED_ORDER[DEED_ORDER.length - 40]).toBe('cmb_point_taken');
     expect(DEED_ORDER[DEED_ORDER.length - 15]).toBe('feat_guild_of_lantern_hall');
     expect(DEED_ORDER.at(-5)).toBe('feat_gourdlight_eve_complete');
     expect(DEED_ORDER.at(-4)).toBe('prog_first_felling');

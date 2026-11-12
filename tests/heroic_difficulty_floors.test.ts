@@ -70,7 +70,6 @@ const NORMAL_NYTHRAXIS_BOSS_FLOOR = 98;
 const NORMAL_NYTHRAXIS_ADD_FLOOR = 300;
 
 const FIVE_MANS = [
-  'hollow_crypt',
   'sunken_bastion',
   'drowned_temple',
   'gravewyrm_sanctum',
@@ -147,7 +146,7 @@ function spawnListMobIds(dungeonId: string): Set<string> {
 // Calibration (MEASURED 2026-10-08 on the PR 4352 spawn lists with that bench,
 // every trash pull of the five, 4 runs of 90 s each, the p50 per pull):
 //   dungeon   real mean pull (formula)   heaviest real pull   formula heaviest
-//   crypt     262 (366)                  421 (w2, 5 crows)    654 (w2)
+//   crypt     262 (366)                  421 (w2, 5 crows)    654 (w2)   (retired 2026-11-11)
 //   bastion   252 (366)                  356 (k3)             541 (b2)
 //   temple    257 (353)                  344 (g11)            539 (g11)
 //   basin     245 (361)                  417 (g1 and g11)     600 (g4)
@@ -162,7 +161,6 @@ const PACK_BUDGET: Record<
   string,
   { pulls: number; meanMin: number; meanMax: number; heaviestMax: number }
 > = {
-  hollow_crypt: { pulls: 17, meanMin: 315, meanMax: 384, heaviestMax: 737 },
   sunken_bastion: { pulls: 19, meanMin: 327, meanMax: 399, heaviestMax: 721 },
   drowned_temple: { pulls: 16, meanMin: 309, meanMax: 377, heaviestMax: 744 },
   wildheart_basin: { pulls: 16, meanMin: 332, meanMax: 405, heaviestMax: 683 },
@@ -225,9 +223,7 @@ describe('heroic five-man floors', () => {
         const encounter = pull.some(isEncounterBody);
         for (const mobId of pull) {
           const swing = minSwing(mobId, dungeonId, 'heroic');
-          // Ilvane's two Choristers are her trash-like adds: since the pack
-          // budget they ride the crypt's trash value, not a boss entry.
-          if (encounter && mobId !== 'hollow_chorister') {
+          if (encounter) {
             bodies++;
             expect(swing, `${dungeonId}/${mobId}`).toBeGreaterThanOrEqual(HEROIC_MOB_FLOOR);
           } else {
@@ -236,13 +232,10 @@ describe('heroic five-man floors', () => {
         }
       }
     }
-    // The Knellwyrm (Morthen's rite raises it with no add role) is a boss too.
-    expect(minSwing('crypt_knellwyrm', 'hollow_crypt', 'heroic')).toBeGreaterThanOrEqual(
-      HEROIC_MOB_FLOOR,
-    );
-    // Non-vacuity: 20 boss bodies (the Hydra's three heads, the Beastmaster
-    // and his jaguar among them) plus the four solo minibosses.
-    expect(bodies).toBe(24);
+    // Non-vacuity, measured off the four live five-mans: the Hydra's three
+    // heads, the Beastmaster and his jaguar among them, plus the solo
+    // minibosses (24 before the Hollow Crypt's four retired, 2026-11-11).
+    expect(bodies).toBe(20);
   });
 
   it('the pack budget left every trash kit on its pre-budget mechanic factor', () => {
@@ -251,16 +244,6 @@ describe('heroic five-man floors', () => {
     // would have moved every trash kit with it. Each kit-carrying trash mob
     // whose melee moved carries its old factor as a mechanic entry instead.
     const PRE_BUDGET: Record<string, Record<string, number>> = {
-      hollow_crypt: {
-        crypt_ossuary_warrior: 20,
-        crypt_gravecaller_adept: 24,
-        crypt_chapel_gargoyle: 20,
-        crypt_ossuary_cutthroat: 23,
-        crypt_ossuary_drake: 20,
-        bonechill_widow: 20,
-        crypt_crow_caller: 24,
-        crypt_carrion_crow: 66,
-      },
       sunken_bastion: { bastion_revenant: 18, mistweaver: 21.6 },
       drowned_temple: { pale_choir_acolyte: 16.5, moonlit_siren: 17.5 },
       wildheart_basin: {
@@ -304,9 +287,10 @@ describe('heroic five-man floors', () => {
   });
 
   it('the adds an encounter module raises swing in the add band too', () => {
-    // Sexton Marrow's Restless Bones (encounters/hollow_crypt/marrow.ts) rise
-    // from his graves through spawnKitAdd as summoned adds, not a summonAdds row.
-    for (const [dungeonId, add] of [['hollow_crypt', 'marrow_restless_bones']] as const) {
+    // Olen's drowned sergeants (encounters/sunken_bastion/olen.ts) rise through
+    // spawnKitAdd as summoned adds, not a summonAdds row (the Hollow Crypt's
+    // Restless Bones carried this pin until the crypt retired).
+    for (const [dungeonId, add] of [['sunken_bastion', 'drowned_sergeant']] as const) {
       const swing = minSwing(add, dungeonId, 'heroic', { summonedAdd: true });
       expect(swing, `${dungeonId}/${add}`).toBeGreaterThanOrEqual(SUMMONED_ADD_FLOOR);
       expect(swing, `${dungeonId}/${add} above the mob line`).toBeLessThan(HEROIC_MOB_FLOOR);
@@ -329,15 +313,6 @@ describe('heroic five-man floors', () => {
 describe('heroic five-man doubled health', () => {
   it('pins representative heroic health to exactly double the pre-retune values', () => {
     // pre-retune heroic values in comments (health multipliers 1.9/2.0/2.6/2.0).
-    expect(maxHpAt('crypt_shambler', 'hollow_crypt', 'heroic')).toBe(4108); // was 2054
-    // The crypt rework prices Morthen from fight length x heroic DPS (about
-    // 125 s of damage beside his immune Rite, dungeon_difficulty.ts).
-    expect(maxHpAt('morthen', 'hollow_crypt', 'heroic')).toBe(28837);
-    // The Lady of the Bonechill: the owner's heroic playtest of 2026-10-12 set
-    // her at about 25,000 (was 18,382 on the fight-length price). Heroic only:
-    // her normal pool stays on its own multiplier.
-    expect(maxHpAt('rimeweb', 'hollow_crypt', 'heroic')).toBe(24999);
-    expect(maxHpAt('rimeweb', 'hollow_crypt', 'normal')).toBe(3998);
     expect(maxHpAt('bastion_revenant', 'sunken_bastion', 'heroic')).toBe(4554); // was 2277
     // The Sunken Bastion rework prices Vael's pool per boss (150 s at heroic
     // party DPS, dungeon_difficulty.ts healthMultiplierByMob), off the doubling.
@@ -410,7 +385,6 @@ describe('heroic tuning data contract', () => {
       // 20, 18, 16.5, 15.5, 17.25; the bosses keep those through their
       // per-mob entries). 6 -> 9.5: the rework's wing bosses summon adds (the
       // 150 add floor).
-      hollow_crypt: [3.8, 9, 9.5],
       sunken_bastion: [4.0, 6.9, 9.75],
       drowned_temple: [5.2, 6.4, 9.15],
       gravewyrm_sanctum: [4.0, 5.1, 8.55],
@@ -434,18 +408,6 @@ describe('heroic tuning data contract', () => {
       broodsworn_thawcaller: 5.5,
       broodsworn_pyre_tender: 5.5,
       rime_whelp: 8.8,
-    });
-    expect(HEROIC_DUNGEON_TUNING.hollow_crypt.damageMultiplierByMob).toEqual({
-      sexton_marrow: 20,
-      rimeweb: 20,
-      cantor_ilvane: 20,
-      morthen: 20,
-      crypt_knellwyrm: 20,
-      crypt_gravecaller_adept: 10.8,
-      crypt_gravecaller_necromancer: 10.8,
-      crypt_crow_caller: 10.8,
-      crypt_ossuary_cutthroat: 10.35,
-      crypt_carrion_crow: 26.7,
     });
     expect(HEROIC_DUNGEON_TUNING.sunken_bastion.damageMultiplierByMob).toEqual({
       knight_commander_olen: 18,

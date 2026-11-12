@@ -1068,7 +1068,7 @@ describe('reliquaryUnlock illumination fan-out through GameServer.detectActivity
     return fc;
   }
 
-  const PAGE_ID = 'conquerors_hollow_crypt';
+  const PAGE_ID = 'conquerors_sunken_bastion';
 
   beforeEach(() => {
     server = new GameServer();
@@ -1132,7 +1132,7 @@ describe('reliquaryUnlock illumination fan-out through GameServer.detectActivity
     return {
       type: 'reliquaryUnlock',
       pid,
-      itemId: 'cryptbone_helm',
+      itemId: 'tideguard_greaves',
       pageIds: [PAGE_ID],
       illuminatedPageId: PAGE_ID,
       ...overrides,
@@ -1297,7 +1297,7 @@ describe('reliquaryUnlock illumination fan-out through GameServer.detectActivity
 
     // Contrast down the same REAL path: a second page filled live after the
     // join marquees, which no retro flag can be responsible for.
-    const LIVE_PAGE_ID = 'conquerors_hollow_crypt_heroic';
+    const LIVE_PAGE_ID = 'conquerors_sunken_bastion_heroic';
     for (const itemId of relicItemIds(LIVE_PAGE_ID)) server.sim.addItem(itemId, 1, session.pid);
     detect(server.sim.tick());
     await settle();
@@ -1335,7 +1335,7 @@ describe('reliquaryUnlock illumination fan-out through GameServer.detectActivity
         else if (relic.kind === 'title') titleIds.add(relic.deedId);
       }
     }
-    const LAST_RELIC = 'cryptbone_helm'; // a conquerors_hollow_crypt slot
+    const LAST_RELIC = 'tideguard_greaves'; // a conquerors_sunken_bastion slot
     expect(itemIds.has(LAST_RELIC)).toBe(true);
 
     // Reach owned === total-1 directly on the sim (the sanctioned test
@@ -1365,7 +1365,7 @@ describe('reliquaryUnlock illumination fan-out through GameServer.detectActivity
     tickAndDetect(); // flush the pre-fill grants (the Illumination deeds land here)
     await settle();
     // At total-1 the flagship Illumination deeds are already earned; the
-    // shelf and catalog deeds still wait on the one Hollow Crypt relic.
+    // shelf and catalog deeds still wait on the one Sunken Bastion relic.
     expect(meta.deedsEarned.has('col_reliquary_illum_thunzharr')).toBe(true);
     expect(meta.deedsEarned.has('col_reliquary_conquerors')).toBe(false);
     expect(meta.deedsEarned.has('col_reliquary_complete')).toBe(false);
@@ -1420,7 +1420,7 @@ describe('reliquaryUnlock illumination fan-out through GameServer.detectActivity
     );
     expect(illumSpy).toHaveBeenCalledWith(
       { characterId: 93, accountId: 31, name: 'Curator' },
-      'conquerors_hollow_crypt',
+      'conquerors_sunken_bastion',
     );
 
     // Both titles are wearable afterward (the deed grant is what makes

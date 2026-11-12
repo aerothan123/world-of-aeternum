@@ -9,7 +9,7 @@ import type { DungeonFinderBoard, DungeonFinderInfo } from '../src/world_api/dun
 function setup() {
   const world = {
     playerId: 1,
-    player: { inCombat: false, level: 8 },
+    player: { inCombat: false, level: 12 },
     partyInfo: null,
     raidLockouts: vi.fn((): RaidLockout[] => []),
     dungeonFinderInfo: {
@@ -24,7 +24,7 @@ function setup() {
     dungeonFinderBoard: [
       {
         id: 3,
-        activityId: 'hollow_crypt_normal',
+        activityId: 'sunken_bastion_normal',
         leaderName: 'Mira',
         tags: [],
         size: 1,
@@ -94,12 +94,12 @@ describe('unified Groups notification bell', () => {
     expect(badge()?.textContent).toBe('1');
     world.player.level = 20;
     controller.render();
-    // The normal crypt's finder level band has an upper bound too.
+    // The normal Bastion's finder level band has an upper bound too.
     expect(badge()?.textContent).toBe('1');
     world.dungeonFinderBoard = [row];
     controller.render();
     expect(badge()?.textContent).toBe('0');
-    world.player.level = 8;
+    world.player.level = 12;
     controller.toggle();
     world.dungeonFinderBoard.push({ ...row, id: 8 });
     controller.render();
@@ -138,11 +138,11 @@ describe('unified Groups notification bell', () => {
     const { world, controller, deps } = setup();
     world.dungeonFinderInfo.myListing = {
       id: 10,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
       applicants: [
-        { pid: 4, name: 'Ana', cls: 'priest', level: 8, roles: ['healer'], remaining: 50 },
-        { pid: 5, name: 'Expired', cls: 'priest', level: 8, roles: ['healer'], remaining: 0 },
+        { pid: 4, name: 'Ana', cls: 'priest', level: 12, roles: ['healer'], remaining: 50 },
+        { pid: 5, name: 'Expired', cls: 'priest', level: 12, roles: ['healer'], remaining: 0 },
       ],
     };
     controller.render();

@@ -30,7 +30,7 @@ describe('helper rewards are paused without erasing saved progress', () => {
   it('refuses grants, purchases, equips and unequips without even advancing the day', () => {
     const state = existing();
     const before = savedQueueRewards(state);
-    const activity = FINDER_ACTIVITIES.find((a) => a.id === 'hollow_crypt_normal')!;
+    const activity = FINDER_ACTIVITIES.find((a) => a.id === 'sunken_bastion_normal')!;
     expect(
       grantQueueEncounter(state, '2026-10-06', activity.id, activity.encounters[0].mobId),
     ).toBe(0);
@@ -61,9 +61,9 @@ describe('helper rewards are paused without erasing saved progress', () => {
 
   it('does not allocate helper bookkeeping or award points in a real dungeon claim', () => {
     const sim = new Sim({ seed: 42, playerClass: 'warrior', world: EMPTY_TEST_WORLD });
-    sim.setPlayerLevel(8);
-    sim.enterDungeon('hollow_crypt');
-    const claim = sim.instances.find((c) => c.dungeonId === 'hollow_crypt')!;
+    sim.setPlayerLevel(12);
+    sim.enterDungeon('sunken_bastion');
+    const claim = sim.instances.find((c) => c.dungeonId === 'sunken_bastion')!;
     expect(claim).toBeDefined();
     const ctx = (sim as unknown as { ctx: SimContext }).ctx;
     const boss = sim.entities.get(claim.mobIds[0])!;

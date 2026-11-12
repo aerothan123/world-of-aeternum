@@ -189,9 +189,7 @@ describe('camera-relative floor shaders', () => {
     // shader chunk reached only through an import.
     for (const anchor of [
       'src/render/blob_shadows.ts',
-      'src/render/hollow_crypt/lady_fx.ts',
-      'src/render/hollow_crypt/marrow_fx.ts',
-      'src/render/hollow_crypt/crypt_fx_floor.ts',
+      'src/render/hollow_crypt/crypt_fx_particles.ts',
       'src/render/sunken_bastion/bastion_olen_fx.ts',
       'src/render/drowned_temple/temple_tsunami_fx.ts',
       'src/render/gravewyrm_sanctum_bosses/sanctum_boss_art.ts',
@@ -272,7 +270,7 @@ describe('camera-relative floor shaders', () => {
 // ---------------------------------------------------------------- the maths
 // A GPU vertex stage in float32, emulated with Math.fround after every
 // operation, against the exact (double) view-space depth of a floor point in
-// the Hollow Crypt band.
+// a dungeon instance band.
 
 const f = Math.fround;
 
@@ -323,7 +321,7 @@ function newViewZ(cam: Cam, p: number[]): number {
 
 describe('camera-relative precision in an instance band', () => {
   it('drops the depth wobble far under a floor effect lift', () => {
-    // A point on the crypt floor and a camera orbiting it at low angles.
+    // A point on an instance floor and a camera orbiting it at low angles.
     const p = [100_312.37, 7.04, -1_843.61];
     let oldMax = 0;
     let newMax = 0;
