@@ -72,6 +72,7 @@ import {
   NYTHRAXIS_ROOM_RADIUS,
   type Vec3,
 } from '../types';
+import { valeDungeonOpen } from '../vale_bounds';
 import { setCombatWalls } from './combat_wall_state';
 import {
   applyDungeonMobTuning,
@@ -412,6 +413,12 @@ export function enterDungeon(
   // resurrect at its arrival point (below). A fresh corpse (dead, spirit not yet released)
   // cannot move, so it never reaches the door.
   if (r.e.dead && !r.e.ghost) return false;
+  // Eastbrook Vale v2 (vale_bounds.ts): an instance whose door stands outside the
+  // vale has no interior on the v2 map, so the live hosts refuse it outright.
+  if (!bypass && !valeDungeonOpen(ctx.cfg, ctx.objectMoves, dungeonId)) {
+    deny(r.e.id, 'That way is sealed.');
+    return false;
+  }
   // Player housing (Project H): a house lot's door admits only its owner, into
   // a copy keyed on the owner (housing/ownership.ts); undefined for every real
   // dungeon. The raid gates and the party-size warning below never apply to it.

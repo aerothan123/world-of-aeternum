@@ -274,6 +274,22 @@ export const CHAPTER_ONE_CAMPS: CampDef[] = [
   { mobId: 'veiled_rite_tender', center: { x: 107, z: -41 }, radius: 5, count: 3, offStream: true },
   { mobId: 'culvert_rat', center: { x: -109, z: -98 }, radius: 7, count: 5, offStream: true },
   { mobId: 'quarry_burrower', center: { x: 5, z: 175 }, radius: 7, count: 4, offStream: true },
+  // The mainland start's easy killing ground (owner, 2026-11: the Proving Shore
+  // is retired and new characters start at the foot of the south lane into
+  // Eastbrook). The vale's own level 1 to 2 Forest Wolves, a short walk east of
+  // the start on the open river meadow: dry, flat, clear of colliders, its disc
+  // 60 yd beyond the town edge and clear of every lot door and placed NPC
+  // (tests/hub_safe_zone.test.ts, tests/mainland_start.test.ts). Hunted by
+  // c1_00_meadow_wolves, the first quest. offStream like every chapter camp.
+  {
+    mobId: 'forest_wolf',
+    center: { x: -118, z: -148 },
+    radius: 20,
+    count: 5,
+    levelMin: 1,
+    levelMax: 2,
+    offStream: true,
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -881,7 +897,10 @@ export const CHAPTER_ONE_QUESTS: Record<string, QuestDef> = {
       event(C1_BOARD_READ_EVENT, 'Eastbrook quest board inspected'),
     ],
     {
-      requiresQuest: 'c1_07_across',
+      // The chapter's mainland opening (owner, 2026-11): the Proving Shore quests
+      // 01 to 07 are retired with the island, so Aldric picks the chain up from
+      // Corren's first errand instead of from the ferry crossing.
+      requiresQuest: 'c1_00_meadow_wolves',
       requiredItems: ['c1_beacon_thread_sample'],
       minLevel: undefined,
     },
@@ -1400,6 +1419,23 @@ export const CHAPTER_ONE_QUESTS: Record<string, QuestDef> = {
       deliver(C1_OLVESSA, 'Stew delivered to Olvessa', 'c1_supper_stew_bowl', 1),
     ],
     { requiresQuest: 'c1_26_promise_paint', shareable: false },
+  ),
+  // The mainland start's first step (owner, 2026-11): a level 1 character
+  // arriving at the foot of the south lane meets Corren up the lane and is sent
+  // to the easy wolf meadow east of town (CHAPTER_ONE_CAMPS), then on to
+  // Brother Aldric, who opens the chapter proper (c1_08_vouch). Appended last so
+  // every earlier quest keeps its order.
+  c1_00_meadow_wolves: quest(
+    'c1_00_meadow_wolves',
+    'Teeth in the Meadow',
+    1,
+    'main',
+    CORREN,
+    CORREN,
+    'lanternwardens',
+    'Fresh off the south road, and still standing. Good. The wolves have come down out of the woods into the river meadow east of town, and they snap at anyone slower than they are. Thin out 5 Forest Wolves there, $N, then come back and show me the Vale still has teeth of its own.',
+    'Five fewer wolves, and you came back walking. That is a fine start. Brother Aldric keeps the chapel just up the road, and he likes to know every new face in Eastbrook. Go and let him put a name to yours.',
+    [kill('forest_wolf', 5, 'Forest Wolf slain')],
   ),
 };
 

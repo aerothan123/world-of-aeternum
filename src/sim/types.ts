@@ -12748,6 +12748,12 @@ export interface SimConfig {
   // Default OFF so deterministic tests, parity traces, and the RL env never
   // teleport a fresh character mid-scenario unless they opt in.
   compulsoryTutorial?: boolean;
+  // Live worlds (server + offline built-in world): keep every character inside the
+  // Eastbrook Vale v2 play area (src/sim/vale_bounds.ts): retired saves resume at the
+  // mainland start, the old map's static cast outside the vale is dropped, and no walk,
+  // teleport or instance door leads off the vale. Default OFF so deterministic tests,
+  // parity traces, and the RL env keep the whole built-in world.
+  valeOnly?: boolean;
   // Live worlds (server + offline client): raise the Mirefen muster (its squads, the
   // command camp and its weapon rack; src/sim/mirefen_muster.ts) on the first tick,
   // whether or not Balgath is up. Default OFF so deterministic tests, parity traces and

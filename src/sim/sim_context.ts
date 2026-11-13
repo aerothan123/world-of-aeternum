@@ -122,9 +122,13 @@ export type RuntimeSimConfig = Required<
     // Deliberately NOT defaulted: undefined is the "no day/night clock" world
     // (dayNightPhase() answers null), which tests and the RL env rely on.
     | 'dayNightNowMs'
+    | 'valeOnly'
   >
 > &
-  Pick<SimConfig, 'world' | 'perfLap' | 'respawnSeconds' | 'mintItemGuid' | 'dayNightNowMs'> & {
+  Pick<
+    SimConfig,
+    'world' | 'perfLap' | 'respawnSeconds' | 'mintItemGuid' | 'dayNightNowMs' | 'valeOnly'
+  > & {
     vaultOpenNeedsSave?: boolean;
     vaultRewardNeedsSave?: boolean;
   };

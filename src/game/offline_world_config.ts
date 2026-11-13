@@ -24,7 +24,11 @@ export function offlineWorldConfig(options: {
     devCommands: options.devCommands,
     // Editor play-test maps opt out of the live world's entry features.
     riftPortals: options.world === undefined,
-    compulsoryTutorial: options.world === undefined,
+    // The Proving Shore tutorial is retired (owner, 2026-11): a fresh character
+    // starts on the vale mainland and the built-in world keeps every character
+    // inside the Eastbrook Vale v2 play area (src/sim/vale_bounds.ts).
+    compulsoryTutorial: false,
+    valeOnly: options.world === undefined,
     // The Mirefen muster camps are the built-in fen's (src/sim/mirefen_muster.ts).
     mirefenMuster: options.world === undefined,
     // Boot like the live realm: the world bosses are up from the first tick instead of one

@@ -119,10 +119,14 @@ describe('Chapter One content', () => {
   // same for every vale spawn).
 
   it('runs the main story in the owner order and ends outside the sealed crypt', () => {
+    // The island opening (01, 02, 07) stays chained on the retired Proving
+    // Shore; the mainland start (owner, 2026-11) opens the story at Corren's
+    // wolf meadow (c1_00_meadow_wolves) and hands it to Aldric at 08.
+    expect(QUESTS.c1_02_beacon_lied.requiresQuest).toBe('c1_01_arrival');
+    expect(QUESTS.c1_07_across.requiresQuest).toBe('c1_02_beacon_lied');
+    expect(QUESTS.c1_00_meadow_wolves.requiresQuest).toBeUndefined();
     const chain = [
-      'c1_01_arrival',
-      'c1_02_beacon_lied',
-      'c1_07_across',
+      'c1_00_meadow_wolves',
       'c1_08_vouch',
       'c1_13_flowers_down',
       'c1_14_buried_tuesday',

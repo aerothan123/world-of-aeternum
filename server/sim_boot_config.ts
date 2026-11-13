@@ -15,6 +15,10 @@ import { nextRaidResetMs, nextWeeklyRaidResetMs } from './raid_reset';
 import { REALM_RESET_TIME_ZONE } from './realm';
 import { STORAGE_PRICES } from './storage_prices';
 
+/** The realm keeps characters inside the Eastbrook Vale v2 play area; the
+ *  character list (server/characters.ts) labels saved zones by the same rule. */
+export const REALM_VALE_ONLY = true;
+
 // The admission is REQUIRED, deliberately, even though SimConfig's own field
 // is optional (offline Sim constructions omit it and run inert): this seam is
 // where the live realm forgets its wiring, and an optional parameter here let
@@ -35,10 +39,12 @@ export function buildRealmSimConfig(
     worldPvpDisabled: process.env.WORLD_PVP_DISABLED === '1',
     // Thunzharr is up as soon as the realm boots; subsequent rises keep the
     // normal interval cadence (see src/sim/world_boss.ts).
-    // Live realm: legacy fresh mainland rows get ferried through the Proving
-    // Shore too. Landed on the release's inline literal and mirrored here,
-    // because this module is where that literal now lives.
-    compulsoryTutorial: true,
+    // Eastbrook Vale v2 (owner, 2026-11): the Proving Shore tutorial is retired,
+    // so no fresh character is ferried anywhere; new characters start on the
+    // mainland (server/character_newborn.ts) and every character stays inside
+    // the vale the Unreal client draws (src/sim/vale_bounds.ts).
+    compulsoryTutorial: false,
+    valeOnly: REALM_VALE_ONLY,
     worldBossAtBoot: true,
     // The Mirefen muster (squads, command camp, weapon rack) stands from boot, whether
     // or not Balgath is up (src/sim/mirefen_muster.ts).

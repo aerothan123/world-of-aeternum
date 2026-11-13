@@ -4,10 +4,10 @@
 // the identical state without importing the server entry.
 
 import { randomUUID } from 'node:crypto';
-import { PROVING_SHORE_ARRIVAL } from '../src/sim/content/proving_shore';
 import type { CharacterState } from '../src/sim/sim';
 import { Sim } from '../src/sim/sim';
 import type { PlayerClass } from '../src/sim/types';
+import { MAINLAND_START } from '../src/sim/vale_bounds';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
 export function initialCharacterState(
@@ -28,13 +28,13 @@ export function initialCharacterState(
   sim.setPlayerSkin(sim.playerId, skin);
   const character = sim.serializeCharacter(sim.playerId);
   if (!character) throw new Error('failed to serialize initial character');
-  // A newborn begins ON the Proving Shore (the coached tutorial), no opt-in
-  // ferry ride: the persisted row is what decides an online spawn (addPlayer
-  // prefers savedPos over playerStart), so island entry costs no sim change,
-  // keeps the offline default spawn untouched, and leaves every parity
-  // golden byte-identical. The greeting sweep sees the fresh character
-  // already ashore and plays Odo's arrival instead of Bryn's ferry offer.
-  character.pos = { x: PROVING_SHORE_ARRIVAL.x, z: PROVING_SHORE_ARRIVAL.z };
-  character.facing = PROVING_SHORE_ARRIVAL.facing;
+  // A newborn begins on the Eastbrook Vale mainland (owner, 2026-11: the
+  // Proving Shore tutorial is retired), at the v2 design's player start at the
+  // foot of the south lane into town, facing north toward Warden Corren
+  // Stoutvale and the first quest (src/sim/vale_bounds.ts MAINLAND_START).
+  // The persisted row is what decides an online spawn (addPlayer prefers
+  // savedPos over playerStart), so the row states it explicitly.
+  character.pos = { x: MAINLAND_START.x, z: MAINLAND_START.z };
+  character.facing = MAINLAND_START.facing;
   return character;
 }

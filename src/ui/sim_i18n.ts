@@ -1649,6 +1649,11 @@ const baseEnTable = {
   'log.provingEnter': 'The ferry bell tolls, and the Proving Shore rises to meet you.',
   'log.provingLeave': 'The crossing takes hold, and Eastbrook Vale spreads out before you.',
   'error.tutorialFromHere': 'You cannot set sail from here.',
+  // The Eastbrook Vale v2 play area (sim/vale_bounds.ts): a body that arrives
+  // far outside the vale is set down at the mainland start, and an instance
+  // whose door stands outside the vale refuses entry.
+  'log.valeReturn': 'You find your way back to Eastbrook Vale.',
+  'error.valeSealed': 'That way is sealed.',
   'log.passingStoneKneel': 'You close your hand on the Passing Stone, and the shore lets you go.',
   'error.passingStoneCold': 'The stone is cold. Instructor Maren has not asked this of you.',
   'log.longWalkCorpse': 'You are whole again, and you found your own way back.',
@@ -1891,6 +1896,8 @@ const BASE_DICT: Record<SupportedLanguage, Partial<Record<BaseSimMessageKey, str
     'log.provingEnter': 'The ferry bell tolls, and the Proving Shore rises to meet you.',
     'log.provingLeave': 'The crossing takes hold, and Eastbrook Vale spreads out before you.',
     'error.tutorialFromHere': 'You cannot set sail from here.',
+    'log.valeReturn': 'You find your way back to Eastbrook Vale.',
+    'error.valeSealed': 'That way is sealed.',
     'log.passingStoneKneel': 'You close your hand on the Passing Stone, and the shore lets you go.',
     'error.passingStoneCold': 'The stone is cold. Instructor Maren has not asked this of you.',
     'log.longWalkCorpse': 'You are whole again, and you found your own way back.',

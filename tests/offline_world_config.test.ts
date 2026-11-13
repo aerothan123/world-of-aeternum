@@ -20,7 +20,10 @@ describe('offline browser world configuration', () => {
       playerName: 'Ana',
       devCommands: true,
       riftPortals: true,
-      compulsoryTutorial: true,
+      // The Proving Shore tutorial is retired (owner, 2026-11): nobody is ferried,
+      // and the built-in world keeps characters inside the Eastbrook Vale v2.
+      compulsoryTutorial: false,
+      valeOnly: true,
       mirefenMuster: true,
       // The realm's boot shape: the world bosses are up from the first tick, so the
       // muster never stands round an empty crater.
@@ -46,6 +49,7 @@ describe('offline browser world configuration', () => {
     expect(config.devCommands).toBe(false);
     expect(config.riftPortals).toBe(false);
     expect(config.compulsoryTutorial).toBe(false);
+    expect(config.valeOnly).toBe(false);
     expect(config.mirefenMuster).toBe(false);
     expect(config.worldBossAtBoot).toBe(false);
     expect(config.gathererIdentity).toBeUndefined();

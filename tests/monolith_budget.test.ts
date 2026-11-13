@@ -1298,7 +1298,10 @@ const MONOLITHS: MonolithRow[] = [
     // getter and verb (trickOrTreatedToday, trickOrTreat) left with it. wc -l. Exact.
     // Lowered at the Hollow Crypt retirement (2026-11-11): the crypt's code left
     // too, 11389 -> 11384 on the merged tree (wc -l). Exact.
-    ceiling: 11384,
+    // Lowered from 11384 by the mainland start (owner, 2026-11): the retired
+    // Proving Shore arrival block left the ctor and the Eastbrook Vale v2 gate
+    // landed in its own module (src/sim/vale_bounds.ts).
+    ceiling: 11371,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {

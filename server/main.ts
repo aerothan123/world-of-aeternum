@@ -553,7 +553,7 @@ function liveGame(): GameServer {
 }
 
 // Newborn-state seam for tests (the boardReadTestSeam precedent): pins that
-// a created character's persisted row starts on the Proving Shore.
+// a created character's persisted row starts on the Eastbrook Vale mainland.
 export const characterCreationTestSeam = { initialCharacterState };
 
 // ---------------------------------------------------------------------------

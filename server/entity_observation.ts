@@ -1,6 +1,7 @@
 import type { Sim } from '../src/sim/sim';
 import { stealthDetectionRadius } from '../src/sim/threat';
 import type { Entity } from '../src/sim/types';
+import { isRetiredOldMapEntity, valeOnlyActive } from '../src/sim/vale_bounds';
 import { vaultPortalVisibleToPlayer } from '../src/sim/vault_visibility';
 import { INTEREST_RADIUS, isStealthed } from './interest_policy';
 
@@ -13,6 +14,11 @@ function inViewerGroup(sim: Sim, viewer: Entity, entity: Entity): boolean {
 /** Viewer-specific admission, re-evaluated even for already-known entities. */
 export function canObserveEntity(sim: Sim, viewer: Entity, entity: Entity, d2: number): boolean {
   if (entity.vaultOwnerPid !== undefined && !vaultPortalVisibleToPlayer(sim.ctx, entity, viewer.id))
+    return false;
+  // Eastbrook Vale v2 (src/sim/vale_bounds.ts): the vale is all the Unreal client
+  // draws, so nothing standing off it (a world boss, the Mirefen muster, a rift
+  // portal raised after boot) reaches a vale-only realm's snapshots. O(1).
+  if (entity.kind !== 'player' && valeOnlyActive(sim.ctx.cfg) && isRetiredOldMapEntity(entity))
     return false;
   if (entity.kind !== 'player') return true;
   // A released spirit is seen only by its own party or raid, everywhere: a

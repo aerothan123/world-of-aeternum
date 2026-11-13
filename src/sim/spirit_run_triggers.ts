@@ -9,16 +9,19 @@
 //
 // Same order as the living branch of the player tick (door, rift, portal), so
 // a ghost standing on two overlapping triggers resolves the way a live player
-// would. Draws ZERO rng. `src/sim`-pure (src/sim/CLAUDE.md).
+// would, then the Eastbrook Vale v2 hold (vale_bounds.ts) keeps the spirit on
+// the vale like a living body. Draws ZERO rng. `src/sim`-pure (src/sim/CLAUDE.md).
 
 import { updateDoorTriggers } from './instances/dungeons';
 import { updatePortalTriggers } from './portals';
 import { updateRiftTriggers } from './rift/runs';
 import type { SimContext } from './sim_context';
 import type { Entity } from './types';
+import { enforceValeBounds } from './vale_bounds';
 
 export function updateSpiritRunTriggers(ctx: SimContext, p: Entity): void {
   updateDoorTriggers(ctx, p);
   updateRiftTriggers(ctx, p);
   updatePortalTriggers(ctx, p);
+  enforceValeBounds(ctx, p);
 }

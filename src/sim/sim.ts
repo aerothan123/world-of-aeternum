@@ -194,7 +194,6 @@ import {
 import { normalizeMountSkinId } from './content/mount_skins';
 import { DEFAULT_MOUNT, type MountKey } from './content/mounts';
 import type { GatheringProfessionId } from './content/professions';
-import { PROVING_SHORE_ARRIVAL } from './content/proving_shore';
 import { PTR_DEV_VENDOR_DEF } from './content/ptr_dev_vendor';
 import { FURY_ENTITY_ID, FURY_NPC_ID } from './content/pvp_honor';
 import {
@@ -750,6 +749,7 @@ import { updateAbilityDrill } from './tutorial/ability_drill';
 import { updateGauntletRuns } from './tutorial/gauntlet_run';
 import { updateTutorialGreeting } from './tutorial/greeting';
 import * as unstuckMod from './unstuck';
+import { enforceValeBounds, retireOldMapEntities, valeGraveyards } from './vale_bounds';
 import * as weeklyMod from './weekly_rewards';
 import {
   freshWorldBossDawnState,
@@ -2270,6 +2270,7 @@ export class Sim {
       worldBossAtBoot: cfg.worldBossAtBoot ?? false,
       riftPortals: cfg.riftPortals ?? false,
       compulsoryTutorial: cfg.compulsoryTutorial ?? false,
+      valeOnly: cfg.valeOnly,
       mirefenMuster: cfg.mirefenMuster ?? false,
       lockoutNowMs: cfg.lockoutNowMs ?? (() => Math.floor(this.time * 1000)),
       raidResetMs: cfg.raidResetMs ?? ((nowMs: number) => nowMs + DEFAULT_RAID_LOCKOUT_MS),
@@ -2586,23 +2587,6 @@ export class Sim {
         // sim. Absent for a bare test/probe Sim, which then gathers unrecorded.
         localGathererIdentity: cfg.gathererIdentity ?? null,
       });
-      // The compulsory tutorial starts ASHORE, not one greeting sweep later.
-      // An offline session is always a fresh character, so landing at the
-      // mainland spawn first would stream Eastbrook behind the loading screen
-      // and then teleport away from it a second afterwards, paying for both
-      // worlds to show one. The greeting sweep's already-ashore arm then just
-      // plays Odo's welcome. Online is unaffected: the server rolls the
-      // newborn row at the same arrival (server/main.ts initialCharacterState).
-      const ownPlayer = this.cfg.compulsoryTutorial
-        ? this.entities.get(this.ownPlayerPid)
-        : undefined;
-      if (ownPlayer) {
-        ownPlayer.pos = this.groundPos(PROVING_SHORE_ARRIVAL.x, PROVING_SHORE_ARRIVAL.z);
-        ownPlayer.prevPos = { ...ownPlayer.pos };
-        ownPlayer.facing = PROVING_SHORE_ARRIVAL.facing;
-        ownPlayer.prevFacing = ownPlayer.facing;
-        this.rebucket(ownPlayer);
-      }
     }
 
     // Escorts, the practice yards, the built world's keepers: rng-free, trailing or reserved ids.
@@ -2610,6 +2594,8 @@ export class Sim {
     spawnHubPractice(this.ctx, worldContent);
     spawnHealingTrainingGround(this.ctx, worldContent);
     spawnBuiltWorldKeepers(this.ctx, worldContent);
+    // Eastbrook Vale v2 (vale_bounds.ts): the old map's cast outside the vale stands down.
+    retireOldMapEntities(this.ctx);
   }
 
   private lockoutNowMs(): number {
@@ -2747,7 +2733,7 @@ export class Sim {
     // Characters saved inside a dungeon instance rejoin at its entrance (the
     // shared rule in saved_pos_exit.ts, which the character list reads too so
     // the roster's zone label matches where the character actually lands).
-    const savedExit = resolveSavedPosExit(savedState?.pos, savedState?.posEpoch);
+    const savedExit = resolveSavedPosExit(savedState?.pos, savedState?.posEpoch, this.cfg.valeOnly);
     let savedPos = savedExit.pos;
     if (savedPos && !savedExit.instanceExit) {
       // Authored towns can grow across release boundaries. A living character
@@ -4953,7 +4939,7 @@ export class Sim {
         return sim.worldContent.objectMoves;
       },
       get graveyards() {
-        return sim.worldContent.services?.graveyards ?? [];
+        return valeGraveyards(sim.cfg, sim.worldContent.services?.graveyards ?? []);
       },
       get playerStart() {
         return sim.worldContent.playerStart;
@@ -5982,6 +5968,7 @@ export class Sim {
         updateDoorTriggersImpl(this.ctx, p);
         this.updateRiftTriggers(p);
         updatePortalTriggers(this.ctx, p);
+        enforceValeBounds(this.ctx, p);
         updateSwimFatigue(this.ctx, p);
         lap?.('p.doors');
         this.updateCasting(p, meta);

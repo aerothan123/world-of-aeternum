@@ -53,6 +53,7 @@ import {
   questObjectiveRequired,
   questTurnInNpcIds,
 } from '../types';
+import { valeBlockedQuestIds } from '../vale_bounds';
 import { leaveWispMaze } from '../world_quest_wisp_maze';
 import {
   applyProfessionQuestEffect,
@@ -183,15 +184,19 @@ export function repeatBlockedQuestIds(
   // keyed on the character's realm-day cycle, which the online client mirrors
   // as wqday, so both worlds read the same day.
   const offBoard = offDayTownBoardQuestIds(meta.worldQuestCycle);
+  // Quests that need a place off the Eastbrook Vale v2 play area (vale_bounds.ts)
+  // on a vale-only host: never offered, here and on the online client alike.
+  const offVale = valeBlockedQuestIds(ctx.cfg);
   if (
     cadence.length === 0 &&
     weekly.length === 0 &&
     seasonal.length === 0 &&
-    offBoard.length === 0
+    offBoard.length === 0 &&
+    offVale.length === 0
   ) {
     return undefined;
   }
-  return new Set([...cadence, ...weekly, ...seasonal, ...offBoard]);
+  return new Set([...cadence, ...weekly, ...seasonal, ...offBoard, ...offVale]);
 }
 
 function questNpcFor(

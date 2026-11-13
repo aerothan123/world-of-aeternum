@@ -21,6 +21,7 @@ import {
 } from './data';
 import { spreadPoint } from './frontier/spread';
 import { dungeonDoorPos } from './moved_objects';
+import { resolveValeSave } from './vale_bounds';
 
 export interface SavedPos {
   x: number;
@@ -51,8 +52,23 @@ export interface SavedPosExit {
  * exemption the two band branches do. Only an UNSTAMPED save can be one of
  * those: `posEpoch` (CharacterState.posEpoch) at SAVE_POS_EPOCH or above means
  * the position is literal, so an overworld save east of x 600 is kept.
+ *
+ * `valeOnly` (SimConfig.valeOnly, the live hosts): every exit above that lands
+ * outside the Eastbrook Vale v2 play area (the retired Proving Shore, the
+ * Farshore, a frontier slice, a door the vale has no way to) resumes at the
+ * world start instead, the mainland start (vale_bounds.ts resolveValeSave).
  */
 export function resolveSavedPosExit(
+  saved: SavedPos | null | undefined,
+  posEpoch?: number,
+  valeOnly = false,
+): SavedPosExit {
+  const exit = resolveSavedPosExitRaw(saved, posEpoch);
+  const pos = resolveValeSave(exit.pos, valeOnly);
+  return pos === exit.pos ? exit : { pos, instanceExit: false };
+}
+
+function resolveSavedPosExitRaw(
   saved: SavedPos | null | undefined,
   posEpoch?: number,
 ): SavedPosExit {
@@ -101,8 +117,12 @@ export function resolveSavedPosExit(
  * Character select labels each roster row with this, so the account owner can
  * see where every character is without logging each one in.
  */
-export function savedZoneId(saved: SavedPos | null | undefined, posEpoch?: number): string | null {
-  const exit = resolveSavedPosExit(saved, posEpoch);
+export function savedZoneId(
+  saved: SavedPos | null | undefined,
+  posEpoch?: number,
+  valeOnly = false,
+): string | null {
+  const exit = resolveSavedPosExit(saved, posEpoch, valeOnly);
   const pos = exit.pos ?? getActiveWorldContent().playerStart;
   if (pos.x >= INSTANCE_X_BASE) return null;
   return zoneAt(pos.x, pos.z).id;

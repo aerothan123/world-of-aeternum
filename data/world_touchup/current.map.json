@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4727f-88df516b-db0dc0db-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4730b-9059665e-ca9fb32e-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4727f-88df516b-db0dc0db",
+    "overworldBase": "4730b-9059665e-ca9fb32e",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3474,6 +3474,17 @@
         },
         "radius": 7,
         "count": 4
+      },
+      {
+        "mobId": "forest_wolf",
+        "center": {
+          "x": -118,
+          "z": -148
+        },
+        "radius": 20,
+        "count": 5,
+        "levelMin": 1,
+        "levelMax": 2
       }
     ],
     "npcs": {
@@ -3510,6 +3521,7 @@
           "c1_08_vouch",
           "c1_24_sandwich_emergency",
           "c1_27_supper_despite",
+          "c1_00_meadow_wolves",
           "c1_d01_bounty_culvert",
           "c1_d08_lunch_stew",
           "c1_d10_road_checkposts",

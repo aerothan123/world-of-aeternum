@@ -900,6 +900,8 @@ const QUEST_IDS = [
   'c1_22_place_you_keep',
   'c1_23_working_life',
   'c1_27_supper_despite',
+  // The mainland start's first quest (owner, 2026-11: the Proving Shore is retired).
+  'c1_00_meadow_wolves',
   'c1_d01_bounty_culvert',
   'c1_d02_clear_quarry',
   'c1_d03_teeth_verge',
