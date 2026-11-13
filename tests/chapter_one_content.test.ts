@@ -135,15 +135,15 @@ describe('Chapter One content', () => {
     ];
     for (let i = 1; i < chain.length; i++)
       expect(QUESTS[chain[i]].requiresQuest).toBe(chain[i - 1]);
-    // The chapter never unlocks the Hollow Crypt chain (the shipped q_hollow
-    // still waits on the shipped rite).
+    // The chapter never unlocks a shipped chain (the Hollow Crypt chain and
+    // its q_whispers retired with the crypt).
     // (Wyndlewood Chapter Two, content/chapter_two.ts, follows on from it.)
     for (const q of Object.values(QUESTS)) {
       if (q.id.startsWith('c1_') || q.id.startsWith('c2_')) continue;
       expect(q.requiresQuest?.startsWith('c1_') ?? false, q.id).toBe(false);
     }
     expect(QUESTS.c1_26_promise_paint.completionText).toContain(OATHLESS_KING_TITLE);
-    expect(QUESTS.q_whispers.completionText).toContain(OATHLESS_KING_TITLE);
+    expect(QUESTS.q_whispers).toBeUndefined();
   });
 
   it('gives no new townsfolk a shipped first name, nor one a letter off the known clashes', () => {
