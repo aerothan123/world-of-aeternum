@@ -537,6 +537,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 1,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -1755,6 +1769,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 1,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -2973,6 +3001,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 2,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -4191,6 +4233,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 2,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -5409,6 +5465,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 3,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -6627,6 +6697,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 3,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -7845,6 +7929,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 4,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -9063,6 +9161,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 4,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -10281,6 +10393,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 6,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -11499,6 +11625,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 6,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -12717,6 +12857,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 10,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -13935,6 +14089,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "fresh",
+        "done": "",
+        "level": 10,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "fresh",
         "done": "",
@@ -15153,6 +15321,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 1,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -16371,6 +16553,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 1,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -17589,6 +17785,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 2,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -18807,6 +19017,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 2,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -20025,6 +20249,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 3,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -21243,6 +21481,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 3,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -22461,6 +22713,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 4,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -23679,6 +23945,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 4,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -24897,6 +25177,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 6,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -26115,6 +26409,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 6,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -27333,6 +27641,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 10,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -28551,6 +28873,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "shore",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
+        "level": 10,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "shore",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail",
@@ -29769,6 +30105,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 1,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -30987,6 +31337,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 1,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -32205,6 +32569,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 2,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -33423,6 +33801,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 2,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -34641,6 +35033,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 3,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -35859,6 +36265,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 3,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -37077,6 +37497,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 4,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -38295,6 +38729,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 4,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -39513,6 +39961,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 6,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -40731,6 +41193,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 6,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -41949,6 +42425,20 @@
     },
     {
       "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 10,
+        "cls": "warrior",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
+      }
+    },
+    {
+      "in": {
         "questId": "c1_d01_bounty_culvert",
         "set": "vouched",
         "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
@@ -43163,6 +43653,20 @@
       "out": {
         "state": "unavailable",
         "giverMarker": "none"
+      }
+    },
+    {
+      "in": {
+        "questId": "c1_00_meadow_wolves",
+        "set": "vouched",
+        "done": "q_ps_the_gauntlet,q_ps_strike_true,q_ps_hone_the_edge,q_ps_shell_and_claw,q_ps_mother_of_pearl,q_ps_the_wreck_line,q_ps_pouch_and_purse,q_ps_the_signpost,q_ps_the_long_walk,q_ps_set_sail,c1_01_arrival,c1_02_beacon_lied,c1_07_across,c1_08_vouch",
+        "level": 10,
+        "cls": "mage",
+        "logState": ""
+      },
+      "out": {
+        "state": "available",
+        "giverMarker": "available"
       }
     },
     {

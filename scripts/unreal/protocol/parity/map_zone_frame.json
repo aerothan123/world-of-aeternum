@@ -16,7 +16,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -64,11 +64,35 @@
         ],
         "questAreas": [
           {
+            "mx": 230.969,
+            "my": 236.658,
+            "radius": 36.978,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 191.147,
+            "my": 196.836,
+            "radius": 34.133,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 339.058,
+            "my": 424.391,
+            "radius": 27.307,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 202.65,
             "my": 343.006,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -76,36 +100,12 @@
             "my": 377.424,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 209.647,
             "my": 366.16,
-            "radius": 6.827,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 234.361,
-            "my": 83.046,
-            "radius": 25.712,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 210.034,
-            "my": 388.892,
-            "radius": 6.827,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 205.938,
-            "my": 351.346,
             "radius": 6.827,
             "numbers": [
               2
@@ -185,7 +185,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -233,11 +233,35 @@
         ],
         "questAreas": [
           {
+            "mx": 230.969,
+            "my": 236.658,
+            "radius": 36.978,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 191.147,
+            "my": 196.836,
+            "radius": 34.133,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 339.058,
+            "my": 424.391,
+            "radius": 27.307,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 202.65,
             "my": 343.006,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -245,36 +269,12 @@
             "my": 377.424,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 209.647,
             "my": 366.16,
-            "radius": 6.827,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 234.361,
-            "my": 83.046,
-            "radius": 25.712,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 210.034,
-            "my": 388.892,
-            "radius": 6.827,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 205.938,
-            "my": 351.346,
             "radius": 6.827,
             "numbers": [
               2
@@ -354,7 +354,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -402,11 +402,27 @@
         ],
         "questAreas": [
           {
+            "mx": 292.409,
+            "my": -38.684,
+            "radius": 73.956,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 508.587,
+            "my": 336.782,
+            "radius": 54.613,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 235.77,
             "my": 174.012,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -414,28 +430,12 @@
             "my": 242.847,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 249.765,
             "my": 220.319,
-            "radius": 13.653,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 250.539,
-            "my": 265.785,
-            "radius": 13.653,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 242.347,
-            "my": 190.692,
             "radius": 13.653,
             "numbers": [
               2
@@ -509,7 +509,7 @@
         "pinged": true,
         "pingX": -27,
         "pingZ": -105,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -560,11 +560,27 @@
         ],
         "questAreas": [
           {
+            "mx": 292.409,
+            "my": -38.684,
+            "radius": 73.956,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 508.587,
+            "my": 336.782,
+            "radius": 54.613,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 235.77,
             "my": 174.012,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -572,28 +588,12 @@
             "my": 242.847,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 249.765,
             "my": 220.319,
-            "radius": 13.653,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 250.539,
-            "my": 265.785,
-            "radius": 13.653,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 242.347,
-            "my": 190.692,
             "radius": 13.653,
             "numbers": [
               2
@@ -667,7 +667,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -715,11 +715,19 @@
         ],
         "questAreas": [
           {
+            "mx": 383.431,
+            "my": -38.684,
+            "radius": 73.956,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 326.793,
             "my": 174.012,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -727,28 +735,12 @@
             "my": 242.847,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 340.787,
             "my": 220.319,
-            "radius": 13.653,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 341.561,
-            "my": 265.785,
-            "radius": 13.653,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 333.369,
-            "my": 190.692,
             "radius": 13.653,
             "numbers": [
               2
@@ -822,7 +814,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -867,7 +859,7 @@
             "my": 57.89,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -875,28 +867,12 @@
             "my": 195.561,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 243.53,
             "my": 150.505,
-            "radius": 27.307,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 245.077,
-            "my": 241.436,
-            "radius": 27.307,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 228.693,
-            "my": 91.25,
             "radius": 27.307,
             "numbers": [
               2
@@ -970,7 +946,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1015,7 +991,7 @@
             "my": -55.888,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1023,28 +999,12 @@
             "my": 81.783,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 425.574,
             "my": 36.727,
-            "radius": 27.307,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 427.122,
-            "my": 127.659,
-            "radius": 27.307,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 410.738,
-            "my": -22.528,
             "radius": 27.307,
             "numbers": [
               2
@@ -1081,7 +1041,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1136,11 +1096,35 @@
         ],
         "questAreas": [
           {
+            "mx": 230.969,
+            "my": 236.658,
+            "radius": 36.978,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 191.147,
+            "my": 196.836,
+            "radius": 34.133,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 339.058,
+            "my": 424.391,
+            "radius": 27.307,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 202.65,
             "my": 343.006,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1148,36 +1132,12 @@
             "my": 377.424,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 209.647,
             "my": 366.16,
-            "radius": 6.827,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 234.361,
-            "my": 83.046,
-            "radius": 25.712,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 210.034,
-            "my": 388.892,
-            "radius": 6.827,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 205.938,
-            "my": 351.346,
             "radius": 6.827,
             "numbers": [
               2
@@ -1257,7 +1217,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1312,11 +1272,35 @@
         ],
         "questAreas": [
           {
+            "mx": 230.969,
+            "my": 236.658,
+            "radius": 36.978,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 191.147,
+            "my": 196.836,
+            "radius": 34.133,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 339.058,
+            "my": 424.391,
+            "radius": 27.307,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 202.65,
             "my": 343.006,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1324,36 +1308,12 @@
             "my": 377.424,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 209.647,
             "my": 366.16,
-            "radius": 6.827,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 234.361,
-            "my": 83.046,
-            "radius": 25.712,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 210.034,
-            "my": 388.892,
-            "radius": 6.827,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 205.938,
-            "my": 351.346,
             "radius": 6.827,
             "numbers": [
               2
@@ -1433,7 +1393,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1474,11 +1434,35 @@
         ],
         "questAreas": [
           {
+            "mx": 292.409,
+            "my": 32.996,
+            "radius": 73.956,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 212.764,
+            "my": -46.649,
+            "radius": 68.267,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 508.587,
+            "my": 408.462,
+            "radius": 54.613,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 235.77,
             "my": 245.692,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1486,28 +1470,12 @@
             "my": 314.527,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 249.765,
             "my": 291.999,
-            "radius": 13.653,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 250.539,
-            "my": 337.465,
-            "radius": 13.653,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 242.347,
-            "my": 262.372,
             "radius": 13.653,
             "numbers": [
               2
@@ -1581,7 +1549,7 @@
         "pinged": true,
         "pingX": -27,
         "pingZ": -66,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1625,11 +1593,35 @@
         ],
         "questAreas": [
           {
+            "mx": 292.409,
+            "my": 32.996,
+            "radius": 73.956,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 212.764,
+            "my": -46.649,
+            "radius": 68.267,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 508.587,
+            "my": 408.462,
+            "radius": 54.613,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 235.77,
             "my": 245.692,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1637,28 +1629,12 @@
             "my": 314.527,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 249.765,
             "my": 291.999,
-            "radius": 13.653,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 250.539,
-            "my": 337.465,
-            "radius": 13.653,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 242.347,
-            "my": 262.372,
             "radius": 13.653,
             "numbers": [
               2
@@ -1732,7 +1708,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1773,11 +1749,19 @@
         ],
         "questAreas": [
           {
+            "mx": 383.431,
+            "my": -23.893,
+            "radius": 73.956,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 326.793,
             "my": 188.803,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1785,28 +1769,12 @@
             "my": 257.638,
             "radius": 13.653,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 340.787,
             "my": 235.11,
-            "radius": 13.653,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 341.561,
-            "my": 280.576,
-            "radius": 13.653,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 333.369,
-            "my": 205.483,
             "radius": 13.653,
             "numbers": [
               2
@@ -1880,7 +1848,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -1925,7 +1893,7 @@
             "my": 235.383,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -1933,28 +1901,12 @@
             "my": 373.055,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 243.53,
             "my": 327.999,
-            "radius": 27.307,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 245.077,
-            "my": 418.93,
-            "radius": 27.307,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 228.693,
-            "my": 268.743,
             "radius": 27.307,
             "numbers": [
               2
@@ -2028,7 +1980,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "quests": "c1_00_meadow_wolves,c1_08_vouch",
         "canvas": 512
       },
       "out": {
@@ -2073,7 +2025,7 @@
             "my": 121.606,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -2081,28 +2033,12 @@
             "my": 259.277,
             "radius": 27.307,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 425.574,
             "my": 214.221,
-            "radius": 27.307,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 427.122,
-            "my": 305.152,
-            "radius": 27.307,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 410.738,
-            "my": 154.965,
             "radius": 27.307,
             "numbers": [
               2
@@ -2171,7 +2107,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2212,11 +2148,35 @@
         ],
         "questAreas": [
           {
+            "mx": 230.969,
+            "my": 236.658,
+            "radius": 36.978,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 191.147,
+            "my": 196.836,
+            "radius": 34.133,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 339.058,
+            "my": 424.391,
+            "radius": 27.307,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 234.361,
             "my": 83.046,
             "radius": 25.712,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -2224,37 +2184,13 @@
             "my": 388.892,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 205.938,
             "my": 351.346,
             "radius": 6.827,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 238.933,
-            "my": 162.702,
-            "radius": 12.516,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 198.542,
-            "my": 316.879,
-            "radius": 11.039,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 202.166,
-            "my": 320.057,
-            "radius": 12.661,
             "numbers": [
               2
             ]
@@ -2333,7 +2269,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2374,11 +2310,35 @@
         ],
         "questAreas": [
           {
+            "mx": 230.969,
+            "my": 236.658,
+            "radius": 36.978,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 191.147,
+            "my": 196.836,
+            "radius": 34.133,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 339.058,
+            "my": 424.391,
+            "radius": 27.307,
+            "numbers": [
+              1
+            ]
+          },
+          {
             "mx": 234.361,
             "my": 83.046,
             "radius": 25.712,
             "numbers": [
-              1
+              2
             ]
           },
           {
@@ -2386,37 +2346,13 @@
             "my": 388.892,
             "radius": 6.827,
             "numbers": [
-              1
+              2
             ]
           },
           {
             "mx": 205.938,
             "my": 351.346,
             "radius": 6.827,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 238.933,
-            "my": 162.702,
-            "radius": 12.516,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 198.542,
-            "my": 316.879,
-            "radius": 11.039,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 202.166,
-            "my": 320.057,
-            "radius": 12.661,
             "numbers": [
               2
             ]
@@ -2495,7 +2431,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2530,17 +2466,25 @@
         "npcs": [],
         "questAreas": [
           {
-            "mx": 283.515,
-            "my": 166.093,
-            "radius": 51.424,
+            "mx": 276.73,
+            "my": 473.316,
+            "radius": 73.956,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 292.659,
-            "my": 325.404,
-            "radius": 25.031,
+            "mx": 197.086,
+            "my": 393.671,
+            "radius": 68.267,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 283.515,
+            "my": 166.093,
+            "radius": 51.424,
             "numbers": [
               2
             ]
@@ -2565,7 +2509,7 @@
         "pinged": true,
         "pingX": -33.89,
         "pingZ": 170.06,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2603,17 +2547,25 @@
         "npcs": [],
         "questAreas": [
           {
-            "mx": 283.515,
-            "my": 166.093,
-            "radius": 51.424,
+            "mx": 276.73,
+            "my": 473.316,
+            "radius": 73.956,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 292.659,
-            "my": 325.404,
-            "radius": 25.031,
+            "mx": 197.086,
+            "my": 393.671,
+            "radius": 68.267,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 283.515,
+            "my": 166.093,
+            "radius": 51.424,
             "numbers": [
               2
             ]
@@ -2638,7 +2590,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2673,17 +2625,25 @@
         "npcs": [],
         "questAreas": [
           {
-            "mx": 374.537,
-            "my": 166.093,
-            "radius": 51.424,
+            "mx": 367.753,
+            "my": 473.316,
+            "radius": 73.956,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 383.681,
-            "my": 325.404,
-            "radius": 25.031,
+            "mx": 288.108,
+            "my": 393.671,
+            "radius": 68.267,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 374.537,
+            "my": 166.093,
+            "radius": 51.424,
             "numbers": [
               2
             ]
@@ -2708,7 +2668,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2747,14 +2707,6 @@
             "my": 269.881,
             "radius": 102.847,
             "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 329.318,
-            "my": 588.504,
-            "radius": 50.062,
-            "numbers": [
               2
             ]
           }
@@ -2778,7 +2730,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
+        "quests": "c1_00_meadow_wolves,c1_09_buckles_glory",
         "canvas": 512
       },
       "out": {
@@ -2813,17 +2765,17 @@
         "npcs": [],
         "questAreas": [
           {
-            "mx": 493.075,
-            "my": 156.103,
-            "radius": 102.847,
+            "mx": 320.216,
+            "my": 611.26,
+            "radius": 136.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 511.363,
-            "my": 474.726,
-            "radius": 50.062,
+            "mx": 493.075,
+            "my": 156.103,
+            "radius": 102.847,
             "numbers": [
               2
             ]

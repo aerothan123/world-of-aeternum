@@ -4102,6 +4102,110 @@
     {
       "in": {
         "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_00_meadow_wolves",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
         "questId": "c1_d01_bounty_culvert",
         "playerLevel": 1,
         "questLevel": 2,

@@ -43,6 +43,7 @@ import {
   XP_TABLE,
   xpForLevel,
 } from '../../src/sim/types';
+import { questLeavesVale } from '../../src/sim/vale_bounds';
 import { terrainHeight } from '../../src/sim/world';
 import { classDisplayName, tEntity } from '../../src/ui/entity_i18n';
 import { tTalent } from '../../src/ui/talent_i18n';
@@ -398,7 +399,11 @@ function questRecord(q: QuestDef) {
     requiresQuest: q.requiresQuest ?? '',
     requiredClass: q.requiredClass ?? [],
     repeatable: !!q.repeatable,
-    retired: !!q.retired,
+    // The native client plays the vale-only realm (src/sim/vale_bounds.ts): a quest
+    // that needs a place off the Eastbrook Vale v2 (the retired Proving Shore's rail,
+    // a breadcrumb into a zone the v2 map does not draw) is never offered there, so
+    // the client reads it as retired and its coach never points at it.
+    retired: !!q.retired || questLeavesVale(q.id),
     giver: q.townBoard === undefined ? q.giverNpcId : '',
     turnIns: [...questTurnInNpcIds(q)],
     baseXp: questBaseXp(q),
