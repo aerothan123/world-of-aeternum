@@ -15,9 +15,15 @@ import { nextRaidResetMs, nextWeeklyRaidResetMs } from './raid_reset';
 import { REALM_RESET_TIME_ZONE } from './realm';
 import { STORAGE_PRICES } from './storage_prices';
 
-/** The realm keeps characters inside the Eastbrook Vale v2 play area; the
- *  character list (server/characters.ts) labels saved zones by the same rule. */
-export const REALM_VALE_ONLY = true;
+/** Whether the realm keeps characters inside the Eastbrook Vale v2 play area
+ *  (src/sim/vale_bounds.ts): ON for every realm unless WOC_VALE_ONLY=0. The
+ *  Vitest env sets it to 0 (vite.config.ts) so the server suites keep the whole
+ *  built-in world they were written against; tests/mainland_start.test.ts pins
+ *  the gate itself. The character list (server/characters.ts) labels saved
+ *  zones by the same rule. */
+export function realmValeOnly(): boolean {
+  return process.env.WOC_VALE_ONLY !== '0';
+}
 
 // The admission is REQUIRED, deliberately, even though SimConfig's own field
 // is optional (offline Sim constructions omit it and run inert): this seam is
@@ -44,7 +50,7 @@ export function buildRealmSimConfig(
     // mainland (server/character_newborn.ts) and every character stays inside
     // the vale the Unreal client draws (src/sim/vale_bounds.ts).
     compulsoryTutorial: false,
-    valeOnly: REALM_VALE_ONLY,
+    valeOnly: realmValeOnly(),
     worldBossAtBoot: true,
     // The Mirefen muster (squads, command camp, weapon rack) stands from boot, whether
     // or not Balgath is up (src/sim/mirefen_muster.ts).

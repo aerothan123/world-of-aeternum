@@ -1553,6 +1553,10 @@ export default defineConfig({
       CLAUDIUM_ENABLED: '1',
       VITE_MEMBERSHIP_ENABLED: '1',
       VITE_CLAUDIUM_ENABLED: '1',
+      // The realm's Eastbrook Vale v2 gate (server/sim_boot_config.ts realmValeOnly)
+      // is off for the server suites, which stage players and props across the whole
+      // built-in world; tests/mainland_start.test.ts pins the gate itself.
+      WOC_VALE_ONLY: '0',
     },
     // happy-dom resolves a relative resource URL against its window origin,
     // which vitest defaults to http://localhost:3000, and then opens a REAL

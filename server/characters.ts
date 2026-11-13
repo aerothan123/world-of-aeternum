@@ -109,7 +109,7 @@ import {
   REFERRAL_CHARACTER_BONUS,
   referralCapacityEarned,
 } from './referral_account_entitlements_db';
-import { REALM_VALE_ONLY } from './sim_boot_config';
+import { realmValeOnly } from './sim_boot_config';
 
 // ---------------------------------------------------------------------------
 // Ported response bodies (the exact legacy { error } identities). Named constants so
@@ -474,7 +474,7 @@ export function buildCharacterList(
       // addPlayer applies, so an instance save reads as its door's zone; null
       // for a mid-match battleground save that resumes at the world start).
       // Character select labels the roster row with it.
-      zoneId: savedZoneId(c.state?.pos, c.state?.posEpoch, REALM_VALE_ONLY),
+      zoneId: savedZoneId(c.state?.pos, c.state?.posEpoch, realmValeOnly()),
       // The raid lockouts this character still carries (lockout id -> unlock
       // epoch ms), filtered against the host clock the same way addPlayer
       // loads them, so character select can list them without a login.

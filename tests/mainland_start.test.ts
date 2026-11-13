@@ -8,6 +8,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { canObserveEntity } from '../server/entity_observation';
 import { characterCreationTestSeam } from '../server/main';
+import { realmValeOnly } from '../server/sim_boot_config';
 import { campSpawnOffset } from '../src/sim/camp_scatter';
 import { isBlocked } from '../src/sim/colliders';
 import { CHAPTER_ONE_CAMPS, CHAPTER_ONE_QUESTS } from '../src/sim/content/chapter_one';
@@ -266,5 +267,21 @@ describe('quests on the vale-only world', () => {
     expect(blocked).toContain('q_fenbridge_muster');
     expect(blocked.some((id) => id.startsWith('c1_'))).toBe(false);
     expect(valeBlockedQuestIds({ valeOnly: false })).toEqual([]);
+  });
+});
+
+describe('realm vale gate switch', () => {
+  it('is on for every realm unless WOC_VALE_ONLY=0 (the Vitest env)', () => {
+    const before = process.env.WOC_VALE_ONLY;
+    try {
+      expect(before).toBe('0');
+      expect(realmValeOnly()).toBe(false);
+      delete process.env.WOC_VALE_ONLY;
+      expect(realmValeOnly()).toBe(true);
+      process.env.WOC_VALE_ONLY = '1';
+      expect(realmValeOnly()).toBe(true);
+    } finally {
+      process.env.WOC_VALE_ONLY = before;
+    }
   });
 });
