@@ -24,8 +24,13 @@ slot of the built-in world so the server agrees with what the Unreal client draw
 - Built-in world only: every entry point checks `isBuiltinWorldActive()` (or is gated by its
   caller), so authored and custom maps never see the design.
 - Frames: design x/z pass through unchanged; heights are design y + yOffset (-8.3, so the
-  design sea at 4.0 lands on WATER_LEVEL -4.3). The Unreal client draws sim y + 8.3 m on
-  the v2 map.
+  design sea at 4.0 lands on WATER_LEVEL -4.3). The Unreal client has no per-map height
+  offset: it draws every body at sim y (`FSimSpace`), so the v2 Unreal level itself stands
+  in the server frame (its pass 6, `Scripts/worldv2_aura/ebv_pass6.py` in the Unreal repo,
+  lowers the whole design level by 8.3 m). The design records (`WorldDesign/EastbrookVale`)
+  stay in the design frame, so this import keeps `yOffset` -8.3; never add a client offset
+  on top. Brook and pond cells differ by more than 8.3 m (each water surface maps onto the
+  single server waterline), so the drawn brook bed sits above the server's there.
 - Content reads design places by id through `points.ts`; a dropped or renamed point throws
   at module load. Tests: `tests/eastbrook_v2_import.test.ts`, `tests/eastbrook_v2_world.test.ts`.
 - Pure leaves: no rng draws, no clock, no DOM.
