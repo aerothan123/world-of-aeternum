@@ -31122,12 +31122,12 @@ export const zh_TW: EnTranslations = {
         }
       },
       "c1_00_meadow_wolves": {
-        "title": "Teeth in the Meadow",
-        "text": "Fresh off the south road, and still standing. Good. The wolves have come down out of the woods into the river meadow east of town, and they snap at anyone slower than they are. Thin out 5 Forest Wolves there, {playerName}, then come back and show me the Vale still has teeth of its own.",
-        "completion": "Five fewer wolves, and you came back walking. That is a fine start. Brother Aldric keeps the chapel just up the road, and he likes to know every new face in Eastbrook. Go and let him put a name to yours.",
+        "title": "草地之牙",
+        "text": "剛從南邊的大路過來，還站得穩。很好。狼群已經從林子裡下到了鎮東的河邊草地，見到比牠們慢的就咬。去那裡除掉5隻森林狼，{playerName}，然後回來讓我看看，這片山谷自己也還有獠牙。",
+        "completion": "少了五隻狼，你也是自己走回來的。開了個好頭。奧德里克修士就在這條路往上的禮拜堂，他想認識東溪的每一張新面孔。去吧，讓他記住你的名字。",
         "objectives": {
           "0": {
-            "label": "Forest Wolf slain"
+            "label": "擊敗森林狼"
           }
         }
       },

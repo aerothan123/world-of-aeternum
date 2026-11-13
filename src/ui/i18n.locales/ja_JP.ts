@@ -7159,6 +7159,12 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
     '森の狼が北の道で旅人に牙をむけています、{playerName}。8頭を討ち、イーストブルックに息をつかせてください。',
   'entities.quests.q_wolves.completion': '見事です。道はもう少し安全になりました。',
   'entities.quests.q_wolves.objectives.0.label': '森の狼を討伐',
+  'entities.quests.c1_00_meadow_wolves.title': '草原の牙',
+  'entities.quests.c1_00_meadow_wolves.text':
+    '南の街道を抜けて、まだ立っているな。よし。狼どもが森から町の東の川辺の草原まで下りてきて、自分より遅い者なら誰にでも噛みつく。そこで森の狼を5匹減らしてこい、{playerName}。それから戻って、この渓谷にもまだ牙があると見せてくれ。',
+  'entities.quests.c1_00_meadow_wolves.completion':
+    '狼が5匹減って、お前は自分の足で帰ってきた。上出来の始まりだ。この道の先の礼拝堂にはアルドリック修道士がいる。イーストブルックに来た新しい顔は皆知っておきたがる人だ。行って、お前の名前を覚えてもらえ。',
+  'entities.quests.c1_00_meadow_wolves.objectives.0.label': '森の狼を討伐',
   'entities.quests.q_greyjaw.title': '老いた狼',
   'entities.quests.q_greyjaw.text':
     '老グレイジョーだけは罠にかかったことがありません。狼道の北の奥森をうろついています。牙を持ち帰ってください。',

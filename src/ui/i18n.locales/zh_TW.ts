@@ -8505,6 +8505,12 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '森林狼已敢撲咬北路旅人，{playerName}。擊敗8隻森林狼，讓東溪能鬆一口氣。',
   'entities.quests.q_wolves.completion': '做得好。道路已經安全多了。',
   'entities.quests.q_wolves.objectives.0.label': '擊敗森林狼',
+  'entities.quests.c1_00_meadow_wolves.title': '草地之牙',
+  'entities.quests.c1_00_meadow_wolves.text':
+    '剛從南邊的大路過來，還站得穩。很好。狼群已經從林子裡下到了鎮東的河邊草地，見到比牠們慢的就咬。去那裡除掉5隻森林狼，{playerName}，然後回來讓我看看，這片山谷自己也還有獠牙。',
+  'entities.quests.c1_00_meadow_wolves.completion':
+    '少了五隻狼，你也是自己走回來的。開了個好頭。奧德里克修士就在這條路往上的禮拜堂，他想認識東溪的每一張新面孔。去吧，讓他記住你的名字。',
+  'entities.quests.c1_00_meadow_wolves.objectives.0.label': '擊敗森林狼',
   'entities.quests.q_greyjaw.title': '老狼',
   'entities.quests.q_greyjaw.text':
     '老灰顎從未被陷阱困住。牠在狼徑北面的深林遊蕩，把牠的尖牙帶回來。',

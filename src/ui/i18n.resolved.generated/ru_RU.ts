@@ -31122,12 +31122,12 @@ export const ru_RU: EnTranslations = {
         }
       },
       "c1_00_meadow_wolves": {
-        "title": "Teeth in the Meadow",
-        "text": "Fresh off the south road, and still standing. Good. The wolves have come down out of the woods into the river meadow east of town, and they snap at anyone slower than they are. Thin out 5 Forest Wolves there, {playerName}, then come back and show me the Vale still has teeth of its own.",
-        "completion": "Five fewer wolves, and you came back walking. That is a fine start. Brother Aldric keeps the chapel just up the road, and he likes to know every new face in Eastbrook. Go and let him put a name to yours.",
+        "title": "Клыки на лугу",
+        "text": "Только с южной дороги и всё ещё на ногах. Хорошо. Волки спустились из леса на приречный луг к востоку от города и кусают всякого, кто медленнее их. Убей там 5 лесных волков, {playerName}, а потом возвращайся и покажи, что у долины ещё есть свои клыки.",
+        "completion": "Пятью волками меньше, и ты вернулся на своих ногах. Хорошее начало. Брат Алдрик служит в часовне чуть выше по дороге, и ему важно знать каждое новое лицо в Истбруке. Ступай и назови ему своё имя.",
         "objectives": {
           "0": {
-            "label": "Forest Wolf slain"
+            "label": "Лесной волк: убито"
           }
         }
       },

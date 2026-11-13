@@ -31122,12 +31122,12 @@ export const ja_JP: EnTranslations = {
         }
       },
       "c1_00_meadow_wolves": {
-        "title": "Teeth in the Meadow",
-        "text": "Fresh off the south road, and still standing. Good. The wolves have come down out of the woods into the river meadow east of town, and they snap at anyone slower than they are. Thin out 5 Forest Wolves there, {playerName}, then come back and show me the Vale still has teeth of its own.",
-        "completion": "Five fewer wolves, and you came back walking. That is a fine start. Brother Aldric keeps the chapel just up the road, and he likes to know every new face in Eastbrook. Go and let him put a name to yours.",
+        "title": "草原の牙",
+        "text": "南の街道を抜けて、まだ立っているな。よし。狼どもが森から町の東の川辺の草原まで下りてきて、自分より遅い者なら誰にでも噛みつく。そこで森の狼を5匹減らしてこい、{playerName}。それから戻って、この渓谷にもまだ牙があると見せてくれ。",
+        "completion": "狼が5匹減って、お前は自分の足で帰ってきた。上出来の始まりだ。この道の先の礼拝堂にはアルドリック修道士がいる。イーストブルックに来た新しい顔は皆知っておきたがる人だ。行って、お前の名前を覚えてもらえ。",
         "objectives": {
           "0": {
-            "label": "Forest Wolf slain"
+            "label": "森の狼を討伐"
           }
         }
       },

@@ -7114,6 +7114,12 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '숲늑대들이 북쪽 길의 여행자들을 물어뜯고 있습니다, {playerName}. 8마리를 처치해 이스트브룩이 숨 돌리게 해 주십시오.',
   'entities.quests.q_wolves.completion': '훌륭합니다. 길이 벌써 더 안전해졌습니다.',
   'entities.quests.q_wolves.objectives.0.label': '숲늑대 처치',
+  'entities.quests.c1_00_meadow_wolves.title': '초원의 이빨',
+  'entities.quests.c1_00_meadow_wolves.text':
+    '남쪽 길에서 막 올라왔는데도 멀쩡히 서 있군. 좋아. 늑대들이 숲에서 마을 동쪽 강가 초원까지 내려와서, 자기보다 느린 자라면 누구든 물어뜯고 있다. 거기서 숲늑대 5마리를 처치하고 오게, {playerName}. 그리고 돌아와서 이 골짜기에도 아직 이빨이 있다는 걸 보여 주게.',
+  'entities.quests.c1_00_meadow_wolves.completion':
+    '늑대가 다섯 마리 줄었고, 자네는 제 발로 걸어서 돌아왔군. 훌륭한 시작이야. 이 길을 따라 올라가면 예배당에 알드릭 수사가 있네. 이스트브룩에 온 새 얼굴은 모두 알아 두고 싶어 하는 분이지. 가서 자네 이름을 알려 드리게.',
+  'entities.quests.c1_00_meadow_wolves.objectives.0.label': '숲늑대 처치',
   'entities.quests.q_greyjaw.title': '늙은 늑대',
   'entities.quests.q_greyjaw.text':
     '어떤 덫에도 걸리지 않은 늑대가 있습니다. 늙은 그레이죠입니다. 늑대길 북쪽 깊은 숲에서 그 송곳니를 가져오십시오.',
