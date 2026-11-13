@@ -213,7 +213,7 @@ describe('Adventure Guide in a real browser', () => {
     expect(document.activeElement).toBe(control(root, '[data-loot-class]'));
     const search = control<HTMLInputElement>(root, '[data-guide-search]');
     await userEvent.click(search);
-    search.value = 'Hollow';
+    search.value = 'Drowned';
     search.setSelectionRange(3, 3);
     search.dispatchEvent(new Event('input', { bubbles: true }));
     const current = control<HTMLInputElement>(root, '[data-guide-search]');
