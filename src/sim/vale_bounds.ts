@@ -37,9 +37,9 @@ import {
 } from './data';
 import { displacePlayer } from './displacement';
 import { FERRY_BELL_OBJECT_ID } from './interactions/ferry_bell';
-import { dungeonDoorPos } from './moved_objects';
+import { dungeonDoorPos, type ObjectMoves } from './moved_objects';
 import type { SimContext } from './sim_context';
-import type { Entity, ObjectMoves } from './types';
+import type { Entity } from './types';
 
 const VALE_ZONE = ZONES.find((zone) => zone.id === 'eastbrook_vale');
 if (!VALE_ZONE || VALE_ZONE.xMin === undefined || VALE_ZONE.xMax === undefined) {
